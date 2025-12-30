@@ -1,0 +1,3051 @@
+!!! XML
+!!! 1.1
+%html{:xmlns => "http://www.w3.org/1999/xhtml"}
+  %head
+    %title
+      sigma-model -- exposition of quantum sigma-models in nLab
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:content => "index,follow", :name => "robots"}/
+    %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/
+    %link{:href => "/stylesheets/instiki.css?1660229990", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/stylesheets/mathematics.css?1660229990", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/stylesheets/syntax.css?1660229990", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/stylesheets/nlab.css?1660229990", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css", :rel => "stylesheet", :type => "text/css"}/
+    :css
+      h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+        color: #226622;
+      }
+      a:visited.existingWikiWord {
+        color: #164416;
+      }
+    :css
+      <!--/*--><![CDATA[/*><!--*/
+          .toc ul {margin: 0; padding: 0;}
+      .toc ul ul {margin: 0; padding: 0 0 0 10px;}
+      .toc li > p {margin: 0}
+      .toc ul li {list-style-type: none; position: relative;}
+      .toc div {border-top:1px dotted #ccc;}
+      .rightHandSide h2 {font-size: 1.5em;color:#008B26}
+      table.plaintable {
+          border-collapse:collapse;
+          margin-left:30px;
+          border:0;
+      }
+      .plaintable td {border:1px solid #000; padding: 3px;}
+      .plaintable th {padding: 3px;}
+      .plaintable caption {
+          font-weight: bold;
+          font-size:1.1em;
+          text-align:center;
+          margin-left:30px;
+      }
+          
+         
+      /* Query boxes for questioning and answering mechanism */
+      div.query{
+      background: #f6fff3;
+      border: solid #ce9;
+      border-width: 2px 1px;
+      padding: 0 1em;
+      margin: 0 1em;
+      max-height: 20em;
+      overflow: auto;
+      }
+      
+      /* Standout boxes for putting important text */
+      div.standout{
+      background: #fff1f1;
+      border: solid black;
+      border-width: 2px 1px;
+      padding: 0 1em;
+      margin: 0 1em;
+      overflow: auto;
+      }
+      
+      /* Icon for links to n-category arXiv documents 
+       (commented out for now i.e. disabled)
+      a[href*="http://arxiv.org/"] {
+        background-image: url(../files/arXiv_icon.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 22px;
+        } */
+          
+      /* Icon for links to n-category cafe posts (disabled) 
+      a[href*="http://golem.ph.utexas.edu/category"] {
+        background-image: url(../files/n-cafe_5.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 25px;
+        } */
+      
+      /* Icon for links to pdf files (disabled)
+      a[href$=".pdf"] {
+        background-image: url(../files/pdficon_small.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 25px;
+        } */
+      
+      /* Icon for links to pages, etc. -inside- pdf files (disabled)
+      a[href*=".pdf#"] {
+        background-image: url(../files/pdf_entry.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 25px;
+        } */
+      
+      a.existingWikiWord {
+      color: #226622;
+      }
+      
+      a.existingWikiWord:visited {
+      color: #226622;
+      }
+      
+      
+      a.existingWikiWord[title] {
+      border: 0px;
+      color: #aa0505;
+      text-decoration: none;
+      }
+          
+      a.existingWikiWord[title]:visited {
+      border: 0px;
+      color: #551111;
+      text-decoration: none;
+      }
+      
+      a[href^="http://"] {
+      border: 0px;
+      color: #003399;
+      }
+      
+      a[href^="http://"]:visited {
+      border: 0px;
+      color: #330066;
+      }
+      
+      a[href^="https://"] {
+      border: 0px;
+      color: #003399;
+      }
+      
+      a[href^="https://"]:visited {
+      border: 0px;
+      color: #330066;
+      }
+      
+      div.dropDown .hide {
+      display: none;
+      }
+      
+      div.dropDown:hover .hide {
+      display:block;
+      }
+      
+      div.clickDown .hide {
+      display: none;
+      }
+      
+      div.clickDown:focus {
+      outline:none;
+      }
+      
+      div.clickDown:focus .hide, div.clickDown:hover .hide {
+      display: block;
+      }
+      
+      div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+      display:block;
+      }
+      
+      div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+      display:none;
+      }
+      
+      div.clickDown .clickToReveal:after {
+      content: "A(Hover to reveal, click to "hold")";
+      font-size: 60%;
+      }
+      
+      div.clickDown .clickToHide:after {
+      content: "A(Click to hide)";
+      font-size: 60%;
+      }
+      div.clickDown .clickToHide, div.clickDown .clickToReveal {
+      white-space: pre-wrap;
+      }
+      
+      .un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+      margin-left: 1em;
+      }
+      
+      span.theorem_label {
+      margin-left: -1em;
+      }
+      .proof span.theorem_label {
+      margin-left: 0em;
+      }
+      :target {
+          background-color: #BBBBBB;
+          border-radius: 5pt;
+      }
+      
+        /*]]>*/-->
+    %script{:src => "/javascripts/prototype.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/effects.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/dragdrop.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/controls.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/application.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/page_helper.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/thm_numbering.js?1660229990", :type => "text/javascript"}
+    %script{:type => "text/x-mathjax-config"}
+      :cdata
+        <!--//--><![CDATA[//><!--
+        MathJax.Ajax.config.path["Contrib"] = "/MathJax";
+        MathJax.Hub.Config({
+        MathML: { useMathMLspacing: true },
+        "HTML-CSS": { scale: 90,
+        extensions: ["handle-floats.js"]
+        }
+        });
+        MathJax.Hub.Queue( function () {
+        var fos = document.getElementsByTagName('foreignObject');
+        for (var i = 0; i < fos.length; i++) {
+        MathJax.Hub.Typeset(fos[i]);
+        }
+        });
+        \//--><!]]>
+    :javascript
+      <!--//--><![CDATA[//><!--
+      window.addEventListener("DOMContentLoaded", function () {
+        var div = document.createElement('div');
+        var math = document.createElementNS('http://www.w3.org/1998/Math/MathML', 'math');
+        document.body.appendChild(div);
+        div.appendChild(math);
+      // Test for MathML support comparable to WebKit version https://trac.webkit.org/changeset/203640 or higher.
+        div.setAttribute('style', 'font-style: italic');
+        var mathml_unsupported = !(window.getComputedStyle(div.firstChild).getPropertyValue('font-style') === 'normal');
+        div.parentNode.removeChild(div);
+        if (mathml_unsupported) {
+          // MathML does not seem to be supported...
+          var s = document.createElement('script');
+          s.src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=MML_HTMLorMML-full";
+          document.querySelector('head').appendChild(s);
+        } else {
+          document.head.insertAdjacentHTML("beforeend", '<style>svg[viewBox] {max-width: 100%}</style>');
+        }
+      });
+      //--><!]]>
+    %link{:href => "https://ncatlab.org/nlab/atom_with_headlines", :rel => "alternate", :title => "Atom with headlines", :type => "application/atom+xml"}/
+    %link{:href => "https://ncatlab.org/nlab/atom_with_content", :rel => "alternate", :title => "Atom with full content", :type => "application/atom+xml"}/
+    :javascript
+      document.observe("dom:loaded", function() {
+        generateThmNumbers();
+      });
+  %body
+    #Container
+      #Content
+        %h1#pageName
+          %span{:style => "float: left; margin: 0.5em 0.25em -0.25em 0"}
+            %svg{:height => "1.8em", :viewbox => "0 0 190 181", :width => "1.872em", :xmlns => "http://www.w3.org/2000/svg"}
+              %path{:d => "M72.8 145c-1.6 17.3-15.7 10-23.6 20.2-5.6 7.3 4.8 15 11.4 15 11.5-.2 19-13.4 26.4-20.3 3.3-3 8.2-4 11.2-7.2a14 14 0 0 0 2.9-11.1c-1.4-9.6-12.4-18.6-16.9-27.2-5-9.6-10.7-27.4-24.1-27.7-17.4-.3-.4 26 4.7 30.7 2.4 2.3 5.4 4.1 7.3 6.9 1.6 2.3 2.1 5.8-1 7.2-5.9 2.6-12.4-6.3-15.5-10-8.8-10.6-15.5-23-26.2-31.8-5.2-4.3-11.8-8-18-3.7-7.3 4.9-4.2 12.9.2 18.5a81 81 0 0 0 30.7 23c3.3 1.5 12.8 5.6 10 10.7-2.5 5.2-11.7 3-15.6 1.1-8.4-3.8-24.3-21.3-34.4-13.7-3.5 2.6-2.3 7.6-1.2 11.1 2.8 9 12.2 17.2 20.9 20.5 17.3 6.7 34.3-8 50.8-12.1z", :fill => "#226622"}
+              %path{:d => "M145.9 121.3c-.2-7.5 0-19.6-4.5-26-5.4-7.5-12.9-1-14.1 5.8-1.4 7.8 2.7 14.1 4.8 21.3 3.4 12 5.8 29-.8 40.1-3.6-6.7-5.2-13-7-20.4-2.1-8.2-12.8-13.2-15.1-1.9-2 9.7 9 21.2 12 30.1 1.2 4 2 8.8 6.4 10.3 6.9 2.3 13.3-4.7 17.7-8.8 12.2-11.5 36.6-20.7 43.4-36.4 6.7-15.7-13.7-14-21.3-7.2-9.1 8-11.9 20.5-23.6 25.1 7.5-23.7 31.8-37.6 38.4-61.4 2-7.3-.8-29.6-13-19.8-14.5 11.6-6.6 37.6-23.3 49.2z", :fill => "#a41e32"}
+              %path{:d => "M86.3 47.5c0-13-10.2-27.6-5.8-40.4 2.8-8.4 14.1-10.1 17-1 3.8 11.6-.3 26.3-1.8 38 11.7-.7 10.5-16 14.8-24.3 2.1-4.2 5.7-9.1 11-6.7 6 2.7 7.4 9.2 6.6 15.1-2.2 14-12.2 18.8-22.4 27-3.4 2.7-8 6.6-5.9 11.6 2 4.4 7 4.5 10.7 2.8 7.4-3.3 13.4-16.5 21.7-16 14.6.7 12 21.9.9 26.2-5 1.9-10.2 2.3-15.2 3.9-5.8 1.8-9.4 8.7-15.7 8.9-6.1.1-9-6.9-14.3-9-14.4-6-33.3-2-44.7-14.7-3.7-4.2-9.6-12-4.9-17.4 9.3-10.7 28 7.2 35.7 12 2 1.1 11 6.9 11.4 1.1.4-5.2-10-8.2-13.5-10-11.1-5.2-30-15.3-35-27.3-2.5-6 2.8-13.8 9.4-13.6 6.9.2 13.4 7 17.5 12C70.9 34 75 43.8 86.3 47.4z", :fill => "#193c78"}
+          %span.webName nLab
+          sigma-model -- exposition of quantum sigma-models
+        .navigation
+          %span.skipNav
+            %a{:href => "#navEnd"} Skip the Navigation Links
+            |
+          %span{:style => "display:inline-block; width: 0.3em;"}
+          %a{:accesskey => "H", :href => "/nlab/show/HomePage", :title => "Home page"} Home Page
+          |
+          %a{:accesskey => "A", :href => "/nlab/all_pages", :title => "List of all pages"} All Pages
+          |
+          %a{:accesskey => "U", :href => "/nlab/latest_revisions", :title => "Latest edits and page creations"} Latest Revisions
+          |
+          %a{:href => "https://nforum.ncatlab.org/discussions/?CategoryID=0", :style => "color:black", :title => "Discuss this page on the nForum. It does not yet have a dedicated thread; feel free to create one, giving it the same name as the title of this page"} Discuss this page
+          |
+          %form#navigationSearchForm{"accept-charset" => "utf-8", :action => "/nlab/search", :method => "get"}
+            %fieldset.search
+              %input#searchField{:name => "query", :onblur => "this.value == '' ? this.value = 'Search' : true", :onfocus => "this.value == 'Search' ? this.value = '' : true", :style => "display:inline-block; float: left;", :type => "text", :value => "Search"}/
+          %span#navEnd
+        #revision
+          %meta{:content => "application/xhtml+xml;charset=utf-8", "http-equiv" => "Content-type"}/
+          %title Contents
+          .rightHandSide
+            .toc.clickDown{:tabindex => "0"}
+              %h3#context Context
+              %h4#quantum_field_theory Quantum field theory
+              .hide
+                %div
+                  %p
+                    %strong
+                      %a.existingWikiWord{:href => "/nlab/show/FQFT"} functorial quantum field theory
+                  %h2#contents Contents
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/cobordism+category"} cobordism category
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/cobordism"} cobordism
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/extended+cobordism"} extended cobordism
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/%28%E2%88%9E%2Cn%29-category+of+cobordisms"} (∞,n)-category of cobordisms
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/bordism+categories+following+Stolz-Teichner"} Riemannian bordism category
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/cobordism+hypothesis"} cobordism hypothesis
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/generalized+tangle+hypothesis"} generalized tangle hypothesis
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/On+the+Classification+of+Topological+Field+Theories"} classification of TQFTs
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/FQFT"} FQFT
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/extended+topological+quantum+field+theory"} extended TQFT
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/conformal+field+theory"} CFT
+                          %ul
+                            %li
+                              %a.existingWikiWord{:href => "/nlab/show/vertex+operator+algebra"} vertex operator algebra
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/TQFT"} TQFT
+                          %ul
+                            %li
+                              %p
+                                %span.newWikiWord
+                                  Reshetikhin?Turaev model
+                                  %a{:href => "/nlab/new/Reshetikhin%3FTuraev+model"} ?
+                                \/
+                                %a.existingWikiWord{:href => "/nlab/show/Chern-Simons+theory"} Chern-Simons theory
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/HQFT"} HQFT
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/TCFT"} TCFT
+                              %ul
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/A-model"}> A-model
+                                    ,
+                                    = succeed "," do
+                                      %a.existingWikiWord{:href => "/nlab/show/B-model"} B-model
+                                    %a.existingWikiWord{:href => "/nlab/show/Gromov-Witten+theory"} Gromov-Witten theory
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/homological+mirror+symmetry"} homological mirror symmetry
+                    %li
+                      %p
+                        FQFT and
+                        %a.existingWikiWord{:href => "/nlab/show/cohomology"} cohomology
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/%281%2C1%29-dimensional+Euclidean+field+theories+and+K-theory"} (1,1)-dimensional Euclidean field theories and K-theory
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/%282%2C1%29-dimensional+Euclidean+field+theory"} (2,1)-dimensional Euclidean field theory
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/geometric+models+for+tmf"} geometric models for tmf
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/holographic+principle+of+higher+category+theory"} holographic principle of higher category theory
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/holographic+principle"} holographic principle
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/AdS%2FCFT+correspondence"} AdS/CFT correspondence
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/quantization+via+the+A-model"} quantization via the A-model
+                  %div
+                    %p
+                      %a{:href => "/nlab/edit/functorial+quantum+field+theory+-+contents"} Edit this sidebar
+              %h4#phyiscs Phyiscs
+              .hide
+                %div
+                  %p
+                    %strong>
+                      %a.existingWikiWord{:href => "/nlab/show/physics"} physics
+                    ,
+                    = succeed "," do
+                      %a.existingWikiWord{:href => "/nlab/show/mathematical+physics"} mathematical physics
+                    %a.existingWikiWord{:href => "/nlab/show/philosophy+of+physics"} philosophy of physics
+                  %h2#surveys_textbooks_and_lecture_notes Surveys, textbooks and lecture notes
+                  %ul
+                    %li
+                      %p
+                        %em
+                          %a.existingWikiWord{:href => "/nlab/show/higher+category+theory+and+physics"} (higher) category theory and physics
+                    %li
+                      %p
+                        %em
+                          %a.existingWikiWord{:href => "/nlab/show/geometry+of+physics"} geometry of physics
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/books+and+reviews+in+mathematical+physics"}> books and reviews
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/physics+resources"} physics resources
+                  %hr/
+                  %p
+                    %a.existingWikiWord{:href => "/nlab/show/theory+%28physics%29"}> theory (physics)
+                    ,
+                    %a.existingWikiWord{:href => "/nlab/show/model+%28physics%29"} model (physics)
+                  %p
+                    %a.existingWikiWord{:href => "/nlab/show/experiment"}> experiment
+                    ,
+                    = succeed "," do
+                      %a.existingWikiWord{:href => "/nlab/show/measurement"} measurement
+                    %a.existingWikiWord{:href => "/nlab/show/computable+physics"} computable physics
+                  %ul
+                    %li
+                      %p
+                        %strong
+                          %a.existingWikiWord{:href => "/nlab/show/mechanics"} mechanics
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/mass"}> mass
+                            ,
+                            = succeed "," do
+                              %a.existingWikiWord{:href => "/nlab/show/charge"} charge
+                            = succeed "," do
+                              %a.existingWikiWord{:href => "/nlab/show/momentum"} momentum
+                            = succeed "," do
+                              %a.existingWikiWord{:href => "/nlab/show/angular+momentum"} angular momentum
+                            %a.existingWikiWord{:href => "/nlab/show/moment+of+inertia"} moment of inertia
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/dynamics+on+Lie+groups"} dynamics on Lie groups
+                          %ul
+                            %li
+                              %a.existingWikiWord{:href => "/nlab/show/rigid+body+dynamics"} rigid body dynamics
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/field+%28physics%29"} field (physics)
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/Lagrangian+mechanics"} Lagrangian mechanics
+                          %ul
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/configuration+space"}> configuration space
+                                ,
+                                %a.existingWikiWord{:href => "/nlab/show/state"} state
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/action+functional"}> action functional
+                                ,
+                                %a.existingWikiWord{:href => "/nlab/show/Lagrangian"} Lagrangian
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/covariant+phase+space"}> covariant phase space
+                                ,
+                                %a.existingWikiWord{:href => "/nlab/show/Euler-Lagrange+equations"} Euler-Lagrange equations
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/Hamiltonian+mechanics"} Hamiltonian mechanics
+                          %ul
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/phase+space"} phase space
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/symplectic+geometry"} symplectic geometry
+                              %ul
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/Poisson+manifold"} Poisson manifold
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/symplectic+manifold"} symplectic manifold
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/symplectic+groupoid"} symplectic groupoid
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/multisymplectic+geometry"} multisymplectic geometry
+                              %ul
+                                %li
+                                  %a.existingWikiWord{:href => "/nlab/show/n-symplectic+manifold"} n-symplectic manifold
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/spacetime"} spacetime
+                          %ul
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/smooth+Lorentzian+manifold"} smooth Lorentzian manifold
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/special+relativity"} special relativity
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/general+relativity"} general relativity
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/gravity"} gravity
+                              %ul
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/supergravity"}> supergravity
+                                    ,
+                                    %a.existingWikiWord{:href => "/nlab/show/dilaton+gravity"} dilaton gravity
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/black+hole"} black hole
+                    %li
+                      %p
+                        %strong
+                          %a.existingWikiWord{:href => "/nlab/show/classical+field+theory"} Classical field theory
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/classical+physics"} classical physics
+                          %ul
+                            %li
+                              %a.existingWikiWord{:href => "/nlab/show/classical+mechanics"} classical mechanics
+                            %li
+                              %a.existingWikiWord{:href => "/nlab/show/waves"} waves
+                              and
+                              %a.existingWikiWord{:href => "/nlab/show/optics"} optics
+                            %li
+                              %a.existingWikiWord{:href => "/nlab/show/thermodynamics"} thermodynamics
+                    %li
+                      %p
+                        %strong
+                          %a.existingWikiWord{:href => "/nlab/show/quantum+mechanics"} Quantum Mechanics
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/quantum+mechanics+in+terms+of+dagger-compact+categories"} in terms of ∞-compact categories
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/quantum+information"} quantum information
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/Hamiltonian+operator"} Hamiltonian operator
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/density+matrix"} density matrix
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/Kochen-Specker+theorem"} Kochen-Specker theorem
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/Bell%27s+theorem"} Bell's theorem
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/Gleason%27s+theorem"} Gleason's theorem
+                    %li
+                      %p
+                        %strong
+                          %a.existingWikiWord{:href => "/nlab/show/quantization"} Quantization
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/geometric+quantization"} geometric quantization
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/deformation+quantization"} deformation quantization
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/path+integral"} path integral quantization
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/semiclassical+approximation"} semiclassical approximation
+                    %li
+                      %p
+                        %strong
+                          %a.existingWikiWord{:href => "/nlab/show/quantum+field+theory"} Quantum Field Theory
+                      %ul
+                        %li
+                          %p Axiomatizations
+                          %ul
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/AQFT"} algebraic QFT
+                              %ul
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/Wightman+axioms"} Wightman axioms
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/Haag-Kastler+axioms"} Haag-Kastler axioms
+                                  %ul
+                                    %li
+                                      %p
+                                        %a.existingWikiWord{:href => "/nlab/show/operator+algebra"} operator algebra
+                                    %li
+                                      %p
+                                        %a.existingWikiWord{:href => "/nlab/show/local+net"} local net
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/conformal+net"} conformal net
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/Reeh-Schlieder+theorem"} Reeh-Schlieder theorem
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/Osterwalder-Schrader+theorem"} Osterwalder-Schrader theorem
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/PCT+theorem"} PCT theorem
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/Bisognano-Wichmann+theorem"} Bisognano-Wichmann theorem
+                                  %ul
+                                    %li
+                                      %a.existingWikiWord{:href => "/nlab/show/modular+theory"} modular theory
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/spin-statistics+theorem"} spin-statistics theorem
+                                  %ul
+                                    %li
+                                      %a.existingWikiWord{:href => "/nlab/show/boson"}> boson
+                                      ,
+                                      %a.existingWikiWord{:href => "/nlab/show/fermion"} fermion
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/FQFT"} functorial QFT
+                              %ul
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/cobordism"} cobordism
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/%28%E2%88%9E%2Cn%29-category+of+cobordisms"} (∞,n)-category of cobordisms
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/cobordism+hypothesis"}> cobordism hypothesis
+                                    \-theorem
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/extended+topological+quantum+field+theory"} extended topological quantum field theory
+                        %li
+                          %p Tools
+                          %ul
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/perturbative+quantum+field+theory"}> perturbative quantum field theory
+                                ,
+                                %a.existingWikiWord{:href => "/nlab/show/vacuum"} vacuum
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/effective+quantum+field+theory"} effective quantum field theory
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/renormalization"} renormalization
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/BV-BRST+formalism"} BV-BRST formalism
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/geometric+%E2%88%9E-function+theory"} geometric ∞-function theory
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/particle+physics"} particle physics
+                          %ul
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/phenomenology"} phenomenology
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/model+%28in+particle+phyiscs%29"} models
+                              %ul
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/standard+model+of+particle+physics"} standard model of particle physics
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/fields+and+quanta+-+table"} fields and quanta
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/GUT"}> Grand Unified Theories
+                                    ,
+                                    %a.existingWikiWord{:href => "/nlab/show/MSSM"} MSSM
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/scattering+amplitude"} scattering amplitude
+                              %ul
+                                %li
+                                  %a.existingWikiWord{:href => "/nlab/show/on-shell+recursion"}> on-shell recursion
+                                  ,
+                                  %a.existingWikiWord{:href => "/nlab/show/KLT+relations"} KLT relations
+                        %li
+                          %p Structural phenomena
+                          %ul
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/universality+class"} universality class
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/quantum+anomaly"} quantum anomaly
+                              %ul
+                                %li
+                                  %a.existingWikiWord{:href => "/nlab/show/Green-Schwarz+mechanism"} Green-Schwarz mechanism
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/instanton"} instanton
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/spontaneously+broken+symmetry"} spontaneously broken symmetry
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/Kaluza-Klein+mechanism"} Kaluza-Klein mechanism
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/integrable+systems"} integrable systems
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/holonomic+quantum+fields"} holonomic quantum fields
+                        %li
+                          %p Types of quantum field thories
+                          %ul
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/TQFT"} TQFT
+                              %ul
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/2d+TQFT"} 2d TQFT
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/Dijkgraaf-Witten+theory"} Dijkgraaf-Witten theory
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/Chern-Simons+theory"} Chern-Simons theory
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/TCFT"} TCFT
+                              %ul
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/A-model"}> A-model
+                                    ,
+                                    %a.existingWikiWord{:href => "/nlab/show/B-model"} B-model
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/homological+mirror+symmetry"} homological mirror symmetry
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/QFT+with+defects"} QFT with defects
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/conformal+field+theory"} conformal field theory
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/%281%2C1%29-dimensional+Euclidean+field+theories+and+K-theory"} (1,1)-dimensional Euclidean field theories and K-theory
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/%282%2C1%29-dimensional+Euclidean+field+theory"} (2,1)-dimensional Euclidean field theory and elliptic cohomology
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/CFT"} CFT
+                              %ul
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/WZW+model"} WZW model
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/6d+%282%2C0%29-supersymmetric+QFT"} 6d (2,0)-supersymmetric QFT
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/gauge+theory"} gauge theory
+                              %ul
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/field+strength"} field strength
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/gauge+group"}> gauge group
+                                    ,
+                                    = succeed "," do
+                                      %a.existingWikiWord{:href => "/nlab/show/gauge+transformation"} gauge transformation
+                                    %a.existingWikiWord{:href => "/nlab/show/gauge+fixing"} gauge fixing
+                                %li
+                                  %p examples
+                                  %ul
+                                    %li
+                                      %a.existingWikiWord{:href => "/nlab/show/electromagnetic+field"}> electromagnetic field
+                                      ,
+                                      %a.existingWikiWord{:href => "/nlab/show/QED"} QED
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/electric+charge"} electric charge
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/magnetic+charge"} magnetic charge
+                                  %ul
+                                    %li
+                                      %a.existingWikiWord{:href => "/nlab/show/Yang-Mills+field"}> Yang-Mills field
+                                      ,
+                                      %a.existingWikiWord{:href => "/nlab/show/QCD"} QCD
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/Yang-Mills+theory"} Yang-Mills theory
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/spinors+in+Yang-Mills+theory"} spinors in Yang-Mills theory
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/topological+Yang-Mills+theory"} topological Yang-Mills theory
+                                  %ul
+                                    %li
+                                      %a.existingWikiWord{:href => "/nlab/show/Kalb-Ramond+field"} Kalb-Ramond field
+                                    %li
+                                      %a.existingWikiWord{:href => "/nlab/show/supergravity+C-field"} supergravity C-field
+                                    %li
+                                      %a.existingWikiWord{:href => "/nlab/show/RR+field"} RR field
+                                    %li
+                                      %a.existingWikiWord{:href => "/nlab/show/first-order+formulation+of+gravity"} first-order formulation of gravity
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/general+covariance"} general covariance
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/supergravity"} supergravity
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/D%27Auria-Fre+formulation+of+supergravity"} D'Auria-Fre formulation of supergravity
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/gravity+as+a+BF-theory"} gravity as a BF-theory
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/sigma-model"} sigma-model
+                              %ul
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/particle"}> particle
+                                    ,
+                                    = succeed "," do
+                                      %a.existingWikiWord{:href => "/nlab/show/relativistic+particle"} relativistic particle
+                                    = succeed "," do
+                                      %a.existingWikiWord{:href => "/nlab/show/fundamental+particle"} fundamental particle
+                                    = succeed "," do
+                                      %a.existingWikiWord{:href => "/nlab/show/spinning+particle"} spinning particle
+                                    %a.existingWikiWord{:href => "/nlab/show/superparticle"} superparticle
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/string"}> string
+                                    ,
+                                    = succeed "," do
+                                      %a.existingWikiWord{:href => "/nlab/show/spinning+string"} spinning string
+                                    %a.existingWikiWord{:href => "/nlab/show/superstring"} superstring
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/membrane"} membrane
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/AKSZ+theory"} AKSZ theory
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/string+theory"} String Theory
+                      %ul
+                        %li
+                          %a.existingWikiWord{:href => "/nlab/show/string+theory+results+applied+elsewhere"} string theory results applied elsewhere
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/number+theory+and+physics"} number theory and physics
+                      %ul
+                        %li
+                          %a.existingWikiWord{:href => "/nlab/show/Riemann+hypothesis+and+physics"} Riemann hypothesis and physics
+                  %div
+                    %p
+                      %a{:href => "/nlab/edit/physicscontents"} Edit this sidebar
+              %h4#chernsimons_theory
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}>
+                  %semantics
+                    %mrow
+                      %mn ∞
+                    %annotation{:encoding => "application/x-tex"} \infty
+                \-Chern-Simons theory
+              .hide
+                %div
+                  %p
+                    %a.existingWikiWord{:href => "/nlab/show/%E2%88%9E-Chern-Weil+theory"} ∞-Chern-Weil theory
+                  %p
+                    %strong
+                      %a.existingWikiWord{:href => "/schreiber/show/%E2%88%9E-Chern-Simons+theory"} ∞-Chern-Simons theory
+                  %p
+                    %a.existingWikiWord{:href => "/nlab/show/infinity-Wess-Zumino-Witten+theory+-+contents"} ∞-Wess-Zumino-Witten theory
+                  %h2#ingredients Ingredients
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/FQFT"} quantum field theory
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/circle+n-bundle+with+connection"} circle n-bundle with connection
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/%E2%88%9E-Chern-Weil+theory"} ∞-Chern-Weil theory
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/%E2%88%9E-Lie+algebroid+cohomology"} ∞-Lie algebroid cohomology
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/Chern-Simons+element"} Chern-Simons element
+                  %h2#definition Definition
+                  %ul
+                    %li
+                      %a.existingWikiWord{:href => "/nlab/show/level+%28Chern-Simons+theory%29"} level (Chern-Simons theory)
+                  %h2#examples Examples
+                  %ul
+                    %li
+                      %p
+                        %strong
+                          For
+                          %a.existingWikiWord{:href => "/nlab/show/semisimple+Lie+algebra"} semisimple Lie algebra
+                          targets
+                      %ul
+                        %li
+                          %a.existingWikiWord{:href => "/nlab/show/Chern-Simons+theory"} Chern-Simons theory
+                    %li
+                      %p
+                        %strong
+                          For
+                          %a.existingWikiWord{:href => "/nlab/show/discrete+group"} discrete group
+                          targets
+                      %ul
+                        %li
+                          %a.existingWikiWord{:href => "/nlab/show/Dijkgraaf-Witten+theory"} Dijkgraaf-Witten theory
+                    %li
+                      %p
+                        %strong
+                          For discrete
+                          %a.existingWikiWord{:href => "/nlab/show/2-group"} 2-group
+                          targets
+                      %ul
+                        %li
+                          %a.existingWikiWord{:href => "/nlab/show/Crane-Yetter+model"} Crane-Yetter model
+                    %li
+                      %p
+                        %strong
+                          For
+                          %a.existingWikiWord{:href => "/nlab/show/Lie+2-algebra"} Lie 2-algebra
+                          targets
+                      %ul
+                        %li
+                          %a.existingWikiWord{:href => "/nlab/show/BF-theory"} BF-theory
+                          coupled to
+                          %a.existingWikiWord{:href => "/nlab/show/topological+Yang-Mills+theory"} topological Yang-Mills theory
+                    %li
+                      %p
+                        %strong
+                          For targets extending the
+                          %a.existingWikiWord{:href => "/nlab/show/super+Poincare+Lie+algebra"} super Poincare Lie algebra
+                      %p
+                        (such as the
+                        = succeed "," do
+                          %a.existingWikiWord{:href => "/nlab/show/supergravity+Lie+3-algebra"} supergravity Lie 3-algebra
+                        = succeed ")" do
+                          %a.existingWikiWord{:href => "/nlab/show/supergravity+Lie+6-algebra"} supergravity Lie 6-algebra
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/Chern-Simons+gravity"} Chern-Simons gravity
+                        %li
+                          %p
+                            Chern-Simons-
+                            %a.existingWikiWord{:href => "/nlab/show/supergravity"} supergravity
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/1-dimensional+Chern-Simons+theory"} 1-dimensional Chern-Simons theory
+                    %li
+                      %p for higher abelian targets
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/higher+dimensional+Chern-Simons+theory"} higher dimensional Chern-Simons theory
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/higher+electric+background+charge+coupling"} higher electric background charge coupling
+                    %li
+                      %p
+                        %strong
+                          for
+                          %a.existingWikiWord{:href => "/nlab/show/symplectic+Lie+n-algebroid"} symplectic Lie n-algebroid
+                          targets
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/AKSZ+theory"} AKSZ theory
+                          %ul
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/Poisson+sigma+model"} Poisson sigma model
+                              %ul
+                                %li
+                                  %a.existingWikiWord{:href => "/nlab/show/A-model"}> A-model
+                                  ,
+                                  %a.existingWikiWord{:href => "/nlab/show/B-model"} B-model
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/Courant+sigma+model"} Courant sigma model
+                              %ul
+                                %li
+                                  %a.existingWikiWord{:href => "/nlab/show/Chern-Simons+theory"} Chern-Simons theory
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/topological+Yang-Mills+theory"} topological Yang-Mills theory
+                    %li
+                      %p
+                        for the
+                        = succeed "-structure" do
+                          %math#mathml_2982ddd4fe31d756bf7aa60c47b73d7cab26590d_1.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                            %semantics
+                              %mrow
+                                %msub
+                                  %mi L
+                                  %mn ∞
+                              %annotation{:encoding => "application/x-tex"} L_\infty
+                        %a.existingWikiWord{:href => "/nlab/show/BRST+complex"} BRST complex
+                        of the closed
+                        = succeed ":" do
+                          %a.existingWikiWord{:href => "/nlab/show/string"} string
+                      %ul
+                        %li
+                          %a.existingWikiWord{:href => "/nlab/show/string+field+theory"} string field theory
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/higher+dimensional+Chern-Simons+theory"} higher dimensional Chern-Simons theory
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/1d+Chern-Simons+theory"} 1d Chern-Simons theory
+                          %ul
+                            %li
+                              %a.existingWikiWord{:href => "/nlab/show/Wilson+loop"} Wilson loop
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/2d+Chern-Simons+theory"} 2d Chern-Simons theory
+                          %ul
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/Poisson+sigma-model"}> Poisson sigma-model
+                                ,
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/A-model"}> A-model
+                                ,
+                                %a.existingWikiWord{:href => "/nlab/show/B-model"} B-model
+                                %a.existingWikiWord{:href => "/nlab/show/topological+string"} topological string
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/3d+Chern-Simons+theory"} 3d Chern-Simons theory
+                          %ul
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/Chern-Simons+theory"} Chern-Simons theory
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/Dijkgraaf-Witten+theory"} Dijkgraaf-Witten theory
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/Courant+sigma-model"} Courant sigma-model
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/3d+quantum+gravity"} 3d quantum gravity
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/4d+Chern-Simons+theory"} 4d Chern-Simons theory
+                          %ul
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/Yetter+model"} Yetter model
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/BF-theory"} BF-theory
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/5d+Chern-Simons+theory"} 5d Chern-Simons theory
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/6d+Chern-Simons+theory"} 6d Chern-Simons theory
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/7d+Chern-Simons+theory"} 7d Chern-Simons theory
+                          %ul
+                            %li
+                              %p
+                                topological
+                                = succeed "-sector" do
+                                  %a{:href => "http://ncatlab.org/nlab/show/AdS-CFT#AdS7CFT6"} AdS7/CFT6
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/topological+M-theory"} topological M-theory
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/11d+Chern-Simons+theory"} 11d Chern-Simons theory
+                          %ul
+                            %li
+                              %a.existingWikiWord{:href => "/nlab/show/RR-field"} RR-field
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/schreiber/show/%E2%88%9E-Chern-Simons+theory"} ∞-Chern-Simons theory
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/%E2%88%9E-Dijkgraaf-Witten+theory"} ∞-Dijkgraaf-Witten theory
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/string+field+theory"} string field theory
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/AKSZ+sigma-model"} AKSZ sigma-model
+                  %div
+                    %p
+                      %a{:href => "/nlab/edit/infinity-Chern-Simons+theory+-+contents"} Edit this sidebar
+          %blockquote
+            %p
+              This is a sub-entry of
+              = succeed "." do
+                %a.existingWikiWord{:href => "/nlab/show/sigma-model"} sigma-model
+          %hr/
+          %h1#contents Contents
+          .maruku_toc
+            %ul
+              %li
+                %a{:href => "#exposition_of_quantum_sigmamodels"} Exposition of quantum sigma-models
+              %ul
+                %li
+                  %a{:href => "#particle_on_the_line"} Particle on the line
+                %li
+                  %a{:href => "#StringTopology"} Topological string on a smooth manifold and string topology operations
+                %li
+                  %a{:href => "#GWTheory"}
+                    The topological
+                    = succeed "-model" do
+                      %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                        %semantics
+                          %mrow
+                            %mi A
+                          %annotation{:encoding => "application/x-tex"} A
+                %li
+                  %a{:href => "#QuantumAbelianCS"} Quantum abelian Chern-Simons
+          %h2#exposition_of_quantum_sigmamodels Exposition of quantum sigma-models
+          %p
+            Above we have discussed some standard
+            %a{:href => "#ExpositionClassical"} classical sigma-models
+            and
+            = succeed "," do
+              %a{:href => "#GaugeTheoryAsSigmaModel"} higher gauge theories as sigma-models
+            %a.existingWikiWord{:href => "/nlab/show/quantization"} quantization
+            of these models (or some of them) to
+            = succeed "s:" do
+              %a.existingWikiWord{:href => "/nlab/show/QFT"} QFT
+            %em
+              quantum
+              = succeed "-models" do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi σ
+                    %annotation{:encoding => "application/x-tex"} \sigma
+            \.
+          %h3#particle_on_the_line Particle on the line
+          %p for the moment see the discussion at
+          %ul
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/path+integral+as+a+pull-push+transform"} path integral as a pull-push transform
+          %h3#StringTopology Topological string on a smooth manifold and string topology operations
+          %p
+            Chas and Sullivan famously noticed, that the
+            = succeed "s" do
+              %a.existingWikiWord{:href => "/nlab/show/homology+group"} homology group
+            %a.existingWikiWord{:href => "/nlab/show/free+loop+space"} free loop space
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi L
+                  %mi X
+                %annotation{:encoding => "application/x-tex"} L X
+            of a
+            %a.existingWikiWord{:href => "/nlab/show/compact+space"} compact
+            %a.existingWikiWord{:href => "/nlab/show/orientation"} oriented
+            %a.existingWikiWord{:href => "/nlab/show/smooth+manifold"} smooth manifold
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi X
+                %annotation{:encoding => "application/x-tex"} X
+            are equipped with an interesting paring operation
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msub
+                    %mi H
+                    %mo •
+                  %mo{:stretchy => "false"} (
+                  %mi L
+                  %mi X
+                  %mo{:stretchy => "false"} )
+                  %mo ⊗
+                  %msub
+                    %mi H
+                    %mo •
+                  %mo{:stretchy => "false"} (
+                  %mi L
+                  %mi X
+                  %mo{:stretchy => "false"} )
+                  %mo →
+                  %msub
+                    %mi H
+                    %mrow
+                      %mo •
+                      %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                      %mi dim
+                      %mi X
+                  %mo{:stretchy => "false"} (
+                  %mi L
+                  %mi X
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"}
+                  H_\bullet(L X) \otimes H_\bullet(L X) \to H_{\bullet - dim X}(L X)
+          %p
+            that generalizes the
+            %a.existingWikiWord{:href => "/nlab/show/Goldman+bracket"} Goldman bracket
+            on
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi H
+                      %mn 0
+                    %mo{:stretchy => "false"} (
+                    %mi L
+                    %mi X
+                    %mo{:stretchy => "false"} )
+                    %mo ≃
+                    %mi F
+                    %msub
+                      %mi π
+                      %mn 1
+                    %mo{:stretchy => "false"} (
+                    %mi X
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} H_0(L X) \simeq F \pi_1(X)
+            %em string product
+            \. Its study has come to be known as
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/string+topology"} string topology
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/differential+topology"} differential topology
+          %p
+            It was soon realized that there indeed ought to be a relation to
+            %a.existingWikiWord{:href => "/nlab/show/string"} string
+            physics: there ought to be a 2-dimensional
+            %a.existingWikiWord{:href => "/nlab/show/quantum+field+theory"} quantum field theory
+            associated with
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi X
+                  %annotation{:encoding => "application/x-tex"} X
+          %p
+            for
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi Σ
+                %annotation{:encoding => "application/x-tex"} \Sigma
+            a 2-dimensional
+            %a.existingWikiWord{:href => "/nlab/show/surface"} surface
+            with incoming and outgoing
+            %a.existingWikiWord{:href => "/nlab/show/boundary"} boundary
+            components
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mo ∂
+                      %mi in
+                    %mi Σ
+                    %mover
+                      %mo →
+                      %mi in
+                    %mi Σ
+                    %mover
+                      %mo ←
+                      %mi out
+                    %msub
+                      %mo ∂
+                      %mi out
+                    %mi Σ
+                  %annotation{:encoding => "application/x-tex"} \partial_{in} \Sigma \stackrel{in}{\to} \Sigma \stackrel{out}{\leftarrow} \partial_{out} \Sigma
+            = succeed "s\u201D" do
+              %a.existingWikiWord{:href => "/nlab/show/state"} state
+            = succeed "s" do
+              %a.existingWikiWord{:href => "/nlab/show/homology+group"} homology group
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msub
+                    %mi H
+                    %mo •
+                  %mo{:stretchy => "false"} (
+                  %msup
+                    %mi X
+                    %mrow
+                      %msub
+                        %mo ∂
+                        %mi in
+                      %mi Σ
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} H_\bullet(X^{\partial_{in} \Sigma})
+            and
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi H
+                      %mo •
+                    %mo{:stretchy => "false"} (
+                    %msup
+                      %mi X
+                      %mrow
+                        %msub
+                          %mo ∂
+                          %mi out
+                        %mi Σ
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} H_\bullet(X^{\partial_{out} \Sigma})
+            %a.existingWikiWord{:href => "/nlab/show/path+integral+as+a+pull-push+transform"} path integral as a pull-push transform
+            along
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi Σ
+                %annotation{:encoding => "application/x-tex"} \Sigma
+            ought to be given by push-forward and dual
+            %a.existingWikiWord{:href => "/nlab/show/fiber+integration"} fiber integration
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mo{:stretchy => "false"} (
+                  %msup
+                    %mi X
+                    %mi out
+                  %msub
+                    %mo{:stretchy => "false"} )
+                    %mo *
+                  %mo ∘
+                  %mo{:stretchy => "false"} (
+                  %msup
+                    %mi X
+                    %mi in
+                  %msup
+                    %mo{:stretchy => "false"} )
+                    %mo !
+                  %mo :
+                  %msub
+                    %mi H
+                    %mo •
+                  %mo{:stretchy => "false"} (
+                  %msup
+                    %mi X
+                    %mrow
+                      %msub
+                        %mo ∂
+                        %mi in
+                      %mi Σ
+                  %mo{:stretchy => "false"} )
+                  %mo →
+                  %msub
+                    %mi H
+                    %mrow
+                      %mo •
+                      %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                      %mi dim
+                      %mi X
+                  %mo{:stretchy => "false"} (
+                  %msup
+                    %mi X
+                    %mrow
+                      %msub
+                        %mo ∂
+                        %mi out
+                      %mi Σ
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"}
+                  (X^{out})_* \circ (X^{in})^! : H_\bullet(X^{\partial_{in} \Sigma})
+                  \\to
+                  H_{\bullet- dim X}(X^{\partial_{out} \Sigma})
+          %p
+            induced by the
+            %a.existingWikiWord{:href => "/nlab/show/mapping+space"} mapping space
+            %a.existingWikiWord{:href => "/nlab/show/span"} span
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mrow
+                    %mtable
+                      %mtr
+                        %mtd
+                        %mtd
+                        %mtd
+                          %msup
+                            %mi X
+                            %mi Σ
+                      %mtr
+                        %mtd
+                        %mtd
+                          %msup
+                            %mrow
+                            %mpadded{:lspace => "-100%width", :width => "0"}
+                              %mrow
+                                %msup
+                                  %mi X
+                                  %mi in
+                          %mo ↙
+                        %mtd
+                        %mtd
+                          %msup
+                            %mo ↘
+                            %mpadded{:width => "0"}
+                              %mrow
+                                %msup
+                                  %mi X
+                                  %mi out
+                      %mtr
+                        %mtd
+                          %msup
+                            %mi X
+                            %mrow
+                              %msub
+                                %mo ∂
+                                %mi in
+                              %mi Σ
+                        %mtd
+                        %mtd
+                        %mtd
+                        %mtd
+                          %msup
+                            %mi X
+                            %mrow
+                              %msub
+                                %mo ∂
+                                %mi out
+                              %mi Σ
+                  %mspace{:width => "thinmathspace"}
+                  %mo .
+                %annotation{:encoding => "application/x-tex"}
+                  \\array{
+                  \&amp;&amp; X^{\Sigma}
+                  \\\
+                  \&amp; {}^{\mathllap{X^{in}}}\swarrow &amp;&amp; \searrow^{\mathrlap{X^{out}}}
+                  \\\
+                  X^{\partial_{in} \Sigma} &amp;&amp;&amp;&amp; X^{\partial_{out} \Sigma}
+                  }
+                  \\,.
+          %p
+            For
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi Σ
+                  %mo ≃
+                  %msup
+                    %mi S
+                    %mn 1
+                  %mo ∨
+                  %msup
+                    %mi S
+                    %mn 1
+                %annotation{:encoding => "application/x-tex"} \Sigma \simeq S^1 \vee S^1
+            the 3-holed sphere with two incoming and one outgoing circle, this would describe an operation on string states induced by the merging of two closed strings to a single one
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msub
+                    %mi H
+                    %mo •
+                  %mo{:stretchy => "false"} (
+                  %msup
+                    %mi X
+                    %mrow
+                      %msup
+                        %mi S
+                        %mn 1
+                      %mo{:lspace => "thinmathspace", :rspace => "thinmathspace"} ∐
+                      %msup
+                        %mi S
+                        %mn 1
+                  %mo{:stretchy => "false"} )
+                  %mo ≃
+                  %msub
+                    %mi H
+                    %mo •
+                  %mo{:stretchy => "false"} (
+                  %mi L
+                  %mi X
+                  %mo{:stretchy => "false"} )
+                  %mo ×
+                  %msub
+                    %mi H
+                    %mo •
+                  %mo{:stretchy => "false"} (
+                  %mi L
+                  %mi X
+                  %mo{:stretchy => "false"} )
+                  %mo →
+                  %msub
+                    %mi H
+                    %mo •
+                  %mo{:stretchy => "false"} (
+                  %mi L
+                  %mi X
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"}
+                  H_\bullet(X^{S^1 \coprod S^1})
+                  \\simeq
+                  H_\bullet(L X) \times H_\bullet(L X)
+                  \\to
+                  H_\bullet(L X)
+          %p and this ought to be Chas-Sullivan string product operation.
+          %p
+            That this is indeed the case was finally demonstrated by
+            %a.existingWikiWord{:href => "/nlab/show/Ralph+Cohen"} Ralph Cohen
+            and
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/Veronique+Godin"} Veronique Godin
+            %a.existingWikiWord{:href => "/nlab/show/string+topology"} string topology
+            for all references.) While the idea is rather simple, the concrete realization, especially when taking open strings into account, is fairly technical (see for instance
+            = succeed ")." do
+              %a{:href => "http://mathoverflow.net/questions/66977/pull-push-in-godins-hcft-for-string-topology"} this MO discussion
+          %p
+            But there should be more to it: one expects that these operations on
+            = succeed "s" do
+              %a.existingWikiWord{:href => "/nlab/show/homology+group"} homology group
+            = succeed "es" do
+              %a.existingWikiWord{:href => "/nlab/show/chain+complex"} chain complex
+            = succeed "):" do
+              %a.existingWikiWord{:href => "/nlab/show/singular+homology"} singular chains
+            %em
+              %a.existingWikiWord{:href => "/nlab/show/HQFT"} HQFT
+            – a
+            %a.existingWikiWord{:href => "/nlab/show/quantum+field+theory"} quantum field theory
+            that depends only on the
+            %a.existingWikiWord{:href => "/nlab/show/homology"} homology
+            of the
+            = succeed "s" do
+              %a.existingWikiWord{:href => "/nlab/show/moduli+space"} moduli space
+            = succeed "s" do
+              %a.existingWikiWord{:href => "/nlab/show/cobordism"} cobordism
+            %a.existingWikiWord{:href => "/nlab/show/extended+TQFT"} extended TQFT
+            (which in this dimension is widely but somewhat unfortunately known under the term “
+            %a.existingWikiWord{:href => "/nlab/show/TCFT"}> TCFT
+            ”). Remarks on how that might be obtained have been made in print by Costello and Lurie.
+          %p
+            In the context of our discussion of
+            = succeed "-models," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi σ
+                  %annotation{:encoding => "application/x-tex"} \sigma
+            = succeed "-model" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi σ
+                  %annotation{:encoding => "application/x-tex"} \sigma
+            %a.existingWikiWord{:href => "/nlab/show/target+space"} target space
+            that manifold, and using some suitable
+            = succeed "?" do
+              %a.existingWikiWord{:href => "/nlab/show/background+gauge+field"} background gauge field
+          %p
+            Given that the string topology
+            %a.existingWikiWord{:href => "/nlab/show/TCFT"} TCFT
+            itself has not been fully identified yet, we cannot expect a complete answer to this at the moment, but we will discuss some crucial ingredients that are available.
+          %p
+            Notably we can first ignore the dynamics of the system, just consider the kinematics and ask the simple question:
+            %em
+              which quantum
+              = succeed "-models" do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi σ
+                    %annotation{:encoding => "application/x-tex"} \sigma
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi X
+                  %annotation{:encoding => "application/x-tex"} X
+              have
+              = succeed "s" do
+                %a.existingWikiWord{:href => "/nlab/show/%28%E2%88%9E%2Cn%29-vector+space"} (∞,n)-vector space
+              %a.existingWikiWord{:href => "/nlab/show/states"} states
+              whose
+              %a.existingWikiWord{:href => "/nlab/show/decategorification"} decategorification
+              are graded
+              = succeed "s" do
+                %a.existingWikiWord{:href => "/nlab/show/homology+group"} homology group
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi H
+                      %mo •
+                    %mo{:stretchy => "false"} (
+                    %msup
+                      %mi X
+                      %mrow
+                        %mo ∂
+                        %mi Σ
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} H_\bullet(X^{\partial \Sigma})
+              of mapping spaces of
+              = succeed "?" do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi X
+                    %annotation{:encoding => "application/x-tex"} X
+          %p
+            The answer to this question is more more transparent after we formulate the question in more generality: as observed by Cohen and Godin in their
+            %em
+              %a.existingWikiWord{:href => "/nlab/show/A+Polarized+View+of+String+Topology"} A Polarized View of String Topology
+            , we may assume without restriction that the
+            = succeed "s" do
+              %a.existingWikiWord{:href => "/nlab/show/homology+group"} homology group
+            %a.existingWikiWord{:href => "/nlab/show/generalized+homology"} generalized homology
+            with coefficients in any
+            %a.existingWikiWord{:href => "/nlab/show/E-%E2%88%9E+ring"} commutative ∞-ring
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi K
+                %annotation{:encoding => "application/x-tex"} K
+            (as long as this is an “
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}>
+              %semantics
+                %mrow
+                  %mn ∞
+                %annotation{:encoding => "application/x-tex"} \infty
+            \-field” and as long as
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi X
+                %annotation{:encoding => "application/x-tex"} X
+            is
+            = succeed "-" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi K
+                  %annotation{:encoding => "application/x-tex"} K
+            = succeed "):" do
+              %a.existingWikiWord{:href => "/nlab/show/orientation+in+generalized+cohomology"} oriented
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msub
+                    %mi H
+                    %mo •
+                  %mo{:stretchy => "false"} (
+                  %msup
+                    %mi X
+                    %mrow
+                      %msub
+                        %mo ∂
+                        %mi in
+                      %mi Σ
+                  %mo{:stretchy => "false"} )
+                  %mo :
+                  %mo =
+                  %msub
+                    %mi H
+                    %mo •
+                  %mo{:stretchy => "false"} (
+                  %msup
+                    %mi X
+                    %mrow
+                      %msub
+                        %mo ∂
+                        %mi in
+                  %mi Σ
+                  %mo ,
+                  %mi K
+                  %mo{:stretchy => "false"} )
+                  %mspace{:width => "thinmathspace"}
+                  %mo .
+                %annotation{:encoding => "application/x-tex"}
+                  H_\bullet(X^{\partial_{in} \Sigma})
+                  \:=
+                  H_\bullet(X^{\partial_{in}} \Sigma, K)
+                  \\,.
+          %p
+            Most every statement about ordinary commutative rings has its analog for
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/E-%E2%88%9E+ring"} commutative ∞-rings
+          %p
+            An
+            %em
+              %a.existingWikiWord{:href => "/nlab/show/%28%E2%88%9E%2C1%29-vector+space"} (∞,1)-vector space
+            over
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi K
+                %annotation{:encoding => "application/x-tex"} K
+            is an
+            = succeed "-" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi K
+                  %annotation{:encoding => "application/x-tex"} K
+            %a.existingWikiWord{:href => "/nlab/show/module+spectrum"} module spectrum
+            and we have an
+            %a.existingWikiWord{:href => "/nlab/show/%28%E2%88%9E%2C1%29-category"} (∞,1)-category
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi K
+                %annotation{:encoding => "application/x-tex"} K
+            %a.existingWikiWord{:href => "/nlab/show/Mod"} Mod
+            of such
+            = succeed "-vector" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mn ∞
+                  %annotation{:encoding => "application/x-tex"} \infty
+            %a.existingWikiWord{:href => "/nlab/show/categorification"} categorification
+            of the ordinary notion of
+            %a.existingWikiWord{:href => "/nlab/show/vector+space"} vector space
+            only in the “
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}>
+              %semantics
+                %mrow
+                  %mi r
+                %annotation{:encoding => "application/x-tex"} r
+            ”-direction of the lattice of
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/%28n%2Cr%29-category"} (r,n)-categories
+            %a.existingWikiWord{:href => "/nlab/show/%28%E2%88%9E%2Cn%29-vector+space"} (∞,n)-vector space
+            over
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi K
+                %annotation{:encoding => "application/x-tex"} K
+            – as appears in the description of general
+            = succeed "-dimensional" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi n
+                  %annotation{:encoding => "application/x-tex"} n
+            = succeed "-models" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi σ
+                  %annotation{:encoding => "application/x-tex"} \sigma
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo{:stretchy => "false"} (
+                    %mi ⋯
+                    %mo{:stretchy => "false"} (
+                    %mo{:stretchy => "false"} (
+                    %mi K
+                    %mi Mod
+                    %mo{:stretchy => "false"} )
+                    %mi Mod
+                    %mo{:stretchy => "false"} )
+                    %mi ⋯
+                    %mo{:stretchy => "false"} )
+                    %mi Mod
+                  %annotation{:encoding => "application/x-tex"} (\cdots ((K Mod) Mod) \cdots ) Mod
+            = succeed "-category" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo{:stretchy => "false"} (
+                    %mn ∞
+                    %mo ,
+                    %mn 2
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} (\infty,2)
+            = succeed "-vector" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo{:stretchy => "false"} (
+                    %mn ∞
+                    %mo ,
+                    %mn 2
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} (\infty,2)
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi K
+                %annotation{:encoding => "application/x-tex"} K
+            is something like
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo{:stretchy => "false"} (
+                    %mi K
+                    %mi Mod
+                    %mo{:stretchy => "false"} )
+                    %mi Mod
+                  %annotation{:encoding => "application/x-tex"} (K Mod) Mod
+          %p
+            This means that an
+            %a.existingWikiWord{:href => "/nlab/show/%28%E2%88%9E%2C1%29-vector+bundle"} (∞,1)-vector bundle
+            with flat
+            %a.existingWikiWord{:href => "/nlab/show/connection+on+an+%E2%88%9E-bundle"} ∞-connection
+            over some
+            %a.existingWikiWord{:href => "/nlab/show/manifold"} manifold
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi X
+                %annotation{:encoding => "application/x-tex"} X
+            is equivalently encoded by an
+            %a.existingWikiWord{:href => "/nlab/show/%28%E2%88%9E%2C1%29-functor"} (∞,1)-functor
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi α
+                  %mo :
+                  %mi Π
+                  %mi X
+                  %mo →
+                  %mi K
+                  %mi Mod
+                %annotation{:encoding => "application/x-tex"}
+                  \\alpha : \Pi X \to K Mod
+          %p
+            out of the
+            %a.existingWikiWord{:href => "/nlab/show/fundamental+%E2%88%9E-groupoid"} fundamental ∞-groupoid
+            of
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi X
+                  %annotation{:encoding => "application/x-tex"} X
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi X
+                %annotation{:encoding => "application/x-tex"} X
+            a
+            = succeed "-module" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi K
+                  %annotation{:encoding => "application/x-tex"} K
+            %a.existingWikiWord{:href => "/nlab/show/fiber"} fiber
+            of the
+            %a.existingWikiWord{:href => "/nlab/show/%28%E2%88%9E%2C1%29-vector+bundle"} (∞,1)-vector bundle
+            thus encoded – to each path in
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi X
+                %annotation{:encoding => "application/x-tex"} X
+            an
+            %a.existingWikiWord{:href => "/nlab/show/equivalence+in+an+%28%E2%88%9E%2C1%29-category"} equivalence
+            between the fibers over its endpoints, and so on: this is the
+            %a.existingWikiWord{:href => "/nlab/show/higher+parallel+transport"} higher parallel transport
+            of a flat
+            = succeed "-connection." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mn ∞
+                  %annotation{:encoding => "application/x-tex"} \infty
+            %a.existingWikiWord{:href => "/nlab/show/%E2%88%9E-representation"} ∞-representation
+            of
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi Π
+                  %mi X
+                %annotation{:encoding => "application/x-tex"} \Pi X
+            on
+            = succeed "-modules," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi K
+                  %annotation{:encoding => "application/x-tex"} K
+            %em
+              %a.existingWikiWord{:href => "/nlab/show/representation+up+to+homotopy"} representation up to homotopy
+            \. For instance if
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi X
+                %annotation{:encoding => "application/x-tex"} X
+            is the classifying space
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi X
+                  %mo =
+                  %mi B
+                  %mi G
+                %annotation{:encoding => "application/x-tex"} X = B G
+            of a
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/discrete+%E2%88%9E-group"} discrete ∞-group
+            = succeed "s" do
+              %a.existingWikiWord{:href => "/nlab/show/%28%E2%88%9E%2C1%29-vector+bundle"} (∞,1)-vector bundle
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi X
+                %annotation{:encoding => "application/x-tex"} X
+            are precisely
+            = succeed "s" do
+              %a.existingWikiWord{:href => "/nlab/show/%E2%88%9E-representation"} ∞-representation
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi G
+                  %annotation{:encoding => "application/x-tex"} G
+          %p
+            There is an evident
+            %a.existingWikiWord{:href => "/nlab/show/full+sub-%28%E2%88%9E%2C1%29-category"} full sub-(∞,1)-category
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi K
+                  %mi Line
+                  %mo ↪
+                  %mi K
+                  %mi Mod
+                %annotation{:encoding => "application/x-tex"}
+                  K Line \hookrightarrow K Mod
+          %p
+            of 1-dimensional
+            = succeed "-vector" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo{:stretchy => "false"} (
+                    %mn ∞
+                    %mo ,
+                    %mn 1
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} (\infty,1)
+            = succeed "-lines" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi K
+                  %annotation{:encoding => "application/x-tex"} K
+            = succeed "-modules" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi K
+                  %annotation{:encoding => "application/x-tex"} K
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi K
+                %annotation{:encoding => "application/x-tex"} K
+            itself regarded as a
+            = succeed "-module." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi K
+                  %annotation{:encoding => "application/x-tex"} K
+          %p
+            An
+            = succeed "-vector" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo{:stretchy => "false"} (
+                    %mn ∞
+                    %mo ,
+                    %mn 1
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} (\infty,1)
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mo ∇
+                  %mo :
+                  %mi Π
+                  %mo{:stretchy => "false"} (
+                  %mi X
+                  %mo{:stretchy => "false"} )
+                  %mo →
+                  %mi K
+                  %mi Mod
+                %annotation{:encoding => "application/x-tex"} \nabla : \Pi(X) \to K Mod
+            that factors through this inclusion is a
+            %em
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}>
+                %semantics
+                  %mrow
+                    %mi K
+                  %annotation{:encoding => "application/x-tex"} K
+              \-line
+              = succeed "-bundle" do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mn ∞
+                    %annotation{:encoding => "application/x-tex"} \infty
+            \.
+          %p One finds, as for the case of ordinary 1-vector spaces, that
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi K
+                  %mi Line
+                  %mo ≃
+                  %mi B
+                  %msub
+                    %mi GL
+                    %mn 1
+                  %mo{:stretchy => "false"} (
+                  %mi K
+                  %mo{:stretchy => "false"} )
+                  %mo ≃
+                  %mi B
+                  %mi Aut
+                  %mo{:stretchy => "false"} (
+                  %mi K
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"}
+                  K Line \simeq B GL_1(K) \simeq B Aut(K)
+          %p
+            is the
+            %a.existingWikiWord{:href => "/nlab/show/delooping"} delooping
+            of the
+            %a.existingWikiWord{:href => "/nlab/show/automorphism+%E2%88%9E-group"} automorphism ∞-group
+            of
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi K
+                  %annotation{:encoding => "application/x-tex"} K
+            = succeed "-line" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi K
+                  %annotation{:encoding => "application/x-tex"} K
+            = succeed "-bundles" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mn ∞
+                  %annotation{:encoding => "application/x-tex"} \infty
+            = succeed "-" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi GL
+                      %mn 1
+                    %mo{:stretchy => "false"} (
+                    %mi K
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} GL_1(K)
+            = succeed "s." do
+              %a.existingWikiWord{:href => "/nlab/show/principal+%E2%88%9E-bundle"} principal ∞-bundle
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi ρ
+                  %mo :
+                  %mi B
+                  %msub
+                    %mi GL
+                    %mn 1
+                  %mo{:stretchy => "false"} (
+                  %mi K
+                  %mo{:stretchy => "false"} )
+                  %mover
+                    %mo →
+                    %mo ≃
+                  %mi K
+                  %mi Line
+                  %mo ↪
+                  %mi K
+                  %mi Mod
+                %annotation{:encoding => "application/x-tex"}
+                  \\rho : B GL_1(K) \stackrel{\simeq}{\to} K Line \hookrightarrow K Mod
+          %p
+            as being the canonical linear
+            %a.existingWikiWord{:href => "/nlab/show/%E2%88%9E-representation"} ∞-representation
+            of
+            = succeed ";" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi GL
+                      %mn 1
+                    %mo{:stretchy => "false"} (
+                    %mi K
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} GL_1(K)
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi g
+                  %mo :
+                  %mi Π
+                  %mi X
+                  %mo →
+                  %mi B
+                  %msub
+                    %mi GL
+                    %mn 1
+                  %mo{:stretchy => "false"} (
+                  %mi K
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} g : \Pi X \to B GL_1(K)
+            a
+            = succeed "-" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi GL
+                      %mn 1
+                    %mo{:stretchy => "false"} (
+                    %mi K
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} GL_1(K)
+            %a.existingWikiWord{:href => "/nlab/show/principal+%E2%88%9E-bundle"} principal ∞-bundle
+            of the
+            = succeed "-vector" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo{:stretchy => "false"} (
+                    %mn ∞
+                    %mo ,
+                    %mn 1
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} (\infty,1)
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi Π
+                  %mi X
+                  %mover
+                    %mo →
+                    %mi g
+                  %mi B
+                  %msub
+                    %mi GL
+                    %mn 1
+                  %mo{:stretchy => "false"} (
+                  %mi K
+                  %mo{:stretchy => "false"} )
+                  %mover
+                    %mo →
+                    %mi ρ
+                  %mi K
+                  %mi Mod
+                %annotation{:encoding => "application/x-tex"}
+                  \\Pi X \stackrel{g}{\to} B GL_1(K) \stackrel{\rho}{\to} K Mod
+          %p
+            as the corresponding
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/associated+%E2%88%9E-bundle"} associated ∞-bundle
+          %p
+            Therefore it makes sense to consider
+            = succeed "-models" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi σ
+                  %annotation{:encoding => "application/x-tex"} \sigma
+            %a.existingWikiWord{:href => "/nlab/show/target+space"} target space
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi X
+                %annotation{:encoding => "application/x-tex"} X
+            and
+            %a.existingWikiWord{:href => "/nlab/show/background+gauge+field"} background gauge field
+            given by an
+            = succeed "-line" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi K
+                  %annotation{:encoding => "application/x-tex"} K
+            = succeed "-bundle." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mn ∞
+                  %annotation{:encoding => "application/x-tex"} \infty
+          %p
+            For instance for
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi K
+                  %mo =
+                  %mi K
+                  %mi U
+                %annotation{:encoding => "application/x-tex"} K = K U
+            the
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/K-theory+spectrum"} K-theory spectrum
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msup
+                    %mi B
+                    %mn 2
+                  %mi U
+                  %mo{:stretchy => "false"} (
+                  %mn 1
+                  %mo{:stretchy => "false"} )
+                  %mo →
+                  %mi B
+                  %msub
+                    %mi GL
+                    %mn 1
+                  %mo{:stretchy => "false"} (
+                  %mi KU
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} B^2 U(1) \to B GL_1(KU)
+            and hence to every
+            %a.existingWikiWord{:href => "/nlab/show/circle+n-bundle"} circle 2-bundle
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi α
+                  %mo :
+                  %mi Π
+                  %mi X
+                  %mo →
+                  %msup
+                    %mi B
+                    %mn 2
+                  %mi U
+                  %mo{:stretchy => "false"} (
+                  %mn 1
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} \alpha : \Pi X \to B^2 U(1)
+            is associated the corresponding
+            = succeed "-line" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi K
+                    %mi U
+                  %annotation{:encoding => "application/x-tex"} K U
+            = succeed "-bundle" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mn ∞
+                  %annotation{:encoding => "application/x-tex"} \infty
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi Π
+                  %mi X
+                  %mover
+                    %mo →
+                    %mi α
+                  %msup
+                    %mi B
+                    %mn 2
+                  %mi U
+                  %mo{:stretchy => "false"} (
+                  %mn 1
+                  %mo{:stretchy => "false"} )
+                  %mover
+                    %mo →
+                    %mrow
+                  %mi B
+                  %msub
+                    %mi GL
+                    %mn 1
+                  %mo{:stretchy => "false"} (
+                  %mi K
+                  %mi U
+                  %mo{:stretchy => "false"} )
+                  %mover
+                    %mo →
+                    %mi ρ
+                  %mi K
+                  %mi U
+                  %mi Mod
+                  %mspace{:width => "thinmathspace"}
+                  %mo .
+                %annotation{:encoding => "application/x-tex"}
+                  \\Pi X \stackrel{\alpha}{\to} B^2 U(1) \stackrel{}{\to}
+                  B GL_1(K U) \stackrel{\rho}{\to} K U Mod
+                  \\,.
+          %p
+            Or for
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi K
+                  %mo =
+                  %mi tmf
+                %annotation{:encoding => "application/x-tex"} K = tmf
+            the
+            %a.existingWikiWord{:href => "/nlab/show/tmf"} tmf
+            spectrum, there is a canonical morphism
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msup
+                    %mi B
+                    %mn 3
+                  %mi U
+                  %mo{:stretchy => "false"} (
+                  %mn 1
+                  %mo{:stretchy => "false"} )
+                  %mo →
+                  %mi B
+                  %msub
+                    %mi GL
+                    %mn 1
+                  %mo{:stretchy => "false"} (
+                  %mi tmf
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} B^3 U(1) \to B GL_1(tmf)
+            and hence to every
+            %a.existingWikiWord{:href => "/nlab/show/circle+n-bundle"} circle 3-bundle
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi α
+                  %mo :
+                  %mi Π
+                  %mi X
+                  %mo →
+                  %msup
+                    %mi B
+                    %mn 3
+                  %mi U
+                  %mo{:stretchy => "false"} (
+                  %mn 1
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} \alpha : \Pi X \to B^3 U(1)
+            is associated the corresponding
+            = succeed "-line" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi tmf
+                  %annotation{:encoding => "application/x-tex"} tmf
+            = succeed "-bundle" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mn ∞
+                  %annotation{:encoding => "application/x-tex"} \infty
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi Π
+                  %mi X
+                  %mover
+                    %mo →
+                    %mi α
+                  %msup
+                    %mi B
+                    %mn 3
+                  %mi U
+                  %mo{:stretchy => "false"} (
+                  %mn 1
+                  %mo{:stretchy => "false"} )
+                  %mover
+                    %mo →
+                    %mrow
+                  %mi B
+                  %msub
+                    %mi GL
+                    %mn 1
+                  %mo{:stretchy => "false"} (
+                  %mi tmf
+                  %mo{:stretchy => "false"} )
+                  %mover
+                    %mo →
+                    %mi ρ
+                  %mi tmf
+                  %mi Mod
+                  %mspace{:width => "thinmathspace"}
+                  %mo .
+                %annotation{:encoding => "application/x-tex"}
+                  \\Pi X \stackrel{\alpha}{\to} B^3 U(1) \stackrel{}{\to}
+                  B GL_1(tmf) \stackrel{\rho}{\to} tmf Mod
+                  \\,.
+          %p
+            This was amplified by Ando, Blumberg, Gepner, Hopkins, and Rezk (see the reference at
+            = succeed ")," do
+              %a.existingWikiWord{:href => "/nlab/show/%28%E2%88%9E%2C1%29-vector+bundle"} (∞,1)-vector bundle
+            %a.existingWikiWord{:href => "/nlab/show/generalized+%28Eilenberg-Steenrod%29+cohomology"} K-(co)homology
+            – including notably its
+            %a.existingWikiWord{:href => "/nlab/show/Thom+spectrum"} Thom spectrum
+            theory and its
+            %a.existingWikiWord{:href => "/nlab/show/twisted+cohomology"} twisted cohomology
+            – is neatly captured by simple statements about such
+            = succeed "-line" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi A
+                  %annotation{:encoding => "application/x-tex"} A
+            = succeed "-bundles." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo{:stretchy => "false"} (
+                    %mn ∞
+                    %mo ,
+                    %mn 1
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} (\infty,1)
+            %a.existingWikiWord{:href => "/nlab/show/orientation+in+generalized+cohomology"} orientation in generalized cohomology
+            simply boils down to the notion of trivialization of such
+            = succeed "-line" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi K
+                  %annotation{:encoding => "application/x-tex"} K
+            = succeed "-bundles:" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mn ∞
+                  %annotation{:encoding => "application/x-tex"} \infty
+          %p
+            a vector bundle
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi E
+                  %mo →
+                  %mi X
+                %annotation{:encoding => "application/x-tex"} E \to X
+            is
+            %em
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}>
+                %semantics
+                  %mrow
+                    %mi K
+                  %annotation{:encoding => "application/x-tex"} K
+              \-oriented
+            precisely if the corresponding
+            = succeed "-bundle" do
+              %a.existingWikiWord{:href => "/nlab/show/Thom+space"} Thom space
+            = succeed "-line" do
+              %a.existingWikiWord{:href => "/nlab/show/sphere+spectrum"} sphere spectrum
+            = succeed "-bundle" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mn ∞
+                  %annotation{:encoding => "application/x-tex"} \infty
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi V
+                  %mo :
+                  %mi Π
+                  %mo{:stretchy => "false"} (
+                  %mi X
+                  %mo{:stretchy => "false"} )
+                  %mo →
+                  %mi S
+                  %mi Line
+                %annotation{:encoding => "application/x-tex"} V: \Pi(X) \to S Line
+            is such that the canonically associated
+            = succeed "-line" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi K
+                  %annotation{:encoding => "application/x-tex"} K
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mo{:stretchy => "false"} (
+                  %mi V
+                  %mi is
+                  %mi K
+                  %mo −
+                  %mi orientable
+                  %mo{:stretchy => "false"} )
+                  %mo ⇔
+                  %mo{:stretchy => "false"} (
+                  %mo{:stretchy => "false"} (
+                  %mi Π
+                  %mo{:stretchy => "false"} (
+                  %mi X
+                  %mo{:stretchy => "false"} )
+                  %mover
+                    %mo →
+                    %mi V
+                  %mi S
+                  %mi Line
+                  %mo →
+                  %mi K
+                  %mi Line
+                  %mo{:stretchy => "false"} )
+                  %mo ≃
+                  %msub
+                    %mi const
+                    %mi K
+                  %mo{:stretchy => "false"} )
+                  %mspace{:width => "thinmathspace"}
+                  %mo .
+                %annotation{:encoding => "application/x-tex"}
+                  (V is K-orientable)
+                  \\Leftrightarrow
+                  ( (\Pi(X) \stackrel{V}{\to} S Line \to K Line)
+                  \\simeq
+                  const_K  )
+                  \\,.
+          %p
+            For our discussion here this means that Cohen-Godin’s finding that the string topology HQFT exists for
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi K
+                %annotation{:encoding => "application/x-tex"} K
+            such that
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi X
+                %annotation{:encoding => "application/x-tex"} X
+            is
+            = succeed "-orientable" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi K
+                  %annotation{:encoding => "application/x-tex"} K
+            = succeed "-line" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi K
+                  %annotation{:encoding => "application/x-tex"} K
+            = succeed "-bundle" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mn ∞
+                  %annotation{:encoding => "application/x-tex"} \infty
+          %p
+            Recall that if we interpret an
+            = succeed "-vector" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo{:stretchy => "false"} (
+                    %mn ∞
+                    %mo ,
+                    %mn 2
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} (\infty,2)
+            %a.existingWikiWord{:href => "/nlab/show/background+gauge+field"} background gauge field
+            for a
+            = succeed "-model," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi σ
+                  %annotation{:encoding => "application/x-tex"} \sigma
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi Σ
+                %annotation{:encoding => "application/x-tex"} \Sigma
+            any 2-dimensional
+            %a.existingWikiWord{:href => "/nlab/show/cobordism"} cobordism
+            the corresponding
+            %a.existingWikiWord{:href => "/nlab/show/%28%E2%88%9E%2C1%29-vector+space"} (∞,1)-vector space
+            of states assigned to, say, the incoming boundary
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msub
+                    %mo ∂
+                    %mi in
+                  %mi Σ
+                %annotation{:encoding => "application/x-tex"} \partial_{in} \Sigma
+            is defined to be the
+            = succeed "-vector" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mn ∞
+                  %annotation{:encoding => "application/x-tex"} \infty
+            %a.existingWikiWord{:href => "/nlab/show/transgression"} transgression
+            of this
+            = succeed "-vector" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo{:stretchy => "false"} (
+                    %mn ∞
+                    %mo ,
+                    %mn 2
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} (\infty,2)
+            %a.existingWikiWord{:href => "/nlab/show/%28%E2%88%9E%2C1%29-vector+bundle"} (∞,1)-vector bundle
+            the
+            %a.existingWikiWord{:href => "/nlab/show/mapping+space"} mapping space
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msup
+                      %mi X
+                      %mrow
+                        %msub
+                          %mo ∂
+                          %mi in
+                        %mi Σ
+                  %annotation{:encoding => "application/x-tex"} X^{\partial_{in} \Sigma}
+            = succeed "-vector" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mn ∞
+                  %annotation{:encoding => "application/x-tex"} \infty
+            = succeed "," do
+              %a{:href => "ExpositionQuantization"} above
+            %a.existingWikiWord{:href => "/nlab/show/%28%E2%88%9E%2C1%29-colimit"} (∞,1)-colimit
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msub
+                    %mi Γ
+                    %mrow
+                      %msub
+                        %mo ∂
+                        %mi in
+                      %mi Σ
+                  %mo :
+                  %mo =
+                  %munder
+                    %mi lim
+                    %mo →
+                  %mo{:stretchy => "false"} (
+                  %mi Π
+                  %msup
+                    %mi X
+                    %mrow
+                      %msub
+                        %mo ∂
+                        %mi in
+                      %mi Σ
+                  %mo →
+                  %mi S
+                  %mi Line
+                  %mo →
+                  %mi K
+                  %mi Mod
+                  %mo{:stretchy => "false"} )
+                  %mspace{:width => "thinmathspace"}
+                  %mo .
+                %annotation{:encoding => "application/x-tex"}
+                  \\Gamma_{\partial_{in} \Sigma}
+                  \:=
+                  \\lim_\to(\Pi X^{\partial_{in} \Sigma} \to S Line \to  K Mod )
+                  \\,.
+          %p
+            This one can compute. By triviality of the bundle, Ando-Blumberg-Gepner-Hopkins-Rezk observe that this is the
+            = succeed "-homology" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi K
+                  %annotation{:encoding => "application/x-tex"} K
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msup
+                    %mi X
+                    %mrow
+                      %msub
+                        %mo ∂
+                        %mi in
+                      %mi Σ
+                %annotation{:encoding => "application/x-tex"} X^{\partial_{in} \Sigma}
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi ⋯
+                  %mo ≃
+                  %mo{:stretchy => "false"} (
+                  %msup
+                    %mi Σ
+                    %mn ∞
+                  %msup
+                    %mi X
+                    %mrow
+                      %msub
+                        %mo ∂
+                        %mi in
+                      %mi Σ
+                  %mo{:stretchy => "false"} )
+                  %mo ∧
+                  %mi K
+                  %mo ∈
+                  %mi K
+                  %mi Mod
+                  %mspace{:width => "thinmathspace"}
+                  %mo .
+                %annotation{:encoding => "application/x-tex"}
+                  \\cdots \simeq (\Sigma^\infty X^{\partial_{in} \Sigma}) \wedge K
+                  \\in K Mod
+                  \\,.
+          %p
+            (Here the main point is that for the bundle
+            %em not
+            being trivial the result encodes the corresponding
+            %em
+              %a.existingWikiWord{:href => "/nlab/show/twisted+cohomology"} twisted cohomology
+            , but for our purposes at the moment we want the oriented/trivializable case.)
+          %p
+            This is hence the
+            = succeed "-vector" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mn ∞
+                  %annotation{:encoding => "application/x-tex"} \infty
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msub
+                    %mo ∂
+                    %mi in
+                  %mi Σ
+                %annotation{:encoding => "application/x-tex"} \partial_{in} \Sigma
+            assigned by a
+            = succeed "-model" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi σ
+                  %annotation{:encoding => "application/x-tex"} \sigma
+            %a.existingWikiWord{:href => "/nlab/show/background+gauge+field"} background gauge field
+            a
+            = succeed "-line" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi K
+                  %annotation{:encoding => "application/x-tex"} K
+            = succeed "-bundle" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mn ∞
+                  %annotation{:encoding => "application/x-tex"} \infty
+            = succeed "-oriented" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi K
+                  %annotation{:encoding => "application/x-tex"} K
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/target+space"} target space
+          %p
+            Notice that for
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi K
+                  %mo =
+                  %mi H
+                  %mi ℤ
+                %annotation{:encoding => "application/x-tex"} K = H \mathbb{Z}
+            the
+            %a.existingWikiWord{:href => "/nlab/show/Eilenberg-MacLane+spectrum"} Eilenberg-MacLane spectrum
+            for the
+            = succeed "s," do
+              %a.existingWikiWord{:href => "/nlab/show/integer"} integer
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi H
+                  %mi ℤ
+                  %mi Mod
+                  %mo ≃
+                  %msub
+                    %mi Ch
+                    %mo •
+                %annotation{:encoding => "application/x-tex"}
+                  H \mathbb{Z} Mod \simeq Ch_\bullet
+          %p and in fact
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi H
+                  %mi ℤ
+                  %mi Alg
+                  %mo ≃
+                  %msub
+                    %mi dgAlg
+                    %mi ℤ
+                %annotation{:encoding => "application/x-tex"}
+                  H \mathbb{Z} Alg \simeq dgAlg_{\mathbb{Z}}
+          %p
+            betwee the
+            %a.existingWikiWord{:href => "/nlab/show/%28%E2%88%9E%2C1%29-category"} (∞,1)-category
+            of
+            = succeed "-" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi H
+                    %mi ℤ
+                  %annotation{:encoding => "application/x-tex"} H \mathbb{Z}
+            = succeed "/" do
+              %a.existingWikiWord{:href => "/nlab/show/module+spectra"} module spectra
+            = succeed "-" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi H
+                    %mi ℤ
+                  %annotation{:encoding => "application/x-tex"} H \mathbb{Z}
+            %a.existingWikiWord{:href => "/nlab/show/algebra+spectra"} algebra spectra
+            (see there for details on this equivalence) and the
+            = succeed "-category" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo{:stretchy => "false"} (
+                    %mn ∞
+                    %mo ,
+                    %mn 1
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} (\infty,1)
+            %a.existingWikiWord{:href => "/nlab/show/presentable+%28infinity%2C1%29-category"} presented
+            by the
+            = succeed "/" do
+              %a.existingWikiWord{:href => "/nlab/show/model+structure+on+chain+complexes"} model structure on chain complexes
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/model+structure+on+dg-algebras"} on dg-algebras
+            = succeed "-space" do
+              %a.existingWikiWord{:href => "/nlab/show/module+spectrum"} module spectrum
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mo{:stretchy => "false"} (
+                  %msup
+                    %mi Σ
+                    %mn ∞
+                  %msup
+                    %mi X
+                    %mrow
+                      %msup
+                        %mi S
+                        %mn 1
+                  %mo{:stretchy => "false"} )
+                  %mo ∧
+                  %mi K
+                  %mo ∼
+                  %msub
+                    %mi C
+                    %mo •
+                  %mo{:stretchy => "false"} (
+                  %msup
+                    %mi X
+                    %mrow
+                      %msup
+                        %mi S
+                        %mn 1
+                  %mo{:stretchy => "false"} )
+                  %mspace{:width => "thinmathspace"}
+                  %mo .
+                %annotation{:encoding => "application/x-tex"}
+                  (\Sigma^\infty X^{S^1}) \wedge K
+                  \\sim
+                  C_\bullet(X^{S^1})
+                  \\,.
+          %p
+            The “
+            %a.existingWikiWord{:href => "/nlab/show/decategorification"}> decategorification
+            ” of this
+            = succeed "-vector" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mn ∞
+                  %annotation{:encoding => "application/x-tex"} \infty
+            = succeed ":" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi X
+                  %annotation{:encoding => "application/x-tex"} X
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msub
+                    %mi π
+                    %mo •
+                  %mo{:stretchy => "false"} (
+                  %msub
+                    %mi Γ
+                    %mrow
+                      %mo ∂
+                      %mi Σ
+                  %mo{:stretchy => "false"} )
+                  %mo =
+                  %msub
+                    %mi H
+                    %mo •
+                  %mo{:stretchy => "false"} (
+                  %msup
+                    %mi X
+                    %mrow
+                      %msub
+                        %mo ∂
+                        %mi in
+                      %mi Σ
+                  %mo ,
+                  %mi K
+                  %mo{:stretchy => "false"} )
+                  %mspace{:width => "thinmathspace"}
+                  %mo .
+                %annotation{:encoding => "application/x-tex"}
+                  \\pi_\bullet(\Gamma_{\partial \Sigma}) = H_\bullet(X^{\partial_{in} \Sigma}, K)
+                  \\,.
+          %h3#GWTheory
+            The topological
+            = succeed "-model" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi A
+                  %annotation{:encoding => "application/x-tex"} A
+          %p
+            The quantum
+            = succeed "-" do
+              %a.existingWikiWord{:href => "/nlab/show/string"} string
+            %a.existingWikiWord{:href => "/nlab/show/sigma+model"} sigma model
+            whose
+            %a.existingWikiWord{:href => "/nlab/show/target+space"} target space
+            is a
+            %a.existingWikiWord{:href => "/nlab/show/symplectic+manifold"} symplectic manifold
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mo{:stretchy => "false"} (
+                  %mi X
+                  %mo ,
+                  %mi ω
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} (X, \omega)
+            – often called the
+            %a.existingWikiWord{:href => "/nlab/show/A-model"} A-model
+            – is given by the
+          %ul
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/Gromov-Witten+theory"} Gromov-Witten theory
+          %p
+            of
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi X
+                  %annotation{:encoding => "application/x-tex"} X
+          %h3#QuantumAbelianCS Quantum abelian Chern-Simons
+          %p For the moment see
+          %ul
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/Topological+Quantum+Field+Theories+from+Compact+Lie+Groups"}> Topological Quantum Field Theories from Compact Lie Groups
+              \.
+        .revisedby
+          %p
+            Created on August  3, 2011 at 16:13:02.
+            See the
+            %a{:href => "/nlab/history/sigma-model+--+exposition+of+quantum+sigma-models", :style => "color: #005c19"} history
+            of this page for a list of all contributions to it.
+        .navigation.navfoot
+          %a#edit.navlink{:accesskey => "E", :href => "/nlab/edit/sigma-model+--+exposition+of+quantum+sigma-models", :rel => "nofollow"} Edit
+          %a{:href => "https://nforum.ncatlab.org/discussions/?CategoryID=0"} Discuss
+          %a{:href => "/nlab/show/sigma-model+--+exposition+of+quantum+sigma-models/cite", :style => "color: black"} Cite
+          %a#view_print{:accesskey => "p", :href => "/nlab/print/sigma-model+--+exposition+of+quantum+sigma-models", :rel => "nofollow"} Print
+          %a#view_source{:href => "/nlab/source/sigma-model+--+exposition+of+quantum+sigma-models", :rel => "nofollow"} Source
+      / Content
+    / Container

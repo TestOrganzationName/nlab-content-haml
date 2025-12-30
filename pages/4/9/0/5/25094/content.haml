@@ -1,0 +1,1668 @@
+!!! XML
+!!! 1.1
+%html{:xmlns => "http://www.w3.org/1999/xhtml"}
+  %head
+    %title
+      Solovay-Kitaev theorem in nLab
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:content => "index,follow", :name => "robots"}/
+    %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/
+    %link{:href => "/stylesheets/instiki.css?1676280126", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/stylesheets/mathematics.css?1660229990", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/stylesheets/syntax.css?1660229990", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/stylesheets/nlab.css?1676280126", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css", :rel => "stylesheet", :type => "text/css"}/
+    :css
+      h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+        color: #226622;
+      }
+      a:visited.existingWikiWord {
+        color: #164416;
+      }
+    :css
+      <!--/*--><![CDATA[/*><!--*/
+          .toc ul {margin: 0; padding: 0;}
+      .toc ul ul {margin: 0; padding: 0 0 0 10px;}
+      .toc li > p {margin: 0}
+      .toc ul li {list-style-type: none; position: relative;}
+      .toc div {border-top:1px dotted #ccc;}
+      .rightHandSide h2 {font-size: 1.5em;color:#008B26}
+      table.plaintable {
+          border-collapse:collapse;
+          margin-left:30px;
+          border:0;
+      }
+      .plaintable td {border:1px solid #000; padding: 3px;}
+      .plaintable th {padding: 3px;}
+      .plaintable caption {
+          font-weight: bold;
+          font-size:1.1em;
+          text-align:center;
+          margin-left:30px;
+      }
+          
+         
+      /* Query boxes for questioning and answering mechanism */
+      div.query{
+      background: #f6fff3;
+      border: solid #ce9;
+      border-width: 2px 1px;
+      padding: 0 1em;
+      margin: 0 1em;
+      max-height: 20em;
+      overflow: auto;
+      }
+      
+      /* Standout boxes for putting important text */
+      div.standout{
+      background: #fff1f1;
+      border: solid black;
+      border-width: 2px 1px;
+      padding: 0 1em;
+      margin: 0 1em;
+      overflow: auto;
+      }
+      
+      /* Icon for links to n-category arXiv documents 
+       (commented out for now i.e. disabled)
+      a[href*="http://arxiv.org/"] {
+        background-image: url(../files/arXiv_icon.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 22px;
+        } */
+          
+      /* Icon for links to n-category cafe posts (disabled) 
+      a[href*="http://golem.ph.utexas.edu/category"] {
+        background-image: url(../files/n-cafe_5.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 25px;
+        } */
+      
+      /* Icon for links to pdf files (disabled)
+      a[href$=".pdf"] {
+        background-image: url(../files/pdficon_small.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 25px;
+        } */
+      
+      /* Icon for links to pages, etc. -inside- pdf files (disabled)
+      a[href*=".pdf#"] {
+        background-image: url(../files/pdf_entry.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 25px;
+        } */
+      
+      a.existingWikiWord {
+      color: #226622;
+      }
+      
+      a.existingWikiWord:visited {
+      color: #226622;
+      }
+      
+      
+      a.existingWikiWord[title] {
+      border: 0px;
+      color: #aa0505;
+      text-decoration: none;
+      }
+          
+      a.existingWikiWord[title]:visited {
+      border: 0px;
+      color: #551111;
+      text-decoration: none;
+      }
+      
+      a[href^="http://"] {
+      border: 0px;
+      color: #003399;
+      }
+      
+      a[href^="http://"]:visited {
+      border: 0px;
+      color: #330066;
+      }
+      
+      a[href^="https://"] {
+      border: 0px;
+      color: #003399;
+      }
+      
+      a[href^="https://"]:visited {
+      border: 0px;
+      color: #330066;
+      }
+      
+      div.dropDown .hide {
+      display: none;
+      }
+      
+      div.dropDown:hover .hide {
+      display:block;
+      }
+      
+      div.clickDown .hide {
+      display: none;
+      }
+      
+      div.clickDown:focus {
+      outline:none;
+      }
+      
+      div.clickDown:focus .hide, div.clickDown:hover .hide {
+      display: block;
+      }
+      
+      div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+      display:block;
+      }
+      
+      div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+      display:none;
+      }
+      
+      div.clickDown .clickToReveal:after {
+      content: "A(Hover to reveal, click to "hold")";
+      font-size: 60%;
+      }
+      
+      div.clickDown .clickToHide:after {
+      content: "A(Click to hide)";
+      font-size: 60%;
+      }
+      div.clickDown .clickToHide, div.clickDown .clickToReveal {
+      white-space: pre-wrap;
+      }
+      
+      .un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+      margin-left: 1em;
+      }
+      
+      span.theorem_label {
+      margin-left: -1em;
+      }
+      .proof span.theorem_label {
+      margin-left: 0em;
+      }
+      :target {
+          background-color: #BBBBBB;
+          border-radius: 5pt;
+      }
+      
+        /*]]>*/-->
+    %script{:src => "/javascripts/prototype.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/effects.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/dragdrop.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/controls.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/application.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/page_helper.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/thm_numbering.js?1660229990", :type => "text/javascript"}
+    %script{:type => "text/x-mathjax-config"}
+      :cdata
+        <!--//--><![CDATA[//><!--
+        MathJax.Ajax.config.path["Contrib"] = "/MathJax";
+        MathJax.Hub.Config({
+        MathML: { useMathMLspacing: true },
+        "HTML-CSS": { scale: 90,
+        extensions: ["handle-floats.js"]
+        }
+        });
+        MathJax.Hub.Queue( function () {
+        var fos = document.getElementsByTagName('foreignObject');
+        for (var i = 0; i < fos.length; i++) {
+        MathJax.Hub.Typeset(fos[i]);
+        }
+        });
+        \//--><!]]>
+    :javascript
+      <!--//--><![CDATA[//><!--
+      window.addEventListener("DOMContentLoaded", function () {
+        var div = document.createElement('div');
+        var math = document.createElementNS('http://www.w3.org/1998/Math/MathML', 'math');
+        document.body.appendChild(div);
+        div.appendChild(math);
+      // Test for MathML support comparable to WebKit version https://trac.webkit.org/changeset/203640 or higher.
+        div.setAttribute('style', 'font-style: italic');
+        var mathml_unsupported = !(window.getComputedStyle(div.firstChild).getPropertyValue('font-style') === 'normal');
+        div.parentNode.removeChild(div);
+        if (mathml_unsupported) {
+          // MathML does not seem to be supported...
+          var s = document.createElement('script');
+          s.src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=MML_HTMLorMML-full";
+          document.querySelector('head').appendChild(s);
+        } else {
+          document.head.insertAdjacentHTML("beforeend", '<style>svg[viewBox] {max-width: 100%}</style>');
+        }
+      });
+      //--><!]]>
+    %link{:href => "https://ncatlab.org/nlab/atom_with_headlines", :rel => "alternate", :title => "Atom with headlines", :type => "application/atom+xml"}/
+    %link{:href => "https://ncatlab.org/nlab/atom_with_content", :rel => "alternate", :title => "Atom with full content", :type => "application/atom+xml"}/
+    :javascript
+      document.observe("dom:loaded", function() {
+        generateThmNumbers();
+      });
+  %body
+    #Container
+      #Content
+        %h1#pageName
+          %span{:style => "float: left; margin: 0.5em 0.25em -0.25em 0"}
+            %svg{:height => "1.8em", :viewbox => "0 0 190 181", :width => "1.872em", :xmlns => "http://www.w3.org/2000/svg"}
+              %path{:d => "M72.8 145c-1.6 17.3-15.7 10-23.6 20.2-5.6 7.3 4.8 15 11.4 15 11.5-.2 19-13.4 26.4-20.3 3.3-3 8.2-4 11.2-7.2a14 14 0 0 0 2.9-11.1c-1.4-9.6-12.4-18.6-16.9-27.2-5-9.6-10.7-27.4-24.1-27.7-17.4-.3-.4 26 4.7 30.7 2.4 2.3 5.4 4.1 7.3 6.9 1.6 2.3 2.1 5.8-1 7.2-5.9 2.6-12.4-6.3-15.5-10-8.8-10.6-15.5-23-26.2-31.8-5.2-4.3-11.8-8-18-3.7-7.3 4.9-4.2 12.9.2 18.5a81 81 0 0 0 30.7 23c3.3 1.5 12.8 5.6 10 10.7-2.5 5.2-11.7 3-15.6 1.1-8.4-3.8-24.3-21.3-34.4-13.7-3.5 2.6-2.3 7.6-1.2 11.1 2.8 9 12.2 17.2 20.9 20.5 17.3 6.7 34.3-8 50.8-12.1z", :fill => "#226622"}
+              %path{:d => "M145.9 121.3c-.2-7.5 0-19.6-4.5-26-5.4-7.5-12.9-1-14.1 5.8-1.4 7.8 2.7 14.1 4.8 21.3 3.4 12 5.8 29-.8 40.1-3.6-6.7-5.2-13-7-20.4-2.1-8.2-12.8-13.2-15.1-1.9-2 9.7 9 21.2 12 30.1 1.2 4 2 8.8 6.4 10.3 6.9 2.3 13.3-4.7 17.7-8.8 12.2-11.5 36.6-20.7 43.4-36.4 6.7-15.7-13.7-14-21.3-7.2-9.1 8-11.9 20.5-23.6 25.1 7.5-23.7 31.8-37.6 38.4-61.4 2-7.3-.8-29.6-13-19.8-14.5 11.6-6.6 37.6-23.3 49.2z", :fill => "#a41e32"}
+              %path{:d => "M86.3 47.5c0-13-10.2-27.6-5.8-40.4 2.8-8.4 14.1-10.1 17-1 3.8 11.6-.3 26.3-1.8 38 11.7-.7 10.5-16 14.8-24.3 2.1-4.2 5.7-9.1 11-6.7 6 2.7 7.4 9.2 6.6 15.1-2.2 14-12.2 18.8-22.4 27-3.4 2.7-8 6.6-5.9 11.6 2 4.4 7 4.5 10.7 2.8 7.4-3.3 13.4-16.5 21.7-16 14.6.7 12 21.9.9 26.2-5 1.9-10.2 2.3-15.2 3.9-5.8 1.8-9.4 8.7-15.7 8.9-6.1.1-9-6.9-14.3-9-14.4-6-33.3-2-44.7-14.7-3.7-4.2-9.6-12-4.9-17.4 9.3-10.7 28 7.2 35.7 12 2 1.1 11 6.9 11.4 1.1.4-5.2-10-8.2-13.5-10-11.1-5.2-30-15.3-35-27.3-2.5-6 2.8-13.8 9.4-13.6 6.9.2 13.4 7 17.5 12C70.9 34 75 43.8 86.3 47.4z", :fill => "#193c78"}
+          %span.webName nLab
+          Solovay-Kitaev theorem
+        .navigation
+          %span.skipNav
+            %a{:href => "#navEnd"} Skip the Navigation Links
+            |
+          %span{:style => "display:inline-block; width: 0.3em;"}
+          %a{:accesskey => "H", :href => "/nlab/show/HomePage", :title => "Home page"} Home Page
+          |
+          %a{:accesskey => "A", :href => "/nlab/all_pages", :title => "List of all pages"} All Pages
+          |
+          %a{:accesskey => "U", :href => "/nlab/latest_revisions", :title => "Latest edits and page creations"} Latest Revisions
+          |
+          %a{:href => "https://nforum.ncatlab.org/discussion/15746/#Item_7", :style => "color: black", :title => "Discuss this page in its dedicated thread on the nForum"} Discuss this page
+          |
+          %form#navigationSearchForm{"accept-charset" => "utf-8", :action => "/nlab/search", :method => "get"}
+            %fieldset.search
+              %input#searchField{:name => "query", :onblur => "this.value == '' ? this.value = 'Search' : true", :onfocus => "this.value == 'Search' ? this.value = '' : true", :style => "display:inline-block; float: left;", :type => "text", :value => "Search"}/
+          %span#navEnd
+        #revision
+          %meta{:content => "application/xhtml+xml;charset=utf-8", "http-equiv" => "Content-type"}/
+          %title Contents
+          .rightHandSide
+            .toc.clickDown{:tabindex => "0"}
+              %h3#context Context
+              %h4#group_theory Group Theory
+              .hide
+                %div
+                  %p
+                    %strong
+                      %a.existingWikiWord{:href => "/nlab/show/group+theory"} group theory
+                  %ul
+                    %li
+                      %a.existingWikiWord{:href => "/nlab/show/group"}> group
+                      ,
+                      %a.existingWikiWord{:href => "/nlab/show/%E2%88%9E-group"} ∞-group
+                    %li
+                      %a.existingWikiWord{:href => "/nlab/show/group+object"}> group object
+                      ,
+                      %a.existingWikiWord{:href => "/nlab/show/group+object+in+an+%28%E2%88%9E%2C1%29-category"} group object in an (∞,1)-category
+                    %li
+                      %a.existingWikiWord{:href => "/nlab/show/abelian+group"}> abelian group
+                      ,
+                      %a.existingWikiWord{:href => "/nlab/show/spectrum"} spectrum
+                    %li
+                      %a.existingWikiWord{:href => "/nlab/show/super+abelian+group"} super abelian group
+                    %li
+                      %a.existingWikiWord{:href => "/nlab/show/group+action"}> group action
+                      ,
+                      %a.existingWikiWord{:href => "/nlab/show/%E2%88%9E-action"} ∞-action
+                    %li
+                      %a.existingWikiWord{:href => "/nlab/show/representation"}> representation
+                      ,
+                      %a.existingWikiWord{:href => "/nlab/show/%E2%88%9E-representation"} ∞-representation
+                    %li
+                      %a.existingWikiWord{:href => "/nlab/show/progroup"} progroup
+                    %li
+                      %a.existingWikiWord{:href => "/nlab/show/homogeneous+space"} homogeneous space
+                  %h3#classical_groups Classical groups
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/general+linear+group"} general linear group
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/unitary+group"} unitary group
+                      %ul
+                        %li
+                          %a.existingWikiWord{:href => "/nlab/show/special+unitary+group"}> special unitary group
+                          \.
+                          %a.existingWikiWord{:href => "/nlab/show/projective+unitary+group"} projective unitary group
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/orthogonal+group"} orthogonal group
+                      %ul
+                        %li
+                          %a.existingWikiWord{:href => "/nlab/show/special+orthogonal+group"} special orthogonal group
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/symplectic+group"} symplectic group
+                  %h3#finite_groups Finite groups
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/finite+group"} finite group
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/symmetric+group"}> symmetric group
+                        ,
+                        = succeed "," do
+                          %a.existingWikiWord{:href => "/nlab/show/cyclic+group"} cyclic group
+                        %a.existingWikiWord{:href => "/nlab/show/braid+group"} braid group
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/classification+of+finite+simple+groups"} classification of finite simple groups
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/sporadic+finite+simple+groups"} sporadic finite simple groups
+                      %ul
+                        %li
+                          %a.existingWikiWord{:href => "/nlab/show/Monster+group"}> Monster group
+                          ,
+                          %a.existingWikiWord{:href => "/nlab/show/Mathieu+group"} Mathieu group
+                  %h3#group_schemes Group schemes
+                  %ul
+                    %li
+                      %a.existingWikiWord{:href => "/nlab/show/algebraic+group"} algebraic group
+                    %li
+                      %a.existingWikiWord{:href => "/nlab/show/abelian+variety"} abelian variety
+                  %h3#topological_groups Topological groups
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/topological+group"} topological group
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/compact+topological+group"}> compact topological group
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/locally+compact+topological+group"} locally compact topological group
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/maximal+compact+subgroup"} maximal compact subgroup
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/string+group"} string group
+                  %h3#lie_groups Lie groups
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Lie+group"} Lie group
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/compact+Lie+group"} compact Lie group
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Kac-Moody+group"} Kac-Moody group
+                  %h3#superlie_groups Super-Lie groups
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/super+Lie+group"} super Lie group
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/super+Euclidean+group"} super Euclidean group
+                  %h3#higher_groups Higher groups
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/2-group"} 2-group
+                      %ul
+                        %li
+                          %a.existingWikiWord{:href => "/nlab/show/crossed+module"}> crossed module
+                          ,
+                          %a.existingWikiWord{:href => "/nlab/show/strict+2-group"} strict 2-group
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/n-group"} n-group
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/%E2%88%9E-group"} ∞-group
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/simplicial+group"} simplicial group
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/crossed+complex"} crossed complex
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/k-tuply+groupal+n-groupoid"} k-tuply groupal n-groupoid
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/spectrum"} spectrum
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/circle+n-group"}> circle n-group
+                        ,
+                        = succeed "," do
+                          %a.existingWikiWord{:href => "/nlab/show/string+2-group"} string 2-group
+                        %a.existingWikiWord{:href => "/nlab/show/fivebrane+Lie+6-group"} fivebrane Lie 6-group
+                  %h3#cohomology_and_extensions Cohomology and Extensions
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/group+cohomology"} group cohomology
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/group+extension"}> group extension
+                        ,
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/%E2%88%9E-group+extension"}> ∞-group extension
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/Ext-group"} Ext-group
+                  %h3#_related_concepts Related concepts
+                  %ul
+                    %li
+                      %a.existingWikiWord{:href => "/nlab/show/quantum+group"} quantum group
+                  %div
+                    %p
+                      %a{:href => "/nlab/edit/group+theory+-+contents"} Edit this sidebar
+              %h4#analysis Analysis
+              .hide
+                %div
+                  %p
+                    %strong
+                      %a.existingWikiWord{:href => "/nlab/show/analysis"} analysis
+                    (
+                    %a.existingWikiWord{:href => "/nlab/show/differential+calculus"}> differential
+                    \/
+                    %a.existingWikiWord{:href => "/nlab/show/integral+calculus"} integral
+                    = succeed "," do
+                      %a.existingWikiWord{:href => "/nlab/show/calculus"} calculus
+                    = succeed "," do
+                      %a.existingWikiWord{:href => "/nlab/show/functional+analysis"} functional analysis
+                    = succeed ")" do
+                      %a.existingWikiWord{:href => "/nlab/show/topology"} topology
+                  %p
+                    %a.existingWikiWord{:href => "/nlab/show/epsilontic+analysis"} epsilontic analysis
+                  %p
+                    %a.existingWikiWord{:href => "/nlab/show/infinitesimal+analysis"} infinitesimal analysis
+                  %p
+                    %a.existingWikiWord{:href => "/nlab/show/computable+analysis"} computable analysis
+                  %p
+                    %em
+                      %a.existingWikiWord{:href => "/nlab/show/Introduction+to+Topology+--+1"} Introduction
+                  %h2#basic_concepts Basic concepts
+                  %p
+                    %a.existingWikiWord{:href => "/nlab/show/triangle+inequality"} triangle inequality
+                  %p
+                    %a.existingWikiWord{:href => "/nlab/show/metric+space"}> metric space
+                    ,
+                    %a.existingWikiWord{:href => "/nlab/show/normed+vector+space"} normed vector space
+                  %p
+                    %a.existingWikiWord{:href => "/nlab/show/open+ball"}> open ball
+                    ,
+                    = succeed "," do
+                      %a.existingWikiWord{:href => "/nlab/show/open+subset"} open subset
+                    %a.existingWikiWord{:href => "/nlab/show/neighbourhood"} neighbourhood
+                  %p
+                    %a.existingWikiWord{:href => "/nlab/show/metric+topology"} metric topology
+                  %p
+                    %a.existingWikiWord{:href => "/nlab/show/sequence"}> sequence
+                    ,
+                    %a.existingWikiWord{:href => "/nlab/show/net"} net
+                  %p
+                    %a.existingWikiWord{:href => "/nlab/show/convergence"}> convergence
+                    ,
+                    %a.existingWikiWord{:href => "/nlab/show/limit+of+a+sequence"} limit of a sequence
+                  %p
+                    %a.existingWikiWord{:href => "/nlab/show/compact+space"}> compactness
+                    ,
+                    %a.existingWikiWord{:href => "/nlab/show/sequentially+compact+space"} sequential compactness
+                  %p
+                    %a.existingWikiWord{:href => "/nlab/show/differentiation"}> differentiation
+                    ,
+                    %a.existingWikiWord{:href => "/nlab/show/integration"} integration
+                  %p
+                    %a.existingWikiWord{:href => "/nlab/show/topological+vector+space"} topological vector space
+                  %h2#basic_facts Basic facts
+                  %p
+                    %a.existingWikiWord{:href => "/nlab/show/continuous+metric+space+valued+function+on+compact+metric+space+is+uniformly+continuous"} continuous metric space valued function on compact metric space is uniformly continuous
+                  %p …
+                  %h2#theorems Theorems
+                  %p
+                    %a.existingWikiWord{:href => "/nlab/show/intermediate+value+theorem"} intermediate value theorem
+                  %p
+                    %a.existingWikiWord{:href => "/nlab/show/extreme+value+theorem"} extreme value theorem
+                  %p
+                    %a.existingWikiWord{:href => "/nlab/show/Heine-Borel+theorem"} Heine-Borel theorem
+                  %p …
+              %h4#computation Computation
+              .hide
+                %div
+                  %p
+                    %strong>
+                      %a.existingWikiWord{:href => "/nlab/show/constructive+mathematics"} constructive mathematics
+                    ,
+                    = succeed "," do
+                      %strong
+                        %a.existingWikiWord{:href => "/nlab/show/realizability"} realizability
+                    %strong
+                      %a.existingWikiWord{:href => "/nlab/show/computability"} computability
+                  %p
+                    %a.existingWikiWord{:href => "/nlab/show/intuitionistic+mathematics"} intuitionistic mathematics
+                  %p
+                    %a.existingWikiWord{:href => "/nlab/show/propositions+as+types"}> propositions as types
+                    ,
+                    = succeed "," do
+                      %a.existingWikiWord{:href => "/nlab/show/proofs+as+programs"} proofs as programs
+                    %a.existingWikiWord{:href => "/nlab/show/computational+trinitarianism"} computational trinitarianism
+                  %h3#constructive_mathematics Constructive mathematics
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/topos"}> topos
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/%28infinity%2C1%29-topos"} homotopy topos
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/type+theory"}> type theory
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/homotopy+type+theory"} homotopy type theory
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/canonical+form"}> canonical form
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/univalence"} univalence
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Bishop+set"}> Bishop set
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/h-set"} h-set
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/decidable+equality"}> decidable equality
+                        ,
+                        = succeed "," do
+                          %a.existingWikiWord{:href => "/nlab/show/decidable+subset"} decidable subset
+                        = succeed "," do
+                          %a.existingWikiWord{:href => "/nlab/show/inhabited+set"} inhabited set
+                        %a.existingWikiWord{:href => "/nlab/show/subsingleton"} subsingleton
+                  %h3#realizability Realizability
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/realizability+topos"} realizability topos
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/realizability+model"} realizability model
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/realizability+interpretation"} realizability interpretation
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/effective+topos"} effective topos
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Kleene%27s+first+algebra"}> Kleene's first algebra
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/Kleene%27s+second+algebra"} Kleene's second algebra
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/function+realizability"} function realizability
+                  %h3#computability Computability
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/computability"} computability
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/computation"}> computation
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/computational+type+theory"} computational type theory
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/computable+function"}> computable function
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/partial+recursive+function"} partial recursive function
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/computable+analysis"}> computable analysis
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/constructive+analysis"} constructive analysis
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/Type+Two+Theory+of+Effectivity"} Type Two Theory of Effectivity
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/computable+function+%28analysis%29"} computable function (analysis)
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/exact+real+computer+arithmetic"} exact real computer arithmetic
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/computable+set"} computable set
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/persistent+homology"}> persistent homology
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/effective+homology"} effective homology
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/computable+physics"} computable physics
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Church-Turing+thesis"} Church-Turing thesis
+              %h4#quantum_systems Quantum systems
+              .hide
+                %div
+                  %p
+                    %strong
+                      %a.existingWikiWord{:href => "/nlab/show/quantum+logic"} quantum logic
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/linear+logic"}> linear logic
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/dependent+linear+type+theory"} dependent
+                        %a.existingWikiWord{:href => "/nlab/show/linear+type+theory"} linear type theory
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/string+diagrams"} string diagrams
+                        in
+                        %a.existingWikiWord{:href => "/nlab/show/quantum+information+theory+via+dagger-compact+categories"} †-compact categories
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/tensor+networks"} tensor networks
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Bohr+topos"} Bohr topos
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/order-theoretic+structure+in+quantum+mechanics"} order-theoretic structure
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/quantum+probability"} quantum probability
+                  %p
+                    %br/
+                  %p
+                    %strong
+                      %a.existingWikiWord{:href => "/nlab/show/quantum+physics"} quantum physics
+                  %ul
+                    %li
+                      %p
+                        (
+                        %a.existingWikiWord{:href => "/nlab/show/parameterized+quantum+systems"}> parameterized
+                        )
+                        %a.existingWikiWord{:href => "/nlab/show/quantum+systems"} quantum systems
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Dyson+formula"} Dyson formula
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/quantum+adiabatic+theorem"} quantum adiabatic theorem
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Berry+phases"} Berry phases
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/quantum+many-body+physics"} quantum many-body physics
+                    %li
+                      %p
+                        %strong
+                          %a.existingWikiWord{:href => "/nlab/show/quantum+field+theory"} quantum field theory
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/functorial+quantum+field+theory"} functorial quantum field theory
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/algebraic+quantum+field+theory"} algebraic quantum field theory
+                      %p
+                        (
+                        %a.existingWikiWord{:href => "/nlab/show/non-perturbative+quantum+field+theory"}> non-
+                        )
+                        %a.existingWikiWord{:href => "/nlab/show/perturbative+quantum+field+theory"} perturbative quantum field theory
+                    %li
+                      %p
+                        %strong
+                          %a.existingWikiWord{:href => "/nlab/show/solid+state+physics"} solid state physics
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/quantum+material"} quantum material
+                      %p
+                        (
+                        %a.existingWikiWord{:href => "/nlab/show/topological+phases+of+matter"}> topological
+                        )
+                        %a.existingWikiWord{:href => "/nlab/show/phases+of+matter"} phases of matter
+                  %p
+                    %br/
+                  %div
+                    %p
+                      %strong
+                        %a.existingWikiWord{:href => "/nlab/show/quantum+probability+theory"} quantum probability theory
+                        –
+                        %a.existingWikiWord{:href => "/nlab/show/observables"} observables
+                        and
+                        %a.existingWikiWord{:href => "/nlab/show/states"} states
+                    %ul
+                      %li
+                        %p
+                          %strong
+                            %a.existingWikiWord{:href => "/nlab/show/states"} states
+                        %ul
+                          %li
+                            %p
+                              %a.existingWikiWord{:href => "/nlab/show/classical+state"} classical state
+                          %li
+                            %p
+                              %a.existingWikiWord{:href => "/nlab/show/quantum+state"} quantum state
+                            %ul
+                              %li
+                                %p
+                                  %a.existingWikiWord{:href => "/nlab/show/space+of+states+%28in+geometric+quantization%29"} space of states (in geometric quantization)
+                              %li
+                                %p
+                                  %a.existingWikiWord{:href => "/nlab/show/state+on+a+star-algebra"}> state on a star-algebra
+                                  ,
+                                  %a.existingWikiWord{:href => "/nlab/show/quasi-state"} quasi-state
+                              %li
+                                %p
+                                  %a.existingWikiWord{:href => "/nlab/show/qbit"}> qbit
+                                  ,
+                                  %a.existingWikiWord{:href => "/nlab/show/Bell+state"} Bell state
+                                %p
+                                  %a.existingWikiWord{:href => "/nlab/show/dimer"}> dimer
+                                  ,
+                                  %a.existingWikiWord{:href => "/nlab/show/tensor+network+state"} tensor network state
+                              %li
+                                %p
+                                  %a.existingWikiWord{:href => "/nlab/show/quantum+state+preparation"} quantum state preparation
+                              %li
+                                %p
+                                  %a.existingWikiWord{:href => "/nlab/show/probability+amplitude"}> probability amplitude
+                                  ,
+                                  %a.existingWikiWord{:href => "/nlab/show/quantum+fluctuation"} quantum fluctuation
+                              %li
+                                %p
+                                  %a.existingWikiWord{:href => "/nlab/show/pure+state"} pure state
+                                %ul
+                                  %li
+                                    %p
+                                      %a.existingWikiWord{:href => "/nlab/show/wave+function"} wave function
+                                  %li
+                                    %p
+                                      %a.existingWikiWord{:href => "/nlab/show/bra-ket"} bra-ket
+                                  %li
+                                    %p
+                                      %a.existingWikiWord{:href => "/nlab/show/Bell+state"} Bell state
+                              %li
+                                %p
+                                  %a.existingWikiWord{:href => "/nlab/show/quantum+superposition"}> quantum superposition
+                                  ,
+                                  %a.existingWikiWord{:href => "/nlab/show/quantum+interference"} quantum interference
+                              %li
+                                %p
+                                  %a.existingWikiWord{:href => "/nlab/show/quantum+entanglement"} quantum entanglement
+                              %li
+                                %p
+                                  %a.existingWikiWord{:href => "/nlab/show/quantum+measurement"} quantum measurement
+                                %p
+                                  %a.existingWikiWord{:href => "/nlab/show/wave+function+collapse"} wave function collapse
+                                %p
+                                  %a.existingWikiWord{:href => "/nlab/show/Born+rule"} Born rule
+                                %p
+                                  %a.existingWikiWord{:href => "/nlab/show/deferred+measurement+principle"} deferred measurement principle
+                                %p
+                                  %a.existingWikiWord{:href => "/nlab/show/quantum+reader+monad"} quantum reader monad
+                                %p
+                                  %a.existingWikiWord{:href => "/nlab/show/measurement+problem"} measurement problem
+                              %li
+                                %p
+                                  %a.existingWikiWord{:href => "/nlab/show/superselection+sector"} superselection sector
+                              %li
+                                %p
+                                  %a.existingWikiWord{:href => "/nlab/show/mixed+state"}> mixed state
+                                  ,
+                                  %a.existingWikiWord{:href => "/nlab/show/density+matrix"} density matrix
+                                %p
+                                  %a.existingWikiWord{:href => "/nlab/show/entanglement+entropy"} entanglement entropy
+                                %p
+                                  %a.existingWikiWord{:href => "/nlab/show/holographic+entanglement+entropy"} holographic entanglement entropy
+                              %li
+                                %p
+                                  %a.existingWikiWord{:href => "/nlab/show/coherent+quantum+state"} coherent quantum state
+                          %li
+                            %p
+                              %a.existingWikiWord{:href => "/nlab/show/ground+state"}> ground state
+                              ,
+                              %a.existingWikiWord{:href => "/nlab/show/excited+state"} excited state
+                          %li
+                            %p
+                              %a.existingWikiWord{:href => "/nlab/show/quasi-free+state"} quasi-free state
+                          %li
+                            %p
+                              %a.existingWikiWord{:href => "/nlab/show/Fock+space"}> Fock space
+                              ,
+                              %a.existingWikiWord{:href => "/nlab/show/second+quantization"} second quantization
+                          %li
+                            %p
+                              %a.existingWikiWord{:href => "/nlab/show/vacuum"}> vacuum
+                              ,
+                              %a.existingWikiWord{:href => "/nlab/show/vacuum+state"} vacuum state
+                            %ul
+                              %li
+                                %p
+                                  %a.existingWikiWord{:href => "/nlab/show/Hadamard+state"} Hadamard state
+                              %li
+                                %p
+                                  %a.existingWikiWord{:href => "/nlab/show/vacuum+diagram"} vacuum diagram
+                              %li
+                                %p
+                                  %a.existingWikiWord{:href => "/nlab/show/vacuum+expectation+value"}> vacuum expectation value
+                                  ,
+                                  = succeed "," do
+                                    %a.existingWikiWord{:href => "/nlab/show/vacuum+amplitude"} vacuum amplitude
+                                  %a.existingWikiWord{:href => "/nlab/show/vacuum+fluctuation"} vacuum fluctuation
+                              %li
+                                %p
+                                  %a.existingWikiWord{:href => "/nlab/show/vacuum+energy"} vacuum energy
+                              %li
+                                %p
+                                  %a.existingWikiWord{:href => "/nlab/show/vacuum+polarization"} vacuum polarization
+                              %li
+                                %p
+                                  %a.existingWikiWord{:href => "/nlab/show/interacting+vacuum"} interacting vacuum
+                              %li
+                                %p
+                                  %a.existingWikiWord{:href => "/nlab/show/thermal+vacuum"}> thermal vacuum
+                                  ,
+                                  %a.existingWikiWord{:href => "/nlab/show/KMS+state"} KMS state
+                              %li
+                                %p
+                                  %a.existingWikiWord{:href => "/nlab/show/vacuum+stability"} vacuum stability
+                                %ul
+                                  %li
+                                    %a.existingWikiWord{:href => "/nlab/show/false+vacuum"}> false vacuum
+                                    ,
+                                    = succeed "," do
+                                      %a.existingWikiWord{:href => "/nlab/show/tachyon"} tachyon
+                                    %a.existingWikiWord{:href => "/nlab/show/Coleman-De+Luccia+instanton"} Coleman-De Luccia instanton
+                              %li
+                                %p
+                                  %a.existingWikiWord{:href => "/nlab/show/theta+vacuum"} theta vacuum
+                              %li
+                                %p
+                                  %a.existingWikiWord{:href => "/nlab/show/perturbative+string+theory+vacuum"} perturbative string theory vacuum
+                                %ul
+                                  %li
+                                    %p
+                                      %a.existingWikiWord{:href => "/nlab/show/non-geometric+string+theory+vacuum"} non-geometric string theory vacuum
+                                  %li
+                                    %p
+                                      %a.existingWikiWord{:href => "/nlab/show/landscape+of+string+theory+vacua"} landscape of string theory vacua
+                          %li
+                            %p
+                              %a.existingWikiWord{:href => "/nlab/show/entangled+state"} entangled state
+                          %li
+                            %p
+                              %a.existingWikiWord{:href => "/nlab/show/tensor+network+state"} tensor network state
+                            %ul
+                              %li
+                                %p
+                                  %a.existingWikiWord{:href => "/nlab/show/matrix+product+state"} matrix product state
+                              %li
+                                %p
+                                  %a.existingWikiWord{:href => "/nlab/show/tree+tensor+network+state"} tree tensor network state
+                      %li
+                        %p
+                          %strong
+                            %a.existingWikiWord{:href => "/nlab/show/observables"} observables
+                        %ul
+                          %li
+                            %p
+                              %a.existingWikiWord{:href => "/nlab/show/quantum+observable"}> quantum observable
+                              ,
+                              %a.existingWikiWord{:href => "/nlab/show/beable"} beable
+                          %li
+                            %p
+                              %a.existingWikiWord{:href => "/nlab/show/algebra+of+observables"}> algebra of observables
+                              ,
+                              %a.existingWikiWord{:href => "/nlab/show/star-algebra"} star-algebra
+                          %li
+                            %p
+                              %a.existingWikiWord{:href => "/nlab/show/Bohr+topos"} Bohr topos
+                          %li
+                            %p
+                              %a.existingWikiWord{:href => "/nlab/show/quantum+operator+%28in+geometric+quantization%29"} quantum operator (in geometric quantization)
+                          %li
+                            %p
+                              %a.existingWikiWord{:href => "/nlab/show/quantum+operation"}> quantum operation
+                              ,
+                              = succeed "," do
+                                %a.existingWikiWord{:href => "/nlab/show/quantum+effect"} quantum effect
+                              %a.existingWikiWord{:href => "/nlab/show/effect+algebra"} effect algebra
+                          %li
+                            %p
+                              in
+                              %a.existingWikiWord{:href => "/nlab/show/quantum+field+theory"} quantum field theory
+                            %ul
+                              %li
+                                %p
+                                  %a.existingWikiWord{:href => "/nlab/show/local+observable"} local observable
+                              %li
+                                %p
+                                  %a.existingWikiWord{:href => "/nlab/show/polynomial+observable"} polynomial observable
+                                %ul
+                                  %li
+                                    %p
+                                      %a.existingWikiWord{:href => "/nlab/show/linear+observable"} linear observable
+                                    %ul
+                                      %li
+                                        %a.existingWikiWord{:href => "/nlab/show/field+observable"} field observable
+                              %li
+                                %p
+                                  %a.existingWikiWord{:href => "/nlab/show/regular+observable"} regular observable
+                              %li
+                                %p
+                                  %a.existingWikiWord{:href => "/nlab/show/microcausal+observable"} microcausal observable
+                              %li
+                                %p
+                                  %a.existingWikiWord{:href => "/nlab/show/normal-ordered+product"}> normal-ordered product
+                                  ,
+                                  = succeed "," do
+                                    %a.existingWikiWord{:href => "/nlab/show/time-ordered+products"} time-ordered products
+                                  %a.existingWikiWord{:href => "/nlab/show/retarded+product"} retarded product
+                              %li
+                                %p
+                                  %a.existingWikiWord{:href => "/nlab/show/Wick+algebra"} Wick algebra
+                              %li
+                                %p
+                                  %a.existingWikiWord{:href => "/nlab/show/scattering+amplitude"} scattering amplitude
+                              %li
+                                %p
+                                  %a.existingWikiWord{:href => "/nlab/show/interacting+field+algebra+of+observables"}> interacting field algebra of observables
+                                  ,
+                                  %a.existingWikiWord{:href => "/nlab/show/Bogoliubov%27s+formula"} Bogoliubov's formula
+                      %li
+                        %p
+                          %a.existingWikiWord{:href => "/nlab/show/GNS+construction"} GNS construction
+                      %li
+                        %p
+                          %a.existingWikiWord{:href => "/nlab/show/theorems"} theorems
+                        %ul
+                          %li
+                            %p
+                              %a.existingWikiWord{:href => "/nlab/show/order-theoretic+structure+in+quantum+mechanics"} order-theoretic structure in quantum mechanics
+                            %ul
+                              %li
+                                %p
+                                  %a.existingWikiWord{:href => "/nlab/show/Gleason%27s+theorem"} Gleason's theorem
+                              %li
+                                %p
+                                  %a.existingWikiWord{:href => "/nlab/show/Alfsen-Shultz+theorem"} Alfsen-Shultz theorem
+                              %li
+                                %p
+                                  %a.existingWikiWord{:href => "/nlab/show/Harding-D%C3%B6ring-Hamhalter+theorem"} Harding-Döring-Hamhalter theorem
+                              %li
+                                %p
+                                  %a.existingWikiWord{:href => "/nlab/show/Kochen-Specker+theorem"} Kochen-Specker theorem
+                              %li
+                                %p
+                                  %a.existingWikiWord{:href => "/nlab/show/Nuiten%27s+lemma"} Nuiten's lemma
+                          %li
+                            %p
+                              %a.existingWikiWord{:href => "/nlab/show/Wigner%27s+theorem"} Wigner's theorem
+                          %li
+                            %p
+                              %a.existingWikiWord{:href => "/nlab/show/no-cloning+theorem"} no-cloning theorem
+                          %li
+                            %p
+                              %a.existingWikiWord{:href => "/nlab/show/Bell%27s+theorem"} Bell's theorem
+                  %p
+                    %br/
+                  %p
+                    %strong
+                      %a.existingWikiWord{:href => "/nlab/show/quantum+information"} quantum information
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/quantum+information+via+dagger-compact+categories"} quantum information via dagger-compact categories
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/quantum+operation"}> quantum operation
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/quantum+channel"} quantum channel
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/quantum+teleportation"} quantum teleportation
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/quantum+entanglement"} quantum entanglement
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/entanglement+entropy"} entanglement entropy
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/holographic+entanglement+entropy"} holographic entanglement entropy
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/topological+entanglement+entropy"} topological entanglement entropy
+                  %p
+                    %br/
+                  %p
+                    %strong
+                      %a.existingWikiWord{:href => "/nlab/show/quantum+computation"} quantum computation
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/adiabatic+quantum+computation"} adiabatic quantum computation
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/measurement-based+quantum+computation"} measurement-based quantum computation
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/topological+quantum+computation"} topological quantum computation
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/quantum+gate"}> quantum gate
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/quantum+circuit"} quantum circuit
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/quantum+programming+language"} quantum programming language
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/quantum+error+correction"} quantum error correction
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/HaPPY+code"} HaPPY code
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/Majorana+dimer+code"} Majorana dimer code
+                  %p
+                    %a.existingWikiWord{:href => "/nlab/show/qbit"} qbit
+                  %ul
+                    %li
+                      %a.existingWikiWord{:href => "/nlab/show/spin+resonance+qbit"} spin resonance qbit
+                  %p quantum algorithms:
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Grover%27s+algorithm"} Grover's algorithm
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Shor%27s+algorithm"} Shor's algorithm
+                  %p
+                    %br/
+                  %p
+                    %strong
+                      %a.existingWikiWord{:href => "/nlab/show/quantum+sensing"} quantum sensing
+                  %p
+                    %br/
+                  %p
+                    %strong
+                      %a.existingWikiWord{:href => "/nlab/show/quantum+communication"} quantum communication
+          %h1#contents Contents
+          .maruku_toc
+            %ul
+              %li
+                %a{:href => "#idea"} Idea
+              %li
+                %a{:href => "#references"} References
+              %ul
+                %li
+                  %a{:href => "#general"} General
+                %li
+                  %a{:href => "#QuantumCircuitCompilationReferences"} Quantum circuit compilation
+                %li
+                  %a{:href => "#ReferencesInTopologicalQuantumComputation"} Topological quantum compilation
+          %h2#idea Idea
+          %p
+            Given a
+            %a.existingWikiWord{:href => "/nlab/show/finitely+generated+group"} finitely generated
+            and
+            %a.existingWikiWord{:href => "/nlab/show/dense+subspace"} dense
+            %a.existingWikiWord{:href => "/nlab/show/subgroup"} subgroup
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mo{:stretchy => "false"} ⟨
+                  %msub
+                    %mi g
+                    %mn 1
+                  %mo ,
+                  %msubsup
+                    %mi g
+                    %mn 1
+                    %mrow
+                      %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                      %mn 1
+                  %mi ⋯
+                  %mo ,
+                  %msub
+                    %mi g
+                    %mi n
+                  %mo ,
+                  %msubsup
+                    %mi g
+                    %mi n
+                    %mrow
+                      %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                      %mn 1
+                  %mo{:stretchy => "false"} ⟩
+                %annotation{:encoding => "application/x-tex"} \langle g_1, g_1^{-1} \cdots, g_n, g_n^{-1} \rangle
+            of the
+            %a.existingWikiWord{:href => "/nlab/show/topological+group"} topological group
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/SU%282%29"} SU(2)
+            %em Solovay-Kitaev theorem
+            \&amp;lbrack;
+            %a{:href => "#Kitaev97"}> Kitaev (1997)
+            ,
+            = succeed "&rbrack;" do
+              %a{:href => "#NielsenChuang00"} Nielsen &amp; Chuang (2000, §A3)
+            %a.existingWikiWord{:href => "/nlab/show/elements"} elements
+            from
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mo{:stretchy => "false"} {
+                  %msub
+                    %mi g
+                    %mn 1
+                  %mo ,
+                  %mi ⋯
+                  %mo ,
+                  %msub
+                    %mi g
+                    %mi n
+                  %mo{:stretchy => "false"} }
+                %annotation{:encoding => "application/x-tex"} \{g_1, \cdots, g_n\}
+            which are needed in order to approximate any given element
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi g
+                  %mspace{:width => "thinmathspace"}
+                  %mo ∈
+                  %mspace{:width => "thinmathspace"}
+                  %mi SU
+                  %mo{:stretchy => "false"} (
+                  %mn 2
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} g \,\in\, SU(2)
+            to given accuracy.
+          %p
+            In
+            = succeed "-theory" do
+              %a.existingWikiWord{:href => "/nlab/show/quantum+computation"} quantum computation
+          %ol
+            %li
+              %p
+                the set
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mo{:stretchy => "false"} {
+                      %msub
+                        %mi g
+                        %mn 0
+                      %mo ,
+                      %mi ⋯
+                      %mo ,
+                      %msub
+                        %mi g
+                        %mi n
+                      %mo{:stretchy => "false"} }
+                    %annotation{:encoding => "application/x-tex"} \{g_0, \cdots, g_n\}
+                as a given set of (operations of)
+                %a.existingWikiWord{:href => "/nlab/show/quantum+gates"} quantum gates
+                on
+                %a.existingWikiWord{:href => "/nlab/show/qbits"} qbits
+              %p
+                (that the subgroup these generate is
+                %a.existingWikiWord{:href => "/nlab/show/dense+subspace"} dense
+                in
+                %a.existingWikiWord{:href => "/nlab/show/SU%282%29"} SU(2)
+                is said to mean that this is a
+                %em universal set
+                of quantum gates);
+            %li
+              %p
+                the target element
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi g
+                      %mspace{:width => "thinmathspace"}
+                      %mo ∈
+                      %mspace{:width => "thinmathspace"}
+                      %mi SU
+                      %mo{:stretchy => "false"} (
+                      %mn 2
+                      %mo{:stretchy => "false"} )
+                    %annotation{:encoding => "application/x-tex"} g \,\in\, SU(2)
+                as an intended operation on qbits (an intended quantum program);
+            %li
+              %p
+                the sequence of elements
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msub
+                        %mi g
+                        %mi i
+                    %annotation{:encoding => "application/x-tex"} g_i
+                used to approximate
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi g
+                    %annotation{:encoding => "application/x-tex"} g
+                as a
+                %a.existingWikiWord{:href => "/nlab/show/quantum+circuit"} quantum circuit
+                realizing the quantum program (“
+                %a.existingWikiWord{:href => "/nlab/show/quantum+compilation"}> quantum compilation
+                ”),
+          %p
+            and then the Solovay-Kitaev theorem guarantees that the maximum
+            %em depth
+            of the quantum circuit grows only slowly with its required accuracy.
+          %p
+            In fact, the theorem holds in the generality of
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/SU%28n%29"}
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi SU
+                      %mo{:stretchy => "false"} (
+                      %mi d
+                      %mo{:stretchy => "false"} )
+                    %annotation{:encoding => "application/x-tex"} SU(d)
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi d
+                    %mo ∈
+                    %msub
+                      %mi ℕ
+                      %mrow
+                        %mo ≥
+                        %mn 1
+                  %annotation{:encoding => "application/x-tex"} d \in \mathbb{N}_{\geq 1}
+            %a.existingWikiWord{:href => "/nlab/show/quantum+computation"} quantum computation
+            corresponds to working with
+            %em
+              %a.existingWikiWord{:href => "/nlab/show/qdits"} qdits
+            instead of just
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/qbits"} qbits
+          %p
+            Regarding the practical relevance, it has been argued &amp;lbrack;
+            %a{:href => "https://quantumcomputing.stackexchange.com/a/22197/19363"}> MO:a/22197
+            \&amp;rbrack; that
+            = succeed "-hardware" do
+              %a.existingWikiWord{:href => "/nlab/show/quantum+computing"} quantum computing
+            %a.existingWikiWord{:href => "/nlab/show/superconductors"} superconductors
+            will already allow to approximate any operation on a “physical qbit” by a single
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/quantum+gate"} quantum gate
+            = succeed "\u201D," do
+              %a.existingWikiWord{:href => "/nlab/show/logical+qbits"} logical qbits
+            %a.existingWikiWord{:href => "/nlab/show/quantum+error+correction"} quantum error correction
+            into account.
+          %p
+            Similarly, in
+            %a.existingWikiWord{:href => "/nlab/show/topological+quantum+computation"} topological quantum computation
+            the available set of basic
+            %a.existingWikiWord{:href => "/nlab/show/anyon"} anyon
+            %a.existingWikiWord{:href => "/nlab/show/braiding"} braid gates
+            is typically far from the usual
+            = succeed "-basis" do
+              %a.existingWikiWord{:href => "/nlab/show/QBit"} QBit
+            = succeed "," do
+              %a{:href => "#BonesteelHormoziZikosSimon05"} Bonesteel, Hormozi, Zikos &amp; Simon (2005)
+            = succeed "," do
+              %a{:href => "#HormoziZikosBonesteelSimon07"} Hormozi, Zikos, Bonesteel &amp; Simon (2007)
+            = succeed ")." do
+              %a{:href => "#HormoziBonesteelSimon09"} Hormozi, Bonesteel &amp; Simon (2009)
+          %p#BraidImplementingCNotGate
+            For example, the following lengthy braid has been proposed &amp;lbrack;
+            %a{:href => "#HormoziZikosBonesteelSimon07"}> Hormozi, Zikos, Bonesteel &amp; Simon (2007)
+            \&amp;rbrack; as a possible topological quantum compilation of a
+            %em single
+            = succeed ":" do
+              %a.existingWikiWord{:href => "/nlab/show/CNOT+gate"} CNOT gate
+          %center
+            %img{:src => "https://ncatlab.org/nlab/files/BraidImplementingCNOTGate.jpg", :width => "800"}/
+          %h2#references References
+          %h3#general General
+          %p
+            According to
+            %a{:href => "#DawsonNielsen06"} Dawson &amp; Nielsen (2006, p. 13)
+            the first announcement of the theorem was
+          %ul
+            %li
+              “by
+              %a.existingWikiWord{:href => "/nlab/show/Robert+Solovay"} Solovay
+              in 1995 on an email discussion list”.
+          %p A proof was then outlined in:
+          %ul
+            %li#Kitaev97
+              %a.existingWikiWord{:href => "/nlab/show/Alexei+Kitaev"}> Alexei Kitaev
+              , Thm. 4.8 of:
+              = succeed "," do
+                %em Quantum computations: algorithms and error correction
+              %strong 52
+              6 (1997) &amp;lbrack;
+              %a{:href => "https://iopscience.iop.org/article/10.1070/RM1997v052n06ABEH002155"}> doi:10.1070/RM1997v052n06ABEH002155
+              ,
+              = succeed "&rbrack;" do
+                %a{:href => "https://ochicken.top/Library/Physics/Quantum_Computation_and_Quantum_Information/1997.06%20A.Yu.Kitaev_%20Quantum%20computations_%20algorithms%20and%20error%20correction%20(kitaev1997).pdf"} pdf
+          %p followed by talk announcement:
+          %ul
+            %li#Solovay00
+              %a.existingWikiWord{:href => "/nlab/show/Robert+Solovay"}> Robert Solovay
+              ,
+              = succeed "," do
+                %em Lie Groups and Quantum Circuits
+              = succeed "," do
+                %a{:href => "https://www.msri.org/workshops/189/schedules/12826"} webpage
+              = succeed "&rbrack;" do
+                %a{:href => "https://s3-us-west-1.amazonaws.com/msri-videos/paperclip/videos/data/000/049/315/original/189-12826-Lie_Groups_and_Quantum_Circuits-Robert_Solovay.mp4"} mp4
+          %p
+            Following
+            = succeed "," do
+              %a{:href => "#Kitaev97"} Kitaev (1997)
+          %ul
+            %li#NielsenChuang00
+              %a.existingWikiWord{:href => "/nlab/show/Michael+A.+Nielsen"}> Michael A. Nielsen
+              ,
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/Isaac+L.+Chuang"} Isaac L. Chuang
+              = succeed "," do
+                %em Solovay-Kitaev theorem
+              = succeed "," do
+                %em Quantum computation and quantum information
+              = succeed "," do
+                %a{:href => "https://doi.org/10.1017/CBO9780511976667"} doi:10.1017/CBO9780511976667
+              = succeed "," do
+                %a{:href => "http://csis.pace.edu/~ctappert/cs837-19spring/QC-textbook.pdf"} pdf
+              = succeed "&rbrack;" do
+                %a.existingWikiWord{:href => "/nlab/files/NielsenChuangQuantumComputation.pdf", :title => "pdf"} pdf
+          %p Review:
+          %ul
+            %li#KitaevShenVyalyi02
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Alexei+Kitaev"}> Alexei Kitaev
+                , A. H. Shen, M. N. Vyalyi, §8.3 in:
+                = succeed "," do
+                  %em Classical and Quantum Computation
+                = succeed "," do
+                  %strong 47
+                = succeed "&rbrack;" do
+                  %a{:href => "http://dx.doi.org/10.1090/gsm/047"} doi:10.1090/gsm/047
+            %li#DawsonNielsen06
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Christopher+M.+Dawson"}> Christopher M. Dawson
+                ,
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/Michael+A.+Nielsen"} Michael A. Nielsen
+                = succeed "," do
+                  %em The Solovay-Kitaev algorithm
+                %strong 6
+                1 (2006) 81–95 &amp;lbrack;
+                %a{:href => "https://arxiv.org/abs/quant-ph/0505030"}> arXiv:quant-ph/0505030
+                ,
+                = succeed "&rbrack;" do
+                  %a{:href => "https://dl.acm.org/doi/10.5555/2011679.2011685"} doi:10.5555/2011679.2011685
+          %p See also:
+          %ul
+            %li
+              %p
+                Wikipedia,
+                %em
+                  %a{:href => "https://en.wikipedia.org/wiki/Solovay%E2%80%93Kitaev_theorem"} Solovay-Kitaev theorem
+            %li
+              %p
+                Maris Ozols,
+                %em The Solovay-Kitaev theorem
+                \&amp;lbrack;
+                %a{:href => "http://home.lu.lv/~sd20008/papers/essays/Solovay-Kitaev.pdf"}> pdf
+                \&amp;rbrack;
+          %p Further refinement of the algorithm:
+          %ul
+            %li
+              Attila B. Nagy,
+              = succeed "," do
+                %em On an implementation of the Solovay-Kitaev algorithm
+              = succeed "&rbrack;" do
+                %a{:href => "https://arxiv.org/abs/quant-ph/0606077"} arXiv:quant-ph/0606077
+          %h3#QuantumCircuitCompilationReferences Quantum circuit compilation
+          %p More on quantum circuit compilation:
+          %ul
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Neil+J.+Ross"}> Neil J. Ross
+                , Chapters 6-7 in:
+                = succeed "," do
+                  %em Algebraic and Logical Methods in Quantum Computation
+                = succeed "&rbrack;" do
+                  %a{:href => "https://arxiv.org/abs/1510.02198"} arXiv:1510.02198
+            %li
+              %p
+                Adi Botea, Akihiro Kishimoto, Radu Marinescu,
+                = succeed "," do
+                  %em On the Complexity of Quantum Circuit Compilation
+                %strong 9
+                1 (2018) &amp;lbrack;
+                %a{:href => "https://doi.org/10.1609/socs.v9i1.18463"}> doi:10.1609/socs.v9i1.18463
+                \&amp;rbrack;
+            %li
+              %p
+                Robert Wille; Stefan Hillmich; Lukas Burgholzer,
+                = succeed "," do
+                  %em Efficient and Correct Compilation of Quantum Circuits
+                %em 2020 IEEE International Symposium on Circuits and Systems (ISCAS)
+                IEEE Explore (2020) &amp;lbrack;
+                %a{:href => "https://doi.org/10.1109/ISCAS45731.2020.9180791"}> doi:10.1109/ISCAS45731.2020.9180791
+                \&amp;rbrack;
+            %li
+              %p
+                Nathanial Stemen,
+                %em Quantum Circuit Compilation from the Ground Up
+                (2022) &amp;lbrack;
+                %a{:href => "https://uwaterloo.ca/applied-mathematics/sites/ca.applied-mathematics/files/uploads/files/quantum_circuit_compilation_from_the_ground_up.pdf"}> pdf
+                \&amp;rbrack;
+            %li
+              %p
+                Giulia Meuli, Fereshte Mozafari, Bruno Schmitt, Heinz Riener, Mathias Soeken, Giovanni De Micheli:
+                %em
+                  %a{:href => "https://si2.epfl.ch/~demichel/research/quantum.html"} Quantum Compilation
+          %p A textbook account:
+          %ul
+            %li
+              Marco Maronese, Lorenzo Moro, Lorenzo Rocutto, Enrico Prati,
+              = succeed "," do
+                %em Quantum Compiling
+              = succeed "," do
+                %em Quantum Computing Environments
+              = succeed "," do
+                %a{:href => "https://arxiv.org/abs/2112.00187"} arXiv:2112.00187
+              = succeed "&rbrack;" do
+                %a{:href => "https://doi.org/10.1007/978-3-030-89746-8_2"} doi:10.1007/978-3-030-89746-8_2
+          %p
+            Quantum compilation with a
+            %a.existingWikiWord{:href => "/nlab/show/proof+assistant"} proof assistant
+            based on
+            = succeed ":" do
+              %a.existingWikiWord{:href => "/nlab/show/QWIRE"} QWIRE
+          %ul
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Kesha+Hietala"}> Kesha Hietala
+                ,
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/Robert+Rand"} Robert Rand
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/Shih-Han+Hung"} Shih-Han Hung
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/Michael+Hicks"} Michael Hicks
+                = succeed "," do
+                  %em A verified optimizer for Quantum circuits
+                %strong 5
+                Issue POPL 37 (2021) 1–29 &amp;lbrack;
+                %a{:href => "https://doi.org/10.1145/3434318"}> doi:10.1145/3434318
+                \&amp;rbrack;
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Kesha+Hietala"}> Kesha Hietala
+                ,
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/Robert+Rand"} Robert Rand
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/Shih-Han+Hung"} Shih-Han Hung
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/Michael+Hicks"} Michael Hicks
+                = succeed "," do
+                  %em Proving Quantum Programs Correct
+                = succeed "," do
+                  %em 12th International Conference on Interactive Theorem Proving (ITP 2021)
+                %strong 193
+                (2021) &amp;lbrack;
+                %a{:href => "https://arxiv.org/abs/2010.01240"}> arXiv:2010.01240
+                \&amp;rbrack;
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Kesha+Hietala"}> Kesha Hietala
+                ,
+                %em A verified software toolchain for quantum programming
+                (2022) &amp;lbrack;
+                %a{:href => "https://khieta.github.io/files/drafts/khieta-dissertation.pdf"}> pdf
+                \&amp;rbrack;
+          %h3#ReferencesInTopologicalQuantumComputation Topological quantum compilation
+          %p
+            Discussion of the Solovay-Kitaev theorem for quantum compilation in the context of
+            = succeed ":" do
+              %a.existingWikiWord{:href => "/nlab/show/topological+quantum+computation"} topological quantum computation
+          %ul
+            %li#BonesteelHormoziZikosSimon05
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Nicholas+E.+Bonesteel"}> Nicholas E. Bonesteel
+                ,
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/Layla+Hormozi"} Layla Hormozi
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/Georgios+Zikos"} Georgios Zikos
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/Steven+H.+Simon"} Steven H. Simon
+                = succeed "," do
+                  %em Braid Topologies for Quantum Computation
+                %strong 95
+                140503 (2005) &amp;lbrack;
+                %a{:href => "https://arxiv.org/abs/quant-ph/0505065"}> arXiv:quant-ph/0505065
+                ,
+                = succeed "&rbrack;" do
+                  %a{:href => "https://doi.org/10.1103/PhysRevLett.95.140503"} doi:10.1103/PhysRevLett.95.140503
+            %li#HormoziZikosBonesteelSimon07
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Layla+Hormozi"}> Layla Hormozi
+                ,
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/Georgios+Zikos"} Georgios Zikos
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/Nicholas+E.+Bonesteel"} Nicholas E. Bonesteel
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/Steven+H.+Simon"} Steven H. Simon
+                = succeed "," do
+                  %em Topological Quantum Compiling
+                %strong 75
+                165310 (2007) &amp;lbrack;
+                %a{:href => "https://arxiv.org/abs/quant-ph/0610111"}> arXiv:quant-ph/0610111
+                ,
+                = succeed "&rbrack;" do
+                  %a{:href => "https://doi.org/10.1103/PhysRevB.75.165310"} doi:10.1103/PhysRevB.75.165310
+            %li#HormoziBonesteelSimon09
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Layla+Hormozi"}> Layla Hormozi
+                ,
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/Nicholas+E.+Bonesteel"} Nicholas E. Bonesteel
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/Steven+H.+Simon"} Steven H. Simon
+                = succeed "," do
+                  %em Topological Quantum Computing with Read-Rezayi States
+                %strong 103
+                160501 (2009) &amp;lbrack;
+                %a{:href => "https://doi.org/10.1103/PhysRevLett.103.160501"}> doi:10.1103/PhysRevLett.103.160501
+                ,
+                = succeed "&rbrack;" do
+                  %a{:href => "https://arxiv.org/abs/0903.2239"} arXiv:0903.2239
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Joren+W.+Brunekreef"}> Joren W. Brunekreef
+                ,
+                = succeed "," do
+                  %em Topological Quantum Computation and Quantum Compilation
+                = succeed "&rbrack;" do
+                  %a{:href => "https://studenttheses.uu.nl/handle/20.500.12932/17738"} studenttheses.uu.nl:20.500.12932/17738
+            %li
+              %p
+                Keisuke Fujii,
+                = succeed "," do
+                  %em Quantum Computation with Topological Codes: from qubit to topological fault-tolerance
+                %strong 8
+                (2015) &amp;lbrack;
+                %a{:href => "https://arxiv.org/abs/1504.01444"}> arXiv:1504.01444
+                ,
+                = succeed "&rbrack;" do
+                  %a{:href => "https://doi.org/10.1007/978-981-287-996-7"} doi:10.1007/978-981-287-996-7
+            %li
+              %p
+                Vadym Kliuchnikov, Alex Bocharov, Krysta M. Svore,
+                = succeed "," do
+                  %em Asymptotically Optimal Topological Quantum Compiling
+                %strong 112
+                (2014) 140504 &amp;lbrack;
+                %a{:href => "https://arxiv.org/abs/1310.4150"}> arXiv:1310.4150
+                ,
+                = succeed "&rbrack;" do
+                  %a{:href => "https://doi.org/10.1103/PhysRevLett.112.140504"} doi:10.1103/PhysRevLett.112.140504
+            %li
+              %p
+                Caitlin Carnahan, Daniel Zeuch,
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/Nicholas+E.+Bonesteel"} Nicholas E. Bonesteel
+                = succeed "," do
+                  %em Systematically generated two-qubit anyon braids
+                %strong 93
+                052328 (2016) &amp;lbrack;
+                %a{:href => "https://arxiv.org/abs/1511.00719"}> arXiv:1511.00719
+                ,
+                = succeed "&rbrack;" do
+                  %a{:href => "https://doi.org/10.1103/PhysRevA.93.052328"} doi:10.1103/PhysRevA.93.052328
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Emil+G%C3%A9netay-Johansen"}> Emil Génetay-Johansen
+                ,
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/Tapio+Simula"} Tapio Simula
+                = succeed "," do
+                  %em
+                    Fibonacci anyons versus Majorana fermions – A Monte Carlo Approach to the Compilation of Braid Circuits in
+                    %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                      %semantics
+                        %mrow
+                          %mi SU
+                          %mo{:stretchy => "false"} (
+                          %mn 2
+                          %msub
+                            %mo{:stretchy => "false"} )
+                            %mi k
+                        %annotation{:encoding => "application/x-tex"} SU(2)_k
+                    Anyon Models
+                %strong 2
+                010334 (2021) &amp;lbrack;
+                %a{:href => "https://arxiv.org/abs/2008.10790"}> arXiv:2008.10790
+                ,
+                = succeed "&rbrack;" do
+                  %a{:href => "https://doi.org/10.1103/PRXQuantum.2.010334"} doi:10.1103/PRXQuantum.2.010334
+        .revisedby
+          %p
+            Last revised on August 15, 2023 at 20:05:01.
+            See the
+            %a{:href => "/nlab/history/Solovay-Kitaev+theorem", :style => "color: #005c19"} history
+            of this page for a list of all contributions to it.
+        .navigation.navfoot
+          %a#edit.navlink{:accesskey => "E", :href => "/nlab/edit/Solovay-Kitaev+theorem", :rel => "nofollow"} Edit
+          %a{:href => "https://nforum.ncatlab.org/discussion/15746/#Item_7"} Discuss
+          %span.backintime
+            %a#to_previous_revision.navlinkbackintime{:accesskey => "B", :href => "/nlab/revision/Solovay-Kitaev+theorem/12", :rel => "nofollow"} Previous revision
+          %a#see_changes.navlink{:accesskey => "C", :href => "/nlab/show/diff/Solovay-Kitaev+theorem", :rel => "nofollow"} Changes from previous revision
+          %a#history.navlink{:accesskey => "S", :href => "/nlab/history/Solovay-Kitaev+theorem", :rel => "nofollow"} History (12 revisions)
+          %a{:href => "/nlab/show/Solovay-Kitaev+theorem/cite", :style => "color: black"} Cite
+          %a#view_print{:accesskey => "p", :href => "/nlab/print/Solovay-Kitaev+theorem", :rel => "nofollow"} Print
+          %a#view_source{:href => "/nlab/source/Solovay-Kitaev+theorem", :rel => "nofollow"} Source
+      / Content
+    / Container

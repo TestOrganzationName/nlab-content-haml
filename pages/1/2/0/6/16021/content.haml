@@ -1,0 +1,1981 @@
+!!! XML
+!!! 1.1
+%html{:xmlns => "http://www.w3.org/1999/xhtml"}
+  %head
+    %title
+      S5 modal logic in nLab
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:content => "index,follow", :name => "robots"}/
+    %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/
+    %link{:href => "/stylesheets/instiki.css?1676280126", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/stylesheets/mathematics.css?1660229990", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/stylesheets/syntax.css?1660229990", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/stylesheets/nlab.css?1676280126", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css", :rel => "stylesheet", :type => "text/css"}/
+    :css
+      h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+        color: #226622;
+      }
+      a:visited.existingWikiWord {
+        color: #164416;
+      }
+    :css
+      <!--/*--><![CDATA[/*><!--*/
+          .toc ul {margin: 0; padding: 0;}
+      .toc ul ul {margin: 0; padding: 0 0 0 10px;}
+      .toc li > p {margin: 0}
+      .toc ul li {list-style-type: none; position: relative;}
+      .toc div {border-top:1px dotted #ccc;}
+      .rightHandSide h2 {font-size: 1.5em;color:#008B26}
+      table.plaintable {
+          border-collapse:collapse;
+          margin-left:30px;
+          border:0;
+      }
+      .plaintable td {border:1px solid #000; padding: 3px;}
+      .plaintable th {padding: 3px;}
+      .plaintable caption {
+          font-weight: bold;
+          font-size:1.1em;
+          text-align:center;
+          margin-left:30px;
+      }
+          
+         
+      /* Query boxes for questioning and answering mechanism */
+      div.query{
+      background: #f6fff3;
+      border: solid #ce9;
+      border-width: 2px 1px;
+      padding: 0 1em;
+      margin: 0 1em;
+      max-height: 20em;
+      overflow: auto;
+      }
+      
+      /* Standout boxes for putting important text */
+      div.standout{
+      background: #fff1f1;
+      border: solid black;
+      border-width: 2px 1px;
+      padding: 0 1em;
+      margin: 0 1em;
+      overflow: auto;
+      }
+      
+      /* Icon for links to n-category arXiv documents 
+       (commented out for now i.e. disabled)
+      a[href*="http://arxiv.org/"] {
+        background-image: url(../files/arXiv_icon.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 22px;
+        } */
+          
+      /* Icon for links to n-category cafe posts (disabled) 
+      a[href*="http://golem.ph.utexas.edu/category"] {
+        background-image: url(../files/n-cafe_5.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 25px;
+        } */
+      
+      /* Icon for links to pdf files (disabled)
+      a[href$=".pdf"] {
+        background-image: url(../files/pdficon_small.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 25px;
+        } */
+      
+      /* Icon for links to pages, etc. -inside- pdf files (disabled)
+      a[href*=".pdf#"] {
+        background-image: url(../files/pdf_entry.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 25px;
+        } */
+      
+      a.existingWikiWord {
+      color: #226622;
+      }
+      
+      a.existingWikiWord:visited {
+      color: #226622;
+      }
+      
+      
+      a.existingWikiWord[title] {
+      border: 0px;
+      color: #aa0505;
+      text-decoration: none;
+      }
+          
+      a.existingWikiWord[title]:visited {
+      border: 0px;
+      color: #551111;
+      text-decoration: none;
+      }
+      
+      a[href^="http://"] {
+      border: 0px;
+      color: #003399;
+      }
+      
+      a[href^="http://"]:visited {
+      border: 0px;
+      color: #330066;
+      }
+      
+      a[href^="https://"] {
+      border: 0px;
+      color: #003399;
+      }
+      
+      a[href^="https://"]:visited {
+      border: 0px;
+      color: #330066;
+      }
+      
+      div.dropDown .hide {
+      display: none;
+      }
+      
+      div.dropDown:hover .hide {
+      display:block;
+      }
+      
+      div.clickDown .hide {
+      display: none;
+      }
+      
+      div.clickDown:focus {
+      outline:none;
+      }
+      
+      div.clickDown:focus .hide, div.clickDown:hover .hide {
+      display: block;
+      }
+      
+      div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+      display:block;
+      }
+      
+      div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+      display:none;
+      }
+      
+      div.clickDown .clickToReveal:after {
+      content: "A(Hover to reveal, click to "hold")";
+      font-size: 60%;
+      }
+      
+      div.clickDown .clickToHide:after {
+      content: "A(Click to hide)";
+      font-size: 60%;
+      }
+      div.clickDown .clickToHide, div.clickDown .clickToReveal {
+      white-space: pre-wrap;
+      }
+      
+      .un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+      margin-left: 1em;
+      }
+      
+      span.theorem_label {
+      margin-left: -1em;
+      }
+      .proof span.theorem_label {
+      margin-left: 0em;
+      }
+      :target {
+          background-color: #BBBBBB;
+          border-radius: 5pt;
+      }
+      
+        /*]]>*/-->
+    %script{:src => "/javascripts/prototype.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/effects.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/dragdrop.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/controls.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/application.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/page_helper.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/thm_numbering.js?1660229990", :type => "text/javascript"}
+    %script{:type => "text/x-mathjax-config"}
+      :cdata
+        <!--//--><![CDATA[//><!--
+        MathJax.Ajax.config.path["Contrib"] = "/MathJax";
+        MathJax.Hub.Config({
+        MathML: { useMathMLspacing: true },
+        "HTML-CSS": { scale: 90,
+        extensions: ["handle-floats.js"]
+        }
+        });
+        MathJax.Hub.Queue( function () {
+        var fos = document.getElementsByTagName('foreignObject');
+        for (var i = 0; i < fos.length; i++) {
+        MathJax.Hub.Typeset(fos[i]);
+        }
+        });
+        \//--><!]]>
+    :javascript
+      <!--//--><![CDATA[//><!--
+      window.addEventListener("DOMContentLoaded", function () {
+        var div = document.createElement('div');
+        var math = document.createElementNS('http://www.w3.org/1998/Math/MathML', 'math');
+        document.body.appendChild(div);
+        div.appendChild(math);
+      // Test for MathML support comparable to WebKit version https://trac.webkit.org/changeset/203640 or higher.
+        div.setAttribute('style', 'font-style: italic');
+        var mathml_unsupported = !(window.getComputedStyle(div.firstChild).getPropertyValue('font-style') === 'normal');
+        div.parentNode.removeChild(div);
+        if (mathml_unsupported) {
+          // MathML does not seem to be supported...
+          var s = document.createElement('script');
+          s.src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=MML_HTMLorMML-full";
+          document.querySelector('head').appendChild(s);
+        } else {
+          document.head.insertAdjacentHTML("beforeend", '<style>svg[viewBox] {max-width: 100%}</style>');
+        }
+      });
+      //--><!]]>
+    %link{:href => "https://ncatlab.org/nlab/atom_with_headlines", :rel => "alternate", :title => "Atom with headlines", :type => "application/atom+xml"}/
+    %link{:href => "https://ncatlab.org/nlab/atom_with_content", :rel => "alternate", :title => "Atom with full content", :type => "application/atom+xml"}/
+    :javascript
+      document.observe("dom:loaded", function() {
+        generateThmNumbers();
+      });
+  %body
+    #Container
+      #Content
+        %h1#pageName
+          %span{:style => "float: left; margin: 0.5em 0.25em -0.25em 0"}
+            %svg{:height => "1.8em", :viewbox => "0 0 190 181", :width => "1.872em", :xmlns => "http://www.w3.org/2000/svg"}
+              %path{:d => "M72.8 145c-1.6 17.3-15.7 10-23.6 20.2-5.6 7.3 4.8 15 11.4 15 11.5-.2 19-13.4 26.4-20.3 3.3-3 8.2-4 11.2-7.2a14 14 0 0 0 2.9-11.1c-1.4-9.6-12.4-18.6-16.9-27.2-5-9.6-10.7-27.4-24.1-27.7-17.4-.3-.4 26 4.7 30.7 2.4 2.3 5.4 4.1 7.3 6.9 1.6 2.3 2.1 5.8-1 7.2-5.9 2.6-12.4-6.3-15.5-10-8.8-10.6-15.5-23-26.2-31.8-5.2-4.3-11.8-8-18-3.7-7.3 4.9-4.2 12.9.2 18.5a81 81 0 0 0 30.7 23c3.3 1.5 12.8 5.6 10 10.7-2.5 5.2-11.7 3-15.6 1.1-8.4-3.8-24.3-21.3-34.4-13.7-3.5 2.6-2.3 7.6-1.2 11.1 2.8 9 12.2 17.2 20.9 20.5 17.3 6.7 34.3-8 50.8-12.1z", :fill => "#226622"}
+              %path{:d => "M145.9 121.3c-.2-7.5 0-19.6-4.5-26-5.4-7.5-12.9-1-14.1 5.8-1.4 7.8 2.7 14.1 4.8 21.3 3.4 12 5.8 29-.8 40.1-3.6-6.7-5.2-13-7-20.4-2.1-8.2-12.8-13.2-15.1-1.9-2 9.7 9 21.2 12 30.1 1.2 4 2 8.8 6.4 10.3 6.9 2.3 13.3-4.7 17.7-8.8 12.2-11.5 36.6-20.7 43.4-36.4 6.7-15.7-13.7-14-21.3-7.2-9.1 8-11.9 20.5-23.6 25.1 7.5-23.7 31.8-37.6 38.4-61.4 2-7.3-.8-29.6-13-19.8-14.5 11.6-6.6 37.6-23.3 49.2z", :fill => "#a41e32"}
+              %path{:d => "M86.3 47.5c0-13-10.2-27.6-5.8-40.4 2.8-8.4 14.1-10.1 17-1 3.8 11.6-.3 26.3-1.8 38 11.7-.7 10.5-16 14.8-24.3 2.1-4.2 5.7-9.1 11-6.7 6 2.7 7.4 9.2 6.6 15.1-2.2 14-12.2 18.8-22.4 27-3.4 2.7-8 6.6-5.9 11.6 2 4.4 7 4.5 10.7 2.8 7.4-3.3 13.4-16.5 21.7-16 14.6.7 12 21.9.9 26.2-5 1.9-10.2 2.3-15.2 3.9-5.8 1.8-9.4 8.7-15.7 8.9-6.1.1-9-6.9-14.3-9-14.4-6-33.3-2-44.7-14.7-3.7-4.2-9.6-12-4.9-17.4 9.3-10.7 28 7.2 35.7 12 2 1.1 11 6.9 11.4 1.1.4-5.2-10-8.2-13.5-10-11.1-5.2-30-15.3-35-27.3-2.5-6 2.8-13.8 9.4-13.6 6.9.2 13.4 7 17.5 12C70.9 34 75 43.8 86.3 47.4z", :fill => "#193c78"}
+          %span.webName nLab
+          S5 modal logic
+        .navigation
+          %span.skipNav
+            %a{:href => "#navEnd"} Skip the Navigation Links
+            |
+          %span{:style => "display:inline-block; width: 0.3em;"}
+          %a{:accesskey => "H", :href => "/nlab/show/HomePage", :title => "Home page"} Home Page
+          |
+          %a{:accesskey => "A", :href => "/nlab/all_pages", :title => "List of all pages"} All Pages
+          |
+          %a{:accesskey => "U", :href => "/nlab/latest_revisions", :title => "Latest edits and page creations"} Latest Revisions
+          |
+          %a{:href => "https://nforum.ncatlab.org/discussion/16931/#Item_17", :style => "color: black", :title => "Discuss this page in its dedicated thread on the nForum"} Discuss this page
+          |
+          %form#navigationSearchForm{"accept-charset" => "utf-8", :action => "/nlab/search", :method => "get"}
+            %fieldset.search
+              %input#searchField{:name => "query", :onblur => "this.value == '' ? this.value = 'Search' : true", :onfocus => "this.value == 'Search' ? this.value = '' : true", :style => "display:inline-block; float: left;", :type => "text", :value => "Search"}/
+          %span#navEnd
+        #revision
+          %meta{:content => "application/xhtml+xml;charset=utf-8", "http-equiv" => "Content-type"}/
+          %title Contents
+          .rightHandSide
+            .toc.clickDown{:tabindex => "0"}
+              %h3#context Context
+              %h4#category_theory
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}>
+                  %semantics
+                    %mrow
+                      %mo{:stretchy => "false"} (
+                      %mn 0
+                      %mo ,
+                      %mn 1
+                      %mo{:stretchy => "false"} )
+                    %annotation{:encoding => "application/x-tex"} (0,1)
+                \-Category theory
+              .hide
+                %div
+                  %p
+                    %strong>
+                      %a.existingWikiWord{:href => "/nlab/show/%280%2C1%29-category+theory"} (0,1)-category theory
+                    \:
+                    = succeed "," do
+                      %a.existingWikiWord{:href => "/nlab/show/logic"} logic
+                    %a.existingWikiWord{:href => "/nlab/show/order+theory"} order theory
+                  %p
+                    %strong
+                      %a.existingWikiWord{:href => "/nlab/show/%280%2C1%29-category"} (0,1)-category
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/relation+between+preorders+and+%280%2C1%29-categories"} relation between preorders and (0,1)-categories
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/proset"}> proset
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/partially+ordered+set"} partially ordered set
+                        (
+                        %a.existingWikiWord{:href => "/nlab/show/directed+set"}> directed set
+                        ,
+                        = succeed "," do
+                          %a.existingWikiWord{:href => "/nlab/show/total+order"} total order
+                        = succeed ")" do
+                          %a.existingWikiWord{:href => "/nlab/show/linear+order"} linear order
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/top"}> top
+                            ,
+                            = succeed "," do
+                              %a.existingWikiWord{:href => "/nlab/show/true"} true
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/bottom"}> bottom
+                            ,
+                            %a.existingWikiWord{:href => "/nlab/show/false"} false
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/monotone+function"} monotone function
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/implication"} implication
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/filter"}> filter
+                            ,
+                            %a.existingWikiWord{:href => "/nlab/show/interval"} interval
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/lattice"}> lattice
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/semilattice"} semilattice
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/meet"}> meet
+                            ,
+                            = succeed "," do
+                              %a.existingWikiWord{:href => "/nlab/show/logical+conjunction"} logical conjunction
+                            %a.existingWikiWord{:href => "/nlab/show/and"} and
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/join"}> join
+                            ,
+                            = succeed "," do
+                              %a.existingWikiWord{:href => "/nlab/show/logical+disjunction"} logical disjunction
+                            %a.existingWikiWord{:href => "/nlab/show/or"} or
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/compact+element"} compact element
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/lattice+of+subobjects"} lattice of subobjects
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/complete+lattice"}> complete lattice
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/algebraic+lattice"} algebraic lattice
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/distributive+lattice"}> distributive lattice
+                        ,
+                        = succeed "," do
+                          %a.existingWikiWord{:href => "/nlab/show/completely+distributive+lattice"} completely distributive lattice
+                        %a.existingWikiWord{:href => "/nlab/show/canonical+extension"} canonical extension
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/hyperdoctrine"} hyperdoctrine
+                      %ul
+                        %li
+                          %a.existingWikiWord{:href => "/nlab/show/first-order+hyperdoctrine"}> first-order
+                          ,
+                          = succeed "," do
+                            %a.existingWikiWord{:href => "/nlab/show/Boolean+hyperdoctrine"} Boolean
+                          = succeed "," do
+                            %a.existingWikiWord{:href => "/nlab/show/coherent+hyperdoctrine"} coherent
+                          %a.existingWikiWord{:href => "/nlab/show/tripos"} tripos
+                  %p
+                    %strong
+                      %a.existingWikiWord{:href => "/nlab/show/%280%2C1%29-topos"} (0,1)-topos
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Heyting+algebra"} Heyting algebra
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/regular+element"} regular element
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/Boolean+algebra"} Boolean algebra
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/frame"}> frame
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/locale"} locale
+                  %h2#theorems Theorems
+                  %ul
+                    %li
+                      %a.existingWikiWord{:href => "/nlab/show/Stone+duality"} Stone duality
+              %h4#type_theory Type theory
+              .hide
+                %div
+                  %p
+                    %strong
+                      %a.existingWikiWord{:href => "/nlab/show/natural+deduction"} natural deduction
+                    = succeed "," do
+                      %a.existingWikiWord{:href => "/nlab/show/metalanguage"} metalanguage
+                    %a.existingWikiWord{:href => "/nlab/show/practical+foundations"} practical foundations
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/judgement"} judgement
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/hypothetical+judgement"}> hypothetical judgement
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/sequent"} sequent
+                      %ul
+                        %li
+                          %a.existingWikiWord{:href => "/nlab/show/antecedents"} antecedents
+                          %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                            %semantics
+                              %mrow
+                                %mo ⊢
+                              %annotation{:encoding => "application/x-tex"} \vdash
+                          = succeed "," do
+                            %a.existingWikiWord{:href => "/nlab/show/consequent"} consequent
+                          %a.existingWikiWord{:href => "/nlab/show/succedents"} succedents
+                  %ol
+                    %li
+                      %a.existingWikiWord{:href => "/nlab/show/type+formation+rule"} type formation rule
+                    %li
+                      %a.existingWikiWord{:href => "/nlab/show/term+introduction+rule"} term introduction rule
+                    %li
+                      %a.existingWikiWord{:href => "/nlab/show/term+elimination+rule"} term elimination rule
+                    %li
+                      %a.existingWikiWord{:href => "/nlab/show/computation+rule"} computation rule
+                  %p
+                    %strong
+                      %a.existingWikiWord{:href => "/nlab/show/type+theory"} type theory
+                    (
+                    %a.existingWikiWord{:href => "/nlab/show/dependent+type+theory"}> dependent
+                    ,
+                    = succeed "," do
+                      %a.existingWikiWord{:href => "/nlab/show/intensional+type+theory"} intensional
+                    = succeed "," do
+                      %a.existingWikiWord{:href => "/nlab/show/observational+type+theory"} observational type theory
+                    = succeed ")" do
+                      %a.existingWikiWord{:href => "/nlab/show/homotopy+type+theory"} homotopy type theory
+                  %ul
+                    %li
+                      %a.existingWikiWord{:href => "/nlab/show/calculus+of+constructions"} calculus of constructions
+                  %p
+                    %strong
+                      %a.existingWikiWord{:href => "/nlab/show/syntax"} syntax
+                    %a.existingWikiWord{:href => "/nlab/show/object+language"} object language
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/theory"}> theory
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/axiom"} axiom
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/proposition"}> proposition
+                        \/
+                        %a.existingWikiWord{:href => "/nlab/show/type"} type
+                        (
+                        %a.existingWikiWord{:href => "/nlab/show/propositions+as+types"}> propositions as types
+                        )
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/definition"}> definition
+                        \/
+                        %a.existingWikiWord{:href => "/nlab/show/proof"}> proof
+                        \/
+                        %a.existingWikiWord{:href => "/nlab/show/program"} program
+                        (
+                        %a.existingWikiWord{:href => "/nlab/show/proofs+as+programs"}> proofs as programs
+                        )
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/theorem"} theorem
+                  %div
+                    %p
+                      %strong
+                        %a.existingWikiWord{:href => "/nlab/show/computational+trinitarianism"} computational trinitarianism
+                      \=
+                      %br/
+                      %strong
+                        %a.existingWikiWord{:href => "/nlab/show/propositions+as+types"} propositions as types
+                      +
+                      %strong
+                        %a.existingWikiWord{:href => "/nlab/show/programs+as+proofs"} programs as proofs
+                      +
+                      %strong
+                        %a.existingWikiWord{:href => "/nlab/show/relation+between+type+theory+and+category+theory"} relation type theory/category theory
+                    %table
+                      %thead
+                        %tr
+                          %th
+                            %a.existingWikiWord{:href => "/nlab/show/logic"} logic
+                          %th
+                            %a.existingWikiWord{:href => "/nlab/show/set+theory"} set theory
+                            (
+                            %a.existingWikiWord{:href => "/nlab/show/internal+logic+of+set+theory"} internal logic
+                            of)
+                          %th
+                            %a.existingWikiWord{:href => "/nlab/show/category+theory"} category theory
+                          %th
+                            %a.existingWikiWord{:href => "/nlab/show/type+theory"} type theory
+                      %tbody
+                        %tr
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/proposition"} proposition
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/set"} set
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/object"} object
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/type"} type
+                        %tr
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/predicate"} predicate
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/family+of+sets"} family of sets
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/display+morphism"} display morphism
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/dependent+type"} dependent type
+                        %tr
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/proof"} proof
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/element"} element
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/generalized+element"} generalized element
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/term"}> term
+                            \/
+                            %a.existingWikiWord{:href => "/nlab/show/program"} program
+                        %tr
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/cut+rule"} cut rule
+                          %td{:style => "text-align: left;"}
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/composition"} composition
+                            of
+                            %a.existingWikiWord{:href => "/nlab/show/classifying+morphisms"} classifying morphisms
+                            \/
+                            %a.existingWikiWord{:href => "/nlab/show/pullback"} pullback
+                            of
+                            %a.existingWikiWord{:href => "/nlab/show/display+maps"} display maps
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/substitution"} substitution
+                        %tr
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/introduction+rule"} introduction rule
+                            for
+                            %a.existingWikiWord{:href => "/nlab/show/implication"} implication
+                          %td{:style => "text-align: left;"}
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/counit"} counit
+                            for hom-tensor adjunction
+                          %td{:style => "text-align: left;"} lambda
+                        %tr
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/elimination+rule"} elimination rule
+                            for
+                            %a.existingWikiWord{:href => "/nlab/show/implication"} implication
+                          %td{:style => "text-align: left;"}
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/unit"} unit
+                            for hom-tensor adjunction
+                          %td{:style => "text-align: left;"} application
+                        %tr
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/cut+elimination"} cut elimination
+                            for
+                            %a.existingWikiWord{:href => "/nlab/show/implication"} implication
+                          %td{:style => "text-align: left;"}
+                          %td{:style => "text-align: left;"}
+                            one of the
+                            %a.existingWikiWord{:href => "/nlab/show/zigzag+identities"} zigzag identities
+                            for hom-tensor adjunction
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/beta+reduction"} beta reduction
+                        %tr
+                          %td{:style => "text-align: left;"}
+                            identity elimination for
+                            %a.existingWikiWord{:href => "/nlab/show/implication"} implication
+                          %td{:style => "text-align: left;"}
+                          %td{:style => "text-align: left;"}
+                            the other
+                            %a.existingWikiWord{:href => "/nlab/show/zigzag+identity"} zigzag identity
+                            for hom-tensor adjunction
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/eta+conversion"} eta conversion
+                        %tr
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/true"} true
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/singleton"} singleton
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/terminal+object"}> terminal object
+                            \/
+                            %a.existingWikiWord{:href => "/nlab/show/%28-2%29-truncated+object"} (-2)-truncated object
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/h-level+0"}> h-level 0
+                            \-
+                            %a.existingWikiWord{:href => "/nlab/show/type"}> type
+                            \/
+                            %a.existingWikiWord{:href => "/nlab/show/unit+type"} unit type
+                        %tr
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/false"} false
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/empty+set"} empty set
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/initial+object"} initial object
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/empty+type"} empty type
+                        %tr
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/proposition"}> proposition
+                            ,
+                            %a.existingWikiWord{:href => "/nlab/show/truth+value"} truth value
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/subsingleton"} subsingleton
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/subterminal+object"}> subterminal object
+                            \/
+                            %a.existingWikiWord{:href => "/nlab/show/%28-1%29-truncated+object"} (-1)-truncated object
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/h-proposition"}> h-proposition
+                            ,
+                            %a.existingWikiWord{:href => "/nlab/show/mere+proposition"} mere proposition
+                        %tr
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/logical+conjunction"} logical conjunction
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/cartesian+product"} cartesian product
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/product"} product
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/product+type"} product type
+                        %tr
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/disjunction"} disjunction
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/disjoint+union"} disjoint union
+                            (
+                            %a.existingWikiWord{:href => "/nlab/show/support"} support
+                            of)
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/coproduct"} coproduct
+                            (
+                            %a.existingWikiWord{:href => "/nlab/show/%28-1%29-truncation"} (-1)-truncation
+                            of)
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/sum+type"} sum type
+                            (
+                            %a.existingWikiWord{:href => "/nlab/show/bracket+type"} bracket type
+                            of)
+                        %tr
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/implication"} implication
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/function+set"} function set
+                            (into
+                            = succeed ")" do
+                              %a.existingWikiWord{:href => "/nlab/show/subsingleton"} subsingleton
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/internal+hom"} internal hom
+                            (into
+                            = succeed ")" do
+                              %a.existingWikiWord{:href => "/nlab/show/subterminal+object"} subterminal object
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/function+type"} function type
+                            (into
+                            = succeed ")" do
+                              %a.existingWikiWord{:href => "/nlab/show/h-proposition"} h-proposition
+                        %tr
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/negation"} negation
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/function+set"} function set
+                            into
+                            %a.existingWikiWord{:href => "/nlab/show/empty+set"} empty set
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/internal+hom"} internal hom
+                            into
+                            %a.existingWikiWord{:href => "/nlab/show/initial+object"} initial object
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/function+type"} function type
+                            into
+                            %a.existingWikiWord{:href => "/nlab/show/empty+type"} empty type
+                        %tr
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/universal+quantification"} universal quantification
+                          %td{:style => "text-align: left;"}
+                            indexed
+                            %a.existingWikiWord{:href => "/nlab/show/cartesian+product"} cartesian product
+                            (of family of
+                            = succeed ")" do
+                              %a.existingWikiWord{:href => "/nlab/show/subsingletons"} subsingletons
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/dependent+product"} dependent product
+                            (of family of
+                            = succeed ")" do
+                              %a.existingWikiWord{:href => "/nlab/show/subterminal+objects"} subterminal objects
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/dependent+product+type"} dependent product type
+                            (of family of
+                            = succeed ")" do
+                              %a.existingWikiWord{:href => "/nlab/show/h-propositions"} h-propositions
+                        %tr
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/existential+quantification"} existential quantification
+                          %td{:style => "text-align: left;"}
+                            indexed
+                            %a.existingWikiWord{:href => "/nlab/show/disjoint+union"} disjoint union
+                            (
+                            %a.existingWikiWord{:href => "/nlab/show/support"} support
+                            of)
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/dependent+sum"} dependent sum
+                            (
+                            %a.existingWikiWord{:href => "/nlab/show/%28-1%29-truncation"} (-1)-truncation
+                            of)
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/dependent+sum+type"} dependent sum type
+                            (
+                            %a.existingWikiWord{:href => "/nlab/show/bracket+type"} bracket type
+                            of)
+                        %tr
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/logical+equivalence"} logical equivalence
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/bijection+set"} bijection set
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/object+of+isomorphisms"} object of isomorphisms
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/equivalence+type"} equivalence type
+                        %tr
+                          %td{:style => "text-align: left;"}
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/support+set"} support set
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/support+object"}> support object
+                            \/
+                            %a.existingWikiWord{:href => "/nlab/show/%28-1%29-truncation"} (-1)-truncation
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/propositional+truncation"}> propositional truncation
+                            \/
+                            %a.existingWikiWord{:href => "/nlab/show/bracket+type"} bracket type
+                        %tr
+                          %td{:style => "text-align: left;"}
+                          %td{:style => "text-align: left;"}
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/n-image"} n-image
+                            of
+                            %a.existingWikiWord{:href => "/nlab/show/morphism"} morphism
+                            into
+                            = succeed "/" do
+                              %a.existingWikiWord{:href => "/nlab/show/terminal+object"} terminal object
+                            %a.existingWikiWord{:href => "/nlab/show/n-truncation"} n-truncation
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/n-truncation+modality"} n-truncation modality
+                        %tr
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/equality"} equality
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/diagonal+function"}> diagonal function
+                            \/
+                            %a.existingWikiWord{:href => "/nlab/show/diagonal+subset"}> diagonal subset
+                            \/
+                            %a.existingWikiWord{:href => "/nlab/show/diagonal+relation"} diagonal relation
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/path+space+object"} path space object
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/identity+type"}> identity type
+                            \/
+                            %a.existingWikiWord{:href => "/nlab/show/path+type"} path type
+                        %tr
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/completely+presented+set"} completely presented set
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/set"} set
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/discrete+object"}> discrete object
+                            \/
+                            %a.existingWikiWord{:href => "/nlab/show/0-truncated+object"} 0-truncated object
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/h-level+2"}> h-level 2
+                            \-
+                            %a.existingWikiWord{:href => "/nlab/show/type"}> type
+                            \/
+                            %a.existingWikiWord{:href => "/nlab/show/set"}> set
+                            \/
+                            %a.existingWikiWord{:href => "/nlab/show/h-set"} h-set
+                        %tr
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/set"} set
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/set"} set
+                            with
+                            %a.existingWikiWord{:href => "/nlab/show/equivalence+relation"} equivalence relation
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/groupoid+object+in+an+%28infinity%2C1%29-category"} internal 0-groupoid
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/Bishop+set"}> Bishop set
+                            \/
+                            %a.existingWikiWord{:href => "/nlab/show/setoid"} setoid
+                            with its
+                            %a.existingWikiWord{:href => "/nlab/show/pseudo-equivalence+relation"} pseudo-equivalence relation
+                            an actual
+                            %a.existingWikiWord{:href => "/nlab/show/equivalence+relation"} equivalence relation
+                        %tr
+                          %td{:style => "text-align: left;"}
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/equivalence+class"}> equivalence class
+                            \/
+                            %a.existingWikiWord{:href => "/nlab/show/quotient+set"} quotient set
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/quotient"} quotient
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/quotient+type"} quotient type
+                        %tr
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/induction"} induction
+                          %td{:style => "text-align: left;"}
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/colimit"} colimit
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/inductive+type"}> inductive type
+                            ,
+                            = succeed "," do
+                              %a.existingWikiWord{:href => "/nlab/show/W-type"} W-type
+                            %a.existingWikiWord{:href => "/nlab/show/M-type"} M-type
+                        %tr
+                          %td{:style => "text-align: left;"}
+                            higher
+                            %a.existingWikiWord{:href => "/nlab/show/induction"} induction
+                          %td{:style => "text-align: left;"}
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/%28infinity%2C1%29-colimit"} higher colimit
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/higher+inductive+type"} higher inductive type
+                        %tr
+                          %td{:style => "text-align: left;"} -
+                          %td{:style => "text-align: left;"}
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/0-truncated"} 0-truncated
+                            %a.existingWikiWord{:href => "/nlab/show/%28infinity%2C1%29-colimit"} higher colimit
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/quotient+inductive+type"} quotient inductive type
+                        %tr
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/coinduction"} coinduction
+                          %td{:style => "text-align: left;"}
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/limit"} limit
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/coinductive+type"} coinductive type
+                        %tr
+                          %td{:style => "text-align: left;"}
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/preset"} preset
+                          %td{:style => "text-align: left;"}
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/type"} type
+                            without
+                            %a.existingWikiWord{:href => "/nlab/show/identity+types"} identity types
+                        %tr
+                          %td{:style => "text-align: left;"}
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/set"} set
+                            of
+                            %a.existingWikiWord{:href => "/nlab/show/truth+values"} truth values
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/subobject+classifier"} subobject classifier
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/type+of+propositions"} type of propositions
+                        %tr
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/domain+of+discourse"} domain of discourse
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/universe"} universe
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/object+classifier"} object classifier
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/type+universe"} type universe
+                        %tr
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/modality"} modality
+                          %td{:style => "text-align: left;"}
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/closure+operator"}> closure operator
+                            , (
+                            %a.existingWikiWord{:href => "/nlab/show/idempotent+monad"}> idempotent
+                            )
+                            %a.existingWikiWord{:href => "/nlab/show/monad"} monad
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/modal+type+theory"}> modal type theory
+                            ,
+                            %a.existingWikiWord{:href => "/nlab/show/monad+%28in+computer+science%29"} monad (in computer science)
+                        %tr
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/linear+logic"} linear logic
+                          %td{:style => "text-align: left;"}
+                          %td{:style => "text-align: left;"}
+                            (
+                            %a.existingWikiWord{:href => "/nlab/show/symmetric+monoidal+category"}> symmetric
+                            ,
+                            = succeed ")" do
+                              %a.existingWikiWord{:href => "/nlab/show/closed+monoidal+category"} closed
+                            %a.existingWikiWord{:href => "/nlab/show/monoidal+category"} monoidal category
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/linear+type+theory"}> linear type theory
+                            \/
+                            %a.existingWikiWord{:href => "/nlab/show/quantum+computation"} quantum computation
+                        %tr
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/proof+net"} proof net
+                          %td{:style => "text-align: left;"}
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/string+diagram"} string diagram
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/quantum+circuit"} quantum circuit
+                        %tr
+                          %td{:style => "text-align: left;"}
+                            (absence of)
+                            %a.existingWikiWord{:href => "/nlab/show/contraction+rule"} contraction rule
+                          %td{:style => "text-align: left;"}
+                          %td{:style => "text-align: left;"}
+                            (absence of)
+                            %a.existingWikiWord{:href => "/nlab/show/diagonal"} diagonal
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/no-cloning+theorem"} no-cloning theorem
+                        %tr
+                          %td{:style => "text-align: left;"}
+                          %td{:style => "text-align: left;"}
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/synthetic+mathematics"} synthetic mathematics
+                          %td{:style => "text-align: left;"}
+                            %a.existingWikiWord{:href => "/nlab/show/domain+specific+embedded+programming+language"} domain specific embedded programming language
+                  %p
+                    %strong
+                      %a.existingWikiWord{:href => "/nlab/show/homotopy+levels"} homotopy levels
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/type+theory"} type theory
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/2-type+theory"}> 2-type theory
+                        ,
+                        %a.existingWikiWord{:href => "/michaelshulman/show/2-categorical+logic"} 2-categorical logic
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/homotopy+type+theory"}> homotopy type theory
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/homotopy+type+theory+-+contents"} homotopy type theory - contents
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/homotopy+type"} homotopy type
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/univalence"}> univalence
+                            ,
+                            = succeed "," do
+                              %a.existingWikiWord{:href => "/nlab/show/function+extensionality"} function extensionality
+                            %a.existingWikiWord{:href => "/nlab/show/internal+logic+of+an+%28%E2%88%9E%2C1%29-topos"} internal logic of an (∞,1)-topos
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/cohesive+homotopy+type+theory"} cohesive homotopy type theory
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/directed+homotopy+type+theory"} directed homotopy type theory
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/HoTT+methods+for+homotopy+theorists"} HoTT methods for homotopy theorists
+                  %p
+                    %strong
+                      %a.existingWikiWord{:href => "/nlab/show/semantics"} semantics
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/internal+logic"}> internal logic
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/categorical+semantics"} categorical semantics
+                      %ul
+                        %li
+                          %a.existingWikiWord{:href => "/nlab/show/display+map"} display map
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/internal+logic+of+a+topos"} internal logic of a topos
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/Mitchell-Benabou+language"} Mitchell-Benabou language
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/Kripke-Joyal+semantics"} Kripke-Joyal semantics
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/internal+logic+of+an+%28%E2%88%9E%2C1%29-topos"} internal logic of an (∞,1)-topos
+                      %ul
+                        %li
+                          %a.existingWikiWord{:href => "/nlab/show/type-theoretic+model+category"} type-theoretic model category
+                  %div
+                    %p
+                      %a{:href => "/nlab/edit/type+theory+-+contents"} Edit this sidebar
+              %h4#modalities Modalities
+              .hide
+                %div
+                  %p
+                    %strong>
+                      %a.existingWikiWord{:href => "/nlab/show/modal+type+theory"} modal type theory
+                    ,
+                    %a.existingWikiWord{:href => "/nlab/show/modal+logic"} modal logic
+                  %p
+                    %strong>
+                      %a.existingWikiWord{:href => "/nlab/show/closure+operator"} closure operator
+                    ,
+                    %a.existingWikiWord{:href => "/nlab/show/universal+closure+operator"} universal closure operator
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/idempotent+monad"}> idempotent monad
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/comonad"} comonad
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/modal+type"}> modal type
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/local+object"} local object
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/reflective+subcategory"}> reflective subcategory
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/coreflective+subcategory"} coreflective subcategory
+                  %p
+                    %strong Examples
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Moore+closure"} Moore closure
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/geometric+modality"}> geometric modality
+                        \/
+                        %a.existingWikiWord{:href => "/nlab/show/Lawvere-Tierney+topology"} Lawvere-Tierney topology
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/S4+modal+logic"} S4 modal logic
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/n-truncated+object+in+an+%28infinity%2C1%29-category"} n-truncation
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/shape+modality"} shape modality
+                        %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                          %semantics
+                            %mrow
+                              %mo ⊣
+                            %annotation{:encoding => "application/x-tex"} \dashv
+                        %a.existingWikiWord{:href => "/nlab/show/flat+modality"} flat modality
+                        %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                          %semantics
+                            %mrow
+                              %mo ⊣
+                            %annotation{:encoding => "application/x-tex"} \dashv
+                        %a.existingWikiWord{:href => "/nlab/show/sharp+modality"} sharp modality
+          %h1#contents Contents
+          .maruku_toc
+            %ul
+              %li
+                %a{:href => "#idea"} Idea
+              %li
+                %a{:href => "#ViaDependentTypeTheory"} Via dependent type theory
+              %li
+                %a{:href => "#related_concepts"} Related concepts
+              %li
+                %a{:href => "#references"} References
+              %ul
+                %li
+                  %a{:href => "#general"} General
+                %li
+                  %a{:href => "#s5_modal_logic_as_epistemic_logic"} S5 modal logic as epistemic logic
+          %h2#idea Idea
+          %p
+            In
+            %a.existingWikiWord{:href => "/nlab/show/modal+logic"} modal logic
+            the moniker “S5” refers to the logic obtained from
+            %a.existingWikiWord{:href => "/nlab/show/S4+modal+logic"} S4 modal logic
+            by adjoining the
+            %a.existingWikiWord{:href => "/nlab/show/axiom+scheme"} axiom scheme
+            that there is the
+            %a.existingWikiWord{:href => "/nlab/show/implication"} implication
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mo ◊
+                  %mi p
+                  %mo →
+                  %mo □
+                  %mo ◊
+                  %mi p
+                  %mspace{:width => "thinmathspace"}
+                  %mo .
+                %annotation{:encoding => "application/x-tex"}
+                  \\lozenge p \to \Box \lozenge p
+                  \\,.
+          %p
+            In the
+            %a.existingWikiWord{:href => "/nlab/show/possible+worlds+semantics"} possible worlds semantics
+            for modal logic, S5 corresponds precisely to those
+            %a.existingWikiWord{:href => "/nlab/show/Kripke+frames"} Kripke frames
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mo{:maxsize => "1.2em", :minsize => "1.2em"} (
+                  %mi W
+                  %mo{:lspace => "verythinmathspace"} :
+                  %mi Set
+                  %mo ,
+                  %mspace{:width => "thinmathspace"}
+                  %mi R
+                  %mo{:lspace => "verythinmathspace"} :
+                  %mi W
+                  %mo ×
+                  %mi W
+                  %mo →
+                  %mi Prop
+                  %mo{:maxsize => "1.2em", :minsize => "1.2em"} )
+                %annotation{:encoding => "application/x-tex"} \big(W \colon Set, \, R \colon W \times W \to Prop\big)
+            where the
+            %a.existingWikiWord{:href => "/nlab/show/relation"} relation
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi R
+                %annotation{:encoding => "application/x-tex"} R
+            is an
+            %em
+              %a.existingWikiWord{:href => "/nlab/show/equivalence+relation"} equivalence relation
+            \&amp;lbrack;
+            %a{:href => "#Kripke59"} Kripke (1959)
+            = succeed "," do
+              %a{:href => "#Kripke63"} (1964)
+            = succeed "&rbrack;." do
+              %a{:href => "#FaginHalpernMosesVardi95"} Fagin, Halpern, Moses &amp; Vardi (1995) Thm. 3.1.5 (c)
+          %h2#ViaDependentTypeTheory Via dependent type theory
+          %p
+            In mild generalization of the discussion at
+            = succeed "," do
+              %em
+                %a{:href => "necessity+and+possibility#InFirstOrderLogicAndTypeTheory"} necessity &amp; possibility – Via dependent types
+            %a.existingWikiWord{:href => "/nlab/show/modal+operators"} modal operators
+            in S5 Kripke semantics
+          %center
+            %img{:src => "/nlab/files/StandardTranslationKripkeSemantics-230803.jpg", :width => "740"}/
+          %blockquote
+            %p#SubtypeNotation
+              (Here we are writing — following notation for
+              %em
+                %a.existingWikiWord{:href => "/nlab/show/subtypes"} subtypes
+              —
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi P
+                    %mspace{:width => "thinmathspace"}
+                    %mo{:lspace => "verythinmathspace"} :
+                    %mspace{:width => "thinmathspace"}
+                    %mi W
+                    %mo →
+                    %mi Prop
+                  %annotation{:encoding => "application/x-tex"} P \,\colon\,W \to Prop
+              for a
+              = succeed "-" do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi W
+                    %annotation{:encoding => "application/x-tex"} W
+              %a.existingWikiWord{:href => "/nlab/show/dependent+type"} dependent
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/proposition"} proposition
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi W
+                    %annotation{:encoding => "application/x-tex"} W
+              %a.existingWikiWord{:href => "/nlab/show/subset"} subset
+              of
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi W
+                  %annotation{:encoding => "application/x-tex"} W
+              where the proposition holds.)
+          %p
+            are precisely those arising as
+            %a.existingWikiWord{:href => "/nlab/show/adjoint+pairs"} adjoint pairs
+            of (
+            %a.existingWikiWord{:href => "/nlab/show/comonad"}> co
+            )
+            %a.existingWikiWord{:href => "/nlab/show/monads"} monads
+            induced on the left from a
+            %a.existingWikiWord{:href => "/nlab/show/base+change"} base change
+            %a.existingWikiWord{:href => "/nlab/show/adjoint+triple"} adjoint triple
+            (the
+            %a.existingWikiWord{:href => "/nlab/show/categorical+semantics+of+dependent+types"} categorical semantics
+            in
+            %a.existingWikiWord{:href => "/nlab/show/Set"} Set
+            of
+            %a.existingWikiWord{:href => "/nlab/show/dependent+pair+type"} dependent pair type
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mo ⊣
+                %annotation{:encoding => "application/x-tex"} \dashv
+            %a.existingWikiWord{:href => "/nlab/show/context+extension"} context extension
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mo ⊣
+                %annotation{:encoding => "application/x-tex"} \dashv
+            = succeed "-" do
+              %a.existingWikiWord{:href => "/nlab/show/dependent+function+type"} dependent function type
+            = succeed ")" do
+              %a.existingWikiWord{:href => "/nlab/show/type+formation"} formation
+            %a.existingWikiWord{:href => "/nlab/show/display+maps"} display maps
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi W
+                  %mo →
+                  %mi Γ
+                  %mo ≡
+                  %msub
+                    %mi W
+                    %mrow
+                      %mo{:stretchy => "false"} /
+                      %mi R
+                %annotation{:encoding => "application/x-tex"} W \to \Gamma \equiv W_{/R}
+            identified with the
+            %a.existingWikiWord{:href => "/nlab/show/quotient"} quotient
+            %a.existingWikiWord{:href => "/nlab/show/coprojection"} coprojection
+            of the Kripke frame:
+          %center
+            %img{:src => "/nlab/files/S5KripkeSemanticsAsMonadicDescent-230801.jpf", :width => "600"}/
+          %p
+            (Obvious as this may be, the only existing reflection of this fact in the literature may be a side remark in
+            = succeed "," do
+              %a{:href => "#Awodey06"} Awodey 2006, p. 279
+          %p
+          .num_remark
+            %h6 Remark
+            %p
+              This suggests that one may equivalently regard
+              %a.existingWikiWord{:href => "/nlab/show/dependent+type+theory"} dependent type theory
+              as a universal form of
+              %a.existingWikiWord{:href => "/nlab/show/epistemic+logic"} epistemic
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/modal+type+theory"} modal type theory
+              %a.existingWikiWord{:href => "/nlab/show/modal+logics"} modal logics
+              may be viewed as just another perspective on (
+              %a.existingWikiWord{:href => "/nlab/show/fragments"} fragments
+              of)
+              %a.existingWikiWord{:href => "/nlab/show/first-order+logic"} first-order logic
+              (as in
+              = succeed "):" do
+                %a{:href => "modal+logic#BlackburnvanBenthemWolter07"} Blackburn, van Benthem &amp; Wolter (2007) pp. xiii
+              %a.existingWikiWord{:href => "/nlab/show/base+change"} base change
+              %a.existingWikiWord{:href => "/nlab/show/adjoint+triples"} adjoint triples
+              (of
+              %a.existingWikiWord{:href => "/nlab/show/quantification"} quantification
+              or dependent (co)product formation, respectively) to the induced
+              %a.existingWikiWord{:href => "/nlab/show/adjoint+pair"} adjoint pair
+              of (
+              %a.existingWikiWord{:href => "/nlab/show/comonad"}> co
+              )
+              %a.existingWikiWord{:href => "/nlab/show/monads"}> monads
+              \. (Another example of a change in perspective of this form occurs when describing
+              %a.existingWikiWord{:href => "/nlab/show/descent"} descent
+              as
+              = succeed ")." do
+                %em
+                  %a.existingWikiWord{:href => "/nlab/show/monadic+descent"} monadic descent
+          %p
+          #HaxagonOfEpistemicEntailments.num_remark
+            %h6 Remark
+            %p The above (co)monadic formulation of modal logic makes manifest another basic point not usually discussed in the subject, namely that the canonical epistemic entailments
+            %center
+              %img{:src => "/nlab/files/EpistemicEntailments-230802b.jpg", :width => "600"}/
+            %p
+              are
+              = succeed "." do
+                %em
+                  %a.existingWikiWord{:href => "/nlab/show/natural+transformations"} natural transformations
+            %p
+              This means that the following
+              = succeed "." do
+                %a.existingWikiWord{:href => "/nlab/show/commuting+square"} squares commute
+              %a.existingWikiWord{:href => "/nlab/show/pasting+diagram"} pasting
+              to the hexagonal
+              %a.existingWikiWord{:href => "/nlab/show/commuting+diagram"} commuting diagram
+              as shown may not have received attention (?):
+            %center
+              %img{:src => "/nlab/files/HexagonalEpistemicEntailments-230802.jpg", :width => "700"}/
+            %p
+          %p
+            %br/
+          %h2#related_concepts Related concepts
+          %div
+            %table
+              %thead
+                %tr
+                  %th
+                    type of
+                    %a.existingWikiWord{:href => "/nlab/show/modal+logic"} modal logic
+                  %th
+                    %a.existingWikiWord{:href => "/nlab/show/relation"} relation
+                    in its
+                    %a.existingWikiWord{:href => "/nlab/show/Kripke+frames"} Kripke frames
+              %tbody
+                %tr
+                  %td{:style => "text-align: left;"}
+                    %a.existingWikiWord{:href => "/nlab/show/K+modal+logic"} K modal logic
+                  %td{:style => "text-align: left;"}
+                    any
+                    %a.existingWikiWord{:href => "/nlab/show/relation"} relation
+                %tr
+                  %td{:style => "text-align: left;"}
+                    %span.newWikiWord
+                      K4 modal logic
+                      %a{:href => "/nlab/new/K4+modal+logic"} ?
+                  %td{:style => "text-align: left;"}
+                    %a.existingWikiWord{:href => "/nlab/show/transitive+relation"} transitive relation
+                %tr
+                  %td{:style => "text-align: left;"}
+                    %a.existingWikiWord{:href => "/nlab/show/T+modal+logic"} T modal logic
+                  %td{:style => "text-align: left;"}
+                    %a.existingWikiWord{:href => "/nlab/show/reflexive+relation"} reflexive relation
+                %tr
+                  %td{:style => "text-align: left;"}
+                    %span.newWikiWord
+                      B modal logic
+                      %a{:href => "/nlab/new/B+modal+logic"} ?
+                  %td{:style => "text-align: left;"}
+                    %a.existingWikiWord{:href => "/nlab/show/symmetric+relation"} symmetric relation
+                %tr
+                  %td{:style => "text-align: left;"}
+                    %a.existingWikiWord{:href => "/nlab/show/S4+modal+logic"} S4 modal logic
+                  %td{:style => "text-align: left;"}
+                    %a.existingWikiWord{:href => "/nlab/show/reflexive+relation"} reflexive
+                    \&amp;
+                    %a.existingWikiWord{:href => "/nlab/show/transitive+relation"} transitive relation
+                %tr
+                  %td{:style => "text-align: left;"}
+                    %a.existingWikiWord{:href => "/nlab/show/S5+modal+logic"} S5 modal logic
+                  %td{:style => "text-align: left;"}
+                    %a.existingWikiWord{:href => "/nlab/show/equivalence+relation"} equivalence relation
+            %blockquote
+              %p
+                (following
+                = succeed ";" do
+                  %a{:href => "modal+logic#BlackburnDeRijkeVenema01"} BdRV (2001) Table 4.1
+                = succeed ")" do
+                  %a{:href => "epistemic+modal+logic#FaginHalpernMosesVardi95"} Fagin, Halpern, Moses &amp; Vardi (1995) Thm. 3.1.5
+          %ul
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/modal+logic"}> modal logic
+                ,
+                %a.existingWikiWord{:href => "/nlab/show/S4+modal+logic"} S4 modal logic
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/epistemic+modal+logic"}> epistemic modal logic
+                ,
+                %a.existingWikiWord{:href => "/nlab/show/necessity+and+possibility"} necessity and possibility
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/K+modal+logic"} K modal logic
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/T+modal+logic"} T modal logic
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Kripke+frame"} Kripke frame
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/L%C3%B6b%27s+axiom"} Löb's axiom
+          %h2#references References
+          %h3#general General
+          %p The terminology “S5” in modal logic originates with:
+          %ul
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/Clarence+I.+Lewis"}> Clarence I. Lewis
+              ,
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/Cooper+H.+Langford"} Cooper H. Langford
+              %em Symbolic Logic
+              (1932), Dover (2000) &amp;lbrack;App. II
+              = succeed "&rbrack;" do
+                %a{:href => "https://www.hist-analytic.com/Lewisstrict.pdf"} pdf
+          %p
+            The
+            %a.existingWikiWord{:href => "/nlab/show/geometric+model+for+modal+logics"} geometric model
+            for S5 modal logic via
+            %a.existingWikiWord{:href => "/nlab/show/Kripke+frames"} Kripke frames
+            originates with:
+          %ul
+            %li#Kripke59
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Saul+A.+Kripke"}> Saul A. Kripke
+                ,
+                = succeed "," do
+                  %em A Completeness Theorem in Modal Logic
+                %strong 24
+                1 (1959) 1-14 &amp;lbrack;
+                %a{:href => "https://doi.org/10.2307/2964568"}> doi:10.2307/2964568
+                ,
+                = succeed "," do
+                  %a{:href => "https://www.jstor.org/stable/2964568"} jstor:2964568
+                = succeed "&rbrack;" do
+                  %a{:href => "https://www.filosoficas.unam.mx/~morado/Cursos/17Modal/Kripke1959.pdf"} pdf
+            %li#Kripke63
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Saul+A.+Kripke"}> Saul A. Kripke
+                ,
+                = succeed "," do
+                  %em Semantical Analysis of Modal Logic I. Normal Modal Propositional Calculi
+                %strong 9
+                5-6 (1963) 67-96 &amp;lbrack;
+                %a{:href => "https://doi.org/10.1002/malq.19630090502"}> doi:10.1002/malq.19630090502
+                \&amp;rbrack;
+          %p See also:
+          %ul
+            %li
+              Wikipedia,
+              %em
+                %a{:href => "http://en.wikipedia.org/wiki/S5_%28modal_logic%29"} S5 (modal logic)
+          %p
+            A
+            = succeed "-formulation" do
+              %a.existingWikiWord{:href => "/nlab/show/natural+deduction"} natural deduction
+            %a.existingWikiWord{:href => "/nlab/show/modal+operator"} modal operator
+            as a
+            = succeed ":" do
+              %a.existingWikiWord{:href => "/nlab/show/comonad"} comonad
+          %ul
+            %li#BiermanDePaiva96
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Gavin+M.+Bierman"}> Gavin M. Bierman
+                ,
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/Valeria+de+Paiva"} Valeria de Paiva
+                = succeed "," do
+                  %em Intuitionistic necessity revisited
+                = succeed "," do
+                  %a{:href => "https://www.researchgate.net/publication/2810611_Intuitionistic_Necessity_Revisited"} researchgate
+                = succeed "&rbrack;" do
+                  %a.existingWikiWord{:href => "/nlab/files/Bierman-dePaiva-NecessityRevisited.pdf", :title => "pdf"} pdf
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Gavin+M.+Bierman"}> Gavin M. Bierman
+                ,
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/Valeria+de+Paiva"} Valeria de Paiva
+                %em On an Intuitionistic Modal Logic
+                Studia Logica
+                %strong 65
+                (2000) 383–416 &amp;lbrack;
+                %a{:href => "https://doi.org/10.1023/A:1005291931660"}> doi:10.1023/A:1005291931660
+                ,
+                = succeed "&rbrack;" do
+                  %a{:href => "https://www.researchgate.net/profile/Valeria-De-Paiva/publication/226515897_On_An_Intuitionistic_Modal_Logic/links/00b4951ed416906ccc000000/On-An-Intuitionistic-Modal-Logic.pdf"} pdf
+            %li#Kobayashi97
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Satoshi+Kobayashi"}> Satoshi Kobayashi
+                ,
+                = succeed "," do
+                  %em Monad as modality
+                %strong 175
+                1 (1997) 29-74 &amp;lbrack;
+                %a{:href => "https://doi.org/10.1016/S0304-3975(96)00169-7"}> doi:10.1016/S0304-3975(96)00169-7
+                \&amp;rbrack;
+            %li
+              %p
+                Natasha Alechina, Michael Mendler,
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/Valeria+de+Paiva"} Valeria de Paiva
+                = succeed "," do
+                  %em Categorical and Kripke Semantics for Constructive S4 Modal Logic
+                %em Computer Science Logic. CSL 2001
+                Lecture Notes in Computer Science
+                = succeed "," do
+                  %strong 2142
+                = succeed "&rbrack;" do
+                  %a{:href => "https://doi.org/10.1007/3-540-44802-0_21"} doi:10.1007/3-540-44802-0_21
+          %p
+            Understanding of S5
+            %a.existingWikiWord{:href => "/nlab/show/Kripke+semantics"} Kripke semantics
+            as
+            %a.existingWikiWord{:href => "/nlab/show/base+change"} base change
+            along the lines discussed at
+            = succeed ":" do
+              %em
+                %a{:href => "necessity+and+possibility#InFirstOrderLogicAndTypeTheory"} necessity and possibility – via dependent types
+          %ul
+            %li#Awodey06
+              %a.existingWikiWord{:href => "/nlab/show/Steve+Awodey"}> Steve Awodey
+              , p. 279 in:
+              = succeed "," do
+                %em Category theory
+              = succeed "," do
+                %a{:href => "https://doi.org/10.1093/acprof:oso/9780198568612.001.0001"} doi:10.1093/acprof:oso/9780198568612.001.0001
+              = succeed "," do
+                %a{:href => "https://global.oup.com/ukhe/product/category-theory-9780199237180"} ISBN:9780199237180
+              = succeed "&rbrack;" do
+                %a{:href => "http://englishonlineclub.com/pdf/Category%20Teory%20%5BEnglishOnlineClub.com%5D.pdf"} pdf
+          %div
+            %h3#s5_modal_logic_as_epistemic_logic S5 modal logic as epistemic logic
+            %p
+              Discussion of
+              %a.existingWikiWord{:href => "/nlab/show/S5+modal+logic"} S5 modal logic
+              as
+              = succeed ":" do
+                %a.existingWikiWord{:href => "/nlab/show/epistemic+logic"} epistemic logic
+            %ul
+              %li
+                %a.existingWikiWord{:href => "/nlab/show/Robert+J.+Aumann"}> Robert J. Aumann
+                ,
+                = succeed "," do
+                  %em Interactive epistemology I: Knowledge
+                %strong 28
+                (1999) 263–300
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mo{:stretchy => "false"} [
+                    %annotation{:encoding => "application/x-tex"} [
+                %a{:href => "https://doi.org/10.1007/s001820050111"} doi:10.1007/s001820050111
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mo{:stretchy => "false"} ]
+                    %annotation{:encoding => "application/x-tex"} ]
+            %blockquote
+              %p
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mo{:stretchy => "false"} [
+                    %annotation{:encoding => "application/x-tex"} [
+                = succeed ":" do
+                  %a{:href => "#DitmarschHoekKooi08"} Ditmarsch, Hoek &amp; Kooi (2008)
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mo{:stretchy => "false"} ]
+                    %annotation{:encoding => "application/x-tex"} ]
+                “in Aumann’s survey paper on interactive epistemology the reader will immediately recognise the system S5.”
+            %ul
+              %li
+                %p
+                  %a.existingWikiWord{:href => "/nlab/show/Joseph+Y.+Halpern"}> Joseph Y. Halpern
+                  ,
+                  = succeed "," do
+                    %a.existingWikiWord{:href => "/nlab/show/Yoram+Moses"} Yoram Moses
+                  = succeed "," do
+                    %em A guide to completeness and complexity for modal logics of knowledge and belief
+                  %strong 54
+                  3 (1992) 319-379
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mo{:stretchy => "false"} [
+                      %annotation{:encoding => "application/x-tex"} [
+                  %a{:href => "https://doi.org/10.1016/0004-3702(92)90049-4"} doi:10.1016/0004-3702(92)90049-4
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mo{:stretchy => "false"} ]
+                      %annotation{:encoding => "application/x-tex"} ]
+              %li#FaginHalpernMosesVardi95
+                %p
+                  Ronald Fagin,
+                  = succeed "," do
+                    %a.existingWikiWord{:href => "/nlab/show/Joseph+Y.+Halpern"} Joseph Y. Halpern
+                  = succeed "," do
+                    %a.existingWikiWord{:href => "/nlab/show/Yoram+Moses"} Yoram Moses
+                  = succeed "," do
+                    %em Reasoning About Knowledge
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mo{:stretchy => "false"} [
+                      %annotation{:encoding => "application/x-tex"} [
+                  %a{:href => "https://mitpress.mit.edu/9780262562003/reasoning-about-knowledge/"} ISBN:9780262562003
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mo{:stretchy => "false"} ]
+                      %annotation{:encoding => "application/x-tex"} ]
+            %blockquote
+              %p p. 35: “in a precise sense the S5 properties completely characterize our definition of knowledge”
+            %ul
+              %li
+                %p
+                  %a.existingWikiWord{:href => "/nlab/show/Joseph+Y.+Halpern"}> Joseph Y. Halpern
+                  ,
+                  = succeed "," do
+                    %em Should knowledge entail belief?
+                  %strong 25
+                  5 (1996) 483-494
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mo{:stretchy => "false"} [
+                      %annotation{:encoding => "application/x-tex"} [
+                  = succeed "," do
+                    %a{:href => "https://www.jstor.org/stable/30226583"} jstor:30226583
+                  %a{:href => "https://philpapers.org/rec/HALSKE"} philpapers:HALSKE
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mo{:stretchy => "false"} ]
+                      %annotation{:encoding => "application/x-tex"} ]
+              %li#Fitting07
+                %p
+                  %a.existingWikiWord{:href => "/nlab/show/Melvin+Fitting"}> Melvin Fitting
+                  ,
+                  = succeed "," do
+                    %em Logics of Knowlege
+                  = succeed "," do
+                    %em Modal proof theory
+                  = succeed "," do
+                    %em The Handbook of Modal Logic
+                  %strong 3
+                  (2007) 85-183
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mo{:stretchy => "false"} [
+                      %annotation{:encoding => "application/x-tex"} [
+                  = succeed "," do
+                    %a{:href => "https://doi.org/10.1016/S1570-2464(07)80005-X"} doi:10.1016/S1570-2464(07)80005-X
+                  %a{:href => "https://cgi.csc.liv.ac.uk/~frank/MLHandbook/"} book webpage
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mo{:stretchy => "false"} ]
+                      %annotation{:encoding => "application/x-tex"} ]
+            %blockquote
+              %p
+                pp. 121: “What standard logics of knowledge capture is not actual knowledge, but potential knowledge — what one is entitled to know. The switch to potential knowledge means we drop all considerations of complexity
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mo{:stretchy => "false"} [
+                      %mo .
+                      %mo .
+                      %mo .
+                      %mo{:stretchy => "false"} ]
+                    %annotation{:encoding => "application/x-tex"} [...]
+                It is easy to see that, under such an assumption, a knowledge modality should be a normal modal operator. But, what else should be required?
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mo{:stretchy => "false"} [
+                      %mo .
+                      %mo .
+                      %mo .
+                      %mo{:stretchy => "false"} ]
+                    %annotation{:encoding => "application/x-tex"} [...]
+                All these together make a knowledge operator obey the S5 conditions.”
+            %ul
+              %li
+                %a.existingWikiWord{:href => "/nlab/show/Wiebe+van+der+Hoek"}> Wiebe van der Hoek
+                ,
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/Marc+Pauly"} Marc Pauly
+                = succeed "," do
+                  %em Epistemic Logic
+                = succeed "," do
+                  %em Modal logic for games and information
+                = succeed "," do
+                  %em The Handbook of Modal Logic
+                %strong 3
+                (2007) 85-183
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mo{:stretchy => "false"} [
+                    %annotation{:encoding => "application/x-tex"} [
+                = succeed "," do
+                  %a{:href => "https://doi.org/10.1016/S1570-2464(07)80023-1"} doi:10.1016/S1570-2464(07)80023-1
+                %a{:href => "https://cgi.csc.liv.ac.uk/~frank/MLHandbook/"} book webpage
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mo{:stretchy => "false"} ]
+                    %annotation{:encoding => "application/x-tex"} ]
+            %blockquote
+              %p
+                p. 198: “Modal epistemic logic, the logic of knowledge, provides a very natural interpretation to the accessibility relation in Kripke models. For an agent
+                = succeed "," do
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi i
+                      %annotation{:encoding => "application/x-tex"} i
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi w
+                    %annotation{:encoding => "application/x-tex"} w
+                and
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi v
+                    %annotation{:encoding => "application/x-tex"} v
+                are connected (written
+                = succeed ")," do
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %msub
+                          %mi R
+                          %mi i
+                        %mi w
+                        %mi v
+                      %annotation{:encoding => "application/x-tex"} R_i w v
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msub
+                        %mi R
+                        %mi i
+                      %mi v
+                      %mi w
+                    %annotation{:encoding => "application/x-tex"} R_i v w
+                if, according to
+                = succeed "\u2019s" do
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi i
+                      %annotation{:encoding => "application/x-tex"} i
+                = succeed "," do
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi w
+                      %annotation{:encoding => "application/x-tex"} w
+                = succeed "," do
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi v
+                      %annotation{:encoding => "application/x-tex"} v
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi v
+                    %annotation{:encoding => "application/x-tex"} v
+                is compatible with i’s information at w. Using this interpretation of access,
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msub
+                        %mi R
+                        %mi i
+                    %annotation{:encoding => "application/x-tex"} R_i
+                is obviously an equivalence relation.
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mo{:stretchy => "false"} [
+                      %mo .
+                      %mo .
+                      %mo .
+                      %mo{:stretchy => "false"} ]
+                    %annotation{:encoding => "application/x-tex"} [...]
+                Thus, we are in the realm of the multi-modal logic
+                = succeed ".\u201D" do
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi S
+                        %msub
+                          %mn 5
+                          %mi m
+                      %annotation{:encoding => "application/x-tex"} S5_m
+            %ul
+              %li#DitmarschHoekKooi08
+                %a.existingWikiWord{:href => "/nlab/show/Hans+Ditmarsch"}> Hans Ditmarsch
+                ,
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/Wiebe+Hoek"} Wiebe Hoek
+                = succeed "," do
+                  %em Epistemic Logic
+                = succeed "," do
+                  %em Dynamic Epistemic Logic
+                = succeed "," do
+                  %strong 337
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mo{:stretchy => "false"} [
+                    %annotation{:encoding => "application/x-tex"} [
+                = succeed "," do
+                  %a{:href => "https://doi.org/10.1007/978-1-4020-5839-4_2"} doi:10.1007/978-1-4020-5839-4_2
+                %a{:href => "http://www.ivanociardelli.altervista.org/wp-content/uploads/2018/04/Epistemic-logic.pdf"} pdf
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mo{:stretchy => "false"} ]
+                    %annotation{:encoding => "application/x-tex"} ]
+            %blockquote
+              %p p. 11: “The logical system S5 is by far the most popular and accepted epistemic logic”
+            %ul
+              %li
+                %p
+                  %a.existingWikiWord{:href => "/nlab/show/Dov+Samet"}> Dov Samet
+                  ,
+                  = succeed "," do
+                    %em S5 knowledge without partitions
+                  %strong 172
+                  (2010) 145–155
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mo{:stretchy => "false"} [
+                      %annotation{:encoding => "application/x-tex"} [
+                  %a{:href => "https://doi.org/10.1007/s11229-009-9469-0"} doi:10.1007/s11229-009-9469-0
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mo{:stretchy => "false"} ]
+                      %annotation{:encoding => "application/x-tex"} ]
+              %li
+                %p
+                  Meghyn Bienvenu, Hélène Fargier, Pierre Marquis,
+                  = succeed "," do
+                    %em Knowledge Compilation in the Modal Logic S5
+                  %strong 24
+                  1 (2010)
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mo{:stretchy => "false"} [
+                      %annotation{:encoding => "application/x-tex"} [
+                  = succeed "," do
+                    %a{:href => "https://doi.org/10.1609/aaai.v24i1.7587"} doi:10.1609/aaai.v24i1.7587
+                  %a{:href => "https://ojs.aaai.org/index.php/AAAI/article/view/7587/7448"} pdf
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mo{:stretchy => "false"} ]
+                      %annotation{:encoding => "application/x-tex"} ]
+                %blockquote
+                  %p p. 1: “Propositional epistemic logic S5 is a well-known modal logic which is suitable for representing and reasoning about the knowledge of a single agent”
+              %li
+                %p
+                  Rasmus Rendsvig, John Symons,
+                  = succeed "," do
+                    %em Epistemic Logic
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mo{:stretchy => "false"} [
+                      %annotation{:encoding => "application/x-tex"} [
+                  %a{:href => "https://plato.stanford.edu/cgi-bin/encyclopedia/archinfo.cgi?entry=logic-epistemic"} web
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mo{:stretchy => "false"} ]
+                      %annotation{:encoding => "application/x-tex"} ]
+            %blockquote
+              %p
+                “
+                %a{:href => "FaginHalpernMosesVardi95"} Fagin, Halpern, Moses, and Vardi (1995)
+                and many others use S5 for knowledge”
+            %ul
+              %li
+                Rachel Boddy,
+                = succeed "," do
+                  %em Epistemic Issues and Group Knowledge
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mo{:stretchy => "false"} [
+                    %annotation{:encoding => "application/x-tex"} [
+                %a{:href => "https://eprints.illc.uva.nl/id/eprint/921/1/MoL-2014-03.text.pdf"} pdf
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mo{:stretchy => "false"} ]
+                    %annotation{:encoding => "application/x-tex"} ]
+            %blockquote
+              %p p. 13: “Formal approaches to epistemology – such as game theory and computer science – typically assume the S5 conditions for knowledge, which is (partly) explained by the convenient formal properties of the logic. Philosophers typically opt for a weaker notion. Hintikka (1962), for instance, argues that the proper logic for knowledge is the modal system S4”
+            %ul
+              %li
+                %p
+                  Yakoub Salhi and Michael Sioutis,
+                  = succeed "," do
+                    %em A Resolution Method for Modal Logic S5
+                  %strong 36
+                  (2015) 252–262
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mo{:stretchy => "false"} [
+                      %annotation{:encoding => "application/x-tex"} [
+                  %a{:href => "https://easychair.org/publications/open/3XXQ"} pdf
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mo{:stretchy => "false"} ]
+                      %annotation{:encoding => "application/x-tex"} ]
+              %li
+                %p
+                  Ronald de Haan, Iris van de Pol,
+                  %em On the Computational Complexity of Model Checking for Dynamic Epistemic Logic with S5 Models
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mo{:stretchy => "false"} [
+                      %annotation{:encoding => "application/x-tex"} [
+                  %a{:href => "https://arxiv.org/abs/1805.09880"} arXiv:1805.09880
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mo{:stretchy => "false"} ]
+                      %annotation{:encoding => "application/x-tex"} ]
+        .revisedby
+          %p
+            Last revised on August  3, 2023 at 19:08:23.
+            See the
+            %a{:href => "/nlab/history/S5+modal+logic", :style => "color: #005c19"} history
+            of this page for a list of all contributions to it.
+        .navigation.navfoot
+          %a#edit.navlink{:accesskey => "E", :href => "/nlab/edit/S5+modal+logic", :rel => "nofollow"} Edit
+          %a{:href => "https://nforum.ncatlab.org/discussion/16931/#Item_17"} Discuss
+          %span.backintime
+            %a#to_previous_revision.navlinkbackintime{:accesskey => "B", :href => "/nlab/revision/S5+modal+logic/16", :rel => "nofollow"} Previous revision
+          %a#see_changes.navlink{:accesskey => "C", :href => "/nlab/show/diff/S5+modal+logic", :rel => "nofollow"} Changes from previous revision
+          %a#history.navlink{:accesskey => "S", :href => "/nlab/history/S5+modal+logic", :rel => "nofollow"} History (16 revisions)
+          %a{:href => "/nlab/show/S5+modal+logic/cite", :style => "color: black"} Cite
+          %a#view_print{:accesskey => "p", :href => "/nlab/print/S5+modal+logic", :rel => "nofollow"} Print
+          %a#view_source{:href => "/nlab/source/S5+modal+logic", :rel => "nofollow"} Source
+      / Content
+    / Container

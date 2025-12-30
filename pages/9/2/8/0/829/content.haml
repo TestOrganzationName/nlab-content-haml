@@ -1,0 +1,970 @@
+!!! XML
+!!! 1.1
+%html{:xmlns => "http://www.w3.org/1999/xhtml"}
+  %head
+    %title
+      sharing graph in nLab
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:content => "index,follow", :name => "robots"}/
+    %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/
+    %link{:href => "/stylesheets/instiki.css?1660229990", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/stylesheets/mathematics.css?1660229990", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/stylesheets/syntax.css?1660229990", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/stylesheets/nlab.css?1660229990", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css", :rel => "stylesheet", :type => "text/css"}/
+    :css
+      h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+        color: #226622;
+      }
+      a:visited.existingWikiWord {
+        color: #164416;
+      }
+    :css
+      <!--/*--><![CDATA[/*><!--*/
+          .toc ul {margin: 0; padding: 0;}
+      .toc ul ul {margin: 0; padding: 0 0 0 10px;}
+      .toc li > p {margin: 0}
+      .toc ul li {list-style-type: none; position: relative;}
+      .toc div {border-top:1px dotted #ccc;}
+      .rightHandSide h2 {font-size: 1.5em;color:#008B26}
+      table.plaintable {
+          border-collapse:collapse;
+          margin-left:30px;
+          border:0;
+      }
+      .plaintable td {border:1px solid #000; padding: 3px;}
+      .plaintable th {padding: 3px;}
+      .plaintable caption {
+          font-weight: bold;
+          font-size:1.1em;
+          text-align:center;
+          margin-left:30px;
+      }
+          
+         
+      /* Query boxes for questioning and answering mechanism */
+      div.query{
+      background: #f6fff3;
+      border: solid #ce9;
+      border-width: 2px 1px;
+      padding: 0 1em;
+      margin: 0 1em;
+      max-height: 20em;
+      overflow: auto;
+      }
+      
+      /* Standout boxes for putting important text */
+      div.standout{
+      background: #fff1f1;
+      border: solid black;
+      border-width: 2px 1px;
+      padding: 0 1em;
+      margin: 0 1em;
+      overflow: auto;
+      }
+      
+      /* Icon for links to n-category arXiv documents 
+       (commented out for now i.e. disabled)
+      a[href*="http://arxiv.org/"] {
+        background-image: url(../files/arXiv_icon.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 22px;
+        } */
+          
+      /* Icon for links to n-category cafe posts (disabled) 
+      a[href*="http://golem.ph.utexas.edu/category"] {
+        background-image: url(../files/n-cafe_5.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 25px;
+        } */
+      
+      /* Icon for links to pdf files (disabled)
+      a[href$=".pdf"] {
+        background-image: url(../files/pdficon_small.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 25px;
+        } */
+      
+      /* Icon for links to pages, etc. -inside- pdf files (disabled)
+      a[href*=".pdf#"] {
+        background-image: url(../files/pdf_entry.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 25px;
+        } */
+      
+      a.existingWikiWord {
+      color: #226622;
+      }
+      
+      a.existingWikiWord:visited {
+      color: #226622;
+      }
+      
+      
+      a.existingWikiWord[title] {
+      border: 0px;
+      color: #aa0505;
+      text-decoration: none;
+      }
+          
+      a.existingWikiWord[title]:visited {
+      border: 0px;
+      color: #551111;
+      text-decoration: none;
+      }
+      
+      a[href^="http://"] {
+      border: 0px;
+      color: #003399;
+      }
+      
+      a[href^="http://"]:visited {
+      border: 0px;
+      color: #330066;
+      }
+      
+      a[href^="https://"] {
+      border: 0px;
+      color: #003399;
+      }
+      
+      a[href^="https://"]:visited {
+      border: 0px;
+      color: #330066;
+      }
+      
+      div.dropDown .hide {
+      display: none;
+      }
+      
+      div.dropDown:hover .hide {
+      display:block;
+      }
+      
+      div.clickDown .hide {
+      display: none;
+      }
+      
+      div.clickDown:focus {
+      outline:none;
+      }
+      
+      div.clickDown:focus .hide, div.clickDown:hover .hide {
+      display: block;
+      }
+      
+      div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+      display:block;
+      }
+      
+      div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+      display:none;
+      }
+      
+      div.clickDown .clickToReveal:after {
+      content: "A(Hover to reveal, click to "hold")";
+      font-size: 60%;
+      }
+      
+      div.clickDown .clickToHide:after {
+      content: "A(Click to hide)";
+      font-size: 60%;
+      }
+      div.clickDown .clickToHide, div.clickDown .clickToReveal {
+      white-space: pre-wrap;
+      }
+      
+      .un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+      margin-left: 1em;
+      }
+      
+      span.theorem_label {
+      margin-left: -1em;
+      }
+      .proof span.theorem_label {
+      margin-left: 0em;
+      }
+      :target {
+          background-color: #BBBBBB;
+          border-radius: 5pt;
+      }
+      
+        /*]]>*/-->
+    %script{:src => "/javascripts/prototype.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/effects.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/dragdrop.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/controls.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/application.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/page_helper.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/thm_numbering.js?1660229990", :type => "text/javascript"}
+    %script{:type => "text/x-mathjax-config"}
+      :cdata
+        <!--//--><![CDATA[//><!--
+        MathJax.Ajax.config.path["Contrib"] = "/MathJax";
+        MathJax.Hub.Config({
+        MathML: { useMathMLspacing: true },
+        "HTML-CSS": { scale: 90,
+        extensions: ["handle-floats.js"]
+        }
+        });
+        MathJax.Hub.Queue( function () {
+        var fos = document.getElementsByTagName('foreignObject');
+        for (var i = 0; i < fos.length; i++) {
+        MathJax.Hub.Typeset(fos[i]);
+        }
+        });
+        \//--><!]]>
+    :javascript
+      <!--//--><![CDATA[//><!--
+      window.addEventListener("DOMContentLoaded", function () {
+        var div = document.createElement('div');
+        var math = document.createElementNS('http://www.w3.org/1998/Math/MathML', 'math');
+        document.body.appendChild(div);
+        div.appendChild(math);
+      // Test for MathML support comparable to WebKit version https://trac.webkit.org/changeset/203640 or higher.
+        div.setAttribute('style', 'font-style: italic');
+        var mathml_unsupported = !(window.getComputedStyle(div.firstChild).getPropertyValue('font-style') === 'normal');
+        div.parentNode.removeChild(div);
+        if (mathml_unsupported) {
+          // MathML does not seem to be supported...
+          var s = document.createElement('script');
+          s.src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=MML_HTMLorMML-full";
+          document.querySelector('head').appendChild(s);
+        } else {
+          document.head.insertAdjacentHTML("beforeend", '<style>svg[viewBox] {max-width: 100%}</style>');
+        }
+      });
+      //--><!]]>
+    %link{:href => "https://ncatlab.org/nlab/atom_with_headlines", :rel => "alternate", :title => "Atom with headlines", :type => "application/atom+xml"}/
+    %link{:href => "https://ncatlab.org/nlab/atom_with_content", :rel => "alternate", :title => "Atom with full content", :type => "application/atom+xml"}/
+    :javascript
+      document.observe("dom:loaded", function() {
+        generateThmNumbers();
+      });
+  %body
+    #Container
+      #Content
+        %h1#pageName
+          %span{:style => "float: left; margin: 0.5em 0.25em -0.25em 0"}
+            %svg{:height => "1.8em", :viewbox => "0 0 190 181", :width => "1.872em", :xmlns => "http://www.w3.org/2000/svg"}
+              %path{:d => "M72.8 145c-1.6 17.3-15.7 10-23.6 20.2-5.6 7.3 4.8 15 11.4 15 11.5-.2 19-13.4 26.4-20.3 3.3-3 8.2-4 11.2-7.2a14 14 0 0 0 2.9-11.1c-1.4-9.6-12.4-18.6-16.9-27.2-5-9.6-10.7-27.4-24.1-27.7-17.4-.3-.4 26 4.7 30.7 2.4 2.3 5.4 4.1 7.3 6.9 1.6 2.3 2.1 5.8-1 7.2-5.9 2.6-12.4-6.3-15.5-10-8.8-10.6-15.5-23-26.2-31.8-5.2-4.3-11.8-8-18-3.7-7.3 4.9-4.2 12.9.2 18.5a81 81 0 0 0 30.7 23c3.3 1.5 12.8 5.6 10 10.7-2.5 5.2-11.7 3-15.6 1.1-8.4-3.8-24.3-21.3-34.4-13.7-3.5 2.6-2.3 7.6-1.2 11.1 2.8 9 12.2 17.2 20.9 20.5 17.3 6.7 34.3-8 50.8-12.1z", :fill => "#226622"}
+              %path{:d => "M145.9 121.3c-.2-7.5 0-19.6-4.5-26-5.4-7.5-12.9-1-14.1 5.8-1.4 7.8 2.7 14.1 4.8 21.3 3.4 12 5.8 29-.8 40.1-3.6-6.7-5.2-13-7-20.4-2.1-8.2-12.8-13.2-15.1-1.9-2 9.7 9 21.2 12 30.1 1.2 4 2 8.8 6.4 10.3 6.9 2.3 13.3-4.7 17.7-8.8 12.2-11.5 36.6-20.7 43.4-36.4 6.7-15.7-13.7-14-21.3-7.2-9.1 8-11.9 20.5-23.6 25.1 7.5-23.7 31.8-37.6 38.4-61.4 2-7.3-.8-29.6-13-19.8-14.5 11.6-6.6 37.6-23.3 49.2z", :fill => "#a41e32"}
+              %path{:d => "M86.3 47.5c0-13-10.2-27.6-5.8-40.4 2.8-8.4 14.1-10.1 17-1 3.8 11.6-.3 26.3-1.8 38 11.7-.7 10.5-16 14.8-24.3 2.1-4.2 5.7-9.1 11-6.7 6 2.7 7.4 9.2 6.6 15.1-2.2 14-12.2 18.8-22.4 27-3.4 2.7-8 6.6-5.9 11.6 2 4.4 7 4.5 10.7 2.8 7.4-3.3 13.4-16.5 21.7-16 14.6.7 12 21.9.9 26.2-5 1.9-10.2 2.3-15.2 3.9-5.8 1.8-9.4 8.7-15.7 8.9-6.1.1-9-6.9-14.3-9-14.4-6-33.3-2-44.7-14.7-3.7-4.2-9.6-12-4.9-17.4 9.3-10.7 28 7.2 35.7 12 2 1.1 11 6.9 11.4 1.1.4-5.2-10-8.2-13.5-10-11.1-5.2-30-15.3-35-27.3-2.5-6 2.8-13.8 9.4-13.6 6.9.2 13.4 7 17.5 12C70.9 34 75 43.8 86.3 47.4z", :fill => "#193c78"}
+          %span.webName nLab
+          sharing graph
+        .navigation
+          %span.skipNav
+            %a{:href => "#navEnd"} Skip the Navigation Links
+            |
+          %span{:style => "display:inline-block; width: 0.3em;"}
+          %a{:accesskey => "H", :href => "/nlab/show/HomePage", :title => "Home page"} Home Page
+          |
+          %a{:accesskey => "A", :href => "/nlab/all_pages", :title => "List of all pages"} All Pages
+          |
+          %a{:accesskey => "U", :href => "/nlab/latest_revisions", :title => "Latest edits and page creations"} Latest Revisions
+          |
+          %a{:href => "https://nforum.ncatlab.org/discussions/?CategoryID=0", :style => "color:black", :title => "Discuss this page on the nForum. It does not yet have a dedicated thread; feel free to create one, giving it the same name as the title of this page"} Discuss this page
+          |
+          %form#navigationSearchForm{"accept-charset" => "utf-8", :action => "/nlab/search", :method => "get"}
+            %fieldset.search
+              %input#searchField{:name => "query", :onblur => "this.value == '' ? this.value = 'Search' : true", :onfocus => "this.value == 'Search' ? this.value = '' : true", :style => "display:inline-block; float: left;", :type => "text", :value => "Search"}/
+          %span#navEnd
+        #revision
+          %meta{:content => "application/xhtml+xml;charset=utf-8", "http-equiv" => "Content-type"}/
+          %title
+          %p
+            %em Sharing graphs
+            are another kind of
+            %a.existingWikiWord{:href => "/nlab/show/string+diagram"} string diagram
+            which focuses on the syntax of a language. Given a
+            %a{:href => "http://en.wikipedia.org/wiki/Backus-Naur_form"} BNF
+            description of a
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/context-free+grammar"} context-free grammar
+          %h1#example_untyped_lambda_calculus Example: Untyped lambda calculus
+          %dl
+            %dt Lambda calculus terms are recursively defined as follows:
+            %dd
+              %p
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi t
+                    %annotation{:encoding => "application/x-tex"} t
+                \::=
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi v
+                      %mo{:stretchy => "false"} |
+                      %mi t
+                      %mo{:stretchy => "false"} (
+                      %mi t
+                      %mo{:stretchy => "false"} )
+                      %mo{:stretchy => "false"} |
+                      %mi λ
+                      %mi v
+                      %mo .
+                      %mi t
+                    %annotation{:encoding => "application/x-tex"} v | t(t) | \lambda v.t
+          %p
+            where
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi v
+                %annotation{:encoding => "application/x-tex"} v
+            is a countably infinite set of variables. (That is, a term is either a given variable, a given term applied to a given term, or the
+            = succeed "-abstraction" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi λ
+                  %annotation{:encoding => "application/x-tex"} \lambda
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi α
+                %annotation{:encoding => "application/x-tex"} \alpha
+            (for handling dummy variables),
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi β
+                %annotation{:encoding => "application/x-tex"} \beta
+            (substitution of terms), and
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi η
+                %annotation{:encoding => "application/x-tex"} \eta
+            (extensionality). The corresponding category has
+          %ul
+            %li
+              %p
+                two generating types,
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi V
+                    %annotation{:encoding => "application/x-tex"} V
+                and
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi T
+                    %annotation{:encoding => "application/x-tex"} T
+            %li
+              %p six function symbols
+              %ul
+                %li
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}>
+                    %semantics
+                      %mrow
+                        %mi λ
+                        %mo :
+                        %msup
+                          %mi V
+                          %mo *
+                        %mo ×
+                        %mi T
+                        %mo →
+                        %mi T
+                      %annotation{:encoding => "application/x-tex"} \lambda:V^* \times T \to T
+                  \. Lambda takes an antivariable and a term that may use the corresponding variable.
+                %li
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}>
+                    %semantics
+                      %mrow
+                        %mo ∩
+                        %mo :
+                        %mn 1
+                        %mo →
+                        %msup
+                          %mi V
+                          %mo *
+                        %mo ×
+                        %mi T
+                      %annotation{:encoding => "application/x-tex"} \cap:1 \to V^* \times T
+                  \. This turns an antivariable
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi x
+                      %annotation{:encoding => "application/x-tex"} x
+                  introduced by lambda into the term
+                  = succeed "." do
+                    %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                      %semantics
+                        %mrow
+                          %mi x
+                        %annotation{:encoding => "application/x-tex"} x
+                %li
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}>
+                    %semantics
+                      %mrow
+                        %mi A
+                        %mo :
+                        %mi T
+                        %mo ×
+                        %mi T
+                        %mo →
+                        %mi T
+                      %annotation{:encoding => "application/x-tex"} A:T \times T \to T
+                  \. (Application) This takes
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi f
+                      %annotation{:encoding => "application/x-tex"} f
+                  and
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi g
+                      %annotation{:encoding => "application/x-tex"} g
+                  and produces
+                  = succeed "." do
+                    %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                      %semantics
+                        %mrow
+                          %mi f
+                          %mo{:stretchy => "false"} (
+                          %mi g
+                          %mo{:stretchy => "false"} )
+                        %annotation{:encoding => "application/x-tex"} f(g)
+                %li
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}>
+                    %semantics
+                      %mrow
+                        %mi swap
+                        %mo :
+                        %mi T
+                        %mo ×
+                        %mi T
+                        %mo →
+                        %mi T
+                        %mo ×
+                        %mi T
+                      %annotation{:encoding => "application/x-tex"} swap:T \times T \to T \times T
+                  \.
+                %li
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}>
+                    %semantics
+                      %mrow
+                        %mo !
+                        %mo :
+                        %mi T
+                        %mo →
+                        %mn 1
+                      %annotation{:encoding => "application/x-tex"} !:T \to 1
+                  \.
+                %li
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}>
+                    %semantics
+                      %mrow
+                        %mi Δ
+                        %mo :
+                        %mi T
+                        %mo →
+                        %mi T
+                        %mo ×
+                        %mi T
+                      %annotation{:encoding => "application/x-tex"} \Delta:T \to T \times T
+                  \.
+            %li
+              %p relations
+              %ul
+                %li
+                  %p
+                    The last three function symbols come with relations that make the category cartesian (and justify the use of
+                    %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                      %semantics
+                        %mrow
+                          %mo ×
+                        %annotation{:encoding => "application/x-tex"} \times
+                    above). Leaving off the last two would give linear lambda calculus.
+                %li
+                  %p
+                    %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                      %semantics
+                        %mrow
+                          %mi β
+                          %mi η
+                          %mo :
+                          %mi A
+                          %mo ∘
+                          %mo{:stretchy => "false"} (
+                          %mi λ
+                          %mo ×
+                          %msub
+                            %mn 1
+                            %mi T
+                          %mo{:stretchy => "false"} )
+                          %mo ∘
+                          %mo{:stretchy => "false"} (
+                          %msub
+                            %mn 1
+                            %mrow
+                              %msup
+                                %mi V
+                                %mo *
+                          %mo ×
+                          %mi P
+                          %mo ×
+                          %msub
+                            %mn 1
+                            %mi T
+                          %mo{:stretchy => "false"} )
+                          %mo ∘
+                          %mo{:stretchy => "false"} (
+                          %mo ∩
+                          %mo ×
+                          %msub
+                            %mn 1
+                            %mrow
+                              %msup
+                                %mi T
+                                %mi n
+                          %mo ×
+                          %msub
+                            %mn 1
+                            %mi T
+                          %mo{:stretchy => "false"} )
+                          %mo ⇔
+                          %mi P
+                          %mo ∘
+                          %msub
+                            %mi swap
+                            %mrow
+                              %msub
+                                %mn 1
+                                %mrow
+                                  %msup
+                                    %mi T
+                                    %mi n
+                              %mo ,
+                              %msub
+                                %mn 1
+                                %mi T
+                        %annotation{:encoding => "application/x-tex"} \beta\eta: A \circ (\lambda \times 1_T) \circ (1_{V^*} \times P \times 1_T) \circ (\cap \times 1_{T^n} \times 1_T) \Leftrightarrow P \circ swap_{1_{T^n}, 1_T}
+                  %p This is the categorical encoding of
+                  %p
+                    %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                      %semantics
+                        %mrow
+                          %mo{:stretchy => "false"} (
+                          %mi λ
+                          %mi x
+                          %mo .
+                          %mi P
+                          %mo{:stretchy => "false"} )
+                          %mo{:stretchy => "false"} (
+                          %mi y
+                          %mo{:stretchy => "false"} )
+                          %mo ⇔
+                          %mi P
+                          %mo{:stretchy => "false"} [
+                          %mi y
+                          %mo{:stretchy => "false"} /
+                          %mi x
+                          %mo{:stretchy => "false"} ]
+                        %annotation{:encoding => "application/x-tex"} (\lambda x.P)(y) \Leftrightarrow P[y/x]
+                  %p
+                    where the free variables of the term
+                    %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                      %semantics
+                        %mrow
+                          %mi P
+                        %annotation{:encoding => "application/x-tex"} P
+                    are
+                    = succeed "." do
+                      %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                        %semantics
+                          %mrow
+                            %mo{:stretchy => "false"} {
+                            %mi x
+                            %mo ,
+                            %msub
+                              %mi x
+                              %mn 1
+                            %mo ,
+                            %mi …
+                            %mo ,
+                            %msub
+                              %mi x
+                              %mi n
+                            %mo{:stretchy => "false"} }
+                          %annotation{:encoding => "application/x-tex"} \{x, x_1, \ldots, x_n\}
+          %p The string diagrams corresponding to this category are called sharing graphs.
+          %h1#discussion Discussion
+          %p
+            Peter Selinger
+            %a{:href => "https://golem.ph.utexas.edu/category/2006/08/categorifying_cccs_seeing_comp.html#c021631"} said
+            of this example:
+          %p “Sharing graphs” are extremely well-studied. See e.g.
+          %p
+            (1)
+            %a{:href => "http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.52.530"} Stefano Guerrini, A general theory of sharing graphs (1997)
+          %p There is a reduction strategy on sharing graphs that is provably the most efficient possible reduction strategy for lambda calculus; this goes back to the work of Levy and Lamping (both cited in the above paper).
+          %p Guerrini also gives an algebraic semantics of these sharing graphs, see section 7. I don’t know whether it is related to your categorical view.
+          %p I also like the book by Peyton-Jones:
+          %p
+            (2)
+            %a{:href => "http://research.microsoft.com/en-us/um/people/simonpj/papers/slpj-book-1987/"} Simon Peyton Jones, The Implementation of Functional Programming Languages (1987)
+          %p It shows how to use sharing graphs as the basis for a practical implementation of lazy programming languages. As far as I know, this is still state-of-the-art and is used in the implementation of Haskell. In keeping with the practical nature of the book, the sharing graphs are represented in slightly different form (with syntactic variables rather than backpointers), but this is of course equivalent.
+          %p
+            As for the categorical semantics, what you have in mind is a kind of abstract syntax with variable binding. To put this into perspective, the semantics of ordinary abstract syntax (i.e., without variable binding), is given by an object
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi A
+                %annotation{:encoding => "application/x-tex"} A
+            in a cartesian category, together with interpretations for each
+            = succeed "-ary" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi n
+                  %annotation{:encoding => "application/x-tex"} n
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi f
+                    %mo :
+                    %msup
+                      %mi A
+                      %mi n
+                    %mo →
+                    %mi A
+                  %annotation{:encoding => "application/x-tex"} f : A^n \to A
+          %p Things get slightly more complicated if one adds variable binding to this picture. This has also been studied, though perhaps not in the same form as you are proposing. Perhaps the closest to your approach is
+          %p
+            (3)
+            %a{:href => "http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.46.4082"} Martin Hofmann, Semantical analysis of higher-order abstract syntax (1999)
+          %p
+            Here one has
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi var
+                    %mo :
+                    %mi V
+                    %mo →
+                    %mi T
+                  %annotation{:encoding => "application/x-tex"} var : V \to T
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi app
+                    %mo :
+                    %mi T
+                    %mo ×
+                    %mi T
+                    %mo →
+                    %mi T
+                  %annotation{:encoding => "application/x-tex"} app : T \times T \to T
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi lam
+                  %mo :
+                  %mo{:stretchy => "false"} (
+                  %mi V
+                  %mo ⇒
+                  %mi T
+                  %mo{:stretchy => "false"} )
+                  %mo →
+                  %mi T
+                %annotation{:encoding => "application/x-tex"} lam : (V \Rightarrow T) \to T
+            (see top of p.9, with the obvious changes in notation). You will note the use of a function space
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mo{:stretchy => "false"} (
+                  %mi V
+                  %mo ⇒
+                  %mi T
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} (V \Rightarrow T)
+            in place of your cartesian product
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msup
+                      %mi V
+                      %mo *
+                    %mo ×
+                    %mi T
+                  %annotation{:encoding => "application/x-tex"} V^* \times T
+          %p Another very similar paper is
+          %p
+            (4)
+            %a{:href => "http://citeseerx.ist.psu.edu/showciting?cid=198434"} M.P.Fiore, G.D.Plotkin and D.Turi. Abstract syntax and variable binding (1999)
+            (Also available
+            = succeed ".)" do
+              %a{:href => "http://www.cl.cam.ac.uk/~mpf23/papers/Types/Types.html"} here
+          %p
+            Here, one has
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi var
+                    %mo :
+                    %mi V
+                    %mo →
+                    %mi T
+                  %annotation{:encoding => "application/x-tex"} var : V \to T
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi app
+                    %mo :
+                    %mi T
+                    %mo ×
+                    %mi T
+                    %mo →
+                    %mi T
+                  %annotation{:encoding => "application/x-tex"} app : T \times T \to T
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi lam
+                  %mo :
+                  %mi δ
+                  %mi T
+                  %mo →
+                  %mi T
+                %annotation{:encoding => "application/x-tex"} lam : \delta T \to T
+            (as contained e.g. in the commutative diagram on p.6). Again,
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi δ
+                  %mi T
+                %annotation{:encoding => "application/x-tex"} \delta T
+            is something akin to the function space
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo{:stretchy => "false"} (
+                    %mi V
+                    %mo ⇒
+                    %mi T
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} (V \Rightarrow T)
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo{:stretchy => "false"} (
+                    %mi T
+                    %mo ⇒
+                    %mi T
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} (T \Rightarrow T)
+          %p A third, technically slightly different (but conceptually similar) approach to abstract syntax with variable binders is:
+          %p
+            (5)
+            %a{:href => "http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.38.9383"} Murdoch J. Gabbay, Andrew M. Pitts: A new approach to abstract syntax with variable binding (1999)
+          %p
+            (6)
+            %a{:href => "http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.62.9845"} Murdoch J. Gabbay, Andrew M. Pitts: A new approach to abstract syntax with variable binding (2002)
+          %p
+            See especially the second-to-last line of [6, p.356], and you immediately see the similarity. Their
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mo{:stretchy => "false"} [
+                  %mi A
+                  %mo{:stretchy => "false"} ]
+                  %mi T
+                %annotation{:encoding => "application/x-tex"} [A]T
+            operation is akin to
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mo{:stretchy => "false"} (
+                  %mi V
+                  %mo ⇒
+                  %mi T
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} (V \Rightarrow T)
+            in [3] and
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi δ
+                  %mi T
+                %annotation{:encoding => "application/x-tex"} \delta T
+            in [4].
+          %p It is fun to note that [3–5] all appeared (independently) in the same conference in 1999. Semantics of variable binders was clearly a pressing problem that year.
+          %p
+            I can comment briefly on the main difference between these works and what you are proposing. One thing that is important in syntax is substitution (of a term for a variable). In fact, in the usual abstract syntax (without binders), a term with
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi n
+                %annotation{:encoding => "application/x-tex"} n
+            variables is represented as a morphism
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msup
+                      %mi A
+                      %mi n
+                    %mo →
+                    %mi A
+                  %annotation{:encoding => "application/x-tex"} A^n \to A
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi f
+                  %mo :
+                  %mi A
+                  %mo ×
+                  %msup
+                    %mi A
+                    %mi n
+                  %mo →
+                  %mi A
+                %annotation{:encoding => "application/x-tex"} f : A \times A^n \to A
+            represents the term
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi t
+                  %mo{:stretchy => "false"} (
+                  %mi x
+                  %mo ,
+                  %msub
+                    %mi y
+                    %mn 1
+                  %mo ,
+                  %mo .
+                  %mo .
+                  %mo .
+                  %mo ,
+                  %msub
+                    %mi y
+                    %mi n
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} t(x,y_1,...,y_n)
+            and
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi g
+                  %mo :
+                  %msup
+                    %mi A
+                    %mi n
+                  %mo →
+                  %mi A
+                %annotation{:encoding => "application/x-tex"} g : A^n \to A
+            represents
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi s
+                    %mo{:stretchy => "false"} (
+                    %msub
+                      %mi y
+                      %mn 1
+                    %mo ,
+                    %mo .
+                    %mo .
+                    %mo .
+                    %mo ,
+                    %msub
+                      %mi y
+                      %mi n
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} s(y_1,...,y_n)
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi f
+                  %mo ∘
+                  %mo{:stretchy => "false"} ⟨
+                  %mi g
+                  %mo ,
+                  %mi id
+                  %mo{:stretchy => "false"} ⟩
+                %annotation{:encoding => "application/x-tex"} f \circ \langle g, id \rangle
+            represents
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi t
+                    %mo{:stretchy => "false"} [
+                    %mi s
+                    %mo{:stretchy => "false"} /
+                    %mi x
+                    %mo{:stretchy => "false"} ]
+                  %annotation{:encoding => "application/x-tex"} t[s/x]
+          %p
+            In the presence of variables, a term with
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi n
+                %annotation{:encoding => "application/x-tex"} n
+            variables is represented as
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mn 1
+                  %mo →
+                  %msup
+                    %mi V
+                    %mrow
+                      %mo *
+                      %mi n
+                  %mo ×
+                  %mi T
+                %annotation{:encoding => "application/x-tex"} 1 \to V^{*n} \times T
+            (in your notation). However, for reasons of substitution, one would still like this hom-set to be in 1-1 correspondence with
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msup
+                      %mi T
+                      %mi n
+                    %mo →
+                    %mi T
+                  %annotation{:encoding => "application/x-tex"} T^n \to T
+          %p I hope these references will be useful. It would be great if you had a more abstract monoidal framework of which the particular constructions in [3–6] are concrete examples. I have always wondered about the precise connection between [3–6], and whether there is a bigger picture.
+        .revisedby
+          %p
+            Last revised on July  6, 2019 at 19:22:19.
+            See the
+            %a{:href => "/nlab/history/sharing+graph", :style => "color: #005c19"} history
+            of this page for a list of all contributions to it.
+        .navigation.navfoot
+          %a#edit.navlink{:accesskey => "E", :href => "/nlab/edit/sharing+graph", :rel => "nofollow"} Edit
+          %a{:href => "https://nforum.ncatlab.org/discussions/?CategoryID=0"} Discuss
+          %span.backintime
+            %a#to_previous_revision.navlinkbackintime{:accesskey => "B", :href => "/nlab/revision/sharing+graph/3", :rel => "nofollow"} Previous revision
+          %a#see_changes.navlink{:accesskey => "C", :href => "/nlab/show/diff/sharing+graph", :rel => "nofollow"} Changes from previous revision
+          %a#history.navlink{:accesskey => "S", :href => "/nlab/history/sharing+graph", :rel => "nofollow"} History (3 revisions)
+          %a{:href => "/nlab/show/sharing+graph/cite", :style => "color: black"} Cite
+          %a#view_print{:accesskey => "p", :href => "/nlab/print/sharing+graph", :rel => "nofollow"} Print
+          %a#view_source{:href => "/nlab/source/sharing+graph", :rel => "nofollow"} Source
+      / Content
+    / Container

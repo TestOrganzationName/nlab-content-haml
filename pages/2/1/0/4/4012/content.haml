@@ -1,0 +1,2557 @@
+!!! XML
+!!! 1.1
+%html{:xmlns => "http://www.w3.org/1999/xhtml"}
+  %head
+    %title
+      lax-idempotent 2-monad in nLab
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:content => "index,follow", :name => "robots"}/
+    %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/
+    %link{:href => "/stylesheets/instiki.css?1676280126", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/stylesheets/mathematics.css?1660229990", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/stylesheets/syntax.css?1660229990", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/stylesheets/nlab.css?1676280126", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css", :rel => "stylesheet", :type => "text/css"}/
+    :css
+      h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+        color: #226622;
+      }
+      a:visited.existingWikiWord {
+        color: #164416;
+      }
+    :css
+      <!--/*--><![CDATA[/*><!--*/
+          .toc ul {margin: 0; padding: 0;}
+      .toc ul ul {margin: 0; padding: 0 0 0 10px;}
+      .toc li > p {margin: 0}
+      .toc ul li {list-style-type: none; position: relative;}
+      .toc div {border-top:1px dotted #ccc;}
+      .rightHandSide h2 {font-size: 1.5em;color:#008B26}
+      table.plaintable {
+          border-collapse:collapse;
+          margin-left:30px;
+          border:0;
+      }
+      .plaintable td {border:1px solid #000; padding: 3px;}
+      .plaintable th {padding: 3px;}
+      .plaintable caption {
+          font-weight: bold;
+          font-size:1.1em;
+          text-align:center;
+          margin-left:30px;
+      }
+          
+         
+      /* Query boxes for questioning and answering mechanism */
+      div.query{
+      background: #f6fff3;
+      border: solid #ce9;
+      border-width: 2px 1px;
+      padding: 0 1em;
+      margin: 0 1em;
+      max-height: 20em;
+      overflow: auto;
+      }
+      
+      /* Standout boxes for putting important text */
+      div.standout{
+      background: #fff1f1;
+      border: solid black;
+      border-width: 2px 1px;
+      padding: 0 1em;
+      margin: 0 1em;
+      overflow: auto;
+      }
+      
+      /* Icon for links to n-category arXiv documents 
+       (commented out for now i.e. disabled)
+      a[href*="http://arxiv.org/"] {
+        background-image: url(../files/arXiv_icon.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 22px;
+        } */
+          
+      /* Icon for links to n-category cafe posts (disabled) 
+      a[href*="http://golem.ph.utexas.edu/category"] {
+        background-image: url(../files/n-cafe_5.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 25px;
+        } */
+      
+      /* Icon for links to pdf files (disabled)
+      a[href$=".pdf"] {
+        background-image: url(../files/pdficon_small.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 25px;
+        } */
+      
+      /* Icon for links to pages, etc. -inside- pdf files (disabled)
+      a[href*=".pdf#"] {
+        background-image: url(../files/pdf_entry.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 25px;
+        } */
+      
+      a.existingWikiWord {
+      color: #226622;
+      }
+      
+      a.existingWikiWord:visited {
+      color: #226622;
+      }
+      
+      
+      a.existingWikiWord[title] {
+      border: 0px;
+      color: #aa0505;
+      text-decoration: none;
+      }
+          
+      a.existingWikiWord[title]:visited {
+      border: 0px;
+      color: #551111;
+      text-decoration: none;
+      }
+      
+      a[href^="http://"] {
+      border: 0px;
+      color: #003399;
+      }
+      
+      a[href^="http://"]:visited {
+      border: 0px;
+      color: #330066;
+      }
+      
+      a[href^="https://"] {
+      border: 0px;
+      color: #003399;
+      }
+      
+      a[href^="https://"]:visited {
+      border: 0px;
+      color: #330066;
+      }
+      
+      div.dropDown .hide {
+      display: none;
+      }
+      
+      div.dropDown:hover .hide {
+      display:block;
+      }
+      
+      div.clickDown .hide {
+      display: none;
+      }
+      
+      div.clickDown:focus {
+      outline:none;
+      }
+      
+      div.clickDown:focus .hide, div.clickDown:hover .hide {
+      display: block;
+      }
+      
+      div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+      display:block;
+      }
+      
+      div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+      display:none;
+      }
+      
+      div.clickDown .clickToReveal:after {
+      content: "A(Hover to reveal, click to "hold")";
+      font-size: 60%;
+      }
+      
+      div.clickDown .clickToHide:after {
+      content: "A(Click to hide)";
+      font-size: 60%;
+      }
+      div.clickDown .clickToHide, div.clickDown .clickToReveal {
+      white-space: pre-wrap;
+      }
+      
+      .un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+      margin-left: 1em;
+      }
+      
+      span.theorem_label {
+      margin-left: -1em;
+      }
+      .proof span.theorem_label {
+      margin-left: 0em;
+      }
+      :target {
+          background-color: #BBBBBB;
+          border-radius: 5pt;
+      }
+      
+        /*]]>*/-->
+    %script{:src => "/javascripts/prototype.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/effects.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/dragdrop.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/controls.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/application.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/page_helper.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/thm_numbering.js?1660229990", :type => "text/javascript"}
+    %script{:type => "text/x-mathjax-config"}
+      :cdata
+        <!--//--><![CDATA[//><!--
+        MathJax.Ajax.config.path["Contrib"] = "/MathJax";
+        MathJax.Hub.Config({
+        MathML: { useMathMLspacing: true },
+        "HTML-CSS": { scale: 90,
+        extensions: ["handle-floats.js"]
+        }
+        });
+        MathJax.Hub.Queue( function () {
+        var fos = document.getElementsByTagName('foreignObject');
+        for (var i = 0; i < fos.length; i++) {
+        MathJax.Hub.Typeset(fos[i]);
+        }
+        });
+        \//--><!]]>
+    :javascript
+      <!--//--><![CDATA[//><!--
+      window.addEventListener("DOMContentLoaded", function () {
+        var div = document.createElement('div');
+        var math = document.createElementNS('http://www.w3.org/1998/Math/MathML', 'math');
+        document.body.appendChild(div);
+        div.appendChild(math);
+      // Test for MathML support comparable to WebKit version https://trac.webkit.org/changeset/203640 or higher.
+        div.setAttribute('style', 'font-style: italic');
+        var mathml_unsupported = !(window.getComputedStyle(div.firstChild).getPropertyValue('font-style') === 'normal');
+        div.parentNode.removeChild(div);
+        if (mathml_unsupported) {
+          // MathML does not seem to be supported...
+          var s = document.createElement('script');
+          s.src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=MML_HTMLorMML-full";
+          document.querySelector('head').appendChild(s);
+        } else {
+          document.head.insertAdjacentHTML("beforeend", '<style>svg[viewBox] {max-width: 100%}</style>');
+        }
+      });
+      //--><!]]>
+    %link{:href => "https://ncatlab.org/nlab/atom_with_headlines", :rel => "alternate", :title => "Atom with headlines", :type => "application/atom+xml"}/
+    %link{:href => "https://ncatlab.org/nlab/atom_with_content", :rel => "alternate", :title => "Atom with full content", :type => "application/atom+xml"}/
+    :javascript
+      document.observe("dom:loaded", function() {
+        generateThmNumbers();
+      });
+  %body
+    #Container
+      #Content
+        %h1#pageName
+          %span{:style => "float: left; margin: 0.5em 0.25em -0.25em 0"}
+            %svg{:height => "1.8em", :viewbox => "0 0 190 181", :width => "1.872em", :xmlns => "http://www.w3.org/2000/svg"}
+              %path{:d => "M72.8 145c-1.6 17.3-15.7 10-23.6 20.2-5.6 7.3 4.8 15 11.4 15 11.5-.2 19-13.4 26.4-20.3 3.3-3 8.2-4 11.2-7.2a14 14 0 0 0 2.9-11.1c-1.4-9.6-12.4-18.6-16.9-27.2-5-9.6-10.7-27.4-24.1-27.7-17.4-.3-.4 26 4.7 30.7 2.4 2.3 5.4 4.1 7.3 6.9 1.6 2.3 2.1 5.8-1 7.2-5.9 2.6-12.4-6.3-15.5-10-8.8-10.6-15.5-23-26.2-31.8-5.2-4.3-11.8-8-18-3.7-7.3 4.9-4.2 12.9.2 18.5a81 81 0 0 0 30.7 23c3.3 1.5 12.8 5.6 10 10.7-2.5 5.2-11.7 3-15.6 1.1-8.4-3.8-24.3-21.3-34.4-13.7-3.5 2.6-2.3 7.6-1.2 11.1 2.8 9 12.2 17.2 20.9 20.5 17.3 6.7 34.3-8 50.8-12.1z", :fill => "#226622"}
+              %path{:d => "M145.9 121.3c-.2-7.5 0-19.6-4.5-26-5.4-7.5-12.9-1-14.1 5.8-1.4 7.8 2.7 14.1 4.8 21.3 3.4 12 5.8 29-.8 40.1-3.6-6.7-5.2-13-7-20.4-2.1-8.2-12.8-13.2-15.1-1.9-2 9.7 9 21.2 12 30.1 1.2 4 2 8.8 6.4 10.3 6.9 2.3 13.3-4.7 17.7-8.8 12.2-11.5 36.6-20.7 43.4-36.4 6.7-15.7-13.7-14-21.3-7.2-9.1 8-11.9 20.5-23.6 25.1 7.5-23.7 31.8-37.6 38.4-61.4 2-7.3-.8-29.6-13-19.8-14.5 11.6-6.6 37.6-23.3 49.2z", :fill => "#a41e32"}
+              %path{:d => "M86.3 47.5c0-13-10.2-27.6-5.8-40.4 2.8-8.4 14.1-10.1 17-1 3.8 11.6-.3 26.3-1.8 38 11.7-.7 10.5-16 14.8-24.3 2.1-4.2 5.7-9.1 11-6.7 6 2.7 7.4 9.2 6.6 15.1-2.2 14-12.2 18.8-22.4 27-3.4 2.7-8 6.6-5.9 11.6 2 4.4 7 4.5 10.7 2.8 7.4-3.3 13.4-16.5 21.7-16 14.6.7 12 21.9.9 26.2-5 1.9-10.2 2.3-15.2 3.9-5.8 1.8-9.4 8.7-15.7 8.9-6.1.1-9-6.9-14.3-9-14.4-6-33.3-2-44.7-14.7-3.7-4.2-9.6-12-4.9-17.4 9.3-10.7 28 7.2 35.7 12 2 1.1 11 6.9 11.4 1.1.4-5.2-10-8.2-13.5-10-11.1-5.2-30-15.3-35-27.3-2.5-6 2.8-13.8 9.4-13.6 6.9.2 13.4 7 17.5 12C70.9 34 75 43.8 86.3 47.4z", :fill => "#193c78"}
+          %span.webName nLab
+          lax-idempotent 2-monad
+        .navigation
+          %span.skipNav
+            %a{:href => "#navEnd"} Skip the Navigation Links
+            |
+          %span{:style => "display:inline-block; width: 0.3em;"}
+          %a{:accesskey => "H", :href => "/nlab/show/HomePage", :title => "Home page"} Home Page
+          |
+          %a{:accesskey => "A", :href => "/nlab/all_pages", :title => "List of all pages"} All Pages
+          |
+          %a{:accesskey => "U", :href => "/nlab/latest_revisions", :title => "Latest edits and page creations"} Latest Revisions
+          |
+          %a{:href => "https://nforum.ncatlab.org/discussion/11619/#Item_8", :style => "color: black", :title => "Discuss this page in its dedicated thread on the nForum"} Discuss this page
+          |
+          %form#navigationSearchForm{"accept-charset" => "utf-8", :action => "/nlab/search", :method => "get"}
+            %fieldset.search
+              %input#searchField{:name => "query", :onblur => "this.value == '' ? this.value = 'Search' : true", :onfocus => "this.value == 'Search' ? this.value = '' : true", :style => "display:inline-block; float: left;", :type => "text", :value => "Search"}/
+          %span#navEnd
+        #revision
+          %meta{:content => "application/xhtml+xml;charset=utf-8", "http-equiv" => "Content-type"}/
+          %title Contents
+          .rightHandSide
+            .toc.clickDown{:tabindex => "0"}
+              %h3#context Context
+              %h4#2category_theory 2-category theory
+              .hide
+                %div
+                  %p
+                    %strong
+                      %a.existingWikiWord{:href => "/nlab/show/2-category+theory"} 2-category theory
+                  %p
+                    %strong Definitions
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/2-category"} 2-category
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/strict+2-category"} strict 2-category
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/bicategory"} bicategory
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/enriched+bicategory"} enriched bicategory
+                  %p
+                    %strong Transfors between 2-categories
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/2-functor"} 2-functor
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/pseudofunctor"} pseudofunctor
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/lax+functor"} lax functor
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/equivalence+of+2-categories"} equivalence of 2-categories
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/2-natural+transformation"} 2-natural transformation
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/lax+natural+transformation"} lax natural transformation
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/icon"} icon
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/modification"} modification
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Yoneda+lemma+for+bicategories"} Yoneda lemma for bicategories
+                  %p
+                    %strong Morphisms in 2-categories
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/fully+faithful+morphism"} fully faithful morphism
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/faithful+morphism"} faithful morphism
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/conservative+morphism"} conservative morphism
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/pseudomonic+morphism"} pseudomonic morphism
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/discrete+morphism"} discrete morphism
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/eso+morphism"} eso morphism
+                  %p
+                    %strong Structures in 2-categories
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/adjunction"} adjunction
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/mate"} mate
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/monad"} monad
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/cartesian+object"} cartesian object
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/fibration+in+a+2-category"} fibration in a 2-category
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/codiscrete+cofibration"} codiscrete cofibration
+                  %p
+                    %strong Limits in 2-categories
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/2-limit"} 2-limit
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/2-pullback"} 2-pullback
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/comma+object"} comma object
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/inserter"} inserter
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/inverter"} inverter
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/equifier"} equifier
+                  %p
+                    %strong Structures on 2-categories
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/2-monad"} 2-monad
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/lax-idempotent+2-monad"} lax-idempotent 2-monad
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/pseudomonad"} pseudomonad
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/pseudoalgebra+for+a+2-monad"} pseudoalgebra for a 2-monad
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/monoidal+2-category"} monoidal 2-category
+                      %ul
+                        %li
+                          %a.existingWikiWord{:href => "/nlab/show/cartesian+bicategory"} cartesian bicategory
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Gray+tensor+product"} Gray tensor product
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/proarrow+equipment"} proarrow equipment
+          %h1#contents Contents
+          .maruku_toc
+            %ul
+              %li
+                %a{:href => "#idea"} Idea
+              %li
+                %a{:href => "#definition"} Definition
+              %ul
+                %li
+                  %a{:href => "#equivalent_conditions"} Equivalent conditions
+              %li
+                %a{:href => "#algebras"} Algebras
+              %li
+                %a{:href => "#examples"} Examples
+              %li
+                %a{:href => "#properties"} Properties
+              %li
+                %a{:href => "#laxidempotent_2comonads"} Lax-idempotent 2-comonads
+              %li
+                %a{:href => "#related_concepts"} Related concepts
+              %li
+                %a{:href => "#references"} References
+          %h2#idea Idea
+          %p
+            A
+            = succeed "," do
+              %strong lax-idempotent 2-monad
+            %strong Kock–Zöberlein
+            or
+            = succeed "," do
+              %strong KZ 2-monad
+            %a.existingWikiWord{:href => "/nlab/show/stuff%2C+structure%2C+property"} property-like structure
+            that a
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/category"} category
+            %a.existingWikiWord{:href => "/nlab/show/object"} object
+            of a
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/2-category"} 2-category
+          %p
+            Lax-idempotent 2-monads have occasionally also been called
+            %strong KZ monads
+            in the literature, but this terminology may be confusing, as it is inconsistent with terminology of
+            = succeed ":" do
+              %strong
+                lax-idempotent
+                = succeed "-monads" do
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi n
+                      %annotation{:encoding => "application/x-tex"} n
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/locally-discrete+2-category"} locally-discrete 2-category
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/idempotent+monad"} idempotence
+          %p
+            The archetypal examples are given by
+            %a.existingWikiWord{:href => "/nlab/show/2-monads"} 2-monads
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi T
+                %annotation{:encoding => "application/x-tex"} T
+            on
+            %a.existingWikiWord{:href => "/nlab/show/Cat"} Cat
+            that take a
+            %a.existingWikiWord{:href => "/nlab/show/category"} category
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi C
+                %annotation{:encoding => "application/x-tex"} C
+            to the
+            %a.existingWikiWord{:href => "/nlab/show/free+cocompletion"} free cocompletion
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi T
+                  %mi C
+                %annotation{:encoding => "application/x-tex"} T C
+            of
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi C
+                %annotation{:encoding => "application/x-tex"} C
+            under a given class of
+            %a.existingWikiWord{:href => "/nlab/show/colimits"} colimits
+            – then an
+            %a.existingWikiWord{:href => "/nlab/show/pseudoalgebra+for+a+2-monad"} algebra
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi T
+                  %mi C
+                  %mo →
+                  %mi C
+                %annotation{:encoding => "application/x-tex"} T C \to C
+            is a category
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi C
+                %annotation{:encoding => "application/x-tex"} C
+            with all such colimits, which are of course essentially unique. Moreover, given thus-cocomplete categories
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi C
+                %annotation{:encoding => "application/x-tex"} C
+            and
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi D
+                  %annotation{:encoding => "application/x-tex"} D
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi F
+                    %mo{:lspace => "verythinmathspace"} :
+                    %mi C
+                    %mo →
+                    %mi D
+                  %annotation{:encoding => "application/x-tex"} F \colon C \to D
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi S
+                %annotation{:encoding => "application/x-tex"} S
+            in
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi C
+                  %annotation{:encoding => "application/x-tex"} C
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi colim
+                  %mi T
+                  %mi F
+                  %mi S
+                  %mo →
+                  %mi F
+                  %mo{:stretchy => "false"} (
+                  %mi colim
+                  %mi S
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} colim T F S \to F(colim S)
+            given by the universal property of the colimit. It is this property that lax-idempotence generalizes.
+          %h2#definition Definition
+          %p
+            A
+            %a.existingWikiWord{:href => "/nlab/show/2-monad"} 2-monad
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi T
+                %annotation{:encoding => "application/x-tex"} T
+            on a
+            %a.existingWikiWord{:href => "/nlab/show/2-category"} 2-category
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi K
+                %annotation{:encoding => "application/x-tex"} K
+            is called
+            %strong lax-idempotent
+            if given any two (strict)
+            = succeed "-algebras" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi T
+                  %annotation{:encoding => "application/x-tex"} T
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi a
+                    %mo{:lspace => "verythinmathspace"} :
+                    %mi T
+                    %mi A
+                    %mo →
+                    %mi A
+                  %annotation{:encoding => "application/x-tex"} a \colon T A \to A
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi b
+                  %mo{:lspace => "verythinmathspace"} :
+                  %mi T
+                  %mi B
+                  %mo →
+                  %mi B
+                %annotation{:encoding => "application/x-tex"} b \colon T B \to B
+            and a morphism
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi f
+                    %mo{:lspace => "verythinmathspace"} :
+                    %mi A
+                    %mo →
+                    %mi B
+                  %annotation{:encoding => "application/x-tex"} f \colon A \to B
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mover
+                    %mi f
+                    %mo{:stretchy => "false"} ¯
+                  %mo{:lspace => "verythinmathspace"} :
+                  %mi b
+                  %mo ∘
+                  %mi T
+                  %mi f
+                  %mo ⇒
+                  %mi f
+                  %mo ∘
+                  %mi a
+                %annotation{:encoding => "application/x-tex"} \bar f \colon b \circ T f \Rightarrow f \circ a
+            making
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mo{:stretchy => "false"} (
+                  %mi f
+                  %mo ,
+                  %mover
+                    %mi f
+                    %mo{:stretchy => "false"} ¯
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} (f,\bar f)
+            a lax morphism of
+            = succeed "-algebras:" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi T
+                  %annotation{:encoding => "application/x-tex"} T
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mrow
+                    %mtable
+                      %mtr
+                        %mtd
+                          %mi T
+                          %mi A
+                        %mtd
+                          %mover
+                            %mo →
+                            %mrow
+                              %mi T
+                              %mi f
+                        %mtd
+                          %mi T
+                          %mi B
+                      %mtr
+                        %mtd
+                          %mi a
+                          %mo{:stretchy => "false"} ↓
+                        %mtd
+                          %mo ⇙
+                          %mover
+                            %mi f
+                            %mo{:stretchy => "false"} ¯
+                        %mtd
+                          %mo{:stretchy => "false"} ↓
+                          %mi b
+                      %mtr
+                        %mtd
+                          %mi A
+                        %mtd
+                          %munder
+                            %mo →
+                            %mi f
+                        %mtd
+                          %mi B
+                %annotation{:encoding => "application/x-tex"}
+                  \\array{
+                  T A &amp; \overset{T f}{\to} &amp; T B \\
+                  a \downarrow &amp; \swArrow \bar f &amp; \downarrow b \\
+                  A &amp; \underset{f}{\to} &amp; B
+                  }
+          %p
+            Dually, a 2-monad
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi T
+                %annotation{:encoding => "application/x-tex"} T
+            is called
+            %strong colax-idempotent
+            if
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi f
+                  %mo{:lspace => "verythinmathspace"} :
+                  %mi A
+                  %mo →
+                  %mi B
+                %annotation{:encoding => "application/x-tex"} f \colon A \to B
+            gives rise to a colax
+            = succeed "-morphism" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi T
+                  %annotation{:encoding => "application/x-tex"} T
+            = succeed ":" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo{:stretchy => "false"} (
+                    %mi f
+                    %mo ,
+                    %mover
+                      %mi f
+                      %mo{:stretchy => "false"} ˜
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} (f,\tilde f)
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mrow
+                    %mtable
+                      %mtr
+                        %mtd
+                          %mi T
+                          %mi A
+                        %mtd
+                          %mover
+                            %mo →
+                            %mrow
+                              %mi T
+                              %mi f
+                        %mtd
+                          %mi T
+                          %mi B
+                      %mtr
+                        %mtd
+                          %mi a
+                          %mo{:stretchy => "false"} ↓
+                        %mtd
+                          %mo ⇗
+                          %mover
+                            %mi f
+                            %mo{:stretchy => "false"} ˜
+                        %mtd
+                          %mo{:stretchy => "false"} ↓
+                          %mi b
+                      %mtr
+                        %mtd
+                          %mi A
+                        %mtd
+                          %munder
+                            %mo →
+                            %mi f
+                        %mtd
+                          %mi B
+                %annotation{:encoding => "application/x-tex"}
+                  \\array{
+                  T A &amp; \overset{T f}{\to} &amp; T B \\
+                  a \downarrow &amp; \neArrow \tilde f &amp; \downarrow b \\
+                  A &amp; \underset{f}{\to} &amp; B
+                  }
+          %h3#equivalent_conditions Equivalent conditions
+          %p
+            A 2-monad
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mo{:stretchy => "false"} (
+                  %mi T
+                  %mo ,
+                  %mi μ
+                  %mo ,
+                  %mi η
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} (T, \mu, \eta)
+            is lax idempotent if and only if, for every object
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi A
+                  %annotation{:encoding => "application/x-tex"} A
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi T
+                  %msub
+                    %mi η
+                    %mi A
+                  %mo ⊣
+                  %msub
+                    %mi μ
+                    %mi A
+                %annotation{:encoding => "application/x-tex"} T \eta_A \dashv \mu_A
+            with invertible unit or an adjunction
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msub
+                    %mi μ
+                    %mi A
+                  %mo ⊣
+                  %msub
+                    %mi η
+                    %mrow
+                      %mi T
+                      %mi A
+                %annotation{:encoding => "application/x-tex"} \mu_A \dashv \eta_{T A}
+            with invertible counit (with either adjunction implying the other). Notice that it is already enough to have either adjoint since the unit resp. counit will be invertible through the axioms of the 2-monad.
+          %p
+            An extensive list of equivalent conditions is given on the page of
+            = succeed "s." do
+              %a.existingWikiWord{:href => "/nlab/show/lax-idempotent+2-adjunction"} lax-idempotent 2-adjunction
+          #AlgebraAdjoint.num_theorem
+            %h6#theorem Theorem
+            %p
+              A 2-monad
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi T
+                  %annotation{:encoding => "application/x-tex"} T
+              as above, with unit
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi η
+                      %mo :
+                      %mn 1
+                      %mo →
+                      %mi T
+                    %annotation{:encoding => "application/x-tex"} \eta: 1 \to T
+              = succeed "-algebra" do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi T
+                    %annotation{:encoding => "application/x-tex"} T
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi a
+                    %mo{:lspace => "verythinmathspace"} :
+                    %mi T
+                    %mi A
+                    %mo →
+                    %mi A
+                  %annotation{:encoding => "application/x-tex"} a \colon T A \to A
+              there is a 2-cell
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi θ
+                      %mi a
+                    %mo{:lspace => "verythinmathspace"} :
+                    %mn 1
+                    %mo ⇒
+                    %msub
+                      %mi η
+                      %mi A
+                    %mo ∘
+                    %mi a
+                  %annotation{:encoding => "application/x-tex"} \theta_a \colon 1 \Rightarrow \eta_A \circ a
+              such that
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo{:stretchy => "false"} (
+                    %msub
+                      %mi θ
+                      %mi a
+                    %mo ,
+                    %msub
+                      %mn 1
+                      %mrow
+                        %msub
+                          %mn 1
+                          %mi A
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} (\theta_a ,1_{1_A})
+              are the unit and counit of an
+              %a.existingWikiWord{:href => "/nlab/show/adjunction"} adjunction
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi a
+                      %mo ⊣
+                      %msub
+                        %mi η
+                        %mi A
+                    %annotation{:encoding => "application/x-tex"} a \dashv \eta_A
+          .proof
+            %h6#proof Proof
+            %p
+              %strong> (Adapted from Kelly–Lack)
+              \. The multiplication
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi μ
+                      %mi A
+                    %mo{:lspace => "verythinmathspace"} :
+                    %msup
+                      %mi T
+                      %mn 2
+                    %mi A
+                    %mo →
+                    %mi T
+                    %mi A
+                  %annotation{:encoding => "application/x-tex"} \mu_A \colon T^2 A \to T A
+              is a
+              = succeed "-algebra" do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi T
+                    %annotation{:encoding => "application/x-tex"} T
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi T
+                      %mi A
+                    %annotation{:encoding => "application/x-tex"} T A
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi η
+                      %mi A
+                    %mo{:lspace => "verythinmathspace"} :
+                    %mi A
+                    %mo →
+                    %mi T
+                    %mi A
+                  %annotation{:encoding => "application/x-tex"} \eta_A \colon A \to T A
+              is a morphism from the underlying object of
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi a
+                  %annotation{:encoding => "application/x-tex"} a
+              to that of
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msub
+                        %mi μ
+                        %mi A
+                    %annotation{:encoding => "application/x-tex"} \mu_A
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mover
+                        %mi η
+                        %mo{:stretchy => "false"} ¯
+                      %mi A
+                    %mo{:lspace => "verythinmathspace"} :
+                    %msub
+                      %mi μ
+                      %mi A
+                    %mo ∘
+                    %mi T
+                    %msub
+                      %mi η
+                      %mi A
+                    %mo =
+                    %msub
+                      %mn 1
+                      %mrow
+                        %mi T
+                        %mi A
+                    %mo ⇒
+                    %msub
+                      %mi η
+                      %mi A
+                    %mo ∘
+                    %mi a
+                  %annotation{:encoding => "application/x-tex"} \bar\eta_A \colon \mu_A \circ T \eta_A = 1_{T A} \Rightarrow \eta_A \circ a
+              making
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi η
+                      %mi A
+                  %annotation{:encoding => "application/x-tex"} \eta_A
+              into a lax
+              = succeed "-morphism." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi T
+                    %annotation{:encoding => "application/x-tex"} T
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msub
+                        %mi θ
+                        %mi a
+                      %mo =
+                      %msub
+                        %mover
+                          %mi η
+                          %mo{:stretchy => "false"} ¯
+                        %mi A
+                    %annotation{:encoding => "application/x-tex"} \theta_a = \bar\eta_A
+              %a.existingWikiWord{:href => "/nlab/show/adjunction"} triangle equalities
+              then require that:
+            %ol
+              %li
+                %p
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi a
+                        %msub
+                          %mover
+                            %mi η
+                            %mo{:stretchy => "false"} ¯
+                          %mi A
+                        %mo{:lspace => "verythinmathspace"} :
+                        %mi a
+                        %mo ⇒
+                        %mi a
+                        %mo ∘
+                        %msub
+                          %mi η
+                          %mi A
+                        %mo ∘
+                        %mi a
+                        %mo =
+                        %mi a
+                      %annotation{:encoding => "application/x-tex"} a \bar\eta_A \colon a \Rightarrow a \circ \eta_A \circ a = a
+                  is equal to
+                  = succeed "." do
+                    %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                      %semantics
+                        %mrow
+                          %msub
+                            %mn 1
+                            %mi a
+                        %annotation{:encoding => "application/x-tex"} 1_a
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi a
+                        %mo ∘
+                        %msub
+                          %mover
+                            %mi η
+                            %mo{:stretchy => "false"} ¯
+                          %mi A
+                      %annotation{:encoding => "application/x-tex"} a \circ \bar\eta_A
+                  makes
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi a
+                        %mo ∘
+                        %msub
+                          %mi η
+                          %mi A
+                      %annotation{:encoding => "application/x-tex"} a \circ \eta_A
+                  a lax
+                  = succeed "-morphism" do
+                    %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                      %semantics
+                        %mrow
+                          %mi T
+                        %annotation{:encoding => "application/x-tex"} T
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi a
+                      %annotation{:encoding => "application/x-tex"} a
+                  to
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi a
+                      %annotation{:encoding => "application/x-tex"} a
+                  (paste
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %msub
+                          %mover
+                            %mi η
+                            %mo{:stretchy => "false"} ¯
+                          %mi A
+                      %annotation{:encoding => "application/x-tex"} \bar\eta_A
+                  with the identity square
+                  = succeed ")." do
+                    %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                      %semantics
+                        %mrow
+                          %mi a
+                          %mo ∘
+                          %msub
+                            %mi μ
+                            %mi A
+                          %mo =
+                          %mi a
+                          %mo ∘
+                          %mi T
+                          %mi a
+                        %annotation{:encoding => "application/x-tex"} a \circ \mu_A = a \circ T a
+                  = succeed "," do
+                    %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                      %semantics
+                        %mrow
+                          %mi a
+                          %mo ∘
+                          %msub
+                            %mi η
+                            %mi A
+                          %mo =
+                          %msub
+                            %mn 1
+                            %mi A
+                        %annotation{:encoding => "application/x-tex"} a \circ \eta_A = 1_A
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %msub
+                          %mn 1
+                          %mi a
+                      %annotation{:encoding => "application/x-tex"} 1_a
+                  also makes this into a lax
+                  = succeed "-morphism," do
+                    %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                      %semantics
+                        %mrow
+                          %mi T
+                        %annotation{:encoding => "application/x-tex"} T
+                  = succeed "." do
+                    %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                      %semantics
+                        %mrow
+                          %mi a
+                          %msub
+                            %mover
+                              %mi η
+                              %mo{:stretchy => "false"} ¯
+                            %mi A
+                          %mo =
+                          %msub
+                            %mn 1
+                            %mi a
+                        %annotation{:encoding => "application/x-tex"} a \bar\eta_A = 1_a
+              %li
+                %p
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %msub
+                          %mover
+                            %mi η
+                            %mo{:stretchy => "false"} ¯
+                          %mi A
+                        %msub
+                          %mi η
+                          %mi A
+                        %mo{:lspace => "verythinmathspace"} :
+                        %msub
+                          %mi η
+                          %mi A
+                        %mo ⇒
+                        %msub
+                          %mi η
+                          %mi A
+                        %mo ∘
+                        %mi a
+                        %mo ∘
+                        %msub
+                          %mi η
+                          %mi A
+                        %mo =
+                        %msub
+                          %mi η
+                          %mi A
+                      %annotation{:encoding => "application/x-tex"} \bar\eta_A \eta_A \colon \eta_A \Rightarrow \eta_A \circ a \circ \eta_A = \eta_A
+                  is equal to
+                  = succeed "." do
+                    %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                      %semantics
+                        %mrow
+                          %msub
+                            %mn 1
+                            %mrow
+                              %msub
+                                %mi η
+                                %mi A
+                        %annotation{:encoding => "application/x-tex"} 1_{\eta_A}
+                  = succeed "-morphism" do
+                    %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                      %semantics
+                        %mrow
+                          %mi T
+                        %annotation{:encoding => "application/x-tex"} T
+                  = succeed "." do
+                    %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                      %semantics
+                        %mrow
+                          %msub
+                            %mover
+                              %mi η
+                              %mo{:stretchy => "false"} ¯
+                            %mi A
+                        %annotation{:encoding => "application/x-tex"} \bar\eta_A
+            %p
+              Conversely, suppose
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msub
+                        %mi θ
+                        %mi a
+                    %annotation{:encoding => "application/x-tex"} \theta_a
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi a
+                    %mo ,
+                    %mi b
+                  %annotation{:encoding => "application/x-tex"} a,b
+              on
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi A
+                    %mo ,
+                    %mi B
+                  %annotation{:encoding => "application/x-tex"} A,B
+              and
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi f
+                    %mo{:lspace => "verythinmathspace"} :
+                    %mi A
+                    %mo →
+                    %mi B
+                  %annotation{:encoding => "application/x-tex"} f \colon A \to B
+              are given. Take
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mover
+                      %mi f
+                      %mo{:stretchy => "false"} ¯
+                  %annotation{:encoding => "application/x-tex"} \bar f
+              to be the
+              %a.existingWikiWord{:href => "/nlab/show/mate"} mate
+              of
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mn 1
+                      %mi f
+                    %mo{:lspace => "verythinmathspace"} :
+                    %mi b
+                    %mo ∘
+                    %mi T
+                    %mi f
+                    %mo ∘
+                    %mi η
+                    %mi A
+                    %mo =
+                    %mi f
+                    %mo ⇒
+                    %mi f
+                  %annotation{:encoding => "application/x-tex"} 1_f \colon b \circ T f \circ \eta A = f \Rightarrow f
+              with respect to the adjunctions
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi a
+                    %mo ⊣
+                    %msub
+                      %mi η
+                      %mi A
+                  %annotation{:encoding => "application/x-tex"} a \dashv \eta_A
+              and
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mn 1
+                      %mo ⊣
+                      %mn 1
+                    %annotation{:encoding => "application/x-tex"} 1 \dashv 1
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msub
+                        %mi θ
+                        %mi a
+                    %annotation{:encoding => "application/x-tex"} \theta_a
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mover
+                        %mi f
+                        %mo{:stretchy => "false"} ¯
+                      %mo =
+                      %mi b
+                      %mo ∘
+                      %mi T
+                      %mi f
+                      %mo ∘
+                      %msub
+                        %mi θ
+                        %mi a
+                    %annotation{:encoding => "application/x-tex"} \bar f = b \circ T f \circ \theta_a
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mover
+                      %mi f
+                      %mo{:stretchy => "false"} ¯
+                  %annotation{:encoding => "application/x-tex"} \bar f
+              in turn is given by
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mover
+                        %mi f
+                        %mo{:stretchy => "false"} ¯
+                      %mo ∘
+                      %msub
+                        %mi η
+                        %mi A
+                    %annotation{:encoding => "application/x-tex"} \bar f \circ \eta_A
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msub
+                        %mn 1
+                        %mi f
+                    %annotation{:encoding => "application/x-tex"} 1_f
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mover
+                      %mi f
+                      %mo{:stretchy => "false"} ¯
+                  %annotation{:encoding => "application/x-tex"} \bar f
+              satisfies the unit condition.
+            %p
+              Consider the diagrams expressing the multiplication condition: because
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi a
+                    %mo ∘
+                    %msub
+                      %mi μ
+                      %mi A
+                    %mo =
+                    %mi a
+                    %mo ∘
+                    %mi T
+                    %mi a
+                  %annotation{:encoding => "application/x-tex"} a \circ \mu_A = a \circ T a
+              (and the same for
+              = succeed ")," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi b
+                    %annotation{:encoding => "application/x-tex"} b
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi α
+                      %mo ,
+                      %mi β
+                      %mo{:lspace => "verythinmathspace"} :
+                      %mi b
+                      %mo ∘
+                      %mi T
+                      %mi b
+                      %mo ∘
+                      %msup
+                        %mi T
+                        %mn 2
+                      %mi f
+                      %mo ⇒
+                      %mi f
+                      %mo ∘
+                      %mi a
+                      %mo ∘
+                      %mi T
+                      %mi a
+                    %annotation{:encoding => "application/x-tex"} \alpha, \beta \colon b \circ T b \circ T^2 f \Rightarrow f \circ a \circ T a
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo{:stretchy => "false"} (
+                    %mi T
+                    %msub
+                      %mi θ
+                      %mi a
+                    %mo ,
+                    %mn 1
+                    %mo{:stretchy => "false"} )
+                    %mo{:lspace => "verythinmathspace"} :
+                    %mi T
+                    %mi a
+                    %mo ⊣
+                    %mi T
+                    %msub
+                      %mi η
+                      %mi A
+                  %annotation{:encoding => "application/x-tex"} (T\theta_a, 1) \colon T a \dashv T\eta_A
+              are given by pasting with
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi T
+                      %msub
+                        %mi η
+                        %mi A
+                    %annotation{:encoding => "application/x-tex"} T \eta_A
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mover
+                      %mi f
+                      %mo{:stretchy => "false"} ¯
+                  %annotation{:encoding => "application/x-tex"} \bar f
+              pasted with
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi T
+                      %mover
+                        %mi f
+                        %mo{:stretchy => "false"} ¯
+                      %mo ∘
+                      %mi T
+                      %msub
+                        %mi η
+                        %mi A
+                      %mo =
+                      %mi T
+                      %mo{:stretchy => "false"} (
+                      %mi f
+                      %mo ∘
+                      %msub
+                        %mi η
+                        %mi A
+                      %mo{:stretchy => "false"} )
+                      %mo =
+                      %mi T
+                      %msub
+                        %mn 1
+                        %mi f
+                      %mo =
+                      %msub
+                        %mn 1
+                        %mrow
+                          %mi T
+                          %mi f
+                    %annotation{:encoding => "application/x-tex"} T \bar f \circ T \eta_A = T(f \circ \eta_A) = T 1_f = 1_{T f}
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi T
+                    %msub
+                      %mi η
+                      %mi A
+                  %annotation{:encoding => "application/x-tex"} T \eta_A
+              with the identity
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi μ
+                      %mi B
+                    %mo ∘
+                    %msup
+                      %mi T
+                      %mn 2
+                    %mi f
+                    %mo =
+                    %mi T
+                    %mi f
+                    %mo ∘
+                    %msub
+                      %mi μ
+                      %mi A
+                  %annotation{:encoding => "application/x-tex"} \mu_B \circ T^2 f = T f \circ \mu_A
+              (and then pasting with
+              = succeed ")," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mover
+                        %mi f
+                        %mo{:stretchy => "false"} ¯
+                    %annotation{:encoding => "application/x-tex"} \bar f
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi μ
+                      %mi A
+                    %mo ∘
+                    %mi T
+                    %msub
+                      %mi η
+                      %mi A
+                    %mo =
+                    %msub
+                      %mn 1
+                      %mrow
+                        %mi T
+                        %mi A
+                  %annotation{:encoding => "application/x-tex"} \mu_A \circ T \eta_A = 1_{T A}
+              this is also equal to
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msub
+                        %mn 1
+                        %mrow
+                          %mi T
+                          %mi f
+                    %annotation{:encoding => "application/x-tex"} 1_{T f}
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mover
+                      %mi f
+                      %mo{:stretchy => "false"} ¯
+                  %annotation{:encoding => "application/x-tex"} \bar f
+              is indeed a lax
+              = succeed "-morphism." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi T
+                    %annotation{:encoding => "application/x-tex"} T
+          %p
+            Since
+            = succeed "\u2018s" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi T
+                  %annotation{:encoding => "application/x-tex"} T
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi μ
+                %annotation{:encoding => "application/x-tex"} \mu
+            makes
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi T
+                %annotation{:encoding => "application/x-tex"} T
+            itself into a (generalized)
+            = succeed "-algebra," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi T
+                  %annotation{:encoding => "application/x-tex"} T
+            %a.existingWikiWord{:href => "/nlab/show/modification"} modification
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi ℓ
+                  %mo{:lspace => "verythinmathspace"} :
+                  %msub
+                    %mn 1
+                    %mrow
+                      %msup
+                        %mi T
+                        %mn 2
+                  %mo →
+                  %mi η
+                  %mi T
+                  %mo ∘
+                  %mi μ
+                %annotation{:encoding => "application/x-tex"} \ell \colon 1_{T^2} \to \eta T \circ \mu
+            making
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo{:stretchy => "false"} (
+                    %mi ℓ
+                    %mo ,
+                    %mn 1
+                    %mo{:stretchy => "false"} )
+                    %mo{:lspace => "verythinmathspace"} :
+                    %mi μ
+                    %mo ⊣
+                    %mi η
+                    %mi T
+                  %annotation{:encoding => "application/x-tex"} (\ell,1) \colon \mu \dashv \eta T
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi a
+                    %mo{:lspace => "verythinmathspace"} :
+                    %mi T
+                    %mi A
+                    %mo →
+                    %mi A
+                  %annotation{:encoding => "application/x-tex"} a \colon T A \to A
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msub
+                    %mi θ
+                    %mi a
+                %annotation{:encoding => "application/x-tex"} \theta_a
+            is given by
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi T
+                    %mi a
+                    %mo ∘
+                    %msub
+                      %mi ℓ
+                      %mi A
+                    %mo ∘
+                    %mi T
+                    %msub
+                      %mi η
+                      %mi A
+                  %annotation{:encoding => "application/x-tex"} T a \circ \ell_A \circ T \eta_A
+          %p
+            A different but equivalent condition is that there be a modification
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi d
+                  %mo{:lspace => "verythinmathspace"} :
+                  %mi T
+                  %mi η
+                  %mo →
+                  %mi η
+                  %mi T
+                %annotation{:encoding => "application/x-tex"} d \colon T \eta \to \eta T
+            such that
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi d
+                  %mi η
+                  %mo =
+                  %mn 1
+                %annotation{:encoding => "application/x-tex"} d \eta = 1
+            and
+            = succeed ";" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi μ
+                    %mi d
+                    %mo =
+                    %mn 1
+                  %annotation{:encoding => "application/x-tex"} \mu d = 1
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi ℓ
+                %annotation{:encoding => "application/x-tex"} \ell
+            as above,
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi d
+                %annotation{:encoding => "application/x-tex"} d
+            is given by
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi ℓ
+                    %mo ∘
+                    %mi T
+                    %mi η
+                  %annotation{:encoding => "application/x-tex"} \ell \circ T \eta
+          %p
+            These various conditions can also be regarded as ways to say that the
+            %a.existingWikiWord{:href => "/nlab/show/Eilenberg-Moore+category"} Eilenberg-Moore adjunction
+            for
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi T
+                %annotation{:encoding => "application/x-tex"} T
+            is a
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/lax-idempotent+2-adjunction"} lax-idempotent 2-adjunction
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi T
+                %annotation{:encoding => "application/x-tex"} T
+            is a lax-idempotent 2-monad exactly when this 2-adjunction is lax-idempotent, and therefore also just when it is the 2-monad induced by
+            %em some
+            lax-idempotent 2-adjunction.
+          %p
+            Dually, for
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi T
+                %annotation{:encoding => "application/x-tex"} T
+            to be colax-idempotent, it is necessary and sufficient that any of the following hold.
+          %ul
+            %li
+              %p
+                For any
+                = succeed "-algebra" do
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi T
+                      %annotation{:encoding => "application/x-tex"} T
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi a
+                      %mo{:lspace => "verythinmathspace"} :
+                      %mi T
+                      %mi A
+                      %mo →
+                      %mi A
+                    %annotation{:encoding => "application/x-tex"} a \colon T A \to A
+                there is a 2-cell
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msub
+                        %mi ζ
+                        %mi a
+                      %mo{:lspace => "verythinmathspace"} :
+                      %msub
+                        %mi η
+                        %mi A
+                      %mo ∘
+                      %mi a
+                      %mo ⇒
+                      %mn 1
+                    %annotation{:encoding => "application/x-tex"} \zeta_a \colon \eta_A \circ a \Rightarrow 1
+                such that
+                = succeed "." do
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mo{:stretchy => "false"} (
+                        %mn 1
+                        %mo ,
+                        %msub
+                          %mi ζ
+                          %mi a
+                        %mo{:stretchy => "false"} )
+                        %mo{:lspace => "verythinmathspace"} :
+                        %msub
+                          %mi η
+                          %mi A
+                        %mo ⊣
+                        %mi a
+                      %annotation{:encoding => "application/x-tex"} (1,\zeta_a) \colon \eta_A \dashv a
+            %li
+              %p
+                There is a modification
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi m
+                      %mo{:lspace => "verythinmathspace"} :
+                      %mi μ
+                      %mo ∘
+                      %mi η
+                      %mi T
+                      %mo →
+                      %mn 1
+                    %annotation{:encoding => "application/x-tex"} m \colon \mu \circ \eta T \to 1
+                making
+                = succeed "." do
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mo{:stretchy => "false"} (
+                        %mn 1
+                        %mo ,
+                        %mi m
+                        %mo{:stretchy => "false"} )
+                        %mo{:lspace => "verythinmathspace"} :
+                        %mi η
+                        %mi T
+                        %mo ⊣
+                        %mi μ
+                      %annotation{:encoding => "application/x-tex"} (1,m) \colon \eta T \dashv \mu
+            %li
+              %p
+                There is a modification
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi e
+                      %mo{:lspace => "verythinmathspace"} :
+                      %mi η
+                      %mi T
+                      %mo →
+                      %mi T
+                      %mi η
+                    %annotation{:encoding => "application/x-tex"} e \colon \eta T \to T\eta
+                such that
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi e
+                      %mi η
+                      %mo =
+                      %mn 1
+                    %annotation{:encoding => "application/x-tex"} e\eta = 1
+                and
+                = succeed "." do
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi μ
+                        %mi e
+                        %mo =
+                        %mn 1
+                      %annotation{:encoding => "application/x-tex"} \mu e = 1
+          %h2#algebras Algebras
+          %p
+            Theorem
+            %a.maruku-ref{:href => "#AlgebraAdjoint"}
+            gives a necessary condition for an object
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi A
+                %annotation{:encoding => "application/x-tex"} A
+            to admit a
+            = succeed "-algebra" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi T
+                  %annotation{:encoding => "application/x-tex"} T
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msub
+                    %mi η
+                    %mi A
+                  %mo :
+                  %mi A
+                  %mo →
+                  %mi T
+                  %mi A
+                %annotation{:encoding => "application/x-tex"} \eta_A : A \to T A
+            admit a left adjoint with identity counit. In the case of pseudo algebras, this necessary condition is also sufficient.
+          #PseudoAlgebras.num_theorem
+            %h6#theorem_2 Theorem
+            %p
+              To give a pseudo
+              = succeed "-algebra" do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi T
+                    %annotation{:encoding => "application/x-tex"} T
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi A
+                  %annotation{:encoding => "application/x-tex"} A
+              is equivalently to give a left adjoint to
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi η
+                      %mi A
+                    %mo :
+                    %mi A
+                    %mo →
+                    %mi T
+                    %mi A
+                  %annotation{:encoding => "application/x-tex"} \eta_A : A\to T A
+              with invertible counit.
+          %p
+            In particular, an object admits at most one pseudo
+            = succeed "-algebra" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi T
+                  %annotation{:encoding => "application/x-tex"} T
+            = succeed "-algebra" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi T
+                  %annotation{:encoding => "application/x-tex"} T
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/property-like+structure"} property-like structure
+          %p
+            In many cases it is interesting to consider the pseudo
+            = succeed "-algebras" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi T
+                  %annotation{:encoding => "application/x-tex"} T
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi T
+                  %mi A
+                  %mo →
+                  %mi A
+                %annotation{:encoding => "application/x-tex"} T A \to A
+            has a further left adjoint, forming an
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/adjoint+triple"} adjoint triple
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/continuous+algebras"} continuous algebras
+          %h2#examples Examples
+          %p
+            As mentioned above, the standard examples of lax-idempotent 2-monads are those on
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi Cat
+                %annotation{:encoding => "application/x-tex"} Cat
+            whose algebras are categories with all colimits of a specified class. In this case, the 2-monad is a
+            %a.existingWikiWord{:href => "/nlab/show/free+cocompletion"} free cocompletion
+            operation. Dually, there are colax-idempotent 2-monads which adjoin limits of a specified class. A converse is given by (
+            %a{:href => "#PowerCattaniWinskel"}> PowerCattaniWinskel
+            ), who show that a 2-monad is a monad for free cocompletions if and only if it is lax-idempotent and the unit
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi η
+                %annotation{:encoding => "application/x-tex"} \eta
+            is dense (plus a coherence condition).
+          %p
+            Another important example of a colax-idempotent 2-monad is the monad on
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi Cat
+                  %mo{:stretchy => "false"} /
+                  %mi B
+                %annotation{:encoding => "application/x-tex"} Cat/B
+            that takes
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi p
+                  %mo{:lspace => "verythinmathspace"} :
+                  %mi E
+                  %mo →
+                  %mi B
+                %annotation{:encoding => "application/x-tex"} p \colon E \to B
+            to the projection
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi B
+                  %mo{:stretchy => "false"} /
+                  %mi p
+                  %mo →
+                  %mi B
+                %annotation{:encoding => "application/x-tex"} B/p \to B
+            out of the
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/comma+category"} comma category
+            %a.existingWikiWord{:href => "/nlab/show/Grothendieck+fibrations"} Grothendieck fibrations
+            over
+            = succeed ";" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi B
+                  %annotation{:encoding => "application/x-tex"} B
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/fibration+in+a+2-category"} fibration in a 2-category
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi p
+                  %mo ↦
+                  %mi p
+                  %mo{:stretchy => "false"} /
+                  %mi B
+                %annotation{:encoding => "application/x-tex"} p \mapsto p/B
+            is lax-idempotent, and its algebras are opfibrations.
+          %p
+            This latter is actually a special case of a general situation. If
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi T
+                %annotation{:encoding => "application/x-tex"} T
+            is a (2-)monad relative to which one can define
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/generalized+multicategories"} generalized multicategories
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mover
+                    %mi T
+                    %mo{:stretchy => "false"} ˜
+                %annotation{:encoding => "application/x-tex"} \tilde{T}
+            on the 2-category of such generalized multicategories (aka “virtual
+            = succeed "-algebras\u201D)," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi T
+                  %annotation{:encoding => "application/x-tex"} T
+            = succeed "-algebras" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mover
+                      %mi T
+                      %mo{:stretchy => "false"} ˜
+                  %annotation{:encoding => "application/x-tex"} \tilde{T}
+            = succeed "-algebras." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi T
+                  %annotation{:encoding => "application/x-tex"} T
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi T
+                %annotation{:encoding => "application/x-tex"} T
+            is the 2-monad whose algebras are strict 2-functors
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi B
+                  %mo →
+                  %mi Cat
+                %annotation{:encoding => "application/x-tex"} B\to Cat
+            and whose pseudo algebras are pseudofunctors
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi B
+                    %mo →
+                    %mi Cat
+                  %annotation{:encoding => "application/x-tex"} B\to Cat
+            = succeed "-algebra" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi T
+                  %annotation{:encoding => "application/x-tex"} T
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi B
+                  %annotation{:encoding => "application/x-tex"} B
+            = succeed "-algebra" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mover
+                      %mi T
+                      %mo{:stretchy => "false"} ˜
+                  %annotation{:encoding => "application/x-tex"} \tilde{T}
+            %a.existingWikiWord{:href => "/nlab/show/multicategories"} multicategories
+            whose pseudo algebras are
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/monoidal+categories"} monoidal categories
+          %h2#properties Properties
+          %ul
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/pseudo-distributive+laws"} pseudo-distributive laws
+                involving lax-idempotent 2-monads have an especially nice form; see
+                %a{:href => "#MarmolejoDL"} (Marmolejo)
+                and
+                = succeed "." do
+                  %a{:href => "#WalkerDL"} (Walker)
+            %li
+              %p
+                For ordinary 1-monads there exists a presentation due to Manes as “Kleisli triples” with primary data a family of unit morphisms and lifts avoiding the iteration of the endofunctor. A similar presentation exists for lax-idempotent 2-monads as shown in Marmolejo-Wood (
+                %a{:href => "#MW12"}> 2012
+                ). It is shown then in Walker
+                %a{:href => "#WalkerYS"} (2017)
+                that provided the units of this presentation are fully faithful (a reflection of the fully-faithfulness of the Yoneda embedding) (almost) all the axioms of a
+                %a.existingWikiWord{:href => "/nlab/show/Yoneda+structure"} Yoneda structure
+                are satisfied. In cases where size plays no role like e.g. the ideal completion of posets the two concepts coincide. For further details see at
+                %a.existingWikiWord{:href => "/nlab/show/Yoneda+structure"} Yoneda structure
+                or Walker
+                = succeed "." do
+                  %a{:href => "#WalkerYS"} (2017)
+          %h2#laxidempotent_2comonads Lax-idempotent 2-comonads
+          %p
+            The dualisation of the notion of lax-idempotent 2-monad is a little subtle. By definition, a
+            %strong lax-idempotent 2-comonad
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi W
+                %annotation{:encoding => "application/x-tex"} W
+            should be one for which every 1-cell between
+            = succeed "-coalgebras" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi W
+                  %annotation{:encoding => "application/x-tex"} W
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/lax+morphism"} lax morphism
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mrow
+                    %mtable
+                      %mtr
+                        %mtd
+                          %mi C
+                        %mtd
+                          %mover
+                            %mo →
+                            %mi f
+                        %mtd
+                          %mi D
+                      %mtr
+                        %mtd
+                          %msup
+                            %mo
+                            %mi c
+                          %mo{:stretchy => "false"} ↓
+                        %mtd
+                          %mo ⇙
+                        %mtd
+                          %msup
+                            %mo{:stretchy => "false"} ↓
+                            %mi d
+                      %mtr
+                        %mtd
+                          %mi W
+                          %mi C
+                        %mtd
+                          %munder
+                            %mo →
+                            %mrow
+                              %mi W
+                              %mi f
+                        %mtd
+                          %mi W
+                          %mi D
+                %annotation{:encoding => "application/x-tex"}
+                  \\array{ C &amp; \overset{f}{\to} &amp; D\\
+                  ^{c} \downarrow &amp; \swArrow &amp; \downarrow^{d}\\
+                  W C &amp; \underset{W f}{\to} &amp; W D}
+          %p The following are then equivalent.
+          %ol
+            %li
+              The 2-comonad
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo{:stretchy => "false"} (
+                    %mi W
+                    %mo ,
+                    %mi δ
+                    %mo ,
+                    %mi ε
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} (W, \delta, \varepsilon)
+              is lax-idempotent.
+            %li
+              There is an adjoint triple
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi ε
+                      %mi W
+                      %mo ⊣
+                      %mi δ
+                      %mo ⊣
+                      %mi W
+                      %mi ε
+                    %annotation{:encoding => "application/x-tex"} \varepsilon W \dashv \delta \dashv W\varepsilon
+            %li
+              An object
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi A
+                  %annotation{:encoding => "application/x-tex"} A
+              is a
+              = succeed "-coalgebra" do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi D
+                    %annotation{:encoding => "application/x-tex"} D
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi ε
+                      %mi A
+                    %mo :
+                    %mi A
+                    %mo →
+                    %mi DA
+                  %annotation{:encoding => "application/x-tex"} \varepsilon_A : A \to DA
+              admits a right adjoint with invertible unit.
+          %p Consequently:
+          %ul
+            %li
+              a lax-idempotent 2-monad on
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msup
+                      %mi K
+                      %mi op
+                  %annotation{:encoding => "application/x-tex"} K^{op}
+              is a lax-idempotent 2-comonad on
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi K
+                  %annotation{:encoding => "application/x-tex"} K
+            %li
+              a lax-idempotent 2-monad on
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msup
+                      %mi K
+                      %mi co
+                  %annotation{:encoding => "application/x-tex"} K^{co}
+              is a colax-idempotent 2-monad on
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi K
+                  %annotation{:encoding => "application/x-tex"} K
+            %li
+              a lax-idempotent 2-monad on
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msup
+                      %mi K
+                      %mi coop
+                  %annotation{:encoding => "application/x-tex"} K^{coop}
+              is a colax-idempotent 2-comonad on
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi K
+                  %annotation{:encoding => "application/x-tex"} K
+          %p However, be warned that the conventions for what “colax-idempotent 2-comonad” means in the literature are inconsistent.
+          %h2#related_concepts Related concepts
+          %ul
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/idempotent+monad"} idempotent monad
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/2-monad"} 2-monad
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/stuff%2C+structure%2C+property"} stuff, structure, property
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/property-like+structure"} property-like structure
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/continuous+algebra"} continuous algebra
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/free+cocompletion"} free cocompletion
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/lax-idempotent+2-adjunction"} lax-idempotent 2-adjunction
+          %h2#references References
+          %p Classical references are
+          %ul
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Max+Kelly"}> Max Kelly
+                ,
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/Steve+Lack"} Steve Lack
+                = succeed "," do
+                  %em On property-like structures
+                = succeed ")" do
+                  %a{:href => "http://www.tac.mta.ca/tac/volumes/1997/n9/3-09abs.html"} abstract
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Anders+Kock"}> Anders Kock
+                ,
+                %em Monads for which structures are adjoint to units
+                , Aarhus Preprint 1972/73 No. 35. (
+                %a{:href => "http://home.imf.au.dk/kock/msau1.PDF"}> pdf
+                )
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Anders+Kock"}> Anders Kock
+                ,
+                = succeed "," do
+                  %em Monads for which structures are adjoint to units
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Ross+Street"}> Ross Street
+                ,
+                = succeed "," do
+                  %em Fibrations and Yoneda’s lemma in a 2-category
+                = succeed "&rbrack;" do
+                  %a{:href => "https://doi.org/10.1007/BFb0063102"} doi:10.1007/BFb0063102
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Ross+Street"}> Ross Street
+                ,
+                %em Fibrations in Bicategories
+                , Cah. Top. Géom. Diff.
+                %strong XXI
+                no.2 (1980). (
+                %a{:href => "http://www.numdam.org/item?id=CTGDC_1980__21_2_111_0"}> numdam
+                )
+            %li
+              %p
+                Volker Zöberlein,
+                %em Doctrines on 2-categories
+                , Math. Zeitschrift
+                %strong 148
+                (1976) pp.267-279. (
+                %a{:href => "https://gdz.sub.uni-goettingen.de/id/PPN266833020_0148?tify={%22pages%22:[273],%22view%22:%22info%22}"}> gdz
+                )
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Francisco+Marmolejo"}> Francisco Marmolejo
+                ,
+                = succeed "," do
+                  %em Doctrines whose structure forms a fully faithful adjoint string
+                = succeed ")" do
+                  %a{:href => "http://www.tac.mta.ca/tac/volumes/1997/n2/3-02abs.html"} TAC
+          %p Textbook accounts:
+          %ul
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Peter+Johnstone"}> Peter Johnstone
+                ,
+                %em Sketches of an elephant vol.1
+                , Oxford UP 2004. (B1.1.11, pp.250-54)
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Marta+Bunge"}> Marta Bunge
+                ,
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/Jonathon+Funk"} Jonathon Funk
+                %em Singular coverings of Toposes
+                , Springer Heidelberg 2006. (pp.79ff)
+          %p See also:
+          %ul
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Marta+Bunge"}> Marta Bunge
+                ,
+                %em Tightly Bounded Completions
+                , TAC
+                %strong 28
+                no.8 (2013) pp.213-240. (
+                %a{:href => "http://tac.mta.ca/tac/volumes/28/8/28-8abs.html"}> abstract
+                )
+            %li#BF99
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Marta+Bunge"}> Marta Bunge
+                ,
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/Jonathon+Funk"} Jonathon Funk
+                = succeed "," do
+                  %em On a bicomma object condition for KZ-doctrines
+                %strong 143
+                (1999) 69-105 &amp;lbrack;
+                %a{:href => "https://doi.org/10.1016/S0022-4049(98)00108-X"}> doi:10.1016/S0022-4049(98)00108-X
+                \&amp;rbrack;
+            %li
+              %p
+                A. J. Power, G. L. Cattani, G. Winskel,
+                = succeed "," do
+                  %em A representation result for free cocompletions
+                %a{:href => "        http://dx.doi.org/10.1016/S0022-4049(99)00063-8"} doi
+          %p Their distributive laws come into focus in
+          %ul#WalkerDL
+            %li#MarmolejoDL
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Francisco+Marmolejo"}> Francisco Marmolejo
+                ,
+                = succeed "," do
+                  %em Distributive laws for pseudomonads
+                %strong 5
+                5 (1999) 81-147 &amp;lbrack;
+                %a{:href => "http://tac.mta.ca/tac/volumes/1999/n5/5-05abs.html"}> tac
+                \&amp;rbrack;
+            %li#MW12
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Francisco+Marmolejo"}> Francisco Marmolejo
+                ,
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/Richard+J.+Wood"} Richard J. Wood
+                %em Kan extensions and lax idempotent pseudomonads
+                , TAC
+                %strong 26
+                no.1 (2012) pp.1-19. (
+                %a{:href => "http://www.tac.mta.ca/tac/volumes/26/1/26-01abs.html"}> abstract
+                )
+            %li
+              %p
+                Charles Walker,
+                = succeed "," do
+                  %em Distributive Laws via Admissibility
+                %a{:href => "https://arxiv.org/abs/1706.09575"} arXiv
+          %p
+            The relation to
+            = succeed ":" do
+              %a.existingWikiWord{:href => "/nlab/show/Yoneda+structures"} Yoneda structures
+          %ul#WalkerYS
+            %li
+              Charles Walker,
+              = succeed "," do
+                %em Yoneda Structures and KZ Doctrines
+              %a{:href => "https://arxiv.org/abs/1703.08693"} arxiv
+          %p The logical-syntactical side:
+          %ul
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/Jiri+Adamek"}> Jiri Adamek
+              , Lurdes Sousa,
+              = succeed "," do
+                %em KZ-monadic categories and their logic
+              %a{:href => "http://tac.mta.ca/tac/volumes/32/10/32-10abs.html"} tac
+          %p
+            Discussion of the
+            = succeed ":" do
+              %a.existingWikiWord{:href => "/nlab/show/adjoint+functor+theorem"} adjoint functor theorem
+          %ul
+            %li#ALL23
+              %a.existingWikiWord{:href => "/nlab/show/Nathanael+Arkor"}> Nathanael Arkor
+              ,
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/Ivan+Di+Liberti"} Ivan Di Liberti
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/Fosco+Loregian"} Fosco Loregian
+              = succeed "," do
+                %em Adjoint functor theorems for lax-idempotent pseudomonads
+              = succeed "&rbrack;" do
+                %a{:href => "https://arxiv.org/abs/2306.10389"} arXiv:2306.10389
+          %p
+            On connections to
+            %a.existingWikiWord{:href => "/nlab/show/generalized+multicategories"} generalized multicategories
+            and
+            = succeed ":" do
+              %a.existingWikiWord{:href => "/nlab/show/representable+multicategory"} representability
+          %ul
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/Claudio+Hermida"}> Claudio Hermida
+              ,
+              = succeed "," do
+                %em From coherent structures to universal properties
+        .revisedby
+          %p
+            Last revised on July  9, 2025 at 13:23:33.
+            See the
+            %a{:href => "/nlab/history/lax-idempotent+2-monad", :style => "color: #005c19"} history
+            of this page for a list of all contributions to it.
+        .navigation.navfoot
+          %a#edit.navlink{:accesskey => "E", :href => "/nlab/edit/lax-idempotent+2-monad", :rel => "nofollow"} Edit
+          %a{:href => "https://nforum.ncatlab.org/discussion/11619/#Item_8"} Discuss
+          %span.backintime
+            %a#to_previous_revision.navlinkbackintime{:accesskey => "B", :href => "/nlab/revision/lax-idempotent+2-monad/37", :rel => "nofollow"} Previous revision
+          %a#see_changes.navlink{:accesskey => "C", :href => "/nlab/show/diff/lax-idempotent+2-monad", :rel => "nofollow"} Changes from previous revision
+          %a#history.navlink{:accesskey => "S", :href => "/nlab/history/lax-idempotent+2-monad", :rel => "nofollow"} History (37 revisions)
+          %a{:href => "/nlab/show/lax-idempotent+2-monad/cite", :style => "color: black"} Cite
+          %a#view_print{:accesskey => "p", :href => "/nlab/print/lax-idempotent+2-monad", :rel => "nofollow"} Print
+          %a#view_source{:href => "/nlab/source/lax-idempotent+2-monad", :rel => "nofollow"} Source
+      / Content
+    / Container

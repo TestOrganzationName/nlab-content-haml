@@ -1,0 +1,3241 @@
+!!! XML
+!!! 1.1
+%html{:xmlns => "http://www.w3.org/1999/xhtml"}
+  %head
+    %title
+      Yoneda lemma in nLab
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:content => "index,follow", :name => "robots"}/
+    %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/
+    %link{:href => "/stylesheets/instiki.css?1676280126", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/stylesheets/mathematics.css?1660229990", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/stylesheets/syntax.css?1660229990", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/stylesheets/nlab.css?1676280126", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css", :rel => "stylesheet", :type => "text/css"}/
+    :css
+      h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+        color: #226622;
+      }
+      a:visited.existingWikiWord {
+        color: #164416;
+      }
+    :css
+      <!--/*--><![CDATA[/*><!--*/
+          .toc ul {margin: 0; padding: 0;}
+      .toc ul ul {margin: 0; padding: 0 0 0 10px;}
+      .toc li > p {margin: 0}
+      .toc ul li {list-style-type: none; position: relative;}
+      .toc div {border-top:1px dotted #ccc;}
+      .rightHandSide h2 {font-size: 1.5em;color:#008B26}
+      table.plaintable {
+          border-collapse:collapse;
+          margin-left:30px;
+          border:0;
+      }
+      .plaintable td {border:1px solid #000; padding: 3px;}
+      .plaintable th {padding: 3px;}
+      .plaintable caption {
+          font-weight: bold;
+          font-size:1.1em;
+          text-align:center;
+          margin-left:30px;
+      }
+          
+         
+      /* Query boxes for questioning and answering mechanism */
+      div.query{
+      background: #f6fff3;
+      border: solid #ce9;
+      border-width: 2px 1px;
+      padding: 0 1em;
+      margin: 0 1em;
+      max-height: 20em;
+      overflow: auto;
+      }
+      
+      /* Standout boxes for putting important text */
+      div.standout{
+      background: #fff1f1;
+      border: solid black;
+      border-width: 2px 1px;
+      padding: 0 1em;
+      margin: 0 1em;
+      overflow: auto;
+      }
+      
+      /* Icon for links to n-category arXiv documents 
+       (commented out for now i.e. disabled)
+      a[href*="http://arxiv.org/"] {
+        background-image: url(../files/arXiv_icon.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 22px;
+        } */
+          
+      /* Icon for links to n-category cafe posts (disabled) 
+      a[href*="http://golem.ph.utexas.edu/category"] {
+        background-image: url(../files/n-cafe_5.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 25px;
+        } */
+      
+      /* Icon for links to pdf files (disabled)
+      a[href$=".pdf"] {
+        background-image: url(../files/pdficon_small.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 25px;
+        } */
+      
+      /* Icon for links to pages, etc. -inside- pdf files (disabled)
+      a[href*=".pdf#"] {
+        background-image: url(../files/pdf_entry.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 25px;
+        } */
+      
+      a.existingWikiWord {
+      color: #226622;
+      }
+      
+      a.existingWikiWord:visited {
+      color: #226622;
+      }
+      
+      
+      a.existingWikiWord[title] {
+      border: 0px;
+      color: #aa0505;
+      text-decoration: none;
+      }
+          
+      a.existingWikiWord[title]:visited {
+      border: 0px;
+      color: #551111;
+      text-decoration: none;
+      }
+      
+      a[href^="http://"] {
+      border: 0px;
+      color: #003399;
+      }
+      
+      a[href^="http://"]:visited {
+      border: 0px;
+      color: #330066;
+      }
+      
+      a[href^="https://"] {
+      border: 0px;
+      color: #003399;
+      }
+      
+      a[href^="https://"]:visited {
+      border: 0px;
+      color: #330066;
+      }
+      
+      div.dropDown .hide {
+      display: none;
+      }
+      
+      div.dropDown:hover .hide {
+      display:block;
+      }
+      
+      div.clickDown .hide {
+      display: none;
+      }
+      
+      div.clickDown:focus {
+      outline:none;
+      }
+      
+      div.clickDown:focus .hide, div.clickDown:hover .hide {
+      display: block;
+      }
+      
+      div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+      display:block;
+      }
+      
+      div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+      display:none;
+      }
+      
+      div.clickDown .clickToReveal:after {
+      content: "A(Hover to reveal, click to "hold")";
+      font-size: 60%;
+      }
+      
+      div.clickDown .clickToHide:after {
+      content: "A(Click to hide)";
+      font-size: 60%;
+      }
+      div.clickDown .clickToHide, div.clickDown .clickToReveal {
+      white-space: pre-wrap;
+      }
+      
+      .un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+      margin-left: 1em;
+      }
+      
+      span.theorem_label {
+      margin-left: -1em;
+      }
+      .proof span.theorem_label {
+      margin-left: 0em;
+      }
+      :target {
+          background-color: #BBBBBB;
+          border-radius: 5pt;
+      }
+      
+        /*]]>*/-->
+    %script{:src => "/javascripts/prototype.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/effects.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/dragdrop.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/controls.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/application.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/page_helper.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/thm_numbering.js?1660229990", :type => "text/javascript"}
+    %script{:type => "text/x-mathjax-config"}
+      :cdata
+        <!--//--><![CDATA[//><!--
+        MathJax.Ajax.config.path["Contrib"] = "/MathJax";
+        MathJax.Hub.Config({
+        MathML: { useMathMLspacing: true },
+        "HTML-CSS": { scale: 90,
+        extensions: ["handle-floats.js"]
+        }
+        });
+        MathJax.Hub.Queue( function () {
+        var fos = document.getElementsByTagName('foreignObject');
+        for (var i = 0; i < fos.length; i++) {
+        MathJax.Hub.Typeset(fos[i]);
+        }
+        });
+        \//--><!]]>
+    :javascript
+      <!--//--><![CDATA[//><!--
+      window.addEventListener("DOMContentLoaded", function () {
+        var div = document.createElement('div');
+        var math = document.createElementNS('http://www.w3.org/1998/Math/MathML', 'math');
+        document.body.appendChild(div);
+        div.appendChild(math);
+      // Test for MathML support comparable to WebKit version https://trac.webkit.org/changeset/203640 or higher.
+        div.setAttribute('style', 'font-style: italic');
+        var mathml_unsupported = !(window.getComputedStyle(div.firstChild).getPropertyValue('font-style') === 'normal');
+        div.parentNode.removeChild(div);
+        if (mathml_unsupported) {
+          // MathML does not seem to be supported...
+          var s = document.createElement('script');
+          s.src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=MML_HTMLorMML-full";
+          document.querySelector('head').appendChild(s);
+        } else {
+          document.head.insertAdjacentHTML("beforeend", '<style>svg[viewBox] {max-width: 100%}</style>');
+        }
+      });
+      //--><!]]>
+    %link{:href => "https://ncatlab.org/nlab/atom_with_headlines", :rel => "alternate", :title => "Atom with headlines", :type => "application/atom+xml"}/
+    %link{:href => "https://ncatlab.org/nlab/atom_with_content", :rel => "alternate", :title => "Atom with full content", :type => "application/atom+xml"}/
+    :javascript
+      document.observe("dom:loaded", function() {
+        generateThmNumbers();
+      });
+  %body
+    #Container
+      #Content
+        %h1#pageName
+          %span{:style => "float: left; margin: 0.5em 0.25em -0.25em 0"}
+            %svg{:height => "1.8em", :viewbox => "0 0 190 181", :width => "1.872em", :xmlns => "http://www.w3.org/2000/svg"}
+              %path{:d => "M72.8 145c-1.6 17.3-15.7 10-23.6 20.2-5.6 7.3 4.8 15 11.4 15 11.5-.2 19-13.4 26.4-20.3 3.3-3 8.2-4 11.2-7.2a14 14 0 0 0 2.9-11.1c-1.4-9.6-12.4-18.6-16.9-27.2-5-9.6-10.7-27.4-24.1-27.7-17.4-.3-.4 26 4.7 30.7 2.4 2.3 5.4 4.1 7.3 6.9 1.6 2.3 2.1 5.8-1 7.2-5.9 2.6-12.4-6.3-15.5-10-8.8-10.6-15.5-23-26.2-31.8-5.2-4.3-11.8-8-18-3.7-7.3 4.9-4.2 12.9.2 18.5a81 81 0 0 0 30.7 23c3.3 1.5 12.8 5.6 10 10.7-2.5 5.2-11.7 3-15.6 1.1-8.4-3.8-24.3-21.3-34.4-13.7-3.5 2.6-2.3 7.6-1.2 11.1 2.8 9 12.2 17.2 20.9 20.5 17.3 6.7 34.3-8 50.8-12.1z", :fill => "#226622"}
+              %path{:d => "M145.9 121.3c-.2-7.5 0-19.6-4.5-26-5.4-7.5-12.9-1-14.1 5.8-1.4 7.8 2.7 14.1 4.8 21.3 3.4 12 5.8 29-.8 40.1-3.6-6.7-5.2-13-7-20.4-2.1-8.2-12.8-13.2-15.1-1.9-2 9.7 9 21.2 12 30.1 1.2 4 2 8.8 6.4 10.3 6.9 2.3 13.3-4.7 17.7-8.8 12.2-11.5 36.6-20.7 43.4-36.4 6.7-15.7-13.7-14-21.3-7.2-9.1 8-11.9 20.5-23.6 25.1 7.5-23.7 31.8-37.6 38.4-61.4 2-7.3-.8-29.6-13-19.8-14.5 11.6-6.6 37.6-23.3 49.2z", :fill => "#a41e32"}
+              %path{:d => "M86.3 47.5c0-13-10.2-27.6-5.8-40.4 2.8-8.4 14.1-10.1 17-1 3.8 11.6-.3 26.3-1.8 38 11.7-.7 10.5-16 14.8-24.3 2.1-4.2 5.7-9.1 11-6.7 6 2.7 7.4 9.2 6.6 15.1-2.2 14-12.2 18.8-22.4 27-3.4 2.7-8 6.6-5.9 11.6 2 4.4 7 4.5 10.7 2.8 7.4-3.3 13.4-16.5 21.7-16 14.6.7 12 21.9.9 26.2-5 1.9-10.2 2.3-15.2 3.9-5.8 1.8-9.4 8.7-15.7 8.9-6.1.1-9-6.9-14.3-9-14.4-6-33.3-2-44.7-14.7-3.7-4.2-9.6-12-4.9-17.4 9.3-10.7 28 7.2 35.7 12 2 1.1 11 6.9 11.4 1.1.4-5.2-10-8.2-13.5-10-11.1-5.2-30-15.3-35-27.3-2.5-6 2.8-13.8 9.4-13.6 6.9.2 13.4 7 17.5 12C70.9 34 75 43.8 86.3 47.4z", :fill => "#193c78"}
+          %span.webName nLab
+          Yoneda lemma
+        .navigation
+          %span.skipNav
+            %a{:href => "#navEnd"} Skip the Navigation Links
+            |
+          %span{:style => "display:inline-block; width: 0.3em;"}
+          %a{:accesskey => "H", :href => "/nlab/show/HomePage", :title => "Home page"} Home Page
+          |
+          %a{:accesskey => "A", :href => "/nlab/all_pages", :title => "List of all pages"} All Pages
+          |
+          %a{:accesskey => "U", :href => "/nlab/latest_revisions", :title => "Latest edits and page creations"} Latest Revisions
+          |
+          %a{:href => "https://nforum.ncatlab.org/discussion/1298/#Item_107", :style => "color: black", :title => "Discuss this page in its dedicated thread on the nForum"} Discuss this page
+          |
+          %form#navigationSearchForm{"accept-charset" => "utf-8", :action => "/nlab/search", :method => "get"}
+            %fieldset.search
+              %input#searchField{:name => "query", :onblur => "this.value == '' ? this.value = 'Search' : true", :onfocus => "this.value == 'Search' ? this.value = '' : true", :style => "display:inline-block; float: left;", :type => "text", :value => "Search"}/
+          %span#navEnd
+        #revision
+          %meta{:content => "application/xhtml+xml;charset=utf-8", "http-equiv" => "Content-type"}/
+          %title Contents
+          .rightHandSide
+            .toc.clickDown{:tabindex => "0"}
+              %h3#context Context
+              %h4#category_theory Category theory
+              .hide
+                %div
+                  %p
+                    %strong
+                      %a.existingWikiWord{:href => "/nlab/show/category+theory"} category theory
+                  %h2#sidebar_concepts Concepts
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/category"} category
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/functor"} functor
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/natural+transformation"} natural transformation
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Cat"} Cat
+                  %h2#sidebar_universal_constructions Universal constructions
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/universal+construction"} universal construction
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/representable+functor"} representable functor
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/adjoint+functor"} adjoint functor
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/limit"}> limit
+                            \/
+                            %a.existingWikiWord{:href => "/nlab/show/colimit"} colimit
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/weighted+limit"} weighted limit
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/end"}> end
+                            \/
+                            %a.existingWikiWord{:href => "/nlab/show/coend"} coend
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/Kan+extension"} Kan extension
+                  %h2#sidebar_theorems Theorems
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Yoneda+lemma"} Yoneda lemma
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Isbell+duality"} Isbell duality
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Grothendieck+construction"} Grothendieck construction
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/adjoint+functor+theorem"} adjoint functor theorem
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/monadicity+theorem"} monadicity theorem
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/adjoint+lifting+theorem"} adjoint lifting theorem
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Tannaka+duality"} Tannaka duality
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Gabriel-Ulmer+duality"} Gabriel-Ulmer duality
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/small+object+argument"} small object argument
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Freyd-Mitchell+embedding+theorem"} Freyd-Mitchell embedding theorem
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/relation+between+type+theory+and+category+theory"} relation between type theory and category theory
+                  %h2#sidebar_extensions Extensions
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/sheaf+and+topos+theory"} sheaf and topos theory
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/enriched+category+theory"} enriched category theory
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/higher+category+theory"} higher category theory
+                  %h2#sidebar_applications Applications
+                  %ul
+                    %li
+                      %a.existingWikiWord{:href => "/nlab/show/applications+of+%28higher%29+category+theory"} applications of (higher) category theory
+                  %div
+                    %p
+                      %a{:href => "/nlab/edit/category+theory+-+contents"} Edit this sidebar
+              %h4#yoneda_lemma Yoneda lemma
+              .hide
+                %div
+                  %p
+                    %strong
+                      %a.existingWikiWord{:href => "/nlab/show/Yoneda+lemma"} Yoneda lemma
+                  %p
+                    %strong Ingredients
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/category"} category
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/functor"} functor
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/natural+transformation"} natural transformation
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/presheaf"} presheaf
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/category+of+presheaves"} category of presheaves
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/representable+presheaf"} representable presheaf
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Yoneda+embedding"} Yoneda embedding
+                  %p
+                    %strong Incarnations
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Yoneda+lemma"} Yoneda lemma
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/enriched+Yoneda+lemma"} enriched Yoneda lemma
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/co-Yoneda+lemma"} co-Yoneda lemma
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Yoneda+reduction"} Yoneda reduction
+                  %p
+                    %strong Properties
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/free+cocompletion"} free cocompletion
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Yoneda+extension"} Yoneda extension
+                  %p
+                    %strong Universal aspects
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/representable+functor"} representable functor
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/universal+construction"} universal construction
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/universal+element"} universal element
+                  %p
+                    %strong Classification
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/classifying+space"}> classifying space
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/classifying+stack"} classifying stack
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/moduli+space"}> moduli space
+                        ,
+                        = succeed "," do
+                          %a.existingWikiWord{:href => "/nlab/show/moduli+stack"} moduli stack
+                        %a.existingWikiWord{:href => "/nlab/show/derived+moduli+space"} derived moduli space
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/classifying+topos"} classifying topos
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/subobject+classifier"} subobject classifier
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/universal+principal+bundle"}> universal principal bundle
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/universal+principal+%E2%88%9E-bundle"} universal principal ∞-bundle
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/classifying+morphism"} classifying morphism
+                  %p
+                    %strong Induced theorems
+                  %ul
+                    %li
+                      %a.existingWikiWord{:href => "/nlab/show/Tannaka+duality"} Tannaka duality
+                  %p …
+                  %p
+                    %strong In higher category theory
+                  %p
+                    %a.existingWikiWord{:href => "/nlab/show/Yoneda+lemma+for+higher+categories"}> Yoneda lemma for higher categories
+                    \:
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Yoneda+lemma+for+%28%E2%88%9E%2C1%29-categories"} Yoneda lemma for (∞,1)-categories
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Yoneda+lemma+for+bicategories"} Yoneda lemma for bicategories
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Yoneda+lemma+for+tricategories"} Yoneda lemma for tricategories
+                  %div
+                    %p
+                      %a{:href => "/nlab/edit/Yoneda+lemma+-+contents"} Edit this sidebar
+          %h1#contents Contents
+          .maruku_toc
+            %ul
+              %li
+                %a{:href => "#idea"} Idea
+              %li
+                %a{:href => "#StatementOfYonedaLemma"} Statement and proof
+              %ul
+                %li
+                  %a{:href => "#classical"} Classical
+                %li
+                  %a{:href => "#in_homotopy_type_theory"} In homotopy type theory
+              %li
+                %a{:href => "#YonedaCorollaries"} Corollaries
+              %ul
+                %li
+                  %a{:href => "#corollary_i_yoneda_embedding"} corollary I: Yoneda embedding
+                %li
+                  %a{:href => "#corollary_ii_uniqueness_of_representing_objects"} corollary II: uniqueness of representing objects
+                %li
+                  %a{:href => "#corollary_iii_universality_of_representing_objects"} corollary III: universality of representing objects
+                %li
+                  %a{:href => "#interpretation"} Interpretation
+              %li
+                %a{:href => "#generalizations"} Generalizations
+              %li
+                %a{:href => "#necessity_of_naturality"} Necessity of naturality
+              %li
+                %a{:href => "#the_yoneda_lemma_in_semicategories"} The Yoneda lemma in semicategories
+              %li
+                %a{:href => "#applications"} Applications
+              %li
+                %a{:href => "#related_entries"} Related entries
+              %li
+                %a{:href => "#References"} References
+          %h2#idea Idea
+          %p
+            The
+            %strong Yoneda lemma
+            says that the
+            %a.existingWikiWord{:href => "/nlab/show/set"} set
+            of
+            %a.existingWikiWord{:href => "/nlab/show/morphisms"} morphisms
+            from a
+            %a.existingWikiWord{:href => "/nlab/show/representable+presheaf"} representable presheaf
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi y
+                  %mo{:stretchy => "false"} (
+                  %mi c
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} y(c)
+            into an arbitrary
+            %a.existingWikiWord{:href => "/nlab/show/presheaf"} presheaf
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi X
+                %annotation{:encoding => "application/x-tex"} X
+            is in
+            %a.existingWikiWord{:href => "/nlab/show/natural+bijection"} natural bijection
+            with the set
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi X
+                  %mo{:stretchy => "false"} (
+                  %mi c
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} X(c)
+            assigned by
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi X
+                %annotation{:encoding => "application/x-tex"} X
+            to the representing
+            %a.existingWikiWord{:href => "/nlab/show/object"} object
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi c
+                  %annotation{:encoding => "application/x-tex"} c
+          %p
+            The Yoneda lemma is an elementary but deep and central result in
+            %a.existingWikiWord{:href => "/nlab/show/category+theory"} category theory
+            and in particular in
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/sheaf+and+topos+theory"} sheaf and topos theory
+            = succeed "," do
+              %em
+                %a.existingWikiWord{:href => "/nlab/show/representable+functors"} representable functors
+            = succeed "," do
+              %em
+                %a.existingWikiWord{:href => "/nlab/show/universal+constructions"} universal constructions
+            = succeed "." do
+              %em
+                %a.existingWikiWord{:href => "/nlab/show/universal+elements"} universal elements
+          %h2#StatementOfYonedaLemma Statement and proof
+          %h3#classical Classical
+          #FunctorUnderlyingTheYonedaEmbedding.num_defn
+            %h6#definition Definition
+            %p
+              %strong
+                (
+                %a.existingWikiWord{:href => "/nlab/show/functor"} functor
+                underlying the
+                = succeed ")" do
+                  %a.existingWikiWord{:href => "/nlab/show/Yoneda+embedding"} Yoneda embedding
+            %p
+              For
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi 𝒞
+                  %annotation{:encoding => "application/x-tex"} \mathcal{C}
+              a
+              %a.existingWikiWord{:href => "/nlab/show/locally+small+category"} locally small category
+              we write
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo{:stretchy => "false"} [
+                    %msup
+                      %mi C
+                      %mi op
+                    %mo ,
+                    %mi Set
+                    %mo{:stretchy => "false"} ]
+                    %mo ≔
+                    %mi Func
+                    %mo{:stretchy => "false"} (
+                    %msup
+                      %mi C
+                      %mi op
+                    %mo ,
+                    %mi Set
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"}
+                    [C^{op}, Set] \coloneqq Func(C^{op}, Set)
+            %p
+              for the
+              %a.existingWikiWord{:href => "/nlab/show/functor+category"} functor category
+              out of the
+              %a.existingWikiWord{:href => "/nlab/show/opposite+category"} opposite category
+              of
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi 𝒞
+                  %annotation{:encoding => "application/x-tex"} \mathcal{C}
+              into
+              = succeed "." do
+                %a.existingWikiWord{:href => "/nlab/show/Set"} Set
+            %p
+              This is also called the
+              %em
+                %a.existingWikiWord{:href => "/nlab/show/category+of+presheaves"} category of presheaves
+              on
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi 𝒞
+                    %annotation{:encoding => "application/x-tex"} \mathcal{C}
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msup
+                      %mi Set
+                      %mrow
+                        %msup
+                          %mi C
+                          %mi op
+                  %annotation{:encoding => "application/x-tex"} Set^{C^{op}}
+              or
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi Hom
+                      %mo{:stretchy => "false"} (
+                      %msup
+                        %mi C
+                        %mi op
+                      %mo ,
+                      %mi Set
+                      %mo{:stretchy => "false"} )
+                      %mo{:stretchy => "false"} )
+                    %annotation{:encoding => "application/x-tex"} Hom(C^{op},Set))
+            %p
+              There is a
+              %a.existingWikiWord{:href => "/nlab/show/functor"} functor
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mrow
+                      %mtable
+                        %mtr
+                          %mtd
+                            %mi C
+                          %mtd
+                            %mover
+                              %mo ⟶
+                              %mi y
+                          %mtd
+                            %mo{:stretchy => "false"} [
+                            %msup
+                              %mi C
+                              %mi op
+                            %mo ,
+                            %mi Set
+                            %mo{:stretchy => "false"} ]
+                        %mtr
+                          %mtd
+                            %mi c
+                          %mtd
+                            %mo ↦
+                          %mtd
+                            %msub
+                              %mi Hom
+                              %mi 𝒞
+                            %mo{:stretchy => "false"} (
+                            %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                            %mo ,
+                            %mi c
+                            %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"}
+                    \\array{
+                    C &amp;\overset{y}{\longrightarrow}&amp; [C^op,Set]
+                    \\\
+                    c &amp;\mapsto&amp; Hom_{\mathcal{C}}(-,c)
+                    }
+            %p
+              (called the
+              %em
+                %a.existingWikiWord{:href => "/nlab/show/Yoneda+embedding"} Yoneda embedding
+              for reasons explained below) from
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi 𝒞
+                  %annotation{:encoding => "application/x-tex"} \mathcal{C}
+              to its
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/category+of+presheaves"} category of presheaves
+              %a.existingWikiWord{:href => "/nlab/show/object"} object
+              to the
+              %a.existingWikiWord{:href => "/nlab/show/hom-functor"} hom-functor
+              into that object, also called the
+              %a.existingWikiWord{:href => "/nlab/show/representable+presheaf"} presheaf represented
+              by
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi c
+                    %annotation{:encoding => "application/x-tex"} c
+          .num_remark
+            %h6#remark Remark
+            %p
+              %strong
+                (
+                %a.existingWikiWord{:href => "/nlab/show/Yoneda+embedding"} Yoneda embedding
+                is
+                %a.existingWikiWord{:href => "/nlab/show/adjunct"} adjunct
+                of
+                = succeed ")" do
+                  %a.existingWikiWord{:href => "/nlab/show/hom-functor"} hom-functor
+            %p
+              The Yoneda embedding functor
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi y
+                    %mspace{:width => "thickmathspace"}
+                    %mo{:lspace => "verythinmathspace"} :
+                    %mspace{:width => "thickmathspace"}
+                    %mi 𝒞
+                    %mo →
+                    %mo{:stretchy => "false"} [
+                    %msup
+                      %mi 𝒞
+                      %mi op
+                    %mo ,
+                    %mi Set
+                    %mo{:stretchy => "false"} ]
+                  %annotation{:encoding => "application/x-tex"} y \;\colon\; \mathcal{C} \to [\mathcal{C}^{op}, Set]
+              from Def.
+              %a.maruku-ref{:href => "#FunctorUnderlyingTheYonedaEmbedding"}
+              is equivalently the
+              %a.existingWikiWord{:href => "/nlab/show/adjunct"} adjunct
+              of the
+              %a.existingWikiWord{:href => "/nlab/show/hom-functor"} hom-functor
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi Hom
+                      %mi 𝒞
+                    %mspace{:width => "thickmathspace"}
+                    %mo{:lspace => "verythinmathspace"} :
+                    %mspace{:width => "thickmathspace"}
+                    %msup
+                      %mi 𝒞
+                      %mi op
+                    %mo ×
+                    %mi 𝒞
+                    %mo ⟶
+                    %mi Set
+                  %annotation{:encoding => "application/x-tex"}
+                    Hom_{\mathcal{C}}
+                    \\;\colon\;
+                    \\mathcal{C}^{op} \times \mathcal{C}
+                    \\longrightarrow
+                    Set
+            %p
+              under the
+              = succeed "/" do
+                %a.existingWikiWord{:href => "/nlab/show/product+category"} product category
+              %a.existingWikiWord{:href => "/nlab/show/functor+category"} functor category
+              %a.existingWikiWord{:href => "/nlab/show/adjoint+functor"} adjunction
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi Hom
+                    %mo{:stretchy => "false"} (
+                    %msup
+                      %mi C
+                      %mi op
+                    %mo ×
+                    %mi C
+                    %mo ,
+                    %mi Set
+                    %mo{:stretchy => "false"} )
+                    %mover
+                      %mo →
+                      %mo ≃
+                    %mi Hom
+                    %mo{:stretchy => "false"} (
+                    %mi C
+                    %mo ,
+                    %mo{:stretchy => "false"} [
+                    %msup
+                      %mi C
+                      %mi op
+                    %mo ,
+                    %mi Set
+                    %mo{:stretchy => "false"} ]
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"}
+                    Hom(C^{op} \times C, Set)
+                    \\stackrel{\simeq}{\to}
+                    Hom(C, [C^{op}, Set])
+            %p
+              in the
+              %a.existingWikiWord{:href => "/nlab/show/closed+monoidal+category"} closed
+              %a.existingWikiWord{:href => "/nlab/show/monoidal+category"} symmetric monoidal category
+              of categories.
+          #YonedaLemma.num_prop
+            %h6#proposition Proposition
+            %p
+              %strong
+                (
+                %a.existingWikiWord{:href => "/nlab/show/Yoneda+lemma"}> Yoneda lemma
+                )
+            %p
+              Let
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi 𝒞
+                  %annotation{:encoding => "application/x-tex"} \mathcal{C}
+              be a
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/locally+small+category"} locally small category
+              %a.existingWikiWord{:href => "/nlab/show/category+of+presheaves"} category of presheaves
+              denoted
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mo{:stretchy => "false"} [
+                      %msup
+                        %mi 𝒞
+                        %mi op
+                      %mo ,
+                      %mi Set
+                      %mo{:stretchy => "false"} ]
+                    %annotation{:encoding => "application/x-tex"} [\mathcal{C}^{op},Set]
+              = succeed "." do
+                %a.maruku-ref{:href => "#FunctorUnderlyingTheYonedaEmbedding"}
+            %p
+              For
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi X
+                    %mo ∈
+                    %mo{:stretchy => "false"} [
+                    %msup
+                      %mi 𝒞
+                      %mi op
+                    %mo ,
+                    %mi Set
+                    %mo{:stretchy => "false"} ]
+                  %annotation{:encoding => "application/x-tex"} X \in [\mathcal{C}^{op}, Set]
+              any
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/presheaf"} presheaf
+              %a.existingWikiWord{:href => "/nlab/show/isomorphism"} isomorphism
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi Hom
+                      %mrow
+                        %mo{:stretchy => "false"} [
+                        %msup
+                          %mi C
+                          %mi op
+                        %mo ,
+                        %mi Set
+                        %mo{:stretchy => "false"} ]
+                    %mo{:stretchy => "false"} (
+                    %mi y
+                    %mo{:stretchy => "false"} (
+                    %mi c
+                    %mo{:stretchy => "false"} )
+                    %mo ,
+                    %mi X
+                    %mo{:stretchy => "false"} )
+                    %mspace{:width => "thickmathspace"}
+                    %mo ≃
+                    %mspace{:width => "thickmathspace"}
+                    %mi X
+                    %mo{:stretchy => "false"} (
+                    %mi c
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"}
+                    Hom_{[C^op,Set]}(y(c),X) \;\simeq\; X(c)
+            %p
+              between the
+              %a.existingWikiWord{:href => "/nlab/show/hom-set"} hom-set
+              of
+              %a.existingWikiWord{:href => "/nlab/show/presheaf"} presheaf
+              %a.existingWikiWord{:href => "/nlab/show/homomorphisms"} homomorphisms
+              from the
+              %a.existingWikiWord{:href => "/nlab/show/representable+presheaf"} representable presheaf
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi y
+                    %mo{:stretchy => "false"} (
+                    %mi c
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} y(c)
+              to
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi X
+                    %annotation{:encoding => "application/x-tex"} X
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi X
+                  %annotation{:encoding => "application/x-tex"} X
+              at
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi c
+                    %annotation{:encoding => "application/x-tex"} c
+          %p
+            This is the standard notation used mostly in pure
+            %a.existingWikiWord{:href => "/nlab/show/category+theory"} category theory
+            and
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/enriched+category+theory"} enriched category theory
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi c
+                %annotation{:encoding => "application/x-tex"} c
+            as
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi h
+                      %mi c
+                  %annotation{:encoding => "application/x-tex"} h_c
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi Hom
+                  %mo{:stretchy => "false"} (
+                  %msub
+                    %mi h
+                    %mi c
+                  %mo ,
+                  %mi X
+                  %mo{:stretchy => "false"} )
+                  %mo ≃
+                  %mi X
+                  %mo{:stretchy => "false"} (
+                  %mi c
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"}
+                  Hom(h_c, X) \simeq X(c)
+          %p or
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi Nat
+                  %mo{:stretchy => "false"} (
+                  %msub
+                    %mi h
+                    %mi c
+                  %mo ,
+                  %mi X
+                  %mo{:stretchy => "false"} )
+                  %mo ≃
+                  %mi X
+                  %mo{:stretchy => "false"} (
+                  %mi c
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"}
+                  Nat(h_c, X) \simeq X(c)
+          %p
+            to emphasize that the morphisms of presheaves are
+            %a.existingWikiWord{:href => "/nlab/show/natural+transformation"} natural transformations
+            of the corresponding functors.
+          .proof
+            %h6#proof Proof
+            %p
+              The proof is by chasing the element
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi Id
+                      %mi c
+                    %mo ∈
+                    %mi C
+                    %mo{:stretchy => "false"} (
+                    %mi c
+                    %mo ,
+                    %mi c
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} Id_c \in C(c, c)
+              around both legs of a
+              %a.existingWikiWord{:href => "/nlab/show/naturality+square"} naturality square
+              for a
+              %a.existingWikiWord{:href => "/nlab/show/natural+transformation"} natural transformation
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi η
+                    %mo :
+                    %mi C
+                    %mo{:stretchy => "false"} (
+                    %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                    %mo ,
+                    %mi c
+                    %mo{:stretchy => "false"} )
+                    %mo →
+                    %mi X
+                  %annotation{:encoding => "application/x-tex"} \eta: C(-, c) \to X
+              (hence a homomorphism of presheaves):
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mrow
+                      %mtable
+                        %mtr
+                          %mtd
+                            %mi C
+                            %mo{:stretchy => "false"} (
+                            %mi c
+                            %mo ,
+                            %mi c
+                            %mo{:stretchy => "false"} )
+                          %mtd
+                            %mover
+                              %mo →
+                              %mrow
+                                %msub
+                                  %mi η
+                                  %mi c
+                          %mtd
+                            %mi X
+                            %mo{:stretchy => "false"} (
+                            %mi c
+                            %mo{:stretchy => "false"} )
+                          %mtd
+                          %mtd
+                          %mtd
+                          %mtd
+                            %msub
+                              %mi Id
+                              %mi c
+                          %mtd
+                            %mo ↦
+                          %mtd
+                            %msub
+                              %mi η
+                              %mi c
+                            %mo{:stretchy => "false"} (
+                            %msub
+                              %mi Id
+                              %mi c
+                            %mo{:stretchy => "false"} )
+                          %mtd
+                            %mover
+                              %mo =
+                              %mi def
+                          %mtd
+                            %mi ξ
+                        %mtr
+                          %mtd
+                            %msub
+                              %mo
+                              %mpadded{:lspace => "-100%width", :width => "0"}
+                                %mrow
+                                  %mi C
+                                  %mo{:stretchy => "false"} (
+                                  %mi f
+                                  %mo ,
+                                  %mi c
+                                  %mo{:stretchy => "false"} )
+                            %mo{:stretchy => "false"} ↓
+                          %mtd
+                          %mtd
+                            %msub
+                              %mo{:stretchy => "false"} ↓
+                              %mpadded{:width => "0"}
+                                %mrow
+                                  %mi X
+                                  %mo{:stretchy => "false"} (
+                                  %mi f
+                                  %mo{:stretchy => "false"} )
+                          %mtd
+                          %mtd
+                          %mtd
+                          %mtd
+                            %mo{:stretchy => "false"} ↓
+                          %mtd
+                          %mtd
+                            %msub
+                              %mo{:stretchy => "false"} ↓
+                              %mpadded{:width => "0"}
+                                %mrow
+                                  %mi X
+                                  %mo{:stretchy => "false"} (
+                                  %mi f
+                                  %mo{:stretchy => "false"} )
+                          %mtd
+                          %mtd
+                        %mtr
+                          %mtd
+                            %mi C
+                            %mo{:stretchy => "false"} (
+                            %mi b
+                            %mo ,
+                            %mi c
+                            %mo{:stretchy => "false"} )
+                          %mtd
+                            %munder
+                              %mo →
+                              %mrow
+                                %msub
+                                  %mi η
+                                  %mi b
+                          %mtd
+                            %mi X
+                            %mo{:stretchy => "false"} (
+                            %mi b
+                            %mo{:stretchy => "false"} )
+                          %mtd
+                          %mtd
+                          %mtd
+                          %mtd
+                            %mi f
+                          %mtd
+                            %mo ↦
+                          %mtd
+                            %msub
+                              %mi η
+                              %mi b
+                            %mo{:stretchy => "false"} (
+                            %mi f
+                            %mo{:stretchy => "false"} )
+                          %mtd
+                          %mtd
+                  %annotation{:encoding => "application/x-tex"}
+                    \\array{
+                    C(c, c)
+                    \&amp; \stackrel{\eta_c}{\to} &amp;
+                    X(c) &amp; &amp; &amp; &amp; Id_c &amp; \mapsto &amp; \eta_c(Id_c) &amp; \stackrel{def}{=} &amp; \xi \\
+                    _\mathllap{C(f, c)} \downarrow &amp; &amp; \downarrow _\mathrlap{X(f)} &amp; &amp; &amp; &amp; \downarrow &amp; &amp; \downarrow _\mathrlap{X(f)} &amp; &amp; \\
+                    C(b, c) &amp; \underset{\eta_b}{\to} &amp; X(b) &amp; &amp; &amp; &amp; f &amp; \mapsto &amp; \eta_b(f) &amp; &amp;
+                    }
+            %p
+              What this diagram shows is that the entire transformation
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi η
+                    %mo :
+                    %mi C
+                    %mo{:stretchy => "false"} (
+                    %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                    %mo ,
+                    %mi c
+                    %mo{:stretchy => "false"} )
+                    %mo →
+                    %mi X
+                  %annotation{:encoding => "application/x-tex"} \eta: C(-, c) \to X
+              is completely determined from the single value
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi ξ
+                      %mo ≔
+                      %msub
+                        %mi η
+                        %mi c
+                      %mo{:stretchy => "false"} (
+                      %msub
+                        %mi Id
+                        %mi c
+                      %mo{:stretchy => "false"} )
+                      %mo ∈
+                      %mi X
+                      %mo{:stretchy => "false"} (
+                      %mi c
+                      %mo{:stretchy => "false"} )
+                    %annotation{:encoding => "application/x-tex"} \xi \coloneqq \eta_c(Id_c) \in X(c)
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi b
+                  %annotation{:encoding => "application/x-tex"} b
+              of
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi C
+                    %annotation{:encoding => "application/x-tex"} C
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi η
+                      %mi b
+                    %mo :
+                    %mi C
+                    %mo{:stretchy => "false"} (
+                    %mi b
+                    %mo ,
+                    %mi c
+                    %mo{:stretchy => "false"} )
+                    %mo →
+                    %mi X
+                    %mo{:stretchy => "false"} (
+                    %mi b
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} \eta_b: C(b, c) \to X(b)
+              must take an element
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi f
+                    %mo ∈
+                    %mi C
+                    %mo{:stretchy => "false"} (
+                    %mi b
+                    %mo ,
+                    %mi c
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} f \in C(b, c)
+              (i.e., a morphism
+              = succeed ")" do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi f
+                      %mo :
+                      %mi b
+                      %mo →
+                      %mi c
+                    %annotation{:encoding => "application/x-tex"} f: b \to c
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi X
+                      %mo{:stretchy => "false"} (
+                      %mi f
+                      %mo{:stretchy => "false"} )
+                      %mo{:stretchy => "false"} (
+                      %mi ξ
+                      %mo{:stretchy => "false"} )
+                    %annotation{:encoding => "application/x-tex"} X(f)(\xi)
+            %p
+              The crucial point is that the naturality condition on any
+              %a.existingWikiWord{:href => "/nlab/show/natural+transformation"} natural transformation
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi η
+                    %mo :
+                    %mi C
+                    %mo{:stretchy => "false"} (
+                    %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                    %mo ,
+                    %mi c
+                    %mo{:stretchy => "false"} )
+                    %mo ⇒
+                    %mi X
+                  %annotation{:encoding => "application/x-tex"} \eta : C(-,c) \Rightarrow X
+              is sufficient to ensure that
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi η
+                  %annotation{:encoding => "application/x-tex"} \eta
+              is already entirely fixed by the value
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi η
+                      %mi c
+                    %mo{:stretchy => "false"} (
+                    %msub
+                      %mi Id
+                      %mi c
+                    %mo{:stretchy => "false"} )
+                    %mo ∈
+                    %mi X
+                    %mo{:stretchy => "false"} (
+                    %mi c
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} \eta_c(Id_c) \in X(c)
+              of its component
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi η
+                      %mi c
+                    %mo :
+                    %mi C
+                    %mo{:stretchy => "false"} (
+                    %mi c
+                    %mo ,
+                    %mi c
+                    %mo{:stretchy => "false"} )
+                    %mo →
+                    %mi X
+                    %mo{:stretchy => "false"} (
+                    %mi c
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} \eta_c : C(c,c) \to X(c)
+              on the
+              %a.existingWikiWord{:href => "/nlab/show/identity+morphism"} identity morphism
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msub
+                        %mi Id
+                        %mi c
+                    %annotation{:encoding => "application/x-tex"} Id_c
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi η
+                    %annotation{:encoding => "application/x-tex"} \eta
+            %p More in detail, the bijection is established by the map
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo{:stretchy => "false"} [
+                    %msup
+                      %mi C
+                      %mi op
+                    %mo ,
+                    %mi Set
+                    %mo{:stretchy => "false"} ]
+                    %mo{:stretchy => "false"} (
+                    %mi C
+                    %mo{:stretchy => "false"} (
+                    %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                    %mo ,
+                    %mi c
+                    %mo{:stretchy => "false"} )
+                    %mo ,
+                    %mi X
+                    %mo{:stretchy => "false"} )
+                    %mover
+                      %mo →
+                      %mrow
+                        %msub
+                          %mo{:stretchy => "false"} |
+                          %mi c
+                    %mi Set
+                    %mo{:stretchy => "false"} (
+                    %mi C
+                    %mo{:stretchy => "false"} (
+                    %mi c
+                    %mo ,
+                    %mi c
+                    %mo{:stretchy => "false"} )
+                    %mo ,
+                    %mi X
+                    %mo{:stretchy => "false"} (
+                    %mi c
+                    %mo{:stretchy => "false"} )
+                    %mo{:stretchy => "false"} )
+                    %mover
+                      %mo →
+                      %mrow
+                        %msub
+                          %mi ev
+                          %mrow
+                            %msub
+                              %mi Id
+                              %mi c
+                    %mi X
+                    %mo{:stretchy => "false"} (
+                    %mi c
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"}
+                    [C^{op}, Set](C(-,c),X)
+                    \\stackrel{|_{c}}{\to}
+                    Set(C(c,c), X(c))
+                    \\stackrel{ev_{Id_c}}{\to}
+                    X(c)
+            %p
+              where the first step is taking the component of a
+              %a.existingWikiWord{:href => "/nlab/show/natural+transformation"} natural transformation
+              at
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi c
+                    %mo ∈
+                    %mi C
+                  %annotation{:encoding => "application/x-tex"} c \in C
+              and the second step is
+              %a.existingWikiWord{:href => "/nlab/show/evaluation"} evaluation
+              at
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msub
+                        %mi Id
+                        %mi c
+                      %mo ∈
+                      %mi C
+                      %mo{:stretchy => "false"} (
+                      %mi c
+                      %mo ,
+                      %mi c
+                      %mo{:stretchy => "false"} )
+                    %annotation{:encoding => "application/x-tex"} Id_c \in C(c,c)
+            %p
+              The inverse of this map takes
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi ξ
+                    %mo ∈
+                    %mi X
+                    %mo{:stretchy => "false"} (
+                    %mi c
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} \xi \in X(c)
+              to the natural transformation
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msup
+                      %mi η
+                      %mi ξ
+                  %annotation{:encoding => "application/x-tex"} \eta^\xi
+              with components
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msubsup
+                      %mi η
+                      %mi d
+                      %mi ξ
+                    %mo :
+                    %mo =
+                    %mi X
+                    %mo{:stretchy => "false"} (
+                    %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                    %mo{:stretchy => "false"} )
+                    %mo{:stretchy => "false"} (
+                    %mi ξ
+                    %mo{:stretchy => "false"} )
+                    %mo :
+                    %mi C
+                    %mo{:stretchy => "false"} (
+                    %mi d
+                    %mo ,
+                    %mi c
+                    %mo{:stretchy => "false"} )
+                    %mo →
+                    %mi X
+                    %mo{:stretchy => "false"} (
+                    %mi d
+                    %mo{:stretchy => "false"} )
+                    %mspace{:width => "thinmathspace"}
+                    %mo .
+                  %annotation{:encoding => "application/x-tex"}
+                    \\eta^\xi_d := X(-)(\xi) : C(d,c) \to X(d)
+                    \\,.
+          %h3#in_homotopy_type_theory In homotopy type theory
+          %p
+            Discussion in
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/homotopy+type+theory"} homotopy type theory
+          %p
+            Note: the
+            %a.existingWikiWord{:href => "/nlab/show/HoTT+book"} HoTT book
+            calls a
+            %a.existingWikiWord{:href => "/nlab/show/internal+category+in+HoTT"} internal category in HoTT
+            a “precategory” and a
+            %a.existingWikiWord{:href => "/nlab/show/univalent+category"} univalent category
+            a “category”, but here we shall refer to the standard terminology of “category” and “univalent category” respectively.
+          %p
+            By Lemma 9.5.3 in the HoTT book (see
+            = succeed ")," do
+              %a.existingWikiWord{:href => "/nlab/show/product+category"} product category
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mstyle{:mathvariant => "bold"}
+                    %mi y
+                  %mo :
+                  %mi A
+                  %mo →
+                  %msup
+                    %mstyle{:mathvariant => "italic"}
+                      %mi Set
+                    %mrow
+                      %msup
+                        %mi A
+                        %mi op
+                %annotation{:encoding => "application/x-tex"} \mathbf{y} : A \to \mathit{Set}^{A^{op}}
+            which we call the
+            = succeed "." do
+              %strong yoneda embedding
+          %p
+            %strong Theorem 9.5.4 (The Yoneda Lemma)
+            For any
+            %a.existingWikiWord{:href => "/nlab/show/category"} category
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi A
+                  %annotation{:encoding => "application/x-tex"} A
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi a
+                    %mo :
+                    %mi A
+                  %annotation{:encoding => "application/x-tex"} a:A
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi F
+                    %mo :
+                    %msup
+                      %mstyle{:mathvariant => "italic"}
+                        %mi Set
+                      %mrow
+                        %msup
+                          %mi A
+                          %mi op
+                  %annotation{:encoding => "application/x-tex"} F: \mathit{Set}^{A^{op}}
+            %a.existingWikiWord{:href => "/nlab/show/isomorphism"} isomorphism
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msub
+                    %mi hom
+                    %mrow
+                      %msup
+                        %mstyle{:mathvariant => "italic"}
+                          %mi Set
+                        %mrow
+                          %msup
+                            %mi A
+                            %mi op
+                  %mo{:stretchy => "false"} (
+                  %mstyle{:mathvariant => "bold"}
+                    %mi y
+                  %mi a
+                  %mo ,
+                  %mi F
+                  %mo{:stretchy => "false"} )
+                  %mo ≅
+                  %mi F
+                  %mi a
+                  %mspace{:width => "2em"}
+                  %mspace{:width => "2em"}
+                  %mo{:stretchy => "false"} (
+                  %mn 9.5
+                  %mn .5
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} hom_{\mathit{Set}^{A^{op}}}(\mathbf{y}a,F) \cong F a \qquad \qquad(9.5.5)
+          %p
+            Moreover this is natural in both
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi a
+                %annotation{:encoding => "application/x-tex"} a
+            and
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi F
+                  %annotation{:encoding => "application/x-tex"} F
+          %p
+            %strong Proof.
+            Given a
+            %a.existingWikiWord{:href => "/nlab/show/natural+transformation"} natural transformation
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi α
+                    %mo :
+                    %mstyle{:mathvariant => "bold"}
+                      %mi y
+                    %mi a
+                    %mo →
+                    %mi F
+                  %annotation{:encoding => "application/x-tex"} \alpha : \mathbf{y}a \to F
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi α
+                      %mi a
+                    %mo :
+                    %mstyle{:mathvariant => "bold"}
+                      %mi y
+                    %mi a
+                    %mo{:stretchy => "false"} (
+                    %mi a
+                    %mo{:stretchy => "false"} )
+                    %mo →
+                    %mi F
+                    %mi a
+                  %annotation{:encoding => "application/x-tex"} \alpha_a : \mathbf{y}a(a) \to F a
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mstyle{:mathvariant => "bold"}
+                      %mi y
+                    %mi a
+                    %mo{:stretchy => "false"} (
+                    %mi a
+                    %mo{:stretchy => "false"} )
+                    %mo ≡
+                    %msub
+                      %mi hom
+                      %mi A
+                    %mo{:stretchy => "false"} (
+                    %mi a
+                    %mo ,
+                    %mi a
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} \mathbf{y} a(a)\equiv hom_A(a,a)
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mn 1
+                      %mi a
+                    %mo :
+                    %mstyle{:mathvariant => "bold"}
+                      %mi y
+                    %mi a
+                    %mo{:stretchy => "false"} (
+                    %mi a
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} 1_a:\mathbf{y}a(a)
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi α
+                      %mi a
+                    %mo{:stretchy => "false"} (
+                    %msub
+                      %mn 1
+                      %mi a
+                    %mo{:stretchy => "false"} )
+                    %mo :
+                    %mi F
+                    %mi a
+                  %annotation{:encoding => "application/x-tex"} \alpha_a(1_a):F a
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi α
+                  %mo ↦
+                  %msub
+                    %mi α
+                    %mi a
+                  %mo{:stretchy => "false"} (
+                  %msub
+                    %mn 1
+                    %mi a
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} \alpha \mapsto \alpha_a(1_a)
+            from left to right in (9.5.5).
+          %p
+            In the other direction, given
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi x
+                    %mo :
+                    %mi F
+                    %mi a
+                  %annotation{:encoding => "application/x-tex"} x: F a
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi α
+                  %mo :
+                  %mstyle{:mathvariant => "bold"}
+                    %mi y
+                  %mi a
+                  %mo →
+                  %mi F
+                %annotation{:encoding => "application/x-tex"} \alpha : \mathbf{y} a \to F
+            by
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msub
+                    %mi α
+                    %mrow
+                      %mi a
+                      %mo ′
+                  %mo{:stretchy => "false"} (
+                  %mi f
+                  %mo{:stretchy => "false"} )
+                  %mo ≡
+                  %msub
+                    %mi F
+                    %mrow
+                      %mi a
+                      %mo ,
+                      %mi a
+                      %mo ′
+                  %mo{:stretchy => "false"} (
+                  %mi f
+                  %mo{:stretchy => "false"} )
+                  %mo{:stretchy => "false"} (
+                  %mi x
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} \alpha_{a'}(f) \equiv F_{a,a'}(f)(x)
+          %p Naturality is easy to check, so this gives a function from right to left in (9.5.5).
+          %p
+            To show that these are inverses, first suppose given
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi x
+                    %mo :
+                    %mi F
+                    %mi a
+                  %annotation{:encoding => "application/x-tex"} x: F a
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi α
+                %annotation{:encoding => "application/x-tex"} \alpha
+            defined as above, we have
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi α
+                  %mo :
+                  %mstyle{:mathvariant => "bold"}
+                    %mi y
+                  %mi a
+                  %mo →
+                  %mi F
+                %annotation{:encoding => "application/x-tex"} \alpha : \mathbf{y}a \to F
+            and define
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi x
+                %annotation{:encoding => "application/x-tex"} x
+            as above, then for any
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi f
+                  %mo :
+                  %msub
+                    %mi hom
+                    %mi A
+                  %mo{:stretchy => "false"} (
+                  %mi a
+                  %mo ′
+                  %mo ,
+                  %mi a
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} f:hom_A(a',a)
+            we have
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mrow
+                    %mtable{:columnalign => "right left right left right left right left right left", :columnspacing => "0em", :displaystyle => "true"}
+                      %mtr
+                        %mtd
+                          %msub
+                            %mi α
+                            %mrow
+                              %mi a
+                              %mo ′
+                          %mo{:stretchy => "false"} (
+                          %mi f
+                          %mo{:stretchy => "false"} )
+                        %mtd
+                          %mo =
+                          %msub
+                            %mi α
+                            %mrow
+                              %mi a
+                              %mo ′
+                          %mo{:stretchy => "false"} (
+                          %mstyle{:mathvariant => "bold"}
+                            %mi y
+                          %msub
+                            %mi a
+                            %mrow
+                              %mi a
+                              %mo ,
+                              %mi a
+                              %mo ′
+                          %mo{:stretchy => "false"} (
+                          %mi f
+                          %mo{:stretchy => "false"} )
+                          %mo{:stretchy => "false"} (
+                          %msub
+                            %mn 1
+                            %mi a
+                          %mo{:stretchy => "false"} )
+                          %mo{:stretchy => "false"} )
+                      %mtr
+                        %mtd
+                        %mtd
+                          %mo =
+                          %mo{:stretchy => "false"} (
+                          %msub
+                            %mi α
+                            %mrow
+                              %mi a
+                              %mo ′
+                          %mo ∘
+                          %mstyle{:mathvariant => "bold"}
+                            %mi y
+                          %msub
+                            %mi a
+                            %mrow
+                              %mi a
+                              %mo ,
+                              %mi a
+                              %mo ′
+                          %mo{:stretchy => "false"} (
+                          %mi f
+                          %mo{:stretchy => "false"} )
+                          %mo{:stretchy => "false"} )
+                          %mo{:stretchy => "false"} (
+                          %msub
+                            %mn 1
+                            %mi a
+                          %mo{:stretchy => "false"} )
+                      %mtr
+                        %mtd
+                        %mtd
+                          %mo =
+                          %mo{:stretchy => "false"} (
+                          %msub
+                            %mi F
+                            %mrow
+                              %mi a
+                              %mo ,
+                              %mi a
+                              %mo ′
+                          %mo{:stretchy => "false"} (
+                          %mi f
+                          %mo{:stretchy => "false"} )
+                          %mo ∘
+                          %msub
+                            %mi α
+                            %mi a
+                          %mo{:stretchy => "false"} )
+                          %mo{:stretchy => "false"} (
+                          %msub
+                            %mn 1
+                            %mi a
+                          %mo{:stretchy => "false"} )
+                      %mtr
+                        %mtd
+                        %mtd
+                          %mo =
+                          %msub
+                            %mi F
+                            %mrow
+                              %mi a
+                              %mo ,
+                              %mi a
+                              %mo ′
+                          %mo{:stretchy => "false"} (
+                          %msub
+                            %mi f
+                            %mo{:stretchy => "false"} (
+                          %msub
+                            %mi α
+                            %mi a
+                          %mo{:stretchy => "false"} (
+                          %msub
+                            %mn 1
+                            %mi a
+                          %mo{:stretchy => "false"} )
+                          %mo{:stretchy => "false"} )
+                      %mtr
+                        %mtd
+                        %mtd
+                          %mo =
+                          %msub
+                            %mi F
+                            %mrow
+                              %mi a
+                              %mo ,
+                              %mi a
+                              %mo ′
+                          %mo{:stretchy => "false"} (
+                          %mi f
+                          %mo{:stretchy => "false"} )
+                          %mo{:stretchy => "false"} (
+                          %mi x
+                          %mo{:stretchy => "false"} )
+                          %mo .
+                %annotation{:encoding => "application/x-tex"}
+                  \\begin{aligned}
+                  \\alpha_{a'}(f) &amp;= \alpha_{a'}(\mathbf{y} a_{a,a'}(f)(1_a))\\
+                  \&amp;= (\alpha_{a'} \circ \mathbf{y}a_{a,a'}(f))(1_a)\\
+                  \&amp;= (F_{a,a'}(f) \circ \alpha_a)(1_a)\\
+                  \&amp;= F_{a,a'}(f_(\alpha_a(1_a))\\
+                  \&amp;= F_{a,a'}(f)(x).
+                  \\end{aligned}
+          %p
+            Thus, both composites are equal to identities. The proof of naturality follows from this.
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mo □
+                %annotation{:encoding => "application/x-tex"} \square
+          %p
+            %strong Corollary 9.5.6
+            The Yoneda embedding
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mstyle{:mathvariant => "bold"}
+                    %mi y
+                  %mo :
+                  %mi A
+                  %mo →
+                  %msup
+                    %mstyle{:mathvariant => "italic"}
+                      %mi Set
+                    %mrow
+                      %msup
+                        %mi A
+                        %mi op
+                %annotation{:encoding => "application/x-tex"} \mathbf{y} : A \to \mathit{Set}^{A^{op}}
+            is
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/fully+faithful"} fully faithful
+          %p
+            %strong Proof.
+            By the Yoneda lemma, we have
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msub
+                    %mi hom
+                    %mrow
+                      %msup
+                        %mstyle{:mathvariant => "italic"}
+                          %mi Set
+                        %mrow
+                          %msup
+                            %mi A
+                            %mi op
+                  %mo{:stretchy => "false"} (
+                  %mstyle{:mathvariant => "bold"}
+                    %mi y
+                  %mi a
+                  %mo ,
+                  %mstyle{:mathvariant => "bold"}
+                    %mi y
+                  %mi b
+                  %mo{:stretchy => "false"} )
+                  %mo ≅
+                  %mstyle{:mathvariant => "bold"}
+                    %mi y
+                  %mi b
+                  %mo{:stretchy => "false"} (
+                  %mi a
+                  %mo{:stretchy => "false"} )
+                  %mo ≡
+                  %msub
+                    %mi hom
+                    %mi A
+                  %mo{:stretchy => "false"} (
+                  %mi a
+                  %mo ,
+                  %mi b
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} hom_{\mathit{Set}^{A^{op}}}(\mathbf{y}a,\mathbf{y}b) \cong \mathbf{y} b(a) \equiv hom_A(a,b)
+          %p
+            It is easy to check that this isomorphism is in fact the action of
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mstyle{:mathvariant => "bold"}
+                    %mi y
+                %annotation{:encoding => "application/x-tex"} \mathbf{y}
+            on hom-sets.
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mo □
+                %annotation{:encoding => "application/x-tex"} \square
+          %h2#YonedaCorollaries Corollaries
+          %p The Yoneda lemma has the following direct consequences. As the Yoneda lemma itself, these are as easily established as they are useful and important.
+          %h3#corollary_i_yoneda_embedding corollary I: Yoneda embedding
+          %p
+            The Yoneda lemma implies that the
+            %a.existingWikiWord{:href => "/nlab/show/Yoneda+embedding"} Yoneda embedding
+            functor
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi y
+                  %mo{:lspace => "verythinmathspace"} :
+                  %mi C
+                  %mo →
+                  %mo{:stretchy => "false"} [
+                  %msup
+                    %mi C
+                    %mi op
+                  %mo ,
+                  %mi Set
+                  %mo{:stretchy => "false"} ]
+                %annotation{:encoding => "application/x-tex"} y \colon C \to [C^op,Set]
+            really is an
+            %em embedding
+            in that it is a
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/full+and+faithful+functor"} full and faithful functor
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi c
+                  %mo ,
+                  %mi d
+                  %mo ∈
+                  %mi C
+                %annotation{:encoding => "application/x-tex"} c,d \in C
+            it naturally induces the isomorphism of Hom-sets.
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mo{:stretchy => "false"} [
+                  %msup
+                    %mi C
+                    %mi op
+                  %mo ,
+                  %mi Set
+                  %mo{:stretchy => "false"} ]
+                  %mo{:stretchy => "false"} (
+                  %mi C
+                  %mo{:stretchy => "false"} (
+                  %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                  %mo ,
+                  %mi c
+                  %mo{:stretchy => "false"} )
+                  %mo ,
+                  %mi C
+                  %mo{:stretchy => "false"} (
+                  %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                  %mo ,
+                  %mi d
+                  %mo{:stretchy => "false"} )
+                  %mo{:stretchy => "false"} )
+                  %mo ≃
+                  %mo{:stretchy => "false"} (
+                  %mi C
+                  %mo{:stretchy => "false"} (
+                  %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                  %mo ,
+                  %mi d
+                  %mo{:stretchy => "false"} )
+                  %mo{:stretchy => "false"} )
+                  %mo{:stretchy => "false"} (
+                  %mi c
+                  %mo{:stretchy => "false"} )
+                  %mo =
+                  %mi C
+                  %mo{:stretchy => "false"} (
+                  %mi c
+                  %mo ,
+                  %mi d
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"}
+                  [C^{op},Set](C(-,c),C(-,d)) \simeq (C(-,d))(c) = C(c,d)
+          %h3#corollary_ii_uniqueness_of_representing_objects corollary II: uniqueness of representing objects
+          %p
+            Since the
+            %a.existingWikiWord{:href => "/nlab/show/Yoneda+embedding"} Yoneda embedding
+            is a
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/full+and+faithful+functor"} full and faithful functor
+            %a.existingWikiWord{:href => "/nlab/show/isomorphism"} isomorphism
+            of
+            %a.existingWikiWord{:href => "/nlab/show/representable+functor"} representable presheaves
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi y
+                  %mo{:stretchy => "false"} (
+                  %mi c
+                  %mo{:stretchy => "false"} )
+                  %mo ≃
+                  %mi y
+                  %mo{:stretchy => "false"} (
+                  %mi d
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} y(c) \simeq y(d)
+            must come from an
+            %a.existingWikiWord{:href => "/nlab/show/isomorphism"} isomorphism
+            of the representing objects
+            = succeed ":" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi c
+                    %mo ≃
+                    %mi d
+                  %annotation{:encoding => "application/x-tex"} c \simeq d
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi y
+                  %mo{:stretchy => "false"} (
+                  %mi c
+                  %mo{:stretchy => "false"} )
+                  %mo ≃
+                  %mi y
+                  %mo{:stretchy => "false"} (
+                  %mi d
+                  %mo{:stretchy => "false"} )
+                  %mspace{:width => "thickmathspace"}
+                  %mspace{:width => "thickmathspace"}
+                  %mo ⇔
+                  %mspace{:width => "thickmathspace"}
+                  %mspace{:width => "thickmathspace"}
+                  %mi c
+                  %mo ≃
+                  %mi d
+                %annotation{:encoding => "application/x-tex"}
+                  y(c) \simeq y(d) \;\; \Leftrightarrow \;\;
+                  c \simeq d
+          %h3#corollary_iii_universality_of_representing_objects corollary III: universality of representing objects
+          %p
+            A
+            %a.existingWikiWord{:href => "/nlab/show/presheaf"} presheaf
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi X
+                  %mo{:lspace => "verythinmathspace"} :
+                  %msup
+                    %mi C
+                    %mi op
+                  %mo →
+                  %mi Set
+                %annotation{:encoding => "application/x-tex"} X \colon C^{op} \to Set
+            is
+            %a.existingWikiWord{:href => "/nlab/show/representable+functor"} representable
+            precisely if the
+            %a.existingWikiWord{:href => "/nlab/show/comma+category"} comma category
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mo{:stretchy => "false"} (
+                  %mi y
+                  %mo ,
+                  %msub
+                    %mi const
+                    %mi X
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} (y,const_X)
+            has a
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/terminal+object"} terminal object
+            %a.existingWikiWord{:href => "/nlab/show/terminal+object"} terminal object
+            is
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mo{:stretchy => "false"} (
+                  %mi d
+                  %mo ,
+                  %mi g
+                  %mo :
+                  %mi y
+                  %mo{:stretchy => "false"} (
+                  %mi d
+                  %mo{:stretchy => "false"} )
+                  %mo →
+                  %mi X
+                  %mo{:stretchy => "false"} )
+                  %mo ≃
+                  %mo{:stretchy => "false"} (
+                  %mi d
+                  %mo ,
+                  %mi g
+                  %mo ∈
+                  %mi X
+                  %mo{:stretchy => "false"} (
+                  %mi d
+                  %mo{:stretchy => "false"} )
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} (d, g : y(d) \to X) \simeq (d, g \in X(d))
+            then
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi X
+                    %mo ≃
+                    %mi y
+                    %mo{:stretchy => "false"} (
+                    %mi d
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} X \simeq y(d)
+          %p
+            This follows from unwrapping the definition of
+            %a.existingWikiWord{:href => "/nlab/show/morphisms"} morphisms
+            in the
+            %a.existingWikiWord{:href => "/nlab/show/comma+category"} comma category
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mo{:stretchy => "false"} (
+                  %mi y
+                  %mo ,
+                  %msub
+                    %mi const
+                    %mi X
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} (y,const_X)
+            and applying the Yoneda lemma to find
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mo{:stretchy => "false"} (
+                  %mi y
+                  %mo ,
+                  %msub
+                    %mi const
+                    %mi X
+                  %mo{:stretchy => "false"} )
+                  %mo{:stretchy => "false"} (
+                  %mo{:stretchy => "false"} (
+                  %mi c
+                  %mo ,
+                  %mi f
+                  %mo ∈
+                  %mi X
+                  %mo{:stretchy => "false"} (
+                  %mi c
+                  %mo{:stretchy => "false"} )
+                  %mo{:stretchy => "false"} )
+                  %mo ,
+                  %mo{:stretchy => "false"} (
+                  %mi d
+                  %mo ,
+                  %mi g
+                  %mo ∈
+                  %mi X
+                  %mo{:stretchy => "false"} (
+                  %mi d
+                  %mo{:stretchy => "false"} )
+                  %mo{:stretchy => "false"} )
+                  %mo{:stretchy => "false"} )
+                  %mo ≃
+                  %mo{:stretchy => "false"} {
+                  %mi u
+                  %mo ∈
+                  %mi C
+                  %mo{:stretchy => "false"} (
+                  %mi c
+                  %mo ,
+                  %mi d
+                  %mo{:stretchy => "false"} )
+                  %mo :
+                  %mi X
+                  %mo{:stretchy => "false"} (
+                  %mi u
+                  %mo{:stretchy => "false"} )
+                  %mo{:stretchy => "false"} (
+                  %mi g
+                  %mo{:stretchy => "false"} )
+                  %mo =
+                  %mi f
+                  %mo{:stretchy => "false"} }
+                  %mspace{:width => "thinmathspace"}
+                  %mo .
+                %annotation{:encoding => "application/x-tex"}
+                  (y,const_X)((c,f \in X(c)), (d, g \in X(d)))
+                  \\simeq
+                  \\{
+                  u \in C(c,d) : X(u)(g) = f
+                  \\}
+                  \\,.
+          %p
+            Hence
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mo{:stretchy => "false"} (
+                  %mi y
+                  %mo ,
+                  %msub
+                    %mi const
+                    %mi X
+                  %mo{:stretchy => "false"} )
+                  %mo{:stretchy => "false"} (
+                  %mo{:stretchy => "false"} (
+                  %mi c
+                  %mo ,
+                  %mi f
+                  %mo ∈
+                  %mi X
+                  %mo{:stretchy => "false"} (
+                  %mi c
+                  %mo{:stretchy => "false"} )
+                  %mo{:stretchy => "false"} )
+                  %mo ,
+                  %mo{:stretchy => "false"} (
+                  %mi d
+                  %mo ,
+                  %mi g
+                  %mo ∈
+                  %mi X
+                  %mo{:stretchy => "false"} (
+                  %mi d
+                  %mo{:stretchy => "false"} )
+                  %mo{:stretchy => "false"} )
+                  %mo{:stretchy => "false"} )
+                  %mo ≃
+                  %mi pt
+                %annotation{:encoding => "application/x-tex"} (y,const_X)((c,f \in X(c)), (d, g \in X(d))) \simeq pt
+            says precisely that
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi X
+                  %mo{:stretchy => "false"} (
+                  %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                  %mo{:stretchy => "false"} )
+                  %mo{:stretchy => "false"} (
+                  %mi g
+                  %mo{:stretchy => "false"} )
+                  %mo{:lspace => "verythinmathspace"} :
+                  %mi C
+                  %mo{:stretchy => "false"} (
+                  %mi c
+                  %mo ,
+                  %mi d
+                  %mo{:stretchy => "false"} )
+                  %mo →
+                  %mi X
+                  %mo{:stretchy => "false"} (
+                  %mi c
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} X(-)(g) \colon C(c,d) \to X(c)
+            is a bijection.
+          %h3#interpretation Interpretation
+          %p For emphasis, here is the interpretation of these three corollaries in words:
+          %ul
+            %li
+              %p
+                %strong corollary I
+                says that the interpretation of presheaves on
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi C
+                    %annotation{:encoding => "application/x-tex"} C
+                as generalized objects probeable by objects
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi c
+                    %annotation{:encoding => "application/x-tex"} c
+                of
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi C
+                    %annotation{:encoding => "application/x-tex"} C
+                is consistent: the probes of
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi X
+                    %annotation{:encoding => "application/x-tex"} X
+                by
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi c
+                    %annotation{:encoding => "application/x-tex"} c
+                are indeed the maps of generalized objects from
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi c
+                    %annotation{:encoding => "application/x-tex"} c
+                into
+                = succeed ";" do
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi X
+                      %annotation{:encoding => "application/x-tex"} X
+            %li
+              %p
+                %strong corollary II
+                says that probes by objects of
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi C
+                    %annotation{:encoding => "application/x-tex"} C
+                are sufficient to distinguish objects of
+                = succeed ":" do
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi C
+                      %annotation{:encoding => "application/x-tex"} C
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi C
+                    %annotation{:encoding => "application/x-tex"} C
+                are the same if they have the same probes by other objects of
+                = succeed "." do
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi C
+                      %annotation{:encoding => "application/x-tex"} C
+            %li
+              %p
+                %strong corollary III
+                characterizes
+                %a.existingWikiWord{:href => "/nlab/show/representable+functor"} representable functors
+                by a
+                %a.existingWikiWord{:href => "/nlab/show/universal+property"} universal property
+                and is hence the bridge between the notion of
+                %a.existingWikiWord{:href => "/nlab/show/representable+functor"} representable functor
+                and
+                = succeed "." do
+                  %a.existingWikiWord{:href => "/nlab/show/universal+construction"} universal constructions
+          %h2#generalizations Generalizations
+          %p
+            The Yoneda lemma tends to carry over to all important generalizations of the context of
+            = succeed ":" do
+              %a.existingWikiWord{:href => "/nlab/show/locally+small+category"} categories
+          %ul
+            %li
+              %p
+                There is an analog of the Yoneda lemma in
+                = succeed "." do
+                  %a.existingWikiWord{:href => "/nlab/show/enriched+category+theory"} enriched category theory
+                = succeed "." do
+                  %a.existingWikiWord{:href => "/nlab/show/enriched+Yoneda+lemma"} enriched Yoneda lemma
+            %li
+              %p
+                In the context of
+                %a.existingWikiWord{:href => "/nlab/show/module"} modules
+                (see also
+                = succeed ")" do
+                  %a.existingWikiWord{:href => "/nlab/show/Day+convolution"} Day convolution
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/Yoneda+reduction"} Yoneda reduction
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msub
+                        %mi hom
+                        %mi C
+                      %mo{:stretchy => "false"} (
+                      %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                      %mo ,
+                      %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                      %mo{:stretchy => "false"} )
+                    %annotation{:encoding => "application/x-tex"} \hom_C(-, -)
+                as a unit bimodule.
+            %li
+              %p
+                There is a
+                = succeed "." do
+                  %a.existingWikiWord{:href => "/nlab/show/Yoneda+lemma+for+bicategories"} Yoneda lemma for bicategories
+            %li
+              %p
+                There is a
+                = succeed "." do
+                  %a.existingWikiWord{:href => "/nlab/show/Yoneda+lemma+for+tricategories"} Yoneda lemma for tricategories
+            %li
+              %p
+                There is a
+                = succeed "." do
+                  %a.existingWikiWord{:href => "/nlab/show/Yoneda+lemma+for+%28%E2%88%9E%2C1%29-categories"} Yoneda lemma for (∞,1)-categories
+            %li
+              %p
+                In
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/functional+programming"} functional programming
+                %a.existingWikiWord{:href => "/nlab/show/continuation+passing+style"} continuation passing style
+                transform.
+            %li
+              %p
+                Formulation of the lemma in
+                = succeed ":" do
+                  %a.existingWikiWord{:href => "/nlab/show/dependent+type+theory"} dependent type theory
+                %a{:href => "http://homotopytypetheory.org/2012/05/02/a-type-theoretical-yoneda-lemma/"} A type theoretical Yoneda lemma
+                at
+                %a{:href => "http://homotopytypetheory.org"} homotopytypetheory.org
+          %h2#necessity_of_naturality Necessity of naturality
+          %p
+            The assumption of naturality is necessary for the Yoneda lemma to hold. A simple counter-example is given by a category with two objects
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi A
+                %annotation{:encoding => "application/x-tex"} A
+            and
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi B
+                  %annotation{:encoding => "application/x-tex"} B
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi Hom
+                    %mo{:stretchy => "false"} (
+                    %mi A
+                    %mo ,
+                    %mi A
+                    %mo{:stretchy => "false"} )
+                    %mo =
+                    %mi Hom
+                    %mo{:stretchy => "false"} (
+                    %mi A
+                    %mo ,
+                    %mi B
+                    %mo{:stretchy => "false"} )
+                    %mo =
+                    %mi Hom
+                    %mo{:stretchy => "false"} (
+                    %mi B
+                    %mo ,
+                    %mi B
+                    %mo{:stretchy => "false"} )
+                    %mo =
+                    %msub
+                      %mi ℤ
+                      %mrow
+                        %mo ≥
+                        %mn 0
+                  %annotation{:encoding => "application/x-tex"} Hom(A,A) = Hom(A,B) = Hom(B,B) = \mathbb{Z}_{\geq 0}
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mn 0
+                  %annotation{:encoding => "application/x-tex"} 0
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi Hom
+                    %mo{:stretchy => "false"} (
+                    %mi B
+                    %mo ,
+                    %mi A
+                    %mo{:stretchy => "false"} )
+                    %mo =
+                    %msub
+                      %mi ℤ
+                      %mrow
+                        %mo ≥
+                        %mn 1
+                  %annotation{:encoding => "application/x-tex"} Hom(B,A) = \mathbb{Z}_{\geq 1}
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mn 1
+                  %annotation{:encoding => "application/x-tex"} 1
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi Hom
+                  %mo{:stretchy => "false"} (
+                  %mi A
+                  %mo ,
+                  %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} Hom(A,-)
+            is isomorphic to
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi Hom
+                  %mo{:stretchy => "false"} (
+                  %mi B
+                  %mo ,
+                  %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} Hom(B,-)
+            for any choice of
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                  %annotation{:encoding => "application/x-tex"} -
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi A
+                %annotation{:encoding => "application/x-tex"} A
+            and
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi B
+                %annotation{:encoding => "application/x-tex"} B
+            are not isomorphic (composition with any arrow
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi B
+                  %mo →
+                  %mi A
+                %annotation{:encoding => "application/x-tex"} B \rightarrow A
+            is greater than or equal to
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mn 1
+                  %annotation{:encoding => "application/x-tex"} 1
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mn 0
+                %annotation{:encoding => "application/x-tex"} 0
+            is the identity on
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi A
+                %annotation{:encoding => "application/x-tex"} A
+            and
+            = succeed ")." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi B
+                  %annotation{:encoding => "application/x-tex"} B
+          %p
+            A finite counter-example is given by the category with two objects
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi A
+                %annotation{:encoding => "application/x-tex"} A
+            and
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi B
+                  %annotation{:encoding => "application/x-tex"} B
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi Hom
+                    %mo{:stretchy => "false"} (
+                    %mi A
+                    %mo ,
+                    %mi A
+                    %mo{:stretchy => "false"} )
+                    %mo =
+                    %mi Hom
+                    %mo{:stretchy => "false"} (
+                    %mi A
+                    %mo ,
+                    %mi B
+                    %mo{:stretchy => "false"} )
+                    %mo =
+                    %mi Hom
+                    %mo{:stretchy => "false"} (
+                    %mi B
+                    %mo ,
+                    %mi B
+                    %mo{:stretchy => "false"} )
+                    %mo =
+                    %mo{:stretchy => "false"} {
+                    %mn 0
+                    %mo ,
+                    %mn 1
+                    %mo{:stretchy => "false"} }
+                  %annotation{:encoding => "application/x-tex"} Hom(A,A) = Hom(A,B) = Hom(B,B) = \{0, 1\}
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi Hom
+                    %mo{:stretchy => "false"} (
+                    %mi B
+                    %mo ,
+                    %mi A
+                    %mo{:stretchy => "false"} )
+                    %mo =
+                    %mo{:stretchy => "false"} {
+                    %mn 0
+                    %mo ,
+                    %mn 2
+                    %mo{:stretchy => "false"} }
+                  %annotation{:encoding => "application/x-tex"} Hom(B,A) = \{0, 2\}
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi Hom
+                  %mo{:stretchy => "false"} (
+                  %mi A
+                  %mo ,
+                  %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} Hom(A,-)
+            is isomorphic to
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi Hom
+                  %mo{:stretchy => "false"} (
+                  %mi B
+                  %mo ,
+                  %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} Hom(B,-)
+            for any choice of
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                  %annotation{:encoding => "application/x-tex"} -
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi A
+                %annotation{:encoding => "application/x-tex"} A
+            and
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi B
+                %annotation{:encoding => "application/x-tex"} B
+            are not isomorphic (composition with any arrow
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi B
+                  %mo →
+                  %mi A
+                %annotation{:encoding => "application/x-tex"} B \rightarrow A
+            is
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mn 0
+                  %annotation{:encoding => "application/x-tex"} 0
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mn 1
+                %annotation{:encoding => "application/x-tex"} 1
+            is the identity on
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi A
+                %annotation{:encoding => "application/x-tex"} A
+            and
+            = succeed ")." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi B
+                  %annotation{:encoding => "application/x-tex"} B
+          %p
+            On the other hand, there have been examples of locally finite categories where naturality is not necessary. For example,
+            %a{:href => "#Lovasz1967"} Lovász 1967, Theorem 3.6 (iv)
+            states precisely that finite relational structures
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi A
+                %annotation{:encoding => "application/x-tex"} A
+            and
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi B
+                %annotation{:encoding => "application/x-tex"} B
+            are isomorphic if, and only if,
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi Hom
+                  %mo{:stretchy => "false"} (
+                  %mi C
+                  %mo ,
+                  %mi A
+                  %mo{:stretchy => "false"} )
+                  %mo ≅
+                  %mi Hom
+                  %mo{:stretchy => "false"} (
+                  %mi C
+                  %mo ,
+                  %mi B
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} Hom(C,A) \cong Hom(C,B)
+            for every finite relational structure
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi C
+                  %annotation{:encoding => "application/x-tex"} C
+            %a{:href => "#Pultr1973"} Pultr 1973, Theorem 2.2
+            generalised the result to finitely well-powered, locally finite categories with (extremal epi, mono)
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/factorization+system"} factorization system
+          %h2#the_yoneda_lemma_in_semicategories The Yoneda lemma in semicategories
+          %p
+            An interesting phenomenon arises in the case of
+            %a.existingWikiWord{:href => "/nlab/show/semicategory"} semicategories
+            i.e. “categories” (possibly) lacking
+            = succeed ":" do
+              %a.existingWikiWord{:href => "/nlab/show/identity+morphisms"} identity morphisms
+          %p
+            the Yoneda lemma fails in general, since its validity in a semicategory
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi 𝒢
+                %annotation{:encoding => "application/x-tex"} \mathcal{G}
+            implies that
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi 𝒢
+                %annotation{:encoding => "application/x-tex"} \mathcal{G}
+            is in fact already a category because the Yoneda lemma permits to embed
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi 𝒢
+                %annotation{:encoding => "application/x-tex"} \mathcal{G}
+            into
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi PrSh
+                  %mo{:stretchy => "false"} (
+                  %mi 𝒢
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} PrSh(\mathcal{G})
+            and the latter is always a category, the embedding then implying that
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi 𝒢
+                %annotation{:encoding => "application/x-tex"} \mathcal{G}
+            is itself a category!
+          %p
+            But for
+            %a.existingWikiWord{:href => "/nlab/show/regular+semicategories"} regular semicategories
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi ℛ
+                %annotation{:encoding => "application/x-tex"} \mathcal{R}
+            there is a
+            %a.existingWikiWord{:href => "/nlab/show/unity+of+opposites"} unity of opposites
+            in the category of all
+            %a.existingWikiWord{:href => "/nlab/show/semipresheaves"} semipresheaves
+            on
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi ℛ
+                %annotation{:encoding => "application/x-tex"} \mathcal{R}
+            between the so called regular presheaves that are
+            %a.existingWikiWord{:href => "/nlab/show/colimits"} colimits
+            of
+            %a.existingWikiWord{:href => "/nlab/show/representable+presheaf"} representables
+            and presheaves satisfying the Yoneda lemma, whence
+            %em the Yoneda lemma holds dialectically for regular presheaves!
+          %p
+            For some of the details see at
+            %em
+              %a.existingWikiWord{:href => "/nlab/show/regular+semicategory"} regular semicategory
+            and the references therein.
+          %h2#applications Applications
+          %ul
+            %li
+              %p
+                The Yoneda lemma is the or a central ingredient in various
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/reconstruction+theorem"} reconstruction theorems
+                = succeed "." do
+                  %a.existingWikiWord{:href => "/nlab/show/Tannaka+duality"} Tannaka duality
+            %li
+              %p
+                In its incarnations as
+                %a.existingWikiWord{:href => "/nlab/show/Yoneda+reduction"} Yoneda reduction
+                the Yoneda lemma governs the algebra of
+                %a.existingWikiWord{:href => "/nlab/show/end"} ends
+                and
+                %a.existingWikiWord{:href => "/nlab/show/coend"} coends
+                and hence that of
+                %a.existingWikiWord{:href => "/nlab/show/bimodule"} bimodules
+                and
+                = succeed "." do
+                  %a.existingWikiWord{:href => "/nlab/show/profunctor"} profunctors
+            %li
+              %p
+                The Yoneda lemma is effectively the reason that
+                %a.existingWikiWord{:href => "/nlab/show/Isbell+conjugation"} Isbell conjugation
+                exists. This is a fundamental duality that relates
+                %a.existingWikiWord{:href => "/nlab/show/geometry"} geometry
+                and
+                %a.existingWikiWord{:href => "/nlab/show/algebra"} algebra
+                in large part of mathematics.
+          %h2#related_entries Related entries
+          %ul
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Yoneda+reduction"} Yoneda reduction
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/co-Yoneda+lemma"} co-Yoneda lemma
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Yoneda+structure"} Yoneda structure
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Brown+representability+theorem"} Brown representability theorem
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/continuation-passing+style"} continuation-passing style
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/regular+semicategory"} regular semicategory
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Yoneda+lemma+for+%28%E2%88%9E%2C1%29-categories"} Yoneda lemma for (∞,1)-categories
+          %p
+            %br/
+          %h2#References References
+          %p
+            For general references see any text on
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/category+theory"} category theory
+            = succeed "." do
+              %a{:href => "category+theory#References"} there
+          %p
+            The term
+            %em Yoneda lemma
+            originated in an interview of
+            %a.existingWikiWord{:href => "/nlab/show/Nobuo+Yoneda"} Nobuo Yoneda
+            by
+            %a.existingWikiWord{:href => "/nlab/show/Saunders+Mac+Lane"} Saunders Mac Lane
+            at Paris Gare du Nord:
+          %ul
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Yoshiki+Kinoshita"}> Yoshiki Kinoshita
+                ,
+                %em Nobuo Yoneda (1930-1996)
+              %p &amp;
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Saunders+MacLane"}> Saunders MacLane
+                ,
+                = succeed "," do
+                  %em The Yoneda Lemma
+              %p
+                Math. Japonica,
+                = succeed "," do
+                  %strong 47
+              %p
+                (
+                %a{:href => "https://dmitripavlov.org/scans/yoneda.pdf"} pdf
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/files/MathJaponica_YonedaObituary.pdf", :title => "pdf"} pdf
+                = succeed ")" do
+                  %a{:href => "http://www.mta.ca/~cat-dist/catlist/1999/yoneda"} posting to catlist in 1996
+          %p
+            In
+            %em
+              %a.existingWikiWord{:href => "/nlab/show/Categories+for+the+Working+Mathematician"} Categories for the Working Mathematician
+            MacLane writes that this happened in 1954.
+          %p
+            %img{:src => "http://ncatlab.org/nlab/files/YonedaObituary.jpg"}/
+          %p Review and exposition:
+          %ul
+            %li
+              %p
+                %a{:href => "https://www.cs.bham.ac.uk/~mhe/yoneda/yoneda.html"} Using Yoneda rather than J to present the identity type
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Alexander+Grothendieck"}> Alexander Grothendieck
+                , Section A.1 of:
+                = succeed "," do
+                  %em Technique de descente et théorèmes d’existence en géométrie algébriques. II. Le théorème d’existence en théorie formelle des modules
+                = succeed ")" do
+                  %a{:href => "http://www.numdam.org/item/?id=SB_1958-1960__5__369_0"} numdam:SB_1958-1960__5__369_0
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Saunders+MacLane"}> Saunders MacLane
+                , §III.2 of:
+                = succeed "," do
+                  %em
+                    %a.existingWikiWord{:href => "/nlab/show/Categories+for+the+Working+Mathematician"} Categories for the Working Mathematician
+                %strong 5
+                Springer (second ed. 1997) &amp;lbrack;
+                %a{:href => "https://link.springer.com/book/10.1007/978-1-4757-4721-8"}> doi:10.1007/978-1-4757-4721-8
+                \&amp;rbrack;
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Tom+Leinster"}> Tom Leinster
+                ,
+                %em
+                  %a.existingWikiWord{:href => "/nlab/files/LeinsterYoneda.ps", :title => "The Yoneda Lemma: What's it all about?"} The Yoneda Lemma: What's it all about?
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Emily+Riehl"}> Emily Riehl
+                ,
+                %em Category Theory in Context. Chapter 2. Universal Properties, Representability, and the Yoneda Lemma
+                %a{:href => "https://emilyriehl.github.io/files/context.pdf"} pdf
+            %li#RRZ2004
+              %p
+                Marie La Palme Reyes, Gonzalo E. Reyes, and Houman Zolfaghari,
+                = succeed "," do
+                  %em Generic figures and their glueings: A constructive approach to functor categories
+                = succeed "," do
+                  %a{:href => "https://reyes-reyes.com/2004/06/01/generic-figures-and-their-glueings-a-constructive-approach-to-functor-categories/"} author page
+                = succeed ")." do
+                  %a{:href => "https://marieetgonzalo.files.wordpress.com/2004/06/generic-figures.pdf"} pdf
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Paolo+Perrone"}> Paolo Perrone
+                ,
+                = succeed "," do
+                  %em Notes on Category Theory with examples from basic mathematics
+                = succeed ")" do
+                  %a{:href => "http://arxiv.org/abs/1912.10642"} arXiv
+          %p Early Lovász-Type results:
+          %ul
+            %li#Lovasz1967
+              %p
+                László Lovász,
+                = succeed "," do
+                  %em Operations with structures
+                %strong 18
+                (1967) 3-4 321-328
+            %li#Pultr1973
+              %p
+                Aleš Pultr.
+                = succeed "," do
+                  %em Isomorphism types of objects in categories determined by numbers of morphisms
+                %strong 35
+                (1973) 155–160
+          %p
+            A discussion of the Yoneda lemma from the point of view of
+            = succeed ":" do
+              %a.existingWikiWord{:href => "/nlab/show/universal+algebra"} universal algebra
+          %ul
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/Vaughan+Pratt"}> Vaughan Pratt
+              ,
+              %em The Yoneda lemma without category theory: algebra and applications
+              (
+              %a{:href => "http://boole.stanford.edu/pub/yon.pdf"}> pdf
+              ).
+          %p
+            Discussion of the Yoneda lemma in
+            %a.existingWikiWord{:href => "/nlab/show/formal+category+theory"} formal category theory
+            internal to suitable
+            = succeed ":" do
+              %a.existingWikiWord{:href => "/nlab/show/2-categories"} 2-categories
+          %ul
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Ross+Street"}> Ross Street
+                \:
+                = succeed "," do
+                  %em Fibrations and Yoneda’s Lemma in a 2-category
+                = succeed "," do
+                  %em 420
+                = succeed "&rbrack;" do
+                  %a{:href => "https://doi.org/10.1007/BFb0063102"} doi:10.1007/BFb0063102
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Ross+Street"}> Ross Street
+                \:
+                = succeed "," do
+                  %em Elementary cosmoi I
+                = succeed "," do
+                  %em 420
+                = succeed "&rbrack;" do
+                  %a{:href => "https://doi.org/10.1007/bfb0063103"} doi:10.1007/bfb0063103
+          %p
+            A treatment of the Yoneda lemma for
+            = succeed ":" do
+              %a.existingWikiWord{:href => "/nlab/show/internal+category+in+an+%28infinity%2C1%29-category"} categories internal to an (∞,1)-topos
+          %ul
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/Louis+Martini"}> Louis Martini
+              ,
+              %em Yoneda’s lemma for internal higher categories
+              \&amp;lbrack;
+              %a{:href => "https://arxiv.org/abs/2103.17141"}> arXiv:2103.17141
+              \&amp;rbrack;
+        .revisedby
+          %p
+            Last revised on November 13, 2025 at 08:23:35.
+            See the
+            %a{:href => "/nlab/history/Yoneda+lemma", :style => "color: #005c19"} history
+            of this page for a list of all contributions to it.
+        .navigation.navfoot
+          %a#edit.navlink{:accesskey => "E", :href => "/nlab/edit/Yoneda+lemma", :rel => "nofollow"} Edit
+          %a{:href => "https://nforum.ncatlab.org/discussion/1298/#Item_107"} Discuss
+          %span.backintime
+            %a#to_previous_revision.navlinkbackintime{:accesskey => "B", :href => "/nlab/revision/Yoneda+lemma/85", :rel => "nofollow"} Previous revision
+          %a#see_changes.navlink{:accesskey => "C", :href => "/nlab/show/diff/Yoneda+lemma", :rel => "nofollow"} Changes from previous revision
+          %a#history.navlink{:accesskey => "S", :href => "/nlab/history/Yoneda+lemma", :rel => "nofollow"} History (85 revisions)
+          %a{:href => "/nlab/show/Yoneda+lemma/cite", :style => "color: black"} Cite
+          %a#view_print{:accesskey => "p", :href => "/nlab/print/Yoneda+lemma", :rel => "nofollow"} Print
+          %a#view_source{:href => "/nlab/source/Yoneda+lemma", :rel => "nofollow"} Source
+      / Content
+    / Container

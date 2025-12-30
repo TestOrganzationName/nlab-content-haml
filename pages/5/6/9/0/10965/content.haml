@@ -1,0 +1,1496 @@
+!!! XML
+!!! 1.1
+%html{:xmlns => "http://www.w3.org/1999/xhtml"}
+  %head
+    %title
+      Hegel's "Logic" as Modal Type Theory in nLab
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:content => "index,follow", :name => "robots"}/
+    %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/
+    %link{:href => "/stylesheets/instiki.css?1660229990", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/stylesheets/mathematics.css?1660229990", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/stylesheets/syntax.css?1660229990", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/stylesheets/nlab.css?1660229990", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css", :rel => "stylesheet", :type => "text/css"}/
+    :css
+      h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+        color: #226622;
+      }
+      a:visited.existingWikiWord {
+        color: #164416;
+      }
+    :css
+      <!--/*--><![CDATA[/*><!--*/
+          .toc ul {margin: 0; padding: 0;}
+      .toc ul ul {margin: 0; padding: 0 0 0 10px;}
+      .toc li > p {margin: 0}
+      .toc ul li {list-style-type: none; position: relative;}
+      .toc div {border-top:1px dotted #ccc;}
+      .rightHandSide h2 {font-size: 1.5em;color:#008B26}
+      table.plaintable {
+          border-collapse:collapse;
+          margin-left:30px;
+          border:0;
+      }
+      .plaintable td {border:1px solid #000; padding: 3px;}
+      .plaintable th {padding: 3px;}
+      .plaintable caption {
+          font-weight: bold;
+          font-size:1.1em;
+          text-align:center;
+          margin-left:30px;
+      }
+          
+         
+      /* Query boxes for questioning and answering mechanism */
+      div.query{
+      background: #f6fff3;
+      border: solid #ce9;
+      border-width: 2px 1px;
+      padding: 0 1em;
+      margin: 0 1em;
+      max-height: 20em;
+      overflow: auto;
+      }
+      
+      /* Standout boxes for putting important text */
+      div.standout{
+      background: #fff1f1;
+      border: solid black;
+      border-width: 2px 1px;
+      padding: 0 1em;
+      margin: 0 1em;
+      overflow: auto;
+      }
+      
+      /* Icon for links to n-category arXiv documents 
+       (commented out for now i.e. disabled)
+      a[href*="http://arxiv.org/"] {
+        background-image: url(../files/arXiv_icon.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 22px;
+        } */
+          
+      /* Icon for links to n-category cafe posts (disabled) 
+      a[href*="http://golem.ph.utexas.edu/category"] {
+        background-image: url(../files/n-cafe_5.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 25px;
+        } */
+      
+      /* Icon for links to pdf files (disabled)
+      a[href$=".pdf"] {
+        background-image: url(../files/pdficon_small.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 25px;
+        } */
+      
+      /* Icon for links to pages, etc. -inside- pdf files (disabled)
+      a[href*=".pdf#"] {
+        background-image: url(../files/pdf_entry.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 25px;
+        } */
+      
+      a.existingWikiWord {
+      color: #226622;
+      }
+      
+      a.existingWikiWord:visited {
+      color: #226622;
+      }
+      
+      
+      a.existingWikiWord[title] {
+      border: 0px;
+      color: #aa0505;
+      text-decoration: none;
+      }
+          
+      a.existingWikiWord[title]:visited {
+      border: 0px;
+      color: #551111;
+      text-decoration: none;
+      }
+      
+      a[href^="http://"] {
+      border: 0px;
+      color: #003399;
+      }
+      
+      a[href^="http://"]:visited {
+      border: 0px;
+      color: #330066;
+      }
+      
+      a[href^="https://"] {
+      border: 0px;
+      color: #003399;
+      }
+      
+      a[href^="https://"]:visited {
+      border: 0px;
+      color: #330066;
+      }
+      
+      div.dropDown .hide {
+      display: none;
+      }
+      
+      div.dropDown:hover .hide {
+      display:block;
+      }
+      
+      div.clickDown .hide {
+      display: none;
+      }
+      
+      div.clickDown:focus {
+      outline:none;
+      }
+      
+      div.clickDown:focus .hide, div.clickDown:hover .hide {
+      display: block;
+      }
+      
+      div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+      display:block;
+      }
+      
+      div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+      display:none;
+      }
+      
+      div.clickDown .clickToReveal:after {
+      content: "A(Hover to reveal, click to "hold")";
+      font-size: 60%;
+      }
+      
+      div.clickDown .clickToHide:after {
+      content: "A(Click to hide)";
+      font-size: 60%;
+      }
+      div.clickDown .clickToHide, div.clickDown .clickToReveal {
+      white-space: pre-wrap;
+      }
+      
+      .un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+      margin-left: 1em;
+      }
+      
+      span.theorem_label {
+      margin-left: -1em;
+      }
+      .proof span.theorem_label {
+      margin-left: 0em;
+      }
+      :target {
+          background-color: #BBBBBB;
+          border-radius: 5pt;
+      }
+      
+        /*]]>*/-->
+    %script{:src => "/javascripts/prototype.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/effects.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/dragdrop.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/controls.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/application.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/page_helper.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/thm_numbering.js?1660229990", :type => "text/javascript"}
+    %script{:type => "text/x-mathjax-config"}
+      :cdata
+        <!--//--><![CDATA[//><!--
+        MathJax.Ajax.config.path["Contrib"] = "/MathJax";
+        MathJax.Hub.Config({
+        MathML: { useMathMLspacing: true },
+        "HTML-CSS": { scale: 90,
+        extensions: ["handle-floats.js"]
+        }
+        });
+        MathJax.Hub.Queue( function () {
+        var fos = document.getElementsByTagName('foreignObject');
+        for (var i = 0; i < fos.length; i++) {
+        MathJax.Hub.Typeset(fos[i]);
+        }
+        });
+        \//--><!]]>
+    :javascript
+      <!--//--><![CDATA[//><!--
+      window.addEventListener("DOMContentLoaded", function () {
+        var div = document.createElement('div');
+        var math = document.createElementNS('http://www.w3.org/1998/Math/MathML', 'math');
+        document.body.appendChild(div);
+        div.appendChild(math);
+      // Test for MathML support comparable to WebKit version https://trac.webkit.org/changeset/203640 or higher.
+        div.setAttribute('style', 'font-style: italic');
+        var mathml_unsupported = !(window.getComputedStyle(div.firstChild).getPropertyValue('font-style') === 'normal');
+        div.parentNode.removeChild(div);
+        if (mathml_unsupported) {
+          // MathML does not seem to be supported...
+          var s = document.createElement('script');
+          s.src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=MML_HTMLorMML-full";
+          document.querySelector('head').appendChild(s);
+        } else {
+          document.head.insertAdjacentHTML("beforeend", '<style>svg[viewBox] {max-width: 100%}</style>');
+        }
+      });
+      //--><!]]>
+    %link{:href => "https://ncatlab.org/nlab/atom_with_headlines", :rel => "alternate", :title => "Atom with headlines", :type => "application/atom+xml"}/
+    %link{:href => "https://ncatlab.org/nlab/atom_with_content", :rel => "alternate", :title => "Atom with full content", :type => "application/atom+xml"}/
+    :javascript
+      document.observe("dom:loaded", function() {
+        generateThmNumbers();
+      });
+  %body
+    #Container
+      #Content
+        %h1#pageName
+          %span{:style => "float: left; margin: 0.5em 0.25em -0.25em 0"}
+            %svg{:height => "1.8em", :viewbox => "0 0 190 181", :width => "1.872em", :xmlns => "http://www.w3.org/2000/svg"}
+              %path{:d => "M72.8 145c-1.6 17.3-15.7 10-23.6 20.2-5.6 7.3 4.8 15 11.4 15 11.5-.2 19-13.4 26.4-20.3 3.3-3 8.2-4 11.2-7.2a14 14 0 0 0 2.9-11.1c-1.4-9.6-12.4-18.6-16.9-27.2-5-9.6-10.7-27.4-24.1-27.7-17.4-.3-.4 26 4.7 30.7 2.4 2.3 5.4 4.1 7.3 6.9 1.6 2.3 2.1 5.8-1 7.2-5.9 2.6-12.4-6.3-15.5-10-8.8-10.6-15.5-23-26.2-31.8-5.2-4.3-11.8-8-18-3.7-7.3 4.9-4.2 12.9.2 18.5a81 81 0 0 0 30.7 23c3.3 1.5 12.8 5.6 10 10.7-2.5 5.2-11.7 3-15.6 1.1-8.4-3.8-24.3-21.3-34.4-13.7-3.5 2.6-2.3 7.6-1.2 11.1 2.8 9 12.2 17.2 20.9 20.5 17.3 6.7 34.3-8 50.8-12.1z", :fill => "#226622"}
+              %path{:d => "M145.9 121.3c-.2-7.5 0-19.6-4.5-26-5.4-7.5-12.9-1-14.1 5.8-1.4 7.8 2.7 14.1 4.8 21.3 3.4 12 5.8 29-.8 40.1-3.6-6.7-5.2-13-7-20.4-2.1-8.2-12.8-13.2-15.1-1.9-2 9.7 9 21.2 12 30.1 1.2 4 2 8.8 6.4 10.3 6.9 2.3 13.3-4.7 17.7-8.8 12.2-11.5 36.6-20.7 43.4-36.4 6.7-15.7-13.7-14-21.3-7.2-9.1 8-11.9 20.5-23.6 25.1 7.5-23.7 31.8-37.6 38.4-61.4 2-7.3-.8-29.6-13-19.8-14.5 11.6-6.6 37.6-23.3 49.2z", :fill => "#a41e32"}
+              %path{:d => "M86.3 47.5c0-13-10.2-27.6-5.8-40.4 2.8-8.4 14.1-10.1 17-1 3.8 11.6-.3 26.3-1.8 38 11.7-.7 10.5-16 14.8-24.3 2.1-4.2 5.7-9.1 11-6.7 6 2.7 7.4 9.2 6.6 15.1-2.2 14-12.2 18.8-22.4 27-3.4 2.7-8 6.6-5.9 11.6 2 4.4 7 4.5 10.7 2.8 7.4-3.3 13.4-16.5 21.7-16 14.6.7 12 21.9.9 26.2-5 1.9-10.2 2.3-15.2 3.9-5.8 1.8-9.4 8.7-15.7 8.9-6.1.1-9-6.9-14.3-9-14.4-6-33.3-2-44.7-14.7-3.7-4.2-9.6-12-4.9-17.4 9.3-10.7 28 7.2 35.7 12 2 1.1 11 6.9 11.4 1.1.4-5.2-10-8.2-13.5-10-11.1-5.2-30-15.3-35-27.3-2.5-6 2.8-13.8 9.4-13.6 6.9.2 13.4 7 17.5 12C70.9 34 75 43.8 86.3 47.4z", :fill => "#193c78"}
+          %span.webName nLab
+          Hegel's "Logic" as Modal Type Theory
+        .navigation
+          %span.skipNav
+            %a{:href => "#navEnd"} Skip the Navigation Links
+            |
+          %span{:style => "display:inline-block; width: 0.3em;"}
+          %a{:accesskey => "H", :href => "/nlab/show/HomePage", :title => "Home page"} Home Page
+          |
+          %a{:accesskey => "A", :href => "/nlab/all_pages", :title => "List of all pages"} All Pages
+          |
+          %a{:accesskey => "U", :href => "/nlab/latest_revisions", :title => "Latest edits and page creations"} Latest Revisions
+          |
+          %a{:href => "https://nforum.ncatlab.org/discussions/?CategoryID=0", :style => "color:black", :title => "Discuss this page on the nForum. It does not yet have a dedicated thread; feel free to create one, giving it the same name as the title of this page"} Discuss this page
+          |
+          %form#navigationSearchForm{"accept-charset" => "utf-8", :action => "/nlab/search", :method => "get"}
+            %fieldset.search
+              %input#searchField{:name => "query", :onblur => "this.value == '' ? this.value = 'Search' : true", :onfocus => "this.value == 'Search' ? this.value = '' : true", :style => "display:inline-block; float: left;", :type => "text", :value => "Search"}/
+          %span#navEnd
+        #revision
+          %meta{:content => "application/xhtml+xml;charset=utf-8", "http-equiv" => "Content-type"}/
+          %title Contents
+          %blockquote
+            %p under construction
+          .rightHandSide
+            .toc.clickDown{:tabindex => "0"}
+              %h3#context Context
+              %h4#philosophy Philosophy
+              .hide
+                %div
+                  %p
+                    %strong
+                      %a.existingWikiWord{:href => "/nlab/show/philosophy"} philosophy
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/ontology"} ontology
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/logos+%28in+philosophy%29"}> logos
+                            ,
+                            %em
+                              %a.existingWikiWord{:href => "/nlab/show/Science+of+Logic"} Science of Logic
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/being"}> being
+                            ,
+                            %a.existingWikiWord{:href => "/nlab/show/becoming"} becoming
+                  %h3#schools Schools
+                  %ul
+                    %li
+                      %a.existingWikiWord{:href => "/nlab/show/objective+idealism"} objective idealism
+                  %h3#of_mathematics Of mathematics
+                  %ul
+                    %li
+                      %a.existingWikiWord{:href => "/nlab/show/philosophy+of+mathematics"} philosophy of mathematics
+                  %h3#of_physics Of physics
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/natural+philosophy"} natural philosophy
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/philosophy+of+physics"} philosophy of physics
+                  %div
+                    %p
+                      %a{:href => "/nlab/edit/philosophy+-+contents"} Edit this sidebar
+              %h4#foundations Foundations
+              .hide
+                %div
+                  %p
+                    %strong
+                      %a.existingWikiWord{:href => "/nlab/show/foundations"} foundations
+                  %h2#the_basis_of_it_all The basis of it all
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/mathematical+logic"} mathematical logic
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/first-order+logic"} first-order logic
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/type+theory"}> type theory
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/homotopy+type+theory"} homotopy type theory
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/universe"} universe
+                  %h2#set_theory  Set theory
+                  %div
+                    %p
+                      %strong
+                        %a.existingWikiWord{:href => "/nlab/show/set+theory"} set theory
+                    %ul
+                      %li
+                        presentations of set theory
+                        %ul
+                          %li
+                            %a.existingWikiWord{:href => "/nlab/show/unsorted+set+theory"} unsorted set theory
+                          %li
+                            %a.existingWikiWord{:href => "/nlab/show/two-sorted+set+theory"} two-sorted set theory
+                          %li
+                            %a.existingWikiWord{:href => "/nlab/show/dependently+sorted+set+theory"} dependently sorted set theory
+                          %li
+                            %a.existingWikiWord{:href => "/nlab/show/structurally+presented+set+theory"} structurally presented set theory
+                      %li
+                        structuralism in set theory
+                        %ul
+                          %li
+                            %a.existingWikiWord{:href => "/nlab/show/material+set+theory"} material set theory
+                            %ul
+                              %li
+                                %a.existingWikiWord{:href => "/nlab/show/ZFC"} ZFC
+                              %li
+                                %a.existingWikiWord{:href => "/nlab/show/ZFA"} ZFA
+                              %li
+                                %a.existingWikiWord{:href => "/nlab/show/New+Foundations"} New Foundations
+                          %li
+                            %a.existingWikiWord{:href => "/nlab/show/structural+set+theory"} structural set theory
+                            %ul
+                              %li
+                                %a.existingWikiWord{:href => "/nlab/show/ETCS"} ETCS
+                                %ul
+                                  %li
+                                    %a.existingWikiWord{:href => "/nlab/show/fully+formal+ETCS"} fully formal ETCS
+                                  %li
+                                    %a.existingWikiWord{:href => "/nlab/show/ETCS+with+elements"} ETCS with elements
+                                  %li
+                                    %a.existingWikiWord{:href => "/nlab/show/Trimble+on+ETCS+I"} Trimble on ETCS I
+                                  %li
+                                    %a.existingWikiWord{:href => "/nlab/show/Trimble+on+ETCS+II"} Trimble on ETCS II
+                                  %li
+                                    %a.existingWikiWord{:href => "/nlab/show/Trimble+on+ETCS+III"} Trimble on ETCS III
+                              %li
+                                %a.existingWikiWord{:href => "/nlab/show/SEAR"} SEAR
+                  %h2#foundational_axioms Foundational axioms
+                  %div
+                    %p
+                      %strong
+                        %a.existingWikiWord{:href => "/nlab/show/foundational+axiom"} foundational axiom
+                    %ul
+                      %li
+                        %p basic constructions:
+                        %ul
+                          %li
+                            %a.existingWikiWord{:href => "/nlab/show/axiom+of+cartesian+products"} axiom of cartesian products
+                          %li
+                            %a.existingWikiWord{:href => "/nlab/show/axiom+of+disjoint+unions"} axiom of disjoint unions
+                          %li
+                            %a.existingWikiWord{:href => "/nlab/show/axiom+of+the+empty+set"} axiom of the empty set
+                          %li
+                            %a.existingWikiWord{:href => "/nlab/show/axiom+of+fullness"} axiom of fullness
+                          %li
+                            %a.existingWikiWord{:href => "/nlab/show/axiom+of+function+sets"} axiom of function sets
+                          %li
+                            %a.existingWikiWord{:href => "/nlab/show/axiom+of+power+sets"} axiom of power sets
+                          %li
+                            %a.existingWikiWord{:href => "/nlab/show/axiom+of+quotient+sets"} axiom of quotient sets
+                      %li
+                        %p
+                          %a.existingWikiWord{:href => "/nlab/show/material+set+theory"}> material axioms
+                          \:
+                        %ul
+                          %li
+                            %a.existingWikiWord{:href => "/nlab/show/axiom+of+extensionality"} axiom of extensionality
+                          %li
+                            %a.existingWikiWord{:href => "/nlab/show/axiom+of+foundation"} axiom of foundation
+                          %li
+                            %a.existingWikiWord{:href => "/nlab/show/axiom+of+anti-foundation"} axiom of anti-foundation
+                          %li
+                            %a.existingWikiWord{:href => "/nlab/show/Mostowski%27s+axiom"} Mostowski's axiom
+                          %li
+                            %a.existingWikiWord{:href => "/nlab/show/axiom+of+pairing"} axiom of pairing
+                          %li
+                            %a.existingWikiWord{:href => "/nlab/show/axiom+of+transitive+closure"} axiom of transitive closure
+                          %li
+                            %a.existingWikiWord{:href => "/nlab/show/axiom+of+union"} axiom of union
+                      %li
+                        %p
+                          %a.existingWikiWord{:href => "/nlab/show/structural+set+theory"}> structural axioms
+                          \:
+                        %ul
+                          %li
+                            %a.existingWikiWord{:href => "/nlab/show/axiom+of+materialization"} axiom of materialization
+                      %li
+                        %p
+                          %a.existingWikiWord{:href => "/nlab/show/type+theory"}> type theoretic axioms
+                          \:
+                        %ul
+                          %li
+                            %a.existingWikiWord{:href => "/nlab/show/axiom+K"} axiom K
+                          %li
+                            %a.existingWikiWord{:href => "/nlab/show/axiom+UIP"} axiom UIP
+                          %li
+                            %a.existingWikiWord{:href => "/nlab/show/univalence+axiom"} univalence axiom
+                          %li
+                            %a.existingWikiWord{:href => "/nlab/show/Whitehead%27s+principle"} Whitehead's principle
+                      %li
+                        %p
+                          %a.existingWikiWord{:href => "/nlab/show/axioms+of+choice"}> axioms of choice
+                          \:
+                        %ul
+                          %li
+                            %a.existingWikiWord{:href => "/nlab/show/axiom+of+choice"} axiom of choice
+                          %li
+                            %a.existingWikiWord{:href => "/nlab/show/axiom+of+countable+choice"} axiom of countable choice
+                          %li
+                            %a.existingWikiWord{:href => "/nlab/show/axiom+of+dependent+choice"} axiom of dependent choice
+                          %li
+                            %a.existingWikiWord{:href => "/nlab/show/axiom+of+excluded+middle"} axiom of excluded middle
+                          %li
+                            %a.existingWikiWord{:href => "/nlab/show/axiom+of+existence"} axiom of existence
+                          %li
+                            %a.existingWikiWord{:href => "/nlab/show/axiom+of+multiple+choice"} axiom of multiple choice
+                          %li
+                            %a.existingWikiWord{:href => "/nlab/show/Markov%27s+axiom"} Markov's axiom
+                          %li
+                            %a.existingWikiWord{:href => "/nlab/show/presentation+axiom"} presentation axiom
+                          %li
+                            %a.existingWikiWord{:href => "/nlab/show/small+cardinality+selection+axiom"} small cardinality selection axiom
+                          %li
+                            %a.existingWikiWord{:href => "/nlab/show/axiom+of+small+violations+of+choice"} axiom of small violations of choice
+                          %li
+                            %a.existingWikiWord{:href => "/nlab/show/axiom+of+weakly+initial+sets+of+covers"} axiom of weakly initial sets of covers
+                      %li
+                        %p
+                          %a.existingWikiWord{:href => "/nlab/show/large+cardinal+axioms"}> large cardinal axioms
+                          \:
+                        %ul
+                          %li
+                            %a.existingWikiWord{:href => "/nlab/show/axiom+of+infinity"} axiom of infinity
+                          %li
+                            %a.existingWikiWord{:href => "/nlab/show/axiom+of+universes"} axiom of universes
+                          %li
+                            %a.existingWikiWord{:href => "/nlab/show/regular+extension+axiom"} regular extension axiom
+                          %li
+                            %a.existingWikiWord{:href => "/nlab/show/inaccessible+cardinal"} inaccessible cardinal
+                          %li
+                            %a.existingWikiWord{:href => "/nlab/show/measurable+cardinal"} measurable cardinal
+                          %li
+                            %a.existingWikiWord{:href => "/nlab/show/elementary+embedding"} elementary embedding
+                          %li
+                            %a.existingWikiWord{:href => "/nlab/show/supercompact+cardinal"} supercompact cardinal
+                          %li
+                            %a.existingWikiWord{:href => "/nlab/show/Vop%C4%9Bnka%27s+principle"} Vopěnka's principle
+                      %li
+                        %p strong axioms
+                        %ul
+                          %li
+                            %a.existingWikiWord{:href => "/nlab/show/axiom+of+separation"} axiom of separation
+                          %li
+                            %a.existingWikiWord{:href => "/nlab/show/axiom+of+replacement"} axiom of replacement
+                      %li
+                        %p further
+                        %ul
+                          %li
+                            %a.existingWikiWord{:href => "/nlab/show/reflection+principle"} reflection principle
+                  %h2#removing_axioms Removing axioms
+                  %ul
+                    %li
+                      %a.existingWikiWord{:href => "/nlab/show/constructive+mathematics"} constructive mathematics
+                    %li
+                      %a.existingWikiWord{:href => "/nlab/show/predicative+mathematics"} predicative mathematics
+                  %div
+                    %p
+                      %a{:href => "/nlab/edit/foundations+-+contents"} Edit this sidebar
+              %h4#physics Physics
+              .hide
+                %div
+                  %p
+                    %strong>
+                      %a.existingWikiWord{:href => "/nlab/show/physics"} physics
+                    ,
+                    = succeed "," do
+                      %a.existingWikiWord{:href => "/nlab/show/mathematical+physics"} mathematical physics
+                    %a.existingWikiWord{:href => "/nlab/show/philosophy+of+physics"} philosophy of physics
+                  %h2#surveys_textbooks_and_lecture_notes Surveys, textbooks and lecture notes
+                  %ul
+                    %li
+                      %p
+                        %em
+                          %a.existingWikiWord{:href => "/nlab/show/higher+category+theory+and+physics"} (higher) category theory and physics
+                    %li
+                      %p
+                        %em
+                          %a.existingWikiWord{:href => "/nlab/show/geometry+of+physics"} geometry of physics
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/books+and+reviews+in+mathematical+physics"}> books and reviews
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/physics+resources"} physics resources
+                  %hr/
+                  %p
+                    %a.existingWikiWord{:href => "/nlab/show/theory+%28physics%29"}> theory (physics)
+                    ,
+                    %a.existingWikiWord{:href => "/nlab/show/model+%28physics%29"} model (physics)
+                  %p
+                    %a.existingWikiWord{:href => "/nlab/show/experiment"}> experiment
+                    ,
+                    = succeed "," do
+                      %a.existingWikiWord{:href => "/nlab/show/measurement"} measurement
+                    %a.existingWikiWord{:href => "/nlab/show/computable+physics"} computable physics
+                  %ul
+                    %li
+                      %p
+                        %strong
+                          %a.existingWikiWord{:href => "/nlab/show/mechanics"} mechanics
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/mass"}> mass
+                            ,
+                            = succeed "," do
+                              %a.existingWikiWord{:href => "/nlab/show/charge"} charge
+                            = succeed "," do
+                              %a.existingWikiWord{:href => "/nlab/show/momentum"} momentum
+                            = succeed "," do
+                              %a.existingWikiWord{:href => "/nlab/show/angular+momentum"} angular momentum
+                            %a.existingWikiWord{:href => "/nlab/show/moment+of+inertia"} moment of inertia
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/dynamics+on+Lie+groups"} dynamics on Lie groups
+                          %ul
+                            %li
+                              %a.existingWikiWord{:href => "/nlab/show/rigid+body+dynamics"} rigid body dynamics
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/field+%28physics%29"} field (physics)
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/Lagrangian+mechanics"} Lagrangian mechanics
+                          %ul
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/configuration+space"}> configuration space
+                                ,
+                                %a.existingWikiWord{:href => "/nlab/show/state"} state
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/action+functional"}> action functional
+                                ,
+                                %a.existingWikiWord{:href => "/nlab/show/Lagrangian"} Lagrangian
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/covariant+phase+space"}> covariant phase space
+                                ,
+                                %a.existingWikiWord{:href => "/nlab/show/Euler-Lagrange+equations"} Euler-Lagrange equations
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/Hamiltonian+mechanics"} Hamiltonian mechanics
+                          %ul
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/phase+space"} phase space
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/symplectic+geometry"} symplectic geometry
+                              %ul
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/Poisson+manifold"} Poisson manifold
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/symplectic+manifold"} symplectic manifold
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/symplectic+groupoid"} symplectic groupoid
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/multisymplectic+geometry"} multisymplectic geometry
+                              %ul
+                                %li
+                                  %a.existingWikiWord{:href => "/nlab/show/n-symplectic+manifold"} n-symplectic manifold
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/spacetime"} spacetime
+                          %ul
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/smooth+Lorentzian+manifold"} smooth Lorentzian manifold
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/special+relativity"} special relativity
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/general+relativity"} general relativity
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/gravity"} gravity
+                              %ul
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/supergravity"}> supergravity
+                                    ,
+                                    %a.existingWikiWord{:href => "/nlab/show/dilaton+gravity"} dilaton gravity
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/black+hole"} black hole
+                    %li
+                      %p
+                        %strong
+                          %a.existingWikiWord{:href => "/nlab/show/classical+field+theory"} Classical field theory
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/classical+physics"} classical physics
+                          %ul
+                            %li
+                              %a.existingWikiWord{:href => "/nlab/show/classical+mechanics"} classical mechanics
+                            %li
+                              %a.existingWikiWord{:href => "/nlab/show/waves"} waves
+                              and
+                              %a.existingWikiWord{:href => "/nlab/show/optics"} optics
+                            %li
+                              %a.existingWikiWord{:href => "/nlab/show/thermodynamics"} thermodynamics
+                    %li
+                      %p
+                        %strong
+                          %a.existingWikiWord{:href => "/nlab/show/quantum+mechanics"} Quantum Mechanics
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/quantum+mechanics+in+terms+of+dagger-compact+categories"} in terms of ∞-compact categories
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/quantum+information"} quantum information
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/Hamiltonian+operator"} Hamiltonian operator
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/density+matrix"} density matrix
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/Kochen-Specker+theorem"} Kochen-Specker theorem
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/Bell%27s+theorem"} Bell's theorem
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/Gleason%27s+theorem"} Gleason's theorem
+                    %li
+                      %p
+                        %strong
+                          %a.existingWikiWord{:href => "/nlab/show/quantization"} Quantization
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/geometric+quantization"} geometric quantization
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/deformation+quantization"} deformation quantization
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/path+integral"} path integral quantization
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/semiclassical+approximation"} semiclassical approximation
+                    %li
+                      %p
+                        %strong
+                          %a.existingWikiWord{:href => "/nlab/show/quantum+field+theory"} Quantum Field Theory
+                      %ul
+                        %li
+                          %p Axiomatizations
+                          %ul
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/AQFT"} algebraic QFT
+                              %ul
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/Wightman+axioms"} Wightman axioms
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/Haag-Kastler+axioms"} Haag-Kastler axioms
+                                  %ul
+                                    %li
+                                      %p
+                                        %a.existingWikiWord{:href => "/nlab/show/operator+algebra"} operator algebra
+                                    %li
+                                      %p
+                                        %a.existingWikiWord{:href => "/nlab/show/local+net"} local net
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/conformal+net"} conformal net
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/Reeh-Schlieder+theorem"} Reeh-Schlieder theorem
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/Osterwalder-Schrader+theorem"} Osterwalder-Schrader theorem
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/PCT+theorem"} PCT theorem
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/Bisognano-Wichmann+theorem"} Bisognano-Wichmann theorem
+                                  %ul
+                                    %li
+                                      %a.existingWikiWord{:href => "/nlab/show/modular+theory"} modular theory
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/spin-statistics+theorem"} spin-statistics theorem
+                                  %ul
+                                    %li
+                                      %a.existingWikiWord{:href => "/nlab/show/boson"}> boson
+                                      ,
+                                      %a.existingWikiWord{:href => "/nlab/show/fermion"} fermion
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/FQFT"} functorial QFT
+                              %ul
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/cobordism"} cobordism
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/%28%E2%88%9E%2Cn%29-category+of+cobordisms"} (∞,n)-category of cobordisms
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/cobordism+hypothesis"}> cobordism hypothesis
+                                    \-theorem
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/extended+topological+quantum+field+theory"} extended topological quantum field theory
+                        %li
+                          %p Tools
+                          %ul
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/perturbative+quantum+field+theory"}> perturbative quantum field theory
+                                ,
+                                %a.existingWikiWord{:href => "/nlab/show/vacuum"} vacuum
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/effective+quantum+field+theory"} effective quantum field theory
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/renormalization"} renormalization
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/BV-BRST+formalism"} BV-BRST formalism
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/geometric+%E2%88%9E-function+theory"} geometric ∞-function theory
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/particle+physics"} particle physics
+                          %ul
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/phenomenology"} phenomenology
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/model+%28in+particle+phyiscs%29"} models
+                              %ul
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/standard+model+of+particle+physics"} standard model of particle physics
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/fields+and+quanta+-+table"} fields and quanta
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/GUT"}> Grand Unified Theories
+                                    ,
+                                    %a.existingWikiWord{:href => "/nlab/show/MSSM"} MSSM
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/scattering+amplitude"} scattering amplitude
+                              %ul
+                                %li
+                                  %a.existingWikiWord{:href => "/nlab/show/on-shell+recursion"}> on-shell recursion
+                                  ,
+                                  %a.existingWikiWord{:href => "/nlab/show/KLT+relations"} KLT relations
+                        %li
+                          %p Structural phenomena
+                          %ul
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/universality+class"} universality class
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/quantum+anomaly"} quantum anomaly
+                              %ul
+                                %li
+                                  %a.existingWikiWord{:href => "/nlab/show/Green-Schwarz+mechanism"} Green-Schwarz mechanism
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/instanton"} instanton
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/spontaneously+broken+symmetry"} spontaneously broken symmetry
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/Kaluza-Klein+mechanism"} Kaluza-Klein mechanism
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/integrable+systems"} integrable systems
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/holonomic+quantum+fields"} holonomic quantum fields
+                        %li
+                          %p Types of quantum field thories
+                          %ul
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/TQFT"} TQFT
+                              %ul
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/2d+TQFT"} 2d TQFT
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/Dijkgraaf-Witten+theory"} Dijkgraaf-Witten theory
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/Chern-Simons+theory"} Chern-Simons theory
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/TCFT"} TCFT
+                              %ul
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/A-model"}> A-model
+                                    ,
+                                    %a.existingWikiWord{:href => "/nlab/show/B-model"} B-model
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/homological+mirror+symmetry"} homological mirror symmetry
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/QFT+with+defects"} QFT with defects
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/conformal+field+theory"} conformal field theory
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/%281%2C1%29-dimensional+Euclidean+field+theories+and+K-theory"} (1,1)-dimensional Euclidean field theories and K-theory
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/%282%2C1%29-dimensional+Euclidean+field+theory"} (2,1)-dimensional Euclidean field theory and elliptic cohomology
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/CFT"} CFT
+                              %ul
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/WZW+model"} WZW model
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/6d+%282%2C0%29-supersymmetric+QFT"} 6d (2,0)-supersymmetric QFT
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/gauge+theory"} gauge theory
+                              %ul
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/field+strength"} field strength
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/gauge+group"}> gauge group
+                                    ,
+                                    = succeed "," do
+                                      %a.existingWikiWord{:href => "/nlab/show/gauge+transformation"} gauge transformation
+                                    %a.existingWikiWord{:href => "/nlab/show/gauge+fixing"} gauge fixing
+                                %li
+                                  %p examples
+                                  %ul
+                                    %li
+                                      %a.existingWikiWord{:href => "/nlab/show/electromagnetic+field"}> electromagnetic field
+                                      ,
+                                      %a.existingWikiWord{:href => "/nlab/show/QED"} QED
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/electric+charge"} electric charge
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/magnetic+charge"} magnetic charge
+                                  %ul
+                                    %li
+                                      %a.existingWikiWord{:href => "/nlab/show/Yang-Mills+field"}> Yang-Mills field
+                                      ,
+                                      %a.existingWikiWord{:href => "/nlab/show/QCD"} QCD
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/Yang-Mills+theory"} Yang-Mills theory
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/spinors+in+Yang-Mills+theory"} spinors in Yang-Mills theory
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/topological+Yang-Mills+theory"} topological Yang-Mills theory
+                                  %ul
+                                    %li
+                                      %a.existingWikiWord{:href => "/nlab/show/Kalb-Ramond+field"} Kalb-Ramond field
+                                    %li
+                                      %a.existingWikiWord{:href => "/nlab/show/supergravity+C-field"} supergravity C-field
+                                    %li
+                                      %a.existingWikiWord{:href => "/nlab/show/RR+field"} RR field
+                                    %li
+                                      %a.existingWikiWord{:href => "/nlab/show/first-order+formulation+of+gravity"} first-order formulation of gravity
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/general+covariance"} general covariance
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/supergravity"} supergravity
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/D%27Auria-Fre+formulation+of+supergravity"} D'Auria-Fre formulation of supergravity
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/gravity+as+a+BF-theory"} gravity as a BF-theory
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/sigma-model"} sigma-model
+                              %ul
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/particle"}> particle
+                                    ,
+                                    = succeed "," do
+                                      %a.existingWikiWord{:href => "/nlab/show/relativistic+particle"} relativistic particle
+                                    = succeed "," do
+                                      %a.existingWikiWord{:href => "/nlab/show/fundamental+particle"} fundamental particle
+                                    = succeed "," do
+                                      %a.existingWikiWord{:href => "/nlab/show/spinning+particle"} spinning particle
+                                    %a.existingWikiWord{:href => "/nlab/show/superparticle"} superparticle
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/string"}> string
+                                    ,
+                                    = succeed "," do
+                                      %a.existingWikiWord{:href => "/nlab/show/spinning+string"} spinning string
+                                    %a.existingWikiWord{:href => "/nlab/show/superstring"} superstring
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/membrane"} membrane
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/AKSZ+theory"} AKSZ theory
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/string+theory"} String Theory
+                      %ul
+                        %li
+                          %a.existingWikiWord{:href => "/nlab/show/string+theory+results+applied+elsewhere"} string theory results applied elsewhere
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/number+theory+and+physics"} number theory and physics
+                      %ul
+                        %li
+                          %a.existingWikiWord{:href => "/nlab/show/Riemann+hypothesis+and+physics"} Riemann hypothesis and physics
+                  %div
+                    %p
+                      %a{:href => "/nlab/edit/physicscontents"} Edit this sidebar
+          %p
+            %strong Abstract
+            While
+            %a.existingWikiWord{:href => "/nlab/show/analytic+philosophy"} analytic philosophy
+            famously rejected the speculative
+            %a.existingWikiWord{:href => "/nlab/show/metaphysics"} metaphysics
+            of
+            %a.existingWikiWord{:href => "/nlab/show/Hegel"} Hegel
+            in favor of the analysis of concepts by means of
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/mathematical+logic"} mathematical logic
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/predicate+logic"} predicate logic
+            %a.existingWikiWord{:href => "/nlab/show/foundations+of+mathematics"} foundations of mathematics
+            via
+            %a.existingWikiWord{:href => "/nlab/show/homotopy+type+theory"} homotopy type theory
+            offer a way to re-read
+            %a.existingWikiWord{:href => "/nlab/show/Hegel"} Hegel
+            as having useful formal meaning not in
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/predicate+logic"} predicate logic
+            = succeed "\u2019." do
+              %a.existingWikiWord{:href => "/nlab/show/modal+type+theory"} modal type theory
+            %a.existingWikiWord{:href => "/nlab/show/Lawvere"} Lawvere
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/Some+Thoughts+on+the+Future+of+Category+Theory"} in 1991
+            %a.existingWikiWord{:href => "/nlab/show/philosophy"} philosophically
+            as well as
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/category+theory"} category-theoretically
+            = succeed "\u201D" do
+              %a.existingWikiWord{:href => "/nlab/show/Science+of+Logic"} Science of Logic
+            %a.existingWikiWord{:href => "/nlab/show/categorical+semantics"} categorical semantics
+            given by
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/cohesive+%28infinity%2C1%29-topos"} cohesive higher toposes
+            %em useful
+            formalization of a fair bit of modern fundamental
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/physics"} physics
+            %a.existingWikiWord{:href => "/nlab/show/local+quantum+field+theory"} local
+            %a.existingWikiWord{:href => "/nlab/show/gauge+field+theory"} gauge
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/quantum+field+theory"} quantum field theory
+          %h1#contents Contents
+          .maruku_toc
+            %ul
+              %li
+                %a{:href => "#introduction"} Introduction
+              %li
+                %a{:href => "#modern_foundations__types_judgements_and_deduction"} Modern foundations – Types, Judgements and Deduction
+              %li
+                %a{:href => "#categorical_semantics_and_categorical_logic"} Categorical semantics and Categorical logic
+              %li
+                %a{:href => "#modalities_moments_and_opposites"} Modalities, moments and opposites
+              %li
+                %a{:href => "#formal_determinations_of_being"} Formal determinations of Being
+              %li
+                %a{:href => "#references"} References
+          %h2#introduction Introduction
+          %p
+            With the rise of
+            %a.existingWikiWord{:href => "/nlab/show/analytic+philosophy"} analytic philosophy
+            in Britain, and its adoption and development of the new logic forged by
+            %a.existingWikiWord{:href => "/nlab/show/Frege"} Frege
+            and
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/Peano"} Peano
+            %a.existingWikiWord{:href => "/nlab/show/idealism"} idealism
+            of
+            %span.newWikiWord
+              T. H. Green
+              %a{:href => "/nlab/new/T.+H.+Green"} ?
+            and
+            = succeed "," do
+              %span.newWikiWord
+                F. H. Bradley
+                %a{:href => "/nlab/new/F.+H.+Bradley"} ?
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/Hegel"} Hegel
+            %a.existingWikiWord{:href => "/nlab/show/Bertrand+Russell"} Bertrand Russell
+            was adamant that the new logic would thoroughly transform philosophy, as he made clear at the end of his chapter
+            = succeed ":" do
+              %em Logic As The Essence Of Philosophy
+          %blockquote
+            %p The old logic put thought in fetters, while the new logic gives it wings. It has, in my opinion, introduced the same kind of advance into philosophy as Galileo introduced into physics, making it possible at last to see what kinds of problems may be capable of solution, and what kinds are beyond human powers. And where a solution appears possible, the new logic provides a method which enables us to obtain results that do not merely embody personal idiosyncrasies, but must command the assent of all who are competent to form an opinion. (Logic As The Essence Of Philosophy, 1914)
+          %p
+            In the same chapter, Hegel was taken to task for his attempt to widen logic to a form of
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/metaphysics"} metaphysics
+          %p
+            This set the tone for analytic philosophy’s opinion of Hegel for several decades. In 1951, the logical empiricist
+            %a.existingWikiWord{:href => "/nlab/show/Hans+Reichenbach"} Hans Reichenbach
+            wrote
+          %blockquote
+            %p Hegel has been called the successor of Kant; that is a serious misunderstanding of Kant and an unjustified elevation of Hegel. Kant’s system, though proved untenable by later developments, was the attempt of a great mind to establish rationalism on a scientific basis. Hegel’s system is the poor construction of a fanatic who has seen one empirical truth and attempts to make it a logical law within the most unscientific of all logics. Whereas Kant’s system marks the peak of the historical line of rationalism, Hegel’s system belongs in the period of decay of speculative philosophy which characterizes the nineteenth century. (Reichenbach 1951, p. 72)
+          %p
+            However, despite the initial lengthy rejection of Hegelian ideas by analytic philosophy, there have recently been increasing signs of a willingness to re-engage with Hegel’s writings, in particular on the part of
+            %span.newWikiWord
+              John MacDowell
+              %a{:href => "/nlab/new/John+MacDowell"} ?
+            and
+            %a.existingWikiWord{:href => "/nlab/show/Robert+Brandom"} Robert Brandom
+            (Redding, 2007). Interestingly, one feature of analytic philosophy which needs reconsidering according to Redding is the primacy of
+            %a.existingWikiWord{:href => "/nlab/show/first-order+logic"} first-order
+            predicate logic, not, however, that he is promoting an alternative formalization based on Hegel’s ideas.
+          %p
+            It took a mathematician
+            %a.existingWikiWord{:href => "/nlab/show/William+Lawvere"} William Lawvere
+            to find something formalizable of value in Hegel’s
+            = succeed "," do
+              %em Logic
+            = succeed "\u2019." do
+              %a.existingWikiWord{:href => "/nlab/show/unity+of+opposites"} Unity of Opposites
+            %a.existingWikiWord{:href => "/nlab/show/categorical+logic"} categorical logic
+            and Hegel’s logic, we will pursue this connection right up to
+            %a.existingWikiWord{:href => "/nlab/show/modal+type+theory"} modal
+            forms of
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/homotopy+type+theory"} homotopy type theory
+          %p
+            Now, Hegel’s understanding of the term ‘Logik’ was much broader than is normally the case. Indeed, the ‘Objective logic’ of
+            %a.existingWikiWord{:href => "/nlab/show/Science+of+Logic"} Science of Logic
+            is more akin to a kind of
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/metaphysics"} metaphysics
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/Vienna+Circle"} Vienna Circle
+            %a.existingWikiWord{:href => "/nlab/show/positivism"} positivist
+            attitude towards
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/metaphysics"} metaphysics
+            = succeed ")," do
+              %a{:href => "#Carnap32"} Carnap 32
+            %a.existingWikiWord{:href => "/nlab/show/modal+logic"} modal logic
+            as a tool for philosophy, especially due to
+            %a.existingWikiWord{:href => "/nlab/show/Saul+Kripke"} Saul Kripke
+            in
+            = succeed "." do
+              %em Naming and Necessity
+          %p
+            Today, standard topics for analytic metaphysics today include causality, necessity, space and time, identity, and mental states. Little attention is paid to the question of explaining the kind of physical principles which operate in our universe. It is noteworthy, however, that the need for some such questioning seems to be as strongly felt among modern physicists as it must have been to Hegel and his predecessors, as witnessed by … debates such as critically reviewed in (
+            %a{:href => "#Albert12"}> Albert 12
+            ). (…) Attempts to re-install this kind of metaphysics are these days undertaken by
+            %a.existingWikiWord{:href => "/nlab/show/particle+physics"} particle physicists
+            and
+            %a.existingWikiWord{:href => "/nlab/show/cosmology"} cosmologists
+            themselves, whose success at formally describing remote aspects of the
+            %a.existingWikiWord{:href => "/nlab/show/observable+universe"} observable universe
+            has emboldened many to feel as superior to modern philosophy as modern philosophy typically feels towards Hegel’ idealism.
+          %p (…)
+          %h2#modern_foundations__types_judgements_and_deduction Modern foundations – Types, Judgements and Deduction
+          %p (…) something like:
+          %p
+            analytic philosophy was certainly right to ask for a formal basis of philosophical reasoning, in order to make genuine intellectual progress possible. Back then
+            %a.existingWikiWord{:href => "/nlab/show/predicate+logic"} predicate logic
+            and
+            %a.existingWikiWord{:href => "/nlab/show/set+theory"} set theory
+            was the state of the art concerning the
+            %a.existingWikiWord{:href => "/nlab/show/foundations+of+mathematics"} foundations of mathematics
+            and so this is what analytic philosophy adopted and developed. But since then there has been much progress in the foundations of maths. …
+            %a.existingWikiWord{:href => "/nlab/show/intuitionistic+type+theory"} intuitionistic type theory
+            …
+            = succeed "\u2026" do
+              %a.existingWikiWord{:href => "/nlab/show/homotopy+type+theory"} homotopy type theory
+          %p Accordingly, the original starting point of analytic philosophy needs to be re-examined. While predicate logic has no way of making formal sense of Hegel’s “Logic”, for type theory the situation is rather different…
+          %h2#categorical_semantics_and_categorical_logic Categorical semantics and Categorical logic
+          %p … type theory proper is a formal system for symbol manipulation … useful for computer encoding, and much more readable than full formalization in, say, ZFC, but still not really what a discussion such as our here would directly work with…
+          %p
+            … instead, the
+            %a.existingWikiWord{:href => "/nlab/show/syntax"} syntax
+            of type theory has
+            %a.existingWikiWord{:href => "/nlab/show/semantics"} semantics
+            in
+            %a.existingWikiWord{:href => "/nlab/show/categories"} categories
+            –
+            %a.existingWikiWord{:href => "/nlab/show/categorical+semantics"} categorical semantics
+            …
+            %a.existingWikiWord{:href => "/nlab/show/relation+between+category+theory+and+type+theory"} relation between category theory and type theory
+            – and this semantic level is what we will be concerned with here
+          %p
+            … originates with Lawvere’s thesis, see also “
+            %a.existingWikiWord{:href => "/nlab/show/Adjointness+in+Foundations"}> Adjointness in Foundations
+            ”
+          %h2#modalities_moments_and_opposites Modalities, moments and opposites
+          %p
+            (… basics of
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/modalities"} modalities
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/modal+operators"} modal operators
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/monads"} monads
+            = succeed "/" do
+              %a.existingWikiWord{:href => "/nlab/show/adjoint+modality"} adjoint modality
+            = succeed "\u2026)" do
+              %a.existingWikiWord{:href => "/nlab/show/unity+of+opposites"} unity of opposites
+          %h2#formal_determinations_of_being Formal determinations of Being
+          %p … using this and building on Lawvere’s lead, we are led to objectively investigate the following:
+          %p
+            starting with bare homotopy type theory and adding
+            %a.existingWikiWord{:href => "/nlab/show/adjoint+modalities"} adjoint modalities
+            to it, what is the nature of the new propositions that can be proven with these modalities, hence what is the new “quality” of the types in the presence of these new axioms…
+          %p …
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mrow
+                    %mtable
+                      %mtr
+                        %mtd
+                          %mi reines
+                          %mspace{:width => "thickmathspace"}
+                          %mi Sein
+                        %mtd
+                        %mtd
+                          %mi Dasein
+                        %mtd
+                        %mtd
+                          %mi Realitaet
+                      %mtr
+                        %mtd
+                          %mi being
+                        %mtd
+                        %mtd
+                          %mi existence
+                        %mtd
+                        %mtd
+                          %mi reality
+                      %mtr
+                        %mtd
+                          %mi pure
+                          %mi being
+                        %mtd
+                        %mtd
+                          %mi determinate
+                          %mi being
+                      %mtr
+                        %mtd
+                      %mtr
+                        %mtd
+                        %mtd
+                        %mtd
+                        %mtd
+                        %mtd
+                          %mi ℜ
+                      %mtr
+                        %mtd
+                        %mtd
+                        %mtd
+                        %mtd
+                        %mtd
+                          %mo ⊥
+                      %mtr
+                        %mtd
+                        %mtd
+                        %mtd
+                          %mo ∫
+                        %mtd
+                          %mo ⊂
+                        %mtd
+                          %mi ℑ
+                      %mtr
+                        %mtd
+                        %mtd
+                        %mtd
+                          %mo ⊥
+                        %mtd
+                        %mtd
+                          %mo ⊥
+                      %mtr
+                        %mtd
+                          %mi ∅
+                        %mtd
+                          %mo ⊂
+                        %mtd
+                          %mo ♭
+                        %mtd
+                          %mo ⊂
+                        %mtd
+                          %mi &amp;
+                      %mtr
+                        %mtd
+                          %mo ⊥
+                        %mtd
+                        %mtd
+                          %mo ⊥
+                        %mtd
+                        %mtd
+                      %mtr
+                        %mtd
+                          %mo *
+                        %mtd
+                          %mo ⊂
+                        %mtd
+                          %mo ♯
+                %annotation{:encoding => "application/x-tex"}
+                  \\array{
+                  reines\;Sein &amp;&amp; Dasein &amp;&amp; Realitaet
+                  \\\
+                  being &amp;&amp; existence &amp;&amp; reality
+                  \\\
+                  pure being &amp;&amp; determinate being
+                  \\\
+                  \\\
+                  \&amp;&amp; &amp;&amp; \Re
+                  \\\
+                  \&amp;&amp; &amp;&amp; \bot
+                  \\\
+                  \&amp;&amp; \int &amp; \subset &amp; \Im
+                  \\\
+                  \&amp;&amp; \bot &amp;&amp; \bot
+                  \\\
+                  \\emptyset &amp;\subset&amp; \flat &amp; \subset &amp; \&amp;
+                  \\\
+                  \\bot &amp; &amp; \bot &amp;&amp;
+                  \\\
+                  \\ast &amp; \subset&amp; \sharp
+                  }
+          %table
+            %thead
+              %tr
+                %th symbol
+                %th
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mspace{:width => "thickmathspace"}
+                        %mspace{:width => "thickmathspace"}
+                      %annotation{:encoding => "application/x-tex"} \;\;
+                  name
+            %tbody
+              %tr
+                %td{:style => "text-align: left;"}
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mo ∫
+                      %annotation{:encoding => "application/x-tex"} \int
+                %td{:style => "text-align: left;"}
+                  %a.existingWikiWord{:href => "/nlab/show/shape+modality"} shape modality
+              %tr
+                %td{:style => "text-align: left;"}
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mo ♭
+                      %annotation{:encoding => "application/x-tex"} \flat
+                %td{:style => "text-align: left;"}
+                  %a.existingWikiWord{:href => "/nlab/show/flat+modality"} flat modality
+              %tr
+                %td{:style => "text-align: left;"}
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mo ♯
+                      %annotation{:encoding => "application/x-tex"} \sharp
+                %td{:style => "text-align: left;"}
+                  %a.existingWikiWord{:href => "/nlab/show/sharp+modality"} sharp modality
+              %tr
+                %td{:style => "text-align: left;"}
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi ℜ
+                      %annotation{:encoding => "application/x-tex"} \Re
+                %td{:style => "text-align: left;"}
+                  %a.existingWikiWord{:href => "/nlab/show/reduction+modality"} reduction modality
+              %tr
+                %td{:style => "text-align: left;"}
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi ℑ
+                      %annotation{:encoding => "application/x-tex"} \Im
+                %td{:style => "text-align: left;"}
+                  %a.existingWikiWord{:href => "/nlab/show/infinitesimal+shape+modality"} infinitesimal shape modality
+              %tr
+                %td{:style => "text-align: left;"}
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi &amp;
+                      %annotation{:encoding => "application/x-tex"} \&amp;
+                %td{:style => "text-align: left;"}
+                  %a.existingWikiWord{:href => "/nlab/show/infinitesimal+flat+modality"} infinitesimal flat modality
+          %p (…)
+          %h2#references References
+          %ul
+            %li#Carnap32
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Rudolf+Carnap"}> Rudolf Carnap
+                ,
+                = succeed "," do
+                  %em Überwindung der Metaphysik durch logische Analyse der Sprache
+                %em The Elimination of Metaphysics Through Logical Analysis of Language
+                (
+                %a{:href => "http://www.calstatela.edu/sites/default/files/dept/phil/pdf/res/Carnap-Elimination-of-Metaphysics.pdf"}> pdf
+                )
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Georg+Hegel"}> Georg Hegel
+                ,
+                %em
+                  %a.existingWikiWord{:href => "/nlab/show/Science+of+Logic"} Science of Logic
+                (1812)
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/William+Lawvere"}> William Lawvere
+                ,
+                %em
+                  %a.existingWikiWord{:href => "/nlab/show/Some+Thoughts+on+the+Future+of+Category+Theory"} Some Thoughts on the Future of Category Theory
+                (1991)
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/William+Lawvere"} William Lawvere
+                %em
+                  %a.existingWikiWord{:href => "/nlab/show/Cohesive+Toposes+and+Cantor%27s+%22lauter+Einsen%22"} Cohesive Toposes and Cantor's "lauter Einsen"
+                (1994)
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/William+Lawvere"} William Lawvere
+                %em
+                  %a.existingWikiWord{:href => "/nlab/show/Unity+and+Identity+of+Opposites+in+Calculus+and+Physics"} Unity and Identity of Opposites in Calculus and Physics
+                (1996)
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Higher+toposes+of+laws+of+motion"} Higher toposes of laws of motion
+            %li
+              %p
+                %a.existingWikiWord{:href => "/schreiber/show/Homotopy-type+semantics+for+quantization"} Homotopy-type semantics for quantization
+            %li
+              %p
+                Paul Redding,
+                = succeed "," do
+                  %em Analytic Philosophy and the Return of Hegelian Thought
+                %a{:href => "http://ndpr.nd.edu/news/23465-analytic-philosophy-and-the-return-of-hegelian-thought/"} review
+                by Willem A. deVries)
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Bertrand+Russell"}> Bertrand Russell
+                , ‘Logic As The Essence Of Philosophy’, chap. 2 of
+                = succeed "," do
+                  %em Our Knowledge of the External World
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Hans+Reichenbach"}> Hans Reichenbach
+                , ‘The Rise of Scientific Philosophy’, 1951.
+            %li#Albert12
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/David+Albert"}> David Albert
+                ,
+                = succeed "," do
+                  %em On the Origin of Everything
+              %p
+                “A Universe From Nothing”, by Lawrence M. Krauss, in the New York Times from March 25, 2012, on page BR20 of the
+                %em Sunday Book Review
+                (
+                %a{:href => "http://www.nytimes.com/2012/03/25/books/review/a-universe-from-nothing-by-lawrence-m-krauss.html?"}> web
+                )
+        .revisedby
+          %p
+            Last revised on June 17, 2016 at 13:43:43.
+            See the
+            %a{:href => "/nlab/history/Hegel%27s+%22Logic%22+as+Modal+Type+Theory", :style => "color: #005c19"} history
+            of this page for a list of all contributions to it.
+        .navigation.navfoot
+          %a#edit.navlink{:accesskey => "E", :href => "/nlab/edit/Hegel%27s+%22Logic%22+as+Modal+Type+Theory", :rel => "nofollow"} Edit
+          %a{:href => "https://nforum.ncatlab.org/discussions/?CategoryID=0"} Discuss
+          %span.backintime
+            %a#to_previous_revision.navlinkbackintime{:accesskey => "B", :href => "/nlab/revision/Hegel%27s+%22Logic%22+as+Modal+Type+Theory/18", :rel => "nofollow"} Previous revision
+          %a#see_changes.navlink{:accesskey => "C", :href => "/nlab/show/diff/Hegel%27s+%22Logic%22+as+Modal+Type+Theory", :rel => "nofollow"} Changes from previous revision
+          %a#history.navlink{:accesskey => "S", :href => "/nlab/history/Hegel%27s+%22Logic%22+as+Modal+Type+Theory", :rel => "nofollow"} History (18 revisions)
+          %a{:href => "/nlab/show/Hegel%27s+%22Logic%22+as+Modal+Type+Theory/cite", :style => "color: black"} Cite
+          %a#view_print{:accesskey => "p", :href => "/nlab/print/Hegel%27s+%22Logic%22+as+Modal+Type+Theory", :rel => "nofollow"} Print
+          %a#view_source{:href => "/nlab/source/Hegel%27s+%22Logic%22+as+Modal+Type+Theory", :rel => "nofollow"} Source
+      / Content
+    / Container

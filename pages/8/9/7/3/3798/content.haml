@@ -1,0 +1,865 @@
+!!! XML
+!!! 1.1
+%html{:xmlns => "http://www.w3.org/1999/xhtml"}
+  %head
+    %title
+      vertical transformation in nLab
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:content => "index,follow", :name => "robots"}/
+    %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/
+    %link{:href => "/stylesheets/instiki.css?1660229990", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/stylesheets/mathematics.css?1660229990", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/stylesheets/syntax.css?1660229990", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/stylesheets/nlab.css?1660229990", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css", :rel => "stylesheet", :type => "text/css"}/
+    :css
+      h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+        color: #226622;
+      }
+      a:visited.existingWikiWord {
+        color: #164416;
+      }
+    :css
+      <!--/*--><![CDATA[/*><!--*/
+          .toc ul {margin: 0; padding: 0;}
+      .toc ul ul {margin: 0; padding: 0 0 0 10px;}
+      .toc li > p {margin: 0}
+      .toc ul li {list-style-type: none; position: relative;}
+      .toc div {border-top:1px dotted #ccc;}
+      .rightHandSide h2 {font-size: 1.5em;color:#008B26}
+      table.plaintable {
+          border-collapse:collapse;
+          margin-left:30px;
+          border:0;
+      }
+      .plaintable td {border:1px solid #000; padding: 3px;}
+      .plaintable th {padding: 3px;}
+      .plaintable caption {
+          font-weight: bold;
+          font-size:1.1em;
+          text-align:center;
+          margin-left:30px;
+      }
+          
+         
+      /* Query boxes for questioning and answering mechanism */
+      div.query{
+      background: #f6fff3;
+      border: solid #ce9;
+      border-width: 2px 1px;
+      padding: 0 1em;
+      margin: 0 1em;
+      max-height: 20em;
+      overflow: auto;
+      }
+      
+      /* Standout boxes for putting important text */
+      div.standout{
+      background: #fff1f1;
+      border: solid black;
+      border-width: 2px 1px;
+      padding: 0 1em;
+      margin: 0 1em;
+      overflow: auto;
+      }
+      
+      /* Icon for links to n-category arXiv documents 
+       (commented out for now i.e. disabled)
+      a[href*="http://arxiv.org/"] {
+        background-image: url(../files/arXiv_icon.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 22px;
+        } */
+          
+      /* Icon for links to n-category cafe posts (disabled) 
+      a[href*="http://golem.ph.utexas.edu/category"] {
+        background-image: url(../files/n-cafe_5.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 25px;
+        } */
+      
+      /* Icon for links to pdf files (disabled)
+      a[href$=".pdf"] {
+        background-image: url(../files/pdficon_small.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 25px;
+        } */
+      
+      /* Icon for links to pages, etc. -inside- pdf files (disabled)
+      a[href*=".pdf#"] {
+        background-image: url(../files/pdf_entry.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 25px;
+        } */
+      
+      a.existingWikiWord {
+      color: #226622;
+      }
+      
+      a.existingWikiWord:visited {
+      color: #226622;
+      }
+      
+      
+      a.existingWikiWord[title] {
+      border: 0px;
+      color: #aa0505;
+      text-decoration: none;
+      }
+          
+      a.existingWikiWord[title]:visited {
+      border: 0px;
+      color: #551111;
+      text-decoration: none;
+      }
+      
+      a[href^="http://"] {
+      border: 0px;
+      color: #003399;
+      }
+      
+      a[href^="http://"]:visited {
+      border: 0px;
+      color: #330066;
+      }
+      
+      a[href^="https://"] {
+      border: 0px;
+      color: #003399;
+      }
+      
+      a[href^="https://"]:visited {
+      border: 0px;
+      color: #330066;
+      }
+      
+      div.dropDown .hide {
+      display: none;
+      }
+      
+      div.dropDown:hover .hide {
+      display:block;
+      }
+      
+      div.clickDown .hide {
+      display: none;
+      }
+      
+      div.clickDown:focus {
+      outline:none;
+      }
+      
+      div.clickDown:focus .hide, div.clickDown:hover .hide {
+      display: block;
+      }
+      
+      div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+      display:block;
+      }
+      
+      div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+      display:none;
+      }
+      
+      div.clickDown .clickToReveal:after {
+      content: "A(Hover to reveal, click to "hold")";
+      font-size: 60%;
+      }
+      
+      div.clickDown .clickToHide:after {
+      content: "A(Click to hide)";
+      font-size: 60%;
+      }
+      div.clickDown .clickToHide, div.clickDown .clickToReveal {
+      white-space: pre-wrap;
+      }
+      
+      .un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+      margin-left: 1em;
+      }
+      
+      span.theorem_label {
+      margin-left: -1em;
+      }
+      .proof span.theorem_label {
+      margin-left: 0em;
+      }
+      :target {
+          background-color: #BBBBBB;
+          border-radius: 5pt;
+      }
+      
+        /*]]>*/-->
+    %script{:src => "/javascripts/prototype.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/effects.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/dragdrop.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/controls.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/application.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/page_helper.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/thm_numbering.js?1660229990", :type => "text/javascript"}
+    %script{:type => "text/x-mathjax-config"}
+      :cdata
+        <!--//--><![CDATA[//><!--
+        MathJax.Ajax.config.path["Contrib"] = "/MathJax";
+        MathJax.Hub.Config({
+        MathML: { useMathMLspacing: true },
+        "HTML-CSS": { scale: 90,
+        extensions: ["handle-floats.js"]
+        }
+        });
+        MathJax.Hub.Queue( function () {
+        var fos = document.getElementsByTagName('foreignObject');
+        for (var i = 0; i < fos.length; i++) {
+        MathJax.Hub.Typeset(fos[i]);
+        }
+        });
+        \//--><!]]>
+    :javascript
+      <!--//--><![CDATA[//><!--
+      window.addEventListener("DOMContentLoaded", function () {
+        var div = document.createElement('div');
+        var math = document.createElementNS('http://www.w3.org/1998/Math/MathML', 'math');
+        document.body.appendChild(div);
+        div.appendChild(math);
+      // Test for MathML support comparable to WebKit version https://trac.webkit.org/changeset/203640 or higher.
+        div.setAttribute('style', 'font-style: italic');
+        var mathml_unsupported = !(window.getComputedStyle(div.firstChild).getPropertyValue('font-style') === 'normal');
+        div.parentNode.removeChild(div);
+        if (mathml_unsupported) {
+          // MathML does not seem to be supported...
+          var s = document.createElement('script');
+          s.src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=MML_HTMLorMML-full";
+          document.querySelector('head').appendChild(s);
+        } else {
+          document.head.insertAdjacentHTML("beforeend", '<style>svg[viewBox] {max-width: 100%}</style>');
+        }
+      });
+      //--><!]]>
+    %link{:href => "https://ncatlab.org/nlab/atom_with_headlines", :rel => "alternate", :title => "Atom with headlines", :type => "application/atom+xml"}/
+    %link{:href => "https://ncatlab.org/nlab/atom_with_content", :rel => "alternate", :title => "Atom with full content", :type => "application/atom+xml"}/
+    :javascript
+      document.observe("dom:loaded", function() {
+        generateThmNumbers();
+      });
+  %body
+    #Container
+      #Content
+        %h1#pageName
+          %span{:style => "float: left; margin: 0.5em 0.25em -0.25em 0"}
+            %svg{:height => "1.8em", :viewbox => "0 0 190 181", :width => "1.872em", :xmlns => "http://www.w3.org/2000/svg"}
+              %path{:d => "M72.8 145c-1.6 17.3-15.7 10-23.6 20.2-5.6 7.3 4.8 15 11.4 15 11.5-.2 19-13.4 26.4-20.3 3.3-3 8.2-4 11.2-7.2a14 14 0 0 0 2.9-11.1c-1.4-9.6-12.4-18.6-16.9-27.2-5-9.6-10.7-27.4-24.1-27.7-17.4-.3-.4 26 4.7 30.7 2.4 2.3 5.4 4.1 7.3 6.9 1.6 2.3 2.1 5.8-1 7.2-5.9 2.6-12.4-6.3-15.5-10-8.8-10.6-15.5-23-26.2-31.8-5.2-4.3-11.8-8-18-3.7-7.3 4.9-4.2 12.9.2 18.5a81 81 0 0 0 30.7 23c3.3 1.5 12.8 5.6 10 10.7-2.5 5.2-11.7 3-15.6 1.1-8.4-3.8-24.3-21.3-34.4-13.7-3.5 2.6-2.3 7.6-1.2 11.1 2.8 9 12.2 17.2 20.9 20.5 17.3 6.7 34.3-8 50.8-12.1z", :fill => "#226622"}
+              %path{:d => "M145.9 121.3c-.2-7.5 0-19.6-4.5-26-5.4-7.5-12.9-1-14.1 5.8-1.4 7.8 2.7 14.1 4.8 21.3 3.4 12 5.8 29-.8 40.1-3.6-6.7-5.2-13-7-20.4-2.1-8.2-12.8-13.2-15.1-1.9-2 9.7 9 21.2 12 30.1 1.2 4 2 8.8 6.4 10.3 6.9 2.3 13.3-4.7 17.7-8.8 12.2-11.5 36.6-20.7 43.4-36.4 6.7-15.7-13.7-14-21.3-7.2-9.1 8-11.9 20.5-23.6 25.1 7.5-23.7 31.8-37.6 38.4-61.4 2-7.3-.8-29.6-13-19.8-14.5 11.6-6.6 37.6-23.3 49.2z", :fill => "#a41e32"}
+              %path{:d => "M86.3 47.5c0-13-10.2-27.6-5.8-40.4 2.8-8.4 14.1-10.1 17-1 3.8 11.6-.3 26.3-1.8 38 11.7-.7 10.5-16 14.8-24.3 2.1-4.2 5.7-9.1 11-6.7 6 2.7 7.4 9.2 6.6 15.1-2.2 14-12.2 18.8-22.4 27-3.4 2.7-8 6.6-5.9 11.6 2 4.4 7 4.5 10.7 2.8 7.4-3.3 13.4-16.5 21.7-16 14.6.7 12 21.9.9 26.2-5 1.9-10.2 2.3-15.2 3.9-5.8 1.8-9.4 8.7-15.7 8.9-6.1.1-9-6.9-14.3-9-14.4-6-33.3-2-44.7-14.7-3.7-4.2-9.6-12-4.9-17.4 9.3-10.7 28 7.2 35.7 12 2 1.1 11 6.9 11.4 1.1.4-5.2-10-8.2-13.5-10-11.1-5.2-30-15.3-35-27.3-2.5-6 2.8-13.8 9.4-13.6 6.9.2 13.4 7 17.5 12C70.9 34 75 43.8 86.3 47.4z", :fill => "#193c78"}
+          %span.webName nLab
+          vertical transformation
+        .navigation
+          %span.skipNav
+            %a{:href => "#navEnd"} Skip the Navigation Links
+            |
+          %span{:style => "display:inline-block; width: 0.3em;"}
+          %a{:accesskey => "H", :href => "/nlab/show/HomePage", :title => "Home page"} Home Page
+          |
+          %a{:accesskey => "A", :href => "/nlab/all_pages", :title => "List of all pages"} All Pages
+          |
+          %a{:accesskey => "U", :href => "/nlab/latest_revisions", :title => "Latest edits and page creations"} Latest Revisions
+          |
+          %a{:href => "https://nforum.ncatlab.org/discussion/15111/#Item_2", :style => "color: black", :title => "Discuss this page in its dedicated thread on the nForum"} Discuss this page
+          |
+          %form#navigationSearchForm{"accept-charset" => "utf-8", :action => "/nlab/search", :method => "get"}
+            %fieldset.search
+              %input#searchField{:name => "query", :onblur => "this.value == '' ? this.value = 'Search' : true", :onfocus => "this.value == 'Search' ? this.value = '' : true", :style => "display:inline-block; float: left;", :type => "text", :value => "Search"}/
+          %span#navEnd
+        #revision
+          %meta{:content => "application/xhtml+xml;charset=utf-8", "http-equiv" => "Content-type"}/
+          %title Contents
+          %h1#contents Contents
+          .maruku_toc
+            %ul
+              %li
+                %a{:href => "#idea"} Idea
+              %li
+                %a{:href => "#definition"} Definition
+              %li
+                %a{:href => "#the_double_category_of_double_functors"} The double category of double functors
+              %li
+                %a{:href => "#generalizations"} Generalizations
+              %li
+                %a{:href => "#references"} References
+          %h2#idea Idea
+          %p
+            A
+            %strong vertical transformation
+            is an analogue of a
+            %a.existingWikiWord{:href => "/nlab/show/natural+transformation"} natural transformation
+            which goes between
+            %a.existingWikiWord{:href => "/nlab/show/double+functors"} double functors
+            of
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/double+categories"} double categories
+            %strong horizontal transformation.
+          %h2#definition Definition
+          %p
+            If
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi C
+                %annotation{:encoding => "application/x-tex"} C
+            and
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi D
+                %annotation{:encoding => "application/x-tex"} D
+            are strict double categories regarded as
+            %a.existingWikiWord{:href => "/nlab/show/internal+categories"} internal categories
+            in
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi Cat
+                %annotation{:encoding => "application/x-tex"} Cat
+            and
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi F
+                  %mo ,
+                  %mi G
+                  %mo{:lspace => "verythinmathspace"} :
+                  %mi C
+                  %mo →
+                  %mi D
+                %annotation{:encoding => "application/x-tex"} F,G\colon C\to D
+            are double functors regarded as internal functors in
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi Cat
+                  %annotation{:encoding => "application/x-tex"} Cat
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi Cat
+                  %annotation{:encoding => "application/x-tex"} Cat
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi Cat
+                %annotation{:encoding => "application/x-tex"} Cat
+            (there being two ways).
+          %p
+            More explicitly, a vertical transformation
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi α
+                  %mo{:lspace => "verythinmathspace"} :
+                  %mi F
+                  %mo →
+                  %mi G
+                %annotation{:encoding => "application/x-tex"} \alpha\colon F\to G
+            consists of
+          %ul
+            %li
+              %p
+                For every object
+                = succeed "," do
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi c
+                        %mo ∈
+                        %mi C
+                      %annotation{:encoding => "application/x-tex"} c\in C
+              .maruku-equation
+                %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mrow
+                        %mtable
+                          %mtr
+                            %mtd
+                              %mi F
+                              %mi c
+                          %mtr
+                            %mtd
+                              %msup
+                                %mo{:stretchy => "false"} ↓
+                                %mrow
+                                  %msub
+                                    %mi α
+                                    %mi c
+                          %mtr
+                            %mtd
+                              %mi G
+                              %mi c
+                    %annotation{:encoding => "application/x-tex"} \array{ F c \\ \downarrow ^{\alpha_c} \\ G c}
+              %p
+                in
+                = succeed "," do
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi D
+                      %annotation{:encoding => "application/x-tex"} D
+                = succeed "." do
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi C
+                      %annotation{:encoding => "application/x-tex"} C
+            %li
+              %p
+                For every horizontal arrow
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi p
+                      %mo{:lspace => "verythinmathspace"} :
+                      %msub
+                        %mi c
+                        %mn 1
+                      %mo →
+                      %msub
+                        %mi c
+                        %mn 2
+                    %annotation{:encoding => "application/x-tex"} p\colon c_1 \to c_2
+                in
+                = succeed "," do
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi C
+                      %annotation{:encoding => "application/x-tex"} C
+              .maruku-equation
+                %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mrow
+                        %mtable
+                          %mtr
+                            %mtd
+                              %mi F
+                              %msub
+                                %mi c
+                                %mn 1
+                            %mtd
+                              %mover
+                                %mo →
+                                %mrow
+                                  %mi F
+                                  %mi p
+                            %mtd
+                              %mi F
+                              %msub
+                                %mi c
+                                %mn 2
+                          %mtr
+                            %mtd
+                              %msup
+                                %mo
+                                %mrow
+                                  %msub
+                                    %mi α
+                                    %mrow
+                                      %msub
+                                        %mi c
+                                        %mn 1
+                              %mo{:stretchy => "false"} ↓
+                            %mtd
+                              %msup
+                                %mo ⇓
+                                %mrow
+                                  %msub
+                                    %mi α
+                                    %mi p
+                            %mtd
+                              %msup
+                                %mo{:stretchy => "false"} ↓
+                                %mrow
+                                  %msub
+                                    %mi α
+                                    %mrow
+                                      %msub
+                                        %mi c
+                                        %mn 2
+                          %mtr
+                            %mtd
+                              %mi G
+                              %msub
+                                %mi c
+                                %mn 1
+                            %mtd
+                              %munder
+                                %mo →
+                                %mrow
+                                  %mi G
+                                  %mi p
+                            %mtd
+                              %mi G
+                              %msub
+                                %mi c
+                                %mn 2
+                    %annotation{:encoding => "application/x-tex"}
+                      \\array{F c_1 &amp; \overset{F p}{\to} &amp; F c_2\\
+                      ^{\alpha_{c_1}}\downarrow &amp; \Downarrow^{\alpha_p}&amp; \downarrow^{\alpha_{c_2}}\\
+                      G c_1&amp; \underset{G p}{\to} &amp; G c_2}
+              %p
+                in
+                = succeed "," do
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi D
+                      %annotation{:encoding => "application/x-tex"} D
+                = succeed "." do
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi C
+                      %annotation{:encoding => "application/x-tex"} C
+            %li
+              %p
+                For each
+                = succeed "," do
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi c
+                        %mo ∈
+                        %mi C
+                      %annotation{:encoding => "application/x-tex"} c\in C
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msub
+                        %mn 1
+                        %mi c
+                      %mo{:lspace => "verythinmathspace"} :
+                      %mi c
+                      %mo →
+                      %mi c
+                    %annotation{:encoding => "application/x-tex"} 1_c\colon c\to c
+                is its horizontal identity, then the square
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msub
+                        %mi α
+                        %mrow
+                          %msub
+                            %mn 1
+                            %mi c
+                    %annotation{:encoding => "application/x-tex"} \alpha_{1_c}
+                is equal to
+                = succeed "," do
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %msub
+                          %mn 1
+                          %mrow
+                            %msub
+                              %mi α
+                              %mi c
+                      %annotation{:encoding => "application/x-tex"} 1_{\alpha_c}
+                = succeed "." do
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %msub
+                          %mi α
+                          %mi c
+                      %annotation{:encoding => "application/x-tex"} \alpha_c
+            %li
+              %p
+                For
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi p
+                      %mo{:lspace => "verythinmathspace"} :
+                      %msub
+                        %mi c
+                        %mn 1
+                      %mo →
+                      %msub
+                        %mi c
+                        %mn 2
+                    %annotation{:encoding => "application/x-tex"} p\colon c_1\to c_2
+                and
+                = succeed "," do
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi q
+                        %mo{:lspace => "verythinmathspace"} :
+                        %msub
+                          %mi c
+                          %mn 2
+                        %mo →
+                        %msub
+                          %mi c
+                          %mn 3
+                      %annotation{:encoding => "application/x-tex"} q\colon c_2\to c_3
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msub
+                        %mi α
+                        %mi p
+                    %annotation{:encoding => "application/x-tex"} \alpha_p
+                and
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msub
+                        %mi α
+                        %mi q
+                    %annotation{:encoding => "application/x-tex"} \alpha_q
+                is equal to
+                = succeed "." do
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %msub
+                          %mi α
+                          %mrow
+                            %mi q
+                            %mi p
+                      %annotation{:encoding => "application/x-tex"} \alpha_{q p}
+          %p The notion of horizontal transformation is dual.
+          %h2#the_double_category_of_double_functors The double category of double functors
+          %p
+            Another characterization of transformations between double categories comes from observing that the 1-category
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi DblCat
+                %annotation{:encoding => "application/x-tex"} DblCat
+            is
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/cartesian+closed+category"} cartesian closed
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msup
+                      %mi D
+                      %mi C
+                  %annotation{:encoding => "application/x-tex"} D^C
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msup
+                    %mi D
+                    %mi C
+                %annotation{:encoding => "application/x-tex"} D^C
+            are double functors, its vertical arrows are vertical transformations, and its horizontal arrows are horizontal transformations. Its squares are a sort of “square modification” relating a pair of vertical and a pair of horizontal transformations.
+          %h2#generalizations Generalizations
+          %p
+            It is easy to modify the explicit definition to handle the cases when
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi C
+                %annotation{:encoding => "application/x-tex"} C
+            and
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi D
+                %annotation{:encoding => "application/x-tex"} D
+            are weak in one direction or the other, and/or when
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi F
+                %annotation{:encoding => "application/x-tex"} F
+            and
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi G
+                %annotation{:encoding => "application/x-tex"} G
+            are pseudo functors in one direction or the other, by composing with appropriate coherence constraints. In this way, we obtain many
+            %a.existingWikiWord{:href => "/nlab/show/2-categories"} 2-categories
+            of double categories.
+          %p
+            It is also easy to define
+            %em vertical
+            transformations between double functors which are
+            %em horizontally
+            lax or colax, and dually. In fact, given double categories
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi C
+                    %mo ,
+                    %mi D
+                    %mo ,
+                    %mi C
+                    %mo ′
+                    %mo ,
+                    %mi D
+                    %mo ′
+                  %annotation{:encoding => "application/x-tex"} C,D,C',D'
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi F
+                  %mo{:lspace => "verythinmathspace"} :
+                  %mi C
+                  %mo →
+                  %mi D
+                %annotation{:encoding => "application/x-tex"} F\colon C\to D
+            and
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi F
+                    %mo ′
+                    %mo{:lspace => "verythinmathspace"} :
+                    %mi C
+                    %mo ′
+                    %mo →
+                    %mi D
+                    %mo ′
+                  %annotation{:encoding => "application/x-tex"} F'\colon C'\to D'
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi G
+                  %mo{:lspace => "verythinmathspace"} :
+                  %mi C
+                  %mo →
+                  %mi C
+                  %mo ′
+                %annotation{:encoding => "application/x-tex"} G\colon C\to C'
+            and
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi G
+                    %mo ′
+                    %mo{:lspace => "verythinmathspace"} :
+                    %mi D
+                    %mo →
+                    %mi D
+                    %mo ′
+                  %annotation{:encoding => "application/x-tex"} G'\colon D\to D'
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mrow
+                    %mtable
+                      %mtr
+                        %mtd
+                          %mi C
+                        %mtd
+                          %mover
+                            %mo →
+                            %mi F
+                        %mtd
+                          %mi D
+                      %mtr
+                        %mtd
+                          %msup
+                            %mo
+                            %mi G
+                          %mo{:stretchy => "false"} ↓
+                        %mtd
+                          %mo ⇓
+                        %mtd
+                          %msup
+                            %mo{:stretchy => "false"} ↓
+                            %mrow
+                              %mi G
+                              %mo ′
+                      %mtr
+                        %mtd
+                          %mi C
+                          %mo ′
+                        %mtd
+                          %munder
+                            %mo →
+                            %mrow
+                              %mi F
+                              %mo ′
+                        %mtd
+                          %mi D
+                          %mo ′
+                %annotation{:encoding => "application/x-tex"}
+                  \\array{C &amp; \overset{F}{\to} &amp; D \\
+                  ^G\downarrow &amp; \Downarrow&amp; \downarrow^{G'}\\
+                  C'&amp; \underset{F'}{\to} &amp; D'}
+          %p
+            despite the fact that the composites
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi G
+                  %mo ′
+                  %mo ∘
+                  %mi F
+                %annotation{:encoding => "application/x-tex"} G' \circ F
+            and
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi F
+                  %mo ′
+                  %mo ∘
+                  %mi G
+                %annotation{:encoding => "application/x-tex"} F'\circ G
+            do not exist as double functors of any sort. Such transformations are the squares of a large double category
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi Dbl
+                %annotation{:encoding => "application/x-tex"} Dbl
+            whose objects are double categories, whose horizontal arrows are lax functors, and whose vertical arrows are colax functors. This, in turn, is a special case of a construction which works for algebras over any
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/2-monad"} 2-monad
+          %p
+            Finally, we can also define vertical transformations between functors of (horizontally)
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/virtual+double+categories"} virtual double categories
+          %h2#references References
+          %ul
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/Robert+Par%C3%A9"}> Robert Paré
+              ,
+              = succeed "," do
+                %em Yoneda theory for double categories
+              = succeed ")" do
+                %a{:href => "http://emis.library.cornell.edu/journals/TAC/volumes/25/17/25-17.pdf"} pdf
+        .revisedby
+          %p
+            Last revised on September 13, 2022 at 17:22:33.
+            See the
+            %a{:href => "/nlab/history/vertical+transformation", :style => "color: #005c19"} history
+            of this page for a list of all contributions to it.
+        .navigation.navfoot
+          %a#edit.navlink{:accesskey => "E", :href => "/nlab/edit/vertical+transformation", :rel => "nofollow"} Edit
+          %a{:href => "https://nforum.ncatlab.org/discussion/15111/#Item_2"} Discuss
+          %span.backintime
+            %a#to_previous_revision.navlinkbackintime{:accesskey => "B", :href => "/nlab/revision/vertical+transformation/5", :rel => "nofollow"} Previous revision
+          %a#see_changes.navlink{:accesskey => "C", :href => "/nlab/show/diff/vertical+transformation", :rel => "nofollow"} Changes from previous revision
+          %a#history.navlink{:accesskey => "S", :href => "/nlab/history/vertical+transformation", :rel => "nofollow"} History (5 revisions)
+          %a{:href => "/nlab/show/vertical+transformation/cite", :style => "color: black"} Cite
+          %a#view_print{:accesskey => "p", :href => "/nlab/print/vertical+transformation", :rel => "nofollow"} Print
+          %a#view_source{:href => "/nlab/source/vertical+transformation", :rel => "nofollow"} Source
+      / Content
+    / Container

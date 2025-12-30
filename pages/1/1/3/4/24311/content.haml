@@ -1,0 +1,788 @@
+!!! XML
+!!! 1.1
+%html{:xmlns => "http://www.w3.org/1999/xhtml"}
+  %head
+    %title
+      HoTT in Bonn2018 in nLab
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:content => "index,follow", :name => "robots"}/
+    %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/
+    %link{:href => "/stylesheets/instiki.css?1676280126", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/stylesheets/mathematics.css?1660229990", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/stylesheets/syntax.css?1660229990", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/stylesheets/nlab.css?1676280126", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css", :rel => "stylesheet", :type => "text/css"}/
+    :css
+      h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+        color: #226622;
+      }
+      a:visited.existingWikiWord {
+        color: #164416;
+      }
+    :css
+      <!--/*--><![CDATA[/*><!--*/
+          .toc ul {margin: 0; padding: 0;}
+      .toc ul ul {margin: 0; padding: 0 0 0 10px;}
+      .toc li > p {margin: 0}
+      .toc ul li {list-style-type: none; position: relative;}
+      .toc div {border-top:1px dotted #ccc;}
+      .rightHandSide h2 {font-size: 1.5em;color:#008B26}
+      table.plaintable {
+          border-collapse:collapse;
+          margin-left:30px;
+          border:0;
+      }
+      .plaintable td {border:1px solid #000; padding: 3px;}
+      .plaintable th {padding: 3px;}
+      .plaintable caption {
+          font-weight: bold;
+          font-size:1.1em;
+          text-align:center;
+          margin-left:30px;
+      }
+          
+         
+      /* Query boxes for questioning and answering mechanism */
+      div.query{
+      background: #f6fff3;
+      border: solid #ce9;
+      border-width: 2px 1px;
+      padding: 0 1em;
+      margin: 0 1em;
+      max-height: 20em;
+      overflow: auto;
+      }
+      
+      /* Standout boxes for putting important text */
+      div.standout{
+      background: #fff1f1;
+      border: solid black;
+      border-width: 2px 1px;
+      padding: 0 1em;
+      margin: 0 1em;
+      overflow: auto;
+      }
+      
+      /* Icon for links to n-category arXiv documents 
+       (commented out for now i.e. disabled)
+      a[href*="http://arxiv.org/"] {
+        background-image: url(../files/arXiv_icon.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 22px;
+        } */
+          
+      /* Icon for links to n-category cafe posts (disabled) 
+      a[href*="http://golem.ph.utexas.edu/category"] {
+        background-image: url(../files/n-cafe_5.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 25px;
+        } */
+      
+      /* Icon for links to pdf files (disabled)
+      a[href$=".pdf"] {
+        background-image: url(../files/pdficon_small.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 25px;
+        } */
+      
+      /* Icon for links to pages, etc. -inside- pdf files (disabled)
+      a[href*=".pdf#"] {
+        background-image: url(../files/pdf_entry.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 25px;
+        } */
+      
+      a.existingWikiWord {
+      color: #226622;
+      }
+      
+      a.existingWikiWord:visited {
+      color: #226622;
+      }
+      
+      
+      a.existingWikiWord[title] {
+      border: 0px;
+      color: #aa0505;
+      text-decoration: none;
+      }
+          
+      a.existingWikiWord[title]:visited {
+      border: 0px;
+      color: #551111;
+      text-decoration: none;
+      }
+      
+      a[href^="http://"] {
+      border: 0px;
+      color: #003399;
+      }
+      
+      a[href^="http://"]:visited {
+      border: 0px;
+      color: #330066;
+      }
+      
+      a[href^="https://"] {
+      border: 0px;
+      color: #003399;
+      }
+      
+      a[href^="https://"]:visited {
+      border: 0px;
+      color: #330066;
+      }
+      
+      div.dropDown .hide {
+      display: none;
+      }
+      
+      div.dropDown:hover .hide {
+      display:block;
+      }
+      
+      div.clickDown .hide {
+      display: none;
+      }
+      
+      div.clickDown:focus {
+      outline:none;
+      }
+      
+      div.clickDown:focus .hide, div.clickDown:hover .hide {
+      display: block;
+      }
+      
+      div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+      display:block;
+      }
+      
+      div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+      display:none;
+      }
+      
+      div.clickDown .clickToReveal:after {
+      content: "A(Hover to reveal, click to "hold")";
+      font-size: 60%;
+      }
+      
+      div.clickDown .clickToHide:after {
+      content: "A(Click to hide)";
+      font-size: 60%;
+      }
+      div.clickDown .clickToHide, div.clickDown .clickToReveal {
+      white-space: pre-wrap;
+      }
+      
+      .un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+      margin-left: 1em;
+      }
+      
+      span.theorem_label {
+      margin-left: -1em;
+      }
+      .proof span.theorem_label {
+      margin-left: 0em;
+      }
+      :target {
+          background-color: #BBBBBB;
+          border-radius: 5pt;
+      }
+      
+        /*]]>*/-->
+    %script{:src => "/javascripts/prototype.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/effects.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/dragdrop.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/controls.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/application.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/page_helper.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/thm_numbering.js?1660229990", :type => "text/javascript"}
+    %script{:type => "text/x-mathjax-config"}
+      :cdata
+        <!--//--><![CDATA[//><!--
+        MathJax.Ajax.config.path["Contrib"] = "/MathJax";
+        MathJax.Hub.Config({
+        MathML: { useMathMLspacing: true },
+        "HTML-CSS": { scale: 90,
+        extensions: ["handle-floats.js"]
+        }
+        });
+        MathJax.Hub.Queue( function () {
+        var fos = document.getElementsByTagName('foreignObject');
+        for (var i = 0; i < fos.length; i++) {
+        MathJax.Hub.Typeset(fos[i]);
+        }
+        });
+        \//--><!]]>
+    :javascript
+      <!--//--><![CDATA[//><!--
+      window.addEventListener("DOMContentLoaded", function () {
+        var div = document.createElement('div');
+        var math = document.createElementNS('http://www.w3.org/1998/Math/MathML', 'math');
+        document.body.appendChild(div);
+        div.appendChild(math);
+      // Test for MathML support comparable to WebKit version https://trac.webkit.org/changeset/203640 or higher.
+        div.setAttribute('style', 'font-style: italic');
+        var mathml_unsupported = !(window.getComputedStyle(div.firstChild).getPropertyValue('font-style') === 'normal');
+        div.parentNode.removeChild(div);
+        if (mathml_unsupported) {
+          // MathML does not seem to be supported...
+          var s = document.createElement('script');
+          s.src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=MML_HTMLorMML-full";
+          document.querySelector('head').appendChild(s);
+        } else {
+          document.head.insertAdjacentHTML("beforeend", '<style>svg[viewBox] {max-width: 100%}</style>');
+        }
+      });
+      //--><!]]>
+    %link{:href => "https://ncatlab.org/nlab/atom_with_headlines", :rel => "alternate", :title => "Atom with headlines", :type => "application/atom+xml"}/
+    %link{:href => "https://ncatlab.org/nlab/atom_with_content", :rel => "alternate", :title => "Atom with full content", :type => "application/atom+xml"}/
+    :javascript
+      document.observe("dom:loaded", function() {
+        generateThmNumbers();
+      });
+  %body
+    #Container
+      #Content
+        %h1#pageName
+          %span{:style => "float: left; margin: 0.5em 0.25em -0.25em 0"}
+            %svg{:height => "1.8em", :viewbox => "0 0 190 181", :width => "1.872em", :xmlns => "http://www.w3.org/2000/svg"}
+              %path{:d => "M72.8 145c-1.6 17.3-15.7 10-23.6 20.2-5.6 7.3 4.8 15 11.4 15 11.5-.2 19-13.4 26.4-20.3 3.3-3 8.2-4 11.2-7.2a14 14 0 0 0 2.9-11.1c-1.4-9.6-12.4-18.6-16.9-27.2-5-9.6-10.7-27.4-24.1-27.7-17.4-.3-.4 26 4.7 30.7 2.4 2.3 5.4 4.1 7.3 6.9 1.6 2.3 2.1 5.8-1 7.2-5.9 2.6-12.4-6.3-15.5-10-8.8-10.6-15.5-23-26.2-31.8-5.2-4.3-11.8-8-18-3.7-7.3 4.9-4.2 12.9.2 18.5a81 81 0 0 0 30.7 23c3.3 1.5 12.8 5.6 10 10.7-2.5 5.2-11.7 3-15.6 1.1-8.4-3.8-24.3-21.3-34.4-13.7-3.5 2.6-2.3 7.6-1.2 11.1 2.8 9 12.2 17.2 20.9 20.5 17.3 6.7 34.3-8 50.8-12.1z", :fill => "#226622"}
+              %path{:d => "M145.9 121.3c-.2-7.5 0-19.6-4.5-26-5.4-7.5-12.9-1-14.1 5.8-1.4 7.8 2.7 14.1 4.8 21.3 3.4 12 5.8 29-.8 40.1-3.6-6.7-5.2-13-7-20.4-2.1-8.2-12.8-13.2-15.1-1.9-2 9.7 9 21.2 12 30.1 1.2 4 2 8.8 6.4 10.3 6.9 2.3 13.3-4.7 17.7-8.8 12.2-11.5 36.6-20.7 43.4-36.4 6.7-15.7-13.7-14-21.3-7.2-9.1 8-11.9 20.5-23.6 25.1 7.5-23.7 31.8-37.6 38.4-61.4 2-7.3-.8-29.6-13-19.8-14.5 11.6-6.6 37.6-23.3 49.2z", :fill => "#a41e32"}
+              %path{:d => "M86.3 47.5c0-13-10.2-27.6-5.8-40.4 2.8-8.4 14.1-10.1 17-1 3.8 11.6-.3 26.3-1.8 38 11.7-.7 10.5-16 14.8-24.3 2.1-4.2 5.7-9.1 11-6.7 6 2.7 7.4 9.2 6.6 15.1-2.2 14-12.2 18.8-22.4 27-3.4 2.7-8 6.6-5.9 11.6 2 4.4 7 4.5 10.7 2.8 7.4-3.3 13.4-16.5 21.7-16 14.6.7 12 21.9.9 26.2-5 1.9-10.2 2.3-15.2 3.9-5.8 1.8-9.4 8.7-15.7 8.9-6.1.1-9-6.9-14.3-9-14.4-6-33.3-2-44.7-14.7-3.7-4.2-9.6-12-4.9-17.4 9.3-10.7 28 7.2 35.7 12 2 1.1 11 6.9 11.4 1.1.4-5.2-10-8.2-13.5-10-11.1-5.2-30-15.3-35-27.3-2.5-6 2.8-13.8 9.4-13.6 6.9.2 13.4 7 17.5 12C70.9 34 75 43.8 86.3 47.4z", :fill => "#193c78"}
+          %span.webName nLab
+          HoTT in Bonn2018
+        .navigation
+          %span.skipNav
+            %a{:href => "#navEnd"} Skip the Navigation Links
+            |
+          %span{:style => "display:inline-block; width: 0.3em;"}
+          %a{:accesskey => "H", :href => "/nlab/show/HomePage", :title => "Home page"} Home Page
+          |
+          %a{:accesskey => "A", :href => "/nlab/all_pages", :title => "List of all pages"} All Pages
+          |
+          %a{:accesskey => "U", :href => "/nlab/latest_revisions", :title => "Latest edits and page creations"} Latest Revisions
+          |
+          %a{:href => "https://nforum.ncatlab.org/discussion/14667/#Item_8", :style => "color: black", :title => "Discuss this page in its dedicated thread on the nForum"} Discuss this page
+          |
+          %form#navigationSearchForm{"accept-charset" => "utf-8", :action => "/nlab/search", :method => "get"}
+            %fieldset.search
+              %input#searchField{:name => "query", :onblur => "this.value == '' ? this.value = 'Search' : true", :onfocus => "this.value == 'Search' ? this.value = '' : true", :style => "display:inline-block; float: left;", :type => "text", :value => "Search"}/
+          %span#navEnd
+        #revision
+          %meta{:content => "application/xhtml+xml;charset=utf-8", "http-equiv" => "Content-type"}/
+          %title
+          %p This page is to record the event:
+          %ul
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Steve+Awodey"}> Steve Awodey
+                ,
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/Thierry+Coquand"} Thierry Coquand
+                %a.existingWikiWord{:href => "/nlab/show/Maria+Emilia+Maietti"} Maria Emilia Maietti
+                (orgs.):
+              %p
+                %br/
+              %p
+                %strong
+                  %a{:href => "https://www.him.uni-bonn.de/programs/past-programs/past-trimester-programs/types-sets-constructions/workshop-types-homotopy-type-theory-and-verification/"} Types, Homotopy Type Theory, and Verification
+              %p
+                %br/
+              %p
+                %a{:href => "https://www.mathematics.uni-bonn.de/him"}> Hausdorff Institute for Mathematics
+                , Bonn
+              %p June 4–8, 2018
+          %p
+            on
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/homotopy+type+theory"} homotopy type theory
+          %p which was part of:
+          %ul
+            %li
+              %p Douglas S. Bridges, Michael Rathjen, Peter Schuster, Helmut Schwichtenberg (orgs.):
+              %p
+                %br/
+              %p
+                %strong
+                  %a{:href => "https://www.mathematics.uni-bonn.de/him/programs/past/tp_2018_05"} Types, Sets and Constructions
+              %p
+                %br/
+              %p Trimester Program
+              %p
+                at the
+                = succeed "," do
+                  %a{:href => "https://www.mathematics.uni-bonn.de/him"} Hausdorff Institute for Mathematics
+              %p May 2 – August 24, 2018
+          %h1#section_table_of_contents Contents
+          .maruku_toc
+            %ul
+              %li
+                %a{:href => "#talks"} Talks
+              %li
+                %a{:href => "#Tutorial"} Tutorial
+              %li
+                %a{:href => "#see_also"} See also
+          %p Videos of most talks are collected as
+          %ul
+            %li
+              %a{:href => "https://youtube.com/playlist?list=PLul8LCT3AJqQxIaZhaSNCTuLYfIFB1AiI"}> YouTube playlist
+              \.
+          %h2#talks Talks
+          %p Monday, June 4
+          %ul
+            %li#Tutorial1
+              %p 11:00–12:00
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Dan+Licata"}> Dan Licata
+                \:
+              %p
+                %a{:href => "#Tutorial"} Tutorial
+                1:
+                %em A Fibrational Framework for Modal Simple Type Theories
+              %p
+                (
+                %a{:href => "http://dlicata.web.wesleyan.edu/pubs/lsr17multi/him-tutorial.pdf"}> slides pdf
+                ,
+                = succeed ")" do
+                  %a{:href => "https://www.youtube.com/watch?v=uLLbSAYd3yI"} recording
+            %li
+              %p 14:00–15:00
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Christian+Sattler"}> Christian Sattler
+                \:
+              %p
+                %em Do cubical models of type theory also model homotopy types?
+              %blockquote
+                %p
+                  I will give an alternative exposition of
+                  %a.existingWikiWord{:href => "/nlab/show/Chris+Kapulkin"} Kapulkin
+                  and
+                  = succeed "\u2018s" do
+                    %a.existingWikiWord{:href => "/nlab/show/Vladimir+Voevodsky"} Voevodsky
+            %li
+              %p 15:00–16:00
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Floris+van+Doorn"}> Floris van Doorn
+                \:
+              %p
+                %em Spectral Sequences in Homotopy Type Theory
+              %p
+                (
+                %a{:href => "/nlab/files/vanDoorn.pdf"}> pdf slides
+                )
+              %blockquote
+                %p
+                  In algebraic topology, spectral sequences form a powerful tool which can be used to compute homotopy and (co)homology groups of spaces in a wide variety of cases. We have constructed two spectral sequences in homotopy type theory, the Atiyah-Hirzebruch and Serre spectral sequences for cohomology. In this talk, I will introduce the concept of spectral sequences, talk about the spectral sequences we constructed and explore some of the applications and future work. (This is joint work with
+                  = succeed "," do
+                    %a.existingWikiWord{:href => "/nlab/show/Jeremy+Avigad"} Jeremy Avigad
+                  = succeed "," do
+                    %a.existingWikiWord{:href => "/nlab/show/Steve+Awodey"} Steve Awodey
+                  = succeed "," do
+                    %a.existingWikiWord{:href => "/nlab/show/Ulrik+Buchholtz"} Ulrik Buchholtz
+                  %a.existingWikiWord{:href => "/nlab/show/Egbert+Rijke"} Egbert Rijke
+                  and
+                  = succeed ".)" do
+                    %a.existingWikiWord{:href => "/nlab/show/Mike+Shulman"} Mike Shulman
+            %li
+              %p 16:30–17:30
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Thorsten+Altenkirch"}> Thorsten Altenkirch
+                \:
+              %p
+                %em Towards higher models and syntax of type theory
+              %p
+                (
+                %a{:href => "http://www.cs.nott.ac.uk/~psztxa/talks/bonn18.pdf"}> slides pdf
+                )
+              %blockquote
+                %p We (Ambrus Kaposi and myself) have defined the intrinsic (no preterms) syntax of type theory in type theory using quotient inductive inductive types, that is set truncated higher inductive inductive types. Set truncation is necessary because we want to have decidability which we established using normalisation by evaluation. However, this stops us from defining any interesting semantic models, e.g. interpreting contexts as sets, types as families etc, because sets do not from a set (not for size reason but dimension). I suggest that we can overcome this problem by defining higher models of type theory and a higher syntax. I envisage that the higher syntax does form a set without being explicitly truncated, hence decidability should still hold. In my talk I will describe the first steps towards this programme.
+          %p Tuesday, June 5
+          %ul
+            %li
+              %p 09:30–10:30
+              %p Klaus Mainzer:
+              %p
+                %em Algorithms of Type and Proof Checking
+              %blockquote
+                %p Homotopy Type Theory (HoTT) is inspired by the idea of a proof-checking software to guarantee trust and security in mathematics. Since the Curry-Howard interpretation, basic intuitionistic type theory was extended by more advanced type formers (e.g., Martin-Löf). With higher inductive types in HoTT, we get direct, logical descriptions and constructions of advanced mathematical objects (e.g. in homotopy theory) as well as convenient machine implementations. These are not only theoretical insights connecting mathematics and computer science. They are deeply involved in great challenges of our digitalized world: Current AI-technology of machine learning is based on inductive principles of learning algorithms from data. But, although these are data-efficient methods, they need more explainability, verification, and provability of their foundations, in order to improve trust, reliability and security in society. HoTT should serve as a practical aid to working mathematicians as well as to computer scientists.
+            %li#Tutorial2
+              %p 11:00–12:00
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Felix+Wellen"}> Felix Wellen
+                \:
+              %p
+                %a{:href => "#Tutorial"} Tutorial
+                2:
+                %em The Shape Modality in Real-cohesive HoTT and Covering Spaces
+              %p
+                (
+                %a{:href => "https://www.youtube.com/watch?v=ACGjJDarEc4"}> recording
+                )
+            %li
+              %p 15:00–16:00
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Kuen-Bang+Hou"} Kuen-Bang Hou
+                (Favonia):
+              %p
+                %em Cartesian cubical computational type theory
+              %p
+                (
+                %a{:href => "http://favonia.org/files/ccctt-bonn2018-slides.pdf"}> slides pdf
+                )
+              %blockquote
+                %p Homotopy type theory (HoTT) equips Martin-Löf type theory with additional features: univalence and higher inductive types. This has led to a fruitful development of synthetic homotopy theory. Unfortunately, those new features stated as axioms disrupt the computational content of type theory and affect the practicality of using HoTT to mechanize proofs. A well-known example is the fourth homotopy group of the 3-sphere, which was shown by Brunerie to be isomorphic to Z/nZ for some number n in HoTT, and the number n could have been automatically evaluated to the number two if the disruption did not happen. Instead, it took Brunerie several more years to prove that the number is indeed two. There have been many attempts to restore computational content while retaining all the additional features. To date, the most promising approach is through cubical structure. Recently, Cohen et al. constructed a type theory based on De Morgan cubes with univalence and higher inductive types. Inspired by their work, we also built a type-theoretic semantics with all the features but instead based on Cartesian cubes. In addition to using a different cubical structure, our semantics is built from computational content directly, following a computation-first methodology which itself is interesting. In this talk, I will compare two different cubical type theories and discuss how the computation-first methodology works.
+                %p
+                  (Joint work with
+                  = succeed "," do
+                    %a.existingWikiWord{:href => "/nlab/show/Carlo+Angiuli"} Carlo Angiuli
+                  = succeed "," do
+                    %a.existingWikiWord{:href => "/nlab/show/Evan+Cavallo"} Evan Cavallo
+                  %a.existingWikiWord{:href => "/nlab/show/Robert+Harper"} Robert Harper
+                  and
+                  = succeed ")" do
+                    %a.existingWikiWord{:href => "/nlab/show/Jonathan+Sterling"} Jonathan Sterling
+            %li
+              %p 16:30–17:30
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Benno+van+den+Berg"}> Benno van den Berg
+                \:
+              %p
+                %em Univalent polymorphism
+              %p
+                (
+                %a.existingWikiWord{:href => "/nlab/files/vdB.pdf", :title => "Univalent polymorphism"}> Univalent polymorphism
+                )
+              %blockquote
+                %p We show that Martin Hyland’s effective topos can be exhibited as the homotopy category of a path category EFF. Path categories are categories of fibrant objects in the sense of Brown satisfying two additional properties and as such provide a context in which one can interpret many notions from homotopy theory and Homotopy Type Theory. Within the path category EFF one can identify a class of discrete fibrations which is closed under push forward along arbitrary fibrations (in other words, this class is polymorphic or closed under impredicative quantification) and satisfies propositional resizing. This class does not have a univalent representation, but if one restricts to those discrete fibrations whose fibres are propositions in the sense of Homotopy Type Theory, then it does. This means that, modulo the usual coherence problems, it can be seen as a model of the Calculus of Constructions with a univalent type of propositions. We will also build a more complicated path category in which the class of discrete fibrations whose fibres are sets in the sense of Homotopy Type Theory has a univalent representation, which means that this will be a model of the Calculus of Constructions with a univalent type of sets.
+          %p Wednesday, June 6
+          %ul
+            %li#Tutorial3
+              %p 09:30–10:30
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Dan+Licata"}> Dan Licata
+                \:
+              %p
+                %a{:href => "#Tutorial"} Tutorial
+                3:
+                %em Discrete and Codiscrete Modalities in Cohesive HoTT, I
+              %p
+                (
+                %a{:href => "http://dlicata.web.wesleyan.edu/pubs/lsr17multi/him-tutorial.pdf"}> slides pdf
+                ,
+                = succeed ")" do
+                  %a{:href => "https://www.youtube.com/watch?v=OHN9vEVPBN8"} recording
+            %li#Tutorial4
+              %p 11:00–12:00
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Felix+Wellen"}> Felix Wellen
+                \:
+              %p
+                %a{:href => "#Tutorial"} Tutorial
+                4:
+                %em Discrete and Codiscrete Modalities in Cohesive HoTT, II
+              %p
+                (
+                %a{:href => "https://www.youtube.com/watch?v=KXx9UDQdWPw"}> recording
+                )
+            %li
+              %p 15:00–16:00
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Anders+M%C3%B6rtberg"}> Anders Mörtberg
+                \:
+              %p
+                %em Yet Another Cartesian Cubical Type Theory (yacctt)
+              %p
+                (
+                %a.existingWikiWord{:href => "/nlab/files/MortbergBonn.pdf", :title => "Yet Another Cartesian Cubical Type Theory"}> Yet Another Cartesian Cubical Type Theory
+                )
+              %blockquote
+                %p I will discuss recent work on developing a Cartesian cubical type theory inspired by the computational semantics of Computational Higher Type Theory of Angiuli et. al. This system differs from cubical type theory (à la Coquand et. al.) in that it has an interval with less structure (no reversals or connections) and more general Kan composition operations. Another major difference is that there are no general Glue types, instead there is a special case called V-types which allows an equivalence to be transformed into a line between types. This specialization enables us to give a more direct proof that these “univalence types” are fibrant which in turn should lead to more efficient computations with univalence. If time permits I will sketch two proofs of the univalence theorem in this system.
+                %p
+                  This is joint work with
+                  %a.existingWikiWord{:href => "/nlab/show/Carlo+Angiuli"} Carlo Angiuli
+                  and we have implemented a primitive proof assistant based on this type theory:
+                  = succeed "." do
+                    %a{:href => "https://github.com/mortberg/yacctt"} https://github.com/mortberg/yacctt
+            %li
+              %p 16:30–17:30
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Jacopo+Emmenegger"}> Jacopo Emmenegger
+                \:
+              %p
+                %em W-types in the setoid model
+              %blockquote
+                %p Current arguments to obtain initial algebras for polynomial endofunctors in categories of equivalence relations rely on assumptions like UIP or on constructions that involve recursion into a universe. We present a new argument, verified in Coq, that instead uses a generalisation of W-types in the underlying type theory. This in turn allows us to both give a direct construction of the initial algebra and to use induction of the underlying W-type to prove initiality.
+          %p Thursday, June 7
+          %ul
+            %li#Tutorial5
+              %p 09:30–10:30
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Dan+Licata"}> Dan Licata
+                \:
+              %p
+                %a{:href => "#Tutorial"} Tutorial
+                5:
+                %em A Fibrational Framework for Modal Dependent Type Theories
+              %p
+                (
+                %a{:href => "http://dlicata.web.wesleyan.edu/pubs/lsr17multi/him-tutorial.pdf"}> slides pdf
+                ,
+                = succeed ")" do
+                  %a{:href => "https://www.youtube.com/watch?v=R4SsxUnIcng"} recording
+            %li
+              %p 11:00–12:00
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Bas+Spitters"}> Bas Spitters
+                \:
+              %p
+                %em Modal Dependent Type Theory and the Cubical Model
+              %p
+                (
+                %a{:href => "http://www.cs.au.dk/~spitters/bonn-slides.pdf"}> pdf slides
+                )
+              %blockquote
+                %p In recent years we have seen several new models of dependent type theory extended with some form of modal necessity operator, including nominal type theory, guarded and clocked type theory, and spatial and cohesive type theory. In this paper we study modal dependent type theory: dependent type theory with an operator satisfying (a dependent version of) the K-axiom of modal logic. We investigate both semantics and syntax. For the semantics, we introduce categories with families with a dependent right adjoint (CwDRA) and show that the examples above can be presented as such. Indeed, we show that any finite limit category with an adjunction of endofunctors gives rise to a CwDRA via the local universe construction. For the syntax, we introduce a dependently typed extension of Fitch-style modal lambda-calculus, show that it can be interpreted in any CwDRA, and build a term model. We extend the syntax and semantics with universes.
+                %p
+                  Ranald Clouston, Bassel Mannaa, Rasmus Ejlers Møgelberg, Andrew M. Pitts, Bas Spitters:
+                  %em Modal Dependent Type Theory and Dependent Right Adjoints
+                  %a{:href => "https://arxiv.org/abs/1804.05236"} https://arxiv.org/abs/1804.05236
+                %p I will also present the related work on the application of modal dependent type theory to the construction of a universe in cubical sets in the internal logic.
+                %p
+                  Daniel R. Licata, Ian Orton, Andrew M. Pitts, Bas Spitters,
+                  %em Internal Universes in Models of Homotopy Type Theory FSCD18
+                  %a{:href => "https://arxiv.org/abs/1801.07664"} https://arxiv.org/abs/1801.07664
+            %li
+              %p 14:00–15:00
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Giuseppe+Rosolini"}> Giuseppe Rosolini
+                \:
+              %p
+                %em Embedding the effective topos into cubical assemblies
+              %blockquote
+                %p The effective topos, introduced by J.M.E. Hyland in a paper in the Proceedings of the L.E.J.Brouwer Centenary Symposium, has proved to be a very useful environment where to test constructive aspects of mathematics, and many different presentations for the topos have been provided since its original appearance. In this line of work, we exhibit the effective topos as a subcategory of the cubical sets in the category of assemblies.
+                %p
+                  (Joint work with
+                  %a.existingWikiWord{:href => "/nlab/show/Steve+Awodey"} Steve Awodey
+                  and
+                  = succeed ")" do
+                    %a.existingWikiWord{:href => "/nlab/show/Jonas+Frey"} Jonas Frey
+            %li
+              %p 15:00–16:00
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Fabio+Pasquali"}> Fabio Pasquali
+                \:
+              %p
+                %em Assemblies as an elementary quotient completion
+              %blockquote
+                %p
+                  We characterize the category of assemblies as an elementary quotient completion, a construction introduced by Maietti and Rosolini to axiomatize the category of setoids used to build the Maietti-Sambin’s Minimalist Foundation. As an application we link this characterization to the known fact that the effective topos, and related subcategories of it, satisfies Formal Church’s Thesis. (This is a joint work with
+                  %a.existingWikiWord{:href => "/nlab/show/Maria+E.+Maietti"} Maria E. Maietti
+                  and
+                  = succeed ".)" do
+                    %a.existingWikiWord{:href => "/nlab/show/Giuseppe+Rosolini"} Giuseppe Rosolini
+            %li
+              %p 16:30–17:30
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Hugo+Herbelin"}> Hugo Herbelin
+                \:
+              %p
+                %em Investigations into cubical type theory
+              %blockquote
+                %p We report on a work in progress in building a variant of cubical type theory based on the following principles:
+                %ul
+                  %li
+                    %p equality is primitively attached to types;
+                  %li
+                    %p in particular, as in Altenkirch-Kaposi and Polonsky, equality of types is defined to be equivalence (so that univalence holds by construction); equality of proofs of equality of types is defined to be commutative squares of equivalences, etc.;
+                  %li
+                    %p type coercion (and thus transport) is direct by projecting the first component of a proof of equivalence;
+                  %li
+                    %p on top of type-based equality, a generic transverse level of dependent abstraction and application over a formal interval is provided (as in Section 9 of Cohen-Coquand-Huber-Mörtberg), together with connections and inverses, emphasizing that equality gives to types the structure of a symmetric (Cartesian) cubical structure with connections and reversals;
+                  %li
+                    %p a primitive notion of strictly associative composition of equality proofs is added which allows to interpret a function from the formal interval to the universe as a proof of equivalence;
+                  %li
+                    %p enforcing that transport computes on reflexivity proofs does not seem to pose problems;
+                  %li
+                    %p the theory is intended to be directly justified by an iterated parametricity translation to type theory with identity type, as explored e.g. by Altenkirch-Kaposi.
+          %p Friday, June 8
+          %ul
+            %li#Tutorial6
+              %p 09:30-10:30
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Felix+Wellen"}> Felix Wellen
+                \:
+              %p
+                %a{:href => "#Tutorial"} Tutorial
+                6:
+                %em Differential Cohesive HoTT
+              %p
+                (
+                %a{:href => "https://www.youtube.com/watch?v=uEZXHPdwvJU&t=226s"}> recording
+                )
+            %li
+              %p 11:00-12:00
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Andrej+Bauer"}> Andrej Bauer
+                \:
+              %p
+                %em Toward an initiality theorem for general type theories
+              %blockquote
+                %p
+                  I will report on a project of defining carefully and formally what a general type theory is. This is kind of step 1 to a generally applicable initiality theorem. It’s not really a big surprise: it’s what one would expect, but there’s a number of things one has to organize and think through so that the whole thing holds water. We’ve got large chunks of it formalized. Work in progress with
+                  %a.existingWikiWord{:href => "/nlab/show/Philipp+Haselwarter"} Philipp Haselwarter
+                  and
+                  = succeed "." do
+                    %a.existingWikiWord{:href => "/nlab/show/Peter+Lumsdaine"} Peter Lumsdaine
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Felix+Wellen"}> Felix Wellen
+                \:
+              %p
+                %a{:href => "#Tutorial"} Tutorial
+                6:
+                = succeed "," do
+                  %em Differential Cohesive HoTT
+              %p
+                (
+                %a{:href => "https://www.youtube.com/watch?v=uEZXHPdwvJU&t=226s"}> recording
+                )
+            %li
+              %p 14:00-15:00
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Nicolai+Kraus"}> Nicolai Kraus
+                \:
+              %p
+                %em The Challenge of Free Groups
+            %li
+              %p 15:00-16:00
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Paul-Andr%C3%A9+Melli%C3%A8s"}> Paul-André Melliès
+                \:
+              %p
+                %em Refinement type systems and Martin-Löf type theory
+              %blockquote
+                %p In this talk, I will review my recent work with Noam Zeilberger on refinement type systems [1,2]. I will then discuss how to equip refinement type systems with various notions of comprehension, in such a way as to connect them with Martin-Lof type theory.
+                %p [1] Paul-André Melliès and Noam Zeilberger. Functors are Type Refinement Systems.
+                %p [2] Paul-André Melliès and Noam Zeilberger. An Isbell Duality Theorem for Type Refinement Systems. Math. Struct. in Comp. Science (2018), vol. 28, pp. 736-774.
+                %p [3] Paul-André Melliès and Noam Zeilberger. A bifibrational reconstruction of Lawvere’s presheaf hyperdoctrine. Proceedings of LICS 2016: 555-564
+          %h2#Tutorial Tutorial
+          %ul
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Daniel+R.+Licata"} Daniel R. Licata
+                and
+                = succeed ":" do
+                  %a.existingWikiWord{:href => "/nlab/show/Felix+Wellen"} Felix Wellen
+              %p
+                %strong Synthetic Mathematics in Modal Dependent Type Theories
+              %p
+                (
+                %a{:href => "http://dlicata.web.wesleyan.edu/pubs/lsr17multi/him-tutorial.pdf"}> pdf
+                ,
+                = succeed ")" do
+                  %a.existingWikiWord{:href => "/nlab/files/LicataWellen-ModalTutorial.pdf", :title => "pdf"} pdf
+              %ol
+                %li
+                  %p
+                    %em
+                      %a{:href => "#Tutorial1"} A Fibrational Framework for Modal Simple Type Theories
+                  %p
+                    (
+                    %a{:href => "https://www.youtube.com/watch?v=uLLbSAYd3yI"}> recording
+                    )
+                %li
+                  %p
+                    %em
+                      %a{:href => "#Tutorial2"} The Shape Modality in Real-cohesive HoTT and Covering Spaces
+                  %p
+                    (
+                    %a{:href => "https://www.youtube.com/watch?v=ACGjJDarEc4"}> recording
+                    )
+                %li
+                  %p
+                    %em
+                      %a{:href => "#Tutorial3"} Discrete and Codiscrete Modalities in Cohesive HoTT, I
+                  %p
+                    (
+                    %a{:href => "https://www.youtube.com/watch?v=OHN9vEVPBN8"}> recording
+                    )
+                %li
+                  %p
+                    %em
+                      %a{:href => "#Tutorial4"} Discrete and Codiscrete Modalities in Cohesive HoTT, II
+                  %p
+                    (
+                    %a{:href => "https://www.youtube.com/watch?v=KXx9UDQdWPw"}> recording
+                    )
+                %li
+                  %p
+                    %em
+                      %a{:href => "#Tutorial5"} A Fibrational Framework for Modal Dependent Type Theories
+                %li
+                  %p
+                    %em
+                      %a{:href => "#Tutorial6"} Differential Cohesive HoTT
+                  %p
+                    (
+                    %a{:href => "https://www.youtube.com/watch?v=uEZXHPdwvJU&t=226s"}> recording
+                    )
+              %blockquote
+                %p
+                  %strong Abstract:
+                  Several
+                  %a.existingWikiWord{:href => "/nlab/show/modal+homotopy+type+theory"} modal extensions
+                  of
+                  %a.existingWikiWord{:href => "/nlab/show/homotopy+type+theory"} homotopy type theory
+                  have been or are being developed, with applications to
+                  %a.existingWikiWord{:href => "/nlab/show/synthetic+mathematics"} synthetic
+                  formalizations of aspects of topology, differential geometry, and spectra, as well as internal language presentations of cubical models of HoTT. In this tutorial, we will describe some recent work on these type theories, the frameworks we use to design them, and their applications in real-cohesive and differential-cohesive HoTT.
+                %p
+                  These talks will describe joint work with and work by Jacob Gross,
+                  = succeed "," do
+                    %a.existingWikiWord{:href => "/nlab/show/Max+S.+New"} Max S. New
+                  = succeed "," do
+                    %a.existingWikiWord{:href => "/nlab/show/Ian+Orton"} Ian Orton
+                  = succeed "," do
+                    %a.existingWikiWord{:href => "/nlab/show/Jennifer+Paykin"} Jennifer Paykin
+                  = succeed "," do
+                    %a.existingWikiWord{:href => "/nlab/show/Andrew+M.+Pitts"} Andrew M. Pitts
+                  = succeed "," do
+                    %a.existingWikiWord{:href => "/nlab/show/Egbert+Rijke"} Egbert Rijke
+                  = succeed "," do
+                    %a.existingWikiWord{:href => "/nlab/show/Mitchell+Riley"} Mitchell Riley
+                  = succeed "," do
+                    %a.existingWikiWord{:href => "/nlab/show/Urs+Schreiber"} Urs Schreiber
+                  = succeed "," do
+                    %a.existingWikiWord{:href => "/nlab/show/Michael+Shulman"} Michael Shulman
+                  = succeed "." do
+                    %a.existingWikiWord{:href => "/nlab/show/Bas+Spitters"} Bas Spitters
+          %h2#see_also See also
+          %ul
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/homotopy+type+theory+events"} homotopy type theory events
+          .property
+            category:
+            %a.category_link{:href => "/nlab/all_pages/reference"} reference
+        .revisedby
+          %p
+            Last revised on December  5, 2025 at 16:30:50.
+            See the
+            %a{:href => "/nlab/history/HoTT+in+Bonn2018", :style => "color: #005c19"} history
+            of this page for a list of all contributions to it.
+        .navigation.navfoot
+          %a#edit.navlink{:accesskey => "E", :href => "/nlab/edit/HoTT+in+Bonn2018", :rel => "nofollow"} Edit
+          %a{:href => "https://nforum.ncatlab.org/discussion/14667/#Item_8"} Discuss
+          %span.backintime
+            %a#to_previous_revision.navlinkbackintime{:accesskey => "B", :href => "/nlab/revision/HoTT+in+Bonn2018/4", :rel => "nofollow"} Previous revision
+          %a#see_changes.navlink{:accesskey => "C", :href => "/nlab/show/diff/HoTT+in+Bonn2018", :rel => "nofollow"} Changes from previous revision
+          %a#history.navlink{:accesskey => "S", :href => "/nlab/history/HoTT+in+Bonn2018", :rel => "nofollow"} History (4 revisions)
+          %a{:href => "/nlab/show/HoTT+in+Bonn2018/cite", :style => "color: black"} Cite
+          %a#view_print{:accesskey => "p", :href => "/nlab/print/HoTT+in+Bonn2018", :rel => "nofollow"} Print
+          %a#view_source{:href => "/nlab/source/HoTT+in+Bonn2018", :rel => "nofollow"} Source
+      / Content
+    / Container

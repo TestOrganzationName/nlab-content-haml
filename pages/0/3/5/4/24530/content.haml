@@ -1,0 +1,988 @@
+!!! XML
+!!! 1.1
+%html{:xmlns => "http://www.w3.org/1999/xhtml"}
+  %head
+    %title
+      affine monad in nLab
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:content => "index,follow", :name => "robots"}/
+    %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/
+    %link{:href => "/stylesheets/instiki.css?1676280126", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/stylesheets/mathematics.css?1660229990", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/stylesheets/syntax.css?1660229990", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/stylesheets/nlab.css?1676280126", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css", :rel => "stylesheet", :type => "text/css"}/
+    :css
+      h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+        color: #226622;
+      }
+      a:visited.existingWikiWord {
+        color: #164416;
+      }
+    :css
+      <!--/*--><![CDATA[/*><!--*/
+          .toc ul {margin: 0; padding: 0;}
+      .toc ul ul {margin: 0; padding: 0 0 0 10px;}
+      .toc li > p {margin: 0}
+      .toc ul li {list-style-type: none; position: relative;}
+      .toc div {border-top:1px dotted #ccc;}
+      .rightHandSide h2 {font-size: 1.5em;color:#008B26}
+      table.plaintable {
+          border-collapse:collapse;
+          margin-left:30px;
+          border:0;
+      }
+      .plaintable td {border:1px solid #000; padding: 3px;}
+      .plaintable th {padding: 3px;}
+      .plaintable caption {
+          font-weight: bold;
+          font-size:1.1em;
+          text-align:center;
+          margin-left:30px;
+      }
+          
+         
+      /* Query boxes for questioning and answering mechanism */
+      div.query{
+      background: #f6fff3;
+      border: solid #ce9;
+      border-width: 2px 1px;
+      padding: 0 1em;
+      margin: 0 1em;
+      max-height: 20em;
+      overflow: auto;
+      }
+      
+      /* Standout boxes for putting important text */
+      div.standout{
+      background: #fff1f1;
+      border: solid black;
+      border-width: 2px 1px;
+      padding: 0 1em;
+      margin: 0 1em;
+      overflow: auto;
+      }
+      
+      /* Icon for links to n-category arXiv documents 
+       (commented out for now i.e. disabled)
+      a[href*="http://arxiv.org/"] {
+        background-image: url(../files/arXiv_icon.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 22px;
+        } */
+          
+      /* Icon for links to n-category cafe posts (disabled) 
+      a[href*="http://golem.ph.utexas.edu/category"] {
+        background-image: url(../files/n-cafe_5.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 25px;
+        } */
+      
+      /* Icon for links to pdf files (disabled)
+      a[href$=".pdf"] {
+        background-image: url(../files/pdficon_small.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 25px;
+        } */
+      
+      /* Icon for links to pages, etc. -inside- pdf files (disabled)
+      a[href*=".pdf#"] {
+        background-image: url(../files/pdf_entry.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 25px;
+        } */
+      
+      a.existingWikiWord {
+      color: #226622;
+      }
+      
+      a.existingWikiWord:visited {
+      color: #226622;
+      }
+      
+      
+      a.existingWikiWord[title] {
+      border: 0px;
+      color: #aa0505;
+      text-decoration: none;
+      }
+          
+      a.existingWikiWord[title]:visited {
+      border: 0px;
+      color: #551111;
+      text-decoration: none;
+      }
+      
+      a[href^="http://"] {
+      border: 0px;
+      color: #003399;
+      }
+      
+      a[href^="http://"]:visited {
+      border: 0px;
+      color: #330066;
+      }
+      
+      a[href^="https://"] {
+      border: 0px;
+      color: #003399;
+      }
+      
+      a[href^="https://"]:visited {
+      border: 0px;
+      color: #330066;
+      }
+      
+      div.dropDown .hide {
+      display: none;
+      }
+      
+      div.dropDown:hover .hide {
+      display:block;
+      }
+      
+      div.clickDown .hide {
+      display: none;
+      }
+      
+      div.clickDown:focus {
+      outline:none;
+      }
+      
+      div.clickDown:focus .hide, div.clickDown:hover .hide {
+      display: block;
+      }
+      
+      div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+      display:block;
+      }
+      
+      div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+      display:none;
+      }
+      
+      div.clickDown .clickToReveal:after {
+      content: "A(Hover to reveal, click to "hold")";
+      font-size: 60%;
+      }
+      
+      div.clickDown .clickToHide:after {
+      content: "A(Click to hide)";
+      font-size: 60%;
+      }
+      div.clickDown .clickToHide, div.clickDown .clickToReveal {
+      white-space: pre-wrap;
+      }
+      
+      .un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+      margin-left: 1em;
+      }
+      
+      span.theorem_label {
+      margin-left: -1em;
+      }
+      .proof span.theorem_label {
+      margin-left: 0em;
+      }
+      :target {
+          background-color: #BBBBBB;
+          border-radius: 5pt;
+      }
+      
+        /*]]>*/-->
+    %script{:src => "/javascripts/prototype.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/effects.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/dragdrop.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/controls.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/application.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/page_helper.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/thm_numbering.js?1660229990", :type => "text/javascript"}
+    %script{:type => "text/x-mathjax-config"}
+      :cdata
+        <!--//--><![CDATA[//><!--
+        MathJax.Ajax.config.path["Contrib"] = "/MathJax";
+        MathJax.Hub.Config({
+        MathML: { useMathMLspacing: true },
+        "HTML-CSS": { scale: 90,
+        extensions: ["handle-floats.js"]
+        }
+        });
+        MathJax.Hub.Queue( function () {
+        var fos = document.getElementsByTagName('foreignObject');
+        for (var i = 0; i < fos.length; i++) {
+        MathJax.Hub.Typeset(fos[i]);
+        }
+        });
+        \//--><!]]>
+    :javascript
+      <!--//--><![CDATA[//><!--
+      window.addEventListener("DOMContentLoaded", function () {
+        var div = document.createElement('div');
+        var math = document.createElementNS('http://www.w3.org/1998/Math/MathML', 'math');
+        document.body.appendChild(div);
+        div.appendChild(math);
+      // Test for MathML support comparable to WebKit version https://trac.webkit.org/changeset/203640 or higher.
+        div.setAttribute('style', 'font-style: italic');
+        var mathml_unsupported = !(window.getComputedStyle(div.firstChild).getPropertyValue('font-style') === 'normal');
+        div.parentNode.removeChild(div);
+        if (mathml_unsupported) {
+          // MathML does not seem to be supported...
+          var s = document.createElement('script');
+          s.src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=MML_HTMLorMML-full";
+          document.querySelector('head').appendChild(s);
+        } else {
+          document.head.insertAdjacentHTML("beforeend", '<style>svg[viewBox] {max-width: 100%}</style>');
+        }
+      });
+      //--><!]]>
+    %link{:href => "https://ncatlab.org/nlab/atom_with_headlines", :rel => "alternate", :title => "Atom with headlines", :type => "application/atom+xml"}/
+    %link{:href => "https://ncatlab.org/nlab/atom_with_content", :rel => "alternate", :title => "Atom with full content", :type => "application/atom+xml"}/
+    :javascript
+      document.observe("dom:loaded", function() {
+        generateThmNumbers();
+      });
+  %body
+    #Container
+      #Content
+        %h1#pageName
+          %span{:style => "float: left; margin: 0.5em 0.25em -0.25em 0"}
+            %svg{:height => "1.8em", :viewbox => "0 0 190 181", :width => "1.872em", :xmlns => "http://www.w3.org/2000/svg"}
+              %path{:d => "M72.8 145c-1.6 17.3-15.7 10-23.6 20.2-5.6 7.3 4.8 15 11.4 15 11.5-.2 19-13.4 26.4-20.3 3.3-3 8.2-4 11.2-7.2a14 14 0 0 0 2.9-11.1c-1.4-9.6-12.4-18.6-16.9-27.2-5-9.6-10.7-27.4-24.1-27.7-17.4-.3-.4 26 4.7 30.7 2.4 2.3 5.4 4.1 7.3 6.9 1.6 2.3 2.1 5.8-1 7.2-5.9 2.6-12.4-6.3-15.5-10-8.8-10.6-15.5-23-26.2-31.8-5.2-4.3-11.8-8-18-3.7-7.3 4.9-4.2 12.9.2 18.5a81 81 0 0 0 30.7 23c3.3 1.5 12.8 5.6 10 10.7-2.5 5.2-11.7 3-15.6 1.1-8.4-3.8-24.3-21.3-34.4-13.7-3.5 2.6-2.3 7.6-1.2 11.1 2.8 9 12.2 17.2 20.9 20.5 17.3 6.7 34.3-8 50.8-12.1z", :fill => "#226622"}
+              %path{:d => "M145.9 121.3c-.2-7.5 0-19.6-4.5-26-5.4-7.5-12.9-1-14.1 5.8-1.4 7.8 2.7 14.1 4.8 21.3 3.4 12 5.8 29-.8 40.1-3.6-6.7-5.2-13-7-20.4-2.1-8.2-12.8-13.2-15.1-1.9-2 9.7 9 21.2 12 30.1 1.2 4 2 8.8 6.4 10.3 6.9 2.3 13.3-4.7 17.7-8.8 12.2-11.5 36.6-20.7 43.4-36.4 6.7-15.7-13.7-14-21.3-7.2-9.1 8-11.9 20.5-23.6 25.1 7.5-23.7 31.8-37.6 38.4-61.4 2-7.3-.8-29.6-13-19.8-14.5 11.6-6.6 37.6-23.3 49.2z", :fill => "#a41e32"}
+              %path{:d => "M86.3 47.5c0-13-10.2-27.6-5.8-40.4 2.8-8.4 14.1-10.1 17-1 3.8 11.6-.3 26.3-1.8 38 11.7-.7 10.5-16 14.8-24.3 2.1-4.2 5.7-9.1 11-6.7 6 2.7 7.4 9.2 6.6 15.1-2.2 14-12.2 18.8-22.4 27-3.4 2.7-8 6.6-5.9 11.6 2 4.4 7 4.5 10.7 2.8 7.4-3.3 13.4-16.5 21.7-16 14.6.7 12 21.9.9 26.2-5 1.9-10.2 2.3-15.2 3.9-5.8 1.8-9.4 8.7-15.7 8.9-6.1.1-9-6.9-14.3-9-14.4-6-33.3-2-44.7-14.7-3.7-4.2-9.6-12-4.9-17.4 9.3-10.7 28 7.2 35.7 12 2 1.1 11 6.9 11.4 1.1.4-5.2-10-8.2-13.5-10-11.1-5.2-30-15.3-35-27.3-2.5-6 2.8-13.8 9.4-13.6 6.9.2 13.4 7 17.5 12C70.9 34 75 43.8 86.3 47.4z", :fill => "#193c78"}
+          %span.webName nLab
+          affine monad
+        .navigation
+          %span.skipNav
+            %a{:href => "#navEnd"} Skip the Navigation Links
+            |
+          %span{:style => "display:inline-block; width: 0.3em;"}
+          %a{:accesskey => "H", :href => "/nlab/show/HomePage", :title => "Home page"} Home Page
+          |
+          %a{:accesskey => "A", :href => "/nlab/all_pages", :title => "List of all pages"} All Pages
+          |
+          %a{:accesskey => "U", :href => "/nlab/latest_revisions", :title => "Latest edits and page creations"} Latest Revisions
+          |
+          %a{:href => "https://nforum.ncatlab.org/discussion/14981/#Item_2", :style => "color: black", :title => "Discuss this page in its dedicated thread on the nForum"} Discuss this page
+          |
+          %form#navigationSearchForm{"accept-charset" => "utf-8", :action => "/nlab/search", :method => "get"}
+            %fieldset.search
+              %input#searchField{:name => "query", :onblur => "this.value == '' ? this.value = 'Search' : true", :onfocus => "this.value == 'Search' ? this.value = '' : true", :style => "display:inline-block; float: left;", :type => "text", :value => "Search"}/
+          %span#navEnd
+        #revision
+          %meta{:content => "application/xhtml+xml;charset=utf-8", "http-equiv" => "Content-type"}/
+          %title Contents
+          .rightHandSide
+            .toc.clickDown{:tabindex => "0"}
+              %h3#context Context
+              %h4#monoidal_categories Monoidal categories
+              .hide
+                %p [[!include monoidal categories - contents]]
+              %h4#limits_and_colimits Limits and colimits
+              .hide
+                %p [[!include infinity-limits - contents]]
+          %h1#contents Contents
+          .maruku_toc
+            %ul
+              %li
+                %a{:href => "#idea"} Idea
+              %li
+                %a{:href => "#definition"} Definition
+              %li
+                %a{:href => "#strongly_and_weakly_affine_monads"} Strongly and weakly affine monads
+              %li
+                %a{:href => "#properties"} Properties
+              %li
+                %a{:href => "#see_also"} See also
+              %li
+                %a{:href => "#references"} References
+          %h2#idea Idea
+          %p
+            Recall that for a
+            %a.existingWikiWord{:href => "/nlab/show/monoidal+monad"} monoidal monad
+            (or equivalently
+            = succeed ")" do
+              %a.existingWikiWord{:href => "/nlab/show/commutative+monad"} commutative monad
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/monoidal+category"} monoidal category
+            %a.existingWikiWord{:href => "/nlab/show/Kleisli+category"} Kleisli category
+            and the
+            %a.existingWikiWord{:href => "/nlab/show/Eilenberg-Moore+category"} Eilenberg-Moore category
+            inherit a
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/monoidal+category"} monoidal structure
+          %p
+            An
+            %em affine
+            monoidal monad, on a
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/cartesian+monoidal+category"} cartesian monoidal category
+            = succeed ")," do
+              %a.existingWikiWord{:href => "/nlab/show/terminal+object"} terminal object
+            %a.existingWikiWord{:href => "/nlab/show/Kleisli+category"} Kleisli
+            and
+            %a.existingWikiWord{:href => "/nlab/show/Eilenberg-Moore+category"} Eilenberg-Moore categories
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/semicartesian+monoidal+category"} semicartesian
+          %h2#definition Definition
+          %p
+            Let
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mo{:stretchy => "false"} (
+                  %mi C
+                  %mo ,
+                  %mo ×
+                  %mo ,
+                  %mn 1
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} (C,\times,1)
+            be a
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/cartesian+monoidal+category"} cartesian monoidal category
+            %a.existingWikiWord{:href => "/nlab/show/commutative+monad"} commutative monad
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mo{:stretchy => "false"} (
+                  %mi T
+                  %mo ,
+                  %mi μ
+                  %mo ,
+                  %mi η
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} (T,\mu,\eta)
+            with
+            %a.existingWikiWord{:href => "/nlab/show/monoidal+monad"} monoidal structure map
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mo ∇
+                %annotation{:encoding => "application/x-tex"} \nabla
+            is called
+            %strong affine
+            if any of the following equivalent conditions hold:
+          %ol
+            %li
+              The unit map
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi η
+                      %mn 1
+                    %mo :
+                    %mn 1
+                    %mo →
+                    %mi T
+                    %mn 1
+                  %annotation{:encoding => "application/x-tex"} \eta_1:1\to T1
+              is an
+              = succeed ";" do
+                %a.existingWikiWord{:href => "/nlab/show/isomorphism"} isomorphism
+            %li
+              The following diagram commutes for all objects
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi A
+                  %annotation{:encoding => "application/x-tex"} A
+              and
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi B
+                    %annotation{:encoding => "application/x-tex"} B
+          %svg{:height => "80.682pt", :version => "1.2", :viewbox => "0 0 211.221 80.682", :width => "211.221pt", :xmlns => "http://www.w3.org/2000/svg", "xmlns:xlink" => "http://www.w3.org/1999/xlink"}
+            %defs
+              %g
+                %symbol{:id => "SBlD8v-I2MtWeEqFZ80CHNGtdGk=-glyph0-0", :overflow => "visible"}
+                  %path{:d => "", :style => "stroke:none;"}
+                %symbol{:id => "SBlD8v-I2MtWeEqFZ80CHNGtdGk=-glyph0-1", :overflow => "visible"}
+                  %path{:d => "M 6.203125 -9.078125 C 6.296875 -9.4375 6.328125 -9.578125 6.546875 -9.640625 C 6.671875 -9.65625 7.15625 -9.65625 7.46875 -9.65625 C 8.96875 -9.65625 9.65625 -9.609375 9.65625 -8.4375 C 9.65625 -8.21875 9.609375 -7.65625 9.515625 -7.109375 L 9.5 -6.921875 C 9.5 -6.859375 9.5625 -6.78125 9.65625 -6.78125 C 9.796875 -6.78125 9.796875 -6.84375 9.84375 -7.09375 L 10.28125 -9.71875 C 10.296875 -9.859375 10.296875 -9.890625 10.296875 -9.9375 C 10.296875 -10.09375 10.21875 -10.09375 9.921875 -10.09375 L 1.765625 -10.09375 C 1.421875 -10.09375 1.421875 -10.078125 1.328125 -9.8125 L 0.421875 -7.125 C 0.40625 -7.109375 0.359375 -6.9375 0.359375 -6.921875 C 0.359375 -6.84375 0.421875 -6.78125 0.5 -6.78125 C 0.625 -6.78125 0.65625 -6.828125 0.71875 -7.03125 C 1.34375 -8.828125 1.65625 -9.65625 3.640625 -9.65625 L 4.625 -9.65625 C 4.984375 -9.65625 5.140625 -9.65625 5.140625 -9.5 C 5.140625 -9.453125 5.140625 -9.421875 5.0625 -9.15625 L 3.0625 -1.15625 C 2.921875 -0.578125 2.890625 -0.4375 1.3125 -0.4375 C 0.9375 -0.4375 0.828125 -0.4375 0.828125 -0.15625 C 0.828125 0 1 0 1.078125 0 C 1.4375 0 1.828125 -0.03125 2.203125 -0.03125 L 4.53125 -0.03125 C 4.90625 -0.03125 5.296875 0 5.671875 0 C 5.84375 0 5.984375 0 5.984375 -0.28125 C 5.984375 -0.4375 5.875 -0.4375 5.5 -0.4375 C 4.15625 -0.4375 4.15625 -0.5625 4.15625 -0.796875 C 4.15625 -0.796875 4.15625 -0.90625 4.21875 -1.140625 Z M 6.203125 -9.078125 ", :style => "stroke:none;"}
+                %symbol{:id => "SBlD8v-I2MtWeEqFZ80CHNGtdGk=-glyph0-2", :overflow => "visible"}
+                  %path{:d => "M 2.53125 -1.65625 C 2.015625 -0.78125 1.5 -0.46875 0.796875 -0.4375 C 0.625 -0.421875 0.5 -0.421875 0.5 -0.15625 C 0.5 -0.0625 0.578125 0 0.6875 0 C 0.953125 0 1.625 -0.03125 1.890625 -0.03125 C 2.328125 -0.03125 2.796875 0 3.21875 0 C 3.3125 0 3.484375 0 3.484375 -0.28125 C 3.484375 -0.421875 3.359375 -0.4375 3.28125 -0.4375 C 2.9375 -0.46875 2.65625 -0.578125 2.65625 -0.9375 C 2.65625 -1.140625 2.734375 -1.3125 2.9375 -1.640625 L 4.0625 -3.515625 L 7.859375 -3.515625 C 7.875 -3.375 7.875 -3.265625 7.890625 -3.125 C 7.9375 -2.734375 8.109375 -1.1875 8.109375 -0.90625 C 8.109375 -0.46875 7.359375 -0.4375 7.125 -0.4375 C 6.953125 -0.4375 6.796875 -0.4375 6.796875 -0.15625 C 6.796875 0 6.921875 0 7.015625 0 C 7.265625 0 7.5625 -0.03125 7.8125 -0.03125 L 8.671875 -0.03125 C 9.578125 -0.03125 10.234375 0 10.25 0 C 10.34375 0 10.515625 0 10.515625 -0.28125 C 10.515625 -0.4375 10.375 -0.4375 10.15625 -0.4375 C 9.34375 -0.4375 9.328125 -0.5625 9.28125 -1.015625 L 8.375 -10.296875 C 8.34375 -10.609375 8.28125 -10.625 8.109375 -10.625 C 7.96875 -10.625 7.875 -10.609375 7.75 -10.375 Z M 4.3125 -3.953125 L 7.3125 -8.953125 L 7.8125 -3.953125 Z M 4.3125 -3.953125 ", :style => "stroke:none;"}
+                %symbol{:id => "SBlD8v-I2MtWeEqFZ80CHNGtdGk=-glyph0-3", :overflow => "visible"}
+                  %path{:d => "M 5.453125 -9.15625 C 5.578125 -9.703125 5.640625 -9.734375 6.21875 -9.734375 L 8.15625 -9.734375 C 9.84375 -9.734375 9.84375 -8.3125 9.84375 -8.171875 C 9.84375 -6.96875 8.640625 -5.4375 6.671875 -5.4375 L 4.53125 -5.4375 Z M 7.96875 -5.3125 C 9.59375 -5.609375 11.0625 -6.75 11.0625 -8.109375 C 11.0625 -9.28125 10.03125 -10.171875 8.359375 -10.171875 L 3.578125 -10.171875 C 3.296875 -10.171875 3.15625 -10.171875 3.15625 -9.890625 C 3.15625 -9.734375 3.296875 -9.734375 3.515625 -9.734375 C 4.421875 -9.734375 4.421875 -9.625 4.421875 -9.453125 C 4.421875 -9.421875 4.421875 -9.34375 4.359375 -9.109375 L 2.359375 -1.109375 C 2.21875 -0.578125 2.1875 -0.4375 1.140625 -0.4375 C 0.859375 -0.4375 0.71875 -0.4375 0.71875 -0.15625 C 0.71875 0 0.796875 0 1.109375 0 L 6.203125 0 C 8.484375 0 10.25 -1.734375 10.25 -3.234375 C 10.25 -4.453125 9.171875 -5.203125 7.96875 -5.3125 Z M 5.859375 -0.4375 L 3.84375 -0.4375 C 3.640625 -0.4375 3.609375 -0.4375 3.515625 -0.453125 C 3.34375 -0.46875 3.328125 -0.484375 3.328125 -0.609375 C 3.328125 -0.71875 3.359375 -0.796875 3.390625 -0.9375 L 4.4375 -5.140625 L 7.234375 -5.140625 C 9 -5.140625 9 -3.5 9 -3.375 C 9 -1.953125 7.703125 -0.4375 5.859375 -0.4375 Z M 5.859375 -0.4375 ", :style => "stroke:none;"}
+                %symbol{:id => "SBlD8v-I2MtWeEqFZ80CHNGtdGk=-glyph1-0", :overflow => "visible"}
+                  %path{:d => "", :style => "stroke:none;"}
+                %symbol{:id => "SBlD8v-I2MtWeEqFZ80CHNGtdGk=-glyph1-1", :overflow => "visible"}
+                  %path{:d => "M 5.796875 -4.140625 L 2.8125 -7.109375 C 2.640625 -7.28125 2.609375 -7.3125 2.484375 -7.3125 C 2.34375 -7.3125 2.1875 -7.171875 2.1875 -7.015625 C 2.1875 -6.90625 2.21875 -6.875 2.375 -6.71875 L 5.359375 -3.71875 L 2.375 -0.734375 C 2.21875 -0.5625 2.1875 -0.53125 2.1875 -0.4375 C 2.1875 -0.265625 2.34375 -0.140625 2.484375 -0.140625 C 2.609375 -0.140625 2.640625 -0.15625 2.8125 -0.34375 L 5.78125 -3.3125 L 8.859375 -0.21875 C 8.890625 -0.203125 9 -0.140625 9.078125 -0.140625 C 9.265625 -0.140625 9.375 -0.265625 9.375 -0.4375 C 9.375 -0.46875 9.375 -0.515625 9.34375 -0.59375 C 9.328125 -0.625 6.953125 -2.96875 6.203125 -3.71875 L 8.9375 -6.453125 C 9.015625 -6.53125 9.234375 -6.734375 9.3125 -6.8125 C 9.328125 -6.84375 9.375 -6.90625 9.375 -7.015625 C 9.375 -7.171875 9.265625 -7.3125 9.078125 -7.3125 C 8.96875 -7.3125 8.90625 -7.25 8.734375 -7.09375 Z M 5.796875 -4.140625 ", :style => "stroke:none;"}
+                %symbol{:id => "SBlD8v-I2MtWeEqFZ80CHNGtdGk=-glyph2-0", :overflow => "visible"}
+                  %path{:d => "", :style => "stroke:none;"}
+                %symbol{:id => "SBlD8v-I2MtWeEqFZ80CHNGtdGk=-glyph2-1", :overflow => "visible"}
+                  %path{:d => "M 4.84375 3.625 C 4.84375 3.578125 4.84375 3.546875 4.59375 3.296875 C 3.09375 1.78125 2.265625 -0.671875 2.265625 -3.703125 C 2.265625 -6.59375 2.96875 -9.078125 4.6875 -10.84375 C 4.84375 -10.96875 4.84375 -11 4.84375 -11.046875 C 4.84375 -11.140625 4.765625 -11.171875 4.703125 -11.171875 C 4.515625 -11.171875 3.296875 -10.09375 2.5625 -8.640625 C 1.796875 -7.125 1.453125 -5.546875 1.453125 -3.703125 C 1.453125 -2.375 1.671875 -0.609375 2.4375 0.984375 C 3.328125 2.765625 4.546875 3.734375 4.703125 3.734375 C 4.765625 3.734375 4.84375 3.703125 4.84375 3.625 Z M 4.84375 3.625 ", :style => "stroke:none;"}
+                %symbol{:id => "SBlD8v-I2MtWeEqFZ80CHNGtdGk=-glyph2-2", :overflow => "visible"}
+                  %path{:d => "M 4.203125 -3.703125 C 4.203125 -4.84375 4.046875 -6.6875 3.21875 -8.40625 C 2.34375 -10.203125 1.109375 -11.171875 0.953125 -11.171875 C 0.890625 -11.171875 0.8125 -11.140625 0.8125 -11.046875 C 0.8125 -11 0.8125 -10.96875 1.078125 -10.71875 C 2.5625 -9.21875 3.390625 -6.765625 3.390625 -3.71875 C 3.390625 -0.828125 2.6875 1.65625 0.96875 3.40625 C 0.8125 3.546875 0.8125 3.578125 0.8125 3.625 C 0.8125 3.703125 0.890625 3.734375 0.953125 3.734375 C 1.140625 3.734375 2.375 2.671875 3.09375 1.203125 C 3.859375 -0.3125 4.203125 -1.921875 4.203125 -3.703125 Z M 4.203125 -3.703125 ", :style => "stroke:none;"}
+                %symbol{:id => "SBlD8v-I2MtWeEqFZ80CHNGtdGk=-glyph3-0", :overflow => "visible"}
+                  %path{:d => "", :style => "stroke:none;"}
+                %symbol{:id => "SBlD8v-I2MtWeEqFZ80CHNGtdGk=-glyph3-1", :overflow => "visible"}
+                  %path{:d => "M 1.9375 -6.109375 C 1.9375 -6.40625 1.703125 -6.671875 1.375 -6.671875 C 1.09375 -6.671875 0.828125 -6.4375 0.828125 -6.125 C 0.828125 -5.78125 1.125 -5.5625 1.375 -5.5625 C 1.71875 -5.5625 1.9375 -5.859375 1.9375 -6.109375 Z M 0.453125 -4.265625 L 0.453125 -3.9375 C 1.078125 -3.9375 1.171875 -3.875 1.171875 -3.390625 L 1.171875 -0.78125 C 1.171875 -0.328125 1.046875 -0.328125 0.421875 -0.328125 L 0.421875 0 C 0.796875 -0.03125 1.359375 -0.03125 1.515625 -0.03125 C 1.640625 -0.03125 2.234375 -0.03125 2.578125 0 L 2.578125 -0.328125 C 1.9375 -0.328125 1.890625 -0.375 1.890625 -0.765625 L 1.890625 -4.375 Z M 0.453125 -4.265625 ", :style => "stroke:none;"}
+                %symbol{:id => "SBlD8v-I2MtWeEqFZ80CHNGtdGk=-glyph3-2", :overflow => "visible"}
+                  %path{:d => "M 3.265625 -6.78125 L 3.265625 -6.453125 C 3.9375 -6.453125 4.015625 -6.375 4.015625 -5.890625 L 4.015625 -3.796875 C 3.671875 -4.171875 3.203125 -4.375 2.6875 -4.375 C 1.453125 -4.375 0.34375 -3.40625 0.34375 -2.140625 C 0.34375 -0.90625 1.34375 0.09375 2.59375 0.09375 C 3.171875 0.09375 3.65625 -0.171875 3.984375 -0.53125 L 3.984375 0.09375 L 5.5 0 L 5.5 -0.328125 C 4.828125 -0.328125 4.75 -0.390625 4.75 -0.890625 L 4.75 -6.890625 Z M 3.984375 -1.234375 C 3.984375 -1.046875 3.984375 -1.015625 3.84375 -0.8125 C 3.5625 -0.421875 3.109375 -0.171875 2.640625 -0.171875 C 2.1875 -0.171875 1.78125 -0.421875 1.546875 -0.78125 C 1.28125 -1.171875 1.234375 -1.65625 1.234375 -2.125 C 1.234375 -2.703125 1.3125 -3.109375 1.546875 -3.453125 C 1.78125 -3.8125 2.234375 -4.09375 2.734375 -4.09375 C 3.21875 -4.09375 3.6875 -3.859375 3.984375 -3.34375 Z M 3.984375 -1.234375 ", :style => "stroke:none;"}
+                %symbol{:id => "SBlD8v-I2MtWeEqFZ80CHNGtdGk=-glyph3-3", :overflow => "visible"}
+                  %path{:d => "M 3.296875 2.484375 C 3.390625 2.484375 3.5 2.484375 3.5 2.359375 C 3.5 2.328125 3.5 2.3125 3.359375 2.1875 C 2 0.90625 1.671875 -0.9375 1.671875 -2.484375 C 1.671875 -5.34375 2.84375 -6.671875 3.359375 -7.140625 C 3.5 -7.265625 3.5 -7.265625 3.5 -7.328125 C 3.5 -7.375 3.46875 -7.4375 3.359375 -7.4375 C 3.203125 -7.4375 2.703125 -6.9375 2.625 -6.84375 C 1.296875 -5.453125 1.015625 -3.671875 1.015625 -2.484375 C 1.015625 -0.265625 1.953125 1.53125 3.296875 2.484375 Z M 3.296875 2.484375 ", :style => "stroke:none;"}
+                %symbol{:id => "SBlD8v-I2MtWeEqFZ80CHNGtdGk=-glyph3-4", :overflow => "visible"}
+                  %path{:d => "M 3.0625 -2.484375 C 3.0625 -3.421875 2.90625 -4.546875 2.296875 -5.71875 C 1.8125 -6.640625 0.90625 -7.4375 0.71875 -7.4375 C 0.625 -7.4375 0.59375 -7.375 0.59375 -7.328125 C 0.59375 -7.28125 0.59375 -7.265625 0.71875 -7.140625 C 2.109375 -5.828125 2.421875 -4.015625 2.421875 -2.484375 C 2.421875 0.359375 1.234375 1.71875 0.734375 2.171875 C 0.609375 2.296875 0.59375 2.3125 0.59375 2.359375 C 0.59375 2.40625 0.625 2.484375 0.71875 2.484375 C 0.890625 2.484375 1.375 1.96875 1.453125 1.890625 C 2.78125 0.5 3.0625 -1.296875 3.0625 -2.484375 Z M 3.0625 -2.484375 ", :style => "stroke:none;"}
+                %symbol{:id => "SBlD8v-I2MtWeEqFZ80CHNGtdGk=-glyph4-0", :overflow => "visible"}
+                  %path{:d => "", :style => "stroke:none;"}
+                %symbol{:id => "SBlD8v-I2MtWeEqFZ80CHNGtdGk=-glyph4-1", :overflow => "visible"}
+                  %path{:d => "M 8.203125 -6.515625 C 8.265625 -6.625 8.265625 -6.671875 8.265625 -6.671875 C 8.265625 -6.78125 8.203125 -6.78125 8 -6.78125 L 0.765625 -6.78125 C 0.578125 -6.78125 0.5 -6.78125 0.5 -6.671875 C 0.5 -6.671875 0.5 -6.625 0.578125 -6.515625 L 4.09375 0.09375 C 4.171875 0.234375 4.203125 0.3125 4.390625 0.3125 C 4.5625 0.3125 4.609375 0.234375 4.6875 0.09375 Z M 1.84375 -6.015625 L 7.5625 -6.015625 L 4.703125 -0.640625 Z M 1.84375 -6.015625 ", :style => "stroke:none;"}
+                %symbol{:id => "SBlD8v-I2MtWeEqFZ80CHNGtdGk=-glyph5-0", :overflow => "visible"}
+                  %path{:d => "", :style => "stroke:none;"}
+                %symbol{:id => "SBlD8v-I2MtWeEqFZ80CHNGtdGk=-glyph5-1", :overflow => "visible"}
+                  %path{:d => "M 4.484375 -6 C 4.578125 -6.359375 4.578125 -6.375 4.984375 -6.375 L 5.75 -6.375 C 6.78125 -6.375 6.890625 -6.046875 6.890625 -5.5625 C 6.890625 -5.3125 6.84375 -4.875 6.828125 -4.828125 C 6.8125 -4.71875 6.796875 -4.640625 6.796875 -4.609375 C 6.796875 -4.484375 6.890625 -4.453125 6.9375 -4.453125 C 7.046875 -4.453125 7.09375 -4.515625 7.125 -4.703125 L 7.390625 -6.5625 C 7.390625 -6.703125 7.265625 -6.703125 7.09375 -6.703125 L 1.25 -6.703125 C 1 -6.703125 0.984375 -6.703125 0.90625 -6.5 L 0.3125 -4.78125 C 0.28125 -4.734375 0.265625 -4.65625 0.265625 -4.59375 C 0.265625 -4.515625 0.328125 -4.453125 0.40625 -4.453125 C 0.515625 -4.453125 0.53125 -4.5 0.59375 -4.671875 C 1.15625 -6.265625 1.453125 -6.375 2.953125 -6.375 L 3.34375 -6.375 C 3.640625 -6.375 3.65625 -6.375 3.65625 -6.296875 C 3.65625 -6.265625 3.609375 -6.0625 3.609375 -6.015625 L 2.296875 -0.8125 C 2.203125 -0.4375 2.171875 -0.328125 1.140625 -0.328125 C 0.828125 -0.328125 0.71875 -0.328125 0.71875 -0.140625 C 0.71875 -0.125 0.71875 0 0.890625 0 C 1.15625 0 1.84375 -0.03125 2.109375 -0.03125 L 2.953125 -0.03125 C 3.234375 -0.03125 3.921875 0 4.203125 0 C 4.28125 0 4.4375 0 4.4375 -0.1875 C 4.4375 -0.328125 4.328125 -0.328125 4.0625 -0.328125 C 3.8125 -0.328125 3.734375 -0.328125 3.484375 -0.34375 C 3.171875 -0.375 3.125 -0.421875 3.125 -0.546875 C 3.125 -0.578125 3.140625 -0.625 3.171875 -0.71875 Z M 4.484375 -6 ", :style => "stroke:none;"}
+                %symbol{:id => "SBlD8v-I2MtWeEqFZ80CHNGtdGk=-glyph5-2", :overflow => "visible"}
+                  %path{:d => "M 2.8125 -3.625 L 3.953125 -3.625 C 3.75 -2.71875 3.578125 -1.984375 3.578125 -1.25 C 3.578125 -1.1875 3.578125 -0.75 3.6875 -0.390625 C 3.8125 0.015625 3.90625 0.09375 4.09375 0.09375 C 4.3125 0.09375 4.53125 -0.09375 4.53125 -0.328125 C 4.53125 -0.390625 4.53125 -0.421875 4.484375 -0.5 C 4.28125 -0.96875 4.125 -1.4375 4.125 -2.25 C 4.125 -2.484375 4.125 -2.890625 4.28125 -3.625 L 5.484375 -3.625 C 5.640625 -3.625 5.75 -3.625 5.84375 -3.703125 C 5.96875 -3.8125 6 -3.9375 6 -4 C 6 -4.28125 5.75 -4.28125 5.578125 -4.28125 L 2 -4.28125 C 1.78125 -4.28125 1.40625 -4.28125 0.921875 -3.796875 C 0.5625 -3.4375 0.28125 -2.984375 0.28125 -2.921875 C 0.28125 -2.828125 0.359375 -2.796875 0.4375 -2.796875 C 0.53125 -2.796875 0.5625 -2.828125 0.609375 -2.90625 C 1.09375 -3.625 1.6875 -3.625 1.921875 -3.625 L 2.484375 -3.625 C 2.203125 -2.5625 1.671875 -1.375 1.3125 -0.640625 C 1.234375 -0.5 1.140625 -0.296875 1.140625 -0.203125 C 1.140625 0 1.3125 0.09375 1.46875 0.09375 C 1.84375 0.09375 1.9375 -0.28125 2.15625 -1.09375 Z M 2.8125 -3.625 ", :style => "stroke:none;"}
+                %symbol{:id => "SBlD8v-I2MtWeEqFZ80CHNGtdGk=-glyph5-3", :overflow => "visible"}
+                  %path{:d => "M 1.859375 -0.15625 C 1.859375 0.5 1.71875 1.0625 1.09375 1.671875 C 1.0625 1.703125 1.046875 1.71875 1.046875 1.78125 C 1.046875 1.859375 1.125 1.921875 1.1875 1.921875 C 1.3125 1.921875 2.140625 1.125 2.140625 -0.03125 C 2.140625 -0.671875 1.890625 -1.09375 1.453125 -1.09375 C 1.109375 -1.09375 0.90625 -0.828125 0.90625 -0.5625 C 0.90625 -0.28125 1.09375 0 1.46875 0 C 1.703125 0 1.859375 -0.140625 1.859375 -0.15625 Z M 1.859375 -0.15625 ", :style => "stroke:none;"}
+                %symbol{:id => "SBlD8v-I2MtWeEqFZ80CHNGtdGk=-glyph6-0", :overflow => "visible"}
+                  %path{:d => "", :style => "stroke:none;"}
+                %symbol{:id => "SBlD8v-I2MtWeEqFZ80CHNGtdGk=-glyph6-1", :overflow => "visible"}
+                  %path{:d => "M 2.671875 -4.71875 C 2.671875 -4.953125 2.640625 -4.953125 2.421875 -4.953125 C 1.921875 -4.46875 1.171875 -4.46875 0.90625 -4.46875 L 0.90625 -4.1875 C 1.09375 -4.1875 1.578125 -4.1875 2.03125 -4.390625 L 2.03125 -0.625 C 2.03125 -0.390625 2.03125 -0.296875 1.265625 -0.296875 L 0.9375 -0.296875 L 0.9375 0 C 1.359375 -0.03125 1.9375 -0.03125 2.34375 -0.03125 C 2.765625 -0.03125 3.34375 -0.03125 3.75 0 L 3.75 -0.296875 L 3.4375 -0.296875 C 2.671875 -0.296875 2.671875 -0.390625 2.671875 -0.625 Z M 2.671875 -4.71875 ", :style => "stroke:none;"}
+                %symbol{:id => "SBlD8v-I2MtWeEqFZ80CHNGtdGk=-glyph6-2", :overflow => "visible"}
+                  %path{:d => "M 4 -1.390625 L 3.71875 -1.390625 C 3.71875 -1.28125 3.640625 -0.796875 3.53125 -0.71875 C 3.46875 -0.671875 2.875 -0.671875 2.765625 -0.671875 L 1.375 -0.671875 L 2.328125 -1.4375 C 2.578125 -1.640625 3.25 -2.125 3.46875 -2.34375 C 3.703125 -2.5625 4 -2.9375 4 -3.46875 C 4 -4.40625 3.15625 -4.953125 2.171875 -4.953125 C 1.203125 -4.953125 0.53125 -4.3125 0.53125 -3.609375 C 0.53125 -3.234375 0.859375 -3.1875 0.9375 -3.1875 C 1.125 -3.1875 1.34375 -3.328125 1.34375 -3.59375 C 1.34375 -3.75 1.234375 -4 0.921875 -4 C 1.078125 -4.375 1.546875 -4.65625 2.046875 -4.65625 C 2.828125 -4.65625 3.25 -4.078125 3.25 -3.46875 C 3.25 -2.9375 2.90625 -2.40625 2.375 -1.921875 L 0.625 -0.3125 C 0.546875 -0.234375 0.53125 -0.234375 0.53125 0 L 3.765625 0 Z M 4 -1.390625 ", :style => "stroke:none;"}
+            %g{:id => "SBlD8v-I2MtWeEqFZ80CHNGtdGk=-surface1"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "6.435389", "xlink:href" => "#SBlD8v-I2MtWeEqFZ80CHNGtdGk=-glyph0-1", :y => "17.407391"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "17.002485", "xlink:href" => "#SBlD8v-I2MtWeEqFZ80CHNGtdGk=-glyph0-2", :y => "17.407391"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "31.236388", "xlink:href" => "#SBlD8v-I2MtWeEqFZ80CHNGtdGk=-glyph1-1", :y => "17.407391"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "46.12147", "xlink:href" => "#SBlD8v-I2MtWeEqFZ80CHNGtdGk=-glyph0-1", :y => "17.407391"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "56.688566", "xlink:href" => "#SBlD8v-I2MtWeEqFZ80CHNGtdGk=-glyph0-3", :y => "17.407391"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "123.306752", "xlink:href" => "#SBlD8v-I2MtWeEqFZ80CHNGtdGk=-glyph0-1", :y => "17.407391"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "133.872608", "xlink:href" => "#SBlD8v-I2MtWeEqFZ80CHNGtdGk=-glyph2-1", :y => "17.407391"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "139.541514", "xlink:href" => "#SBlD8v-I2MtWeEqFZ80CHNGtdGk=-glyph0-2", :y => "17.407391"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "153.775413", "xlink:href" => "#SBlD8v-I2MtWeEqFZ80CHNGtdGk=-glyph1-1", :y => "17.407391"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "168.660495", "xlink:href" => "#SBlD8v-I2MtWeEqFZ80CHNGtdGk=-glyph0-3", :y => "17.407391"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "180.483894", "xlink:href" => "#SBlD8v-I2MtWeEqFZ80CHNGtdGk=-glyph2-2", :y => "17.407391"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "123.691237", "xlink:href" => "#SBlD8v-I2MtWeEqFZ80CHNGtdGk=-glyph0-1", :y => "73.677607"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "134.258333", "xlink:href" => "#SBlD8v-I2MtWeEqFZ80CHNGtdGk=-glyph0-2", :y => "73.677607"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "148.490991", "xlink:href" => "#SBlD8v-I2MtWeEqFZ80CHNGtdGk=-glyph1-1", :y => "73.677607"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "163.377318", "xlink:href" => "#SBlD8v-I2MtWeEqFZ80CHNGtdGk=-glyph0-1", :y => "73.677607"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "173.944414", "xlink:href" => "#SBlD8v-I2MtWeEqFZ80CHNGtdGk=-glyph0-3", :y => "73.677607"}
+              %path{:d => "M -36.762766 16.300302 L 32.544486 -16.951336 ", :style => "fill:none;stroke-width:0.79701;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;", :transform => "matrix(0.996074,0,0,-0.996074,96.294219,40.580058)"}
+              %path{:d => "M -4.14323 4.782209 C -3.388399 1.912386 -1.698461 0.556927 -0.000739356 0.00123355 C -1.699091 -0.556947 -3.389386 -1.911643 -4.143151 -4.783168 ", :style => "fill:none;stroke-width:0.79701;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;", :transform => "matrix(0.898011,0.430842,0.430842,-0.898011,129.070445,57.638145)"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "82.063309", "xlink:href" => "#SBlD8v-I2MtWeEqFZ80CHNGtdGk=-glyph3-1", :y => "51.668354"}
+                %use{:x => "84.991737", "xlink:href" => "#SBlD8v-I2MtWeEqFZ80CHNGtdGk=-glyph3-2", :y => "51.668354"}
+              %path{:d => "M -21.209517 27.002474 L 19.638348 27.002474 ", :style => "fill:none;stroke-width:0.79701;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;", :transform => "matrix(0.996074,0,0,-0.996074,96.294219,40.580058)"}
+              %path{:d => "M -4.144174 4.78196 C -3.387296 1.911315 -1.700988 0.558347 0.00100617 0.00147374 C -1.700988 -0.559322 -3.387296 -1.91229 -4.144174 -4.782934 ", :style => "fill:none;stroke-width:0.79701;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;", :transform => "matrix(0.996074,0,0,-0.996074,116.252904,13.685062)"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "91.516052", "xlink:href" => "#SBlD8v-I2MtWeEqFZ80CHNGtdGk=-glyph4-1", :y => "9.984647"}
+              %path{:d => "M 58.670492 13.810056 L 58.66657 -16.500346 ", :style => "fill:none;stroke-width:0.79701;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;", :transform => "matrix(0.996074,0,0,-0.996074,96.294219,40.580058)"}
+              %path{:d => "M -4.144194 4.783091 C -3.387244 1.912404 -1.700875 0.559443 0.00116431 -0.00132983 C -1.700853 -0.558249 -3.387167 -1.911277 -4.144003 -4.781995 ", :style => "fill:none;stroke-width:0.79701;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;", :transform => "matrix(-0.0000199215,0.996054,0.996054,0.0000199215,154.731793,57.412903)"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "158.432308", "xlink:href" => "#SBlD8v-I2MtWeEqFZ80CHNGtdGk=-glyph3-3", :y => "44.797435"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "162.532398", "xlink:href" => "#SBlD8v-I2MtWeEqFZ80CHNGtdGk=-glyph5-1", :y => "44.797435"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "170.139763", "xlink:href" => "#SBlD8v-I2MtWeEqFZ80CHNGtdGk=-glyph5-2", :y => "44.797435"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "176.189819", "xlink:href" => "#SBlD8v-I2MtWeEqFZ80CHNGtdGk=-glyph6-1", :y => "46.175753"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "181.358198", "xlink:href" => "#SBlD8v-I2MtWeEqFZ80CHNGtdGk=-glyph5-3", :y => "44.797435"}
+                %use{:x => "184.286627", "xlink:href" => "#SBlD8v-I2MtWeEqFZ80CHNGtdGk=-glyph5-1", :y => "44.797435"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "191.893991", "xlink:href" => "#SBlD8v-I2MtWeEqFZ80CHNGtdGk=-glyph5-2", :y => "44.797435"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "197.945322", "xlink:href" => "#SBlD8v-I2MtWeEqFZ80CHNGtdGk=-glyph6-2", :y => "46.175753"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "203.113701", "xlink:href" => "#SBlD8v-I2MtWeEqFZ80CHNGtdGk=-glyph3-4", :y => "44.797435"}
+          %p
+            where
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msub
+                    %mi π
+                    %mn 1
+                  %mo :
+                  %mi A
+                  %mo ×
+                  %mi B
+                  %mo →
+                  %mi A
+                %annotation{:encoding => "application/x-tex"} \pi_1:A\times B\to A
+            and
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msub
+                    %mi π
+                    %mn 2
+                  %mo :
+                  %mi A
+                  %mo ×
+                  %mi B
+                  %mo →
+                  %mi B
+                %annotation{:encoding => "application/x-tex"} \pi_2:A\times B\to B
+            are the
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/product"} product projection maps
+          %p
+            (Note: This should be generalizable to monads on
+            = succeed ".)" do
+              %a.existingWikiWord{:href => "/nlab/show/cartesian+multicategories"} cartesian multicategories
+          %h2#strongly_and_weakly_affine_monads Strongly and weakly affine monads
+          %p
+            A strong monad on a cartesian monoidal category is called
+            %strong strongly affine
+            (
+            %a{:href => "#strongly_affine"}> Jacobs’16
+            ) if and only if for all objects
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi A
+                %annotation{:encoding => "application/x-tex"} A
+            and
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi B
+                  %annotation{:encoding => "application/x-tex"} B
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/pullback"} pullback
+            %svg{:height => "78.638pt", :version => "1.2", :viewbox => "0 0 182.685 78.638", :width => "182.685pt", :xmlns => "http://www.w3.org/2000/svg", "xmlns:xlink" => "http://www.w3.org/1999/xlink"}
+              %defs
+                %g
+                  %symbol{:id => "k9TthGxt-2z7b4_65HPjxh-_3KQ=-glyph0-0", :overflow => "visible"}
+                    %path{:d => "", :style => "stroke:none;"}
+                  %symbol{:id => "k9TthGxt-2z7b4_65HPjxh-_3KQ=-glyph0-1", :overflow => "visible"}
+                    %path{:d => "M 2.53125 -1.65625 C 2.015625 -0.78125 1.5 -0.46875 0.78125 -0.4375 C 0.625 -0.421875 0.5 -0.421875 0.5 -0.15625 C 0.5 -0.0625 0.578125 0 0.6875 0 C 0.953125 0 1.625 -0.03125 1.890625 -0.03125 C 2.328125 -0.03125 2.796875 0 3.21875 0 C 3.296875 0 3.484375 0 3.484375 -0.28125 C 3.484375 -0.421875 3.359375 -0.4375 3.265625 -0.4375 C 2.9375 -0.46875 2.640625 -0.578125 2.640625 -0.9375 C 2.640625 -1.140625 2.734375 -1.3125 2.9375 -1.640625 L 4.0625 -3.515625 L 7.859375 -3.515625 C 7.875 -3.375 7.875 -3.25 7.890625 -3.125 C 7.921875 -2.734375 8.109375 -1.1875 8.109375 -0.90625 C 8.109375 -0.46875 7.34375 -0.4375 7.109375 -0.4375 C 6.953125 -0.4375 6.78125 -0.4375 6.78125 -0.15625 C 6.78125 0 6.921875 0 7 0 C 7.265625 0 7.5625 -0.03125 7.8125 -0.03125 L 8.65625 -0.03125 C 9.5625 -0.03125 10.21875 0 10.234375 0 C 10.34375 0 10.5 0 10.5 -0.28125 C 10.5 -0.4375 10.375 -0.4375 10.140625 -0.4375 C 9.328125 -0.4375 9.3125 -0.5625 9.265625 -1.015625 L 8.359375 -10.296875 C 8.328125 -10.59375 8.265625 -10.625 8.109375 -10.625 C 7.953125 -10.625 7.875 -10.59375 7.734375 -10.375 Z M 4.3125 -3.9375 L 7.296875 -8.9375 L 7.8125 -3.9375 Z M 4.3125 -3.9375 ", :style => "stroke:none;"}
+                  %symbol{:id => "k9TthGxt-2z7b4_65HPjxh-_3KQ=-glyph0-2", :overflow => "visible"}
+                    %path{:d => "M 6.203125 -9.078125 C 6.296875 -9.4375 6.328125 -9.5625 6.546875 -9.625 C 6.65625 -9.65625 7.15625 -9.65625 7.46875 -9.65625 C 8.953125 -9.65625 9.65625 -9.59375 9.65625 -8.4375 C 9.65625 -8.21875 9.59375 -7.640625 9.5 -7.09375 L 9.484375 -6.921875 C 9.484375 -6.859375 9.546875 -6.765625 9.640625 -6.765625 C 9.78125 -6.765625 9.78125 -6.84375 9.828125 -7.078125 L 10.265625 -9.71875 C 10.296875 -9.84375 10.296875 -9.875 10.296875 -9.921875 C 10.296875 -10.078125 10.203125 -10.078125 9.90625 -10.078125 L 1.765625 -10.078125 C 1.421875 -10.078125 1.40625 -10.078125 1.328125 -9.796875 L 0.421875 -7.125 C 0.40625 -7.09375 0.359375 -6.9375 0.359375 -6.921875 C 0.359375 -6.84375 0.421875 -6.765625 0.5 -6.765625 C 0.625 -6.765625 0.65625 -6.828125 0.71875 -7.015625 C 1.34375 -8.828125 1.65625 -9.65625 3.625 -9.65625 L 4.625 -9.65625 C 4.984375 -9.65625 5.125 -9.65625 5.125 -9.484375 C 5.125 -9.453125 5.125 -9.421875 5.0625 -9.140625 L 3.0625 -1.15625 C 2.921875 -0.578125 2.890625 -0.4375 1.3125 -0.4375 C 0.9375 -0.4375 0.828125 -0.4375 0.828125 -0.15625 C 0.828125 0 1 0 1.078125 0 C 1.4375 0 1.828125 -0.03125 2.203125 -0.03125 L 4.515625 -0.03125 C 4.890625 -0.03125 5.296875 0 5.671875 0 C 5.828125 0 5.984375 0 5.984375 -0.28125 C 5.984375 -0.4375 5.875 -0.4375 5.484375 -0.4375 C 4.15625 -0.4375 4.15625 -0.5625 4.15625 -0.78125 C 4.15625 -0.796875 4.15625 -0.90625 4.203125 -1.140625 Z M 6.203125 -9.078125 ", :style => "stroke:none;"}
+                  %symbol{:id => "k9TthGxt-2z7b4_65HPjxh-_3KQ=-glyph0-3", :overflow => "visible"}
+                    %path{:d => "M 5.4375 -9.140625 C 5.578125 -9.703125 5.640625 -9.734375 6.21875 -9.734375 L 8.15625 -9.734375 C 9.828125 -9.734375 9.828125 -8.296875 9.828125 -8.171875 C 9.828125 -6.96875 8.625 -5.421875 6.65625 -5.421875 L 4.515625 -5.421875 Z M 7.953125 -5.3125 C 9.578125 -5.609375 11.046875 -6.734375 11.046875 -8.109375 C 11.046875 -9.265625 10.03125 -10.15625 8.34375 -10.15625 L 3.5625 -10.15625 C 3.28125 -10.15625 3.15625 -10.15625 3.15625 -9.875 C 3.15625 -9.734375 3.28125 -9.734375 3.515625 -9.734375 C 4.421875 -9.734375 4.421875 -9.609375 4.421875 -9.453125 C 4.421875 -9.421875 4.421875 -9.328125 4.359375 -9.109375 L 2.34375 -1.09375 C 2.21875 -0.578125 2.1875 -0.4375 1.140625 -0.4375 C 0.859375 -0.4375 0.71875 -0.4375 0.71875 -0.15625 C 0.71875 0 0.796875 0 1.09375 0 L 6.203125 0 C 8.484375 0 10.234375 -1.71875 10.234375 -3.234375 C 10.234375 -4.453125 9.15625 -5.1875 7.953125 -5.3125 Z M 5.84375 -0.4375 L 3.84375 -0.4375 C 3.625 -0.4375 3.59375 -0.4375 3.515625 -0.453125 C 3.34375 -0.46875 3.328125 -0.484375 3.328125 -0.609375 C 3.328125 -0.71875 3.359375 -0.796875 3.390625 -0.9375 L 4.4375 -5.125 L 7.234375 -5.125 C 8.984375 -5.125 8.984375 -3.5 8.984375 -3.375 C 8.984375 -1.953125 7.6875 -0.4375 5.84375 -0.4375 Z M 5.84375 -0.4375 ", :style => "stroke:none;"}
+                  %symbol{:id => "k9TthGxt-2z7b4_65HPjxh-_3KQ=-glyph1-0", :overflow => "visible"}
+                    %path{:d => "", :style => "stroke:none;"}
+                  %symbol{:id => "k9TthGxt-2z7b4_65HPjxh-_3KQ=-glyph1-1", :overflow => "visible"}
+                    %path{:d => "M 5.78125 -4.140625 L 2.8125 -7.09375 C 2.640625 -7.28125 2.609375 -7.296875 2.484375 -7.296875 C 2.328125 -7.296875 2.1875 -7.171875 2.1875 -7 C 2.1875 -6.90625 2.21875 -6.875 2.375 -6.703125 L 5.359375 -3.71875 L 2.375 -0.734375 C 2.21875 -0.5625 2.1875 -0.53125 2.1875 -0.4375 C 2.1875 -0.265625 2.328125 -0.140625 2.484375 -0.140625 C 2.609375 -0.140625 2.640625 -0.15625 2.8125 -0.34375 L 5.765625 -3.296875 L 8.84375 -0.21875 C 8.875 -0.203125 8.984375 -0.140625 9.078125 -0.140625 C 9.25 -0.140625 9.375 -0.265625 9.375 -0.4375 C 9.375 -0.46875 9.375 -0.515625 9.328125 -0.59375 C 9.3125 -0.625 6.953125 -2.953125 6.203125 -3.71875 L 8.921875 -6.4375 C 9 -6.53125 9.21875 -6.71875 9.296875 -6.8125 C 9.3125 -6.84375 9.375 -6.90625 9.375 -7 C 9.375 -7.171875 9.25 -7.296875 9.078125 -7.296875 C 8.953125 -7.296875 8.890625 -7.25 8.734375 -7.078125 Z M 5.78125 -4.140625 ", :style => "stroke:none;"}
+                  %symbol{:id => "k9TthGxt-2z7b4_65HPjxh-_3KQ=-glyph2-0", :overflow => "visible"}
+                    %path{:d => "", :style => "stroke:none;"}
+                  %symbol{:id => "k9TthGxt-2z7b4_65HPjxh-_3KQ=-glyph2-1", :overflow => "visible"}
+                    %path{:d => "M 4.828125 3.609375 C 4.828125 3.5625 4.828125 3.546875 4.578125 3.28125 C 3.09375 1.78125 2.265625 -0.671875 2.265625 -3.703125 C 2.265625 -6.59375 2.953125 -9.078125 4.6875 -10.828125 C 4.828125 -10.96875 4.828125 -11 4.828125 -11.03125 C 4.828125 -11.125 4.765625 -11.15625 4.703125 -11.15625 C 4.5 -11.15625 3.28125 -10.078125 2.5625 -8.625 C 1.796875 -7.125 1.453125 -5.53125 1.453125 -3.703125 C 1.453125 -2.375 1.671875 -0.609375 2.4375 0.984375 C 3.3125 2.765625 4.53125 3.734375 4.703125 3.734375 C 4.765625 3.734375 4.828125 3.703125 4.828125 3.609375 Z M 4.828125 3.609375 ", :style => "stroke:none;"}
+                  %symbol{:id => "k9TthGxt-2z7b4_65HPjxh-_3KQ=-glyph2-2", :overflow => "visible"}
+                    %path{:d => "M 4.1875 -3.703125 C 4.1875 -4.828125 4.046875 -6.671875 3.21875 -8.40625 C 2.328125 -10.1875 1.109375 -11.15625 0.953125 -11.15625 C 0.890625 -11.15625 0.8125 -11.125 0.8125 -11.03125 C 0.8125 -11 0.8125 -10.96875 1.078125 -10.703125 C 2.5625 -9.203125 3.390625 -6.75 3.390625 -3.71875 C 3.390625 -0.828125 2.6875 1.65625 0.96875 3.40625 C 0.8125 3.546875 0.8125 3.5625 0.8125 3.609375 C 0.8125 3.703125 0.890625 3.734375 0.953125 3.734375 C 1.140625 3.734375 2.359375 2.65625 3.09375 1.203125 C 3.859375 -0.3125 4.1875 -1.921875 4.1875 -3.703125 Z M 4.1875 -3.703125 ", :style => "stroke:none;"}
+                  %symbol{:id => "k9TthGxt-2z7b4_65HPjxh-_3KQ=-glyph3-0", :overflow => "visible"}
+                    %path{:d => "", :style => "stroke:none;"}
+                  %symbol{:id => "k9TthGxt-2z7b4_65HPjxh-_3KQ=-glyph3-1", :overflow => "visible"}
+                    %path{:d => "M 5.453125 -3.625 C 5.625 -3.625 5.6875 -3.625 5.8125 -3.703125 C 5.921875 -3.796875 5.96875 -3.921875 5.96875 -4 C 5.96875 -4.28125 5.71875 -4.28125 5.546875 -4.28125 L 3.109375 -4.28125 C 1.578125 -4.28125 0.40625 -2.703125 0.40625 -1.515625 C 0.40625 -0.53125 1.09375 0.09375 2.03125 0.09375 C 3.28125 0.09375 4.640625 -1.09375 4.640625 -2.578125 C 4.640625 -3.109375 4.4375 -3.4375 4.328125 -3.625 Z M 2.03125 -0.171875 C 1.53125 -0.171875 1.09375 -0.5 1.09375 -1.234375 C 1.09375 -1.640625 1.34375 -3.625 2.953125 -3.625 C 3.90625 -3.625 3.90625 -2.890625 3.90625 -2.671875 C 3.90625 -1.65625 3.203125 -0.171875 2.03125 -0.171875 Z M 2.03125 -0.171875 ", :style => "stroke:none;"}
+                  %symbol{:id => "k9TthGxt-2z7b4_65HPjxh-_3KQ=-glyph3-2", :overflow => "visible"}
+                    %path{:d => "M 2.8125 -3.625 L 3.953125 -3.625 C 3.75 -2.71875 3.578125 -1.984375 3.578125 -1.25 C 3.578125 -1.1875 3.578125 -0.75 3.6875 -0.390625 C 3.8125 0.015625 3.90625 0.09375 4.09375 0.09375 C 4.3125 0.09375 4.53125 -0.09375 4.53125 -0.328125 C 4.53125 -0.390625 4.53125 -0.421875 4.484375 -0.5 C 4.28125 -0.96875 4.125 -1.4375 4.125 -2.25 C 4.125 -2.484375 4.125 -2.890625 4.28125 -3.625 L 5.484375 -3.625 C 5.640625 -3.625 5.75 -3.625 5.84375 -3.703125 C 5.96875 -3.8125 6 -3.9375 6 -4 C 6 -4.28125 5.75 -4.28125 5.578125 -4.28125 L 2 -4.28125 C 1.78125 -4.28125 1.40625 -4.28125 0.921875 -3.796875 C 0.5625 -3.4375 0.28125 -2.984375 0.28125 -2.921875 C 0.28125 -2.828125 0.359375 -2.796875 0.4375 -2.796875 C 0.53125 -2.796875 0.5625 -2.828125 0.609375 -2.90625 C 1.09375 -3.625 1.6875 -3.625 1.921875 -3.625 L 2.484375 -3.625 C 2.203125 -2.5625 1.671875 -1.375 1.3125 -0.640625 C 1.234375 -0.5 1.140625 -0.296875 1.140625 -0.203125 C 1.140625 0 1.3125 0.09375 1.46875 0.09375 C 1.84375 0.09375 1.9375 -0.28125 2.15625 -1.09375 Z M 2.8125 -3.625 ", :style => "stroke:none;"}
+                  %symbol{:id => "k9TthGxt-2z7b4_65HPjxh-_3KQ=-glyph3-3", :overflow => "visible"}
+                    %path{:d => "M 4.484375 -6 C 4.578125 -6.359375 4.578125 -6.375 4.984375 -6.375 L 5.75 -6.375 C 6.78125 -6.375 6.890625 -6.046875 6.890625 -5.5625 C 6.890625 -5.3125 6.84375 -4.875 6.828125 -4.828125 C 6.8125 -4.71875 6.796875 -4.640625 6.796875 -4.609375 C 6.796875 -4.484375 6.890625 -4.453125 6.9375 -4.453125 C 7.046875 -4.453125 7.09375 -4.515625 7.125 -4.703125 L 7.390625 -6.5625 C 7.390625 -6.703125 7.265625 -6.703125 7.09375 -6.703125 L 1.25 -6.703125 C 1 -6.703125 0.984375 -6.703125 0.90625 -6.5 L 0.3125 -4.78125 C 0.28125 -4.734375 0.265625 -4.65625 0.265625 -4.59375 C 0.265625 -4.515625 0.328125 -4.453125 0.40625 -4.453125 C 0.515625 -4.453125 0.53125 -4.5 0.59375 -4.671875 C 1.15625 -6.265625 1.453125 -6.375 2.953125 -6.375 L 3.34375 -6.375 C 3.640625 -6.375 3.65625 -6.375 3.65625 -6.296875 C 3.65625 -6.265625 3.609375 -6.0625 3.609375 -6.015625 L 2.296875 -0.8125 C 2.203125 -0.4375 2.171875 -0.328125 1.140625 -0.328125 C 0.828125 -0.328125 0.71875 -0.328125 0.71875 -0.140625 C 0.71875 -0.125 0.71875 0 0.890625 0 C 1.15625 0 1.84375 -0.03125 2.109375 -0.03125 L 2.953125 -0.03125 C 3.234375 -0.03125 3.921875 0 4.203125 0 C 4.28125 0 4.4375 0 4.4375 -0.1875 C 4.4375 -0.328125 4.328125 -0.328125 4.0625 -0.328125 C 3.8125 -0.328125 3.734375 -0.328125 3.484375 -0.34375 C 3.171875 -0.375 3.125 -0.421875 3.125 -0.546875 C 3.125 -0.578125 3.140625 -0.625 3.171875 -0.71875 Z M 4.484375 -6 ", :style => "stroke:none;"}
+                  %symbol{:id => "k9TthGxt-2z7b4_65HPjxh-_3KQ=-glyph3-4", :overflow => "visible"}
+                    %path{:d => "M 5.171875 -2.734375 C 5.203125 -2.890625 5.25 -3.0625 5.25 -3.28125 C 5.25 -4.015625 4.734375 -4.375 4.015625 -4.375 C 3.21875 -4.375 2.703125 -3.890625 2.40625 -3.515625 C 2.34375 -4.0625 1.90625 -4.375 1.40625 -4.375 C 1.046875 -4.375 0.796875 -4.140625 0.640625 -3.84375 C 0.40625 -3.390625 0.296875 -2.890625 0.296875 -2.859375 C 0.296875 -2.765625 0.359375 -2.734375 0.453125 -2.734375 C 0.578125 -2.734375 0.578125 -2.765625 0.65625 -3.03125 C 0.78125 -3.53125 0.96875 -4.09375 1.375 -4.09375 C 1.625 -4.09375 1.6875 -3.875 1.6875 -3.625 C 1.6875 -3.453125 1.640625 -3.265625 1.5625 -2.9375 C 1.53125 -2.859375 1.390625 -2.265625 1.34375 -2.140625 L 0.984375 -0.640625 C 0.9375 -0.5 0.890625 -0.25 0.890625 -0.203125 C 0.890625 0.015625 1.078125 0.09375 1.203125 0.09375 C 1.375 0.09375 1.53125 -0.015625 1.59375 -0.140625 C 1.625 -0.203125 1.703125 -0.53125 1.75 -0.75 L 1.984375 -1.625 C 2.015625 -1.78125 2.109375 -2.15625 2.140625 -2.296875 C 2.28125 -2.84375 2.28125 -2.84375 2.515625 -3.171875 C 2.84375 -3.65625 3.296875 -4.09375 3.96875 -4.09375 C 4.328125 -4.09375 4.53125 -3.890625 4.53125 -3.421875 C 4.53125 -3.234375 4.453125 -2.875 4.453125 -2.859375 L 3.328125 1.59375 C 3.296875 1.75 3.296875 1.8125 3.296875 1.828125 C 3.296875 2.078125 3.5 2.140625 3.609375 2.140625 C 3.953125 2.140625 4.03125 1.8125 4.0625 1.6875 Z M 5.171875 -2.734375 ", :style => "stroke:none;"}
+                  %symbol{:id => "k9TthGxt-2z7b4_65HPjxh-_3KQ=-glyph4-0", :overflow => "visible"}
+                    %path{:d => "", :style => "stroke:none;"}
+                  %symbol{:id => "k9TthGxt-2z7b4_65HPjxh-_3KQ=-glyph4-1", :overflow => "visible"}
+                    %path{:d => "M 2.671875 -4.71875 C 2.671875 -4.953125 2.640625 -4.953125 2.421875 -4.953125 C 1.921875 -4.46875 1.171875 -4.46875 0.90625 -4.46875 L 0.90625 -4.1875 C 1.09375 -4.1875 1.578125 -4.1875 2.03125 -4.390625 L 2.03125 -0.625 C 2.03125 -0.390625 2.03125 -0.296875 1.265625 -0.296875 L 0.9375 -0.296875 L 0.9375 0 C 1.359375 -0.03125 1.9375 -0.03125 2.34375 -0.03125 C 2.765625 -0.03125 3.34375 -0.03125 3.75 0 L 3.75 -0.296875 L 3.4375 -0.296875 C 2.671875 -0.296875 2.671875 -0.390625 2.671875 -0.625 Z M 2.671875 -4.71875 ", :style => "stroke:none;"}
+              %g{:id => "k9TthGxt-2z7b4_65HPjxh-_3KQ=-surface1"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "6.666296", "xlink:href" => "#k9TthGxt-2z7b4_65HPjxh-_3KQ=-glyph0-1", :y => "16.600581"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "20.890815", "xlink:href" => "#k9TthGxt-2z7b4_65HPjxh-_3KQ=-glyph1-1", :y => "16.600581"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "35.766089", "xlink:href" => "#k9TthGxt-2z7b4_65HPjxh-_3KQ=-glyph0-2", :y => "16.600581"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "46.326222", "xlink:href" => "#k9TthGxt-2z7b4_65HPjxh-_3KQ=-glyph0-3", :y => "16.600581"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "112.900262", "xlink:href" => "#k9TthGxt-2z7b4_65HPjxh-_3KQ=-glyph0-2", :y => "16.600581"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "123.460399", "xlink:href" => "#k9TthGxt-2z7b4_65HPjxh-_3KQ=-glyph2-1", :y => "16.600581"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "129.124326", "xlink:href" => "#k9TthGxt-2z7b4_65HPjxh-_3KQ=-glyph0-1", :y => "16.600581"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "143.348845", "xlink:href" => "#k9TthGxt-2z7b4_65HPjxh-_3KQ=-glyph1-1", :y => "16.600581"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "158.224119", "xlink:href" => "#k9TthGxt-2z7b4_65HPjxh-_3KQ=-glyph0-3", :y => "16.600581"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "170.040972", "xlink:href" => "#k9TthGxt-2z7b4_65HPjxh-_3KQ=-glyph2-2", :y => "16.600581"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "26.944946", "xlink:href" => "#k9TthGxt-2z7b4_65HPjxh-_3KQ=-glyph0-1", :y => "72.833719"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "133.563143", "xlink:href" => "#k9TthGxt-2z7b4_65HPjxh-_3KQ=-glyph0-2", :y => "72.833719"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "144.123276", "xlink:href" => "#k9TthGxt-2z7b4_65HPjxh-_3KQ=-glyph0-1", :y => "72.833719"}
+                %path{:d => "M -26.513749 26.376883 L 14.333581 26.376883 ", :style => "fill:none;stroke-width:0.79701;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;", :transform => "matrix(0.995418,0,0,-0.995418,91.185224,39.138829)"}
+                %path{:d => "M -4.143136 4.782192 C -3.385759 1.913578 -1.698339 0.559718 0.000853118 -0.00144688 C -1.698339 -0.558688 -3.385759 -1.912548 -4.143136 -4.781161 ", :style => "fill:none;stroke-width:0.79701;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;", :transform => "matrix(0.995418,0,0,-0.995418,105.850713,12.881372)"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "82.332974", "xlink:href" => "#k9TthGxt-2z7b4_65HPjxh-_3KQ=-glyph3-1", :y => "9.183724"}
+                %path{:d => "M -59.049556 15.679427 L -59.05348 -17.123228 ", :style => "fill:none;stroke-width:0.79701;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;", :transform => "matrix(0.995418,0,0,-0.995418,91.185224,39.138829)"}
+                %path{:d => "M -4.142661 4.782427 C -3.38905 1.913794 -1.701529 0.556067 0.0016495 -0.00109968 C -1.701473 -0.558437 -3.388859 -1.912408 -4.146108 -4.781117 ", :style => "fill:none;stroke-width:0.79701;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;", :transform => "matrix(-0.0000497709,0.995398,0.995398,0.0000497709,32.403438,56.580389)"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "36.103784", "xlink:href" => "#k9TthGxt-2z7b4_65HPjxh-_3KQ=-glyph3-2", :y => "41.701035"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "42.153436", "xlink:href" => "#k9TthGxt-2z7b4_65HPjxh-_3KQ=-glyph4-1", :y => "43.078444"}
+                %path{:d => "M 53.363992 13.18754 L 53.363992 -17.123228 ", :style => "fill:none;stroke-width:0.79701;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;", :transform => "matrix(0.995418,0,0,-0.995418,91.185224,39.138829)"}
+                %path{:d => "M -4.142661 4.781185 C -3.38905 1.912552 -1.701529 0.558749 0.00164937 0.00158229 C -1.701473 -0.559679 -3.388859 -1.913651 -4.146108 -4.782359 ", :style => "fill:none;stroke-width:0.79701;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;", :transform => "matrix(-0.0000497709,0.995398,0.995398,0.0000497709,144.303113,56.580389)"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "148.001677", "xlink:href" => "#k9TthGxt-2z7b4_65HPjxh-_3KQ=-glyph3-3", :y => "44.193561"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "155.604029", "xlink:href" => "#k9TthGxt-2z7b4_65HPjxh-_3KQ=-glyph3-2", :y => "44.193561"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "161.650098", "xlink:href" => "#k9TthGxt-2z7b4_65HPjxh-_3KQ=-glyph4-1", :y => "45.57097"}
+                %path{:d => "M -46.884437 -30.112435 L 35.092768 -30.112435 ", :style => "fill:none;stroke-width:0.79701;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;", :transform => "matrix(0.995418,0,0,-0.995418,91.185224,39.138829)"}
+                %path{:d => "M -4.146073 4.781639 C -3.388696 1.913026 -1.701277 0.559166 0.00183999 0.00192458 C -1.701277 -0.559241 -3.388696 -1.913101 -4.146073 -4.781714 ", :style => "fill:none;stroke-width:0.79701;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;", :transform => "matrix(0.995418,0,0,-0.995418,126.513793,69.115197)"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "82.891404", "xlink:href" => "#k9TthGxt-2z7b4_65HPjxh-_3KQ=-glyph3-4", :y => "63.488738"}
+            where
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi σ
+                %annotation{:encoding => "application/x-tex"} \sigma
+            denotes the
+            %a.existingWikiWord{:href => "/nlab/show/strong+monad"} strength
+            of the monad, and
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msub
+                    %mi π
+                    %mn 1
+                %annotation{:encoding => "application/x-tex"} \pi_1
+            the product projection.
+          %p
+            A commutative monad on a cartesian monoidal category is called
+            %strong weakly affine
+            (
+            %a{:href => "#weaklymarkov"}> FGPT’23
+            ) if and only if any of the following equivalent conditions hold:
+          %ol
+            %li
+              The
+              %a.existingWikiWord{:href => "/nlab/show/internal+monoid"} internal monoid
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi T
+                    %mn 1
+                  %annotation{:encoding => "application/x-tex"} T1
+              (with its canonical monoid structure) is a
+              = succeed ";" do
+                %a.existingWikiWord{:href => "/nlab/show/group"} group
+            %li
+              For all objects
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi A
+                    %annotation{:encoding => "application/x-tex"} A
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi B
+                  %annotation{:encoding => "application/x-tex"} B
+              and
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi C
+                    %annotation{:encoding => "application/x-tex"} C
+              %a.existingWikiWord{:href => "/nlab/show/monoidal+functor"} associativity diagram
+              is a
+              = succeed "." do
+                %a.existingWikiWord{:href => "/nlab/show/pullback"} pullback
+          %svg{:height => "85.318pt", :version => "1.2", :viewbox => "0 0 274.896 85.318", :width => "274.896pt", :xmlns => "http://www.w3.org/2000/svg", "xmlns:xlink" => "http://www.w3.org/1999/xlink"}
+            %defs
+              %g
+                %symbol{:id => "40PnaskDCfHOhauqzufvXyv2dNI=-glyph0-0", :overflow => "visible"}
+                  %path{:d => "", :style => "stroke:none;"}
+                %symbol{:id => "40PnaskDCfHOhauqzufvXyv2dNI=-glyph0-1", :overflow => "visible"}
+                  %path{:d => "M 6.1875 -9.046875 C 6.265625 -9.40625 6.296875 -9.53125 6.53125 -9.59375 C 6.640625 -9.625 7.125 -9.625 7.4375 -9.625 C 8.921875 -9.625 9.625 -9.5625 9.625 -8.40625 C 9.625 -8.1875 9.5625 -7.625 9.46875 -7.078125 L 9.453125 -6.890625 C 9.453125 -6.828125 9.515625 -6.75 9.609375 -6.75 C 9.75 -6.75 9.75 -6.828125 9.796875 -7.0625 L 10.234375 -9.6875 C 10.265625 -9.8125 10.265625 -9.84375 10.265625 -9.890625 C 10.265625 -10.046875 10.171875 -10.046875 9.875 -10.046875 L 1.765625 -10.046875 C 1.421875 -10.046875 1.40625 -10.03125 1.3125 -9.765625 L 0.421875 -7.109375 C 0.40625 -7.078125 0.359375 -6.90625 0.359375 -6.890625 C 0.359375 -6.828125 0.421875 -6.75 0.5 -6.75 C 0.625 -6.75 0.65625 -6.8125 0.71875 -7 C 1.328125 -8.796875 1.640625 -9.625 3.625 -9.625 L 4.609375 -9.625 C 4.96875 -9.625 5.109375 -9.625 5.109375 -9.453125 C 5.109375 -9.421875 5.109375 -9.390625 5.046875 -9.125 L 3.046875 -1.15625 C 2.90625 -0.578125 2.875 -0.4375 1.3125 -0.4375 C 0.9375 -0.4375 0.828125 -0.4375 0.828125 -0.140625 C 0.828125 0 1 0 1.0625 0 C 1.4375 0 1.828125 -0.03125 2.1875 -0.03125 L 4.5 -0.03125 C 4.875 -0.03125 5.28125 0 5.65625 0 C 5.8125 0 5.96875 0 5.96875 -0.28125 C 5.96875 -0.4375 5.859375 -0.4375 5.46875 -0.4375 C 4.140625 -0.4375 4.140625 -0.5625 4.140625 -0.78125 C 4.140625 -0.796875 4.140625 -0.90625 4.203125 -1.140625 Z M 6.1875 -9.046875 ", :style => "stroke:none;"}
+                %symbol{:id => "40PnaskDCfHOhauqzufvXyv2dNI=-glyph0-2", :overflow => "visible"}
+                  %path{:d => "M 2.515625 -1.640625 C 2 -0.765625 1.5 -0.46875 0.78125 -0.4375 C 0.625 -0.421875 0.5 -0.421875 0.5 -0.140625 C 0.5 -0.0625 0.578125 0 0.6875 0 C 0.953125 0 1.609375 -0.03125 1.890625 -0.03125 C 2.3125 -0.03125 2.78125 0 3.203125 0 C 3.296875 0 3.46875 0 3.46875 -0.28125 C 3.46875 -0.421875 3.34375 -0.4375 3.265625 -0.4375 C 2.921875 -0.453125 2.640625 -0.578125 2.640625 -0.9375 C 2.640625 -1.140625 2.734375 -1.3125 2.921875 -1.625 L 4.046875 -3.5 L 7.828125 -3.5 C 7.84375 -3.359375 7.84375 -3.25 7.859375 -3.109375 C 7.90625 -2.734375 8.078125 -1.1875 8.078125 -0.90625 C 8.078125 -0.453125 7.328125 -0.4375 7.09375 -0.4375 C 6.921875 -0.4375 6.765625 -0.4375 6.765625 -0.15625 C 6.765625 0 6.890625 0 6.984375 0 C 7.234375 0 7.53125 -0.03125 7.78125 -0.03125 L 8.625 -0.03125 C 9.53125 -0.03125 10.1875 0 10.203125 0 C 10.3125 0 10.46875 0 10.46875 -0.28125 C 10.46875 -0.4375 10.328125 -0.4375 10.109375 -0.4375 C 9.296875 -0.4375 9.28125 -0.5625 9.234375 -1.015625 L 8.328125 -10.265625 C 8.296875 -10.5625 8.25 -10.59375 8.078125 -10.59375 C 7.9375 -10.59375 7.84375 -10.5625 7.703125 -10.328125 Z M 4.296875 -3.921875 L 7.28125 -8.90625 L 7.78125 -3.921875 Z M 4.296875 -3.921875 ", :style => "stroke:none;"}
+                %symbol{:id => "40PnaskDCfHOhauqzufvXyv2dNI=-glyph0-3", :overflow => "visible"}
+                  %path{:d => "M 5.421875 -9.125 C 5.5625 -9.671875 5.625 -9.703125 6.203125 -9.703125 L 8.125 -9.703125 C 9.796875 -9.703125 9.796875 -8.28125 9.796875 -8.140625 C 9.796875 -6.9375 8.59375 -5.40625 6.640625 -5.40625 L 4.5 -5.40625 Z M 7.9375 -5.296875 C 9.546875 -5.59375 11.015625 -6.71875 11.015625 -8.078125 C 11.015625 -9.234375 10 -10.125 8.3125 -10.125 L 3.5625 -10.125 C 3.28125 -10.125 3.140625 -10.125 3.140625 -9.84375 C 3.140625 -9.703125 3.28125 -9.703125 3.5 -9.703125 C 4.40625 -9.703125 4.40625 -9.578125 4.40625 -9.421875 C 4.40625 -9.390625 4.40625 -9.296875 4.34375 -9.078125 L 2.34375 -1.09375 C 2.203125 -0.578125 2.1875 -0.4375 1.140625 -0.4375 C 0.859375 -0.4375 0.71875 -0.4375 0.71875 -0.15625 C 0.71875 0 0.796875 0 1.09375 0 L 6.1875 0 C 8.453125 0 10.203125 -1.71875 10.203125 -3.21875 C 10.203125 -4.4375 9.140625 -5.171875 7.9375 -5.296875 Z M 5.828125 -0.4375 L 3.828125 -0.4375 C 3.625 -0.4375 3.59375 -0.4375 3.5 -0.4375 C 3.34375 -0.453125 3.328125 -0.484375 3.328125 -0.609375 C 3.328125 -0.71875 3.34375 -0.796875 3.375 -0.9375 L 4.421875 -5.109375 L 7.203125 -5.109375 C 8.953125 -5.109375 8.953125 -3.484375 8.953125 -3.359375 C 8.953125 -1.9375 7.671875 -0.4375 5.828125 -0.4375 Z M 5.828125 -0.4375 ", :style => "stroke:none;"}
+                %symbol{:id => "40PnaskDCfHOhauqzufvXyv2dNI=-glyph0-4", :overflow => "visible"}
+                  %path{:d => "M 11.078125 -10.3125 C 11.078125 -10.4375 10.96875 -10.4375 10.9375 -10.4375 C 10.90625 -10.4375 10.859375 -10.4375 10.734375 -10.296875 L 9.71875 -9.046875 C 9.1875 -9.9375 8.375 -10.4375 7.265625 -10.4375 C 4.0625 -10.4375 0.734375 -7.1875 0.734375 -3.703125 C 0.734375 -1.234375 2.46875 0.3125 4.640625 0.3125 C 5.828125 0.3125 6.859375 -0.1875 7.71875 -0.921875 C 9.015625 -2 9.40625 -3.4375 9.40625 -3.5625 C 9.40625 -3.6875 9.28125 -3.6875 9.234375 -3.6875 C 9.109375 -3.6875 9.09375 -3.609375 9.0625 -3.546875 C 8.375 -1.234375 6.375 -0.125 4.890625 -0.125 C 3.328125 -0.125 1.953125 -1.125 1.953125 -3.234375 C 1.953125 -3.703125 2.109375 -6.28125 3.78125 -8.234375 C 4.59375 -9.171875 5.984375 -10.015625 7.40625 -10.015625 C 9.03125 -10.015625 9.75 -8.65625 9.75 -7.140625 C 9.75 -6.765625 9.71875 -6.4375 9.71875 -6.375 C 9.71875 -6.25 9.859375 -6.25 9.90625 -6.25 C 10.0625 -6.25 10.078125 -6.25 10.140625 -6.53125 Z M 11.078125 -10.3125 ", :style => "stroke:none;"}
+                %symbol{:id => "40PnaskDCfHOhauqzufvXyv2dNI=-glyph1-0", :overflow => "visible"}
+                  %path{:d => "", :style => "stroke:none;"}
+                %symbol{:id => "40PnaskDCfHOhauqzufvXyv2dNI=-glyph1-1", :overflow => "visible"}
+                  %path{:d => "M 5.765625 -4.125 L 2.796875 -7.078125 C 2.625 -7.25 2.59375 -7.28125 2.46875 -7.28125 C 2.328125 -7.28125 2.1875 -7.140625 2.1875 -6.984375 C 2.1875 -6.875 2.203125 -6.84375 2.375 -6.6875 L 5.34375 -3.703125 L 2.375 -0.734375 C 2.203125 -0.5625 2.1875 -0.53125 2.1875 -0.4375 C 2.1875 -0.265625 2.328125 -0.140625 2.46875 -0.140625 C 2.59375 -0.140625 2.625 -0.15625 2.796875 -0.34375 L 5.75 -3.296875 L 8.828125 -0.21875 C 8.859375 -0.203125 8.953125 -0.140625 9.046875 -0.140625 C 9.21875 -0.140625 9.34375 -0.265625 9.34375 -0.4375 C 9.34375 -0.453125 9.34375 -0.515625 9.296875 -0.59375 C 9.28125 -0.625 6.921875 -2.953125 6.1875 -3.703125 L 8.890625 -6.421875 C 8.96875 -6.515625 9.1875 -6.703125 9.265625 -6.796875 C 9.28125 -6.828125 9.34375 -6.875 9.34375 -6.984375 C 9.34375 -7.140625 9.21875 -7.28125 9.046875 -7.28125 C 8.921875 -7.28125 8.875 -7.21875 8.703125 -7.0625 Z M 5.765625 -4.125 ", :style => "stroke:none;"}
+                %symbol{:id => "40PnaskDCfHOhauqzufvXyv2dNI=-glyph2-0", :overflow => "visible"}
+                  %path{:d => "", :style => "stroke:none;"}
+                %symbol{:id => "40PnaskDCfHOhauqzufvXyv2dNI=-glyph2-1", :overflow => "visible"}
+                  %path{:d => "M 4.8125 3.609375 C 4.8125 3.5625 4.8125 3.53125 4.5625 3.28125 C 3.078125 1.78125 2.25 -0.671875 2.25 -3.6875 C 2.25 -6.5625 2.953125 -9.046875 4.671875 -10.796875 C 4.8125 -10.921875 4.8125 -10.953125 4.8125 -11 C 4.8125 -11.09375 4.75 -11.125 4.6875 -11.125 C 4.5 -11.125 3.28125 -10.046875 2.546875 -8.59375 C 1.796875 -7.109375 1.453125 -5.515625 1.453125 -3.6875 C 1.453125 -2.375 1.65625 -0.609375 2.4375 0.984375 C 3.3125 2.765625 4.515625 3.71875 4.6875 3.71875 C 4.75 3.71875 4.8125 3.6875 4.8125 3.609375 Z M 4.8125 3.609375 ", :style => "stroke:none;"}
+                %symbol{:id => "40PnaskDCfHOhauqzufvXyv2dNI=-glyph2-2", :overflow => "visible"}
+                  %path{:d => "M 4.1875 -3.6875 C 4.1875 -4.8125 4.03125 -6.65625 3.203125 -8.375 C 2.328125 -10.15625 1.109375 -11.125 0.953125 -11.125 C 0.890625 -11.125 0.8125 -11.09375 0.8125 -11 C 0.8125 -10.953125 0.8125 -10.921875 1.0625 -10.671875 C 2.546875 -9.171875 3.375 -6.734375 3.375 -3.703125 C 3.375 -0.828125 2.6875 1.640625 0.96875 3.390625 C 0.8125 3.53125 0.8125 3.5625 0.8125 3.609375 C 0.8125 3.6875 0.890625 3.71875 0.953125 3.71875 C 1.140625 3.71875 2.359375 2.65625 3.078125 1.203125 C 3.84375 -0.3125 4.1875 -1.90625 4.1875 -3.6875 Z M 4.1875 -3.6875 ", :style => "stroke:none;"}
+                %symbol{:id => "40PnaskDCfHOhauqzufvXyv2dNI=-glyph3-0", :overflow => "visible"}
+                  %path{:d => "", :style => "stroke:none;"}
+                %symbol{:id => "40PnaskDCfHOhauqzufvXyv2dNI=-glyph3-1", :overflow => "visible"}
+                  %path{:d => "M 1.921875 -6.09375 C 1.921875 -6.375 1.703125 -6.640625 1.375 -6.640625 C 1.09375 -6.640625 0.828125 -6.421875 0.828125 -6.109375 C 0.828125 -5.75 1.125 -5.546875 1.375 -5.546875 C 1.71875 -5.546875 1.921875 -5.828125 1.921875 -6.09375 Z M 0.4375 -4.25 L 0.4375 -3.921875 C 1.078125 -3.921875 1.171875 -3.875 1.171875 -3.375 L 1.171875 -0.765625 C 1.171875 -0.328125 1.046875 -0.328125 0.421875 -0.328125 L 0.421875 0 C 0.796875 -0.03125 1.359375 -0.03125 1.5 -0.03125 C 1.625 -0.03125 2.21875 -0.03125 2.578125 0 L 2.578125 -0.328125 C 1.921875 -0.328125 1.890625 -0.375 1.890625 -0.765625 L 1.890625 -4.359375 Z M 0.4375 -4.25 ", :style => "stroke:none;"}
+                %symbol{:id => "40PnaskDCfHOhauqzufvXyv2dNI=-glyph3-2", :overflow => "visible"}
+                  %path{:d => "M 3.25 -6.75 L 3.25 -6.421875 C 3.921875 -6.421875 4 -6.359375 4 -5.875 L 4 -3.78125 C 3.65625 -4.15625 3.1875 -4.359375 2.6875 -4.359375 C 1.4375 -4.359375 0.34375 -3.40625 0.34375 -2.125 C 0.34375 -0.90625 1.328125 0.09375 2.578125 0.09375 C 3.171875 0.09375 3.65625 -0.171875 3.96875 -0.53125 L 3.96875 0.09375 L 5.484375 0 L 5.484375 -0.328125 C 4.8125 -0.328125 4.734375 -0.390625 4.734375 -0.875 L 4.734375 -6.859375 Z M 3.96875 -1.21875 C 3.96875 -1.046875 3.96875 -1.015625 3.828125 -0.8125 C 3.546875 -0.421875 3.09375 -0.171875 2.625 -0.171875 C 2.171875 -0.171875 1.78125 -0.421875 1.546875 -0.78125 C 1.28125 -1.171875 1.21875 -1.65625 1.21875 -2.109375 C 1.21875 -2.6875 1.3125 -3.09375 1.546875 -3.4375 C 1.78125 -3.8125 2.21875 -4.078125 2.734375 -4.078125 C 3.203125 -4.078125 3.671875 -3.84375 3.96875 -3.328125 Z M 3.96875 -1.21875 ", :style => "stroke:none;"}
+                %symbol{:id => "40PnaskDCfHOhauqzufvXyv2dNI=-glyph4-0", :overflow => "visible"}
+                  %path{:d => "", :style => "stroke:none;"}
+                %symbol{:id => "40PnaskDCfHOhauqzufvXyv2dNI=-glyph4-1", :overflow => "visible"}
+                  %path{:d => "M 6.484375 -4.546875 C 6.59375 -4.671875 6.609375 -4.71875 6.609375 -4.78125 C 6.609375 -4.90625 6.515625 -5.015625 6.390625 -5.015625 C 6.296875 -5.015625 6.265625 -4.96875 6.15625 -4.859375 L 4.078125 -2.796875 L 2 -4.875 C 1.890625 -5 1.84375 -5.015625 1.765625 -5.015625 C 1.65625 -5.015625 1.546875 -4.921875 1.546875 -4.78125 C 1.546875 -4.703125 1.578125 -4.65625 1.6875 -4.5625 L 3.765625 -2.46875 L 1.6875 -0.40625 C 1.5625 -0.28125 1.546875 -0.234375 1.546875 -0.15625 C 1.546875 -0.03125 1.65625 0.0625 1.765625 0.0625 C 1.859375 0.0625 1.890625 0.046875 2 -0.0625 L 4.078125 -2.140625 L 6.234375 0.015625 C 6.28125 0.046875 6.34375 0.0625 6.390625 0.0625 C 6.515625 0.0625 6.609375 -0.046875 6.609375 -0.15625 C 6.609375 -0.234375 6.5625 -0.28125 6.5625 -0.28125 C 6.53125 -0.34375 4.9375 -1.921875 4.40625 -2.46875 Z M 6.484375 -4.546875 ", :style => "stroke:none;"}
+                %symbol{:id => "40PnaskDCfHOhauqzufvXyv2dNI=-glyph4-2", :overflow => "visible"}
+                  %path{:d => "M 8.171875 -6.484375 C 8.234375 -6.609375 8.234375 -6.640625 8.234375 -6.65625 C 8.234375 -6.75 8.171875 -6.75 7.984375 -6.75 L 0.765625 -6.75 C 0.578125 -6.75 0.5 -6.75 0.5 -6.65625 C 0.5 -6.640625 0.5 -6.609375 0.578125 -6.484375 L 4.078125 0.09375 C 4.15625 0.234375 4.1875 0.3125 4.375 0.3125 C 4.546875 0.3125 4.59375 0.234375 4.671875 0.09375 Z M 1.84375 -6 L 7.53125 -6 L 4.6875 -0.640625 Z M 1.84375 -6 ", :style => "stroke:none;"}
+            %g{:id => "40PnaskDCfHOhauqzufvXyv2dNI=-surface1"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "7.804323", "xlink:href" => "#40PnaskDCfHOhauqzufvXyv2dNI=-glyph0-1", :y => "18.477299"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "18.328939", "xlink:href" => "#40PnaskDCfHOhauqzufvXyv2dNI=-glyph0-2", :y => "18.477299"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "32.50562", "xlink:href" => "#40PnaskDCfHOhauqzufvXyv2dNI=-glyph1-1", :y => "18.477299"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "47.330862", "xlink:href" => "#40PnaskDCfHOhauqzufvXyv2dNI=-glyph0-1", :y => "18.477299"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "57.855478", "xlink:href" => "#40PnaskDCfHOhauqzufvXyv2dNI=-glyph0-3", :y => "18.477299"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "72.926262", "xlink:href" => "#40PnaskDCfHOhauqzufvXyv2dNI=-glyph1-1", :y => "18.477299"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "87.751505", "xlink:href" => "#40PnaskDCfHOhauqzufvXyv2dNI=-glyph0-1", :y => "18.477299"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "98.276121", "xlink:href" => "#40PnaskDCfHOhauqzufvXyv2dNI=-glyph0-4", :y => "18.477299"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "164.683291", "xlink:href" => "#40PnaskDCfHOhauqzufvXyv2dNI=-glyph0-1", :y => "18.477299"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "175.207907", "xlink:href" => "#40PnaskDCfHOhauqzufvXyv2dNI=-glyph0-2", :y => "18.477299"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "189.384588", "xlink:href" => "#40PnaskDCfHOhauqzufvXyv2dNI=-glyph1-1", :y => "18.477299"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "204.209831", "xlink:href" => "#40PnaskDCfHOhauqzufvXyv2dNI=-glyph0-1", :y => "18.477299"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "214.734451", "xlink:href" => "#40PnaskDCfHOhauqzufvXyv2dNI=-glyph2-1", :y => "18.477299"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "220.379328", "xlink:href" => "#40PnaskDCfHOhauqzufvXyv2dNI=-glyph0-3", :y => "18.477299"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "235.450108", "xlink:href" => "#40PnaskDCfHOhauqzufvXyv2dNI=-glyph1-1", :y => "18.477299"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "250.275351", "xlink:href" => "#40PnaskDCfHOhauqzufvXyv2dNI=-glyph0-4", :y => "18.477299"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "261.726316", "xlink:href" => "#40PnaskDCfHOhauqzufvXyv2dNI=-glyph2-2", :y => "18.477299"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "7.421384", "xlink:href" => "#40PnaskDCfHOhauqzufvXyv2dNI=-glyph0-1", :y => "75.509406"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "17.946004", "xlink:href" => "#40PnaskDCfHOhauqzufvXyv2dNI=-glyph2-1", :y => "75.509406"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "23.590881", "xlink:href" => "#40PnaskDCfHOhauqzufvXyv2dNI=-glyph0-2", :y => "75.509406"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "37.767558", "xlink:href" => "#40PnaskDCfHOhauqzufvXyv2dNI=-glyph1-1", :y => "75.509406"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "52.592801", "xlink:href" => "#40PnaskDCfHOhauqzufvXyv2dNI=-glyph0-3", :y => "75.509406"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "64.369909", "xlink:href" => "#40PnaskDCfHOhauqzufvXyv2dNI=-glyph2-2", :y => "75.509406"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "73.309697", "xlink:href" => "#40PnaskDCfHOhauqzufvXyv2dNI=-glyph1-1", :y => "75.509406"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "88.13494", "xlink:href" => "#40PnaskDCfHOhauqzufvXyv2dNI=-glyph0-1", :y => "75.509406"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "98.659556", "xlink:href" => "#40PnaskDCfHOhauqzufvXyv2dNI=-glyph0-4", :y => "75.509406"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "169.945229", "xlink:href" => "#40PnaskDCfHOhauqzufvXyv2dNI=-glyph0-1", :y => "75.509406"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "180.46985", "xlink:href" => "#40PnaskDCfHOhauqzufvXyv2dNI=-glyph2-1", :y => "75.509406"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "186.115967", "xlink:href" => "#40PnaskDCfHOhauqzufvXyv2dNI=-glyph0-2", :y => "75.509406"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "200.292644", "xlink:href" => "#40PnaskDCfHOhauqzufvXyv2dNI=-glyph1-1", :y => "75.509406"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "215.117886", "xlink:href" => "#40PnaskDCfHOhauqzufvXyv2dNI=-glyph0-3", :y => "75.509406"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "230.188666", "xlink:href" => "#40PnaskDCfHOhauqzufvXyv2dNI=-glyph1-1", :y => "75.509406"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "245.013909", "xlink:href" => "#40PnaskDCfHOhauqzufvXyv2dNI=-glyph0-4", :y => "75.509406"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "256.463634", "xlink:href" => "#40PnaskDCfHOhauqzufvXyv2dNI=-glyph2-2", :y => "75.509406"}
+              %path{:d => "M -21.209137 28.745407 L 20.024102 28.745407 ", :style => "fill:none;stroke-width:0.79701;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;", :transform => "matrix(0.99207,0,0,-0.99207,137.396412,43.28698)"}
+              %path{:d => "M -4.143937 4.781011 C -3.387941 1.91453 -1.698765 0.556101 -0.00171285 0.000916673 C -1.698765 -0.558205 -3.387941 -1.912696 -4.143937 -4.783116 ", :style => "fill:none;stroke-width:0.79701;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;", :transform => "matrix(0.99207,0,0,-0.99207,157.657949,14.770441)"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "124.369544", "xlink:href" => "#40PnaskDCfHOhauqzufvXyv2dNI=-glyph3-1", :y => "10.055619"}
+                %use{:x => "127.2862", "xlink:href" => "#40PnaskDCfHOhauqzufvXyv2dNI=-glyph3-2", :y => "10.055619"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "133.12084", "xlink:href" => "#40PnaskDCfHOhauqzufvXyv2dNI=-glyph4-1", :y => "10.055619"}
+                %use{:x => "141.288662", "xlink:href" => "#40PnaskDCfHOhauqzufvXyv2dNI=-glyph4-2", :y => "10.055619"}
+              %path{:d => "M -79.255395 18.043349 L -79.259332 -14.755818 ", :style => "fill:none;stroke-width:0.79701;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;", :transform => "matrix(0.99207,0,0,-0.99207,137.396412,43.28698)"}
+              %path{:d => "M -4.144589 4.782583 C -3.388521 1.912121 -1.699284 0.557636 0.00175068 -0.0014623 C -1.699261 -0.556691 -3.388445 -1.911244 -4.144398 -4.781736 ", :style => "fill:none;stroke-width:0.79701;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;", :transform => "matrix(-0.0000198414,0.99205,0.99205,0.0000198414,58.767076,58.322482)"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "62.45447", "xlink:href" => "#40PnaskDCfHOhauqzufvXyv2dNI=-glyph4-2", :y => "44.968538"}
+                %use{:x => "71.205426", "xlink:href" => "#40PnaskDCfHOhauqzufvXyv2dNI=-glyph4-1", :y => "44.968538"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "79.37298", "xlink:href" => "#40PnaskDCfHOhauqzufvXyv2dNI=-glyph3-1", :y => "44.968538"}
+                %use{:x => "82.289636", "xlink:href" => "#40PnaskDCfHOhauqzufvXyv2dNI=-glyph3-2", :y => "44.968538"}
+              %path{:d => "M 79.263415 15.554865 L 79.263415 -14.755818 ", :style => "fill:none;stroke-width:0.79701;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;", :transform => "matrix(0.99207,0,0,-0.99207,137.396412,43.28698)"}
+              %path{:d => "M -4.144733 4.780498 C -3.388579 1.913997 -1.699301 0.559563 0.00175063 0.00051504 C -1.699245 -0.558703 -3.388388 -1.913306 -4.144254 -4.78382 ", :style => "fill:none;stroke-width:0.79701;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;", :transform => "matrix(-0.0000496035,0.99205,0.99205,0.0000496035,216.030739,58.322482)"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "219.716378", "xlink:href" => "#40PnaskDCfHOhauqzufvXyv2dNI=-glyph4-2", :y => "46.663986"}
+              %path{:d => "M -20.823264 -28.745667 L 25.327881 -28.745667 ", :style => "fill:none;stroke-width:0.79701;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;", :transform => "matrix(0.99207,0,0,-0.99207,137.396412,43.28698)"}
+              %path{:d => "M -4.144488 4.782865 C -3.388492 1.912446 -1.699316 0.557954 0.00167357 -0.00116716 C -1.699316 -0.556351 -3.388492 -1.910843 -4.144488 -4.781262 ", :style => "fill:none;stroke-width:0.79701;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;", :transform => "matrix(0.99207,0,0,-0.99207,162.920215,71.80353)"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "135.652354", "xlink:href" => "#40PnaskDCfHOhauqzufvXyv2dNI=-glyph4-2", :y => "68.117494"}
+          %p Every (commutative) strongly affine monad is affine, and every affine monad is weakly affine.
+          %h2#properties Properties
+          %ul
+            %li
+              %p
+                The
+                %a.existingWikiWord{:href => "/nlab/show/Eilenberg-Moore+category"} Eilenberg-Moore category
+                of an affine commutative monad is a
+                = succeed "." do
+                  %a.existingWikiWord{:href => "/nlab/show/semicartesian+monoidal+category"} semicartesian monoidal category
+                = succeed "." do
+                  %a.existingWikiWord{:href => "/nlab/show/affine+logic"} affine logic
+            %li
+              %p
+                The
+                %a.existingWikiWord{:href => "/nlab/show/Kleisli+category"} Kleisli category
+                of an affine commutative monad is a
+                %a.existingWikiWord{:href => "/nlab/show/Markov+category"} Markov category
+                (
+                %a{:href => "#fritzmarkov"}> Fritz’20
+                ). This makes affine commutative monads suitable as
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/probability+monads"} probability monads
+                = succeed "." do
+                  %a.existingWikiWord{:href => "/nlab/show/joint+and+marginal+distributions"} joint and marginal distributions
+          %p Similarly:
+          %ul
+            %li
+              %p
+                The
+                %a.existingWikiWord{:href => "/nlab/show/Kleisli+category"} Kleisli category
+                of a strongly affine commutative monad is a
+                %a.existingWikiWord{:href => "/nlab/show/Markov+category#positivity_and_causality"} positive Markov category
+                (
+                %a{:href => "#dilations"}> FGGPS’23
+                ).
+            %li
+              %p
+                The
+                %a.existingWikiWord{:href => "/nlab/show/Kleisli+category"} Kleisli category
+                of a weakly affine commutative monad is a
+                = succeed "," do
+                  %em weakly Markov category
+                = succeed "." do
+                  %a{:href => "#weaklymarkov"} FGPT’23
+          %h2#see_also See also
+          %ul
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/monoidal+monad"}> monoidal monad
+              ,
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/strong+monad"} strong monad
+              %a.existingWikiWord{:href => "/nlab/show/commutative+monad"} commutative monad
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/Markov+category"} Markov category
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/joint+and+marginal+distributions"} joint and marginal distributions
+          %h2#references References
+          %ul
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Anders+Kock"}> Anders Kock
+                ,
+                = succeed "," do
+                  %em Bilinearity and cartesian closed monads
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Bart+Jacobs"}> Bart Jacobs
+                ,
+                = succeed "," do
+                  %em Semantics of weakening and contraction
+                = succeed ")" do
+                  %a{:href => "https://www.sciencedirect.com/science/article/pii/0168007294900205"} full text
+            %li#strongly_affine
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Bart+Jacobs"}> Bart Jacobs
+                ,
+                = succeed "," do
+                  %em Affine Monads and Side-Effect-Freeness
+                = succeed ")" do
+                  %a{:href => "http://www.cs.ru.nl/B.Jacobs/PAPERS/side-effects.pdf"} pdf
+            %li#bimonoidal_monads
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Tobias+Fritz"}> Tobias Fritz
+                ,
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/Paolo+Perrone"} Paolo Perrone
+                = succeed "," do
+                  %em Bimonoidal Structure of Probability Monads
+                = succeed ")" do
+                  %a{:href => "https://arxiv.org/abs/1804.03527"} arXiv:1804.03527
+            %li#cd_categories
+              %p
+                Kenta Cho,
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/Bart+Jacobs"} Bart Jacobs
+                = succeed "," do
+                  %em Disintegration and Bayesian Inversion via String Diagrams
+                = succeed ")" do
+                  %a{:href => "https://arxiv.org/abs/1709.00322"} arXiv:1709.00322
+            %li#fritzmarkov
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Tobias+Fritz"}> Tobias Fritz
+                ,
+                = succeed "," do
+                  %em A synthetic approach to Markov kernels, conditional independence and theorems on sufficient statistics
+                = succeed ")" do
+                  %a{:href => "http://arxiv.org/abs/1908.07021"} arXiv:1908.07021
+            %li#dilations
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Tobias+Fritz"}> Tobias Fritz
+                , Tomáš Gonda, Nicholas Gauguin Houghton-Larsen,
+                %a.existingWikiWord{:href => "/nlab/show/Paolo+Perrone"} Paolo Perrone
+                and Dario Stein,
+                = succeed "." do
+                  %em Dilations and information flow axioms in categorical probability
+                = succeed ")." do
+                  %a{:href => "https://arxiv.org/abs/2211.02507"} arXiv:2211.02507
+            %li#weaklymarkov
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Tobias+Fritz"}> Tobias Fritz
+                ,
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/Fabio+Gadducci"} Fabio Gadducci
+                %a.existingWikiWord{:href => "/nlab/show/Paolo+Perrone"} Paolo Perrone
+                and Davide Trotta,
+                = succeed "," do
+                  %em Weakly Markov categories and weakly affine monads
+                = succeed ")" do
+                  %a{:href => "https://arxiv.org/abs/2303.14049"} arXiv
+        .revisedby
+          %p
+            Last revised on February  9, 2024 at 11:28:59.
+            See the
+            %a{:href => "/nlab/history/affine+monad", :style => "color: #005c19"} history
+            of this page for a list of all contributions to it.
+        .navigation.navfoot
+          %a#edit.navlink{:accesskey => "E", :href => "/nlab/edit/affine+monad", :rel => "nofollow"} Edit
+          %a{:href => "https://nforum.ncatlab.org/discussion/14981/#Item_2"} Discuss
+          %span.backintime
+            %a#to_previous_revision.navlinkbackintime{:accesskey => "B", :href => "/nlab/revision/affine+monad/2", :rel => "nofollow"} Previous revision
+          %a#see_changes.navlink{:accesskey => "C", :href => "/nlab/show/diff/affine+monad", :rel => "nofollow"} Changes from previous revision
+          %a#history.navlink{:accesskey => "S", :href => "/nlab/history/affine+monad", :rel => "nofollow"} History (2 revisions)
+          %a{:href => "/nlab/show/affine+monad/cite", :style => "color: black"} Cite
+          %a#view_print{:accesskey => "p", :href => "/nlab/print/affine+monad", :rel => "nofollow"} Print
+          %a#view_source{:href => "/nlab/source/affine+monad", :rel => "nofollow"} Source
+      / Content
+    / Container

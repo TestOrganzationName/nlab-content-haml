@@ -1,0 +1,2844 @@
+!!! XML
+!!! 1.1
+%html{:xmlns => "http://www.w3.org/1999/xhtml"}
+  %head
+    %title
+      Frölicher spaces and Isbell envelopes in nLab
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:content => "index,follow", :name => "robots"}/
+    %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/
+    %link{:href => "/stylesheets/instiki.css?1676280126", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/stylesheets/mathematics.css?1660229990", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/stylesheets/syntax.css?1660229990", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/stylesheets/nlab.css?1676280126", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css", :rel => "stylesheet", :type => "text/css"}/
+    :css
+      h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+        color: #226622;
+      }
+      a:visited.existingWikiWord {
+        color: #164416;
+      }
+    :css
+      <!--/*--><![CDATA[/*><!--*/
+          .toc ul {margin: 0; padding: 0;}
+      .toc ul ul {margin: 0; padding: 0 0 0 10px;}
+      .toc li > p {margin: 0}
+      .toc ul li {list-style-type: none; position: relative;}
+      .toc div {border-top:1px dotted #ccc;}
+      .rightHandSide h2 {font-size: 1.5em;color:#008B26}
+      table.plaintable {
+          border-collapse:collapse;
+          margin-left:30px;
+          border:0;
+      }
+      .plaintable td {border:1px solid #000; padding: 3px;}
+      .plaintable th {padding: 3px;}
+      .plaintable caption {
+          font-weight: bold;
+          font-size:1.1em;
+          text-align:center;
+          margin-left:30px;
+      }
+          
+         
+      /* Query boxes for questioning and answering mechanism */
+      div.query{
+      background: #f6fff3;
+      border: solid #ce9;
+      border-width: 2px 1px;
+      padding: 0 1em;
+      margin: 0 1em;
+      max-height: 20em;
+      overflow: auto;
+      }
+      
+      /* Standout boxes for putting important text */
+      div.standout{
+      background: #fff1f1;
+      border: solid black;
+      border-width: 2px 1px;
+      padding: 0 1em;
+      margin: 0 1em;
+      overflow: auto;
+      }
+      
+      /* Icon for links to n-category arXiv documents 
+       (commented out for now i.e. disabled)
+      a[href*="http://arxiv.org/"] {
+        background-image: url(../files/arXiv_icon.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 22px;
+        } */
+          
+      /* Icon for links to n-category cafe posts (disabled) 
+      a[href*="http://golem.ph.utexas.edu/category"] {
+        background-image: url(../files/n-cafe_5.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 25px;
+        } */
+      
+      /* Icon for links to pdf files (disabled)
+      a[href$=".pdf"] {
+        background-image: url(../files/pdficon_small.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 25px;
+        } */
+      
+      /* Icon for links to pages, etc. -inside- pdf files (disabled)
+      a[href*=".pdf#"] {
+        background-image: url(../files/pdf_entry.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 25px;
+        } */
+      
+      a.existingWikiWord {
+      color: #226622;
+      }
+      
+      a.existingWikiWord:visited {
+      color: #226622;
+      }
+      
+      
+      a.existingWikiWord[title] {
+      border: 0px;
+      color: #aa0505;
+      text-decoration: none;
+      }
+          
+      a.existingWikiWord[title]:visited {
+      border: 0px;
+      color: #551111;
+      text-decoration: none;
+      }
+      
+      a[href^="http://"] {
+      border: 0px;
+      color: #003399;
+      }
+      
+      a[href^="http://"]:visited {
+      border: 0px;
+      color: #330066;
+      }
+      
+      a[href^="https://"] {
+      border: 0px;
+      color: #003399;
+      }
+      
+      a[href^="https://"]:visited {
+      border: 0px;
+      color: #330066;
+      }
+      
+      div.dropDown .hide {
+      display: none;
+      }
+      
+      div.dropDown:hover .hide {
+      display:block;
+      }
+      
+      div.clickDown .hide {
+      display: none;
+      }
+      
+      div.clickDown:focus {
+      outline:none;
+      }
+      
+      div.clickDown:focus .hide, div.clickDown:hover .hide {
+      display: block;
+      }
+      
+      div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+      display:block;
+      }
+      
+      div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+      display:none;
+      }
+      
+      div.clickDown .clickToReveal:after {
+      content: "A(Hover to reveal, click to "hold")";
+      font-size: 60%;
+      }
+      
+      div.clickDown .clickToHide:after {
+      content: "A(Click to hide)";
+      font-size: 60%;
+      }
+      div.clickDown .clickToHide, div.clickDown .clickToReveal {
+      white-space: pre-wrap;
+      }
+      
+      .un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+      margin-left: 1em;
+      }
+      
+      span.theorem_label {
+      margin-left: -1em;
+      }
+      .proof span.theorem_label {
+      margin-left: 0em;
+      }
+      :target {
+          background-color: #BBBBBB;
+          border-radius: 5pt;
+      }
+      
+        /*]]>*/-->
+    %script{:src => "/javascripts/prototype.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/effects.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/dragdrop.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/controls.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/application.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/page_helper.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/thm_numbering.js?1660229990", :type => "text/javascript"}
+    %script{:type => "text/x-mathjax-config"}
+      :cdata
+        <!--//--><![CDATA[//><!--
+        MathJax.Ajax.config.path["Contrib"] = "/MathJax";
+        MathJax.Hub.Config({
+        MathML: { useMathMLspacing: true },
+        "HTML-CSS": { scale: 90,
+        extensions: ["handle-floats.js"]
+        }
+        });
+        MathJax.Hub.Queue( function () {
+        var fos = document.getElementsByTagName('foreignObject');
+        for (var i = 0; i < fos.length; i++) {
+        MathJax.Hub.Typeset(fos[i]);
+        }
+        });
+        \//--><!]]>
+    :javascript
+      <!--//--><![CDATA[//><!--
+      window.addEventListener("DOMContentLoaded", function () {
+        var div = document.createElement('div');
+        var math = document.createElementNS('http://www.w3.org/1998/Math/MathML', 'math');
+        document.body.appendChild(div);
+        div.appendChild(math);
+      // Test for MathML support comparable to WebKit version https://trac.webkit.org/changeset/203640 or higher.
+        div.setAttribute('style', 'font-style: italic');
+        var mathml_unsupported = !(window.getComputedStyle(div.firstChild).getPropertyValue('font-style') === 'normal');
+        div.parentNode.removeChild(div);
+        if (mathml_unsupported) {
+          // MathML does not seem to be supported...
+          var s = document.createElement('script');
+          s.src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=MML_HTMLorMML-full";
+          document.querySelector('head').appendChild(s);
+        } else {
+          document.head.insertAdjacentHTML("beforeend", '<style>svg[viewBox] {max-width: 100%}</style>');
+        }
+      });
+      //--><!]]>
+    %link{:href => "https://ncatlab.org/nlab/atom_with_headlines", :rel => "alternate", :title => "Atom with headlines", :type => "application/atom+xml"}/
+    %link{:href => "https://ncatlab.org/nlab/atom_with_content", :rel => "alternate", :title => "Atom with full content", :type => "application/atom+xml"}/
+    :javascript
+      document.observe("dom:loaded", function() {
+        generateThmNumbers();
+      });
+  %body
+    #Container
+      #Content
+        %h1#pageName
+          %span{:style => "float: left; margin: 0.5em 0.25em -0.25em 0"}
+            %svg{:height => "1.8em", :viewbox => "0 0 190 181", :width => "1.872em", :xmlns => "http://www.w3.org/2000/svg"}
+              %path{:d => "M72.8 145c-1.6 17.3-15.7 10-23.6 20.2-5.6 7.3 4.8 15 11.4 15 11.5-.2 19-13.4 26.4-20.3 3.3-3 8.2-4 11.2-7.2a14 14 0 0 0 2.9-11.1c-1.4-9.6-12.4-18.6-16.9-27.2-5-9.6-10.7-27.4-24.1-27.7-17.4-.3-.4 26 4.7 30.7 2.4 2.3 5.4 4.1 7.3 6.9 1.6 2.3 2.1 5.8-1 7.2-5.9 2.6-12.4-6.3-15.5-10-8.8-10.6-15.5-23-26.2-31.8-5.2-4.3-11.8-8-18-3.7-7.3 4.9-4.2 12.9.2 18.5a81 81 0 0 0 30.7 23c3.3 1.5 12.8 5.6 10 10.7-2.5 5.2-11.7 3-15.6 1.1-8.4-3.8-24.3-21.3-34.4-13.7-3.5 2.6-2.3 7.6-1.2 11.1 2.8 9 12.2 17.2 20.9 20.5 17.3 6.7 34.3-8 50.8-12.1z", :fill => "#226622"}
+              %path{:d => "M145.9 121.3c-.2-7.5 0-19.6-4.5-26-5.4-7.5-12.9-1-14.1 5.8-1.4 7.8 2.7 14.1 4.8 21.3 3.4 12 5.8 29-.8 40.1-3.6-6.7-5.2-13-7-20.4-2.1-8.2-12.8-13.2-15.1-1.9-2 9.7 9 21.2 12 30.1 1.2 4 2 8.8 6.4 10.3 6.9 2.3 13.3-4.7 17.7-8.8 12.2-11.5 36.6-20.7 43.4-36.4 6.7-15.7-13.7-14-21.3-7.2-9.1 8-11.9 20.5-23.6 25.1 7.5-23.7 31.8-37.6 38.4-61.4 2-7.3-.8-29.6-13-19.8-14.5 11.6-6.6 37.6-23.3 49.2z", :fill => "#a41e32"}
+              %path{:d => "M86.3 47.5c0-13-10.2-27.6-5.8-40.4 2.8-8.4 14.1-10.1 17-1 3.8 11.6-.3 26.3-1.8 38 11.7-.7 10.5-16 14.8-24.3 2.1-4.2 5.7-9.1 11-6.7 6 2.7 7.4 9.2 6.6 15.1-2.2 14-12.2 18.8-22.4 27-3.4 2.7-8 6.6-5.9 11.6 2 4.4 7 4.5 10.7 2.8 7.4-3.3 13.4-16.5 21.7-16 14.6.7 12 21.9.9 26.2-5 1.9-10.2 2.3-15.2 3.9-5.8 1.8-9.4 8.7-15.7 8.9-6.1.1-9-6.9-14.3-9-14.4-6-33.3-2-44.7-14.7-3.7-4.2-9.6-12-4.9-17.4 9.3-10.7 28 7.2 35.7 12 2 1.1 11 6.9 11.4 1.1.4-5.2-10-8.2-13.5-10-11.1-5.2-30-15.3-35-27.3-2.5-6 2.8-13.8 9.4-13.6 6.9.2 13.4 7 17.5 12C70.9 34 75 43.8 86.3 47.4z", :fill => "#193c78"}
+          %span.webName nLab
+          Frölicher spaces and Isbell envelopes
+        .navigation
+          %span.skipNav
+            %a{:href => "#navEnd"} Skip the Navigation Links
+            |
+          %span{:style => "display:inline-block; width: 0.3em;"}
+          %a{:accesskey => "H", :href => "/nlab/show/HomePage", :title => "Home page"} Home Page
+          |
+          %a{:accesskey => "A", :href => "/nlab/all_pages", :title => "List of all pages"} All Pages
+          |
+          %a{:accesskey => "U", :href => "/nlab/latest_revisions", :title => "Latest edits and page creations"} Latest Revisions
+          |
+          %a{:href => "https://nforum.ncatlab.org/discussions/?CategoryID=0", :style => "color:black", :title => "Discuss this page on the nForum. It does not yet have a dedicated thread; feel free to create one, giving it the same name as the title of this page"} Discuss this page
+          |
+          %form#navigationSearchForm{"accept-charset" => "utf-8", :action => "/nlab/search", :method => "get"}
+            %fieldset.search
+              %input#searchField{:name => "query", :onblur => "this.value == '' ? this.value = 'Search' : true", :onfocus => "this.value == 'Search' ? this.value = '' : true", :style => "display:inline-block; float: left;", :type => "text", :value => "Search"}/
+          %span#navEnd
+        #revision
+          %meta{:content => "application/xhtml+xml;charset=utf-8", "http-equiv" => "Content-type"}/
+          %title Frlicher Spaces and Isbell Envelopes
+          %h1#frlicher_spaces_and_isbell_envelopes Frölicher Spaces and Isbell Envelopes
+          %p
+            %a.existingWikiWord{:href => "/nlab/show/Fr%C3%B6licher+spaces"} Frölicher spaces
+            are examples of
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/generalized+smooth+space"} generalised smooth spaces
+            %a.existingWikiWord{:href => "/nlab/show/Isbell+envelope"} Isbell envelope
+            of a category.
+          #RCat.num_defn{:style => "border:solid #cccccc;border-width:2px 1px;padding:0 1em;margin:0 1em;"}
+            %h6#definition Definition
+            %p
+              Let
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi ℛ
+                  %annotation{:encoding => "application/x-tex"} \mathcal{R}
+              denote the category with one object and morphism set
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msup
+                        %mi C
+                        %mn ∞
+                      %mo{:stretchy => "false"} (
+                      %mi ℝ
+                      %mo ,
+                      %mi ℝ
+                      %mo{:stretchy => "false"} )
+                    %annotation{:encoding => "application/x-tex"} C^\infty(\mathbb{R},\mathbb{R})
+          %p
+            There is a close relationship between Frölicher spaces and the subcategory of
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi E
+                    %mo{:stretchy => "false"} (
+                    %mi ℛ
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} E(\mathcal{R})
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi ℛ
+                  %annotation{:encoding => "application/x-tex"} \mathcal{R}
+          #IsbellIsFroelicher.num_prop
+            %h6#proposition Proposition
+            %p
+              An object of
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi E
+                    %mo{:stretchy => "false"} (
+                    %mi ℛ
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} E(\mathcal{R})
+              that satisfies Isbell duality is a Frölicher space.
+          .proof{:style => "margin-left:2em;"}
+            %h6#proof Proof
+            %p
+              Let
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi X
+                    %mo =
+                    %mo{:stretchy => "false"} (
+                    %mi C
+                    %mo ,
+                    %mi F
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} X = (C,F)
+              be a generalised
+              = succeed "-object" do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi ℛ
+                    %annotation{:encoding => "application/x-tex"} \mathcal{R}
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/Isbell+envelope"} Isbell envelope
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi X
+                  %annotation{:encoding => "application/x-tex"} X
+              is concrete. Let
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo{:stretchy => "false"} |
+                    %mi X
+                    %mo{:stretchy => "false"} |
+                  %annotation{:encoding => "application/x-tex"} |X|
+              denote the set of constant elements of
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi C
+                    %annotation{:encoding => "application/x-tex"} C
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi C
+                  %annotation{:encoding => "application/x-tex"} C
+              injects into
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi Set
+                    %mo{:stretchy => "false"} (
+                    %mi ℝ
+                    %mo ,
+                    %mo{:stretchy => "false"} |
+                    %mi X
+                    %mo{:stretchy => "false"} |
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} Set(\mathbb{R},|X|)
+              and
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi F
+                  %annotation{:encoding => "application/x-tex"} F
+              injects into
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi Set
+                      %mo{:stretchy => "false"} (
+                      %mo{:stretchy => "false"} |
+                      %mi X
+                      %mo{:stretchy => "false"} |
+                      %mo ,
+                      %mi ℝ
+                      %mo{:stretchy => "false"} )
+                    %annotation{:encoding => "application/x-tex"} Set(|X|,\mathbb{R})
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi C
+                  %annotation{:encoding => "application/x-tex"} C
+              and its image in
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi Set
+                    %mo{:stretchy => "false"} (
+                    %mi ℝ
+                    %mo ,
+                    %mo{:stretchy => "false"} |
+                    %mi X
+                    %mo{:stretchy => "false"} |
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} Set(\mathbb{R},|X|)
+              writing
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi α
+                  %annotation{:encoding => "application/x-tex"} \alpha
+              for the former and
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo{:stretchy => "false"} |
+                    %mi α
+                    %mo{:stretchy => "false"} |
+                  %annotation{:encoding => "application/x-tex"} |\alpha|
+              for the latter. We shall do similarly for elements of
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi F
+                    %annotation{:encoding => "application/x-tex"} F
+            %p
+              Suppose that
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi β
+                    %mo :
+                    %mi ℝ
+                    %mo →
+                    %mo{:stretchy => "false"} |
+                    %mi X
+                    %mo{:stretchy => "false"} |
+                  %annotation{:encoding => "application/x-tex"} \beta : \mathbb{R} \to |X|
+              is such that
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo{:stretchy => "false"} |
+                    %mi ϕ
+                    %mo{:stretchy => "false"} |
+                    %mo ∘
+                    %mi β
+                    %mo ∈
+                    %msup
+                      %mi C
+                      %mn ∞
+                    %mo{:stretchy => "false"} (
+                    %mi ℝ
+                    %mo ,
+                    %mi ℝ
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} |\phi| \circ \beta \in C^\infty(\mathbb{R}, \mathbb{R})
+              for all
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi ϕ
+                      %mo ∈
+                      %mi F
+                    %annotation{:encoding => "application/x-tex"} \phi \in F
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi ϕ
+                    %mo ↦
+                    %mo{:stretchy => "false"} |
+                    %mi ϕ
+                    %mo{:stretchy => "false"} |
+                    %mo ∘
+                    %mi β
+                  %annotation{:encoding => "application/x-tex"} \phi \mapsto |\phi|\circ \beta
+              is a natural transformation
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi F
+                    %mo →
+                    %msup
+                      %mi C
+                      %mn ∞
+                    %mo{:stretchy => "false"} (
+                    %mi ℝ
+                    %mo ,
+                    %mi ℝ
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} F \to C^\infty(\mathbb{R},\mathbb{R})
+              (it obvious commutes with the left
+              = succeed "-actions)." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msup
+                        %mi C
+                        %mn ∞
+                      %mo{:stretchy => "false"} (
+                      %mi ℝ
+                      %mo ,
+                      %mi ℝ
+                      %mo{:stretchy => "false"} )
+                    %annotation{:encoding => "application/x-tex"} C^\infty(\mathbb{R},\mathbb{R})
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi C
+                    %annotation{:encoding => "application/x-tex"} C
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi α
+                  %annotation{:encoding => "application/x-tex"} \alpha
+              of
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi C
+                  %annotation{:encoding => "application/x-tex"} C
+              such that
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi α
+                    %mo{:stretchy => "false"} (
+                    %mi ϕ
+                    %mo{:stretchy => "false"} )
+                    %mo =
+                    %mo{:stretchy => "false"} |
+                    %mi ϕ
+                    %mo{:stretchy => "false"} |
+                    %mo ∘
+                    %mi β
+                  %annotation{:encoding => "application/x-tex"} \alpha(\phi) = |\phi| \circ \beta
+              for all
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi ϕ
+                      %mo ∈
+                      %mi F
+                    %annotation{:encoding => "application/x-tex"} \phi \in F
+            %p
+              Let us compare
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo{:stretchy => "false"} |
+                    %mi α
+                    %mo{:stretchy => "false"} |
+                  %annotation{:encoding => "application/x-tex"} |\alpha|
+              with
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi β
+                    %annotation{:encoding => "application/x-tex"} \beta
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi δ
+                      %mi t
+                    %mo :
+                    %mi ℝ
+                    %mo →
+                    %mi ℝ
+                  %annotation{:encoding => "application/x-tex"} \delta_t : \mathbb{R} \to \mathbb{R}
+              as the constant function at
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi t
+                  %annotation{:encoding => "application/x-tex"} t
+              then for all
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi ϕ
+                      %mo ∈
+                      %mi F
+                    %annotation{:encoding => "application/x-tex"} \phi \in F
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi ϕ
+                    %mo ∘
+                    %mo{:stretchy => "false"} (
+                    %mo{:stretchy => "false"} |
+                    %mi α
+                    %mo{:stretchy => "false"} |
+                    %mo{:stretchy => "false"} (
+                    %mi t
+                    %mo{:stretchy => "false"} )
+                    %mo{:stretchy => "false"} )
+                    %mo =
+                    %mi ϕ
+                    %mo ∘
+                    %mi α
+                    %mo ∘
+                    %msub
+                      %mi δ
+                      %mi t
+                    %mo =
+                    %mi α
+                    %mo{:stretchy => "false"} (
+                    %mi ϕ
+                    %mo{:stretchy => "false"} )
+                    %mo ∘
+                    %msub
+                      %mi δ
+                      %mi t
+                    %mo =
+                    %mo{:stretchy => "false"} |
+                    %mi ϕ
+                    %mo{:stretchy => "false"} |
+                    %mo ∘
+                    %mi β
+                    %mo ∘
+                    %msub
+                      %mi δ
+                      %mi t
+                    %mo =
+                    %mo{:stretchy => "false"} |
+                    %mi ϕ
+                    %mo{:stretchy => "false"} |
+                    %mo{:stretchy => "false"} (
+                    %mi β
+                    %mo{:stretchy => "false"} (
+                    %mi t
+                    %mo{:stretchy => "false"} )
+                    %mo{:stretchy => "false"} )
+                    %mo =
+                    %mi ϕ
+                    %mo ∘
+                    %mo{:stretchy => "false"} (
+                    %mi β
+                    %mo{:stretchy => "false"} (
+                    %mi t
+                    %mo{:stretchy => "false"} )
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"}
+                    \\phi \circ (|\alpha|(t)) = \phi \circ \alpha \circ \delta_t = \alpha(\phi) \circ \delta_t = |\phi| \circ \beta \circ \delta_t = |\phi|(\beta(t)) = \phi \circ (\beta(t))
+            %p
+              But if
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo{:stretchy => "false"} |
+                    %mi α
+                    %mo{:stretchy => "false"} |
+                  %annotation{:encoding => "application/x-tex"} |\alpha|
+              and
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi β
+                  %annotation{:encoding => "application/x-tex"} \beta
+              differ, then they differ at some
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi t
+                      %mo ∈
+                      %mi ℝ
+                    %annotation{:encoding => "application/x-tex"} t \in \mathbb{R}
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi x
+                      %mo ≠
+                      %mi y
+                      %mo ∈
+                      %mo{:stretchy => "false"} |
+                      %mi X
+                      %mo{:stretchy => "false"} |
+                    %annotation{:encoding => "application/x-tex"} x \ne y \in |X|
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi X
+                  %annotation{:encoding => "application/x-tex"} X
+              satisfies Isbell duality, there must be some
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi ϕ
+                    %mo ∈
+                    %mi F
+                  %annotation{:encoding => "application/x-tex"} \phi \in F
+              such that
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi ϕ
+                      %mo ∘
+                      %mi x
+                      %mo ≠
+                      %mi ϕ
+                      %mo ∘
+                      %mi y
+                    %annotation{:encoding => "application/x-tex"} \phi \circ x \ne \phi \circ y
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo{:stretchy => "false"} |
+                    %mi α
+                    %mo{:stretchy => "false"} |
+                    %mo =
+                    %mi β
+                  %annotation{:encoding => "application/x-tex"} |\alpha| = \beta
+              and so
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi β
+                  %annotation{:encoding => "application/x-tex"} \beta
+              is in the image of
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi C
+                  %annotation{:encoding => "application/x-tex"} C
+              in
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi Set
+                      %mo{:stretchy => "false"} (
+                      %mi ℝ
+                      %mo ,
+                      %mo{:stretchy => "false"} |
+                      %mi X
+                      %mo{:stretchy => "false"} |
+                      %mo{:stretchy => "false"} )
+                    %annotation{:encoding => "application/x-tex"} Set(\mathbb{R}, |X|)
+            %p
+              For the other part, let
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi θ
+                    %mo :
+                    %mo{:stretchy => "false"} |
+                    %mi X
+                    %mo{:stretchy => "false"} |
+                    %mo →
+                    %mi ℝ
+                  %annotation{:encoding => "application/x-tex"} \theta : |X| \to \mathbb{R}
+              be such that
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi θ
+                    %mo ∘
+                    %mo{:stretchy => "false"} |
+                    %mi α
+                    %mo{:stretchy => "false"} |
+                    %mo ∈
+                    %msup
+                      %mi C
+                      %mn ∞
+                    %mo{:stretchy => "false"} (
+                    %mi ℝ
+                    %mo ,
+                    %mi ℝ
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} \theta \circ |\alpha| \in C^\infty(\mathbb{R},\mathbb{R})
+              for all
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi α
+                      %mo ∈
+                      %mi C
+                    %annotation{:encoding => "application/x-tex"} \alpha \in C
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi C
+                    %mo →
+                    %msup
+                      %mi C
+                      %mn ∞
+                    %mo{:stretchy => "false"} (
+                    %mi ℝ
+                    %mo ,
+                    %mi ℝ
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} C \to C^\infty(\mathbb{R},\mathbb{R})
+              by
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi α
+                      %mo ↦
+                      %mi θ
+                      %mo ∘
+                      %mo{:stretchy => "false"} |
+                      %mi α
+                      %mo{:stretchy => "false"} |
+                    %annotation{:encoding => "application/x-tex"} \alpha \mapsto \theta \circ |\alpha|
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi ψ
+                    %mo ∈
+                    %mi F
+                  %annotation{:encoding => "application/x-tex"} \psi \in F
+              and it remains to compare
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo{:stretchy => "false"} |
+                    %mi ψ
+                    %mo{:stretchy => "false"} |
+                  %annotation{:encoding => "application/x-tex"} |\psi|
+              with
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi θ
+                    %annotation{:encoding => "application/x-tex"} \theta
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi x
+                    %mo ∈
+                    %mo{:stretchy => "false"} |
+                    %mi X
+                    %mo{:stretchy => "false"} |
+                  %annotation{:encoding => "application/x-tex"} x \in |X|
+              is an element of
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi C
+                  %annotation{:encoding => "application/x-tex"} C
+              and so
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mo{:stretchy => "false"} |
+                      %mi ψ
+                      %mo{:stretchy => "false"} |
+                      %mo{:stretchy => "false"} (
+                      %mi x
+                      %mo{:stretchy => "false"} )
+                      %mo =
+                      %mi ψ
+                      %mo{:stretchy => "false"} (
+                      %mi x
+                      %mo{:stretchy => "false"} )
+                      %mo =
+                      %mi θ
+                      %mo ∘
+                      %mo{:stretchy => "false"} |
+                      %mi x
+                      %mo{:stretchy => "false"} |
+                      %mo =
+                      %mi θ
+                      %mo{:stretchy => "false"} (
+                      %mi x
+                      %mo{:stretchy => "false"} )
+                    %annotation{:encoding => "application/x-tex"} |\psi|(x) = \psi(x) = \theta \circ |x| = \theta(x)
+          %p However, not all Frölicher spaces can be obtained in this manner. The simplest example is the following:
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mo{:stretchy => "false"} (
+                  %mo{:stretchy => "false"} {
+                  %mn 0
+                  %mo ,
+                  %mn 1
+                  %mo{:stretchy => "false"} }
+                  %mo ,
+                  %msup
+                    %mrow
+                      %mo{:stretchy => "false"} {
+                      %mn 0
+                      %mo ,
+                      %mn 1
+                      %mo{:stretchy => "false"} }
+                    %mi ℝ
+                  %mo ,
+                  %msub
+                    %mi Δ
+                    %mi ℝ
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"}
+                  (\{0,1\},{\{0,1\}} ^{\mathbb{R}},{\Delta}_{\mathbb{R}})
+          %p where this is taken to mean that all curves are smooth and only the constant functionals are smooth. The problem here is that there are far more curves than the functionals warrant. Put another way, the functionals cannot distinguish between the points of the set.
+          %p All Frölicher spaces satisfy half of the requirements for Isbell duality: the functions are always the natural transformations of the curves.
+          #FroFSat.num_prop
+            %h6#proposition_2 Proposition
+            %p
+              The object of
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi E
+                    %mo{:stretchy => "false"} (
+                    %mi ℛ
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} E(\mathcal{R})
+              corresponding to a Frölicher space is
+              = succeed "-saturated." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi F
+                    %annotation{:encoding => "application/x-tex"} F
+          .proof{:style => "margin-left:2em;"}
+            %h6#proof_2 Proof
+            %p
+              Let
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo{:stretchy => "false"} (
+                    %mi X
+                    %mo ,
+                    %mi C
+                    %mo ,
+                    %mi F
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} (X,C,F)
+              be a Frölicher space. Recall from the page about the
+              %a.existingWikiWord{:href => "/nlab/show/Isbell+envelope"} Isbell envelope
+              that
+              = succeed "-saturated" do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi F
+                    %annotation{:encoding => "application/x-tex"} F
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi F
+                  %annotation{:encoding => "application/x-tex"} F
+              is precisely the set of
+              = succeed "-homs" do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msup
+                        %mi C
+                        %mn ∞
+                      %mo{:stretchy => "false"} (
+                      %mi ℝ
+                      %mo ,
+                      %mi ℝ
+                      %mo{:stretchy => "false"} )
+                    %annotation{:encoding => "application/x-tex"} C^\infty(\mathbb{R}, \mathbb{R})
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi C
+                      %mo →
+                      %msup
+                        %mi C
+                        %mn ∞
+                      %mo{:stretchy => "false"} (
+                      %mi ℝ
+                      %mo ,
+                      %mi ℝ
+                      %mo{:stretchy => "false"} )
+                    %annotation{:encoding => "application/x-tex"} C \to C^\infty(\mathbb{R},\mathbb{R})
+            %p
+              We know that every element of
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi F
+                  %annotation{:encoding => "application/x-tex"} F
+              gives a map
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi C
+                    %mo →
+                    %msup
+                      %mi C
+                      %mn ∞
+                    %mo{:stretchy => "false"} (
+                    %mi ℝ
+                    %mo ,
+                    %mi ℝ
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} C \to C^\infty(\mathbb{R}, \mathbb{R})
+              which commutes with the right actions. As
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi C
+                  %annotation{:encoding => "application/x-tex"} C
+              contains the constant functions at the points of
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi X
+                    %annotation{:encoding => "application/x-tex"} X
+            %p
+              Let
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi ϕ
+                    %mo :
+                    %mi C
+                    %mo →
+                    %msup
+                      %mi C
+                      %mn ∞
+                    %mo{:stretchy => "false"} (
+                    %mi ℝ
+                    %mo ,
+                    %mi ℝ
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} \phi : C \to C^\infty(\mathbb{R},\mathbb{R})
+              commute with the right actions. Define
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo{:stretchy => "false"} |
+                    %mi ϕ
+                    %mo{:stretchy => "false"} |
+                    %mo :
+                    %mi X
+                    %mo →
+                    %mi ℝ
+                  %annotation{:encoding => "application/x-tex"} |\phi| : X \to \mathbb{R}
+              by
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo{:stretchy => "false"} |
+                    %mi ϕ
+                    %mo{:stretchy => "false"} |
+                    %mo{:stretchy => "false"} (
+                    %mi x
+                    %mo{:stretchy => "false"} )
+                    %mo =
+                    %mi ϕ
+                    %mo{:stretchy => "false"} (
+                    %msub
+                      %mi δ
+                      %mi x
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} |\phi|(x) = \phi(\delta_x)
+              where
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi δ
+                      %mi x
+                    %mo ∈
+                    %mi C
+                  %annotation{:encoding => "application/x-tex"} \delta_x \in C
+              is the constant function at
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi x
+                    %annotation{:encoding => "application/x-tex"} x
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi α
+                      %mo ∈
+                      %mi C
+                    %annotation{:encoding => "application/x-tex"} \alpha \in C
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mo{:stretchy => "false"} |
+                      %mi ϕ
+                      %mo{:stretchy => "false"} |
+                      %mo ∘
+                      %mi α
+                      %mo{:stretchy => "false"} (
+                      %mi t
+                      %mo{:stretchy => "false"} )
+                      %mo =
+                      %mo{:stretchy => "false"} |
+                      %mi ϕ
+                      %mo{:stretchy => "false"} |
+                      %mo{:stretchy => "false"} (
+                      %mi α
+                      %mo{:stretchy => "false"} (
+                      %mi t
+                      %mo{:stretchy => "false"} )
+                      %mo{:stretchy => "false"} )
+                      %mo =
+                      %mo{:stretchy => "false"} |
+                      %mi ϕ
+                      %mo{:stretchy => "false"} |
+                      %mo{:stretchy => "false"} (
+                      %mi α
+                      %mo ∘
+                      %msub
+                        %mi δ
+                        %mi t
+                      %mo{:stretchy => "false"} )
+                      %mo =
+                      %mi ϕ
+                      %mo{:stretchy => "false"} (
+                      %mi α
+                      %mo ∘
+                      %msub
+                        %mi δ
+                        %mi t
+                      %mo{:stretchy => "false"} )
+                      %mo =
+                      %mi ϕ
+                      %mo{:stretchy => "false"} (
+                      %mi α
+                      %mo{:stretchy => "false"} )
+                      %mo ∘
+                      %msub
+                        %mi δ
+                        %mi t
+                      %mo =
+                      %mi ϕ
+                      %mo{:stretchy => "false"} (
+                      %mi α
+                      %mo{:stretchy => "false"} )
+                      %mo{:stretchy => "false"} (
+                      %mi t
+                      %mo{:stretchy => "false"} )
+                    %annotation{:encoding => "application/x-tex"} |\phi| \circ \alpha (t) = |\phi|(\alpha(t)) = |\phi|(\alpha \circ \delta_t) = \phi(\alpha \circ \delta_t) = \phi(\alpha) \circ \delta_t = \phi(\alpha)(t)
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo{:stretchy => "false"} |
+                    %mi ϕ
+                    %mo{:stretchy => "false"} |
+                    %mo ∘
+                    %mi α
+                    %mo ∈
+                    %msup
+                      %mi C
+                      %mn ∞
+                    %mo{:stretchy => "false"} (
+                    %mi ℝ
+                    %mo ,
+                    %mi ℝ
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} |\phi| \circ \alpha \in C^\infty(\mathbb{R}, \mathbb{R})
+              for all
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi α
+                    %mo ∈
+                    %mi C
+                  %annotation{:encoding => "application/x-tex"} \alpha \in C
+              and so
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo{:stretchy => "false"} |
+                    %mi ϕ
+                    %mo{:stretchy => "false"} |
+                  %annotation{:encoding => "application/x-tex"} |\phi|
+              is in
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi F
+                    %annotation{:encoding => "application/x-tex"} F
+            %p
+              Hence
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo{:stretchy => "false"} (
+                    %mi X
+                    %mo ,
+                    %mi C
+                    %mo ,
+                    %mi F
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} (X,C,F)
+              is
+              = succeed "-saturated." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi F
+                    %annotation{:encoding => "application/x-tex"} F
+          %p
+            The other half is more complicated. Using concreteness one can see that the essence depends on comparing the set
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi X
+                %annotation{:encoding => "application/x-tex"} X
+            with the set of
+            %em constant
+            natural transformations
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi F
+                    %mo →
+                    %msup
+                      %mi C
+                      %mn ∞
+                    %mo{:stretchy => "false"} (
+                    %mi ℝ
+                    %mo ,
+                    %mi ℝ
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} F \to C^\infty(\mathbb{R}, \mathbb{R})
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi γ
+                %annotation{:encoding => "application/x-tex"} \gamma
+            with the property that
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi γ
+                  %mo{:stretchy => "false"} (
+                  %mi ϕ
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} \gamma(\phi)
+            is a constant function in
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msup
+                    %mi C
+                    %mn ∞
+                  %mo{:stretchy => "false"} (
+                  %mi ℝ
+                  %mo ,
+                  %mi ℝ
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} C^\infty(\mathbb{R}, \mathbb{R})
+            for all
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi ϕ
+                    %mo ∈
+                    %mi F
+                  %annotation{:encoding => "application/x-tex"} \phi \in F
+          #NatTransFSet.num_lemma
+            %h6#lemma Lemma
+            %p
+              A constant natural transformation
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi F
+                    %mo →
+                    %msup
+                      %mi C
+                      %mn ∞
+                    %mo{:stretchy => "false"} (
+                    %mi ℝ
+                    %mo ,
+                    %mi ℝ
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} F \to C^\infty(\mathbb{R}, \mathbb{R})
+              is a function
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi α
+                    %mo :
+                    %mi F
+                    %mo →
+                    %mi ℝ
+                  %annotation{:encoding => "application/x-tex"} \alpha : F \to \mathbb{R}
+              with the property that
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi α
+                      %mo{:stretchy => "false"} (
+                      %mi ϕ
+                      %mo ∘
+                      %mi ψ
+                      %mo{:stretchy => "false"} )
+                      %mo =
+                      %mi ϕ
+                      %mo{:stretchy => "false"} (
+                      %mi α
+                      %mo{:stretchy => "false"} (
+                      %mi ψ
+                      %mo{:stretchy => "false"} )
+                      %mo{:stretchy => "false"} )
+                    %annotation{:encoding => "application/x-tex"} \alpha(\phi \circ \psi) = \phi(\alpha(\psi))
+          %p
+            Let us write
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mo{:stretchy => "false"} |
+                  %mi F
+                  %mo{:stretchy => "false"} |
+                %annotation{:encoding => "application/x-tex"} |F|
+            for this set.
+          %p
+            Now every point of
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi X
+                %annotation{:encoding => "application/x-tex"} X
+            defines a constant natural transformation via evaluation but the map
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi X
+                  %mo →
+                  %mo{:stretchy => "false"} |
+                  %mi F
+                  %mo{:stretchy => "false"} |
+                %annotation{:encoding => "application/x-tex"} X \to |F|
+            need be neither injective nor surjective. However, we can determine conditions on when it is injective or surjective. Injectivity is related to a fairly simple condition (as indicated by the example earlier).
+          #FroHausdorff.num_defn{:style => "border:solid #cccccc;border-width:2px 1px;padding:0 1em;margin:0 1em;"}
+            %h6#definition_2 Definition
+            %p
+              A Frölicher space is said to be
+              %em
+                %a.existingWikiWord{:href => "/nlab/show/Hausdorff+space"} Hausdorff
+              if the smooth functions separate points.
+          #FroHausCSat.num_prop
+            %h6#proposition_3 Proposition
+            %p
+              A Frölicher space
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo{:stretchy => "false"} (
+                    %mi X
+                    %mo ,
+                    %mi C
+                    %mo ,
+                    %mi F
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} (X,C,F)
+              is Hausdorff if and only if the map
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi X
+                    %mo →
+                    %mo{:stretchy => "false"} |
+                    %mi F
+                    %mo{:stretchy => "false"} |
+                  %annotation{:encoding => "application/x-tex"} X \to |F|
+              is injective.
+          .proof{:style => "margin-left:2em;"}
+            %h6#proof_3 Proof
+            %p
+              The key point here is that an element of
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo{:stretchy => "false"} |
+                    %mi F
+                    %mo{:stretchy => "false"} |
+                  %annotation{:encoding => "application/x-tex"} |F|
+              is completely determined by its effect on functions in
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi F
+                    %annotation{:encoding => "application/x-tex"} F
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi x
+                    %mo ,
+                    %mi y
+                    %mo ∈
+                    %mi X
+                  %annotation{:encoding => "application/x-tex"} x, y \in X
+              are such that they define the same element of
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo{:stretchy => "false"} |
+                    %mi F
+                    %mo{:stretchy => "false"} |
+                  %annotation{:encoding => "application/x-tex"} |F|
+              if and only if
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi ϕ
+                    %mo{:stretchy => "false"} (
+                    %mi x
+                    %mo{:stretchy => "false"} )
+                    %mo =
+                    %mi ϕ
+                    %mo{:stretchy => "false"} (
+                    %mi y
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} \phi(x) = \phi(y)
+              for all
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi ϕ
+                      %mo ∈
+                      %mi F
+                    %annotation{:encoding => "application/x-tex"} \phi \in F
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi x
+                  %annotation{:encoding => "application/x-tex"} x
+              and
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi y
+                    %annotation{:encoding => "application/x-tex"} y
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo{:stretchy => "false"} (
+                    %mi X
+                    %mo ,
+                    %mi C
+                    %mo ,
+                    %mi F
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} (X,C,F)
+              is Hausdorff if and only if
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi X
+                    %mo →
+                    %mo{:stretchy => "false"} |
+                    %mi F
+                    %mo{:stretchy => "false"} |
+                  %annotation{:encoding => "application/x-tex"} X \to |F|
+              is injective.
+          %p It is simple to construct non-Hausdorff Frölicher spaces. Indeed, the example earlier was one.
+          %p Surjectivity is more complicated. As currently stated, not even very simple Frölicher spaces satisfy the surjectivity condition.
+          #PlaneNonSurj.num_lemma
+            %h6#lemma_2 Lemma
+            %p
+              The Frölicher space defined by the usual structure on
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msup
+                      %mi ℝ
+                      %mn 2
+                  %annotation{:encoding => "application/x-tex"} \mathbb{R}^2
+              does not satisfy the surjectivity condition.
+          .proof{:style => "margin-left:2em;"}
+            %h6#proof_4 Proof
+            %p
+              We need to construct a map
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi α
+                    %mo :
+                    %mi F
+                    %mo →
+                    %msup
+                      %mi C
+                      %mn ∞
+                    %mo{:stretchy => "false"} (
+                    %mi ℝ
+                    %mo ,
+                    %mi ℝ
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} \alpha : F \to C^\infty(\mathbb{R}, \mathbb{R})
+              such that
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi α
+                    %mo{:stretchy => "false"} (
+                    %mi ψ
+                    %mo ∘
+                    %mi ϕ
+                    %mo{:stretchy => "false"} )
+                    %mo =
+                    %mi ψ
+                    %mo{:stretchy => "false"} (
+                    %mi α
+                    %mo{:stretchy => "false"} (
+                    %mi ϕ
+                    %mo{:stretchy => "false"} )
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} \alpha(\psi \circ \phi) = \psi(\alpha(\phi))
+              but which does not correspond to a point in
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msup
+                        %mi ℝ
+                        %mn 2
+                    %annotation{:encoding => "application/x-tex"} \mathbb{R}^2
+            %p
+              A non-zero point
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi p
+                    %mo ∈
+                    %msup
+                      %mi ℝ
+                      %mn 2
+                  %annotation{:encoding => "application/x-tex"} p \in \mathbb{R}^2
+              defines an element
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi π
+                      %mi p
+                  %annotation{:encoding => "application/x-tex"} \pi_p
+              of
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi F
+                  %annotation{:encoding => "application/x-tex"} F
+              by composing orthogonal projection
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msup
+                      %mi ℝ
+                      %mn 2
+                    %mo →
+                    %mo{:stretchy => "false"} ⟨
+                    %mi p
+                    %mo{:stretchy => "false"} ⟩
+                  %annotation{:encoding => "application/x-tex"} \mathbb{R}^2 \to \langle p \rangle
+              with the map
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo{:stretchy => "false"} ⟨
+                    %mi p
+                    %mo{:stretchy => "false"} ⟩
+                    %mo →
+                    %mi ℝ
+                  %annotation{:encoding => "application/x-tex"} \langle p \rangle \to \mathbb{R}
+              defined by
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi p
+                      %mo ↦
+                      %mn 1
+                    %annotation{:encoding => "application/x-tex"} p \mapsto 1
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi p
+                    %mo ,
+                    %mi q
+                    %mo ∈
+                    %msup
+                      %mi ℝ
+                      %mn 2
+                  %annotation{:encoding => "application/x-tex"} p, q \in \mathbb{R}^2
+              are not collinear then the only situation in which
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi ψ
+                    %mo ∘
+                    %msub
+                      %mi π
+                      %mi p
+                    %mo =
+                    %mi ϕ
+                    %mo ∘
+                    %msub
+                      %mi π
+                      %mi q
+                  %annotation{:encoding => "application/x-tex"} \psi \circ \pi_p = \phi \circ \pi_q
+              is if
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi ψ
+                  %annotation{:encoding => "application/x-tex"} \psi
+              and
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi ϕ
+                  %annotation{:encoding => "application/x-tex"} \phi
+              are constant functions. To see this, let
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi p
+                    %mo ′
+                  %annotation{:encoding => "application/x-tex"} p'
+              be orthogonal to
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi p
+                  %annotation{:encoding => "application/x-tex"} p
+              and
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi q
+                    %mo ′
+                  %annotation{:encoding => "application/x-tex"} q'
+              orthogonal to
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi q
+                  %annotation{:encoding => "application/x-tex"} q
+              be such that the orthogonal projection of
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi p
+                    %mo ′
+                  %annotation{:encoding => "application/x-tex"} p'
+              to the line spanned by
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi q
+                  %annotation{:encoding => "application/x-tex"} q
+              is
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi q
+                    %annotation{:encoding => "application/x-tex"} q
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi q
+                    %mo ′
+                  %annotation{:encoding => "application/x-tex"} q'
+              maps to
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi p
+                    %annotation{:encoding => "application/x-tex"} p
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi p
+                    %mo ′
+                  %annotation{:encoding => "application/x-tex"} p'
+              and
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi q
+                    %mo ′
+                  %annotation{:encoding => "application/x-tex"} q'
+              span
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msup
+                      %mi ℝ
+                      %mn 2
+                  %annotation{:encoding => "application/x-tex"} \mathbb{R}^2
+              and
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mrow
+                      %mtable{:columnalign => "right left right left right left right left right left", :columnspacing => "0em", :displaystyle => "true"}
+                        %mtr
+                          %mtd
+                            %mi ψ
+                            %mo ∘
+                            %msub
+                              %mi π
+                              %mi p
+                            %mo{:stretchy => "false"} (
+                            %mi λ
+                            %mi p
+                            %mo ′
+                            %mo{:lspace => "verythinmathspace", :rspace => "0em"} +
+                            %mi μ
+                            %mi q
+                            %mo ′
+                            %mo{:stretchy => "false"} )
+                          %mtd
+                            %mo =
+                            %mi ψ
+                            %mo ∘
+                            %msub
+                              %mi π
+                              %mi p
+                            %mo{:stretchy => "false"} (
+                            %mi μ
+                            %mi q
+                            %mo ′
+                            %mo{:stretchy => "false"} )
+                          %mtd
+                          %mtd
+                            %mo =
+                            %mi ψ
+                            %mo{:stretchy => "false"} (
+                            %mi μ
+                            %mo{:stretchy => "false"} )
+                        %mtr
+                          %mtd
+                            %mi ϕ
+                            %mo ∘
+                            %msub
+                              %mi π
+                              %mi q
+                            %mo{:stretchy => "false"} (
+                            %mi λ
+                            %mi p
+                            %mo ′
+                            %mo{:lspace => "verythinmathspace", :rspace => "0em"} +
+                            %mi μ
+                            %mi q
+                            %mo ′
+                            %mo{:stretchy => "false"} )
+                          %mtd
+                            %mo =
+                            %mi ϕ
+                            %mo ∘
+                            %msub
+                              %mi π
+                              %mi q
+                            %mo{:stretchy => "false"} (
+                            %mi λ
+                            %mi p
+                            %mo ′
+                            %mo{:stretchy => "false"} )
+                          %mtd
+                          %mtd
+                            %mo =
+                            %mi ϕ
+                            %mo{:stretchy => "false"} (
+                            %mi λ
+                            %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"}
+                    \\begin{aligned}
+                    \\psi \circ \pi_p(\lambda p' + \mu q') &amp;= \psi \circ \pi_p(\mu q') &amp;&amp;= \psi(\mu) \\
+                    \\phi \circ \pi_q(\lambda p' + \mu q') &amp;= \phi \circ \pi_q(\lambda p') &amp;&amp;= \phi(\lambda)
+                    \\end{aligned}
+            %p
+              As this holds for all
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi λ
+                    %mo ,
+                    %mi μ
+                  %annotation{:encoding => "application/x-tex"} \lambda, \mu
+              we see that
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi ψ
+                  %annotation{:encoding => "application/x-tex"} \psi
+              and
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi ϕ
+                  %annotation{:encoding => "application/x-tex"} \phi
+              are constant functions.
+            %p
+              Moreover, the functions
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi π
+                      %mi p
+                  %annotation{:encoding => "application/x-tex"} \pi_p
+              are “initial” in
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi F
+                  %annotation{:encoding => "application/x-tex"} F
+              in the sense that if
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi π
+                      %mi p
+                    %mo =
+                    %mi ψ
+                    %mo ∘
+                    %mi ϕ
+                  %annotation{:encoding => "application/x-tex"} \pi_p = \psi \circ \phi
+              for some
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi ϕ
+                    %mo ∈
+                    %mi F
+                  %annotation{:encoding => "application/x-tex"} \phi \in F
+              then
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi ϕ
+                  %annotation{:encoding => "application/x-tex"} \phi
+              is of the form
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi θ
+                      %mo ∘
+                      %msub
+                        %mi π
+                        %mi p
+                    %annotation{:encoding => "application/x-tex"} \theta \circ \pi_p
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi α
+                    %mo :
+                    %mi F
+                    %mo →
+                    %mi ℝ
+                  %annotation{:encoding => "application/x-tex"} \alpha : F \to \mathbb{R}
+              such that
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi α
+                    %mo{:stretchy => "false"} (
+                    %mi ψ
+                    %mo ∘
+                    %mi ϕ
+                    %mo{:stretchy => "false"} )
+                    %mo =
+                    %mi ψ
+                    %mo{:stretchy => "false"} (
+                    %mi α
+                    %mo{:stretchy => "false"} (
+                    %mi ϕ
+                    %mo{:stretchy => "false"} )
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} \alpha(\psi \circ \phi) = \psi(\alpha(\phi))
+              we have free choice on the values
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi α
+                      %mo{:stretchy => "false"} (
+                      %msub
+                        %mi π
+                        %mi p
+                      %mo{:stretchy => "false"} )
+                    %annotation{:encoding => "application/x-tex"} \alpha(\pi_p)
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi F
+                    %mo →
+                    %msup
+                      %mi C
+                      %mn ∞
+                    %mo{:stretchy => "false"} (
+                    %mi ℝ
+                    %mo ,
+                    %mi ℝ
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} F \to C^\infty(\mathbb{R}, \mathbb{R})
+              which come from evaluation do not have this free choice: their value on
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi π
+                      %mi p
+                  %annotation{:encoding => "application/x-tex"} \pi_p
+              is completely determined by the values on
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi π
+                      %mi x
+                  %annotation{:encoding => "application/x-tex"} \pi_x
+              and
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msub
+                        %mi π
+                        %mi y
+                    %annotation{:encoding => "application/x-tex"} \pi_y
+          %p
+            However, all is not lost. The set of functions in a Frölicher space has much more structure than simply composition by functions from
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msup
+                      %mi C
+                      %mn ∞
+                    %mo{:stretchy => "false"} (
+                    %mi ℝ
+                    %mo ,
+                    %mi ℝ
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} C^\infty(\mathbb{R}, \mathbb{R})
+          #FroFunAlg.num_lemma
+            %h6#lemma_3 Lemma
+            %p
+              The set
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi F
+                  %annotation{:encoding => "application/x-tex"} F
+              of functions in a Frölicher space is a commutative
+              = succeed "-algebra." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi ℝ
+                    %annotation{:encoding => "application/x-tex"} \mathbb{R}
+          .proof{:style => "margin-left:2em;"}
+            %h6#proof_5 Proof
+            %p
+              Let
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo{:stretchy => "false"} (
+                    %mi X
+                    %mo ,
+                    %mi C
+                    %mo ,
+                    %mi F
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} (X,C,F)
+              be a Frölicher space. Let
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi ϕ
+                      %mo ,
+                      %mi ψ
+                      %mo ,
+                      %mi θ
+                      %mo ∈
+                      %mi F
+                    %annotation{:encoding => "application/x-tex"} \phi, \psi, \theta \in F
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi ϕ
+                      %mo ∘
+                      %mi α
+                    %annotation{:encoding => "application/x-tex"} \phi \circ \alpha
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi ψ
+                      %mo ∘
+                      %mi α
+                    %annotation{:encoding => "application/x-tex"} \psi \circ \alpha
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi θ
+                    %mo ∘
+                    %mi α
+                  %annotation{:encoding => "application/x-tex"} \theta \circ \alpha
+              lie in
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msup
+                        %mi C
+                        %mn ∞
+                      %mo{:stretchy => "false"} (
+                      %mi ℝ
+                      %mo ,
+                      %mi ℝ
+                      %mo{:stretchy => "false"} )
+                    %annotation{:encoding => "application/x-tex"} C^\infty(\mathbb{R}, \mathbb{R})
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msup
+                      %mi C
+                      %mn ∞
+                    %mo{:stretchy => "false"} (
+                    %mi ℝ
+                    %mo ,
+                    %mi ℝ
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} C^\infty(\mathbb{R}, \mathbb{R})
+              is a ring,
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi ϕ
+                    %mo ∘
+                    %mi α
+                    %mo +
+                    %mo{:stretchy => "false"} (
+                    %mi θ
+                    %mo ∘
+                    %mi α
+                    %mo{:stretchy => "false"} )
+                    %mo ⋅
+                    %mo{:stretchy => "false"} (
+                    %mi ψ
+                    %mo ∘
+                    %mi α
+                    %mo{:stretchy => "false"} )
+                    %mo =
+                    %mo{:stretchy => "false"} (
+                    %mi ϕ
+                    %mo +
+                    %mi θ
+                    %mo ⋅
+                    %mi ψ
+                    %mo{:stretchy => "false"} )
+                    %mo ∘
+                    %mi α
+                  %annotation{:encoding => "application/x-tex"}
+                    \\phi \circ \alpha + (\theta \circ \alpha) \cdot (\psi \circ \alpha) = (\phi + \theta \cdot \psi) \circ \alpha
+            %p
+              is in
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msup
+                        %mi C
+                        %mn ∞
+                      %mo{:stretchy => "false"} (
+                      %mi ℝ
+                      %mo ,
+                      %mi ℝ
+                      %mo{:stretchy => "false"} )
+                    %annotation{:encoding => "application/x-tex"} C^\infty(\mathbb{R}, \mathbb{R})
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi α
+                      %mo ∈
+                      %mi C
+                    %annotation{:encoding => "application/x-tex"} \alpha \in C
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi ϕ
+                      %mo +
+                      %mi θ
+                      %mo ⋅
+                      %mi ψ
+                      %mo ∈
+                      %mi F
+                    %annotation{:encoding => "application/x-tex"} \phi + \theta \cdot \psi \in F
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msup
+                      %mi C
+                      %mn ∞
+                    %mo{:stretchy => "false"} (
+                    %mi ℝ
+                    %mo ,
+                    %mi ℝ
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} C^\infty(\mathbb{R}, \mathbb{R})
+              is commutative. Finally we note that there is an obvious ring homomorphism
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi ℝ
+                    %mo →
+                    %mi F
+                  %annotation{:encoding => "application/x-tex"} \mathbb{R} \to F
+              sending
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi λ
+                  %annotation{:encoding => "application/x-tex"} \lambda
+              to the function
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi x
+                      %mo ↦
+                      %mi λ
+                    %annotation{:encoding => "application/x-tex"} x \mapsto \lambda
+          %p
+            This suggests that we should consider a Frölicher space not as a pair of functors
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi ℛ
+                  %mo ,
+                  %msup
+                    %mi ℛ
+                    %mi op
+                  %mo →
+                  %mi Set
+                %annotation{:encoding => "application/x-tex"} \mathcal{R}, \mathcal{R}^{op} \to Set
+            but as a pair of functors
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi ℛ
+                  %mo →
+                  %mi Set
+                %annotation{:encoding => "application/x-tex"} \mathcal{R} \to Set
+            and
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msup
+                      %mi ℛ
+                      %mi op
+                    %mo →
+                    %mi Alg
+                  %annotation{:encoding => "application/x-tex"} \mathcal{R}^{op} \to Alg
+          %p
+            There is yet more structure on
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi F
+                  %annotation{:encoding => "application/x-tex"} F
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi F
+                %annotation{:encoding => "application/x-tex"} F
+            with elements of
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msup
+                    %mi C
+                    %mn ∞
+                  %mo{:stretchy => "false"} (
+                  %mi ℝ
+                  %mo ,
+                  %mi ℝ
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} C^\infty(\mathbb{R}, \mathbb{R})
+            but if
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi ϕ
+                  %mo ∈
+                  %mi F
+                %annotation{:encoding => "application/x-tex"} \phi \in F
+            is a particular element then we can compose
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi ϕ
+                %annotation{:encoding => "application/x-tex"} \phi
+            with an element of
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msup
+                      %mi C
+                      %mn ∞
+                    %mo{:stretchy => "false"} (
+                    %mo{:lspace => "0em", :rspace => "thinmathspace"} im
+                    %mi ϕ
+                    %mo ,
+                    %mi ℝ
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} C^\infty(\im \phi, \mathbb{R})
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi ℛ
+                %annotation{:encoding => "application/x-tex"} \mathcal{R}
+            so that its objects are the power set
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi 𝒫
+                    %mo{:stretchy => "false"} (
+                    %mi ℝ
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} \mathcal{P}(\mathbb{R})
+          %p
+            (An alternative to this extension is to insist that the natural transformations be continuous with respect to a topology on
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi F
+                %annotation{:encoding => "application/x-tex"} F
+            compatible with the compact-open topology on
+            = succeed ".)" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msup
+                      %mi C
+                      %mn ∞
+                    %mo{:stretchy => "false"} (
+                    %mi ℝ
+                    %mo ,
+                    %mi ℝ
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} C^\infty(\mathbb{R}, \mathbb{R})
+          %p
+            With these two augmentations, a constant natural transformation from
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi F
+                    %mo{:stretchy => "false"} (
+                    %mi A
+                    %mo{:stretchy => "false"} )
+                    %mo →
+                    %msup
+                      %mi C
+                      %mn ∞
+                    %mo{:stretchy => "false"} (
+                    %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                    %mo ,
+                    %mi A
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} F(A) \to C^\infty(-,A)
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi A
+                    %mo ⊆
+                    %mi ℝ
+                  %annotation{:encoding => "application/x-tex"} A \subseteq \mathbb{R}
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi F
+                  %mo{:stretchy => "false"} (
+                  %mi ℝ
+                  %mo{:stretchy => "false"} )
+                  %mo →
+                  %mi ℝ
+                %annotation{:encoding => "application/x-tex"} F(\mathbb{R}) \to \mathbb{R}
+            with the property that
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi α
+                  %mo{:stretchy => "false"} (
+                  %mi ψ
+                  %mo{:stretchy => "false"} )
+                  %mo ∈
+                  %mo{:lspace => "0em", :rspace => "thinmathspace"} im
+                  %mi ψ
+                %annotation{:encoding => "application/x-tex"} \alpha(\psi) \in \im \psi
+            for all
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi ψ
+                    %mo ∈
+                    %mi F
+                    %mo{:stretchy => "false"} (
+                    %mi ℝ
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} \psi \in F(\mathbb{R})
+          #LemPairEval.num_lemma
+            %h6#lemma_4 Lemma
+            %p
+              Such a natural transformation,
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi α
+                    %annotation{:encoding => "application/x-tex"} \alpha
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi ϕ
+                    %mo ,
+                    %mi ψ
+                    %mo ∈
+                    %mi F
+                    %mo{:stretchy => "false"} (
+                    %mi ℝ
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} \phi, \psi \in F(\mathbb{R})
+              there is a point
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi x
+                    %mo ∈
+                    %mi X
+                  %annotation{:encoding => "application/x-tex"} x \in X
+              such that
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi α
+                    %mo{:stretchy => "false"} (
+                    %mi ψ
+                    %mo{:stretchy => "false"} )
+                    %mo =
+                    %mi ψ
+                    %mo{:stretchy => "false"} (
+                    %mi x
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} \alpha(\psi) = \psi(x)
+              and
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi α
+                      %mo{:stretchy => "false"} (
+                      %mi ϕ
+                      %mo{:stretchy => "false"} )
+                      %mo =
+                      %mi ϕ
+                      %mo{:stretchy => "false"} (
+                      %mi x
+                      %mo{:stretchy => "false"} )
+                    %annotation{:encoding => "application/x-tex"} \alpha(\phi) = \phi(x)
+          .proof{:style => "margin-left:2em;"}
+            %h6#proof_6 Proof
+            %p Consider the function
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi θ
+                    %mo =
+                    %mo{:stretchy => "false"} (
+                    %mi ψ
+                    %mo −
+                    %mi α
+                    %mo{:stretchy => "false"} (
+                    %mi ψ
+                    %mo{:stretchy => "false"} )
+                    %msup
+                      %mo{:stretchy => "false"} )
+                      %mn 2
+                    %mo +
+                    %mo{:stretchy => "false"} (
+                    %mi ϕ
+                    %mo −
+                    %mi α
+                    %mo{:stretchy => "false"} (
+                    %mi ϕ
+                    %mo{:stretchy => "false"} )
+                    %msup
+                      %mo{:stretchy => "false"} )
+                      %mn 2
+                    %mo .
+                  %annotation{:encoding => "application/x-tex"}
+                    \\theta = (\psi - \alpha(\psi))^2 + (\phi - \alpha(\phi))^2.
+            %p
+              As
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi α
+                  %annotation{:encoding => "application/x-tex"} \alpha
+              is an algebra homomorphism,
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi α
+                      %mo{:stretchy => "false"} (
+                      %mi θ
+                      %mo{:stretchy => "false"} )
+                      %mo =
+                      %mn 0
+                    %annotation{:encoding => "application/x-tex"} \alpha(\theta) = 0
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi α
+                      %mo{:stretchy => "false"} (
+                      %mi θ
+                      %mo{:stretchy => "false"} )
+                      %mo ∈
+                      %mo{:lspace => "0em", :rspace => "thinmathspace"} im
+                      %mi θ
+                    %annotation{:encoding => "application/x-tex"} \alpha(\theta) \in \im \theta
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi x
+                    %mo ∈
+                    %mi X
+                  %annotation{:encoding => "application/x-tex"} x \in X
+              such that
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi θ
+                      %mo{:stretchy => "false"} (
+                      %mi x
+                      %mo{:stretchy => "false"} )
+                      %mo =
+                      %mn 0
+                    %annotation{:encoding => "application/x-tex"} \theta(x) = 0
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi x
+                  %annotation{:encoding => "application/x-tex"} x
+              we therefore have that
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi ψ
+                    %mo{:stretchy => "false"} (
+                    %mi x
+                    %mo{:stretchy => "false"} )
+                    %mo =
+                    %mi α
+                    %mo{:stretchy => "false"} (
+                    %mi ψ
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} \psi(x) = \alpha(\psi)
+              and
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi ϕ
+                      %mo{:stretchy => "false"} (
+                      %mi x
+                      %mo{:stretchy => "false"} )
+                      %mo =
+                      %mi α
+                      %mo{:stretchy => "false"} (
+                      %mi ϕ
+                      %mo{:stretchy => "false"} )
+                    %annotation{:encoding => "application/x-tex"} \phi(x) = \alpha(\phi)
+          %p This clearly extends to any finite family. Indeed, from the proof of this result we deduce that the family
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi 𝒜
+                  %mo :
+                  %mo =
+                  %mo{:maxsize => "1.2em", :minsize => "1.2em"} {
+                  %mo{:stretchy => "false"} {
+                  %mi x
+                  %mo :
+                  %mi ϕ
+                  %mo{:stretchy => "false"} (
+                  %mi x
+                  %mo{:stretchy => "false"} )
+                  %mo =
+                  %mi α
+                  %mo{:stretchy => "false"} (
+                  %mi ϕ
+                  %mo{:stretchy => "false"} )
+                  %mo{:stretchy => "false"} }
+                  %mo :
+                  %mi ϕ
+                  %mo ∈
+                  %mi F
+                  %mo{:stretchy => "false"} (
+                  %mi ℝ
+                  %mo{:stretchy => "false"} )
+                  %mo{:maxsize => "1.2em", :minsize => "1.2em"} }
+                %annotation{:encoding => "application/x-tex"}
+                  \\mathcal{A} := \big\{\{x : \phi(x) = \alpha(\phi)\} : \phi \in F(\mathbb{R})\big\}
+          %p
+            is directed and thus defines a filter on
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi X
+                  %annotation{:encoding => "application/x-tex"} X
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi α
+                %annotation{:encoding => "application/x-tex"} \alpha
+            is
+            %em not
+            represented by a point on
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi X
+                %annotation{:encoding => "application/x-tex"} X
+            then this filter will have empty intersection.
+          %p
+            Now consider the subfamily of
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi F
+                  %mo{:stretchy => "false"} (
+                  %mi ℝ
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} F(\mathbb{R})
+            consisting of those functions
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi ϕ
+                %annotation{:encoding => "application/x-tex"} \phi
+            with the property that
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mo{:lspace => "0em", :rspace => "thinmathspace"} im
+                  %mi ϕ
+                  %mo ⊆
+                  %mo{:stretchy => "false"} [
+                  %mn 0
+                  %mo ,
+                  %mn 1
+                  %mo{:stretchy => "false"} ]
+                %annotation{:encoding => "application/x-tex"} \im \phi \subseteq [0,1]
+            and
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi α
+                    %mo{:stretchy => "false"} (
+                    %mi ϕ
+                    %mo{:stretchy => "false"} )
+                    %mo =
+                    %mn 1
+                  %annotation{:encoding => "application/x-tex"} \alpha(\phi) = 1
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi 𝒜
+                  %annotation{:encoding => "application/x-tex"} \mathcal{A}
+          %ol
+            %li
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi ϕ
+                    %mo ≤
+                    %mi ψ
+                  %annotation{:encoding => "application/x-tex"} \phi \leq \psi
+              if
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi ϕ
+                    %mo{:stretchy => "false"} (
+                    %mi x
+                    %mo{:stretchy => "false"} )
+                    %mo ≤
+                    %mi ψ
+                    %mo{:stretchy => "false"} (
+                    %mi x
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} \phi(x) \leq \psi(x)
+              for all
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi x
+                      %mo ∈
+                      %mi X
+                    %annotation{:encoding => "application/x-tex"} x \in X
+            %li
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi ϕ
+                    %mo ≤
+                    %mi ψ
+                  %annotation{:encoding => "application/x-tex"} \phi \leq \psi
+              if
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msup
+                        %mi ϕ
+                        %mrow
+                          %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                          %mn 1
+                      %mo{:stretchy => "false"} (
+                      %mo{:stretchy => "false"} (
+                      %mn 0
+                      %mo ,
+                      %mn 1
+                      %mo{:stretchy => "false"} ]
+                      %mo{:stretchy => "false"} )
+                      %mo ⊆
+                      %msup
+                        %mi ψ
+                        %mrow
+                          %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                          %mn 1
+                      %mo{:stretchy => "false"} (
+                      %mo{:stretchy => "false"} (
+                      %mn 0
+                      %mo ,
+                      %mn 1
+                      %mo{:stretchy => "false"} ]
+                      %mo{:stretchy => "false"} )
+                    %annotation{:encoding => "application/x-tex"} \phi^{-1}((0,1]) \subseteq \psi^{-1}((0,1])
+          %p
+            This family is directed (downwards) since
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi ϕ
+                  %mi ψ
+                  %mo ≤
+                  %mi ϕ
+                %annotation{:encoding => "application/x-tex"} \phi \psi \leq \phi
+            (and
+            = succeed ")." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi ψ
+                  %annotation{:encoding => "application/x-tex"} \psi
+            %em reasonable
+            topology on
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi F
+                %annotation{:encoding => "application/x-tex"} F
+            then this net converges to the zero function: on any compact subset of
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi X
+                %annotation{:encoding => "application/x-tex"} X
+            then we have
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mo{:stretchy => "false"} (
+                  %mi ϕ
+                  %mo{:stretchy => "false"} )
+                  %mo →
+                  %mn 0
+                %annotation{:encoding => "application/x-tex"} (\phi) \to 0
+            uniformly. Therefore if we simply add the condition that our natural transformation
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi α
+                %annotation{:encoding => "application/x-tex"} \alpha
+            be continuous (something we might have been ready to do anyway) we see that it must be represented by an element of
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi X
+                %annotation{:encoding => "application/x-tex"} X
+            since otherwise we have
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi α
+                    %mo{:stretchy => "false"} (
+                    %mn 0
+                    %mo{:stretchy => "false"} )
+                    %mo =
+                    %mi lim
+                    %mi α
+                    %mo{:stretchy => "false"} (
+                    %mi ϕ
+                    %mo{:stretchy => "false"} )
+                    %mo =
+                    %mn 1
+                    %mo ∉
+                    %mo{:lspace => "0em", :rspace => "thinmathspace"} im
+                    %mn 0
+                  %annotation{:encoding => "application/x-tex"} \alpha(0) = \lim \alpha(\phi) = 1 \notin \im 0
+          %p
+            Thus
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi X
+                %annotation{:encoding => "application/x-tex"} X
+            is the set of
+            %em continuous
+            algebra homomorphisms
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi F
+                  %mo →
+                  %mi ℝ
+                %annotation{:encoding => "application/x-tex"} F \to \mathbb{R}
+            and we finally see the relationship between Hausdorff Frölicher spaces as objects in the Isbell envelope of
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mstyle{:mathvariant => "bold"}
+                    %mi R
+                %annotation{:encoding => "application/x-tex"} \mathbf{R}
+            satisfying Isbell duality.
+        .revisedby
+          %p
+            Last revised on September 12, 2023 at 13:35:39.
+            See the
+            %a{:href => "/nlab/history/Fr%C3%B6licher+spaces+and+Isbell+envelopes", :style => "color: #005c19"} history
+            of this page for a list of all contributions to it.
+        .navigation.navfoot
+          %a#edit.navlink{:accesskey => "E", :href => "/nlab/edit/Fr%C3%B6licher+spaces+and+Isbell+envelopes", :rel => "nofollow"} Edit
+          %a{:href => "https://nforum.ncatlab.org/discussions/?CategoryID=0"} Discuss
+          %span.backintime
+            %a#to_previous_revision.navlinkbackintime{:accesskey => "B", :href => "/nlab/revision/Fr%C3%B6licher+spaces+and+Isbell+envelopes/2", :rel => "nofollow"} Previous revision
+          %a#see_changes.navlink{:accesskey => "C", :href => "/nlab/show/diff/Fr%C3%B6licher+spaces+and+Isbell+envelopes", :rel => "nofollow"} Changes from previous revision
+          %a#history.navlink{:accesskey => "S", :href => "/nlab/history/Fr%C3%B6licher+spaces+and+Isbell+envelopes", :rel => "nofollow"} History (2 revisions)
+          %a{:href => "/nlab/show/Fr%C3%B6licher+spaces+and+Isbell+envelopes/cite", :style => "color: black"} Cite
+          %a#view_print{:accesskey => "p", :href => "/nlab/print/Fr%C3%B6licher+spaces+and+Isbell+envelopes", :rel => "nofollow"} Print
+          %a#view_source{:href => "/nlab/source/Fr%C3%B6licher+spaces+and+Isbell+envelopes", :rel => "nofollow"} Source
+      / Content
+    / Container

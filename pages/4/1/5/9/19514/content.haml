@@ -1,0 +1,826 @@
+!!! XML
+!!! 1.1
+%html{:xmlns => "http://www.w3.org/1999/xhtml"}
+  %head
+    %title
+      singleton representation in nLab
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:content => "index,follow", :name => "robots"}/
+    %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/
+    %link{:href => "/stylesheets/instiki.css?1676280126", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/stylesheets/mathematics.css?1660229990", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/stylesheets/syntax.css?1660229990", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/stylesheets/nlab.css?1676280126", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css", :rel => "stylesheet", :type => "text/css"}/
+    :css
+      h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+        color: #226622;
+      }
+      a:visited.existingWikiWord {
+        color: #164416;
+      }
+    :css
+      <!--/*--><![CDATA[/*><!--*/
+          .toc ul {margin: 0; padding: 0;}
+      .toc ul ul {margin: 0; padding: 0 0 0 10px;}
+      .toc li > p {margin: 0}
+      .toc ul li {list-style-type: none; position: relative;}
+      .toc div {border-top:1px dotted #ccc;}
+      .rightHandSide h2 {font-size: 1.5em;color:#008B26}
+      table.plaintable {
+          border-collapse:collapse;
+          margin-left:30px;
+          border:0;
+      }
+      .plaintable td {border:1px solid #000; padding: 3px;}
+      .plaintable th {padding: 3px;}
+      .plaintable caption {
+          font-weight: bold;
+          font-size:1.1em;
+          text-align:center;
+          margin-left:30px;
+      }
+          
+         
+      /* Query boxes for questioning and answering mechanism */
+      div.query{
+      background: #f6fff3;
+      border: solid #ce9;
+      border-width: 2px 1px;
+      padding: 0 1em;
+      margin: 0 1em;
+      max-height: 20em;
+      overflow: auto;
+      }
+      
+      /* Standout boxes for putting important text */
+      div.standout{
+      background: #fff1f1;
+      border: solid black;
+      border-width: 2px 1px;
+      padding: 0 1em;
+      margin: 0 1em;
+      overflow: auto;
+      }
+      
+      /* Icon for links to n-category arXiv documents 
+       (commented out for now i.e. disabled)
+      a[href*="http://arxiv.org/"] {
+        background-image: url(../files/arXiv_icon.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 22px;
+        } */
+          
+      /* Icon for links to n-category cafe posts (disabled) 
+      a[href*="http://golem.ph.utexas.edu/category"] {
+        background-image: url(../files/n-cafe_5.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 25px;
+        } */
+      
+      /* Icon for links to pdf files (disabled)
+      a[href$=".pdf"] {
+        background-image: url(../files/pdficon_small.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 25px;
+        } */
+      
+      /* Icon for links to pages, etc. -inside- pdf files (disabled)
+      a[href*=".pdf#"] {
+        background-image: url(../files/pdf_entry.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 25px;
+        } */
+      
+      a.existingWikiWord {
+      color: #226622;
+      }
+      
+      a.existingWikiWord:visited {
+      color: #226622;
+      }
+      
+      
+      a.existingWikiWord[title] {
+      border: 0px;
+      color: #aa0505;
+      text-decoration: none;
+      }
+          
+      a.existingWikiWord[title]:visited {
+      border: 0px;
+      color: #551111;
+      text-decoration: none;
+      }
+      
+      a[href^="http://"] {
+      border: 0px;
+      color: #003399;
+      }
+      
+      a[href^="http://"]:visited {
+      border: 0px;
+      color: #330066;
+      }
+      
+      a[href^="https://"] {
+      border: 0px;
+      color: #003399;
+      }
+      
+      a[href^="https://"]:visited {
+      border: 0px;
+      color: #330066;
+      }
+      
+      div.dropDown .hide {
+      display: none;
+      }
+      
+      div.dropDown:hover .hide {
+      display:block;
+      }
+      
+      div.clickDown .hide {
+      display: none;
+      }
+      
+      div.clickDown:focus {
+      outline:none;
+      }
+      
+      div.clickDown:focus .hide, div.clickDown:hover .hide {
+      display: block;
+      }
+      
+      div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+      display:block;
+      }
+      
+      div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+      display:none;
+      }
+      
+      div.clickDown .clickToReveal:after {
+      content: "A(Hover to reveal, click to "hold")";
+      font-size: 60%;
+      }
+      
+      div.clickDown .clickToHide:after {
+      content: "A(Click to hide)";
+      font-size: 60%;
+      }
+      div.clickDown .clickToHide, div.clickDown .clickToReveal {
+      white-space: pre-wrap;
+      }
+      
+      .un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+      margin-left: 1em;
+      }
+      
+      span.theorem_label {
+      margin-left: -1em;
+      }
+      .proof span.theorem_label {
+      margin-left: 0em;
+      }
+      :target {
+          background-color: #BBBBBB;
+          border-radius: 5pt;
+      }
+      
+        /*]]>*/-->
+    %script{:src => "/javascripts/prototype.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/effects.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/dragdrop.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/controls.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/application.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/page_helper.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/thm_numbering.js?1660229990", :type => "text/javascript"}
+    %script{:type => "text/x-mathjax-config"}
+      :cdata
+        <!--//--><![CDATA[//><!--
+        MathJax.Ajax.config.path["Contrib"] = "/MathJax";
+        MathJax.Hub.Config({
+        MathML: { useMathMLspacing: true },
+        "HTML-CSS": { scale: 90,
+        extensions: ["handle-floats.js"]
+        }
+        });
+        MathJax.Hub.Queue( function () {
+        var fos = document.getElementsByTagName('foreignObject');
+        for (var i = 0; i < fos.length; i++) {
+        MathJax.Hub.Typeset(fos[i]);
+        }
+        });
+        \//--><!]]>
+    :javascript
+      <!--//--><![CDATA[//><!--
+      window.addEventListener("DOMContentLoaded", function () {
+        var div = document.createElement('div');
+        var math = document.createElementNS('http://www.w3.org/1998/Math/MathML', 'math');
+        document.body.appendChild(div);
+        div.appendChild(math);
+      // Test for MathML support comparable to WebKit version https://trac.webkit.org/changeset/203640 or higher.
+        div.setAttribute('style', 'font-style: italic');
+        var mathml_unsupported = !(window.getComputedStyle(div.firstChild).getPropertyValue('font-style') === 'normal');
+        div.parentNode.removeChild(div);
+        if (mathml_unsupported) {
+          // MathML does not seem to be supported...
+          var s = document.createElement('script');
+          s.src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=MML_HTMLorMML-full";
+          document.querySelector('head').appendChild(s);
+        } else {
+          document.head.insertAdjacentHTML("beforeend", '<style>svg[viewBox] {max-width: 100%}</style>');
+        }
+      });
+      //--><!]]>
+    %link{:href => "https://ncatlab.org/nlab/atom_with_headlines", :rel => "alternate", :title => "Atom with headlines", :type => "application/atom+xml"}/
+    %link{:href => "https://ncatlab.org/nlab/atom_with_content", :rel => "alternate", :title => "Atom with full content", :type => "application/atom+xml"}/
+    :javascript
+      document.observe("dom:loaded", function() {
+        generateThmNumbers();
+      });
+  %body
+    #Container
+      #Content
+        %h1#pageName
+          %span{:style => "float: left; margin: 0.5em 0.25em -0.25em 0"}
+            %svg{:height => "1.8em", :viewbox => "0 0 190 181", :width => "1.872em", :xmlns => "http://www.w3.org/2000/svg"}
+              %path{:d => "M72.8 145c-1.6 17.3-15.7 10-23.6 20.2-5.6 7.3 4.8 15 11.4 15 11.5-.2 19-13.4 26.4-20.3 3.3-3 8.2-4 11.2-7.2a14 14 0 0 0 2.9-11.1c-1.4-9.6-12.4-18.6-16.9-27.2-5-9.6-10.7-27.4-24.1-27.7-17.4-.3-.4 26 4.7 30.7 2.4 2.3 5.4 4.1 7.3 6.9 1.6 2.3 2.1 5.8-1 7.2-5.9 2.6-12.4-6.3-15.5-10-8.8-10.6-15.5-23-26.2-31.8-5.2-4.3-11.8-8-18-3.7-7.3 4.9-4.2 12.9.2 18.5a81 81 0 0 0 30.7 23c3.3 1.5 12.8 5.6 10 10.7-2.5 5.2-11.7 3-15.6 1.1-8.4-3.8-24.3-21.3-34.4-13.7-3.5 2.6-2.3 7.6-1.2 11.1 2.8 9 12.2 17.2 20.9 20.5 17.3 6.7 34.3-8 50.8-12.1z", :fill => "#226622"}
+              %path{:d => "M145.9 121.3c-.2-7.5 0-19.6-4.5-26-5.4-7.5-12.9-1-14.1 5.8-1.4 7.8 2.7 14.1 4.8 21.3 3.4 12 5.8 29-.8 40.1-3.6-6.7-5.2-13-7-20.4-2.1-8.2-12.8-13.2-15.1-1.9-2 9.7 9 21.2 12 30.1 1.2 4 2 8.8 6.4 10.3 6.9 2.3 13.3-4.7 17.7-8.8 12.2-11.5 36.6-20.7 43.4-36.4 6.7-15.7-13.7-14-21.3-7.2-9.1 8-11.9 20.5-23.6 25.1 7.5-23.7 31.8-37.6 38.4-61.4 2-7.3-.8-29.6-13-19.8-14.5 11.6-6.6 37.6-23.3 49.2z", :fill => "#a41e32"}
+              %path{:d => "M86.3 47.5c0-13-10.2-27.6-5.8-40.4 2.8-8.4 14.1-10.1 17-1 3.8 11.6-.3 26.3-1.8 38 11.7-.7 10.5-16 14.8-24.3 2.1-4.2 5.7-9.1 11-6.7 6 2.7 7.4 9.2 6.6 15.1-2.2 14-12.2 18.8-22.4 27-3.4 2.7-8 6.6-5.9 11.6 2 4.4 7 4.5 10.7 2.8 7.4-3.3 13.4-16.5 21.7-16 14.6.7 12 21.9.9 26.2-5 1.9-10.2 2.3-15.2 3.9-5.8 1.8-9.4 8.7-15.7 8.9-6.1.1-9-6.9-14.3-9-14.4-6-33.3-2-44.7-14.7-3.7-4.2-9.6-12-4.9-17.4 9.3-10.7 28 7.2 35.7 12 2 1.1 11 6.9 11.4 1.1.4-5.2-10-8.2-13.5-10-11.1-5.2-30-15.3-35-27.3-2.5-6 2.8-13.8 9.4-13.6 6.9.2 13.4 7 17.5 12C70.9 34 75 43.8 86.3 47.4z", :fill => "#193c78"}
+          %span.webName nLab
+          singleton representation
+        .navigation
+          %span.skipNav
+            %a{:href => "#navEnd"} Skip the Navigation Links
+            |
+          %span{:style => "display:inline-block; width: 0.3em;"}
+          %a{:accesskey => "H", :href => "/nlab/show/HomePage", :title => "Home page"} Home Page
+          |
+          %a{:accesskey => "A", :href => "/nlab/all_pages", :title => "List of all pages"} All Pages
+          |
+          %a{:accesskey => "U", :href => "/nlab/latest_revisions", :title => "Latest edits and page creations"} Latest Revisions
+          |
+          %a{:href => "https://nforum.ncatlab.org/discussion/8716/#Item_1", :style => "color: black", :title => "Discuss this page in its dedicated thread on the nForum"} Discuss this page
+          |
+          %form#navigationSearchForm{"accept-charset" => "utf-8", :action => "/nlab/search", :method => "get"}
+            %fieldset.search
+              %input#searchField{:name => "query", :onblur => "this.value == '' ? this.value = 'Search' : true", :onfocus => "this.value == 'Search' ? this.value = '' : true", :style => "display:inline-block; float: left;", :type => "text", :value => "Search"}/
+          %span#navEnd
+        #revision
+          %meta{:content => "application/xhtml+xml;charset=utf-8", "http-equiv" => "Content-type"}/
+          %title Contents
+          .rightHandSide
+            .toc.clickDown{:tabindex => "0"}
+              %h3#context Context
+              %h4#representation_theory Representation theory
+              .hide
+                %div
+                  %p
+                    %strong
+                      %a.existingWikiWord{:href => "/nlab/show/representation+theory"} representation theory
+                  %p
+                    %strong
+                      %a.existingWikiWord{:href => "/nlab/show/geometric+representation+theory"} geometric representation theory
+                  %h2#ingredients Ingredients
+                  %ul
+                    %li
+                      %a.existingWikiWord{:href => "/nlab/show/linear+algebra"}> linear algebra
+                      ,
+                      = succeed "," do
+                        %a.existingWikiWord{:href => "/nlab/show/algebra"} algebra
+                      %a.existingWikiWord{:href => "/nlab/show/higher+algebra"} higher algebra
+                  %h2#sidebar_definitions Definitions
+                  %p
+                    %a.existingWikiWord{:href => "/nlab/show/representation"}> representation
+                    ,
+                    = succeed "," do
+                      %a.existingWikiWord{:href => "/nlab/show/2-representation"} 2-representation
+                    %a.existingWikiWord{:href => "/nlab/show/%E2%88%9E-representation"} ∞-representation
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/group"}> group
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/%E2%88%9E-group"} ∞-group
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/group+algebra"}> group algebra
+                        ,
+                        = succeed "," do
+                          %a.existingWikiWord{:href => "/nlab/show/algebraic+group"} algebraic group
+                        %a.existingWikiWord{:href => "/nlab/show/Lie+algebra"} Lie algebra
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/vector+space"}> vector space
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/n-vector+space"} n-vector space
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/affine+space"}> affine space
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/symplectic+vector+space"} symplectic vector space
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/action"}> action
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/%E2%88%9E-action"} ∞-action
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/module"}> module
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/equivariant+object"} equivariant object
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/bimodule"}> bimodule
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/Morita+equivalence"} Morita equivalence
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/induced+representation"}> induced representation
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/Frobenius+reciprocity"} Frobenius reciprocity
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Hilbert+space"}> Hilbert space
+                        ,
+                        = succeed "," do
+                          %a.existingWikiWord{:href => "/nlab/show/Banach+space"} Banach space
+                        = succeed "," do
+                          %a.existingWikiWord{:href => "/nlab/show/Fourier+transform"} Fourier transform
+                        %a.existingWikiWord{:href => "/nlab/show/functional+analysis"} functional analysis
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/orbit"}> orbit
+                        ,
+                        = succeed "," do
+                          %a.existingWikiWord{:href => "/nlab/show/coadjoint+orbit"} coadjoint orbit
+                        %a.existingWikiWord{:href => "/nlab/show/Killing+form"} Killing form
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/unitary+representation"} unitary representation
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/geometric+quantization"}> geometric quantization
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/coherent+state"} coherent state
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/socle"}> socle
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/quiver"} quiver
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/module+algebra"}> module algebra
+                        ,
+                        = succeed "," do
+                          %a.existingWikiWord{:href => "/nlab/show/comodule+algebra"} comodule algebra
+                        = succeed "," do
+                          %a.existingWikiWord{:href => "/nlab/show/Hopf+action"} Hopf action
+                        %a.existingWikiWord{:href => "/nlab/show/measuring"} measuring
+                  %h2#geometric_representation_theory Geometric representation theory
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/D-module"}> D-module
+                        ,
+                        = succeed "," do
+                          %a.existingWikiWord{:href => "/nlab/show/perverse+sheaf"} perverse sheaf
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Grothendieck+group"}> Grothendieck group
+                        ,
+                        = succeed "," do
+                          %a.existingWikiWord{:href => "/nlab/show/lambda-ring"} lambda-ring
+                        = succeed "," do
+                          %a.existingWikiWord{:href => "/nlab/show/symmetric+function"} symmetric function
+                        %a.existingWikiWord{:href => "/nlab/show/formal+group"} formal group
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/principal+bundle"}> principal bundle
+                        ,
+                        = succeed "," do
+                          %a.existingWikiWord{:href => "/nlab/show/torsor"} torsor
+                        = succeed "," do
+                          %a.existingWikiWord{:href => "/nlab/show/vector+bundle"} vector bundle
+                        %a.existingWikiWord{:href => "/nlab/show/Atiyah+Lie+algebroid"} Atiyah Lie algebroid
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/geometric+function+theory"}> geometric function theory
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/groupoidification"} groupoidification
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Eilenberg-Moore+category"}> Eilenberg-Moore category
+                        ,
+                        = succeed "," do
+                          %a.existingWikiWord{:href => "/nlab/show/algebra+over+an+operad"} algebra over an operad
+                        = succeed "," do
+                          %a.existingWikiWord{:href => "/nlab/show/actegory"} actegory
+                        %a.existingWikiWord{:href => "/nlab/show/crossed+module"} crossed module
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/reconstruction+theorems"} reconstruction theorems
+                  %h2#sidebar_theorems Theorems
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Borel-Weil-Bott+theorem"} Borel-Weil-Bott theorem
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Beilinson-Bernstein+localization"} Beilinson-Bernstein localization
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Kazhdan-Lusztig+theory"} Kazhdan-Lusztig theory
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/BBDG+decomposition+theorem"} BBDG decomposition theorem
+                  %div
+                    %p
+                      %a{:href => "/nlab/edit/representation+theory+-+contents"} Edit this sidebar
+          %h1#contents Contents
+          .maruku_toc
+            %ul
+              %li
+                %a{:href => "#idea"} Idea
+              %li
+                %a{:href => "#in_adscft"} In AdS/CFT
+              %li
+                %a{:href => "#references"} References
+          %h2#idea Idea
+          %p
+            The
+            %a.existingWikiWord{:href => "/nlab/show/anti+de+Sitter+group"} anti de Sitter group
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi SO
+                  %mo{:stretchy => "false"} (
+                  %mn 2
+                  %mo ,
+                  %mi D
+                  %mo −
+                  %mn 1
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} SO(2,D-1)
+            has “ultra-short”
+            %a.existingWikiWord{:href => "/nlab/show/unitary+representations"} unitary representations
+            that admit no
+            = succeed "-limit" do
+              %a.existingWikiWord{:href => "/nlab/show/Minkowski+spacetime"} Minkowski spacetime
+            = succeed ")." do
+              %a.existingWikiWord{:href => "/nlab/show/Lie+algebra+contraction"} Lie algebra contraction
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi D
+                  %mo =
+                  %mn 4
+                %annotation{:encoding => "application/x-tex"} D = 4
+            these were first discussed by
+            %a{:href => "#Dirac63"} Dirac 63
+            and named
+            = succeed "." do
+              %em singletons
+          %p
+            More generally, given a (non-
+            %a.existingWikiWord{:href => "/nlab/show/compact+Lie+group"}> compact
+            )
+            %a.existingWikiWord{:href => "/nlab/show/Lie+group"} Lie group
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi G
+                %annotation{:encoding => "application/x-tex"} G
+            admitting
+            %span.newWikiWord
+              lowest weight representation
+              %a{:href => "/nlab/new/lowest+weight+representation"} ?
+            with
+            %a.existingWikiWord{:href => "/nlab/show/maximal+compact+subgroup"} maximal compact subgroup
+            of the form
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi H
+                  %mo ×
+                  %mi U
+                  %mo{:stretchy => "false"} (
+                  %mn 1
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} H \times U(1)
+            for some other
+            %a.existingWikiWord{:href => "/nlab/show/compact+Lie+group"} compact Lie group
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi H
+                  %annotation{:encoding => "application/x-tex"} H
+            %em oscillator method
+            is to describe
+            %a.existingWikiWord{:href => "/nlab/show/unitary+representation"} unitary representation
+            by realizing the generators of
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi G
+                %annotation{:encoding => "application/x-tex"} G
+            as
+            %a.existingWikiWord{:href => "/nlab/show/creation+and+annihilation+operators"} creation and annihilation operators
+            on some
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/Fock+space"} Fock space
+            %a.existingWikiWord{:href => "/nlab/show/fundamental+representation"} fundamental representation
+            of
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi H
+                  %annotation{:encoding => "application/x-tex"} H
+            %em singleton representation
+            is one where the generators are realized as the creators and annihilators of a single oscillator, and there are typically two of these (usually the scalar and spinor representations, in a physical language).
+          %p
+            A
+            %em doubleton representation
+            is one where the generators are realized as two sets of oscillators, and so forth.
+          %h2#in_adscft In AdS/CFT
+          %p
+            It was observed by
+            = succeed "," do
+              %a{:href => "#Fronsdal81"} Fronsdal 81
+            = succeed "," do
+              %a{:href => "#FlatoFronsdal81"} Flato &amp; Fronsdal 81
+            %a{:href => "#AngelopoulosFlatoFronsdalSternheimer81"} Angelopoulos, Flato, Fronsdal &amp; Sternheimer 81
+            that these representations may naturally be understood as arising in
+            %a.existingWikiWord{:href => "/nlab/show/free+field+theory"} free field theory
+            on the
+            %a.existingWikiWord{:href => "/nlab/show/asymptotic+boundary"} asymptotic boundary
+            of
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/anti+de+Sitter+spacetime"} anti de Sitter spacetime
+          %p
+            Analogous statements hold true for the
+            %a.existingWikiWord{:href => "/nlab/show/super+anti+de+Sitter+group"} super anti de Sitter group
+            (e.g.
+            = succeed ")" do
+              %a{:href => "#Gunyadin89"} Gunyadin 89
+          %p
+            Based on this observation, it was conjectured in
+            %a{:href => "#Duff88"} Duff 88, p. 29-30
+            that the singleton representation of
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi SO
+                  %mo{:stretchy => "false"} (
+                  %mn 3
+                  %mo ,
+                  %mn 2
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} SO(3,2)
+            is realized by the
+            %a.existingWikiWord{:href => "/nlab/show/field+%28physics%29"} field
+            content of the
+            = succeed "-theory" do
+              %a.existingWikiWord{:href => "/nlab/show/worldvolume"} worldvolume
+            %a.existingWikiWord{:href => "/nlab/show/Green-Schwarz+sigma+model"} fundamental
+            %a.existingWikiWord{:href => "/nlab/show/M2-brane"} M2-brane
+            stretched along the
+            %a.existingWikiWord{:href => "/nlab/show/asymptotic+boundary"} asymptotic boundary
+            of
+            %a.existingWikiWord{:href => "/nlab/show/anti+de+Sitter+spacetime"} anti de Sitter spacetime
+            factor
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msub
+                    %mi AdS
+                    %mn 4
+                %annotation{:encoding => "application/x-tex"} AdS_{4}
+            in a
+            %a.existingWikiWord{:href => "/nlab/show/Freund-Rubin+compactification"} Freund-Rubin compactification
+            of
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/11-dimensional+supergravity"} 11-dimensional supergravity
+          %p
+            This conjecture was shown to be true in … and is a pre-cursor of what is now known as the
+            %em
+              %a.existingWikiWord{:href => "/nlab/show/AdS-CFT+correspondence"} AdS-CFT correspondence
+            (see
+            %a{:href => "#Duff98"} Duff 98
+            for review). See also at
+            = succeed "." do
+              %em
+                %a{:href => "Green-Schwarz+action+functional#AsPartOfTheAdSCFTCorrespodence"} super p-brane – As part of the AdS-CFT correspondence
+          %p
+            From
+            %a{:href => "#Gunyadin98"} Gunyadin 98, p. 2
+          %blockquote
+            %p
+              The ultra-short singleton supermultiplet sits at the bottom of this infinite tower of Kaluza-Klein modes and decouple from the spectrum as local gauge degrees of freedom [25]. However , even though the singleton supermultiplet decouples from the spectrum as local gauge modes, one can generate the entire spectrum of 11-dimensional supergravity over
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msup
+                      %mi S
+                      %mn 7
+                  %annotation{:encoding => "application/x-tex"} S^7
+              by tensoring the singleton supermultiplets repeatedly and restricting oneself to “CPT self-conjugate” vacuum supermultiplets.
+          %h2#references References
+          %ul
+            %li#Dirac63
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Paul+Dirac"}> Paul Dirac
+                ,
+                = succeed "," do
+                  %em A remarkable representation of the 3+2 de Sitter group
+                = succeed ")" do
+                  %a{:href => "https://aip.scitation.org/doi/pdf/10.1063/1.1704016"} doi:10.1063/1.1704016
+            %li#Fronsdal81
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Christian+Fronsdal"}> Christian Fronsdal
+                ,
+                = succeed "," do
+                  %em Dirac supermultiplet
+                %strong 26
+                (1982) 1988 &amp;lbrack;
+                %a{:href => "https://doi.org/10.1103/PhysRevD.26.1988"}> doi:10.1103/PhysRevD.26.1988
+                \&amp;rbrack;
+            %li#FlatoFronsdal81
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Mosh%C3%A9+Flato"}> Moshé Flato
+                ,
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/Christian+Fronsdal"} Christian Fronsdal
+                = succeed "," do
+                  %em Quantum field theory of singletons. The rac
+                %strong 22
+                (1981) 1100 &amp;lbrack;
+                %a{:href => "https://doi.org/10.1063/1.524993"}> doi:10.1063/1.524993
+                \&amp;rbrack;
+            %li#AngelopoulosFlatoFronsdalSternheimer81
+              %p
+                E. Angelopoulos,
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/Moshe+Flato"} Moshe Flato
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/Christian+Fronsdal"} Christian Fronsdal
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/Daniel+Sternheimer"} Daniel Sternheimer
+                = succeed "," do
+                  %em Massless Particles, Conformal Group, and De Sitter Universe
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Sergio+Ferrara"}> Sergio Ferrara
+                ,
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/Christian+Fronsdal"} Christian Fronsdal
+                = succeed "," do
+                  %em
+                    Conformal Maxwell theory as a singleton field theory on
+                    = succeed "," do
+                      %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                        %semantics
+                          %mrow
+                            %msub
+                              %mi AdS
+                              %mn 5
+                          %annotation{:encoding => "application/x-tex"} AdS_5
+                = succeed ")" do
+                  %a{:href => "https://arxiv.org/abs/hep-th/9712239"} arXiv:hep-th/9712239
+            %li#Gunyadin89
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Murat+G%C3%BCnaydin"}> Murat Günaydin
+                ,
+                = succeed "," do
+                  %em Singleton And Doubleton Supermultiplets Of Space-time Supergroups And Infinite Spin Superalgebras
+                = succeed ")" do
+                  %a{:href => "http://inspirehep.net/record/282501/"} spire:282501
+            %li#Duff88
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Mike+Duff"}> Mike Duff
+                ,
+                = succeed "," do
+                  %em Supermembranes: The First Fifteen Weeks
+                = succeed ")" do
+                  %a{:href => "http://inspirehep.net/record/248034"} spire:248034
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Eric+Bergshoeff"}> Eric Bergshoeff
+                ,
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/Mike+Duff"} Mike Duff
+                %a.existingWikiWord{:href => "/nlab/show/Christopher+Pope"} Christopher Pope
+                and
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/Ergin+Sezgin"} Ergin Sezgin
+                = succeed "," do
+                  %em Supersymmetric supermembrane vacua and singletons
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Gianguido+Dall%27Agata"}> Gianguido Dall'Agata
+                , Davide Fabbri, Christophe Fraser,
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/Pietro+Fr%C3%A9"} Pietro Fré
+                = succeed "," do
+                  %em
+                    The
+                    %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                      %semantics
+                        %mrow
+                          %mi Osp
+                          %mo{:stretchy => "false"} (
+                          %mn 8
+                          %mo{:stretchy => "false"} |
+                          %mn 4
+                          %mo{:stretchy => "false"} )
+                        %annotation{:encoding => "application/x-tex"} Osp(8|4)
+                    singleton action from the supermembrane
+                = succeed ")" do
+                  %a{:href => "http://arxiv.org/abs/hep-th/9807115"} arXiv:hep-th/9807115
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Paolo+Pasti"}> Paolo Pasti
+                ,
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/Dmitri+Sorokin"} Dmitri Sorokin
+                %em Branes in Super-AdS Backgrounds and Superconformal Theories
+                (
+                %a{:href => "http://arxiv.org/abs/hep-th/9912076"}> arXiv:hep-th/9912076
+                )
+            %li#Duff98
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Mike+Duff"}> Mike Duff
+                ,
+                = succeed "," do
+                  %em Anti-de Sitter space, branes, singletons, superconformal field theories and all that
+                %strong 14
+                (1999) 815-844, &amp;lbrack;
+                %a{:href => "https://arxiv.org/abs/hep-th/9808100"}> arXiv:hep-th/9808100
+                \&amp;rbrack;
+            %li#Gunyadin98
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Murat+G%C3%BCnaydin"}> Murat Günaydin
+                ,
+                = succeed "," do
+                  %em
+                    Unitary Supermultiplets of
+                    = succeed ")" do
+                      %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                        %semantics
+                          %mrow
+                            %mi OSp
+                            %mo{:stretchy => "false"} (
+                            %mn 1
+                            %mo{:stretchy => "false"} |
+                            %mn 32
+                            %mo ,
+                            %mi ℝ
+                          %annotation{:encoding => "application/x-tex"} OSp(1 \vert32,\mathbb{R}
+                %strong 528
+                (1998) 432-450 &amp;lbrack;
+                %a{:href => "https://arxiv.org/abs/hep-th/9803138"}> arXiv:hep-th/9803138
+                \&amp;rbrack;
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Henning+Samtleben"}> Henning Samtleben
+                ,
+                = succeed ":" do
+                  %a.existingWikiWord{:href => "/nlab/show/Ergin+Sezgin"} Ergin Sezgin
+                %em Singletons in supersymmetric field theories and in supergravity
+                \&amp;lbrack;
+                %a{:href => "https://arxiv.org/abs/2409.03000"}> arXiv:2409.03000
+                \&amp;rbrack;
+            %li
+              %p
+                M. A. Vasiliev:
+                %em Dirac Singleton as a Relativistic Field Beyond Standard Model
+                \&amp;lbrack;
+                %a{:href => "https://arxiv.org/abs/2505.01915"}> arXiv:2505.01915
+                \&amp;rbrack;
+        .revisedby
+          %p
+            Last revised on May  6, 2025 at 06:39:32.
+            See the
+            %a{:href => "/nlab/history/singleton+representation", :style => "color: #005c19"} history
+            of this page for a list of all contributions to it.
+        .navigation.navfoot
+          %a#edit.navlink{:accesskey => "E", :href => "/nlab/edit/singleton+representation", :rel => "nofollow"} Edit
+          %a{:href => "https://nforum.ncatlab.org/discussion/8716/#Item_1"} Discuss
+          %span.backintime
+            %a#to_previous_revision.navlinkbackintime{:accesskey => "B", :href => "/nlab/revision/singleton+representation/7", :rel => "nofollow"} Previous revision
+          %a#see_changes.navlink{:accesskey => "C", :href => "/nlab/show/diff/singleton+representation", :rel => "nofollow"} Changes from previous revision
+          %a#history.navlink{:accesskey => "S", :href => "/nlab/history/singleton+representation", :rel => "nofollow"} History (7 revisions)
+          %a{:href => "/nlab/show/singleton+representation/cite", :style => "color: black"} Cite
+          %a#view_print{:accesskey => "p", :href => "/nlab/print/singleton+representation", :rel => "nofollow"} Print
+          %a#view_source{:href => "/nlab/source/singleton+representation", :rel => "nofollow"} Source
+      / Content
+    / Container

@@ -1,0 +1,3873 @@
+!!! XML
+!!! 1.1
+%html{:xmlns => "http://www.w3.org/1999/xhtml"}
+  %head
+    %title
+      Dold-Kan correspondence in nLab
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:content => "index,follow", :name => "robots"}/
+    %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/
+    %link{:href => "/stylesheets/instiki.css?1676280126", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/stylesheets/mathematics.css?1660229990", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/stylesheets/syntax.css?1660229990", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/stylesheets/nlab.css?1676280126", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css", :rel => "stylesheet", :type => "text/css"}/
+    :css
+      h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+        color: #226622;
+      }
+      a:visited.existingWikiWord {
+        color: #164416;
+      }
+    :css
+      <!--/*--><![CDATA[/*><!--*/
+          .toc ul {margin: 0; padding: 0;}
+      .toc ul ul {margin: 0; padding: 0 0 0 10px;}
+      .toc li > p {margin: 0}
+      .toc ul li {list-style-type: none; position: relative;}
+      .toc div {border-top:1px dotted #ccc;}
+      .rightHandSide h2 {font-size: 1.5em;color:#008B26}
+      table.plaintable {
+          border-collapse:collapse;
+          margin-left:30px;
+          border:0;
+      }
+      .plaintable td {border:1px solid #000; padding: 3px;}
+      .plaintable th {padding: 3px;}
+      .plaintable caption {
+          font-weight: bold;
+          font-size:1.1em;
+          text-align:center;
+          margin-left:30px;
+      }
+          
+         
+      /* Query boxes for questioning and answering mechanism */
+      div.query{
+      background: #f6fff3;
+      border: solid #ce9;
+      border-width: 2px 1px;
+      padding: 0 1em;
+      margin: 0 1em;
+      max-height: 20em;
+      overflow: auto;
+      }
+      
+      /* Standout boxes for putting important text */
+      div.standout{
+      background: #fff1f1;
+      border: solid black;
+      border-width: 2px 1px;
+      padding: 0 1em;
+      margin: 0 1em;
+      overflow: auto;
+      }
+      
+      /* Icon for links to n-category arXiv documents 
+       (commented out for now i.e. disabled)
+      a[href*="http://arxiv.org/"] {
+        background-image: url(../files/arXiv_icon.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 22px;
+        } */
+          
+      /* Icon for links to n-category cafe posts (disabled) 
+      a[href*="http://golem.ph.utexas.edu/category"] {
+        background-image: url(../files/n-cafe_5.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 25px;
+        } */
+      
+      /* Icon for links to pdf files (disabled)
+      a[href$=".pdf"] {
+        background-image: url(../files/pdficon_small.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 25px;
+        } */
+      
+      /* Icon for links to pages, etc. -inside- pdf files (disabled)
+      a[href*=".pdf#"] {
+        background-image: url(../files/pdf_entry.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 25px;
+        } */
+      
+      a.existingWikiWord {
+      color: #226622;
+      }
+      
+      a.existingWikiWord:visited {
+      color: #226622;
+      }
+      
+      
+      a.existingWikiWord[title] {
+      border: 0px;
+      color: #aa0505;
+      text-decoration: none;
+      }
+          
+      a.existingWikiWord[title]:visited {
+      border: 0px;
+      color: #551111;
+      text-decoration: none;
+      }
+      
+      a[href^="http://"] {
+      border: 0px;
+      color: #003399;
+      }
+      
+      a[href^="http://"]:visited {
+      border: 0px;
+      color: #330066;
+      }
+      
+      a[href^="https://"] {
+      border: 0px;
+      color: #003399;
+      }
+      
+      a[href^="https://"]:visited {
+      border: 0px;
+      color: #330066;
+      }
+      
+      div.dropDown .hide {
+      display: none;
+      }
+      
+      div.dropDown:hover .hide {
+      display:block;
+      }
+      
+      div.clickDown .hide {
+      display: none;
+      }
+      
+      div.clickDown:focus {
+      outline:none;
+      }
+      
+      div.clickDown:focus .hide, div.clickDown:hover .hide {
+      display: block;
+      }
+      
+      div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+      display:block;
+      }
+      
+      div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+      display:none;
+      }
+      
+      div.clickDown .clickToReveal:after {
+      content: "A(Hover to reveal, click to "hold")";
+      font-size: 60%;
+      }
+      
+      div.clickDown .clickToHide:after {
+      content: "A(Click to hide)";
+      font-size: 60%;
+      }
+      div.clickDown .clickToHide, div.clickDown .clickToReveal {
+      white-space: pre-wrap;
+      }
+      
+      .un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+      margin-left: 1em;
+      }
+      
+      span.theorem_label {
+      margin-left: -1em;
+      }
+      .proof span.theorem_label {
+      margin-left: 0em;
+      }
+      :target {
+          background-color: #BBBBBB;
+          border-radius: 5pt;
+      }
+      
+        /*]]>*/-->
+    %script{:src => "/javascripts/prototype.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/effects.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/dragdrop.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/controls.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/application.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/page_helper.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/thm_numbering.js?1660229990", :type => "text/javascript"}
+    %script{:type => "text/x-mathjax-config"}
+      :cdata
+        <!--//--><![CDATA[//><!--
+        MathJax.Ajax.config.path["Contrib"] = "/MathJax";
+        MathJax.Hub.Config({
+        MathML: { useMathMLspacing: true },
+        "HTML-CSS": { scale: 90,
+        extensions: ["handle-floats.js"]
+        }
+        });
+        MathJax.Hub.Queue( function () {
+        var fos = document.getElementsByTagName('foreignObject');
+        for (var i = 0; i < fos.length; i++) {
+        MathJax.Hub.Typeset(fos[i]);
+        }
+        });
+        \//--><!]]>
+    :javascript
+      <!--//--><![CDATA[//><!--
+      window.addEventListener("DOMContentLoaded", function () {
+        var div = document.createElement('div');
+        var math = document.createElementNS('http://www.w3.org/1998/Math/MathML', 'math');
+        document.body.appendChild(div);
+        div.appendChild(math);
+      // Test for MathML support comparable to WebKit version https://trac.webkit.org/changeset/203640 or higher.
+        div.setAttribute('style', 'font-style: italic');
+        var mathml_unsupported = !(window.getComputedStyle(div.firstChild).getPropertyValue('font-style') === 'normal');
+        div.parentNode.removeChild(div);
+        if (mathml_unsupported) {
+          // MathML does not seem to be supported...
+          var s = document.createElement('script');
+          s.src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=MML_HTMLorMML-full";
+          document.querySelector('head').appendChild(s);
+        } else {
+          document.head.insertAdjacentHTML("beforeend", '<style>svg[viewBox] {max-width: 100%}</style>');
+        }
+      });
+      //--><!]]>
+    %link{:href => "https://ncatlab.org/nlab/atom_with_headlines", :rel => "alternate", :title => "Atom with headlines", :type => "application/atom+xml"}/
+    %link{:href => "https://ncatlab.org/nlab/atom_with_content", :rel => "alternate", :title => "Atom with full content", :type => "application/atom+xml"}/
+    :javascript
+      document.observe("dom:loaded", function() {
+        generateThmNumbers();
+      });
+  %body
+    #Container
+      #Content
+        %h1#pageName
+          %span{:style => "float: left; margin: 0.5em 0.25em -0.25em 0"}
+            %svg{:height => "1.8em", :viewbox => "0 0 190 181", :width => "1.872em", :xmlns => "http://www.w3.org/2000/svg"}
+              %path{:d => "M72.8 145c-1.6 17.3-15.7 10-23.6 20.2-5.6 7.3 4.8 15 11.4 15 11.5-.2 19-13.4 26.4-20.3 3.3-3 8.2-4 11.2-7.2a14 14 0 0 0 2.9-11.1c-1.4-9.6-12.4-18.6-16.9-27.2-5-9.6-10.7-27.4-24.1-27.7-17.4-.3-.4 26 4.7 30.7 2.4 2.3 5.4 4.1 7.3 6.9 1.6 2.3 2.1 5.8-1 7.2-5.9 2.6-12.4-6.3-15.5-10-8.8-10.6-15.5-23-26.2-31.8-5.2-4.3-11.8-8-18-3.7-7.3 4.9-4.2 12.9.2 18.5a81 81 0 0 0 30.7 23c3.3 1.5 12.8 5.6 10 10.7-2.5 5.2-11.7 3-15.6 1.1-8.4-3.8-24.3-21.3-34.4-13.7-3.5 2.6-2.3 7.6-1.2 11.1 2.8 9 12.2 17.2 20.9 20.5 17.3 6.7 34.3-8 50.8-12.1z", :fill => "#226622"}
+              %path{:d => "M145.9 121.3c-.2-7.5 0-19.6-4.5-26-5.4-7.5-12.9-1-14.1 5.8-1.4 7.8 2.7 14.1 4.8 21.3 3.4 12 5.8 29-.8 40.1-3.6-6.7-5.2-13-7-20.4-2.1-8.2-12.8-13.2-15.1-1.9-2 9.7 9 21.2 12 30.1 1.2 4 2 8.8 6.4 10.3 6.9 2.3 13.3-4.7 17.7-8.8 12.2-11.5 36.6-20.7 43.4-36.4 6.7-15.7-13.7-14-21.3-7.2-9.1 8-11.9 20.5-23.6 25.1 7.5-23.7 31.8-37.6 38.4-61.4 2-7.3-.8-29.6-13-19.8-14.5 11.6-6.6 37.6-23.3 49.2z", :fill => "#a41e32"}
+              %path{:d => "M86.3 47.5c0-13-10.2-27.6-5.8-40.4 2.8-8.4 14.1-10.1 17-1 3.8 11.6-.3 26.3-1.8 38 11.7-.7 10.5-16 14.8-24.3 2.1-4.2 5.7-9.1 11-6.7 6 2.7 7.4 9.2 6.6 15.1-2.2 14-12.2 18.8-22.4 27-3.4 2.7-8 6.6-5.9 11.6 2 4.4 7 4.5 10.7 2.8 7.4-3.3 13.4-16.5 21.7-16 14.6.7 12 21.9.9 26.2-5 1.9-10.2 2.3-15.2 3.9-5.8 1.8-9.4 8.7-15.7 8.9-6.1.1-9-6.9-14.3-9-14.4-6-33.3-2-44.7-14.7-3.7-4.2-9.6-12-4.9-17.4 9.3-10.7 28 7.2 35.7 12 2 1.1 11 6.9 11.4 1.1.4-5.2-10-8.2-13.5-10-11.1-5.2-30-15.3-35-27.3-2.5-6 2.8-13.8 9.4-13.6 6.9.2 13.4 7 17.5 12C70.9 34 75 43.8 86.3 47.4z", :fill => "#193c78"}
+          %span.webName nLab
+          Dold-Kan correspondence
+        .navigation
+          %span.skipNav
+            %a{:href => "#navEnd"} Skip the Navigation Links
+            |
+          %span{:style => "display:inline-block; width: 0.3em;"}
+          %a{:accesskey => "H", :href => "/nlab/show/HomePage", :title => "Home page"} Home Page
+          |
+          %a{:accesskey => "A", :href => "/nlab/all_pages", :title => "List of all pages"} All Pages
+          |
+          %a{:accesskey => "U", :href => "/nlab/latest_revisions", :title => "Latest edits and page creations"} Latest Revisions
+          |
+          %a{:href => "https://nforum.ncatlab.org/discussion/394/#Item_39", :style => "color: black", :title => "Discuss this page in its dedicated thread on the nForum"} Discuss this page
+          |
+          %form#navigationSearchForm{"accept-charset" => "utf-8", :action => "/nlab/search", :method => "get"}
+            %fieldset.search
+              %input#searchField{:name => "query", :onblur => "this.value == '' ? this.value = 'Search' : true", :onfocus => "this.value == 'Search' ? this.value = '' : true", :style => "display:inline-block; float: left;", :type => "text", :value => "Search"}/
+          %span#navEnd
+        #revision
+          %meta{:content => "application/xhtml+xml;charset=utf-8", "http-equiv" => "Content-type"}/
+          %title Contents
+          .rightHandSide
+            .toc.clickDown{:tabindex => "0"}
+              %h3#context Context
+              %h4#homological_algebra Homological algebra
+              .hide
+                %div
+                  %p
+                    %strong
+                      %a.existingWikiWord{:href => "/nlab/show/homological+algebra"} homological algebra
+                  %p
+                    (also
+                    = succeed ")" do
+                      %a.existingWikiWord{:href => "/nlab/show/nonabelian+homological+algebra"} nonabelian homological algebra
+                  %p
+                    %em
+                      %a.existingWikiWord{:href => "/schreiber/show/Introduction+to+Homological+Algebra"} Introduction
+                  %p
+                    %strong Context
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/additive+and+abelian+categories"} additive and abelian categories
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/Ab-enriched+category"} Ab-enriched category
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/pre-additive+category"} pre-additive category
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/additive+category"} additive category
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/pre-abelian+category"} pre-abelian category
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/abelian+category"} abelian category
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/Grothendieck+category"} Grothendieck category
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/abelian+sheaves"} abelian sheaves
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/semi-abelian+category"} semi-abelian category
+                  %p
+                    %strong Basic definitions
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/kernel"}> kernel
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/cokernel"} cokernel
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/complex"} complex
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/differential"} differential
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/homology"} homology
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/category+of+chain+complexes"} category of chain complexes
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/chain+complex"} chain complex
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/chain+map"} chain map
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/chain+homotopy"} chain homotopy
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/chain+homology+and+cohomology"} chain homology and cohomology
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/quasi-isomorphism"} quasi-isomorphism
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/homological+resolution"} homological resolution
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/cochain+on+a+simplicial+set"} simplicial homology
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/generalized+homology"} generalized homology
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/exact+sequence"}> exact sequence
+                        ,
+                      %ul
+                        %li
+                          %a.existingWikiWord{:href => "/nlab/show/short+exact+sequence"}> short exact sequence
+                          ,
+                          = succeed "," do
+                            %a.existingWikiWord{:href => "/nlab/show/long+exact+sequence"} long exact sequence
+                          %a.existingWikiWord{:href => "/nlab/show/split+exact+sequence"} split exact sequence
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/injective+object"}> injective object
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/projective+object"} projective object
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/injective+resolution"}> injective resolution
+                            ,
+                            %a.existingWikiWord{:href => "/nlab/show/projective+resolution"} projective resolution
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/flat+resolution"} flat resolution
+                  %p
+                    %strong Stable homotopy theory notions
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/derived+category"} derived category
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/triangulated+category"}> triangulated category
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/enhanced+triangulated+category"} enhanced triangulated category
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/stable+%28%E2%88%9E%2C1%29-category"} stable (∞,1)-category
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/stable+model+category"} stable model category
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/pretriangulated+dg-category"} pretriangulated dg-category
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/A-%E2%88%9E-category"} A-∞-category
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/%28%E2%88%9E%2C1%29-category+of+chain+complexes"} (∞,1)-category of chain complexes
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/derived+functor"}> derived functor
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/derived+functor+in+homological+algebra"} derived functor in homological algebra
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/Tor"}> Tor
+                            ,
+                            %a.existingWikiWord{:href => "/nlab/show/Ext"} Ext
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/homotopy+limit"}> homotopy limit
+                            ,
+                            %a.existingWikiWord{:href => "/nlab/show/homotopy+colimit"} homotopy colimit
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/lim%5E1+and+Milnor+sequences"} lim^1 and Milnor sequences
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/fr-code"} fr-code
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/abelian+sheaf+cohomology"} abelian sheaf cohomology
+                  %p
+                    %strong Constructions
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/double+complex"} double complex
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Koszul-Tate+resolution"}> Koszul-Tate resolution
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/BRST-BV+complex"} BRST-BV complex
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/spectral+sequence"} spectral sequence
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/spectral+sequence+of+a+filtered+complex"} spectral sequence of a filtered complex
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/spectral+sequence+of+a+double+complex"} spectral sequence of a double complex
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/Grothendieck+spectral+sequence"} Grothendieck spectral sequence
+                          %ul
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/Leray+spectral+sequence"} Leray spectral sequence
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/Serre+spectral+sequence"} Serre spectral sequence
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/Hochschild-Serre+spectral+sequence"} Hochschild-Serre spectral sequence
+                  %p
+                    %strong Lemmas
+                  %p
+                    %a.existingWikiWord{:href => "/nlab/show/diagram+chasing"} diagram chasing
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/3x3+lemma"} 3x3 lemma
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/four+lemma"}> four lemma
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/five+lemma"} five lemma
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/snake+lemma"}> snake lemma
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/connecting+homomorphism"} connecting homomorphism
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/horseshoe+lemma"} horseshoe lemma
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Baer%27s+criterion"} Baer's criterion
+                  %p
+                    %a.existingWikiWord{:href => "/nlab/show/Schanuel%27s+lemma"} Schanuel's lemma
+                  %p
+                    %strong Homology theories
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/singular+homology"} singular homology
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/cyclic+homology"} cyclic homology
+                  %p
+                    %strong Theorems
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Dold-Kan+correspondence"} Dold-Kan correspondence
+                        \/
+                        = succeed "," do
+                          %a.existingWikiWord{:href => "/nlab/show/monoidal+Dold-Kan+correspondence"} monoidal
+                        %a.existingWikiWord{:href => "/nlab/show/operadic+Dold-Kan+correspondence"} operadic
+                      %ul
+                        %li
+                          %a.existingWikiWord{:href => "/nlab/show/Moore+complex"}> Moore complex
+                          ,
+                          = succeed "," do
+                            %a.existingWikiWord{:href => "/nlab/show/Alexander-Whitney+map"} Alexander-Whitney map
+                          %a.existingWikiWord{:href => "/nlab/show/Eilenberg-Zilber+map"} Eilenberg-Zilber map
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Eilenberg-Zilber+theorem"} Eilenberg-Zilber theorem
+                      %ul
+                        %li
+                          %a.existingWikiWord{:href => "/nlab/show/cochain+on+a+simplicial+set"} cochain on a simplicial set
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/universal+coefficient+theorem"} universal coefficient theorem
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/K%C3%BCnneth+theorem"} Künneth theorem
+              %h4#homotopy_theory Homotopy theory
+              .hide
+                %div
+                  %p
+                    %strong
+                      %a.existingWikiWord{:href => "/nlab/show/homotopy+theory"}> homotopy theory
+                      ,
+                      = succeed "," do
+                        %a.existingWikiWord{:href => "/nlab/show/%28%E2%88%9E%2C1%29-category+theory"} (∞,1)-category theory
+                      %a.existingWikiWord{:href => "/nlab/show/homotopy+type+theory"} homotopy type theory
+                  %p
+                    flavors:
+                    = succeed "," do
+                      %a.existingWikiWord{:href => "/nlab/show/stable+homotopy+theory"} stable
+                    = succeed "," do
+                      %a.existingWikiWord{:href => "/nlab/show/equivariant+homotopy+theory"} equivariant
+                    = succeed "," do
+                      %a.existingWikiWord{:href => "/nlab/show/rational+homotopy+theory"} rational
+                    = succeed "," do
+                      %a.existingWikiWord{:href => "/nlab/show/p-adic+homotopy+theory"} p-adic
+                    = succeed "," do
+                      %a.existingWikiWord{:href => "/nlab/show/proper+homotopy+theory"} proper
+                    = succeed "," do
+                      %a.existingWikiWord{:href => "/nlab/show/geometric+homotopy+theory"} geometric
+                    = succeed "," do
+                      %a.existingWikiWord{:href => "/nlab/show/cohesive+homotopy+theory"} cohesive
+                    = succeed "\u2026" do
+                      %a.existingWikiWord{:href => "/nlab/show/directed+homotopy+theory"} directed
+                  %p
+                    models:
+                    = succeed "," do
+                      %a.existingWikiWord{:href => "/nlab/show/topological+homotopy+theory"} topological
+                    = succeed "," do
+                      %a.existingWikiWord{:href => "/nlab/show/simplicial+homotopy+theory"} simplicial
+                    = succeed "," do
+                      %a.existingWikiWord{:href => "/nlab/show/localic+homotopy+theory"} localic
+                  %p
+                    see also
+                    %strong
+                      %a.existingWikiWord{:href => "/nlab/show/algebraic+topology"} algebraic topology
+                  %p
+                    %strong Introductions
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Introduction+to+Topology+--+2"} Introduction to Basic Homotopy Theory
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Introduction+to+Homotopy+Theory"} Introduction to Abstract Homotopy Theory
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/geometry+of+physics+--+homotopy+types"} geometry of physics – homotopy types
+                  %p
+                    %strong Definitions
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/homotopy"}> homotopy
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/higher+homotopy"} higher homotopy
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/homotopy+type"} homotopy type
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Pi-algebra"}> Pi-algebra
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/spherical+object+and+Pi%28A%29-algebra"} spherical object and Pi(A)-algebra
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/homotopy+coherent+category+theory"} homotopy coherent category theory
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/homotopical+category"} homotopical category
+                          %ul
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/model+category"} model category
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/category+of+fibrant+objects"}> category of fibrant objects
+                                ,
+                                %a.existingWikiWord{:href => "/nlab/show/cofibration+category"} cofibration category
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/Waldhausen+category"} Waldhausen category
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/homotopy+category"} homotopy category
+                          %ul
+                            %li
+                              %a.existingWikiWord{:href => "/nlab/show/Ho%28Top%29"} Ho(Top)
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/%28%E2%88%9E%2C1%29-category"} (∞,1)-category
+                      %ul
+                        %li
+                          %a.existingWikiWord{:href => "/nlab/show/homotopy+category+of+an+%28%E2%88%9E%2C1%29-category"} homotopy category of an (∞,1)-category
+                  %p
+                    %strong Paths and cylinders
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/left+homotopy"} left homotopy
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/cylinder+object"} cylinder object
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/mapping+cone"} mapping cone
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/right+homotopy"} right homotopy
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/path+object"} path object
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/mapping+cocone"} mapping cocone
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/generalized+universal+bundle"} universal bundle
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/interval+object"} interval object
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/homotopy+localization"} homotopy localization
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/infinitesimal+interval+object"} infinitesimal interval object
+                  %p
+                    %strong Homotopy groups
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/homotopy+group"} homotopy group
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/fundamental+group"} fundamental group
+                          %ul
+                            %li
+                              %a.existingWikiWord{:href => "/nlab/show/fundamental+group+of+a+topos"} fundamental group of a topos
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/Brown-Grossman+homotopy+group"} Brown-Grossman homotopy group
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/categorical+homotopy+groups+in+an+%28%E2%88%9E%2C1%29-topos"} categorical homotopy groups in an (∞,1)-topos
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/geometric+homotopy+groups+in+an+%28%E2%88%9E%2C1%29-topos"} geometric homotopy groups in an (∞,1)-topos
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/fundamental+%E2%88%9E-groupoid"} fundamental ∞-groupoid
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/fundamental+groupoid"} fundamental groupoid
+                          %ul
+                            %li
+                              %a.existingWikiWord{:href => "/nlab/show/path+groupoid"} path groupoid
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/fundamental+%E2%88%9E-groupoid+in+a+locally+%E2%88%9E-connected+%28%E2%88%9E%2C1%29-topos"} fundamental ∞-groupoid in a locally ∞-connected (∞,1)-topos
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/fundamental+%E2%88%9E-groupoid+of+a+locally+%E2%88%9E-connected+%28%E2%88%9E%2C1%29-topos"} fundamental ∞-groupoid of a locally ∞-connected (∞,1)-topos
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/fundamental+%28%E2%88%9E%2C1%29-category"} fundamental (∞,1)-category
+                      %ul
+                        %li
+                          %a.existingWikiWord{:href => "/nlab/show/fundamental+category"} fundamental category
+                  %p
+                    %strong Basic facts
+                  %ul
+                    %li
+                      %a.existingWikiWord{:href => "/nlab/show/fundamental+group+of+the+circle+is+the+integers"} fundamental group of the circle is the integers
+                  %p
+                    %strong Theorems
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/fundamental+theorem+of+covering+spaces"} fundamental theorem of covering spaces
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Freudenthal+suspension+theorem"} Freudenthal suspension theorem
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Blakers-Massey+theorem"} Blakers-Massey theorem
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/higher+homotopy+van+Kampen+theorem"} higher homotopy van Kampen theorem
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/nerve+theorem"} nerve theorem
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Whitehead%27s+theorem"} Whitehead's theorem
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Hurewicz+theorem"} Hurewicz theorem
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Galois+theory"} Galois theory
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/homotopy+hypothesis"}> homotopy hypothesis
+                        \-theorem
+          %h1#contents Contents
+          .maruku_toc
+            %ul
+              %li
+                %a{:href => "#idea"} Idea
+              %li
+                %a{:href => "#statement_abelian_case"} Statement (abelian case)
+              %ul
+                %li
+                  %a{:href => "#EquivalenceOfCategories"} Equivalence of categories
+                %li
+                  %a{:href => "#ModelCatVersion"} Quillen equivalence of model categories
+              %li
+                %a{:href => "#StatementAdditiveACase"} Statement (additive case)
+              %li
+                %a{:href => "#StatementGeneral"} Statement (general nonabelian case)
+              %ul
+                %li
+                  %a{:href => "#GlobularAndCubical"} Globular and cubical version
+                %li
+                  %a{:href => "#presentation_of_strict_groupal_groupoids"}
+                    Presentation of strict groupal
+                    = succeed "-groupoids" do
+                      %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                        %semantics
+                          %mrow
+                            %mn ∞
+                          %annotation{:encoding => "application/x-tex"} \infty
+              %li
+                %a{:href => "#nonabelian_forms_of_the_doldkan_correspondence"} Non-abelian forms of the Dold-Kan correspondence.
+              %li
+                %a{:href => "#StableDoldKanCorrespondence"} Stable Dold-Kan correspondence
+              %li
+                %a{:href => "#Variants"} Generalizations and variants
+              %li
+                %a{:href => "#Applications"} Applications
+              %ul
+                %li
+                  %a{:href => "#EilenbergMacLaneObjects"} Eilenberg-MacLane objects
+                %li
+                  %a{:href => "#LoopingAndDelooping"} Looping and delooping
+                %li
+                  %a{:href => "#abelian_sheaf_cohomology_in_nonabelian_cohomology"} Abelian sheaf cohomology in nonabelian cohomology
+                %li
+                  %a{:href => "#computational_aspects"} Computational aspects
+              %li
+                %a{:href => "#related_concepts"} Related concepts
+              %li
+                %a{:href => "#references"} References
+          %h2#idea Idea
+          %p
+            The
+            %em Dold–Kan correspondence
+            asserts there is an
+            %a.existingWikiWord{:href => "/nlab/show/equivalence+of+categories"} equivalence of categories
+            between
+            %a.existingWikiWord{:href => "/nlab/show/abelian+group"} abelian
+            %a.existingWikiWord{:href => "/nlab/show/simplicial+groups"} simplicial groups
+            and
+            %a.existingWikiWord{:href => "/nlab/show/connective+chain+complex"} connective
+            %a.existingWikiWord{:href => "/nlab/show/chain+complexes"} chain complexes
+            of
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/abelian+groups"} abelian groups
+          %p
+            Since every
+            %a.existingWikiWord{:href => "/nlab/show/simplicial+group"} simplicial group
+            is in particular a
+            %a.existingWikiWord{:href => "/nlab/show/Kan+complex"} Kan complex
+            with
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/group+object"} group structure
+            %a.existingWikiWord{:href => "/nlab/show/%E2%88%9E-groupoid"} ∞-groupoid
+            with group structure, hence an
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/%E2%88%9E-group"} ∞-group
+            %a.existingWikiWord{:href => "/nlab/show/connective+chain+complexes"} connective chain complexes
+            are a model for certain
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/abelian+%E2%88%9E-groups"} abelian ∞-groups
+            %a.existingWikiWord{:href => "/nlab/show/homological+algebra"} homological algebra
+            and general
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/simplicial+homotopy+theory"} simplicial homotopy theory
+            %a.existingWikiWord{:href => "/nlab/show/cosmic+cube"} cosmic cube
+            of
+            = succeed ")." do
+              %a.existingWikiWord{:href => "/nlab/show/higher+category+theory"} higher category theory
+            %a.existingWikiWord{:href => "/nlab/show/homological+algebra"} homological algebra
+            apply. In fact, the
+            %a.existingWikiWord{:href => "/nlab/show/functor"} functor
+            that identifies simplicial abelian groups with their corresponding chain complexes – the
+            %a.existingWikiWord{:href => "/nlab/show/Moore+complex"} normalized chains functor
+            – does precisely this: it
+            %em normalizes
+            an abelian group by discarding irrelevant information and constructing a smaller and less redundant model for it.
+          %p
+            There are various variants and generalizations of the Dold-Kan correspondence. These are discussed further
+            = succeed "." do
+              %a{:href => "#Variants"} below
+          %h2#statement_abelian_case Statement (abelian case)
+          %p
+            Let
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi A
+                %annotation{:encoding => "application/x-tex"} A
+            be an
+            %a.existingWikiWord{:href => "/nlab/show/abelian+category"} abelian category
+            (or more generally a
+            %a.existingWikiWord{:href => "/nlab/show/finitely+complete+category"} finitely complete
+            = succeed ")." do
+              %a.existingWikiWord{:href => "/nlab/show/additive+category"} additive category
+          %p
+            We say a
+            %a.existingWikiWord{:href => "/nlab/show/chain+complex"} chain complex
+            in
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi A
+                %annotation{:encoding => "application/x-tex"} A
+            is
+            %em connective
+            if it is concentrated in non-negative degree. The
+            %a.existingWikiWord{:href => "/nlab/show/full+subcategory"} full subcategory
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msubsup
+                    %mi Ch
+                    %mo •
+                    %mo +
+                  %mo{:stretchy => "false"} (
+                  %mi A
+                  %mo{:stretchy => "false"} )
+                  %mo ↪
+                  %msub
+                    %mi Ch
+                    %mo •
+                  %mo{:stretchy => "false"} (
+                  %mi A
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"}
+                  Ch^+_\bullet(A) \hookrightarrow Ch_\bullet(A)
+          %p
+            of
+            %a.existingWikiWord{:href => "/nlab/show/connective+chain+complexes"} connective chain complexes
+            is naturally identified with the category of
+            = succeed "-graded" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi ℕ
+                  %annotation{:encoding => "application/x-tex"} \mathbb{N}
+          %h3#EquivalenceOfCategories Equivalence of categories
+          %p
+          .num_theorem
+            %h6 Theorem
+            %p
+              %strong (Dold–Puppe)
+              For
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi A
+                  %annotation{:encoding => "application/x-tex"} A
+              an
+              %a.existingWikiWord{:href => "/nlab/show/abelian+category"} abelian category
+              there is an
+              %a.existingWikiWord{:href => "/nlab/show/equivalence+of+categories"} equivalence of categories
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi N
+                    %mspace{:width => "thickmathspace"}
+                    %mo{:lspace => "verythinmathspace"} :
+                    %mspace{:width => "thickmathspace"}
+                    %msup
+                      %mi A
+                      %mrow
+                        %msup
+                          %mi Δ
+                          %mi op
+                    %mover
+                      %mo →
+                      %mo ←
+                    %msubsup
+                      %mi Ch
+                      %mo •
+                      %mo +
+                    %mo{:stretchy => "false"} (
+                    %mi A
+                    %mo{:stretchy => "false"} )
+                    %mspace{:width => "thickmathspace"}
+                    %mo{:lspace => "verythinmathspace"} :
+                    %mspace{:width => "thickmathspace"}
+                    %mi Γ
+                  %annotation{:encoding => "application/x-tex"}
+                    N \;\colon\; A^{\Delta^{op}}
+                    \\stackrel{\leftarrow}{\to} Ch_\bullet^+(A) \;\colon\; \Gamma
+            %p between
+            %ul
+              %li
+                %p
+                  the
+                  %a.existingWikiWord{:href => "/nlab/show/category+of+simplicial+objects"} category of simplicial objects
+                  in
+                  = succeed ";" do
+                    %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                      %semantics
+                        %mrow
+                          %mi A
+                        %annotation{:encoding => "application/x-tex"} A
+              %li
+                %p
+                  the
+                  %a.existingWikiWord{:href => "/nlab/show/category+of+chain+complexes"} category of connective chain complexes
+                  in
+                  = succeed ";" do
+                    %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                      %semantics
+                        %mrow
+                          %mi A
+                        %annotation{:encoding => "application/x-tex"} A
+            %p where
+            %ul
+              %li
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi N
+                    %annotation{:encoding => "application/x-tex"} N
+                is the
+                = succeed "/normalized" do
+                  %a.existingWikiWord{:href => "/nlab/show/normalized+chains+complex"} normalized chains complex
+                %a.existingWikiWord{:href => "/nlab/show/Moore+complex"} Moore complex
+                functor.
+            %p
+          %p
+            (
+            %a{:href => "#Dold58"}> Dold 58
+            ,
+            = succeed "," do
+              %a{:href => "#Kan58"} Kan 58
+            = succeed ")." do
+              %a{:href => "#DoldPuppe61"} Dold-Puppe 61
+          %p
+          .num_theorem
+            %h6 Theorem
+            %p
+              %strong (Kan)
+              %br/
+              For the case that
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi A
+                  %annotation{:encoding => "application/x-tex"} A
+              is the category
+              %a.existingWikiWord{:href => "/nlab/show/Ab"} Ab
+              of
+              = succeed "s," do
+                %a.existingWikiWord{:href => "/nlab/show/abelian+group"} abelian group
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi N
+                  %annotation{:encoding => "application/x-tex"} N
+              and
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi Γ
+                  %annotation{:encoding => "application/x-tex"} \Gamma
+              are
+              %a.existingWikiWord{:href => "/nlab/show/nerve+and+realization"} nerve and realization
+              with respect to the cosimplicial chain complex
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi ℤ
+                    %mo{:stretchy => "false"} [
+                    %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                    %mo{:stretchy => "false"} ]
+                    %mspace{:width => "thickmathspace"}
+                    %mo{:lspace => "verythinmathspace"} :
+                    %mspace{:width => "thickmathspace"}
+                    %mi Δ
+                    %mo ⟶
+                    %msub
+                      %mi Ch
+                      %mo +
+                    %mo{:stretchy => "false"} (
+                    %mi Ab
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"}
+                    \\mathbb{Z}[-]
+                    \\;\colon\;
+                    \\Delta \longrightarrow Ch_+(Ab)
+            %p
+              that sends the standard
+              = succeed "-" do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi n
+                    %annotation{:encoding => "application/x-tex"} n
+              %a.existingWikiWord{:href => "/nlab/show/simplex"} simplex
+              to the normalized
+              %a.existingWikiWord{:href => "/nlab/show/Moore+complex"} Moore complex
+              of the
+              %a.existingWikiWord{:href => "/nlab/show/free+simplicial+abelian+group"} free simplicial abelian group
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi F
+                      %mi ℤ
+                    %mo{:stretchy => "false"} (
+                    %msup
+                      %mi Δ
+                      %mi n
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} F_{\mathbb{Z}}(\Delta^n)
+              on the
+              %a.existingWikiWord{:href => "/nlab/show/simplicial+set"} simplicial set
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msup
+                        %mi Δ
+                        %mi n
+                    %annotation{:encoding => "application/x-tex"} \Delta^n
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi Γ
+                    %mo{:stretchy => "false"} (
+                    %mi V
+                    %mo{:stretchy => "false"} )
+                    %mspace{:width => "thickmathspace"}
+                    %mo{:lspace => "verythinmathspace"} :
+                    %mspace{:width => "thickmathspace"}
+                    %mo{:stretchy => "false"} [
+                    %mi k
+                    %mo{:stretchy => "false"} ]
+                    %mo ↦
+                    %msub
+                      %mi Hom
+                      %mrow
+                        %msubsup
+                          %mi Ch
+                          %mo •
+                          %mo +
+                        %mo{:stretchy => "false"} (
+                        %mi Ab
+                        %mo{:stretchy => "false"} )
+                    %mo{:maxsize => "1.8em", :minsize => "1.8em"} (
+                    %mi N
+                    %mo{:maxsize => "1.2em", :minsize => "1.2em"} (
+                    %mi ℤ
+                    %mo{:stretchy => "false"} (
+                    %mi Δ
+                    %mo{:stretchy => "false"} [
+                    %mi k
+                    %mo{:stretchy => "false"} ]
+                    %mo{:stretchy => "false"} )
+                    %mo{:maxsize => "1.2em", :minsize => "1.2em"} )
+                    %mo ,
+                    %mspace{:width => "thinmathspace"}
+                    %mi V
+                    %mo{:maxsize => "1.8em", :minsize => "1.8em"} )
+                    %mspace{:width => "thinmathspace"}
+                    %mo .
+                  %annotation{:encoding => "application/x-tex"}
+                    \\Gamma(V)
+                    \\;\colon\;
+                    [k]
+                    \\mapsto
+                    Hom_{Ch_\bullet^+(Ab)}
+                    \\Big(
+                    N
+                    \\big(
+                    \\mathbb{Z}(\Delta[k])
+                    \\big),
+                    \\,
+                    V
+                    \\Big)
+                    \\,.
+            %p
+          %p
+            This is due to (
+            %a{:href => "#Kan58"}> Kan 58
+            ).
+          %p More explicitly:
+          %p
+          #ExplicitFormOfGamma.num_prop
+            %h6 Proposition
+            %p
+            %ul
+              %li
+                %p
+                  For
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi V
+                        %mo ∈
+                        %msubsup
+                          %mi Ch
+                          %mo •
+                          %mo +
+                      %annotation{:encoding => "application/x-tex"} V \in Ch_\bullet^+
+                  the
+                  %a.existingWikiWord{:href => "/nlab/show/simplicial+abelian+group"} simplicial abelian group
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi Γ
+                        %mo{:stretchy => "false"} (
+                        %mi V
+                        %mo{:stretchy => "false"} )
+                      %annotation{:encoding => "application/x-tex"} \Gamma(V)
+                  is in degree
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi n
+                        %mo ∈
+                        %mi ℕ
+                      %annotation{:encoding => "application/x-tex"} n  \in \mathbb{N}
+                  given by
+                .maruku-equation
+                  %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi Γ
+                        %mo{:stretchy => "false"} (
+                        %mi V
+                        %msub
+                          %mo{:stretchy => "false"} )
+                          %mi n
+                        %mspace{:width => "thickmathspace"}
+                        %mo =
+                        %mspace{:width => "thickmathspace"}
+                        %munder
+                          %mo{:lspace => "thinmathspace", :rspace => "thinmathspace"} ⨁
+                          %mrow
+                            %mo{:stretchy => "false"} [
+                            %mi n
+                            %mo{:stretchy => "false"} ]
+                            %mo ↠
+                            %mo{:stretchy => "false"} [
+                            %mi k
+                            %mo{:stretchy => "false"} ]
+                        %msub
+                          %mi V
+                          %mi k
+                      %annotation{:encoding => "application/x-tex"}
+                        \\Gamma(V)_n
+                        \\;=\;
+                        \\bigoplus_{[n] \twoheadrightarrow [k]} V_k
+                %p
+                  and for
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi θ
+                        %mo :
+                        %mo{:stretchy => "false"} [
+                        %mi m
+                        %mo{:stretchy => "false"} ]
+                        %mo →
+                        %mo{:stretchy => "false"} [
+                        %mi n
+                        %mo{:stretchy => "false"} ]
+                      %annotation{:encoding => "application/x-tex"} \theta : [m] \to [n]
+                  a morphism in
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi Δ
+                      %annotation{:encoding => "application/x-tex"} \Delta
+                  the corresponding map
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi Γ
+                        %mo{:stretchy => "false"} (
+                        %mi V
+                        %msub
+                          %mo{:stretchy => "false"} )
+                          %mi n
+                        %mo →
+                        %mi Γ
+                        %mo{:stretchy => "false"} (
+                        %mi V
+                        %msub
+                          %mo{:stretchy => "false"} )
+                          %mi m
+                      %annotation{:encoding => "application/x-tex"} \Gamma(V)_n \to \Gamma(V)_m
+                .maruku-equation
+                  %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %msup
+                          %mi θ
+                          %mo *
+                        %mo :
+                        %munder
+                          %mo{:lspace => "thinmathspace", :rspace => "thinmathspace"} ⨁
+                          %mrow
+                            %mo{:stretchy => "false"} [
+                            %mi n
+                            %mo{:stretchy => "false"} ]
+                            %mo ↠
+                            %mo{:stretchy => "false"} [
+                            %mi k
+                            %mo{:stretchy => "false"} ]
+                        %msub
+                          %mi V
+                          %mi k
+                        %mo →
+                        %munder
+                          %mo{:lspace => "thinmathspace", :rspace => "thinmathspace"} ⨁
+                          %mrow
+                            %mo{:stretchy => "false"} [
+                            %mi m
+                            %mo{:stretchy => "false"} ]
+                            %mo ↠
+                            %mo{:stretchy => "false"} [
+                            %mi r
+                            %mo{:stretchy => "false"} ]
+                        %msub
+                          %mi V
+                          %mi r
+                      %annotation{:encoding => "application/x-tex"}
+                        \\theta^* : \bigoplus_{[n] \twoheadrightarrow [k]} V_k
+                        \\to
+                        \\bigoplus_{[m] \twoheadrightarrow [r]} V_r
+                %p
+                  is given on the
+                  %a.existingWikiWord{:href => "/nlab/show/direct+sum"} direct summand
+                  indexed by some
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi σ
+                        %mo{:lspace => "verythinmathspace"} :
+                        %mo{:stretchy => "false"} [
+                        %mi n
+                        %mo{:stretchy => "false"} ]
+                        %mo →
+                        %mo{:stretchy => "false"} [
+                        %mi k
+                        %mo{:stretchy => "false"} ]
+                      %annotation{:encoding => "application/x-tex"} \sigma \colon [n] \to [k]
+                  by the composite
+                .maruku-equation
+                  %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %msub
+                          %mi V
+                          %mi k
+                        %mover
+                          %mo →
+                          %mrow
+                            %msup
+                              %mi d
+                              %mo *
+                        %msub
+                          %mi V
+                          %mi s
+                        %mo ↪
+                        %munder
+                          %mo{:lspace => "thinmathspace", :rspace => "thinmathspace"} ⨁
+                          %mrow
+                            %mo{:stretchy => "false"} [
+                            %mi m
+                            %mo{:stretchy => "false"} ]
+                            %mo ↠
+                            %mo{:stretchy => "false"} [
+                            %mi r
+                            %mo{:stretchy => "false"} ]
+                        %msub
+                          %mi V
+                          %mi r
+                        %mspace{:width => "thinmathspace"}
+                        %mo ,
+                      %annotation{:encoding => "application/x-tex"}
+                        V_k
+                        \\overset{d^*}{\to}
+                        V_s
+                        \\hookrightarrow
+                        \\bigoplus_{[m] \twoheadrightarrow [r]}
+                        V_r
+                        \\,,
+                %p where
+                .maruku-equation
+                  %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mo{:stretchy => "false"} [
+                        %mi m
+                        %mo{:stretchy => "false"} ]
+                        %mover
+                          %mo ↠
+                          %mi t
+                        %mo{:stretchy => "false"} [
+                        %mi s
+                        %mo{:stretchy => "false"} ]
+                        %mover
+                          %mo ↪
+                          %mi d
+                        %mo{:stretchy => "false"} [
+                        %mi k
+                        %mo{:stretchy => "false"} ]
+                      %annotation{:encoding => "application/x-tex"}
+                        [m]
+                        \\overset{t}{\twoheadrightarrow}
+                        [s]
+                        \\overset{d}{\hookrightarrow}
+                        [k]
+                %p
+                  is the
+                  %a.existingWikiWord{:href => "/nlab/show/epi-mono+factorization"} epi-mono factorization
+                  of the
+                  %a.existingWikiWord{:href => "/nlab/show/composition"} composite
+                  = succeed "." do
+                    %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                      %semantics
+                        %mrow
+                          %mo{:stretchy => "false"} [
+                          %mi m
+                          %mo{:stretchy => "false"} ]
+                          %mover
+                            %mo →
+                            %mi θ
+                          %mo{:stretchy => "false"} [
+                          %mi n
+                          %mo{:stretchy => "false"} ]
+                          %mover
+                            %mo →
+                            %mi σ
+                          %mo{:stretchy => "false"} [
+                          %mi k
+                          %mo{:stretchy => "false"} ]
+                        %annotation{:encoding => "application/x-tex"} [m] \stackrel{\theta}{\to} [n] \stackrel{\sigma}{\to} [k]
+            %p
+          %p
+            In these terms (Prop.
+            = succeed ")" do
+              %a.maruku-ref{:href => "#ExplicitFormOfGamma"}
+          #ExplicitUnitAndCounit.num_prop
+            %h6#proposition Proposition
+            %ul
+              %li
+                %p
+                  The
+                  %a.existingWikiWord{:href => "/nlab/show/natural+isomorphism"} natural isomorphism
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi Γ
+                        %mi N
+                        %mo →
+                        %mi Id
+                      %annotation{:encoding => "application/x-tex"} \Gamma N \to Id
+                  is given on
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi A
+                        %mo ∈
+                        %msup
+                          %mi sAb
+                          %mrow
+                            %msup
+                              %mi Δ
+                              %mi op
+                      %annotation{:encoding => "application/x-tex"} A \in sAb^{\Delta^{op}}
+                  by the map
+                .maruku-equation
+                  %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %munder
+                          %mo{:lspace => "thinmathspace", :rspace => "thinmathspace"} ⨁
+                          %mrow
+                            %mo{:stretchy => "false"} [
+                            %mi n
+                            %mo{:stretchy => "false"} ]
+                            %mo ↠
+                            %mo{:stretchy => "false"} [
+                            %mi k
+                            %mo{:stretchy => "false"} ]
+                        %mo{:stretchy => "false"} (
+                        %mi N
+                        %mi A
+                        %msub
+                          %mo{:stretchy => "false"} )
+                          %mi k
+                        %mo →
+                        %msub
+                          %mi A
+                          %mi n
+                      %annotation{:encoding => "application/x-tex"}
+                        \\bigoplus_{[n] \twoheadrightarrow [k]}
+                        (N A)_k
+                        \\to
+                        A_n
+                %p
+                  which on the
+                  %a.existingWikiWord{:href => "/nlab/show/direct+sum"} direct summand
+                  indexed by
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi σ
+                        %mo{:lspace => "verythinmathspace"} :
+                        %mo{:stretchy => "false"} [
+                        %mi n
+                        %mo{:stretchy => "false"} ]
+                        %mo →
+                        %mo{:stretchy => "false"} [
+                        %mi k
+                        %mo{:stretchy => "false"} ]
+                      %annotation{:encoding => "application/x-tex"} \sigma \colon [n] \to [k]
+                  is the composite
+                .maruku-equation
+                  %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi N
+                        %msub
+                          %mi A
+                          %mi k
+                        %mo ↪
+                        %msub
+                          %mi A
+                          %mi k
+                        %mover
+                          %mo →
+                          %mrow
+                            %msup
+                              %mi σ
+                              %mo *
+                        %msub
+                          %mi A
+                          %mi n
+                        %mspace{:width => "thinmathspace"}
+                        %mo .
+                      %annotation{:encoding => "application/x-tex"}
+                        N A_k \hookrightarrow A_k \stackrel{\sigma^*}{\to} A_n
+                        \\,.
+              %li
+                %p
+                  The
+                  %a.existingWikiWord{:href => "/nlab/show/natural+isomorphism"} natural isomorphism
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi Id
+                        %mo →
+                        %mi N
+                        %mi Γ
+                      %annotation{:encoding => "application/x-tex"} Id \to N \Gamma
+                  is on a chain complex
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi V
+                      %annotation{:encoding => "application/x-tex"} V
+                  given by the composite of the projection
+                .maruku-equation
+                  %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi V
+                        %mo →
+                        %mi C
+                        %mo{:stretchy => "false"} (
+                        %mi Γ
+                        %mo{:stretchy => "false"} (
+                        %mi V
+                        %mo{:stretchy => "false"} )
+                        %mo{:stretchy => "false"} )
+                        %mo →
+                        %mi C
+                        %mo{:stretchy => "false"} (
+                        %mi Γ
+                        %mo{:stretchy => "false"} (
+                        %mi C
+                        %mo{:stretchy => "false"} )
+                        %mo{:stretchy => "false"} )
+                        %mo{:stretchy => "false"} /
+                        %mi D
+                        %mo{:stretchy => "false"} (
+                        %mi Γ
+                        %mo{:stretchy => "false"} (
+                        %mi V
+                        %mo{:stretchy => "false"} )
+                        %mo{:stretchy => "false"} )
+                      %annotation{:encoding => "application/x-tex"}
+                        V \to C(\Gamma(V)) \to C(\Gamma(C))/D(\Gamma(V))
+                %p with the inverse
+                .maruku-equation
+                  %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi C
+                        %mo{:stretchy => "false"} (
+                        %mi Γ
+                        %mo{:stretchy => "false"} (
+                        %mi V
+                        %mo{:stretchy => "false"} )
+                        %mo{:stretchy => "false"} )
+                        %mo{:stretchy => "false"} /
+                        %mi D
+                        %mo{:stretchy => "false"} (
+                        %mi Γ
+                        %mo{:stretchy => "false"} (
+                        %mi V
+                        %mo{:stretchy => "false"} )
+                        %mo{:stretchy => "false"} )
+                        %mo →
+                        %mi N
+                        %mi Γ
+                        %mo{:stretchy => "false"} (
+                        %mi V
+                        %mo{:stretchy => "false"} )
+                      %annotation{:encoding => "application/x-tex"}
+                        C(\Gamma(V))/D(\Gamma(V)) \to N \Gamma(V)
+                %p of
+                .maruku-equation
+                  %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi N
+                        %mi Γ
+                        %mo{:stretchy => "false"} (
+                        %mi V
+                        %mo{:stretchy => "false"} )
+                        %mo ↪
+                        %mi C
+                        %mo{:stretchy => "false"} (
+                        %mi Γ
+                        %mo{:stretchy => "false"} (
+                        %mi V
+                        %mo{:stretchy => "false"} )
+                        %mo{:stretchy => "false"} )
+                        %mo →
+                        %mi C
+                        %mo{:stretchy => "false"} (
+                        %mi Γ
+                        %mo{:stretchy => "false"} (
+                        %mi V
+                        %mo{:stretchy => "false"} )
+                        %mo{:stretchy => "false"} )
+                        %mo{:stretchy => "false"} /
+                        %mi D
+                        %mo{:stretchy => "false"} (
+                        %mi Γ
+                        %mo{:stretchy => "false"} (
+                        %mi V
+                        %mo{:stretchy => "false"} )
+                        %mo{:stretchy => "false"} )
+                      %annotation{:encoding => "application/x-tex"}
+                        N \Gamma(V) \hookrightarrow C(\Gamma(V)) \to C(\Gamma(V))/D(\Gamma(V))
+                %p
+                  (which is indeed an
+                  = succeed "," do
+                    %a.existingWikiWord{:href => "/nlab/show/isomorphism"} isomorphism
+                  = succeed ")." do
+                    %a.existingWikiWord{:href => "/nlab/show/Moore+complex"} Moore complex
+          %p
+            This is spelled out in
+            %a{:href => "#GoerssJardine99"} Goerss &amp; Jardine, prop. 2.2 in section III.2
+          .num_prop
+            %h6#proposition_2 Proposition
+            %p
+              With the explicit choice for
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi Γ
+                    %mi N
+                    %mover
+                      %mo →
+                      %mo ≃
+                    %mi Id
+                  %annotation{:encoding => "application/x-tex"} \Gamma N \stackrel{\simeq}{\to} Id
+              as
+              %a{:href => "#ExplicitUnitAndCounit"} above
+              we have that
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi Γ
+                  %annotation{:encoding => "application/x-tex"} \Gamma
+              and
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi N
+                  %annotation{:encoding => "application/x-tex"} N
+              form an
+              %a.existingWikiWord{:href => "/nlab/show/adjoint+equivalence"} adjoint equivalence
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo{:stretchy => "false"} (
+                    %mi Γ
+                    %mo ⊣
+                    %mi N
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} (\Gamma \dashv N)
+          %p
+            This is for instance (
+            %a{:href => "#Weilbel"}> Weibel, exercise 8.4.2
+            ).
+          .num_remark
+            %h6#remark Remark
+            %p
+              It follows that with the inverse structure maps, we also have an
+              %a.existingWikiWord{:href => "/nlab/show/adjunction"} adjunction
+              the other way round:
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mo{:stretchy => "false"} (
+                      %mi N
+                      %mo ⊣
+                      %mi Γ
+                      %mo{:stretchy => "false"} )
+                    %annotation{:encoding => "application/x-tex"} (N \dashv \Gamma)
+          %h3#ModelCatVersion Quillen equivalence of model categories
+          %p
+            Both
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msubsup
+                    %mi Ch
+                    %mo •
+                    %mo +
+                  %mo{:stretchy => "false"} (
+                  %mi A
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} Ch_\bullet^+(A)
+            and
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msup
+                    %mi A
+                    %mrow
+                      %msup
+                        %mi Δ
+                        %mi op
+                %annotation{:encoding => "application/x-tex"} A^{\Delta^{op}}
+            are
+            %a.existingWikiWord{:href => "/nlab/show/categories+with+weak+equivalences"} categories with weak equivalences
+            in an standard way:
+          %ul
+            %li
+              %p
+                the weak equivalences of simplicial abelian groups are the
+                %a.existingWikiWord{:href => "/nlab/show/weak+homotopy+equivalences"} weak homotopy equivalences
+                of the underlying
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/Kan+complexes"} Kan complexes
+                %a.existingWikiWord{:href => "/nlab/show/isomorphisms"} isomorphisms
+                on all
+                = succeed ";" do
+                  %a.existingWikiWord{:href => "/nlab/show/simplicial+homotopy+groups"} simplicial homotopy groups
+            %li
+              %p
+                the weak equivalences of chain complexes are the
+                = succeed ":" do
+                  %a.existingWikiWord{:href => "/nlab/show/quasi-isomorphisms"} quasi-isomorphisms
+                %a.existingWikiWord{:href => "/nlab/show/chain+homology"} chain homology
+                groups.
+          .num_prop
+            %h6#proposition_3 Proposition
+            %p
+              These functors
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi N
+                  %annotation{:encoding => "application/x-tex"} N
+              and
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi Γ
+                  %annotation{:encoding => "application/x-tex"} \Gamma
+              both respect all weak equivalences with respect to the
+              %a.existingWikiWord{:href => "/nlab/show/classical+model+structure+on+simplicial+sets"} classical model structure on simplicial sets
+              %a.existingWikiWord{:href => "/nlab/show/model+structure+on+chain+complexes"} and on chain complexes
+              in that they induce isomorphisms between
+              %a.existingWikiWord{:href => "/nlab/show/simplicial+homotopy+groups"} simplicial homotopy groups
+              and
+              = succeed "s." do
+                %a.existingWikiWord{:href => "/nlab/show/homology+group"} homology group
+          %p
+            The structures of categories with weak equivalences have standard refinements to
+            %a.existingWikiWord{:href => "/nlab/show/model+category"} model category
+            structures:
+          %ul
+            %li
+              %p
+                the
+                %em projective
+                %a.existingWikiWord{:href => "/nlab/show/model+structure+on+chain+complexes"} model structure on chain complexes
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msub
+                        %mi Ch
+                        %mo •
+                    %annotation{:encoding => "application/x-tex"} Ch_\bullet
+                has as fibrations the chain maps that are surjections in each positive degree;
+            %li
+              %p
+                the
+                %em
+                  %a.existingWikiWord{:href => "/nlab/show/model+structure+on+simplicial+abelian+groups"} model structure on simplicial abelian groups
+                has as
+                %a.existingWikiWord{:href => "/nlab/show/fibrations"} fibrations
+                those whose underlying morphisms in
+                %a.existingWikiWord{:href => "/nlab/show/sSet"} sSet
+                are fibrations with respect to the
+                %a.existingWikiWord{:href => "/nlab/show/classical+model+structure+on+simplicial+sets"} classical model structure on simplicial sets
+                (hence:
+                = succeed ")." do
+                  %a.existingWikiWord{:href => "/nlab/show/Kan+fibrations"} Kan fibrations
+          #QuillenEquivalenceBetweensAbAndCh.num_prop
+            %h6#proposition_4 Proposition
+            %p Both
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo{:stretchy => "false"} (
+                    %mi N
+                    %mo ⊣
+                    %mi Γ
+                    %mo{:stretchy => "false"} )
+                    %mspace{:width => "thickmathspace"}
+                    %mo{:lspace => "verythinmathspace"} :
+                    %mspace{:width => "thickmathspace"}
+                    %msubsup
+                      %mi Ch
+                      %mo •
+                      %mo +
+                    %mover
+                      %munder
+                        %mo →
+                        %mi Γ
+                      %mover
+                        %mo ←
+                        %mi N
+                    %mi sAb
+                  %annotation{:encoding => "application/x-tex"}
+                    (N \dashv \Gamma)
+                    \\;\colon\;
+                    Ch_\bullet^+
+                    \\stackrel{\overset{N}{\leftarrow}}{\underset{\Gamma}{\to}}
+                    sAb
+            %p as well as
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo{:stretchy => "false"} (
+                    %mi Γ
+                    %mo ⊣
+                    %mi N
+                    %mo{:stretchy => "false"} )
+                    %mspace{:width => "thickmathspace"}
+                    %mo{:lspace => "verythinmathspace"} :
+                    %mspace{:width => "thickmathspace"}
+                    %mi sAb
+                    %mover
+                      %munder
+                        %mo →
+                        %mi N
+                      %mover
+                        %mo ←
+                        %mi Γ
+                    %msubsup
+                      %mi Ch
+                      %mo •
+                      %mo +
+                  %annotation{:encoding => "application/x-tex"}
+                    (\Gamma \dashv N)
+                    \\;\colon\;
+                    sAb
+                    \\stackrel{\overset{\Gamma}{\leftarrow}}{\underset{N}{\to}}
+                    Ch_\bullet^+
+            %p
+              are
+              %a.existingWikiWord{:href => "/nlab/show/Quillen+equivalences"} Quillen equivalences
+              with respect to these model structures.
+          %p
+            This is due to
+            = succeed "," do
+              %a{:href => "#Quillen67"} Quillen 67, Section II.4 item 5
+            = succeed "," do
+              %a{:href => "#SchwedeShipley03"} Schwede-Shipley 03, section 4.1
+            = succeed "," do
+              %a{:href => "http://www.math.uic.edu/~bshipley/monoidalequi.final.pdf#page=17"} p.17
+            = succeed ")." do
+              %a{:href => "#Jardine03"} Jardine 03, Lemma 1.5
+          .num_remark
+            %h6#remark_2 Remark
+            %p
+              The category
+              %a.existingWikiWord{:href => "/nlab/show/sAb"} sAb
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo =
+                    %msup
+                      %mi Ab
+                      %mrow
+                        %msup
+                          %mi Δ
+                          %mi op
+                  %annotation{:encoding => "application/x-tex"} = Ab^{\Delta^{op}}
+              – being a
+              %a.existingWikiWord{:href => "/nlab/show/category+of+simplicial+objects"} category of simplicial objects
+              of a category with
+              %a.existingWikiWord{:href => "/nlab/show/colimits"} colimits
+              – is naturally an
+              = succeed "-" do
+                %a.existingWikiWord{:href => "/nlab/show/sSet"} sSet
+              %a.existingWikiWord{:href => "/nlab/show/enriched+category"} enriched category
+              and with
+              %a.existingWikiWord{:href => "/nlab/show/model+structure+on+simplicial+abelian+groups"} its model structure
+              this makes it a
+              = succeed "." do
+                %a.existingWikiWord{:href => "/nlab/show/simplicial+model+category"} simplicial model category
+            %p
+              Since the DK-correspondence is even an
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/equivalence+of+categories"} equivalence of categories
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msubsup
+                        %mi Ch
+                        %mo •
+                        %mo +
+                    %annotation{:encoding => "application/x-tex"} Ch_\bullet^+
+              = succeed "." do
+                %a.existingWikiWord{:href => "/nlab/show/simplicial+Quillen+adjunction"} simplicial Quillen adjunction
+          .num_remark
+            %h6#remark_3 Remark
+            %p
+              The
+              = succeed "/" do
+                %a.existingWikiWord{:href => "/nlab/show/free+functor"} free
+              %a.existingWikiWord{:href => "/nlab/show/stuff%2C+structure%2C+property"} forgetful
+              %a.existingWikiWord{:href => "/nlab/show/adjunction"} adjunction
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo{:stretchy => "false"} (
+                    %mi F
+                    %mo ⊣
+                    %mi U
+                    %mo{:stretchy => "false"} )
+                    %mo :
+                    %mi Ab
+                    %mover
+                      %mo →
+                      %mo ←
+                    %mi Set
+                  %annotation{:encoding => "application/x-tex"} (F \dashv U) : Ab \stackrel{\leftarrow}{\to} Set
+              prolongs to
+              = succeed "s" do
+                %a.existingWikiWord{:href => "/nlab/show/simplicial+object"} simplicial object
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo{:stretchy => "false"} (
+                    %mi F
+                    %mo ⊣
+                    %mi U
+                    %mo{:stretchy => "false"} )
+                    %mo :
+                    %mi sAb
+                    %mover
+                      %munder
+                        %mo →
+                        %mi U
+                      %mover
+                        %mo ←
+                        %mi F
+                    %mi sSet
+                  %annotation{:encoding => "application/x-tex"}
+                    (F\dashv U) : sAb \stackrel{\overset{F}{\leftarrow}}{\underset{U}{\to}}
+                    sSet
+            %p
+              as an
+              = succeed "-" do
+                %a.existingWikiWord{:href => "/nlab/show/sSet"} sSet
+              %a.existingWikiWord{:href => "/nlab/show/enriched+functor"} enriched
+              adjunction. Moreover, by the above the right adjoint
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi U
+                  %annotation{:encoding => "application/x-tex"} U
+              is a right Quillen functor to the standard
+              = succeed "." do
+                %a.existingWikiWord{:href => "/nlab/show/model+structure+on+simplicial+sets"} model structure on simplicial sets
+            %p
+              This means we have a
+              %a.existingWikiWord{:href => "/nlab/show/simplicial+Quillen+adjunction"} simplicial Quillen adjunction
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo{:stretchy => "false"} (
+                    %mi Γ
+                    %mi F
+                    %mo ⊣
+                    %mi U
+                    %mi N
+                    %mo{:stretchy => "false"} )
+                    %mo :
+                    %msubsup
+                      %mi Ch
+                      %mo •
+                      %mo +
+                    %mover
+                      %munder
+                        %mo →
+                        %mrow
+                          %mi U
+                          %mi N
+                      %mover
+                        %mo ←
+                        %mrow
+                    %mi sSet
+                    %mspace{:width => "thinmathspace"}
+                    %mo .
+                  %annotation{:encoding => "application/x-tex"}
+                    ( \Gamma F \dashv U N) : Ch_\bullet^+ \stackrel{\overset{}{\leftarrow}}{\underset{U N}{\to}} sSet
+                    \\,.
+            %p
+              This manifestly
+              %a.existingWikiWord{:href => "/nlab/show/presentable+%28infinity%2C1%29-category"} exhibits
+              %a.existingWikiWord{:href => "/nlab/show/connective+chain+complexes"} connective chain complexes
+              as models for certain
+              = succeed "." do
+                %a.existingWikiWord{:href => "/nlab/show/%E2%88%9E-groupoids"} ∞-groupoids
+          %h2#StatementAdditiveACase Statement (additive case)
+          %p
+            The Dold-Kan correspondence generalizes from
+            %a.existingWikiWord{:href => "/nlab/show/Ab"} Ab
+            to any
+            %a.existingWikiWord{:href => "/nlab/show/abelian+category"} abelian category
+            (
+            %a{:href => "#LurieHA"}> Lurie, §1.2.3
+            ) and fruther to
+            %a.existingWikiWord{:href => "/nlab/show/additive+categories"} additive categories
+            for which all
+            %a.existingWikiWord{:href => "/nlab/show/retractions"} retractions
+            come from
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/direct+sums"} direct sums
+            %a.existingWikiWord{:href => "/nlab/show/triangulated+categories"} triangulated categories
+            (
+            %a{:href => "#LurieHA"}> Lurie, §1.2.4
+            ).
+          %h2#StatementGeneral Statement (general nonabelian case)
+          %h3#GlobularAndCubical Globular and cubical version
+          %p
+            There are versions of the Dold-Kan correspondence for other
+            %a.existingWikiWord{:href => "/nlab/show/geometric+shapes+for+higher+structures"} geometric shapes for higher structures
+            than the
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/simplex"} simplex
+            %a.existingWikiWord{:href => "/nlab/show/globe"} globe
+            and the
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/cube"} cube
+          %p
+          .num_theorem
+            %h6 Theorem
+            %p
+              %strong (globular Dold-Kan correspondence)
+              %br/
+            %p
+              Write
+              %a.existingWikiWord{:href => "/nlab/show/Ab"} Ab
+              for the category of
+              = succeed "s." do
+                %a.existingWikiWord{:href => "/nlab/show/abelian+group"} abelian group
+              %a.existingWikiWord{:href => "/nlab/show/additive+category"} additive category
+              with
+              = succeed "s" do
+                %a.existingWikiWord{:href => "/nlab/show/kernel"} kernel
+              %a.existingWikiWord{:href => "/nlab/show/internalization"} internal to
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi Ab
+                  %annotation{:encoding => "application/x-tex"} Ab
+              are equivalent.
+            %ol
+              %li
+                %p
+                  The category of
+                  = succeed "es" do
+                    %a.existingWikiWord{:href => "/nlab/show/chain+complex"} chain complex
+              %li
+                %p
+                  The category of
+                  = succeed "es." do
+                    %a.existingWikiWord{:href => "/nlab/show/crossed+complex"} crossed complex
+              %li
+                %p
+                  The category of
+                  = succeed "s" do
+                    %a.existingWikiWord{:href => "/nlab/show/cubical+set"} cubical set
+                  = succeed "." do
+                    %a.existingWikiWord{:href => "/nlab/show/connection+on+a+cubical+set"} connection on a cubical set
+              %li
+                %p
+                  The category of cubical
+                  = succeed "s." do
+                    %a.existingWikiWord{:href => "/nlab/show/strict+%E2%88%9E-groupoid"} strict ∞-groupoid
+              %li
+                %p
+                  The category of
+                  %a.existingWikiWord{:href => "/nlab/show/globe"} globular
+                  = succeed "s." do
+                    %a.existingWikiWord{:href => "/nlab/show/strict+%E2%88%9E-groupoid"} strict ∞-groupoid
+            %p
+          %p A proof with references to the rich literature can be found for instance in
+          %ul
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/Ronnie+Brown"}> Ronnie Brown
+              ,
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/Philip+Higgins"} Philip Higgins
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/Rafael+Sivera"} Rafael Sivera
+              %em
+                %a.existingWikiWord{:href => "/nlab/show/Nonabelian+Algebraic+Topology"} Nonabelian Algebraic Topology
+          %p
+            see the section
+            = succeed "." do
+              %a{:href => "http://ncatlab.org/nlab/show/Nonabelian+Algebraic+Topology#CubicalDoldKan"} Cubical Dold-Kan theorem
+          %p
+            This version of the Dold-Kan theorem reproduces the simplicial Dold-Kan theorem after application of the
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/omega-nerve"} omega-nerve
+            = succeed "-nerve." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi ω
+                  %annotation{:encoding => "application/x-tex"} \omega
+          %h3#presentation_of_strict_groupal_groupoids
+            Presentation of strict groupal
+            = succeed "-groupoids" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mn ∞
+                  %annotation{:encoding => "application/x-tex"} \infty
+          %p
+            It was mentioned above that the standard simplicial Dold-Kan correspondence
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msub
+                    %mi Ch
+                    %mo •
+                  %mo{:stretchy => "false"} (
+                  %mi Ab
+                  %mo{:stretchy => "false"} )
+                  %mover
+                    %mo →
+                    %mo ←
+                  %mi sAb
+                %annotation{:encoding => "application/x-tex"} Ch_\bullet(Ab) \stackrel{\leftarrow}{\to} sAb
+            may be understood as identifying strictly abelian
+            = succeed "s" do
+              %a.existingWikiWord{:href => "/nlab/show/strict+%E2%88%9E-groupoid"} strict ∞-groupoid
+            = succeed "s." do
+              %a.existingWikiWord{:href => "/nlab/show/%E2%88%9E-groupoid"} ∞-groupoid
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/cosmic+cube+of+higher+category+theory"} cosmic cube of higher category theory
+          %p
+            We now give a formal version of this statement, following an observation by
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/Richard+Garner"} Richard Garner
+          %ul
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/Ronnie+Brown"}> Ronnie Brown
+              ,
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/Philip+Higgins"} Philip Higgins
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/Rafael+Sivera"} Rafael Sivera
+              = succeed "," do
+                %em
+                  %a.existingWikiWord{:href => "/nlab/show/Nonabelian+Algebraic+Topology"} Nonabelian Algebraic Topology
+          %p
+            see
+            = succeed "." do
+              %a{:href => "http://ncatlab.org/nlab/show/Nonabelian+Algebraic+Topology#DoldKanMap"} Dold-Kan map and omega-nerve
+          .num_defn
+            %h6#definition Definition
+            %p Write
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo{:stretchy => "false"} (
+                    %mi L
+                    %mo ⊣
+                    %mi R
+                    %mo{:stretchy => "false"} )
+                    %mo :
+                    %msub
+                      %mi Ch
+                      %mo •
+                    %mo{:stretchy => "false"} (
+                    %mi Ab
+                    %msup
+                      %mo{:stretchy => "false"} )
+                      %mo +
+                    %mover
+                      %mo →
+                      %mo ←
+                    %mi Str
+                    %mn ∞
+                    %mi Cat
+                    %mo{:stretchy => "false"} (
+                    %mi Ab
+                    %mo{:stretchy => "false"} )
+                    %mover
+                      %mo →
+                      %mo ←
+                    %mi Str
+                    %mn ∞
+                    %mi Cat
+                    %mo{:stretchy => "false"} (
+                    %mi Set
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"}
+                    (L \dashv R) : Ch_\bullet(Ab)^+ \stackrel{\leftarrow}{\to}
+                    Str \infty Cat(Ab)
+                    \\stackrel{\leftarrow}{\to}
+                    Str \infty Cat(Set)
+            %p
+              for the
+              %a.existingWikiWord{:href => "/nlab/show/adjunction"} adjunction
+              obtained by composing the
+              %a{:href => "#GlobularAndCubical"} globular Dold-Kan correspondence
+              with the forgetful functor which forgets the abelian group structure on a strict
+              = succeed "-category" do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mn ∞
+                    %annotation{:encoding => "application/x-tex"} \infty
+          .num_prop
+            %h6#proposition_5 Proposition
+            %p The functor
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi C
+                      %mo •
+                    %mo :
+                    %mi Δ
+                    %mo →
+                    %msubsup
+                      %mi Ch
+                      %mo •
+                      %mo +
+                  %annotation{:encoding => "application/x-tex"}
+                    C_\bullet : \Delta \to Ch_\bullet^+
+            %p
+              which sends a
+              %a.existingWikiWord{:href => "/nlab/show/simplex"} simplex
+              to its (normalized) chain complex factors as
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi C
+                      %mo •
+                    %mo :
+                    %mi Δ
+                    %mover
+                      %mo →
+                      %mi 𝒪
+                    %mi Str
+                    %mn ∞
+                    %mi Cat
+                    %mover
+                      %mo →
+                      %mi L
+                    %msubsup
+                      %mi Ch
+                      %mo •
+                      %mo +
+                    %mspace{:width => "thinmathspace"}
+                    %mo ,
+                  %annotation{:encoding => "application/x-tex"}
+                    C_\bullet : \Delta \stackrel{\mathcal{O}}{\to} Str \infty Cat
+                    \\stackrel{L}{\to} Ch_\bullet^+
+                    \\,,
+            %p
+              where the cosimplicial strict
+              = succeed "-category" do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mn ∞
+                    %annotation{:encoding => "application/x-tex"} \infty
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi 𝒪
+                  %annotation{:encoding => "application/x-tex"} \mathcal{O}
+              is the
+              %a.existingWikiWord{:href => "/nlab/show/oriental"} oriental
+              functor.
+          %p
+            This is a remark by
+            %a.existingWikiWord{:href => "/nlab/show/Richard+Garner"} Richard Garner
+            posted
+            = succeed "." do
+              %a{:href => "http://golem.ph.utexas.edu/category/2010/07/the_doldkan_theorem_two_questi.html#c034102"} here
+          .proof
+            %h6#proof Proof
+            %p
+              Use that
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi 𝒪
+                    %mo{:stretchy => "false"} (
+                    %mi n
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} \mathcal{O}(n)
+              is the
+              %a.existingWikiWord{:href => "/nlab/show/free+construction"} free
+              strict
+              = succeed "-category" do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mn ∞
+                    %annotation{:encoding => "application/x-tex"} \infty
+              = succeed "." do
+                %a.existingWikiWord{:href => "/nlab/show/computad"} computad
+            %p
+              Observe that
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi L
+                  %annotation{:encoding => "application/x-tex"} L
+              sends a strict
+              = succeed "-category" do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi ω
+                    %annotation{:encoding => "application/x-tex"} \omega
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi X
+                  %annotation{:encoding => "application/x-tex"} X
+              to the chain complex obtained from the abelian reflexive globular set
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi X
+                      %mo ×
+                      %mo{:lspace => "0em", :rspace => "thinmathspace"} mathb
+                      %mi Z
+                    %annotation{:encoding => "application/x-tex"} X \times \mathb{Z}
+              = succeed "-" do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi n
+                    %annotation{:encoding => "application/x-tex"} n
+              %a.existingWikiWord{:href => "/nlab/show/globe"} globe
+              is the chain complex
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi ℤ
+                    %mo →
+                    %mi ℤ
+                    %mo ⊕
+                    %mi ℤ
+                    %mo →
+                    %mi ℤ
+                    %mo ⊕
+                    %mi ℤ
+                    %mo →
+                    %mi ⋯
+                    %mo →
+                    %mi ℤ
+                    %mo ⊕
+                    %mi ℤ
+                  %annotation{:encoding => "application/x-tex"}
+                    \\mathbb{Z} \to \mathbb{Z}\oplus\mathbb{Z} \to
+                    \\mathbb{Z}\oplus\mathbb{Z} \to \cdots \to
+                    \\mathbb{Z}\oplus\mathbb{Z}
+            %p
+              with
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo{:stretchy => "false"} (
+                    %mi n
+                    %mo +
+                    %mn 1
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} (n+1)
+              terms and differential given by
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi x
+                    %mo ↦
+                    %mo{:stretchy => "false"} (
+                    %mi x
+                    %mo ,
+                    %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                    %mi x
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} x \mapsto (x, -x)
+              in each dimension.
+            %p
+              Moreover, the value of
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi L
+                  %annotation{:encoding => "application/x-tex"} L
+              on the boundary of the
+              = succeed "-globe" do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi n
+                    %annotation{:encoding => "application/x-tex"} n
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi ℤ
+                    %annotation{:encoding => "application/x-tex"} \mathbb{Z}
+            %p
+              Given a
+              %a.existingWikiWord{:href => "/nlab/show/computad"} computad
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi C
+                    %annotation{:encoding => "application/x-tex"} C
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi L
+                    %mi C
+                  %annotation{:encoding => "application/x-tex"} L C
+              has for
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo{:stretchy => "false"} (
+                    %mi L
+                    %mi C
+                    %msub
+                      %mo{:stretchy => "false"} )
+                      %mi n
+                  %annotation{:encoding => "application/x-tex"} (L C)_n
+              the free abelian group on the set of generating
+              = succeed "-cells" do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi n
+                    %annotation{:encoding => "application/x-tex"} n
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi C
+                    %annotation{:encoding => "application/x-tex"} C
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mo ∂
+                      %mi x
+                      %mo =
+                      %msub
+                        %mo{:lspace => "thinmathspace", :rspace => "thinmathspace"} ∑
+                        %mi j
+                      %msub
+                        %mi t
+                        %mi j
+                      %mo −
+                      %msub
+                        %mo{:lspace => "thinmathspace", :rspace => "thinmathspace"} ∑
+                        %mi i
+                      %msub
+                        %mi s
+                        %mi i
+                    %annotation{:encoding => "application/x-tex"} \partial x = \sum_j t_j - \sum_i s_i
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo{:stretchy => "false"} {
+                    %msub
+                      %mi s
+                      %mi i
+                    %mo{:stretchy => "false"} }
+                  %annotation{:encoding => "application/x-tex"} \{s_i\}
+              and
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo{:stretchy => "false"} {
+                    %msub
+                      %mi t
+                      %mi i
+                    %mo{:stretchy => "false"} }
+                  %annotation{:encoding => "application/x-tex"} \{t_i\}
+              are the sets of source- and or target-cells, respectively. A glance at
+              = succeed "\u2018s" do
+                %a.existingWikiWord{:href => "/nlab/show/Ross+Street"} Ross Street
+              = succeed "s" do
+                %a.existingWikiWord{:href => "/nlab/show/oriental"} oriental
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi L
+                      %mo{:stretchy => "false"} (
+                      %mi 𝒪
+                      %mo{:stretchy => "false"} (
+                      %mi n
+                      %mo{:stretchy => "false"} )
+                      %mo{:stretchy => "false"} )
+                      %mo =
+                      %msub
+                        %mi C
+                        %mo •
+                      %mo{:stretchy => "false"} (
+                      %mi Δ
+                      %mo{:stretchy => "false"} [
+                      %mi n
+                      %mo{:stretchy => "false"} ]
+                      %mo{:stretchy => "false"} )
+                    %annotation{:encoding => "application/x-tex"} L(\mathcal{O}(n)) = C_\bullet(\Delta[n])
+          .num_cor
+            %h6#corollary Corollary
+            %p The simplicial Dold-Kan map
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi Hom
+                    %mo{:stretchy => "false"} (
+                    %msub
+                      %mi C
+                      %mo •
+                    %mi Δ
+                    %mo{:stretchy => "false"} [
+                    %mi n
+                    %mo{:stretchy => "false"} ]
+                    %mo ,
+                    %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                    %mo{:stretchy => "false"} )
+                    %mo :
+                    %msub
+                      %mi Ch
+                      %mo •
+                    %mo{:lspace => "verythinmathspace", :rspace => "0em"} +
+                    %mo →
+                    %mi sSet
+                  %annotation{:encoding => "application/x-tex"}
+                    Hom(C_\bullet \Delta[n], -) : Ch_\bullet + \to sSet
+            %p
+              factors as the identification of chain complexes with strictly abelian strict
+              = succeed "-groupoids," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mn ∞
+                    %annotation{:encoding => "application/x-tex"} \infty
+              %a.existingWikiWord{:href => "/nlab/show/omega-nerve"} omega-nerve
+              operation that embeds strict
+              = succeed "-groupoids" do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mn ∞
+                    %annotation{:encoding => "application/x-tex"} \infty
+              = succeed "-groupoids." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mn ∞
+                    %annotation{:encoding => "application/x-tex"} \infty
+          .proof
+            %h6#proof_2 Proof
+            %p
+              Use the above adjunction and proposition to write for
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi K
+                      %mo •
+                  %annotation{:encoding => "application/x-tex"} K_\bullet
+              a chain complex
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi Hom
+                      %mrow
+                        %msub
+                          %mi Ch
+                          %mo •
+                    %mo{:stretchy => "false"} (
+                    %msub
+                      %mi C
+                      %mo •
+                    %mi Δ
+                    %mo{:stretchy => "false"} [
+                    %mi n
+                    %mo{:stretchy => "false"} ]
+                    %mo ,
+                    %mi K
+                    %mo{:stretchy => "false"} )
+                    %mo =
+                    %msub
+                      %mi Hom
+                      %mrow
+                        %msub
+                          %mi Ch
+                          %mo •
+                    %mo{:stretchy => "false"} (
+                    %mi L
+                    %mi 𝒪
+                    %mo{:stretchy => "false"} (
+                    %mi n
+                    %mo{:stretchy => "false"} )
+                    %mo ,
+                    %mi K
+                    %mo{:stretchy => "false"} )
+                    %mo =
+                    %msub
+                      %mi Hom
+                      %mrow
+                        %mi Str
+                        %mn ∞
+                        %mi Cat
+                    %mo{:stretchy => "false"} (
+                    %mi 𝒪
+                    %mo{:stretchy => "false"} (
+                    %mi n
+                    %mo{:stretchy => "false"} )
+                    %mo ,
+                    %mi R
+                    %mi K
+                    %mo{:stretchy => "false"} )
+                    %mo =
+                    %mi N
+                    %mo{:stretchy => "false"} (
+                    %mi R
+                    %mi K
+                    %msub
+                      %mo{:stretchy => "false"} )
+                      %mi n
+                    %mspace{:width => "thinmathspace"}
+                    %mo .
+                  %annotation{:encoding => "application/x-tex"}
+                    Hom_{Ch_\bullet}(C_\bullet \Delta[n], K)
+                    \=
+                    Hom_{Ch_\bullet}(L \mathcal{O}(n), K)
+                    \=
+                    Hom_{Str \infty Cat}(\mathcal{O}(n), R K)
+                    \=
+                    N (R K)_n
+                    \\,.
+          %p
+            %strong Remark
+            The alternative construction in
+            %a.existingWikiWord{:href => "/nlab/show/Nonabelian+Algebraic+Topology"} Nonabelian Algebraic Topology
+            factors also versions of the nonabelian Dold-Kan correspondence through the
+            = succeed "-nerve." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi ω
+                  %annotation{:encoding => "application/x-tex"} \omega
+          %h2#nonabelian_forms_of_the_doldkan_correspondence Non-abelian forms of the Dold-Kan correspondence.
+          %p
+            Perhaps the ‘ultimate’ form of a ‘classical’ Dold–Kan result is by
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/Pilar+Carrasco"} Pilar Carrasco
+            %a.existingWikiWord{:href => "/nlab/show/Moore+complex"} Moore complexes
+            of simplicial groups.
+            %a.existingWikiWord{:href => "/nlab/show/Dominique+Bourn"} Dominique Bourn
+            has a general form of this result for his
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/semi-abelian+category"} semi-abelian categories
+          %p
+            Dominique Bourn’s formulation is very pretty. The Moore complex functor is
+            %a.existingWikiWord{:href => "/nlab/show/monad"} monadic
+            when the basic category is semi-Abelian (Th. 1.4. p.113 in
+            %em Bourn2007
+            below). Of course for simplicial
+            = succeed "," do
+              %em groups
+            = succeed "es" do
+              %a.existingWikiWord{:href => "/nlab/show/hypercrossed+complex"} hypercrossed complex
+            %a.existingWikiWord{:href => "/nlab/show/Carrasco"} Carrasco
+            and
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/Cegarra"} Cegarra
+          %p Gary Nan Tie showed that a certain full subcategory of filtered systems of hypergroupoids of rank n is equivalent to the following three categories, n-groupoids, n-simplicial T-complexes and n-crossed complexes, and in doing so proved a non-abelian Dold-Kan theorem for crossed complexes:
+          %p A Dold-Kan theorem for crossed complexes, Journal of Pure and Applied Algebra, Volume 56, Issue 2, 1989, Pages 177-194, ISSN 0022-4049, https://doi.org/10.1016/0022-4049(89)90143-6
+          %p Iterated W̄ and T-groupoids, Journal of Pure and Applied Algebra, Volume 56, Issue 2, 1989, Pages 195-209, ISSN 0022-4049, https://doi.org/10.1016/0022-4049(89)90144-8
+          %h2#StableDoldKanCorrespondence Stable Dold-Kan correspondence
+          %p
+            The Dold-Kan correspondence
+            %a.existingWikiWord{:href => "/nlab/show/stabilization"} stabilizes
+            to identify
+            %em unbounded
+            %a.existingWikiWord{:href => "/nlab/show/chain+complexes"} chain complexes
+            with the category of stably simplicial abelian groups. The latter are closely related to
+            %a.existingWikiWord{:href => "/nlab/show/combinatorial+spectrum"} combinatorial spectra
+            of
+            %a.existingWikiWord{:href => "/nlab/show/Daniel+Kan"} Daniel Kan
+            and can be defined as stably simplicial objects in the category of abelian groups. More precisely, we have the following definitions.
+          .num_defn
+            %h6#definition_2 Definition
+            %p
+              The category of
+              %em stable simplices
+              has integer numbers as objects. Given two objects
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi k
+                  %annotation{:encoding => "application/x-tex"} k
+              and
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi l
+                    %annotation{:encoding => "application/x-tex"} l
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi k
+                  %annotation{:encoding => "application/x-tex"} k
+              to
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi l
+                  %annotation{:encoding => "application/x-tex"} l
+              is the set of order-preserving maps
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi h
+                  %annotation{:encoding => "application/x-tex"} h
+              from the set of natural numbers to itself such that
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi h
+                    %mo{:stretchy => "false"} (
+                    %mi n
+                    %mo{:stretchy => "false"} )
+                    %mo =
+                    %mi n
+                    %mo +
+                    %mi l
+                    %mo −
+                    %mi k
+                  %annotation{:encoding => "application/x-tex"} h(n)=n+l-k
+              for all but a finite number of
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi n
+                    %annotation{:encoding => "application/x-tex"} n
+          .num_defn
+            %h6#definition_3 Definition
+            %p
+              A
+              %em stably simplicial abelian group
+              is a presheaf
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi F
+                  %annotation{:encoding => "application/x-tex"} F
+              of abelian groups on the category of stable simplices such that for any integer
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi k
+                  %annotation{:encoding => "application/x-tex"} k
+              every element
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi x
+                  %annotation{:encoding => "application/x-tex"} x
+              of
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi F
+                    %mo{:stretchy => "false"} (
+                    %mi k
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} F(k)
+              belongs to the kernels of all but a finite number of degeneracy maps. Morphisms of stably simplicial abelian groups are morphisms of presheaves.
+          %p
+            The following theorem was established in 1963 by
+            %a.existingWikiWord{:href => "/nlab/show/Daniel+Kan"} Daniel Kan
+            in his paper “Semisimplicial spectra” (see Proposition 5.8):
+          .num_theorem
+            %h6#theorem Theorem
+            %p
+              The
+              %a.existingWikiWord{:href => "/nlab/show/category+of+unbounded+chain+complexes"} category of unbounded chain complexes
+              is
+              %a.existingWikiWord{:href => "/nlab/show/equivalence+of+categories"} equivalent
+              to the category of stably simplicial abelian groups, with equivalences being given by the same functors as in the unstable Dold-Kan correspondence, but appropriately extended to the above categories.
+          %p
+            Similarly to the unstable case, the above categories, when interpreted as ∞-categories, are also equivalent to the ∞-category of module spectra over the Eilenberg-MacLane ring spectrum of the integers. For more see at
+            = succeed "." do
+              %em
+                %a.existingWikiWord{:href => "/nlab/show/stable+Dold-Kan+correspondence"} stable Dold-Kan correspondence
+          %h2#Variants Generalizations and variants
+          %p There are various variants, generalizations and enhancements of the Dold–Kan correspondence.
+          %ul
+            %li
+              %p
+                The
+                %a.existingWikiWord{:href => "/nlab/show/monoidal+Dold-Kan+correspondence"} monoidal Dold-Kan correspondence
+                relates
+                = succeed "s" do
+                  %a.existingWikiWord{:href => "/nlab/show/simplicial+algebra"} simplicial algebra
+                = succeed "s." do
+                  %a.existingWikiWord{:href => "/nlab/show/dg-algebra"} dg-algebra
+            %li
+              %p
+                In
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/rational+homotopy+theory"} rational homotopy theory
+                = succeed "s:" do
+                  %a.existingWikiWord{:href => "/nlab/show/Lie+algebra"} Lie algebra
+                = succeed "s" do
+                  %a.existingWikiWord{:href => "/nlab/show/dg-Lie+algebra"} dg-Lie algebra
+              %p
+                D. Quillen,
+                %em Rational homotopy theory
+                , Ann. Math. 90 (1969), 204–265.
+            %li
+              %p
+                The statement of the Dold–Kan correspondence generalizes to
+                %a.existingWikiWord{:href => "/nlab/show/sheaf"} sheaves
+                with values in the respective categories and this way from
+                %a.existingWikiWord{:href => "/nlab/show/%E2%88%9EGrpd"} ∞Grpd
+                to more general
+                = succeed "-" do
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mo{:stretchy => "false"} (
+                        %mn ∞
+                        %mo ,
+                        %mn 1
+                        %mo{:stretchy => "false"} )
+                      %annotation{:encoding => "application/x-tex"} (\infty,1)
+                = succeed ":" do
+                  %a.existingWikiWord{:href => "/nlab/show/%28infinity%2C1%29-topos"} topoi
+              %p
+                For
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi X
+                    %annotation{:encoding => "application/x-tex"} X
+                be a
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/site"} site
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi Sh
+                      %mo{:stretchy => "false"} (
+                      %mi X
+                      %mo ,
+                      %mi sAb
+                      %mo{:stretchy => "false"} )
+                    %annotation{:encoding => "application/x-tex"} Sh(X, sAb)
+                be the category of
+                %em simplicial abelian sheaves
+                – i.e.
+                %a.existingWikiWord{:href => "/nlab/show/simplicial+presheaf"} simplicial sheaves
+                which take values in simplicial abelian groups – and let
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi Sh
+                      %mo{:stretchy => "false"} (
+                      %mi X
+                      %mo ,
+                      %msub
+                        %mi Ch
+                        %mo +
+                      %mo{:stretchy => "false"} (
+                      %mi Ab
+                      %mo{:stretchy => "false"} )
+                      %mo{:stretchy => "false"} )
+                    %annotation{:encoding => "application/x-tex"} Sh(X, Ch_+(Ab))
+                be the category of
+                %a.existingWikiWord{:href => "/nlab/show/sheaf"} sheaves
+                on
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi S
+                    %annotation{:encoding => "application/x-tex"} S
+                with values in non-negatively graded
+                %a.existingWikiWord{:href => "/nlab/show/chain+complexes"} chain complexes
+                of abelian groups. The normalized chain complex extends objectwise to a functor
+              .maruku-equation
+                %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi Sh
+                      %mo{:stretchy => "false"} (
+                      %mi X
+                      %mo ,
+                      %mi sAb
+                      %mo{:stretchy => "false"} )
+                      %mover
+                        %mo →
+                        %mo ≃
+                      %mi Sh
+                      %mo{:stretchy => "false"} (
+                      %mi X
+                      %mo ,
+                      %msub
+                        %mi Ch
+                        %mo +
+                      %mo{:stretchy => "false"} (
+                      %mi Ab
+                      %mo{:stretchy => "false"} )
+                      %mo{:stretchy => "false"} )
+                    %annotation{:encoding => "application/x-tex"}
+                      Sh(X,sAb) \stackrel{\simeq}{\to} Sh(X, Ch_+(Ab))
+              %p
+                which is an
+                %a.existingWikiWord{:href => "/nlab/show/equivalence"} equivalence
+                of categories. Moreover, both these categories are naturally
+                = succeed ":" do
+                  %a.existingWikiWord{:href => "/nlab/show/category+with+weak+equivalences"} categories with weak equivalences
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi Sh
+                      %mo{:stretchy => "false"} (
+                      %mi X
+                      %mo ,
+                      %mi sAb
+                      %mo{:stretchy => "false"} )
+                    %annotation{:encoding => "application/x-tex"} Sh(X, sAb)
+                are the stalkwise
+                %a.existingWikiWord{:href => "/nlab/show/model+structure+on+simplicial+sets"} weak equivalences of simplicial sets
+                and the weak equivalences in
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi Sh
+                      %mo{:stretchy => "false"} (
+                      %mi X
+                      %mo ,
+                      %msub
+                        %mi Ch
+                        %mo +
+                      %mo{:stretchy => "false"} (
+                      %mi Ab
+                      %mo{:stretchy => "false"} )
+                      %mo{:stretchy => "false"} )
+                    %annotation{:encoding => "application/x-tex"} Sh(X, Ch_+(Ab))
+                are the
+                = succeed "." do
+                  %a.existingWikiWord{:href => "/nlab/show/quasi-isomorphisms"} quasi-isomorphisms
+                %a.existingWikiWord{:href => "/nlab/show/abelian+sheaf+cohomology"} abelian sheaf cohomology
+                as a special case of
+                = succeed "." do
+                  %a.existingWikiWord{:href => "/nlab/show/nonabelian+cohomology"} nonabelian cohomology
+              %p See page 9,10 of
+              %ul
+                %li
+                  K. Brown,
+                  %a.existingWikiWord{:href => "/nlab/show/BrownAHT"} Abstract Homotopy Theory and Generalized Sheaf Cohomology
+            %li
+              %p
+                There is a version of the Dold–Kan correspondence in the context of
+                = succeed "-" do
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mo{:stretchy => "false"} (
+                        %mn ∞
+                        %mo ,
+                        %mn 1
+                        %mo{:stretchy => "false"} )
+                      %annotation{:encoding => "application/x-tex"} (\infty,1)
+                = succeed ":" do
+                  %a.existingWikiWord{:href => "/nlab/show/%28infinity%2C1%29-category"} categories
+              %p
+                let
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi C
+                    %annotation{:encoding => "application/x-tex"} C
+                be a
+                = succeed "." do
+                  %a.existingWikiWord{:href => "/nlab/show/stable+%28%E2%88%9E%2C1%29-category"} stable (∞,1)-category
+                = succeed "-categories" do
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mo{:stretchy => "false"} (
+                        %mn ∞
+                        %mo ,
+                        %mn 1
+                        %mo{:stretchy => "false"} )
+                      %annotation{:encoding => "application/x-tex"} (\infty,1)
+                %a.existingWikiWord{:href => "/nlab/show/complexes"} complexes
+                in
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi C
+                    %annotation{:encoding => "application/x-tex"} C
+                is equivalent to the
+                = succeed "-category" do
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mo{:stretchy => "false"} (
+                        %mn ∞
+                        %mo ,
+                        %mn 1
+                        %mo{:stretchy => "false"} )
+                      %annotation{:encoding => "application/x-tex"} (\infty,1)
+                %a.existingWikiWord{:href => "/nlab/show/simplicial+objects"} simplicial objects
+                in
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi C
+                    %annotation{:encoding => "application/x-tex"} C
+              .maruku-equation
+                %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi Fun
+                      %mo{:stretchy => "false"} (
+                      %mi N
+                      %mo{:stretchy => "false"} (
+                      %msub
+                        %mi ℤ
+                        %mrow
+                          %mo ≥
+                          %mn 0
+                      %mo{:stretchy => "false"} )
+                      %mo ,
+                      %mi C
+                      %mo{:stretchy => "false"} )
+                      %mo ≃
+                      %mi Fun
+                      %mo{:stretchy => "false"} (
+                      %mi N
+                      %mo{:stretchy => "false"} (
+                      %mi Δ
+                      %msup
+                        %mo{:stretchy => "false"} )
+                        %mi op
+                      %mo ,
+                      %mi C
+                      %mo{:stretchy => "false"} )
+                      %mspace{:width => "thinmathspace"}
+                      %mo .
+                    %annotation{:encoding => "application/x-tex"}
+                      Fun(N(\mathbb{Z}_{\geq 0}), C)
+                      \\simeq
+                      Fun(N(\Delta)^{op}, C)
+                      \\,.
+              %p
+                This is
+                %a.existingWikiWord{:href => "/nlab/show/infinity-Dold-Kan+correspondence"} infinity-Dold-Kan correspondence
+                is
+                %a{:href => "http://www.math.harvard.edu/~lurie/topoibook/DAGI.pdf"} theorem 12.8, p. 50
+                of
+              %ul
+                %li
+                  %a.existingWikiWord{:href => "/nlab/show/Jacob+Lurie"}> Jacob Lurie
+                  ,
+                  %a.existingWikiWord{:href => "/nlab/show/Stable+%E2%88%9E-Categories"} Stable ∞-Categories
+            %li
+              %p
+                There is a version of the Dold–Kan correspondence with
+                %a.existingWikiWord{:href => "/nlab/show/simplicial+sets"} simplicial sets
+                generalized to
+                = succeed "." do
+                  %a.existingWikiWord{:href => "/nlab/show/dendroidal+sets"} dendroidal sets
+              %ul
+                %li
+                  %a.existingWikiWord{:href => "/nlab/show/Javier+Gutierrez"}> Javier Gutiérrez
+                  ,
+                  = succeed "," do
+                    %a.existingWikiWord{:href => "/nlab/show/Andor+Lukacs"} Andor Lukacs
+                  = succeed "," do
+                    %a.existingWikiWord{:href => "/nlab/show/Ittay+Weiss"} Ittay Weiss
+                  %em Dold-Kan correspondence for dendroidal abelian groups
+                  (
+                  %a{:href => "http://arxiv.org/abs/0909.3995"}> arXiv
+                  )
+            %li
+              %p
+                Various functor categories of interest in stable homotopy theory and homological stability are involved in generalized Dold-Kan equivalences. These equivalences have been studied independently by several authors, including
+                %a{:href => "#Piraashvili"} Pirashvili
+                ,
+                = succeed "," do
+                  %a{:href => "#S?omi?ska"} Słomińska
+                = succeed "," do
+                  %a{:href => "#Helmstutler"} Helmstutler
+                %a{:href => "#LackStreet"} Lack and Street
+            %li
+              %p
+                There is a
+                %a.existingWikiWord{:href => "/nlab/show/categorification"} categorification
+                of the correspondence,
+                %a.existingWikiWord{:href => "/nlab/show/categorified+Dold-Kan+correspondence"} categorified Dold-Kan correspondence
+                (
+                %a{:href => "#Dyckerhoff17"}> Dyckerhoff17
+                )
+          %h2#Applications Applications
+          %h3#EilenbergMacLaneObjects Eilenberg-MacLane objects
+          %p
+            The Dold-Kan correspondence gives a convenient construction of
+            = succeed "s" do
+              %a.existingWikiWord{:href => "/nlab/show/Eilenberg-MacLane+object"} Eilenberg-MacLane object
+            = succeed "s." do
+              %a.existingWikiWord{:href => "/nlab/show/simplicial+group"} simplicial group
+          #ExplicitUnitAndCounit.num_prop
+            %h6#proposition_6 Proposition
+            %p
+              For
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi A
+                  %annotation{:encoding => "application/x-tex"} A
+              an
+              %a.existingWikiWord{:href => "/nlab/show/abelian+group"} abelian group
+              write
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi A
+                    %mo{:stretchy => "false"} [
+                    %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                    %mi n
+                    %mo{:stretchy => "false"} ]
+                  %annotation{:encoding => "application/x-tex"} A[-n]
+              for the
+              %a.existingWikiWord{:href => "/nlab/show/chain+complex"} chain complex
+              concentrated on
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi A
+                  %annotation{:encoding => "application/x-tex"} A
+              in degree
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi n
+                    %annotation{:encoding => "application/x-tex"} n
+            %p
+              The simplicial abelian group
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi Γ
+                    %mo{:stretchy => "false"} (
+                    %mi A
+                    %mo{:stretchy => "false"} [
+                    %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                    %mi n
+                    %mo{:stretchy => "false"} ]
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} \Gamma (A[-n])
+              is an
+              %a.existingWikiWord{:href => "/nlab/show/Eilenberg-MacLane+object"} Eilenberg-MacLane object
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi K
+                      %mo{:stretchy => "false"} (
+                      %mi A
+                      %mo ,
+                      %mi n
+                      %mo{:stretchy => "false"} )
+                    %annotation{:encoding => "application/x-tex"} K(A,n)
+            %p
+              And conversely, every such Eilenberg-MacLane object in simplicial abelian groups is related by an
+              = succeed "-equivalence" do
+                %a.existingWikiWord{:href => "/nlab/show/%E2%88%9E-anafunctor"} ∞-anafunctor
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi Γ
+                      %mo{:stretchy => "false"} (
+                      %mi A
+                      %mo{:stretchy => "false"} [
+                      %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                      %mi n
+                      %mo{:stretchy => "false"} ]
+                      %mo{:stretchy => "false"} )
+                    %annotation{:encoding => "application/x-tex"} \Gamma(A[-n])
+          %h3#LoopingAndDelooping Looping and delooping
+          %p
+            The Dold-Kan correspondence provides a convenient way to describe formation of
+            = succeed "s" do
+              %a.existingWikiWord{:href => "/nlab/show/loop+space+object"} loop space object
+            %a.existingWikiWord{:href => "/nlab/show/delooping"} delooping
+            for anything in the image of
+            = succeed ":" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi Ξ
+                    %mo :
+                    %msub
+                      %mi Ch
+                      %mo •
+                    %mo →
+                    %mi sSet
+                  %annotation{:encoding => "application/x-tex"} \Xi : Ch_\bullet \to sSet
+          %p
+            by the basic fact that the homotopy groups of
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi Ξ
+                  %mo{:stretchy => "false"} (
+                  %msub
+                    %mi V
+                    %mo •
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} \Xi(V_\bullet)
+            are the homology groups of
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi V
+                      %mo •
+                  %annotation{:encoding => "application/x-tex"} V_\bullet
+          %p
+            But the relation is also strongly coherent: it respects the standard delooping functor
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mover
+                    %mi W
+                    %mo{:stretchy => "false"} ¯
+                  %mo :
+                  %mi sGrp
+                  %mo →
+                  %mi sSet
+                %annotation{:encoding => "application/x-tex"} \bar W : sGrp \to sSet
+            for
+            = succeed "s" do
+              %a.existingWikiWord{:href => "/nlab/show/simplicial+group"} simplicial group
+            = succeed ")" do
+              %a.existingWikiWord{:href => "/nlab/show/looping+and+delooping"} looping and delooping
+            = succeed "):" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mover
+                      %mi W
+                      %mo{:stretchy => "false"} ¯
+                    %mo :
+                    %mi sAbGrp
+                    %mo →
+                    %mi sAbGrp
+                  %annotation{:encoding => "application/x-tex"} \bar W : sAbGrp \to sAbGrp
+          .num_prop
+            %h6#proposition_7 Proposition
+            %p
+              There is a
+              %a.existingWikiWord{:href => "/nlab/show/natural+isomorphism"} natural isomorphism
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi N
+                    %mover
+                      %mi W
+                      %mo{:stretchy => "false"} ¯
+                    %mi G
+                    %mo ≃
+                    %mo{:stretchy => "false"} (
+                    %mi N
+                    %mi G
+                    %mo{:stretchy => "false"} )
+                    %mo{:stretchy => "false"} [
+                    %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                    %mn 1
+                    %mo{:stretchy => "false"} ]
+                  %annotation{:encoding => "application/x-tex"} N \bar W G \simeq (N G)[-1]
+            %p
+              natural in
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi G
+                      %mo ∈
+                      %mi sAbGrpd
+                    %annotation{:encoding => "application/x-tex"} G \in sAbGrpd
+          %p
+            This appears for instance as (
+            %a{:href => "#GoerssJardine99"}> Goerss &amp; Jardine, remark III.5.6
+            ) or around (
+            %a{:href => "#Jardine"}> Jardine, theorem 4.57
+            ).
+          %h3#abelian_sheaf_cohomology_in_nonabelian_cohomology Abelian sheaf cohomology in nonabelian cohomology
+          %p
+            Composed with the
+            %a.existingWikiWord{:href => "/nlab/show/forgetful+functor"} forgetful functor
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi sAb
+                  %mo →
+                  %mi sSet
+                %annotation{:encoding => "application/x-tex"} sAb \to sSet
+            the Dold-Kan correspondence presents certain
+            = succeed "s" do
+              %a.existingWikiWord{:href => "/nlab/show/simplicial+set"} simplicial set
+            %a.existingWikiWord{:href => "/nlab/show/sheaves"} sheaves
+            on any
+            %a.existingWikiWord{:href => "/nlab/show/site"} site
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi S
+                  %annotation{:encoding => "application/x-tex"} S
+            %a.existingWikiWord{:href => "/nlab/show/simplicial+presheaves"} simplicial presheaves
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi Γ
+                  %mo :
+                  %mo{:stretchy => "false"} [
+                  %msup
+                    %mi S
+                    %mi op
+                  %mo ,
+                  %msubsup
+                    %mi Ch
+                    %mo •
+                    %mo +
+                  %mo{:stretchy => "false"} (
+                  %mi ab
+                  %mo{:stretchy => "false"} )
+                  %mo{:stretchy => "false"} ]
+                  %mo →
+                  %mo{:stretchy => "false"} [
+                  %msup
+                    %mi S
+                    %mi op
+                  %mo ,
+                  %mi sSet
+                  %mo{:stretchy => "false"} ]
+                %annotation{:encoding => "application/x-tex"} \Gamma : [S^{op}, Ch_\bullet^+(ab)] \to [S^{op}, sSet]
+          %p
+            If
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mo{:stretchy => "false"} [
+                  %msup
+                    %mi S
+                    %mi op
+                  %mo ,
+                  %mi sSet
+                  %mo{:stretchy => "false"} ]
+                %annotation{:encoding => "application/x-tex"} [S^{op}, sSet]
+            is equipped with the projective
+            %a.existingWikiWord{:href => "/nlab/show/model+structure+on+simplicial+presheaves"} model structure on simplicial presheaves
+            it models the
+            %a.existingWikiWord{:href => "/nlab/show/%28%E2%88%9E%2C1%29-sheaf+%28%E2%88%9E%2C1%29-topos"} (∞,1)-sheaf (∞,1)-topos
+            on
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi S
+                  %annotation{:encoding => "application/x-tex"} S
+            = succeed "s" do
+              %a.existingWikiWord{:href => "/nlab/show/derived+hom-space"} derived hom-space
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/nonabelian+cohomology"} nonabelian cohomology
+          %p
+            If the coefficient objects come from sheaves of chain complexes along
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi Γ
+                  %annotation{:encoding => "application/x-tex"} \Gamma
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/abelian+sheaf+cohomology"} abelian sheaf cohomology
+          %h3#computational_aspects Computational aspects
+          %p One may view the (monoidal) Dold-Kan correspondence as a relation between a well-behaved theory (simplicial/higher methods) that work in any characteristic but is very abstract and mainly suited to the proof of abstract theorems, and a more computational theory (strict structures in dg-modules) that are particularly well adapted to computations. The relation between these two (symmetric monoidal) theories may only be properly used with characteristic 0 coefficients. This remark is very naive and basic, but certainly at the center of computational implementations of abstract homotopical methods.
+          %h2#related_concepts Related concepts
+          %ul
+            %li
+              %p
+                %strong Dold-Kan correspondence
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/monoidal+Dold-Kan+correspondence"}> monoidal Dold-Kan correspondence
+                ,
+                %a.existingWikiWord{:href => "/nlab/show/Eilenberg-Zilber%2FAlexander-Whitney+deformation+retraction"} Eilenberg-Zilber/Alexander-Whitney deformation retraction
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/operadic+Dold-Kan+correspondence"} operadic Dold-Kan correspondence
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/infinity-Dold-Kan+correspondence"} infinity-Dold-Kan correspondence
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/stable+Dold-Kan+correspondence"} stable Dold-Kan correspondence
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/categorified+Dold-Kan+correspondence"} categorified Dold-Kan correspondence
+          %h2#references References
+          %p The original articles:
+          %ul
+            %li#Dold58
+              %a.existingWikiWord{:href => "/nlab/show/Albrecht+Dold"}> Albrecht Dold
+              ,
+              = succeed "," do
+                %em Homology of symmetric products and other functors of complexes
+              %strong 68
+              1 (Jul., 1958) 54-80 (
+              %a{:href => "http://www.jstor.org/stable/1970043"}> jstor:1970043
+              )
+          %p
+            considers the correspondence for categories of
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/modules"} modules
+          %ul
+            %li#DoldPuppe61
+              %a.existingWikiWord{:href => "/nlab/show/Albrecht+Dold"}> Albrecht Dold
+              ,
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/Dieter+Puppe"} Dieter Puppe
+              = succeed "," do
+                %em Homologie nicht-additiver Funktoren. Anwendungen
+              %strong 11
+              (1961) 201-312
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo{:stretchy => "false"} [
+                  %annotation{:encoding => "application/x-tex"} [
+              %a{:href => "https://eudml.org/doc/73776"} eudml:73776
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo{:stretchy => "false"} ]
+                  %annotation{:encoding => "application/x-tex"} ]
+          %p
+            generalizes the result to arbitrary
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/abelian+category"} abelian categories
+          %p
+            The general expression of the correspondence in terms of
+            %a.existingWikiWord{:href => "/nlab/show/nerve+and+realization"} nerve and realization
+            is due to
+          %ul
+            %li#Kan58
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Daniel+Kan"}> Daniel Kan
+                ,
+                = succeed "," do
+                  %em Functors involving c.s.s complexes
+                %strong 87
+                2 (March 1958) 330-346 (
+                %a{:href => "http://www.jstor.org/stable/1993103"}> jstor:1993103
+                ).
+              %blockquote
+                %p
+                  This remarkable article introduces not just the abstract
+                  %a.existingWikiWord{:href => "/nlab/show/nerve+and+realization"} nerve and realization
+                  form of the Dold-Kan correspondence, but introduces the general notion of nerve and realization and in fact the general notion of what is now called
+                  = succeed "." do
+                    %em
+                      %a.existingWikiWord{:href => "/nlab/show/Kan+extension"} Kan extension
+          %p
+            The Dold-Kan correspondence as a
+            %a.existingWikiWord{:href => "/nlab/show/Quillen+equivalence"} Quillen equivalence
+            between the
+            %a.existingWikiWord{:href => "/nlab/show/model+structure+on+simplicial+abelian+groups"} model structure on simplicial abelian groups
+            and the projective
+            %a.existingWikiWord{:href => "/nlab/show/model+structure+on+chain+complexes"} model structure on chain complexes
+            is due to
+          %ul
+            %li#Quillen67
+              %a.existingWikiWord{:href => "/nlab/show/Daniel+Quillen"}> Daniel Quillen
+              , Section II.4 item 5 in:
+              = succeed "," do
+                %em
+                  %a.existingWikiWord{:href => "/nlab/show/Homotopical+Algebra"} Homotopical Algebra
+              = succeed ")" do
+                %a{:href => "https://doi.org/10.1007/BFb0097438"} doi:10.1007/BFb0097438
+          %p A textbook reference for the ordinary Dold-Kan correspondence:
+          %ul
+            %li#GoerssJardine99
+              %a.existingWikiWord{:href => "/nlab/show/Paul+Goerss"}> Paul Goerss
+              ,
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/J.+F.+Jardine"} J. F. Jardine
+              = succeed "," do
+                %em
+                  %a.existingWikiWord{:href => "/nlab/show/Simplicial+homotopy+theory"} Simplicial homotopy theory
+              = succeed "," do
+                %a{:href => "https://link.springer.com/book/10.1007/978-3-0346-0189-4"} doi:10.1007/978-3-0346-0189-4
+              = succeed "&rbrack;" do
+                %a{:href => "http://web.archive.org/web/19990208220238/http://www.math.uwo.ca/~jardine/papers/simp-sets/"} webpage
+          %p Similar material is in section 4.6 of
+          %ul
+            %li#Jardine
+              %a.existingWikiWord{:href => "/nlab/show/J.+F.+Jardine"}> J. F. Jardine
+              ,
+              %em Generalized etale cohomology theories
+              Modern Birkhäuser Classics, (1991)
+          %p
+            Interpretation via
+            = succeed ":" do
+              %a.existingWikiWord{:href => "/nlab/show/model+categories"} model categories
+          %ul
+            %li#SchwedeShipley03
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Stefan+Schwede"}> Stefan Schwede
+                ,
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/Brooke+Shipley"} Brooke Shipley
+                = succeed "," do
+                  %em Equivalences of monoidal model categories
+                %strong 3
+                (2003) 287-334 &amp;lbrack;
+                %a{:href => "http://arxiv.org/abs/math.AT/0209342"}> arXiv:math.AT/0209342
+                ,
+                = succeed "&rbrack;" do
+                  %a{:href => "https://projecteuclid.org/euclid.agt/1513882376"} euclid:euclid.agt/1513882376
+            %li#Jardine03
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/J.+F.+Jardine"}> J. F. Jardine
+                , Lemma 1.5 in:
+                = succeed "," do
+                  %em Presheaves of chain complexes
+                = succeed "," do
+                  %a{:href => "https://pdfs.semanticscholar.org/360c/fd4eb76da956e0c8dd897377f6d6f342e44e.pdf"} pdf
+                = succeed ")" do
+                  %a.existingWikiWord{:href => "/nlab/files/JardinePresheavesOfChainComplexes.pdf", :title => "pdf"} pdf
+          %p Further review:
+          %ul
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/Jacob+Lurie"}> Jacob Lurie
+              ,
+              = succeed "," do
+                %em The Dold-Kan correspondence
+              %em
+                %a.existingWikiWord{:href => "/nlab/show/Kerodon"} Kerodon
+              \&amp;lbrack;
+              %a{:href => "https://kerodon.net/tag/00QQ"}> tag 00QQ
+              \&amp;rbrack;
+          %p
+            Discussion in the generality of
+            %a.existingWikiWord{:href => "/nlab/show/abelian+categories"} abelian categories
+            (and further generalization, in
+            %a{:href => "#LurieHA"} section 1.2.4
+            to
+            %a.existingWikiWord{:href => "/nlab/show/additive+categories"} additive categories
+            in which
+            %a.existingWikiWord{:href => "/nlab/show/retractions"} retractions
+            come from
+            = succeed "):" do
+              %a.existingWikiWord{:href => "/nlab/show/direct+sums"} direct sums
+          %ul
+            %li#LurieHA
+              %a.existingWikiWord{:href => "/nlab/show/Jacob+Lurie"}> Jacob Lurie
+              , section 1.2.3 of:
+              %em
+                %a.existingWikiWord{:href => "/nlab/show/Higher+Algebra"} Higher Algebra
+          %p
+            The relation between
+            %a.existingWikiWord{:href => "/nlab/show/strict+%E2%88%9E-groupoids"} strict ∞-groupoids
+            and
+            %a.existingWikiWord{:href => "/nlab/show/crossed+complexes"} crossed complexes
+            is in
+          %ul
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/Ronnie+Brown"} R. Brown
+              and P.J. Higgins,
+              = succeed "," do
+                %em
+                  The equivalence of
+                  = succeed "-groupoids" do
+                    %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                      %semantics
+                        %mrow
+                          %mn ∞
+                        %annotation{:encoding => "application/x-tex"} \infty
+              = succeed ")" do
+                %a{:href => "http://archive.numdam.org/article/CTGDC_1981__22_4_371_0.pdf"} pdf
+          %p P. 59 of
+          %ul
+            %li
+              R. Brown,
+              = succeed "," do
+                %em Groupoids and crossed objects in algebraic topology
+          %p gives seven equivalent categories with the equivalences all expressing nonabelian versions of the Dold–Kan correspondence. One of these is given in
+          %ul
+            %li
+              Ashley, N.,
+              = succeed "." do
+                %em Simplicial T-complexes and crossed complexes: a nonabelian version of a theorem of Dold and Kan
+          %p The relation of these with the abelian version is given in
+          %ul
+            %li
+              Brown, R. and Higgins, P. J.,
+              = succeed "." do
+                %em Cubical abelian groups with connections are equivalent to chain complexes
+          %p The paper
+          %ul
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/G.+J.+Ellis"}> G. J. Ellis
+              ,
+              %a.existingWikiWord{:href => "/nlab/show/R.+Steiner"} R. Steiner
+              = succeed "J." do
+                %em
+                  Higher-dimensional crossed modules and the homotopy groups of
+                  = succeed "}-ads." do
+                    %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                      %semantics
+                        %mrow
+                          %mo{:stretchy => "false"} (
+                          %mi n
+                          %mo +
+                          %mn 1
+                          %mo{:stretchy => "false"} )
+                        %annotation{:encoding => "application/x-tex"} (n+1)
+              %strong 46
+              (2-3) (1987) 117–136.
+          %p
+            should also be seen as of Dold-Kan type. The homotopical applications considerably generalise results on the
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/Blakers-Massey+theorem"} Blakers-Massey theorem
+          %p See also
+          %ul
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/Ronald+Brown"}> Ronald Brown
+              ,
+              = succeed "," do
+                %em Modelling and computing homotopy types: I
+              %p
+                (
+                %a{:href => "http://groupoids.org.uk/pdffiles/brouwer-honor.pdf"}> pdf
+                )
+          %p
+            The discussion of Dold–Kan in the general context of
+            %a.existingWikiWord{:href => "/nlab/show/semi-abelian+category"} semi-abelian categories
+            is in
+          %ul
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/Dominique+Bourn"}> Dominique Bourn
+              ,
+              = succeed "," do
+                %em Moore normalisation and Dold–Kan theorem for semi-Abelian categories
+              %p
+                Categories in algebra, geometry and mathematical physics , Contemp. Math.
+                = succeed "," do
+                  %strong 431
+          %p Dold-Kan correspondence in idempotent complete additive categories
+          %ul
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/Volodymyr+Lyubashenko"}> Volodymyr Lyubashenko
+              ,
+              = succeed "," do
+                %em Dold–Kan correspondence, revisited
+              = succeed "," do
+                %strong 30
+              %a{:href => "https://doi.org/10.1007/s10485-021-09665-7"} doi
+          %p
+            The classical Dold-Kan theorem occurs as a special case among others from
+            %a.existingWikiWord{:href => "/nlab/show/combinatorics"} combinatorics
+            and
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/representation+theory"} representation theory
+          %ul
+            %li#Slomiiska
+              %a.existingWikiWord{:href => "/nlab/show/Jolanta+S%C5%82omi%C5%84ska"}> Jolanta Słomińska
+              ,
+              = succeed "," do
+                %em Dold-Kan type theorems and Morita equivalences of functor categories
+              %strong 274
+              1 (2004) 118–137
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo{:stretchy => "false"} [
+                  %annotation{:encoding => "application/x-tex"} [
+              %a{:href => "https://doi.org/10.1016/j.jalgebra.2003.10.025"} doi:10.1016/j.jalgebra.2003.10.025
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo{:stretchy => "false"} ]
+                  %annotation{:encoding => "application/x-tex"} ]
+          %p A similar framework was independently rediscovered in:
+          %ul
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/Stephen+Lack"}> Stephen Lack
+              ,
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/Ross+Street"} Ross Street
+              = succeed "," do
+                %em Combinatorial categorical equivalences
+              = succeed ")" do
+                %a{:href => "http://arxiv.org/abs/1402.7151"} arXiv:1402.7151
+          %p A stable homotopical version of these general correspondences was developed in:
+          %ul
+            %li#Helmstutler
+              Randall Helmstutler,
+              = succeed "," do
+                %em Conjugate pairs of categories and Quillen equivalent stable model categories of functors
+              %strong 218
+              7 (2014) 1302-1323
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo{:stretchy => "false"} [
+                  %annotation{:encoding => "application/x-tex"} [
+              %a{:href => "https://doi.org/10.1016/j.jpaa.2013.11.019"} doi:10.1016/j.jpaa.2013.11.019
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo{:stretchy => "false"} ]
+                  %annotation{:encoding => "application/x-tex"} ]
+          %p
+            Among the correspondences “of Dold-Kan type” included in this theory are an equivalence between
+            %a.existingWikiWord{:href => "/nlab/show/FI-modules"} FI-modules
+            and linear
+            = succeed ":" do
+              %a.existingWikiWord{:href => "/nlab/show/combinatorial+species"} combinatorial species
+          %ul
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/Thomas+Church"}> Thomas Church
+              ,
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/Jordan+S.+Ellenberg"} Jordan S. Ellenberg
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/Benson+Farb"} Benson Farb
+              = succeed "," do
+                %em FI-modules and stability for representations of symmetric groups
+              %strong 164
+              9 (2015) 1833-1910 &amp;lbrack;
+              %a{:href => "https://arxiv.org/abs/1204.4533"}> arXiv:1204.4533
+              ,
+              = succeed "&rbrack;" do
+                %a{:href => "https://doi.org/10.1215/00127094-3120274"} doi:10.1215/00127094-3120274
+          %p
+            A Dold-Kan theorem for
+            = succeed "-groups:" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi Γ
+                  %annotation{:encoding => "application/x-tex"} \Gamma
+          %ul
+            %li#Pirashvili
+              Teimuraz Pirashvili.
+              = succeed "," do
+                %em Dold-Kan type theorem for ∞-groups
+              = succeed ")" do
+                %a{:href => "https://doi.org/10.1007/s002080000120"} link
+          %p
+            An equivalence between representations of the category of finite-dimensional
+            = succeed "-vector" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi 𝔽
+                      %mi q
+                  %annotation{:encoding => "application/x-tex"} \mathbb{F}_q
+          %ul
+            %li
+              Nicholas Kuhn,
+              = succeed "," do
+                %em Generic representation theory of finite fields in nondescribing characteristic
+              = succeed ")" do
+                %a{:href => "https://arxiv.org/abs/1405.0318"} link
+          %p
+            A
+            %a.existingWikiWord{:href => "/nlab/show/categorification"} categorification
+            to a
+            %a.existingWikiWord{:href => "/nlab/show/categorified+Dold-Kan+correspondence"} categorified Dold-Kan correspondence
+            is discussed here:
+          %ul
+            %li#Dyckerhoff17
+              %a.existingWikiWord{:href => "/nlab/show/Tobias+Dyckerhoff"}> Tobias Dyckerhoff
+              ,
+              %em A categorified Dold-Kan correspondence
+              (
+              %a{:href => "https://arxiv.org/abs/1710.08356"}> arXiv:1710.08356
+              )
+        .revisedby
+          %p
+            Last revised on November 12, 2025 at 06:14:25.
+            See the
+            %a{:href => "/nlab/history/Dold-Kan+correspondence", :style => "color: #005c19"} history
+            of this page for a list of all contributions to it.
+        .navigation.navfoot
+          %a#edit.navlink{:accesskey => "E", :href => "/nlab/edit/Dold-Kan+correspondence", :rel => "nofollow"} Edit
+          %a{:href => "https://nforum.ncatlab.org/discussion/394/#Item_39"} Discuss
+          %span.backintime
+            %a#to_previous_revision.navlinkbackintime{:accesskey => "B", :href => "/nlab/revision/Dold-Kan+correspondence/132", :rel => "nofollow"} Previous revision
+          %a#see_changes.navlink{:accesskey => "C", :href => "/nlab/show/diff/Dold-Kan+correspondence", :rel => "nofollow"} Changes from previous revision
+          %a#history.navlink{:accesskey => "S", :href => "/nlab/history/Dold-Kan+correspondence", :rel => "nofollow"} History (132 revisions)
+          %a{:href => "/nlab/show/Dold-Kan+correspondence/cite", :style => "color: black"} Cite
+          %a#view_print{:accesskey => "p", :href => "/nlab/print/Dold-Kan+correspondence", :rel => "nofollow"} Print
+          %a#view_source{:href => "/nlab/source/Dold-Kan+correspondence", :rel => "nofollow"} Source
+      / Content
+    / Container

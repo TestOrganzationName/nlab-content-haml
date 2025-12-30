@@ -1,0 +1,2751 @@
+!!! XML
+!!! 1.1
+%html{:xmlns => "http://www.w3.org/1999/xhtml"}
+  %head
+    %title
+      van Kampen theorem in nLab
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:content => "index,follow", :name => "robots"}/
+    %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/
+    %link{:href => "/stylesheets/instiki.css?1676280126", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/stylesheets/mathematics.css?1660229990", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/stylesheets/syntax.css?1660229990", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/stylesheets/nlab.css?1676280126", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css", :rel => "stylesheet", :type => "text/css"}/
+    :css
+      h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+        color: #226622;
+      }
+      a:visited.existingWikiWord {
+        color: #164416;
+      }
+    :css
+      <!--/*--><![CDATA[/*><!--*/
+          .toc ul {margin: 0; padding: 0;}
+      .toc ul ul {margin: 0; padding: 0 0 0 10px;}
+      .toc li > p {margin: 0}
+      .toc ul li {list-style-type: none; position: relative;}
+      .toc div {border-top:1px dotted #ccc;}
+      .rightHandSide h2 {font-size: 1.5em;color:#008B26}
+      table.plaintable {
+          border-collapse:collapse;
+          margin-left:30px;
+          border:0;
+      }
+      .plaintable td {border:1px solid #000; padding: 3px;}
+      .plaintable th {padding: 3px;}
+      .plaintable caption {
+          font-weight: bold;
+          font-size:1.1em;
+          text-align:center;
+          margin-left:30px;
+      }
+          
+         
+      /* Query boxes for questioning and answering mechanism */
+      div.query{
+      background: #f6fff3;
+      border: solid #ce9;
+      border-width: 2px 1px;
+      padding: 0 1em;
+      margin: 0 1em;
+      max-height: 20em;
+      overflow: auto;
+      }
+      
+      /* Standout boxes for putting important text */
+      div.standout{
+      background: #fff1f1;
+      border: solid black;
+      border-width: 2px 1px;
+      padding: 0 1em;
+      margin: 0 1em;
+      overflow: auto;
+      }
+      
+      /* Icon for links to n-category arXiv documents 
+       (commented out for now i.e. disabled)
+      a[href*="http://arxiv.org/"] {
+        background-image: url(../files/arXiv_icon.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 22px;
+        } */
+          
+      /* Icon for links to n-category cafe posts (disabled) 
+      a[href*="http://golem.ph.utexas.edu/category"] {
+        background-image: url(../files/n-cafe_5.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 25px;
+        } */
+      
+      /* Icon for links to pdf files (disabled)
+      a[href$=".pdf"] {
+        background-image: url(../files/pdficon_small.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 25px;
+        } */
+      
+      /* Icon for links to pages, etc. -inside- pdf files (disabled)
+      a[href*=".pdf#"] {
+        background-image: url(../files/pdf_entry.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 25px;
+        } */
+      
+      a.existingWikiWord {
+      color: #226622;
+      }
+      
+      a.existingWikiWord:visited {
+      color: #226622;
+      }
+      
+      
+      a.existingWikiWord[title] {
+      border: 0px;
+      color: #aa0505;
+      text-decoration: none;
+      }
+          
+      a.existingWikiWord[title]:visited {
+      border: 0px;
+      color: #551111;
+      text-decoration: none;
+      }
+      
+      a[href^="http://"] {
+      border: 0px;
+      color: #003399;
+      }
+      
+      a[href^="http://"]:visited {
+      border: 0px;
+      color: #330066;
+      }
+      
+      a[href^="https://"] {
+      border: 0px;
+      color: #003399;
+      }
+      
+      a[href^="https://"]:visited {
+      border: 0px;
+      color: #330066;
+      }
+      
+      div.dropDown .hide {
+      display: none;
+      }
+      
+      div.dropDown:hover .hide {
+      display:block;
+      }
+      
+      div.clickDown .hide {
+      display: none;
+      }
+      
+      div.clickDown:focus {
+      outline:none;
+      }
+      
+      div.clickDown:focus .hide, div.clickDown:hover .hide {
+      display: block;
+      }
+      
+      div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+      display:block;
+      }
+      
+      div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+      display:none;
+      }
+      
+      div.clickDown .clickToReveal:after {
+      content: "A(Hover to reveal, click to "hold")";
+      font-size: 60%;
+      }
+      
+      div.clickDown .clickToHide:after {
+      content: "A(Click to hide)";
+      font-size: 60%;
+      }
+      div.clickDown .clickToHide, div.clickDown .clickToReveal {
+      white-space: pre-wrap;
+      }
+      
+      .un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+      margin-left: 1em;
+      }
+      
+      span.theorem_label {
+      margin-left: -1em;
+      }
+      .proof span.theorem_label {
+      margin-left: 0em;
+      }
+      :target {
+          background-color: #BBBBBB;
+          border-radius: 5pt;
+      }
+      
+        /*]]>*/-->
+    %script{:src => "/javascripts/prototype.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/effects.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/dragdrop.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/controls.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/application.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/page_helper.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/thm_numbering.js?1660229990", :type => "text/javascript"}
+    %script{:type => "text/x-mathjax-config"}
+      :cdata
+        <!--//--><![CDATA[//><!--
+        MathJax.Ajax.config.path["Contrib"] = "/MathJax";
+        MathJax.Hub.Config({
+        MathML: { useMathMLspacing: true },
+        "HTML-CSS": { scale: 90,
+        extensions: ["handle-floats.js"]
+        }
+        });
+        MathJax.Hub.Queue( function () {
+        var fos = document.getElementsByTagName('foreignObject');
+        for (var i = 0; i < fos.length; i++) {
+        MathJax.Hub.Typeset(fos[i]);
+        }
+        });
+        \//--><!]]>
+    :javascript
+      <!--//--><![CDATA[//><!--
+      window.addEventListener("DOMContentLoaded", function () {
+        var div = document.createElement('div');
+        var math = document.createElementNS('http://www.w3.org/1998/Math/MathML', 'math');
+        document.body.appendChild(div);
+        div.appendChild(math);
+      // Test for MathML support comparable to WebKit version https://trac.webkit.org/changeset/203640 or higher.
+        div.setAttribute('style', 'font-style: italic');
+        var mathml_unsupported = !(window.getComputedStyle(div.firstChild).getPropertyValue('font-style') === 'normal');
+        div.parentNode.removeChild(div);
+        if (mathml_unsupported) {
+          // MathML does not seem to be supported...
+          var s = document.createElement('script');
+          s.src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=MML_HTMLorMML-full";
+          document.querySelector('head').appendChild(s);
+        } else {
+          document.head.insertAdjacentHTML("beforeend", '<style>svg[viewBox] {max-width: 100%}</style>');
+        }
+      });
+      //--><!]]>
+    %link{:href => "https://ncatlab.org/nlab/atom_with_headlines", :rel => "alternate", :title => "Atom with headlines", :type => "application/atom+xml"}/
+    %link{:href => "https://ncatlab.org/nlab/atom_with_content", :rel => "alternate", :title => "Atom with full content", :type => "application/atom+xml"}/
+    :javascript
+      document.observe("dom:loaded", function() {
+        generateThmNumbers();
+      });
+  %body
+    #Container
+      #Content
+        %h1#pageName
+          %span{:style => "float: left; margin: 0.5em 0.25em -0.25em 0"}
+            %svg{:height => "1.8em", :viewbox => "0 0 190 181", :width => "1.872em", :xmlns => "http://www.w3.org/2000/svg"}
+              %path{:d => "M72.8 145c-1.6 17.3-15.7 10-23.6 20.2-5.6 7.3 4.8 15 11.4 15 11.5-.2 19-13.4 26.4-20.3 3.3-3 8.2-4 11.2-7.2a14 14 0 0 0 2.9-11.1c-1.4-9.6-12.4-18.6-16.9-27.2-5-9.6-10.7-27.4-24.1-27.7-17.4-.3-.4 26 4.7 30.7 2.4 2.3 5.4 4.1 7.3 6.9 1.6 2.3 2.1 5.8-1 7.2-5.9 2.6-12.4-6.3-15.5-10-8.8-10.6-15.5-23-26.2-31.8-5.2-4.3-11.8-8-18-3.7-7.3 4.9-4.2 12.9.2 18.5a81 81 0 0 0 30.7 23c3.3 1.5 12.8 5.6 10 10.7-2.5 5.2-11.7 3-15.6 1.1-8.4-3.8-24.3-21.3-34.4-13.7-3.5 2.6-2.3 7.6-1.2 11.1 2.8 9 12.2 17.2 20.9 20.5 17.3 6.7 34.3-8 50.8-12.1z", :fill => "#226622"}
+              %path{:d => "M145.9 121.3c-.2-7.5 0-19.6-4.5-26-5.4-7.5-12.9-1-14.1 5.8-1.4 7.8 2.7 14.1 4.8 21.3 3.4 12 5.8 29-.8 40.1-3.6-6.7-5.2-13-7-20.4-2.1-8.2-12.8-13.2-15.1-1.9-2 9.7 9 21.2 12 30.1 1.2 4 2 8.8 6.4 10.3 6.9 2.3 13.3-4.7 17.7-8.8 12.2-11.5 36.6-20.7 43.4-36.4 6.7-15.7-13.7-14-21.3-7.2-9.1 8-11.9 20.5-23.6 25.1 7.5-23.7 31.8-37.6 38.4-61.4 2-7.3-.8-29.6-13-19.8-14.5 11.6-6.6 37.6-23.3 49.2z", :fill => "#a41e32"}
+              %path{:d => "M86.3 47.5c0-13-10.2-27.6-5.8-40.4 2.8-8.4 14.1-10.1 17-1 3.8 11.6-.3 26.3-1.8 38 11.7-.7 10.5-16 14.8-24.3 2.1-4.2 5.7-9.1 11-6.7 6 2.7 7.4 9.2 6.6 15.1-2.2 14-12.2 18.8-22.4 27-3.4 2.7-8 6.6-5.9 11.6 2 4.4 7 4.5 10.7 2.8 7.4-3.3 13.4-16.5 21.7-16 14.6.7 12 21.9.9 26.2-5 1.9-10.2 2.3-15.2 3.9-5.8 1.8-9.4 8.7-15.7 8.9-6.1.1-9-6.9-14.3-9-14.4-6-33.3-2-44.7-14.7-3.7-4.2-9.6-12-4.9-17.4 9.3-10.7 28 7.2 35.7 12 2 1.1 11 6.9 11.4 1.1.4-5.2-10-8.2-13.5-10-11.1-5.2-30-15.3-35-27.3-2.5-6 2.8-13.8 9.4-13.6 6.9.2 13.4 7 17.5 12C70.9 34 75 43.8 86.3 47.4z", :fill => "#193c78"}
+          %span.webName nLab
+          van Kampen theorem
+        .navigation
+          %span.skipNav
+            %a{:href => "#navEnd"} Skip the Navigation Links
+            |
+          %span{:style => "display:inline-block; width: 0.3em;"}
+          %a{:accesskey => "H", :href => "/nlab/show/HomePage", :title => "Home page"} Home Page
+          |
+          %a{:accesskey => "A", :href => "/nlab/all_pages", :title => "List of all pages"} All Pages
+          |
+          %a{:accesskey => "U", :href => "/nlab/latest_revisions", :title => "Latest edits and page creations"} Latest Revisions
+          |
+          %a{:href => "https://nforum.ncatlab.org/discussion/2029/#Item_8", :style => "color: black", :title => "Discuss this page in its dedicated thread on the nForum"} Discuss this page
+          |
+          %form#navigationSearchForm{"accept-charset" => "utf-8", :action => "/nlab/search", :method => "get"}
+            %fieldset.search
+              %input#searchField{:name => "query", :onblur => "this.value == '' ? this.value = 'Search' : true", :onfocus => "this.value == 'Search' ? this.value = '' : true", :style => "display:inline-block; float: left;", :type => "text", :value => "Search"}/
+          %span#navEnd
+        #revision
+          %meta{:content => "application/xhtml+xml;charset=utf-8", "http-equiv" => "Content-type"}/
+          %title Contents
+          .rightHandSide
+            .toc.clickDown{:tabindex => "0"}
+              %h3#context Context
+              %h4#homotopy_theory Homotopy theory
+              .hide
+                %div
+                  %p
+                    %strong
+                      %a.existingWikiWord{:href => "/nlab/show/homotopy+theory"}> homotopy theory
+                      ,
+                      = succeed "," do
+                        %a.existingWikiWord{:href => "/nlab/show/%28%E2%88%9E%2C1%29-category+theory"} (∞,1)-category theory
+                      %a.existingWikiWord{:href => "/nlab/show/homotopy+type+theory"} homotopy type theory
+                  %p
+                    flavors:
+                    = succeed "," do
+                      %a.existingWikiWord{:href => "/nlab/show/stable+homotopy+theory"} stable
+                    = succeed "," do
+                      %a.existingWikiWord{:href => "/nlab/show/equivariant+homotopy+theory"} equivariant
+                    = succeed "," do
+                      %a.existingWikiWord{:href => "/nlab/show/rational+homotopy+theory"} rational
+                    = succeed "," do
+                      %a.existingWikiWord{:href => "/nlab/show/p-adic+homotopy+theory"} p-adic
+                    = succeed "," do
+                      %a.existingWikiWord{:href => "/nlab/show/proper+homotopy+theory"} proper
+                    = succeed "," do
+                      %a.existingWikiWord{:href => "/nlab/show/geometric+homotopy+theory"} geometric
+                    = succeed "," do
+                      %a.existingWikiWord{:href => "/nlab/show/cohesive+homotopy+theory"} cohesive
+                    = succeed "\u2026" do
+                      %a.existingWikiWord{:href => "/nlab/show/directed+homotopy+theory"} directed
+                  %p
+                    models:
+                    = succeed "," do
+                      %a.existingWikiWord{:href => "/nlab/show/topological+homotopy+theory"} topological
+                    = succeed "," do
+                      %a.existingWikiWord{:href => "/nlab/show/simplicial+homotopy+theory"} simplicial
+                    = succeed "," do
+                      %a.existingWikiWord{:href => "/nlab/show/localic+homotopy+theory"} localic
+                  %p
+                    see also
+                    %strong
+                      %a.existingWikiWord{:href => "/nlab/show/algebraic+topology"} algebraic topology
+                  %p
+                    %strong Introductions
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Introduction+to+Topology+--+2"} Introduction to Basic Homotopy Theory
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Introduction+to+Homotopy+Theory"} Introduction to Abstract Homotopy Theory
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/geometry+of+physics+--+homotopy+types"} geometry of physics – homotopy types
+                  %p
+                    %strong Definitions
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/homotopy"}> homotopy
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/higher+homotopy"} higher homotopy
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/homotopy+type"} homotopy type
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Pi-algebra"}> Pi-algebra
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/spherical+object+and+Pi%28A%29-algebra"} spherical object and Pi(A)-algebra
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/homotopy+coherent+category+theory"} homotopy coherent category theory
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/homotopical+category"} homotopical category
+                          %ul
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/model+category"} model category
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/category+of+fibrant+objects"}> category of fibrant objects
+                                ,
+                                %a.existingWikiWord{:href => "/nlab/show/cofibration+category"} cofibration category
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/Waldhausen+category"} Waldhausen category
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/homotopy+category"} homotopy category
+                          %ul
+                            %li
+                              %a.existingWikiWord{:href => "/nlab/show/Ho%28Top%29"} Ho(Top)
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/%28%E2%88%9E%2C1%29-category"} (∞,1)-category
+                      %ul
+                        %li
+                          %a.existingWikiWord{:href => "/nlab/show/homotopy+category+of+an+%28%E2%88%9E%2C1%29-category"} homotopy category of an (∞,1)-category
+                  %p
+                    %strong Paths and cylinders
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/left+homotopy"} left homotopy
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/cylinder+object"} cylinder object
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/mapping+cone"} mapping cone
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/right+homotopy"} right homotopy
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/path+object"} path object
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/mapping+cocone"} mapping cocone
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/generalized+universal+bundle"} universal bundle
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/interval+object"} interval object
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/homotopy+localization"} homotopy localization
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/infinitesimal+interval+object"} infinitesimal interval object
+                  %p
+                    %strong Homotopy groups
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/homotopy+group"} homotopy group
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/fundamental+group"} fundamental group
+                          %ul
+                            %li
+                              %a.existingWikiWord{:href => "/nlab/show/fundamental+group+of+a+topos"} fundamental group of a topos
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/Brown-Grossman+homotopy+group"} Brown-Grossman homotopy group
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/categorical+homotopy+groups+in+an+%28%E2%88%9E%2C1%29-topos"} categorical homotopy groups in an (∞,1)-topos
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/geometric+homotopy+groups+in+an+%28%E2%88%9E%2C1%29-topos"} geometric homotopy groups in an (∞,1)-topos
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/fundamental+%E2%88%9E-groupoid"} fundamental ∞-groupoid
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/fundamental+groupoid"} fundamental groupoid
+                          %ul
+                            %li
+                              %a.existingWikiWord{:href => "/nlab/show/path+groupoid"} path groupoid
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/fundamental+%E2%88%9E-groupoid+in+a+locally+%E2%88%9E-connected+%28%E2%88%9E%2C1%29-topos"} fundamental ∞-groupoid in a locally ∞-connected (∞,1)-topos
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/fundamental+%E2%88%9E-groupoid+of+a+locally+%E2%88%9E-connected+%28%E2%88%9E%2C1%29-topos"} fundamental ∞-groupoid of a locally ∞-connected (∞,1)-topos
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/fundamental+%28%E2%88%9E%2C1%29-category"} fundamental (∞,1)-category
+                      %ul
+                        %li
+                          %a.existingWikiWord{:href => "/nlab/show/fundamental+category"} fundamental category
+                  %p
+                    %strong Basic facts
+                  %ul
+                    %li
+                      %a.existingWikiWord{:href => "/nlab/show/fundamental+group+of+the+circle+is+the+integers"} fundamental group of the circle is the integers
+                  %p
+                    %strong Theorems
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/fundamental+theorem+of+covering+spaces"} fundamental theorem of covering spaces
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Freudenthal+suspension+theorem"} Freudenthal suspension theorem
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Blakers-Massey+theorem"} Blakers-Massey theorem
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/higher+homotopy+van+Kampen+theorem"} higher homotopy van Kampen theorem
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/nerve+theorem"} nerve theorem
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Whitehead%27s+theorem"} Whitehead's theorem
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Hurewicz+theorem"} Hurewicz theorem
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Galois+theory"} Galois theory
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/homotopy+hypothesis"}> homotopy hypothesis
+                        \-theorem
+          %h1#contents Contents
+          .maruku_toc
+            %ul
+              %li
+                %a{:href => "#idea"} Idea
+              %li
+                %a{:href => "#statement"} Statement
+              %ul
+                %li
+                  %a{:href => "#for_fundamental_groups"} For fundamental groups
+                %li
+                  %a{:href => "#from_groups_to_groupoids"} From groups to groupoids
+                %li
+                  %a{:href => "#strict_van_kampen_theorem_for_groupoids"} Strict van Kampen theorem for groupoids
+                %li
+                  %a{:href => "#homotopy_van_kampen_theorem_for_groupoids"} Homotopy van Kampen theorem for groupoids
+                %li
+                  %a{:href => "#examples"} Examples
+                %li
+                  %a{:href => "#van_kampen_theorem_in_homotopy_type_theory"} van Kampen theorem in homotopy type theory
+              %li
+                %a{:href => "#generalizations"} Generalizations
+              %li
+                %a{:href => "#References"} References
+          %h2#idea Idea
+          %p
+            The
+            %em Seifert-van Kampen theorem
+            is a classical theorem in
+            %a.existingWikiWord{:href => "/nlab/show/algebraic+topology"} algebraic topology
+            which computes the
+            %a.existingWikiWord{:href => "/nlab/show/fundamental+group"} fundamental group
+            of a pointed
+            %a.existingWikiWord{:href => "/nlab/show/topological+space"} topological space
+            in terms of a decomposition into
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/open+subsets"} open subsets
+          %p
+            It is most naturally expressed by saying that the
+            %a.existingWikiWord{:href => "/nlab/show/fundamental+groupoid"} fundamental groupoid
+            %a.existingWikiWord{:href => "/nlab/show/functor"} functor
+            preserves certain
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/colimits"} colimits
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/homotopy+colimits"} homotopy colimits
+            %a.existingWikiWord{:href => "/nlab/show/homotopy+colimit"} homotopy colimit
+            (i.e. a
+            = succeed ")" do
+              %a.existingWikiWord{:href => "/nlab/show/2-colimit"} 2-colimit
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/strict+2-colimit"} strict colimit
+            %em homotopy van Kampen theorems
+            and
+            = succeed "." do
+              %em strict van Kampen theorems
+          %h2#statement Statement
+          %h3#for_fundamental_groups For fundamental groups
+          %p
+            The most classical version of the
+            %strong Seifert-van Kampen theorem
+            for the
+            %a.existingWikiWord{:href => "/nlab/show/fundamental+group"} fundamental group
+            is the following.
+          .un_theorem
+            %h6#theorem Theorem
+            %p
+              Let
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi X
+                  %annotation{:encoding => "application/x-tex"} X
+              be a
+              %a.existingWikiWord{:href => "/nlab/show/topological+space"} topological space
+              %a.existingWikiWord{:href => "/nlab/show/covering"} covered
+              by
+              %a.existingWikiWord{:href => "/nlab/show/open+subsets"} open subsets
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi U
+                    %mo ,
+                    %mi V
+                    %mo ⊂
+                    %mi X
+                  %annotation{:encoding => "application/x-tex"} U,V \subset X
+              such that
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi U
+                    %mo ∩
+                    %mi V
+                  %annotation{:encoding => "application/x-tex"} U \cap V
+              is
+              = succeed "." do
+                %a.existingWikiWord{:href => "/nlab/show/path-connected+space"} path connected
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi x
+                      %mo ∈
+                      %mi U
+                      %mo ∩
+                      %mi V
+                    %annotation{:encoding => "application/x-tex"} x \in U \cap V
+              %a.existingWikiWord{:href => "/nlab/show/diagram"} diagram
+              of
+              = succeed "s" do
+                %a.existingWikiWord{:href => "/nlab/show/homotopy+group"} homotopy group
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mrow
+                      %mtable
+                        %mtr
+                          %mtd
+                            %msub
+                              %mi π
+                              %mn 1
+                            %mo{:stretchy => "false"} (
+                            %mi U
+                            %mo ∩
+                            %mi V
+                            %mo ,
+                            %mi x
+                            %mo{:stretchy => "false"} )
+                          %mtd
+                            %mo →
+                          %mtd
+                            %msub
+                              %mi π
+                              %mn 1
+                            %mo{:stretchy => "false"} (
+                            %mi U
+                            %mo ,
+                            %mi x
+                            %mo{:stretchy => "false"} )
+                        %mtr
+                          %mtd
+                            %mo{:stretchy => "false"} ↓
+                          %mtd
+                          %mtd
+                            %mo{:stretchy => "false"} ↓
+                        %mtr
+                          %mtd
+                            %msub
+                              %mi π
+                              %mn 1
+                            %mo{:stretchy => "false"} (
+                            %mi V
+                            %mo ,
+                            %mi x
+                            %mo{:stretchy => "false"} )
+                          %mtd
+                            %mo →
+                          %mtd
+                            %msub
+                              %mi π
+                              %mn 1
+                            %mo{:stretchy => "false"} (
+                            %mi X
+                            %mo ,
+                            %mi x
+                            %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"}
+                    \\array{
+                    \\pi_1(U \cap V, x) &amp;\to&amp; \pi_1(U,x)
+                    \\\
+                    \\downarrow &amp;&amp; \downarrow
+                    \\\
+                    \\pi_1(V,x) &amp;\to&amp; \pi_1(X,x)
+                    }
+            %p
+              is a
+              %a.existingWikiWord{:href => "/nlab/show/pushout"} pushout
+              square in
+              = succeed "." do
+                %a.existingWikiWord{:href => "/nlab/show/Grp"} Grp
+          %h3#from_groups_to_groupoids From groups to groupoids
+          %p
+            We can regard the classical theorem as being a statement about fundamental groupoids as follows. Recall that any group
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi G
+                %annotation{:encoding => "application/x-tex"} G
+            can be considered as a 1-object groupoid
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mstyle{:mathvariant => "bold"}
+                    %mi B
+                  %mi G
+                %annotation{:encoding => "application/x-tex"} \mathbf{B}G
+            by
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/delooping"} delooping
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mstyle{:mathvariant => "bold"}
+                    %mi B
+                %annotation{:encoding => "application/x-tex"} \mathbf{B}
+            takes colimits of groups to strict colimits of groupoids. Moreover, a strict pushout of one-object groupoids is also a 2-pushout, because the maps we are pushing out are
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/bo+functor"} bijective on objects
+            %a.existingWikiWord{:href => "/nlab/show/cofibrations"} cofibrations
+            in the
+            %a.existingWikiWord{:href => "/nlab/show/canonical+model+structure"} canonical model structure
+            on
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi Gpd
+                  %annotation{:encoding => "application/x-tex"} Gpd
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mrow
+                    %mtable
+                      %mtr
+                        %mtd
+                          %mstyle{:mathvariant => "bold"}
+                            %mi B
+                          %msub
+                            %mi π
+                            %mn 1
+                          %mo{:stretchy => "false"} (
+                          %mi U
+                          %mo ∩
+                          %mi V
+                          %mo ,
+                          %mi x
+                          %mo{:stretchy => "false"} )
+                        %mtd
+                          %mo →
+                        %mtd
+                          %mstyle{:mathvariant => "bold"}
+                            %mi B
+                          %msub
+                            %mi π
+                            %mn 1
+                          %mo{:stretchy => "false"} (
+                          %mi U
+                          %mo ,
+                          %mi x
+                          %mo{:stretchy => "false"} )
+                      %mtr
+                        %mtd
+                          %mo{:stretchy => "false"} ↓
+                        %mtd
+                        %mtd
+                          %mo{:stretchy => "false"} ↓
+                      %mtr
+                        %mtd
+                          %mstyle{:mathvariant => "bold"}
+                            %mi B
+                          %msub
+                            %mi π
+                            %mn 1
+                          %mo{:stretchy => "false"} (
+                          %mi V
+                          %mo ,
+                          %mi x
+                          %mo{:stretchy => "false"} )
+                        %mtd
+                          %mo →
+                        %mtd
+                          %mstyle{:mathvariant => "bold"}
+                            %mi B
+                          %msub
+                            %mi π
+                            %mn 1
+                          %mo{:stretchy => "false"} (
+                          %mi X
+                          %mo ,
+                          %mi x
+                          %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"}
+                  \\array{
+                  \\mathbf{B}\pi_1(U \cap V, x) &amp;\to&amp; \mathbf{B}\pi_1(U,x)
+                  \\\
+                  \\downarrow &amp;&amp; \downarrow
+                  \\\
+                  \\mathbf{B}\pi_1(V,x) &amp;\to&amp; \mathbf{B}\pi_1(X,x)
+                  }
+          %p
+            which is both a strict pushout and a
+            %a.existingWikiWord{:href => "/nlab/show/2-colimit"} 2-pushout
+            in
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi Gpd
+                  %annotation{:encoding => "application/x-tex"} Gpd
+          %p
+            Now let
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi X
+                  %mo ′
+                %annotation{:encoding => "application/x-tex"} X'
+            be the
+            %a.existingWikiWord{:href => "/nlab/show/path+component"} path component
+            of
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi X
+                %annotation{:encoding => "application/x-tex"} X
+            which contains
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi U
+                  %mo ∩
+                  %mi V
+                %annotation{:encoding => "application/x-tex"} U\cap V
+            (there is exactly one such, because
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi U
+                  %mo ∩
+                  %mi V
+                %annotation{:encoding => "application/x-tex"} U\cap V
+            is path-connected), and similarly
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi U
+                  %mo ′
+                %annotation{:encoding => "application/x-tex"} U'
+            and
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi V
+                    %mo ′
+                  %annotation{:encoding => "application/x-tex"} V'
+            %a.existingWikiWord{:href => "/nlab/show/fundamental+groupoid"} fundamental groupoid
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msub
+                    %mi Π
+                    %mn 1
+                  %mo{:stretchy => "false"} (
+                  %mi X
+                  %mo ′
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} \Pi_1(X')
+            is equivalent to
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mstyle{:mathvariant => "bold"}
+                      %mi B
+                    %msub
+                      %mi π
+                      %mn 1
+                    %mo{:stretchy => "false"} (
+                    %mi X
+                    %mo ,
+                    %mi x
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} \mathbf{B}\pi_1(X,x)
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mrow
+                    %mtable
+                      %mtr
+                        %mtd
+                          %msub
+                            %mi Π
+                            %mn 1
+                          %mo{:stretchy => "false"} (
+                          %mi U
+                          %mo ∩
+                          %mi V
+                          %mo{:stretchy => "false"} )
+                        %mtd
+                          %mo →
+                        %mtd
+                          %msub
+                            %mi Π
+                            %mn 1
+                          %mo{:stretchy => "false"} (
+                          %mi U
+                          %mo ′
+                          %mo{:stretchy => "false"} )
+                      %mtr
+                        %mtd
+                          %mo{:stretchy => "false"} ↓
+                        %mtd
+                        %mtd
+                          %mo{:stretchy => "false"} ↓
+                      %mtr
+                        %mtd
+                          %msub
+                            %mi Π
+                            %mn 1
+                          %mo{:stretchy => "false"} (
+                          %mi V
+                          %mo ′
+                          %mo{:stretchy => "false"} )
+                        %mtd
+                          %mo →
+                        %mtd
+                          %msub
+                            %mi Π
+                            %mn 1
+                          %mo{:stretchy => "false"} (
+                          %mi X
+                          %mo ′
+                          %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"}
+                  \\array{
+                  \\Pi_1(U \cap V) &amp;\to&amp; \Pi_1(U')
+                  \\\
+                  \\downarrow &amp;&amp; \downarrow
+                  \\\
+                  \\Pi_1(V') &amp;\to&amp; \Pi_1(X')
+                  }
+          %p
+            This is an instance of what we referred to above as a
+            = succeed "." do
+              %em homotopy van Kampen theorem
+            %em strict van Kampen theorem
+            as well.
+          %p
+            Note that the functors
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msub
+                    %mi Π
+                    %mn 1
+                  %mo{:stretchy => "false"} (
+                  %mi U
+                  %mo ∩
+                  %mi V
+                  %mo{:stretchy => "false"} )
+                  %mo →
+                  %msub
+                    %mi Π
+                    %mn 1
+                  %mo{:stretchy => "false"} (
+                  %mi U
+                  %mo ′
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} \Pi_1(U\cap V) \to \Pi_1(U')
+            and
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msub
+                    %mi Π
+                    %mn 1
+                  %mo{:stretchy => "false"} (
+                  %mi U
+                  %mo ∩
+                  %mi V
+                  %mo{:stretchy => "false"} )
+                  %mo →
+                  %msub
+                    %mi Π
+                    %mn 1
+                  %mo{:stretchy => "false"} (
+                  %mi U
+                  %mo ′
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} \Pi_1(U\cap V) \to \Pi_1(U')
+            are injective on objects, hence cofibrations in the canonical model structure, and so their strict pushout is also a 2-pushout. This strict pushout is therefore equivalent to
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi Π
+                      %mn 1
+                    %mo{:stretchy => "false"} (
+                    %mi X
+                    %mo ′
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} \Pi_1(X')
+            %em fundamental groupoid on a set of specified basepoints
+            as below.)
+          %p
+            We now consider more general versions of the van Kampen theorem which do not require
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi U
+                  %mo ∩
+                  %mi V
+                %annotation{:encoding => "application/x-tex"} U\cap V
+            to be path-connected, and which compute all of
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msub
+                    %mi Π
+                    %mn 1
+                  %mo{:stretchy => "false"} (
+                  %mi X
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} \Pi_1(X)
+            rather than just
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi Π
+                      %mn 1
+                    %mo{:stretchy => "false"} (
+                    %mi X
+                    %mo ′
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} \Pi_1(X')
+          %h3#strict_van_kampen_theorem_for_groupoids Strict van Kampen theorem for groupoids
+          %p
+            Let us define
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msub
+                    %mi Π
+                    %mn 1
+                  %mo{:stretchy => "false"} (
+                  %mi X
+                  %mo ,
+                  %msub
+                    %mi X
+                    %mn 0
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} \Pi_1(X,X_0)
+            of a space
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi X
+                %annotation{:encoding => "application/x-tex"} X
+            and a subset
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msub
+                    %mi X
+                    %mn 0
+                  %mo ⊆
+                  %mi X
+                %annotation{:encoding => "application/x-tex"} X_0 \subseteq X
+            to be the full subgroupoid of
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msub
+                    %mi Π
+                    %mn 1
+                  %mo{:stretchy => "false"} (
+                  %mi X
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} \Pi_1(X)
+            on the set
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi X
+                      %mn 0
+                  %annotation{:encoding => "application/x-tex"} X_0
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi U
+                %annotation{:encoding => "application/x-tex"} U
+            is given as a subspace of
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi X
+                %annotation{:encoding => "application/x-tex"} X
+            and
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi X
+                      %mn 0
+                    %mo ⊆
+                    %mi X
+                  %annotation{:encoding => "application/x-tex"} X_0 \subseteq X
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msub
+                    %mi Π
+                    %mn 1
+                  %mo{:stretchy => "false"} (
+                  %mi U
+                  %mo ,
+                  %msub
+                    %mi X
+                    %mn 0
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} \Pi_1(U,X_0)
+            for
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi Π
+                      %mn 1
+                    %mo{:stretchy => "false"} (
+                    %mi U
+                    %mo ,
+                    %msub
+                      %mi X
+                      %mn 0
+                    %mo ∩
+                    %mi U
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} \Pi_1(U,X_0\cap U)
+          %p
+            If
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msub
+                    %mi X
+                    %mo *
+                  %mo =
+                  %mo{:stretchy => "false"} (
+                  %mi X
+                  %mo ,
+                  %msub
+                    %mi X
+                    %mn 0
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} X_* =(X,X_0)
+            is a pair consisting of a space
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi X
+                %annotation{:encoding => "application/x-tex"} X
+            and a set
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msub
+                    %mi X
+                    %mn 0
+                %annotation{:encoding => "application/x-tex"} X_0
+            of base points, we say
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msub
+                    %mi X
+                    %mo *
+                %annotation{:encoding => "application/x-tex"} X_*
+            is
+            %em connected
+            if
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msub
+                    %mi X
+                    %mn 0
+                %annotation{:encoding => "application/x-tex"} X_0
+            meets each path component of
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi X
+                  %annotation{:encoding => "application/x-tex"} X
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msub
+                    %mi Π
+                    %mn 1
+                  %mo{:stretchy => "false"} (
+                  %mi X
+                  %mo ,
+                  %msub
+                    %mi X
+                    %mn 0
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} \Pi_1(X,X_0)
+            to be equivalent to
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi Π
+                      %mn 1
+                    %mo{:stretchy => "false"} (
+                    %mi X
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} \Pi_1(X)
+          %p
+            Now let
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mo{:stretchy => "false"} {
+                  %msup
+                    %mi U
+                    %mi i
+                  %mo →
+                  %mi X
+                  %mo{:stretchy => "false"} }
+                %annotation{:encoding => "application/x-tex"} \{U^i \to X\}
+            for
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi i
+                  %mo ∈
+                  %mi I
+                %annotation{:encoding => "application/x-tex"} i \in I
+            be an
+            %a.existingWikiWord{:href => "/nlab/show/open+cover"} open cover
+            of
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi X
+                  %annotation{:encoding => "application/x-tex"} X
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi d
+                  %mo =
+                  %mo{:stretchy => "false"} (
+                  %mi i
+                  %mo ,
+                  %mi j
+                  %mo{:stretchy => "false"} )
+                  %mo ∈
+                  %msup
+                    %mi I
+                    %mn 2
+                %annotation{:encoding => "application/x-tex"} d=(i,j) \in I^2
+            we write
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msup
+                    %mi U
+                    %mi d
+                %annotation{:encoding => "application/x-tex"} U^d
+            for
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msup
+                      %mi U
+                      %mi i
+                    %mo ∩
+                    %msup
+                      %mi U
+                      %mi j
+                  %annotation{:encoding => "application/x-tex"} U^i \cap U^j
+            = succeed "-fold" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi n
+                  %annotation{:encoding => "application/x-tex"} n
+            = succeed "-tuple" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi n
+                  %annotation{:encoding => "application/x-tex"} n
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi e
+                    %mo ∈
+                    %msup
+                      %mi I
+                      %mi n
+                  %annotation{:encoding => "application/x-tex"} e\in I^n
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msubsup
+                    %mi U
+                    %mo *
+                    %mi e
+                %annotation{:encoding => "application/x-tex"} U^e_*
+            be the pair
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo{:stretchy => "false"} (
+                    %msup
+                      %mi U
+                      %mi e
+                    %mo ,
+                    %msub
+                      %mi X
+                      %mn 0
+                    %mo ∩
+                    %msup
+                      %mi U
+                      %mi e
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} (U^e,X_0 \cap U^e)
+            %a.existingWikiWord{:href => "/nlab/show/coequaliser"} coequaliser
+            diagram of pairs of spaces, where
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi a
+                  %mo ,
+                  %mi b
+                  %mo ,
+                  %mi c
+                %annotation{:encoding => "application/x-tex"} a,b,c
+            are determined by inclusions:
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %munder
+                    %mo{:lspace => "thinmathspace", :rspace => "thinmathspace"} ⨆
+                    %mrow
+                      %mi d
+                      %mo ∈
+                      %msup
+                        %mi I
+                        %mn 2
+                  %msubsup
+                    %mi U
+                    %mo *
+                    %mi d
+                  %mover
+                    %munder
+                      %mo →
+                      %mi b
+                    %mover
+                      %mo →
+                      %mi a
+                  %munder
+                    %mo{:lspace => "thinmathspace", :rspace => "thinmathspace"} ⨆
+                    %mrow
+                      %mi i
+                      %mo ∈
+                      %mi I
+                  %msubsup
+                    %mi U
+                    %mo *
+                    %mi i
+                  %mover
+                    %mo →
+                    %mi c
+                  %msub
+                    %mi X
+                    %mo *
+                  %mspace{:width => "thinmathspace"}
+                  %mo .
+                %annotation{:encoding => "application/x-tex"}
+                  \\bigsqcup_{d \in I^2} U^d_*
+                  \\stackrel{\overset{a}{\to}}{\underset{b}{\to}}
+                  \\bigsqcup _{i \in I} U^i_* \xrightarrow{c} X_*
+                  \\,.
+          .un_theorem
+            %h6#theorem_2 Theorem
+            %p
+              If the pairs of spaces
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msubsup
+                      %mi U
+                      %mo *
+                      %mi f
+                  %annotation{:encoding => "application/x-tex"} U^f_*
+              are connected for all 1-, 2-, or 3-fold intersections
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msubsup
+                      %mi U
+                      %mo *
+                      %mi f
+                  %annotation{:encoding => "application/x-tex"} U^f_*
+              of the pairs
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msubsup
+                        %mi U
+                        %mo *
+                        %mi i
+                    %annotation{:encoding => "application/x-tex"} U^i_*
+            %ol
+              %li
+                %p
+                  (Conn) The pair
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %msub
+                          %mi X
+                          %mo *
+                      %annotation{:encoding => "application/x-tex"} X_*
+                  is connected; and
+              %li
+                %p
+                  (Iso) The
+                  %a.existingWikiWord{:href => "/nlab/show/fundamental+groupoid"} fundamental groupoid
+                  functor
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %msub
+                          %mi Π
+                          %mn 1
+                      %annotation{:encoding => "application/x-tex"} \Pi_1
+                  takes the above coequaliser diagram of pairs of spaces to a (strict) coequaliser diagram of groupoids.
+          %p
+            The limit “3” on the connectivity hypothesis may be analyzed as “
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}>
+              %semantics
+                %mrow
+                  %mn 1
+                  %mo +
+                  %mn 2
+                %annotation{:encoding => "application/x-tex"} 1+2
+            ”, where
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mn 1
+                %annotation{:encoding => "application/x-tex"} 1
+            is the categorical dimension of the fundamental groupoids we are considering and
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mn 2
+                %annotation{:encoding => "application/x-tex"} 2
+            is a universal constant. This becomes evident when generalizing to
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/higher+homotopy+van+Kampen+theorems"} higher homotopy van Kampen theorems
+          %p
+            In one proof of the theorem (due to Brown and Razak, see below), the number 3 arises from the Lebesgue covering dimension of
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msup
+                      %mi ℝ
+                      %mn 2
+                  %annotation{:encoding => "application/x-tex"} \mathbb{R}^2
+            = succeed ";" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi X
+                      %mn 0
+                  %annotation{:encoding => "application/x-tex"} X_0
+            %em all
+            subpaths join points of
+            = succeed ";" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi X
+                      %mn 0
+                  %annotation{:encoding => "application/x-tex"} X_0
+            = succeed "s" do
+              %a.existingWikiWord{:href => "/nlab/show/commutative+square"} commutative square
+          %p
+            In another, more categorical proof explained in the next section, the number
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mn 3
+                %annotation{:encoding => "application/x-tex"} 3
+            arises from the fact that 2-colimits can be computed using coproducts and
+            %a.existingWikiWord{:href => "/nlab/show/descent+objects"} descent objects
+            of 2-truncated
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/simplicial+objects"} simplicial objects
+          %p
+            Note that the theorem about groupoids does
+            %em not
+            reduce to a theorem about groups. For example,
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi X
+                %annotation{:encoding => "application/x-tex"} X
+            may be a connected space which is the union of two open sets each with many components and whose intersection has many path components. Such examples arise commonly from applications to combinatorial group theory; consider for example a covering space of a wedge of spaces. Or the connected
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi X
+                %annotation{:encoding => "application/x-tex"} X
+            may be the union of 23 open sets whose three fold intersections have 123 path components. In each case the fundamental group one might want to calculate is in the middle of this complicated combinatorial situation, but at least the theorem has turned a topological problem into a group theory and combinatorial problem, and the remarkable fact is that the fundamental groups are
+            %em completely
+            determined by the theorem. This is an “anomaly” for traditional algebraic topology, where invariants relating adjacent dimensions may be determined by exact sequences which do not give complete information. The reason for the success seems to be that groupoids have structure in dimensions 0 and 1, and so can model the gluing of spaces.
+          %p
+            This suggests that
+            = succeed "s" do
+              %a.existingWikiWord{:href => "/nlab/show/higher+homotopy+van+Kampen+theorem"} higher homotopy van Kampen theorem
+          %h3#homotopy_van_kampen_theorem_for_groupoids Homotopy van Kampen theorem for groupoids
+          %p From a 2-categorical point of view, the strict van Kampen theorem above can be decomposed into the following parts:
+          %ol
+            %li
+              %p
+                When
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi X
+                    %annotation{:encoding => "application/x-tex"} X
+                is the union of a family of open sets, then it is the homotopy colimit of a diagram involving these open sets.
+            %li
+              %p The fundamental groupoid functor preserves homotopy colimits (i.e. takes them to homotopy colimits, or equivalently 2-colimits, of groupoids).
+            %li
+              %p Certain 2-colimits of groupoids can be computed over “2-truncated” subdiagrams.
+            %li
+              %p In certain situations, strict colimits of groupoids are also 2-colimits.
+          %p
+            We can then prove the theorem by proving each of these three parts separately. This is essentially accomplished in
+            = succeed "." do
+              %a{:href => "#Farjoun"} Farjoun
+          #Cechcover.num_theorem
+            %h6#theorem_3 Theorem
+            %p
+              If a space
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi X
+                  %annotation{:encoding => "application/x-tex"} X
+              is the union of a family of open sets
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mo{:stretchy => "false"} (
+                      %msup
+                        %mi U
+                        %mi i
+                      %msub
+                        %mo{:stretchy => "false"} )
+                        %mrow
+                          %mi i
+                          %mo ∈
+                          %mi I
+                    %annotation{:encoding => "application/x-tex"} (U^i)_{i\in I}
+              %a.existingWikiWord{:href => "/nlab/show/weak+equivalence"} weak equivalence
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi hocolim
+                    %msub
+                      %mi C
+                      %mo •
+                    %mo{:stretchy => "false"} (
+                    %mi U
+                    %mo{:stretchy => "false"} )
+                    %mover
+                      %mo →
+                      %mo ∼
+                    %mi X
+                    %mo ,
+                  %annotation{:encoding => "application/x-tex"} hocolim C_\bullet(U) \xrightarrow{\sim} X,
+            %p
+              where
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi C
+                      %mo •
+                    %mo{:stretchy => "false"} (
+                    %mi U
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} C_\bullet(U)
+              is the
+              %a.existingWikiWord{:href => "/nlab/show/Cech+cover"} Cech cover
+              of
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi X
+                    %annotation{:encoding => "application/x-tex"} X
+              %a.existingWikiWord{:href => "/nlab/show/simplicial+space"} simplicial space
+              defined by
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi C
+                      %mi n
+                    %mo{:stretchy => "false"} (
+                    %mi U
+                    %mo{:stretchy => "false"} )
+                    %mo =
+                    %munder
+                      %mo{:lspace => "thinmathspace", :rspace => "thinmathspace"} ∐
+                      %mrow
+                        %mi J
+                        %mo ⊆
+                        %mi I
+                        %mo ,
+                        %mspace{:width => "thinmathspace"}
+                        %mo{:stretchy => "false"} |
+                        %mi J
+                        %mo{:stretchy => "false"} |
+                        %mo =
+                        %mi n
+                    %munder
+                      %mo{:lspace => "thinmathspace", :rspace => "thinmathspace"} ⋂
+                      %mrow
+                        %mi i
+                        %mo ∈
+                        %mi J
+                    %msup
+                      %mi U
+                      %mi i
+                    %mo .
+                  %annotation{:encoding => "application/x-tex"} C_n(U) = \coprod_{J\subseteq I,\, |J|=n} \bigcap_{i\in J} U^i.
+          %p
+            See
+            = succeed "." do
+              %a{:href => "#DuggerIsaksen01"} Dugger-Isaksen 01
+          #Pi1Hocolim.num_theorem
+            %h6#theorem_4 Theorem
+            %p
+              Suppose
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi I
+                  %annotation{:encoding => "application/x-tex"} I
+              is a small category and
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo{:stretchy => "false"} (
+                    %msup
+                      %mi X
+                      %mi i
+                    %msub
+                      %mo{:stretchy => "false"} )
+                      %mrow
+                        %mi i
+                        %mo ∈
+                        %mi I
+                  %annotation{:encoding => "application/x-tex"} (X^i)_{i\in I}
+              is a
+              %a.existingWikiWord{:href => "/nlab/show/diagram"} diagram
+              of spaces. Then we have an equivalence of groupoids
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi Π
+                      %mn 1
+                    %mo{:stretchy => "false"} (
+                    %msub
+                      %mo{:lspace => "0em", :rspace => "thinmathspace"} hocolim
+                      %mi i
+                    %msup
+                      %mi X
+                      %mi i
+                    %mo{:stretchy => "false"} )
+                    %mo ≃
+                    %msub
+                      %mo{:lspace => "0em", :rspace => "thinmathspace"} hocolim
+                      %mi i
+                    %msub
+                      %mi Π
+                      %mn 1
+                    %mo{:stretchy => "false"} (
+                    %msup
+                      %mi X
+                      %mi i
+                    %mo{:stretchy => "false"} )
+                    %mo .
+                  %annotation{:encoding => "application/x-tex"} \Pi_1(\hocolim_i X^i) \simeq \hocolim_i \Pi_1(X^i).
+          .proof
+            %h6#proof Proof
+            %p
+              The functor
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi Π
+                      %mn 1
+                  %annotation{:encoding => "application/x-tex"} \Pi_1
+              is, up to equivalence, the composite of itself with the 1st
+              %a.existingWikiWord{:href => "/nlab/show/Postnikov+approximation"} Postnikov approximation
+              functor
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msub
+                        %mi P
+                        %mn 1
+                      %mo :
+                      %mi Top
+                      %mo →
+                      %mi Top
+                    %annotation{:encoding => "application/x-tex"} P_1 : Top \to Top
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi P
+                      %mn 1
+                  %annotation{:encoding => "application/x-tex"} P_1
+              as a
+              %a.existingWikiWord{:href => "/nlab/show/Bousfield+localization"} Bousfield localization
+              functor for
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi Top
+                  %annotation{:encoding => "application/x-tex"} Top
+              (for localizing at the map
+              = succeed ")," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msup
+                        %mi S
+                        %mn 2
+                      %mo →
+                      %mo *
+                    %annotation{:encoding => "application/x-tex"} S^2 \to \ast
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi Π
+                      %mn 1
+                  %annotation{:encoding => "application/x-tex"} \Pi_1
+              is part of a
+              %a.existingWikiWord{:href => "/nlab/show/Quillen+equivalence"} Quillen equivalence
+              between
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi Gpd
+                  %annotation{:encoding => "application/x-tex"} Gpd
+              and the 1-localized model structure on
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi Top
+                    %annotation{:encoding => "application/x-tex"} Top
+          #Codescent.num_theorem
+            %h6#theorem_5 Theorem
+            %p
+              If
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi X
+                  %annotation{:encoding => "application/x-tex"} X
+              is the union of
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mo{:stretchy => "false"} (
+                      %msup
+                        %mi U
+                        %mi i
+                      %msub
+                        %mo{:stretchy => "false"} )
+                        %mrow
+                          %mi i
+                          %mo ∈
+                          %mi I
+                    %annotation{:encoding => "application/x-tex"} (U^i)_{i\in I}
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi X
+                      %mn 0
+                    %mo ⊆
+                    %mi X
+                  %annotation{:encoding => "application/x-tex"} X_0\subseteq X
+              is a set of basepoints which intersects each 1-, 2-, and 3-fold intersection of opens
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msup
+                        %mi U
+                        %mi i
+                    %annotation{:encoding => "application/x-tex"} U^i
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi Π
+                      %mn 1
+                    %mo{:stretchy => "false"} (
+                    %mi X
+                    %mo ,
+                    %msub
+                      %mi X
+                      %mn 0
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} \Pi_1(X,X_0)
+              is equivalent to the
+              %a.existingWikiWord{:href => "/nlab/show/2-colimit"} 2-colimit
+              (i.e.
+              = succeed ")" do
+                %a.existingWikiWord{:href => "/nlab/show/codescent+object"} codescent object
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %munder
+                      %mo{:lspace => "thinmathspace", :rspace => "thinmathspace"} ∐
+                      %mrow
+                        %mi i
+                        %mo ,
+                        %mi j
+                        %mo ,
+                        %mi k
+                    %msub
+                      %mi Π
+                      %mn 1
+                    %mo{:stretchy => "false"} (
+                    %msup
+                      %mi U
+                      %mrow
+                        %mi i
+                        %mi j
+                        %mi k
+                    %mo ,
+                    %msub
+                      %mi X
+                      %mn 0
+                    %mo{:stretchy => "false"} )
+                    %mspace{:width => "thickmathspace"}
+                    %munderover
+                      %mo →
+                      %mo →
+                      %mo →
+                    %mspace{:width => "thickmathspace"}
+                    %munder
+                      %mo{:lspace => "thinmathspace", :rspace => "thinmathspace"} ∐
+                      %mrow
+                        %mi i
+                        %mo ,
+                        %mi j
+                    %msub
+                      %mi Π
+                      %mn 1
+                    %mo{:stretchy => "false"} (
+                    %msup
+                      %mi U
+                      %mrow
+                        %mi i
+                        %mi j
+                    %mo ,
+                    %msub
+                      %mi X
+                      %mn 0
+                    %mo{:stretchy => "false"} )
+                    %mspace{:width => "thickmathspace"}
+                    %mo ⇉
+                    %mspace{:width => "thickmathspace"}
+                    %munder
+                      %mo{:lspace => "thinmathspace", :rspace => "thinmathspace"} ∐
+                      %mi i
+                    %msub
+                      %mi Π
+                      %mn 1
+                    %mo{:stretchy => "false"} (
+                    %msup
+                      %mi U
+                      %mi i
+                    %mo ,
+                    %msub
+                      %mi X
+                      %mn 0
+                    %mo{:stretchy => "false"} )
+                    %mo .
+                  %annotation{:encoding => "application/x-tex"}
+                    \\coprod_{i,j,k} \Pi_1(U^{i j k},X_0) \;\underoverset{\to}{\to}{\to}\;
+                    \\coprod_{i,j} \Pi_1(U^{i j},X_0) \;\rightrightarrows\;
+                    \\coprod_i \Pi_1(U^i,X_0).
+          .proof
+            %h6#proof_2 Proof
+            %p
+              If we neglect the
+              = succeed "\u2018s," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msub
+                        %mi X
+                        %mn 0
+                    %annotation{:encoding => "application/x-tex"} X_0
+              %a.maruku-ref{:href => "#Pi1Hocolim"}
+              to Theorem
+              = succeed "." do
+                %a.maruku-ref{:href => "#Cechcover"}
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi Gpd
+                  %annotation{:encoding => "application/x-tex"} Gpd
+              are equivalent to codescent objects of their 2-truncations (essentially because groupoids are 1-groupoids), this has an equivalent homotopy colimit. Finally, the assumption on
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi X
+                      %mn 0
+                  %annotation{:encoding => "application/x-tex"} X_0
+              ensures that restricting to it as a set of basepoints does not change the equivalence type of any of the groupoids in the 2-truncated diagram.
+          #CodescentCoeq.num_theorem
+            %h6#theorem_6 Theorem
+            %p
+              Under the hypotheses of Theorem
+              = succeed "," do
+                %a.maruku-ref{:href => "#Codescent"}
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi Π
+                      %mn 1
+                    %mo{:stretchy => "false"} (
+                    %mi X
+                    %mo ,
+                    %msub
+                      %mi X
+                      %mn 0
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} \Pi_1(X,X_0)
+              is isomorphic to the strict coequalizer of
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %munder
+                      %mo{:lspace => "thinmathspace", :rspace => "thinmathspace"} ∐
+                      %mrow
+                        %mi i
+                        %mo ,
+                        %mi j
+                    %msub
+                      %mi Π
+                      %mn 1
+                    %mo{:stretchy => "false"} (
+                    %msup
+                      %mi U
+                      %mrow
+                        %mi i
+                        %mi j
+                    %mo ,
+                    %msub
+                      %mi X
+                      %mn 0
+                    %mo{:stretchy => "false"} )
+                    %mspace{:width => "thickmathspace"}
+                    %mo ⇉
+                    %mspace{:width => "thickmathspace"}
+                    %munder
+                      %mo{:lspace => "thinmathspace", :rspace => "thinmathspace"} ∐
+                      %mi i
+                    %msub
+                      %mi Π
+                      %mn 1
+                    %mo{:stretchy => "false"} (
+                    %msup
+                      %mi U
+                      %mi i
+                    %mo ,
+                    %msub
+                      %mi X
+                      %mn 0
+                    %mo{:stretchy => "false"} )
+                    %mo .
+                  %annotation{:encoding => "application/x-tex"}
+                    \\coprod_{i,j} \Pi_1(U^{i j},X_0) \;\rightrightarrows\;
+                    \\coprod_i \Pi_1(U^i,X_0).
+          .proof
+            %h6#proof_3 Proof
+            %p
+              Let
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi A
+                    %mo =
+                    %mi P
+                    %mo{:stretchy => "false"} (
+                    %mi I
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} A = P(I)
+              be the power set of the indexing set
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi I
+                    %annotation{:encoding => "application/x-tex"} I
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi F
+                    %mo :
+                    %mi A
+                    %mo →
+                    %mi Gpd
+                  %annotation{:encoding => "application/x-tex"} F:A\to Gpd
+              defined by
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi F
+                      %mo{:stretchy => "false"} (
+                      %mi J
+                      %mo{:stretchy => "false"} )
+                      %mo =
+                      %msub
+                        %mi Π
+                        %mn 1
+                      %mo{:stretchy => "false"} (
+                      %msub
+                        %mo{:lspace => "thinmathspace", :rspace => "thinmathspace"} ⋂
+                        %mrow
+                          %mi i
+                          %mo ∈
+                          %mi J
+                      %msup
+                        %mi U
+                        %mi i
+                      %mo ,
+                      %msub
+                        %mi X
+                        %mn 0
+                      %mo{:stretchy => "false"} )
+                    %annotation{:encoding => "application/x-tex"} F(J) = \Pi_1(\bigcap_{i\in J} U^i, X_0)
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi F
+                  %annotation{:encoding => "application/x-tex"} F
+              is equivalent to the codescent object in Theorem
+              = succeed "," do
+                %a.maruku-ref{:href => "#Codescent"}
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi P
+                      %mrow
+                        %mo ≤
+                        %mn 3
+                    %mo{:stretchy => "false"} (
+                    %mi I
+                    %mo{:stretchy => "false"} )
+                    %mo →
+                    %mi A
+                  %annotation{:encoding => "application/x-tex"} P_{\le 3}(I) \to A
+              is “2-final”.)
+            %p
+              However,
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi F
+                  %annotation{:encoding => "application/x-tex"} F
+              is cofibrant in the
+              %a.existingWikiWord{:href => "/nlab/show/projective+model+structure"} projective model structure
+              on
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msup
+                        %mi Gpd
+                        %mi A
+                    %annotation{:encoding => "application/x-tex"} Gpd^A
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi A
+                    %mover
+                      %mo →
+                      %mi F
+                    %mi Gpd
+                    %mover
+                      %mo →
+                      %mi ob
+                    %mi Set
+                  %annotation{:encoding => "application/x-tex"} A\xrightarrow{F} Gpd \xrightarrow{ob} Set
+              is free (relative to the forgetful functor
+              = succeed "):" do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msup
+                        %mi Set
+                        %mi A
+                      %mo →
+                      %msup
+                        %mi Set
+                        %mrow
+                          %mi ob
+                          %mo{:stretchy => "false"} (
+                          %mi A
+                          %mo{:stretchy => "false"} )
+                    %annotation{:encoding => "application/x-tex"} Set^A \to Set^{ob(A)}
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi x
+                    %mo ∈
+                    %mi F
+                    %mo{:stretchy => "false"} (
+                    %mi J
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} x\in F(J)
+              such that
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi J
+                      %mo =
+                      %mo{:stretchy => "false"} {
+                      %mi i
+                      %mo ∈
+                      %mi I
+                      %mspace{:width => "thinmathspace"}
+                      %mo{:stretchy => "false"} |
+                      %mspace{:width => "thinmathspace"}
+                      %mi x
+                      %mo ∈
+                      %msup
+                        %mi U
+                        %mi i
+                      %mo{:stretchy => "false"} }
+                    %annotation{:encoding => "application/x-tex"} J = \{ i\in I \,|\, x\in U^i \}
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi F
+                  %annotation{:encoding => "application/x-tex"} F
+              is equivalent to its strict colimit, which in turn is easily seen to be the coequalizer shown above.
+            %p
+              This shows that
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi Π
+                      %mn 1
+                    %mo{:stretchy => "false"} (
+                    %mi X
+                    %mo ,
+                    %msub
+                      %mi X
+                      %mn 0
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} \Pi_1(X,X_0)
+              is equivalent to the strict coequalizer shown above. But this equivalence is clearly also bijective on objects, so it is an isomorphism of groupoids.
+          %h3#examples Examples
+          %p
+            Let
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi X
+                    %mo =
+                    %msup
+                      %mi S
+                      %mn 1
+                  %annotation{:encoding => "application/x-tex"} X=S^1
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi U
+                    %mo =
+                    %msup
+                      %mi S
+                      %mn 1
+                    %mo ∖
+                    %mo{:stretchy => "false"} {
+                    %mi N
+                    %mo{:stretchy => "false"} }
+                  %annotation{:encoding => "application/x-tex"} U= S^1 \setminus \{N\}
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi V
+                    %mo =
+                    %msup
+                      %mi S
+                      %mn 1
+                    %mo ∖
+                    %mo{:stretchy => "false"} {
+                    %mi S
+                    %mo{:stretchy => "false"} }
+                  %annotation{:encoding => "application/x-tex"} V= S^1 \setminus \{S\}
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi N
+                %annotation{:encoding => "application/x-tex"} N
+            and
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi S
+                %annotation{:encoding => "application/x-tex"} S
+            are antipodal points. Then
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi U
+                  %mo ≅
+                  %mi V
+                  %mo ≅
+                  %mo{:stretchy => "false"} (
+                  %mn 0
+                  %mo ,
+                  %mn 1
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} U\cong V\cong (0,1)
+            are contractible, while
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi U
+                    %mo ∩
+                    %mi V
+                    %mo ≅
+                    %mo{:stretchy => "false"} (
+                    %mn 0
+                    %mo ,
+                    %mn 1
+                    %mo{:stretchy => "false"} )
+                    %mo ⊔
+                    %mo{:stretchy => "false"} (
+                    %mn 0
+                    %mo ,
+                    %mn 1
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} U\cap V \cong (0,1) \sqcup (0,1)
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mrow
+                    %mtable
+                      %mtr
+                        %mtd
+                          %mo *
+                          %mo ⊔
+                          %mo *
+                        %mtd
+                          %mo →
+                        %mtd
+                          %mo *
+                      %mtr
+                        %mtd
+                          %mo{:stretchy => "false"} ↓
+                        %mtd
+                        %mtd
+                          %mo{:stretchy => "false"} ↓
+                      %mtr
+                        %mtd
+                          %mo *
+                        %mtd
+                          %mo →
+                        %mtd
+                          %msub
+                            %mi Π
+                            %mn 1
+                          %mo{:stretchy => "false"} (
+                          %msup
+                            %mi S
+                            %mn 1
+                          %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"}
+                  \\array{ \ast\sqcup \ast &amp; \to &amp; \ast \\
+                  \\downarrow &amp;&amp; \downarrow \\
+                  \\ast &amp; \to &amp; \Pi_1(S^1) }
+          %p
+            It’s not hard to compute that this 2-pushout must be
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mstyle{:mathvariant => "bold"}
+                      %mi B
+                    %mi ℤ
+                  %annotation{:encoding => "application/x-tex"} \mathbf{B}\mathbb{Z}
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msub
+                    %mi X
+                    %mn 0
+                  %mo =
+                  %mo{:stretchy => "false"} {
+                  %mi u
+                  %mo ,
+                  %mi v
+                  %mo{:stretchy => "false"} }
+                %annotation{:encoding => "application/x-tex"} X_0 = \{u,v\}
+            of two basepoints with
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi u
+                  %mo ∈
+                  %mi U
+                %annotation{:encoding => "application/x-tex"} u\in U
+            and
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi v
+                    %mo ∈
+                    %mi V
+                  %annotation{:encoding => "application/x-tex"} v\in V
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mrow
+                    %mtable
+                      %mtr
+                        %mtd
+                          %mo *
+                          %mo ⊔
+                          %mo *
+                        %mtd
+                          %mo →
+                        %mtd
+                          %mi ℐ
+                      %mtr
+                        %mtd
+                          %mo{:stretchy => "false"} ↓
+                        %mtd
+                        %mtd
+                          %mo{:stretchy => "false"} ↓
+                      %mtr
+                        %mtd
+                          %mi ℐ
+                        %mtd
+                          %mo →
+                        %mtd
+                          %msub
+                            %mi Π
+                            %mn 1
+                          %mo{:stretchy => "false"} (
+                          %msup
+                            %mi S
+                            %mn 1
+                          %mo ,
+                          %msub
+                            %mi X
+                            %mn 0
+                          %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"}
+                  \\array{ \ast\sqcup \ast &amp; \to &amp; \mathcal{I} \\
+                  \\downarrow &amp;&amp; \downarrow \\
+                  \\mathcal{I} &amp; \to &amp; \Pi_1(S^1,X_0) }
+          %p
+            where
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi ℐ
+                %annotation{:encoding => "application/x-tex"} \mathcal{I}
+            is the invertible
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/interval+category"} interval category
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msub
+                    %mi Π
+                    %mn 1
+                  %mo{:stretchy => "false"} (
+                  %mi U
+                  %mo ,
+                  %msub
+                    %mi X
+                    %mn 0
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} \Pi_1(U,X_0)
+            and
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi Π
+                      %mn 1
+                    %mo{:stretchy => "false"} (
+                    %mi V
+                    %mo ,
+                    %msub
+                      %mi X
+                      %mn 0
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} \Pi_1(V,X_0)
+          %p
+            Note that the version of the theorem for fundamental groups does not apply, since
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi U
+                  %mo ∩
+                  %mi V
+                %annotation{:encoding => "application/x-tex"} U\cap V
+            is not path-connected.
+          %h3#van_kampen_theorem_in_homotopy_type_theory van Kampen theorem in homotopy type theory
+          %p
+            The van Kampen theorem can be expressed in
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/homotopy+type+theory"} homotopy type theory
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/synthetic+homotopy+theory"} synthetic homotopy theory
+          %p
+            Let
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi A
+                  %mo ,
+                  %mi B
+                  %mo ,
+                  %mi C
+                %annotation{:encoding => "application/x-tex"} A, B, C
+            be
+            %a.existingWikiWord{:href => "/nlab/show/types"} types
+            and
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi f
+                  %mo :
+                  %mi A
+                  %mo →
+                  %mi B
+                %annotation{:encoding => "application/x-tex"} f : A \to B
+            and
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi g
+                  %mo :
+                  %mi A
+                  %mo →
+                  %mi C
+                %annotation{:encoding => "application/x-tex"} g : A \to C
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/functions"} functions
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi P
+                  %mo ≡
+                  %mi B
+                  %msub
+                    %mo ⊔
+                    %mi A
+                  %mi C
+                %annotation{:encoding => "application/x-tex"} P\equiv B \sqcup_A C
+            be their
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/pushout"} pushout
+          %p
+            By defining a special
+            %em code
+            function using the
+            %a.existingWikiWord{:href => "/nlab/show/encode-decode+method"} encode-decode method
+            the van Kampen theorem says that:
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msub
+                    %mi Π
+                    %mn 1
+                  %mi P
+                  %mo{:stretchy => "false"} (
+                  %mi u
+                  %mo ,
+                  %mi v
+                  %mo{:stretchy => "false"} )
+                  %mo ≃
+                  %mi code
+                  %mo{:stretchy => "false"} (
+                  %mi u
+                  %mo ,
+                  %mi v
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} \Pi_1 P(u, v) \simeq code(u,v)
+          %p
+            There are (at least) two code functions that can be given, which are listed in section 8.7 of the
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/HoTT+Book"} HoTT Book
+          %h2#generalizations Generalizations
+          %ul
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/van+Kampen+theorem+for+toposes"} van Kampen theorem for toposes
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/higher+homotopy+van+Kampen+theorem"} higher homotopy van Kampen theorem
+          %h2#References References
+          %p The Seifert-van Kampen theorem is named after
+          %ul
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Herbert+Seifert"}> Herbert Seifert
+                \:
+                = succeed "," do
+                  %em Konstruction drei dimensionaler geschlossener Räume
+                %em 83
+                (1931) 26–66
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Egbert+van+Kampen"}> Egbert van Kampen
+                \:
+                = succeed "," do
+                  %em On the connection between the fundamental groups of some related spaces
+                %strong 55
+                (1933) 261–267 &amp;lbrack;
+                %a{:href => "https://www.jstor.org/stable/51000091"}> jstor:51000091
+                \&amp;rbrack;
+          %p Introduction and review:
+          %ul
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Ronald+Brown"}> Ronald Brown
+                , §6.7 &amp; §8.4 of:
+                = succeed "," do
+                  %em Elements of Modern Topology
+                = succeed "," do
+                  %a{:href => "https://archive.org/details/elementsofmodern0000rona/page/n1/mode/2up"} ark:/13960/s26wmm5260h
+                = succeed "]" do
+                  %a.existingWikiWord{:href => "/nlab/files/Brown-Topology.pdf", :title => "pdf"} pdf
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Peter+May"}> Peter May
+                , chapter 2 of:
+                = succeed "," do
+                  %em
+                    %a.existingWikiWord{:href => "/nlab/show/A+Concise+Course+in+Algebraic+Topology"} A Concise Course in Algebraic Topology
+                = succeed "," do
+                  %a{:href => "https://www.press.uchicago.edu/ucp/books/book/chicago/C/bo3777031.html"} ISBN: 9780226511832
+                = succeed "&rbrack;" do
+                  %a{:href => "http://www.math.uchicago.edu/~may/CONCISE/ConciseRevised.pdf"} pdf
+            %li#Hatcher02
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Allen+Hatcher"}> Allen Hatcher
+                , section 1.2 of:
+                = succeed "," do
+                  %em Algebraic Topology
+                = succeed "," do
+                  %a{:href => "https://www.cambridge.org/gb/academic/subjects/mathematics/geometry-and-topology/algebraic-topology-1?format=PB=9780521795401"} ISBN:9780521795401
+                = succeed "]" do
+                  %a{:href => "https://pi.math.cornell.edu/~hatcher/AT/ATpage.html"} webpage
+          %p See also:
+          %ul
+            %li
+              Wikipedia:
+              %em
+                %a{:href => "https://en.wikipedia.org/wiki/Seifert%E2%80%93Van_Kampen_theorem#References"} Seifert-van Kampen theorem
+          %p The use of a set of base points for a pushout theorem and so determining the fundamental group of the circle was published in
+          %ul
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/Ronnie+Brown"}> Ronnie Brown
+              ,
+              = succeed "," do
+                %em Groupoids and van Kampen’s theorem
+          %p The more general theorem for the fundamental groupoid on a set of base points:
+          %ul
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/Ronnie+Brown"} Ronnie Brown
+              and A. Razak,
+              = succeed "," do
+                %em A van Kampen theorem for unions of non-connected spaces
+              %a{:href => "http://pages.bangor.ac.uk/pdffiles/brown-razak.pdf"} pdf
+          %p
+            See also this
+            %a{:href => "http://mathoverflow.net/questions/40945/compelling-evidence-that-two-basepoints-are-better-than-one"} mathoverflow discussion
+          %p
+            The pushout theorem is among applications of groupoids to
+            = succeed "-dimensional" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mn 1
+                  %annotation{:encoding => "application/x-tex"} 1
+          %ul
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/Ronnie+Brown"}> Ronnie Brown
+              ,
+              = succeed "," do
+                %em
+                  %a{:href => "http://groupoids.org.uk/topgpds.html"} Topology and Groupoids
+          %p The proof for pushouts is discussed in some detail in
+          %ul
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/Ronnie+Brown"}> Ronnie Brown
+              ,
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/Philip+Higgins"} Philip Higgins
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/Rafael+Sivera"} Rafael Sivera
+              %em
+                %a.existingWikiWord{:href => "/nlab/show/Nonabelian+Algebraic+Topology"} Nonabelian Algebraic Topology
+          %p as a background to the following chapters on versions for crossed modules and crossed complexes, i.e. for higher dimensional versions.
+          %p The proof via homotopy colimits is roughly taken from
+          %ul
+            %li#Farjoun
+              %a.existingWikiWord{:href => "/nlab/show/Emmanuel+Dror+Farjoun"}> Emmanuel Dror Farjoun
+              ,
+              = succeed "," do
+                %em Fundamental group of homotopy colimits
+              = succeed ")" do
+                %a{:href => "http://www.maths.ed.ac.uk/~aar/papers/farjoun.pdf"} pdf
+          %p Other references cited above:
+          %ul
+            %li#DuggerIsaksen01
+              %a.existingWikiWord{:href => "/nlab/show/Dan+Dugger"}> Dan Dugger
+              ,
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/Daniel+Isaksen"} Daniel Isaksen
+              %em Hypercovers in topology
+              (
+              %a{:href => "https://arxiv.org/abs/math/0111287"}> arxiv:math/0111287
+              )
+          %p
+            Discussion of
+            %a.existingWikiWord{:href => "/nlab/show/persistent+homotopy"} persistent homotopy
+            with focus on the
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/van+Kampen+theorem"} van Kampen theorem
+            %a.existingWikiWord{:href => "/nlab/show/excision"} excision
+            and the
+            = succeed ":" do
+              %a.existingWikiWord{:href => "/nlab/show/Hurewicz+theorem"} Hurewicz theorem
+          %ul
+            %li
+              Mehmet Ali Batan, Mehmetcik Pamuk, Hanife Varli,
+              %em Persistent Homotopy
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo{:stretchy => "false"} [
+                  %annotation{:encoding => "application/x-tex"} [
+              %a{:href => "https://arxiv.org/abs/1909.08865"} arXiv:1909.08865
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo{:stretchy => "false"} ]
+                  %annotation{:encoding => "application/x-tex"} ]
+          %p
+            For the van Kampen theorem in
+            = succeed ":" do
+              %a.existingWikiWord{:href => "/nlab/show/homotopy+type+theory"} homotopy type theory
+          %ul
+            %li
+              Univalent Foundations Project,
+              %a.existingWikiWord{:href => "/nlab/show/HoTT+book"} Homotopy Type Theory – Univalent Foundations of Mathematics
+              (2013)
+          %p
+            Formalization of the van Kampen theorem in
+            = succeed ":" do
+              %a.existingWikiWord{:href => "/nlab/show/proof+assistants"} proof assistants
+          %ul
+            %li
+              %a{:href => "https://github.com/HoTT/HoTT-Agda/tree/e48a16bcd719e2fcb409d79e3f7df6c6b81223bb/theorems/homotopy/vankampen"} In Agda
+            %li
+              %a{:href => "https://github.com/leanprover/lean2/blob/master/hott/homotopy/vankampen.hlean"} In Lean
+        .revisedby
+          %p
+            Last revised on October 24, 2025 at 17:30:54.
+            See the
+            %a{:href => "/nlab/history/van+Kampen+theorem", :style => "color: #005c19"} history
+            of this page for a list of all contributions to it.
+        .navigation.navfoot
+          %a#edit.navlink{:accesskey => "E", :href => "/nlab/edit/van+Kampen+theorem", :rel => "nofollow"} Edit
+          %a{:href => "https://nforum.ncatlab.org/discussion/2029/#Item_8"} Discuss
+          %span.backintime
+            %a#to_previous_revision.navlinkbackintime{:accesskey => "B", :href => "/nlab/revision/van+Kampen+theorem/32", :rel => "nofollow"} Previous revision
+          %a#see_changes.navlink{:accesskey => "C", :href => "/nlab/show/diff/van+Kampen+theorem", :rel => "nofollow"} Changes from previous revision
+          %a#history.navlink{:accesskey => "S", :href => "/nlab/history/van+Kampen+theorem", :rel => "nofollow"} History (32 revisions)
+          %a{:href => "/nlab/show/van+Kampen+theorem/cite", :style => "color: black"} Cite
+          %a#view_print{:accesskey => "p", :href => "/nlab/print/van+Kampen+theorem", :rel => "nofollow"} Print
+          %a#view_source{:href => "/nlab/source/van+Kampen+theorem", :rel => "nofollow"} Source
+      / Content
+    / Container

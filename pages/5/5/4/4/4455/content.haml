@@ -1,0 +1,2152 @@
+!!! XML
+!!! 1.1
+%html{:xmlns => "http://www.w3.org/1999/xhtml"}
+  %head
+    %title
+      Dedekind completion in nLab
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:content => "index,follow", :name => "robots"}/
+    %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/
+    %link{:href => "/stylesheets/instiki.css?1676280126", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/stylesheets/mathematics.css?1660229990", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/stylesheets/syntax.css?1660229990", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/stylesheets/nlab.css?1676280126", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css", :rel => "stylesheet", :type => "text/css"}/
+    :css
+      h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+        color: #226622;
+      }
+      a:visited.existingWikiWord {
+        color: #164416;
+      }
+    :css
+      <!--/*--><![CDATA[/*><!--*/
+          .toc ul {margin: 0; padding: 0;}
+      .toc ul ul {margin: 0; padding: 0 0 0 10px;}
+      .toc li > p {margin: 0}
+      .toc ul li {list-style-type: none; position: relative;}
+      .toc div {border-top:1px dotted #ccc;}
+      .rightHandSide h2 {font-size: 1.5em;color:#008B26}
+      table.plaintable {
+          border-collapse:collapse;
+          margin-left:30px;
+          border:0;
+      }
+      .plaintable td {border:1px solid #000; padding: 3px;}
+      .plaintable th {padding: 3px;}
+      .plaintable caption {
+          font-weight: bold;
+          font-size:1.1em;
+          text-align:center;
+          margin-left:30px;
+      }
+          
+         
+      /* Query boxes for questioning and answering mechanism */
+      div.query{
+      background: #f6fff3;
+      border: solid #ce9;
+      border-width: 2px 1px;
+      padding: 0 1em;
+      margin: 0 1em;
+      max-height: 20em;
+      overflow: auto;
+      }
+      
+      /* Standout boxes for putting important text */
+      div.standout{
+      background: #fff1f1;
+      border: solid black;
+      border-width: 2px 1px;
+      padding: 0 1em;
+      margin: 0 1em;
+      overflow: auto;
+      }
+      
+      /* Icon for links to n-category arXiv documents 
+       (commented out for now i.e. disabled)
+      a[href*="http://arxiv.org/"] {
+        background-image: url(../files/arXiv_icon.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 22px;
+        } */
+          
+      /* Icon for links to n-category cafe posts (disabled) 
+      a[href*="http://golem.ph.utexas.edu/category"] {
+        background-image: url(../files/n-cafe_5.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 25px;
+        } */
+      
+      /* Icon for links to pdf files (disabled)
+      a[href$=".pdf"] {
+        background-image: url(../files/pdficon_small.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 25px;
+        } */
+      
+      /* Icon for links to pages, etc. -inside- pdf files (disabled)
+      a[href*=".pdf#"] {
+        background-image: url(../files/pdf_entry.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 25px;
+        } */
+      
+      a.existingWikiWord {
+      color: #226622;
+      }
+      
+      a.existingWikiWord:visited {
+      color: #226622;
+      }
+      
+      
+      a.existingWikiWord[title] {
+      border: 0px;
+      color: #aa0505;
+      text-decoration: none;
+      }
+          
+      a.existingWikiWord[title]:visited {
+      border: 0px;
+      color: #551111;
+      text-decoration: none;
+      }
+      
+      a[href^="http://"] {
+      border: 0px;
+      color: #003399;
+      }
+      
+      a[href^="http://"]:visited {
+      border: 0px;
+      color: #330066;
+      }
+      
+      a[href^="https://"] {
+      border: 0px;
+      color: #003399;
+      }
+      
+      a[href^="https://"]:visited {
+      border: 0px;
+      color: #330066;
+      }
+      
+      div.dropDown .hide {
+      display: none;
+      }
+      
+      div.dropDown:hover .hide {
+      display:block;
+      }
+      
+      div.clickDown .hide {
+      display: none;
+      }
+      
+      div.clickDown:focus {
+      outline:none;
+      }
+      
+      div.clickDown:focus .hide, div.clickDown:hover .hide {
+      display: block;
+      }
+      
+      div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+      display:block;
+      }
+      
+      div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+      display:none;
+      }
+      
+      div.clickDown .clickToReveal:after {
+      content: "A(Hover to reveal, click to "hold")";
+      font-size: 60%;
+      }
+      
+      div.clickDown .clickToHide:after {
+      content: "A(Click to hide)";
+      font-size: 60%;
+      }
+      div.clickDown .clickToHide, div.clickDown .clickToReveal {
+      white-space: pre-wrap;
+      }
+      
+      .un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+      margin-left: 1em;
+      }
+      
+      span.theorem_label {
+      margin-left: -1em;
+      }
+      .proof span.theorem_label {
+      margin-left: 0em;
+      }
+      :target {
+          background-color: #BBBBBB;
+          border-radius: 5pt;
+      }
+      
+        /*]]>*/-->
+    %script{:src => "/javascripts/prototype.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/effects.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/dragdrop.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/controls.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/application.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/page_helper.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/thm_numbering.js?1660229990", :type => "text/javascript"}
+    %script{:type => "text/x-mathjax-config"}
+      :cdata
+        <!--//--><![CDATA[//><!--
+        MathJax.Ajax.config.path["Contrib"] = "/MathJax";
+        MathJax.Hub.Config({
+        MathML: { useMathMLspacing: true },
+        "HTML-CSS": { scale: 90,
+        extensions: ["handle-floats.js"]
+        }
+        });
+        MathJax.Hub.Queue( function () {
+        var fos = document.getElementsByTagName('foreignObject');
+        for (var i = 0; i < fos.length; i++) {
+        MathJax.Hub.Typeset(fos[i]);
+        }
+        });
+        \//--><!]]>
+    :javascript
+      <!--//--><![CDATA[//><!--
+      window.addEventListener("DOMContentLoaded", function () {
+        var div = document.createElement('div');
+        var math = document.createElementNS('http://www.w3.org/1998/Math/MathML', 'math');
+        document.body.appendChild(div);
+        div.appendChild(math);
+      // Test for MathML support comparable to WebKit version https://trac.webkit.org/changeset/203640 or higher.
+        div.setAttribute('style', 'font-style: italic');
+        var mathml_unsupported = !(window.getComputedStyle(div.firstChild).getPropertyValue('font-style') === 'normal');
+        div.parentNode.removeChild(div);
+        if (mathml_unsupported) {
+          // MathML does not seem to be supported...
+          var s = document.createElement('script');
+          s.src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=MML_HTMLorMML-full";
+          document.querySelector('head').appendChild(s);
+        } else {
+          document.head.insertAdjacentHTML("beforeend", '<style>svg[viewBox] {max-width: 100%}</style>');
+        }
+      });
+      //--><!]]>
+    %link{:href => "http://localhost/nlab/atom_with_headlines", :rel => "alternate", :title => "Atom with headlines", :type => "application/atom+xml"}/
+    %link{:href => "http://localhost/nlab/atom_with_content", :rel => "alternate", :title => "Atom with full content", :type => "application/atom+xml"}/
+    :javascript
+      document.observe("dom:loaded", function() {
+        generateThmNumbers();
+      });
+  %body
+    #Container
+      #Content
+        %h1#pageName
+          %span{:style => "float: left; margin: 0.5em 0.25em -0.25em 0"}
+            %svg{:height => "1.8em", :viewbox => "0 0 190 181", :width => "1.872em", :xmlns => "http://www.w3.org/2000/svg"}
+              %path{:d => "M72.8 145c-1.6 17.3-15.7 10-23.6 20.2-5.6 7.3 4.8 15 11.4 15 11.5-.2 19-13.4 26.4-20.3 3.3-3 8.2-4 11.2-7.2a14 14 0 0 0 2.9-11.1c-1.4-9.6-12.4-18.6-16.9-27.2-5-9.6-10.7-27.4-24.1-27.7-17.4-.3-.4 26 4.7 30.7 2.4 2.3 5.4 4.1 7.3 6.9 1.6 2.3 2.1 5.8-1 7.2-5.9 2.6-12.4-6.3-15.5-10-8.8-10.6-15.5-23-26.2-31.8-5.2-4.3-11.8-8-18-3.7-7.3 4.9-4.2 12.9.2 18.5a81 81 0 0 0 30.7 23c3.3 1.5 12.8 5.6 10 10.7-2.5 5.2-11.7 3-15.6 1.1-8.4-3.8-24.3-21.3-34.4-13.7-3.5 2.6-2.3 7.6-1.2 11.1 2.8 9 12.2 17.2 20.9 20.5 17.3 6.7 34.3-8 50.8-12.1z", :fill => "#226622"}
+              %path{:d => "M145.9 121.3c-.2-7.5 0-19.6-4.5-26-5.4-7.5-12.9-1-14.1 5.8-1.4 7.8 2.7 14.1 4.8 21.3 3.4 12 5.8 29-.8 40.1-3.6-6.7-5.2-13-7-20.4-2.1-8.2-12.8-13.2-15.1-1.9-2 9.7 9 21.2 12 30.1 1.2 4 2 8.8 6.4 10.3 6.9 2.3 13.3-4.7 17.7-8.8 12.2-11.5 36.6-20.7 43.4-36.4 6.7-15.7-13.7-14-21.3-7.2-9.1 8-11.9 20.5-23.6 25.1 7.5-23.7 31.8-37.6 38.4-61.4 2-7.3-.8-29.6-13-19.8-14.5 11.6-6.6 37.6-23.3 49.2z", :fill => "#a41e32"}
+              %path{:d => "M86.3 47.5c0-13-10.2-27.6-5.8-40.4 2.8-8.4 14.1-10.1 17-1 3.8 11.6-.3 26.3-1.8 38 11.7-.7 10.5-16 14.8-24.3 2.1-4.2 5.7-9.1 11-6.7 6 2.7 7.4 9.2 6.6 15.1-2.2 14-12.2 18.8-22.4 27-3.4 2.7-8 6.6-5.9 11.6 2 4.4 7 4.5 10.7 2.8 7.4-3.3 13.4-16.5 21.7-16 14.6.7 12 21.9.9 26.2-5 1.9-10.2 2.3-15.2 3.9-5.8 1.8-9.4 8.7-15.7 8.9-6.1.1-9-6.9-14.3-9-14.4-6-33.3-2-44.7-14.7-3.7-4.2-9.6-12-4.9-17.4 9.3-10.7 28 7.2 35.7 12 2 1.1 11 6.9 11.4 1.1.4-5.2-10-8.2-13.5-10-11.1-5.2-30-15.3-35-27.3-2.5-6 2.8-13.8 9.4-13.6 6.9.2 13.4 7 17.5 12C70.9 34 75 43.8 86.3 47.4z", :fill => "#193c78"}
+          %span.webName nLab
+          Dedekind completion
+        .navigation
+          %span.skipNav
+            %a{:href => "#navEnd"} Skip the Navigation Links
+            |
+          %span{:style => "display:inline-block; width: 0.3em;"}
+          %a{:accesskey => "H", :href => "/nlab/show/HomePage", :title => "Home page"} Home Page
+          |
+          %a{:accesskey => "A", :href => "/nlab/all_pages", :title => "List of all pages"} All Pages
+          |
+          %a{:accesskey => "U", :href => "/nlab/latest_revisions", :title => "Latest edits and page creations"} Latest Revisions
+          |
+          %a{:href => "https://nforum.ncatlab.org/discussion/12560/#Item_2", :style => "color: black", :title => "Discuss this page in its dedicated thread on the nForum"} Discuss this page
+          |
+          %form#navigationSearchForm{"accept-charset" => "utf-8", :action => "/nlab/search", :method => "get"}
+            %fieldset.search
+              %input#searchField{:name => "query", :onblur => "this.value == '' ? this.value = 'Search' : true", :onfocus => "this.value == 'Search' ? this.value = '' : true", :style => "display:inline-block; float: left;", :type => "text", :value => "Search"}/
+          %span#navEnd
+        #revision
+          %meta{:content => "application/xhtml+xml;charset=utf-8", "http-equiv" => "Content-type"}/
+          %title Dedekind completions
+          %h1#dedekind_completions Dedekind completions
+          .maruku_toc
+            %ul
+              %li
+                %a{:href => "#idea"} Idea
+              %li
+                %a{:href => "#definitions"} Definitions
+              %ul
+                %li
+                  %a{:href => "#using_open_intervals"} Using open intervals
+              %li
+                %a{:href => "#generalisations"} Generalisations
+              %ul
+                %li
+                  %a{:href => "#in_predicative_constructive_mathematics"} In predicative constructive mathematics
+                %li
+                  %a{:href => "#strict_preorders"} Strict preorders
+              %li
+                %a{:href => "#onesided_dedekind_completions"} One-sided Dedekind completions
+              %li
+                %a{:href => "#references"} References
+          %h2#idea Idea
+          %p
+            The
+            %em Dedekind completion
+            of a
+            %a.existingWikiWord{:href => "/nlab/show/linear+order"} linear order
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi L
+                %annotation{:encoding => "application/x-tex"} L
+            is a new strict linear order
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mover
+                    %mi L
+                    %mo ¯
+                %annotation{:encoding => "application/x-tex"} \widebar{L}
+            that contains
+            %a.existingWikiWord{:href => "/nlab/show/suprema"} suprema
+            for all
+            %a.existingWikiWord{:href => "/nlab/show/inhabited+set"} inhabited
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/bounded+subsets"} bounded subsets
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi L
+                %annotation{:encoding => "application/x-tex"} L
+            is still a supremum in
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mover
+                      %mi L
+                      %mo ¯
+                  %annotation{:encoding => "application/x-tex"} \widebar{L}
+          %p
+            While Dedekind completeness was traditionally described in the context of the
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/real+numbers"} real numbers
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/strict+linear+order"} strict linear order
+            %span.newWikiWord
+              dense
+              %a{:href => "/nlab/new/dense+order"} ?
+            and unbounded (without
+            %a.existingWikiWord{:href => "/nlab/show/top"} top
+            or
+            = succeed ")" do
+              %a.existingWikiWord{:href => "/nlab/show/bottom"} bottom
+            %em Dedekind complete
+            if
+            %a.existingWikiWord{:href => "/nlab/show/Dedekind+cuts"} Dedekind cuts
+            don’t give any ‘new’ elements.
+          %h2#definitions Definitions
+          %p
+            Let
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi S
+                %annotation{:encoding => "application/x-tex"} S
+            be a
+            %a.existingWikiWord{:href => "/nlab/show/set"} set
+            equipped with the structure of a
+            %a.existingWikiWord{:href => "/nlab/show/dense+linear+order"} dense linear order
+            without
+            %a.existingWikiWord{:href => "/nlab/show/top"} top
+            or
+            %a.existingWikiWord{:href => "/nlab/show/bottom"} bottom
+            elements (endpoints).
+          .num_defn
+            %h6#definition Definition
+            %p
+              A
+              %strong cut
+              in
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi S
+                  %annotation{:encoding => "application/x-tex"} S
+              is a pair of
+              %a.existingWikiWord{:href => "/nlab/show/subsets"} subsets
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi L
+                    %mo ,
+                    %mi U
+                    %mo ⊂
+                    %mi S
+                  %annotation{:encoding => "application/x-tex"} L, U \subset S
+              of
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi S
+                  %annotation{:encoding => "application/x-tex"} S
+              that satisfy the following eight properties:
+            %ol
+              %li
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi L
+                    %annotation{:encoding => "application/x-tex"} L
+                is
+                = succeed ";" do
+                  %a.existingWikiWord{:href => "/nlab/show/inhabited+subset"} inhabited
+              %li
+                Dually,
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi U
+                    %annotation{:encoding => "application/x-tex"} U
+                is inhabited;
+              %li
+                If
+                = succeed "," do
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi x
+                        %mo &lt;
+                        %mi y
+                        %mo ∈
+                        %mi L
+                      %annotation{:encoding => "application/x-tex"} x \lt y \in L
+                = succeed ";" do
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi x
+                        %mo ∈
+                        %mi L
+                      %annotation{:encoding => "application/x-tex"} x \in L
+              %li
+                Dually, if
+                = succeed "," do
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi x
+                        %mo &gt;
+                        %mi y
+                        %mo ∈
+                        %mi U
+                      %annotation{:encoding => "application/x-tex"} x \gt y \in U
+                = succeed ";" do
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi x
+                        %mo ∈
+                        %mi U
+                      %annotation{:encoding => "application/x-tex"} x \in U
+              %li
+                If
+                = succeed "," do
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi x
+                        %mo ∈
+                        %mi L
+                      %annotation{:encoding => "application/x-tex"} x \in L
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi x
+                      %mo &lt;
+                      %mi y
+                      %mo ∈
+                      %mi L
+                    %annotation{:encoding => "application/x-tex"} x \lt y \in L
+                for some
+                = succeed ";" do
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi y
+                      %annotation{:encoding => "application/x-tex"} y
+              %li
+                Dually,
+                = succeed "," do
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi x
+                        %mo ∈
+                        %mi U
+                      %annotation{:encoding => "application/x-tex"} x \in U
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi x
+                      %mo &gt;
+                      %mi y
+                      %mo ∈
+                      %mi U
+                    %annotation{:encoding => "application/x-tex"} x \gt y \in U
+                for some
+                = succeed ";" do
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi y
+                      %annotation{:encoding => "application/x-tex"} y
+              %li
+                If
+                = succeed "," do
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi x
+                        %mo &lt;
+                        %mi y
+                      %annotation{:encoding => "application/x-tex"} x \lt y
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi x
+                      %mo ∈
+                      %mi L
+                    %annotation{:encoding => "application/x-tex"} x \in L
+                or
+                = succeed ";" do
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi y
+                        %mo ∈
+                        %mi U
+                      %annotation{:encoding => "application/x-tex"} y \in U
+              %li
+                If
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi x
+                      %mo ∈
+                      %mi L
+                    %annotation{:encoding => "application/x-tex"} x \in L
+                and
+                = succeed "," do
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi y
+                        %mo ∈
+                        %mi U
+                      %annotation{:encoding => "application/x-tex"} y \in U
+                = succeed "." do
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi x
+                        %mo &lt;
+                        %mi y
+                      %annotation{:encoding => "application/x-tex"} x \lt y
+          .num_defn
+            %h6#definition_2 Definition
+            %p
+              The linearly ordered set
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi S
+                  %annotation{:encoding => "application/x-tex"} S
+              is
+              %strong Dedekind complete
+              if every cut
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo{:stretchy => "false"} (
+                    %mi L
+                    %mo ,
+                    %mi U
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} (L,U)
+              is of the form
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi L
+                    %mo =
+                    %mo{:stretchy => "false"} {
+                    %mi x
+                    %mspace{:width => "thickmathspace"}
+                    %mo{:stretchy => "false"} |
+                    %mspace{:width => "thickmathspace"}
+                    %mi x
+                    %mo &lt;
+                    %mi a
+                    %mo{:stretchy => "false"} }
+                    %mo ,
+                    %mspace{:width => "thickmathspace"}
+                    %mi U
+                    %mo =
+                    %mo{:stretchy => "false"} {
+                    %mi x
+                    %mspace{:width => "thickmathspace"}
+                    %mo{:stretchy => "false"} |
+                    %mspace{:width => "thickmathspace"}
+                    %mi x
+                    %mo &gt;
+                    %mi a
+                    %mo{:stretchy => "false"} }
+                  %annotation{:encoding => "application/x-tex"} L = \{x \;| \;x \lt a\},\; U = \{x \;|\; x \gt a\}
+            %p
+              for some unique
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi a
+                      %mo ∈
+                      %mi S
+                    %annotation{:encoding => "application/x-tex"} a \in S
+          .num_defn
+            %h6#definition_3 Definition
+            %p
+              If
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi T
+                  %annotation{:encoding => "application/x-tex"} T
+              is also an unbounded dense strict linear order,
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi S
+                  %annotation{:encoding => "application/x-tex"} S
+              is Dedekind complete, and we have a
+              %a.existingWikiWord{:href => "/nlab/show/universal+arrow"} universal arrow
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi u
+                    %mo{:lspace => "verythinmathspace"} :
+                    %mi T
+                    %mo →
+                    %mi S
+                  %annotation{:encoding => "application/x-tex"} u\colon T \to S
+              in the
+              %a.existingWikiWord{:href => "/nlab/show/category"} category
+              of strict linear orders, then
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi S
+                  %annotation{:encoding => "application/x-tex"} S
+              (equipped with
+              = succeed ")" do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi u
+                    %annotation{:encoding => "application/x-tex"} u
+              %a.existingWikiWord{:href => "/nlab/show/the"} the
+              %strong Dedekind completion
+              of
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi T
+                    %annotation{:encoding => "application/x-tex"} T
+          %p
+            The set of Dedekind cuts of
+            %a.existingWikiWord{:href => "/nlab/show/rational+numbers"} rational numbers
+            –the set of
+            = succeed "\u2013" do
+              %a.existingWikiWord{:href => "/nlab/show/real+numbers"} real numbers
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi S
+                  %annotation{:encoding => "application/x-tex"} S
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi S
+                %annotation{:encoding => "application/x-tex"} S
+            is a
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/countably+infinite+set"} countably infinite set
+          %p
+            The operation of forming the set of Dedekind cuts is idempotent, so the Dedekind completion can be constructed as the set of Dedekind cuts. More precisely, the Dedekind-complete strict linear orders form a
+            %a.existingWikiWord{:href => "/nlab/show/reflective+subcategory"} reflective subcategory
+            of the category of dense unbounded strict linear orders, so that Dedekind completion is a kind of
+            %a.existingWikiWord{:href => "/nlab/show/completion"} completion
+            in the abstract categorial sense.
+          %h3#using_open_intervals Using open intervals
+          %p
+            A set
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi F
+                %annotation{:encoding => "application/x-tex"} F
+            with a
+            %a.existingWikiWord{:href => "/nlab/show/strict+linear+order"} strict linear order
+            is
+            %strong Dedekind complete
+            if
+          %ul
+            %li
+              %p
+                For all elements
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi a
+                      %mo ∈
+                      %mi F
+                    %annotation{:encoding => "application/x-tex"} a \in F
+                and
+                = succeed "," do
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi b
+                        %mo ∈
+                        %mi F
+                      %annotation{:encoding => "application/x-tex"} b \in F
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mo{:stretchy => "false"} (
+                      %mi a
+                      %mo ,
+                      %mi b
+                      %mo{:stretchy => "false"} )
+                    %annotation{:encoding => "application/x-tex"} (a,b)
+                is inhabited.
+            %li
+              %p
+                For all elements
+                = succeed "," do
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi a
+                        %mo ∈
+                        %mi F
+                      %annotation{:encoding => "application/x-tex"} a \in F
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mo{:stretchy => "false"} (
+                      %mi a
+                      %mo ,
+                      %mn ∞
+                      %mo{:stretchy => "false"} )
+                    %annotation{:encoding => "application/x-tex"} (a,\infty)
+                is inhabited.
+            %li
+              %p
+                For all elements
+                = succeed "," do
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi a
+                        %mo ∈
+                        %mi F
+                      %annotation{:encoding => "application/x-tex"} a \in F
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mo{:stretchy => "false"} (
+                      %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                      %mn ∞
+                      %mo ,
+                      %mi a
+                      %mo{:stretchy => "false"} )
+                    %annotation{:encoding => "application/x-tex"} (-\infty,a)
+                is inhabited.
+            %li
+              %p
+                For all elements
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi a
+                      %mo ∈
+                      %mi F
+                    %annotation{:encoding => "application/x-tex"} a \in F
+                and
+                = succeed "," do
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi b
+                        %mo ∈
+                        %mi F
+                      %annotation{:encoding => "application/x-tex"} b \in F
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi a
+                      %mo &lt;
+                      %mi b
+                    %annotation{:encoding => "application/x-tex"} a \lt b
+                if and only if
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mo{:stretchy => "false"} (
+                      %mi b
+                      %mo ,
+                      %mn ∞
+                      %mo{:stretchy => "false"} )
+                    %annotation{:encoding => "application/x-tex"} (b,\infty)
+                is a subinterval of
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mo{:stretchy => "false"} (
+                      %mi a
+                      %mo ,
+                      %mn ∞
+                      %mo{:stretchy => "false"} )
+                    %annotation{:encoding => "application/x-tex"} (a,\infty)
+            %li
+              %p
+                For all elements
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi a
+                      %mo ∈
+                      %mi F
+                    %annotation{:encoding => "application/x-tex"} a \in F
+                and
+                = succeed "," do
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi b
+                        %mo ∈
+                        %mi F
+                      %annotation{:encoding => "application/x-tex"} b \in F
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi b
+                      %mo &lt;
+                      %mi a
+                    %annotation{:encoding => "application/x-tex"} b \lt a
+                if and only if
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mo{:stretchy => "false"} (
+                      %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                      %mn ∞
+                      %mo ,
+                      %mi b
+                      %mo{:stretchy => "false"} )
+                    %annotation{:encoding => "application/x-tex"} (-\infty,b)
+                is a subinterval of
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mo{:stretchy => "false"} (
+                      %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                      %mn ∞
+                      %mo ,
+                      %mi a
+                      %mo{:stretchy => "false"} )
+                    %annotation{:encoding => "application/x-tex"} (-\infty,a)
+            %li
+              %p
+                For all elements
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi a
+                      %mo ∈
+                      %mi F
+                    %annotation{:encoding => "application/x-tex"} a \in F
+                and
+                = succeed "," do
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi b
+                        %mo ∈
+                        %mi F
+                      %annotation{:encoding => "application/x-tex"} b \in F
+                = succeed "," do
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi a
+                        %mo &lt;
+                        %mi b
+                      %annotation{:encoding => "application/x-tex"} a \lt b
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi F
+                    %annotation{:encoding => "application/x-tex"} F
+                is a subinterval of the union of
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mo{:stretchy => "false"} (
+                      %mi a
+                      %mo ,
+                      %mn ∞
+                      %mo{:stretchy => "false"} )
+                    %annotation{:encoding => "application/x-tex"} (a, \infty)
+                and
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mo{:stretchy => "false"} (
+                      %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                      %mn ∞
+                      %mo ,
+                      %mi b
+                      %mo{:stretchy => "false"} )
+                    %annotation{:encoding => "application/x-tex"} (-\infty, b)
+            %li
+              %p
+                For all elements
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi a
+                      %mo ∈
+                      %mi F
+                    %annotation{:encoding => "application/x-tex"} a \in F
+                and
+                = succeed "," do
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi b
+                        %mo ∈
+                        %mi F
+                      %annotation{:encoding => "application/x-tex"} b \in F
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mo{:stretchy => "false"} (
+                      %mi a
+                      %mo ,
+                      %mn ∞
+                      %mo{:stretchy => "false"} )
+                    %annotation{:encoding => "application/x-tex"} (a,\infty)
+                and
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mo{:stretchy => "false"} (
+                      %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                      %mn ∞
+                      %mo ,
+                      %mi b
+                      %mo{:stretchy => "false"} )
+                    %annotation{:encoding => "application/x-tex"} (-\infty,b)
+                is a subinterval of the
+                %a.existingWikiWord{:href => "/nlab/show/open+interval"} open interval
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mo{:stretchy => "false"} (
+                      %mi a
+                      %mo ,
+                      %mi b
+                      %mo{:stretchy => "false"} )
+                    %annotation{:encoding => "application/x-tex"} (a,b)
+          %h2#generalisations Generalisations
+          %h3#in_predicative_constructive_mathematics In predicative constructive mathematics
+          %p
+            In predicative constructive mathematics, subsets are large and therefore are proper classes. Thus, any Dedekind completion of a
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/dense+linear+order"} dense linear order
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/proper+class"} proper class
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi L
+                  %mo ,
+                  %mi U
+                  %mo :
+                  %mi ℚ
+                  %mi to
+                  %mi Σ
+                %annotation{:encoding => "application/x-tex"} L, U: \mathbb{Q} to \Sigma
+            representing the open subsets of
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi ℚ
+                %annotation{:encoding => "application/x-tex"} \mathbb{Q}
+            to define
+            = succeed "," do
+              %strong predicative cuts
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi Σ
+                %annotation{:encoding => "application/x-tex"} \Sigma
+            is a small
+            %a.existingWikiWord{:href => "/nlab/show/sigma-frame"}
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}>
+                %semantics
+                  %mrow
+                    %mi σ
+                  %annotation{:encoding => "application/x-tex"} \sigma
+              \-frame
+            with an
+            %a.existingWikiWord{:href => "/nlab/show/embedding"} embedding
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi Σ
+                  %mo →
+                  %msub
+                    %mi{:mathvariant => "normal"} Prop
+                    %mi 𝒰
+                %annotation{:encoding => "application/x-tex"} \Sigma \to \mathrm{Prop}_\mathcal{U}
+            into the large set of propositions for a universe
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi 𝒰
+                  %annotation{:encoding => "application/x-tex"} \mathcal{U}
+          .num_defn
+            %h6#definition_4 Definition
+            %p
+              Given a small
+              %a.existingWikiWord{:href => "/nlab/show/sigma-frame"}
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}>
+                  %semantics
+                    %mrow
+                      %mi σ
+                    %annotation{:encoding => "application/x-tex"} \sigma
+                \-frame
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi Σ
+                  %annotation{:encoding => "application/x-tex"} \Sigma
+              that embeds into the large set of propositions
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi{:mathvariant => "normal"} Prop
+                      %mi 𝒰
+                  %annotation{:encoding => "application/x-tex"} \mathrm{Prop}_\mathcal{U}
+              for a universe
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi 𝒰
+                  %annotation{:encoding => "application/x-tex"} \mathcal{U}
+              and a linearly ordered set
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi S
+                    %annotation{:encoding => "application/x-tex"} S
+              %strong cut
+              in
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi S
+                  %annotation{:encoding => "application/x-tex"} S
+              is a pair of functions
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi L
+                    %mo ,
+                    %mi U
+                    %mo :
+                    %mi S
+                    %mo →
+                    %mi Σ
+                  %annotation{:encoding => "application/x-tex"} L, U: S \to \Sigma
+              that satisfy the following eight properties:
+            %ol
+              %li
+                There is an element
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi a
+                      %mo ∈
+                      %mi S
+                    %annotation{:encoding => "application/x-tex"} a \in S
+                such that
+                = succeed "." do
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi L
+                        %mo{:stretchy => "false"} (
+                        %mi a
+                        %mo{:stretchy => "false"} )
+                        %mo =
+                        %mo ⊤
+                      %annotation{:encoding => "application/x-tex"} L(a) = \top
+              %li
+                There is an element
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi b
+                      %mo ∈
+                      %mi S
+                    %annotation{:encoding => "application/x-tex"} b \in S
+                such that
+                = succeed "." do
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi U
+                        %mo{:stretchy => "false"} (
+                        %mi b
+                        %mo{:stretchy => "false"} )
+                        %mo =
+                        %mo ⊤
+                      %annotation{:encoding => "application/x-tex"} U(b) = \top
+              %li
+                If
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi a
+                      %mo &lt;
+                      %mi b
+                    %annotation{:encoding => "application/x-tex"} a \lt b
+                are elements of
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi S
+                    %annotation{:encoding => "application/x-tex"} S
+                with
+                = succeed "," do
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi L
+                        %mo{:stretchy => "false"} (
+                        %mi b
+                        %mo{:stretchy => "false"} )
+                        %mo =
+                        %mo ⊤
+                      %annotation{:encoding => "application/x-tex"} L(b) = \top
+                = succeed "." do
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi L
+                        %mo{:stretchy => "false"} (
+                        %mi a
+                        %mo{:stretchy => "false"} )
+                        %mo =
+                        %mo ⊤
+                      %annotation{:encoding => "application/x-tex"} L(a) = \top
+              %li
+                If
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi a
+                      %mo &lt;
+                      %mi b
+                    %annotation{:encoding => "application/x-tex"} a \lt b
+                are elements of
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi S
+                    %annotation{:encoding => "application/x-tex"} S
+                with
+                = succeed "," do
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi U
+                        %mo{:stretchy => "false"} (
+                        %mi a
+                        %mo{:stretchy => "false"} )
+                        %mo =
+                        %mo ⊤
+                      %annotation{:encoding => "application/x-tex"} U(a) = \top
+                = succeed "." do
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi U
+                        %mo{:stretchy => "false"} (
+                        %mi b
+                        %mo{:stretchy => "false"} )
+                        %mo =
+                        %mo ⊤
+                      %annotation{:encoding => "application/x-tex"} U(b) = \top
+              %li
+                If
+                = succeed "," do
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi L
+                        %mo{:stretchy => "false"} (
+                        %mi a
+                        %mo{:stretchy => "false"} )
+                        %mo =
+                        %mo ⊤
+                      %annotation{:encoding => "application/x-tex"} L(a) = \top
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi S
+                    %annotation{:encoding => "application/x-tex"} S
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi a
+                      %mo &lt;
+                      %mi b
+                    %annotation{:encoding => "application/x-tex"} a \lt b
+                such that
+                = succeed "." do
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi L
+                        %mo{:stretchy => "false"} (
+                        %mi b
+                        %mo{:stretchy => "false"} )
+                        %mo =
+                        %mo ⊤
+                      %annotation{:encoding => "application/x-tex"} L(b) = \top
+              %li
+                If
+                = succeed "," do
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi U
+                        %mo{:stretchy => "false"} (
+                        %mi b
+                        %mo{:stretchy => "false"} )
+                        %mo =
+                        %mo ⊤
+                      %annotation{:encoding => "application/x-tex"} U(b) = \top
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi S
+                    %annotation{:encoding => "application/x-tex"} S
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi a
+                      %mo &lt;
+                      %mi b
+                    %annotation{:encoding => "application/x-tex"} a \lt b
+                for some
+                = succeed "." do
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi U
+                        %mo{:stretchy => "false"} (
+                        %mi a
+                        %mo{:stretchy => "false"} )
+                        %mo =
+                        %mo ⊤
+                      %annotation{:encoding => "application/x-tex"} U(a) = \top
+              %li
+                If
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi a
+                      %mo &lt;
+                      %mi b
+                    %annotation{:encoding => "application/x-tex"} a \lt b
+                are elements of
+                = succeed "," do
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi S
+                      %annotation{:encoding => "application/x-tex"} S
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi L
+                      %mo{:stretchy => "false"} (
+                      %mi a
+                      %mo{:stretchy => "false"} )
+                      %mo =
+                      %mo ⊤
+                    %annotation{:encoding => "application/x-tex"} L(a) = \top
+                or
+                = succeed "." do
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi U
+                        %mo{:stretchy => "false"} (
+                        %mi b
+                        %mo{:stretchy => "false"} )
+                        %mo =
+                        %mo ⊤
+                      %annotation{:encoding => "application/x-tex"} U(b) = \top
+              %li
+                If
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi L
+                      %mo{:stretchy => "false"} (
+                      %mi a
+                      %mo{:stretchy => "false"} )
+                      %mo =
+                      %mo ⊤
+                    %annotation{:encoding => "application/x-tex"} L(a) = \top
+                and
+                = succeed "," do
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi U
+                        %mo{:stretchy => "false"} (
+                        %mi b
+                        %mo{:stretchy => "false"} )
+                        %mo =
+                        %mo ⊤
+                      %annotation{:encoding => "application/x-tex"} U(b) = \top
+                = succeed "." do
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi a
+                        %mo &lt;
+                        %mi b
+                      %annotation{:encoding => "application/x-tex"} a \lt b
+          .num_defn
+            %h6#definition_5 Definition
+            %p
+              The linearly ordered set
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi S
+                  %annotation{:encoding => "application/x-tex"} S
+              is
+              = succeed "-" do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi Σ
+                    %annotation{:encoding => "application/x-tex"} \Sigma
+              %strong Dedekind complete
+              if for every cut
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo{:stretchy => "false"} (
+                    %mi L
+                    %mo ,
+                    %mi U
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} (L,U)
+              there exists a unique element
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi a
+                    %mo ∈
+                    %mi S
+                  %annotation{:encoding => "application/x-tex"} a \in S
+              such that for all elements
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi x
+                      %mo ∈
+                      %mi S
+                    %annotation{:encoding => "application/x-tex"} x \in S
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi x
+                    %mo &lt;
+                    %mi a
+                  %annotation{:encoding => "application/x-tex"} x \lt a
+              implies
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi L
+                    %mo{:stretchy => "false"} (
+                    %mi x
+                    %mo{:stretchy => "false"} )
+                    %mo =
+                    %mo ⊤
+                  %annotation{:encoding => "application/x-tex"} L(x) = \top
+              and
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi x
+                    %mo &gt;
+                    %mi a
+                  %annotation{:encoding => "application/x-tex"} x \gt a
+              implies
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi U
+                      %mo{:stretchy => "false"} (
+                      %mi x
+                      %mo{:stretchy => "false"} )
+                      %mo =
+                      %mo ⊤
+                    %annotation{:encoding => "application/x-tex"} U(x) = \top
+          %p
+            Given any linearly ordered set
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi S
+                  %annotation{:encoding => "application/x-tex"} S
+            = succeed "-frames" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi σ
+                  %annotation{:encoding => "application/x-tex"} \sigma
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi Σ
+                %annotation{:encoding => "application/x-tex"} \Sigma
+            and
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msup
+                    %mi Σ
+                    %mo ′
+                %annotation{:encoding => "application/x-tex"} \Sigma^{'}
+            that embed into
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msub
+                    %mi{:mathvariant => "normal"} Prop
+                    %mi 𝒰
+                %annotation{:encoding => "application/x-tex"} \mathrm{Prop}_\mathcal{U}
+            such that
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi Σ
+                    %mo ⊆
+                    %msup
+                      %mi Σ
+                      %mo ′
+                  %annotation{:encoding => "application/x-tex"} \Sigma \subseteq \Sigma^{'}
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi A
+                %annotation{:encoding => "application/x-tex"} A
+            is the
+            = succeed "-Dedekind" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi Σ
+                  %annotation{:encoding => "application/x-tex"} \Sigma
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi S
+                %annotation{:encoding => "application/x-tex"} S
+            and
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi B
+                %annotation{:encoding => "application/x-tex"} B
+            is the
+            = succeed "-Dedekind" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msup
+                      %mi Σ
+                      %mo ′
+                  %annotation{:encoding => "application/x-tex"} \Sigma^{'}
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi S
+                  %annotation{:encoding => "application/x-tex"} S
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi A
+                    %mo ⊆
+                    %mi B
+                  %annotation{:encoding => "application/x-tex"} A \subseteq B
+          %h3#strict_preorders Strict preorders
+          .standout
+            %p
+              Any paragraph containing the string ‘duisp’ is original research (although lower duisps at least are known in
+              = succeed ")." do
+                %a.existingWikiWord{:href => "/nlab/show/domain+theory"} domain theory
+          %p
+            One can generalise Dedekind completion from
+            %a.existingWikiWord{:href => "/nlab/show/strict+linear+orders"} strict linear orders
+            to
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/strict+preorders"} strict preorders
+          .num_defn
+            %h6#definition_6 Definition
+            %p
+              A
+              %strong duisp
+              (
+              %strong> d
+              ense
+              = succeed "nbounded" do
+                %strong u
+              = succeed "nhabited" do
+                %strong i
+              = succeed "trict" do
+                %strong s
+              = succeed "reorder)" do
+                %strong p
+              %a.existingWikiWord{:href => "/nlab/show/strictly+preordered+set"} strictly preordered set
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi S
+                  %annotation{:encoding => "application/x-tex"} S
+              such that, given finite (here always meaning
+              = succeed ")" do
+                %a.existingWikiWord{:href => "/nlab/show/Kuratowski-finite"} Kuratowski-finite
+              %a.existingWikiWord{:href => "/nlab/show/subsets"} subsets
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi F
+                  %annotation{:encoding => "application/x-tex"} F
+              and
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi G
+                  %annotation{:encoding => "application/x-tex"} G
+              of
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi S
+                  %annotation{:encoding => "application/x-tex"} S
+              such that
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi x
+                    %mo &lt;
+                    %mi z
+                  %annotation{:encoding => "application/x-tex"} x \lt z
+              whenever
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi x
+                    %mo ∈
+                    %mi F
+                  %annotation{:encoding => "application/x-tex"} x \in F
+              and
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi z
+                      %mo ∈
+                      %mi G
+                    %annotation{:encoding => "application/x-tex"} z \in G
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi y
+                  %annotation{:encoding => "application/x-tex"} y
+              in
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi S
+                  %annotation{:encoding => "application/x-tex"} S
+              such that
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi x
+                    %mo &lt;
+                    %mi y
+                    %mo &lt;
+                    %mi z
+                  %annotation{:encoding => "application/x-tex"} x \lt y \lt z
+              whenever
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi x
+                    %mo ∈
+                    %mi F
+                  %annotation{:encoding => "application/x-tex"} x \in F
+              and
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi z
+                      %mo ∈
+                      %mi G
+                    %annotation{:encoding => "application/x-tex"} z \in G
+          %p
+            Note that, for
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi S
+                %annotation{:encoding => "application/x-tex"} S
+            a
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/strict+linear+order"} strict linear order
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi S
+                %annotation{:encoding => "application/x-tex"} S
+            is a duisp iff
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi S
+                %annotation{:encoding => "application/x-tex"} S
+            is dense, unbounded, and
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/inhabited+set"} inhabited
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi F
+                %annotation{:encoding => "application/x-tex"} F
+            and
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi G
+                %annotation{:encoding => "application/x-tex"} G
+            are
+            = succeed ";" do
+              %a.existingWikiWord{:href => "/nlab/show/subsingletons"} subsingletons
+            %a.existingWikiWord{:href => "/nlab/show/singleton+subsets"} singleton subsets
+            is denseness, one singleton subset and one
+            %a.existingWikiWord{:href => "/nlab/show/empty+subset"} empty subset
+            is unboundedness, and two empty subsets is inhabitedness.)
+          .num_defn
+            %h6#definition_7 Definition
+            %p
+              Given a duisp
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi S
+                    %annotation{:encoding => "application/x-tex"} S
+              %strong cut
+              is a pair
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo{:stretchy => "false"} (
+                    %mi L
+                    %mo ,
+                    %mi U
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} (L,U)
+              of
+              %a.existingWikiWord{:href => "/nlab/show/subsets"} subsets
+              such that:
+            %ol
+              %li
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi L
+                    %annotation{:encoding => "application/x-tex"} L
+                is
+                %a.existingWikiWord{:href => "/nlab/show/inhabited+subset"} inhabited
+                (which is a special case of (5) for
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi F
+                    %annotation{:encoding => "application/x-tex"} F
+                the
+                = succeed ");" do
+                  %a.existingWikiWord{:href => "/nlab/show/empty+subset"} empty subset
+              %li
+                Dually,
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi U
+                    %annotation{:encoding => "application/x-tex"} U
+                is inhabited (a special case of (6));
+              %li
+                If
+                = succeed "," do
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi x
+                        %mo &lt;
+                        %mi y
+                        %mo ∈
+                        %mi L
+                      %annotation{:encoding => "application/x-tex"} x \lt y \in L
+                = succeed ";" do
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi x
+                        %mo ∈
+                        %mi L
+                      %annotation{:encoding => "application/x-tex"} x \in L
+              %li
+                Dually, if
+                = succeed "," do
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi x
+                        %mo &gt;
+                        %mi y
+                        %mo ∈
+                        %mi U
+                      %annotation{:encoding => "application/x-tex"} x \gt y \in U
+                = succeed ";" do
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi x
+                        %mo ∈
+                        %mi U
+                      %annotation{:encoding => "application/x-tex"} x \in U
+              %li
+                If
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi F
+                    %annotation{:encoding => "application/x-tex"} F
+                is a finite subset of
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi L
+                    %annotation{:encoding => "application/x-tex"} L
+                (which we may assume inhabited if we include (1)), then for some
+                = succeed "," do
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi x
+                        %mo ∈
+                        %mi L
+                      %annotation{:encoding => "application/x-tex"} x \in L
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi y
+                      %mo ∈
+                      %mi F
+                    %annotation{:encoding => "application/x-tex"} y \in F
+                satisfies
+                = succeed ";" do
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi y
+                        %mo &lt;
+                        %mi x
+                      %annotation{:encoding => "application/x-tex"} y \lt x
+              %li
+                Dually, if
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi F
+                    %annotation{:encoding => "application/x-tex"} F
+                is a finite (inhabited) subset of
+                = succeed "," do
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi U
+                      %annotation{:encoding => "application/x-tex"} U
+                = succeed "," do
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi x
+                        %mo ∈
+                        %mi U
+                      %annotation{:encoding => "application/x-tex"} x \in U
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi y
+                      %mo ∈
+                      %mi F
+                    %annotation{:encoding => "application/x-tex"} y \in F
+                satisfies
+                = succeed ";" do
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi y
+                        %mo &gt;
+                        %mi x
+                      %annotation{:encoding => "application/x-tex"} y \gt x
+              %li
+                If
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi L
+                      %mo &lt;
+                      %mi x
+                      %mo &lt;
+                      %mi U
+                    %annotation{:encoding => "application/x-tex"} L \lt x \lt U
+                and
+                = succeed "," do
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi L
+                        %mo &lt;
+                        %mi y
+                        %mo &lt;
+                        %mi U
+                      %annotation{:encoding => "application/x-tex"} L \lt y \lt U
+                = succeed ";" do
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi x
+                        %mo =
+                        %mi y
+                      %annotation{:encoding => "application/x-tex"} x = y
+              %li
+                If
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi x
+                      %mo ∈
+                      %mi L
+                    %annotation{:encoding => "application/x-tex"} x \in L
+                and
+                = succeed "," do
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi y
+                        %mo ∈
+                        %mi U
+                      %annotation{:encoding => "application/x-tex"} y \in U
+                = succeed "." do
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi x
+                        %mo &lt;
+                        %mi y
+                      %annotation{:encoding => "application/x-tex"} x \lt y
+          %p
+            We then define
+            %strong Dedekind-complete
+            duisps and
+            %strong Dedekind completions
+            of duisps the same as for dense linear orders, using this notion of cut.
+          %p
+            A good example of a duisp is the set of
+            = succeed "-valued" do
+              %a.existingWikiWord{:href => "/nlab/show/rational+number"} rational
+            %a.existingWikiWord{:href => "/nlab/show/functions"} functions
+            on any
+            %a.existingWikiWord{:href => "/nlab/show/set"} set
+            = succeed ";" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi X
+                  %annotation{:encoding => "application/x-tex"} X
+            = succeed "-valued" do
+              %a.existingWikiWord{:href => "/nlab/show/real+number"} real
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi X
+                  %annotation{:encoding => "application/x-tex"} X
+          %p
+            Sections 4.31–39 of
+            %em
+              %a.existingWikiWord{:href => "/nlab/show/HAF"} HAF
+            do things in even more generality, but I don't really understand it yet.
+          %h2#onesided_dedekind_completions One-sided Dedekind completions
+          %p
+            At least in
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/classical+mathematics"} classical mathematics
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi L
+                %annotation{:encoding => "application/x-tex"} L
+            (for a
+            = succeed ")" do
+              %strong lower cut
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi U
+                %annotation{:encoding => "application/x-tex"} U
+            (for an
+            = succeed ")" do
+              %strong upper cut
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mn ∞
+                  %mo ≔
+                  %mo{:stretchy => "false"} (
+                  %mi S
+                  %mo ,
+                  %mi ∅
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} \infty \coloneqq (S,\empty)
+            or
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                  %mn ∞
+                  %mo ≔
+                  %mo{:stretchy => "false"} (
+                  %mi ∅
+                  %mo ,
+                  %mi S
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} -\infty \coloneqq (\empty,S)
+            is a cut (depending on the side), and we can rule even these out by simply requiring that
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi L
+                %annotation{:encoding => "application/x-tex"} L
+            have an upper bound or that
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi U
+                %annotation{:encoding => "application/x-tex"} U
+            have a lower bound.
+          %p
+            In
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/constructive+mathematics"} constructive mathematics
+            %a.existingWikiWord{:href => "/nlab/show/one-sided+real+number"} one-sided real number
+            for a discussion of the case where
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi S
+                %annotation{:encoding => "application/x-tex"} S
+            is the strict linear order of
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/rational+numbers"} rational numbers
+          %p
+            Even in classical mathematics, one-sided cuts do give us something new for strict preorders. Here, we have first more general one-sided notions of duisps: a
+            %strong lower duisp
+            need only satisfy the condition of a duisp for
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi G
+                %annotation{:encoding => "application/x-tex"} G
+            a
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/singleton"} singleton
+            %strong upper duisp
+            need only satisfy the condition for
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi F
+                %annotation{:encoding => "application/x-tex"} F
+            a singleton. Then the
+            %strong lower Dedekind completion
+            of a lower duisp is its set of lower cuts, and the
+            %strong upper Dedekind completion
+            of an upper duisp is its set of upper cuts.
+          %p
+            For example, let
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi X
+                %annotation{:encoding => "application/x-tex"} X
+            be a
+            %a.existingWikiWord{:href => "/nlab/show/compact+Hausdorff+space"} compact Hausdorff space
+            and let
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi S
+                %annotation{:encoding => "application/x-tex"} S
+            be the strictly preordered set of
+            %a.existingWikiWord{:href => "/nlab/show/continuous+map"} continuous
+            real-valued functions on
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi X
+                  %annotation{:encoding => "application/x-tex"} X
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi S
+                %annotation{:encoding => "application/x-tex"} S
+            is a duisp, hence both a lower and upper duisp. Its lower Dedekind completion is the set of lower
+            %a.existingWikiWord{:href => "/nlab/show/semicontinuous+map"} semicontinuous
+            functions on
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi X
+                %annotation{:encoding => "application/x-tex"} X
+            taking values in the
+            %a.existingWikiWord{:href => "/nlab/show/lower+reals"} lower reals
+            (which classically are all either real or
+            = succeed ");" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mn ∞
+                  %annotation{:encoding => "application/x-tex"} \infty
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mn ∞
+                  %annotation{:encoding => "application/x-tex"} \infty
+          %h2#references References
+          %ul
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Paul+Taylor"}> Paul Taylor
+                's
+                %a{:href => "http://www.paultaylor.eu/ASD/dedras/classical"} page on Dedekind cuts
+            %li
+              %p
+                Page 249&amp;250 of
+                %em Continuous Lattices and Domains
+                (
+                %a{:href => "http://books.google.com/books?id=xPF9Hb7DPLgC"}> Google book
+                ) covers lower Dedekind completions of duisps (although not under that name) in the context of
+                = succeed "." do
+                  %a.existingWikiWord{:href => "/nlab/show/domain+theory"} domain theory
+            %li
+              %p
+                Univalent Foundations Project,
+                %a.existingWikiWord{:href => "/nlab/show/HoTT+book"} Homotopy Type Theory – Univalent Foundations of Mathematics
+                (2013)
+            %li
+              %p
+                Auke B. Booij, Extensional constructive real analysis via locators, (
+                %a{:href => "https://arxiv.org/abs/1805.06781"}> arxiv:1805.06781
+                )
+            %li
+              %p
+                Steve Vickers, “Localic Completion Of Generalized Metric Spaces I”,
+                %a{:href => "http://www.tac.mta.ca/tac/volumes/14/15/14-15abs.html"} TAC
+            %li
+              %p
+                Davorin Lešnik, Synthetic Topology and Constructive Metric Spaces, (
+                %a{:href => "https://arxiv.org/abs/2104.10399"}> arxiv:2104.10399
+                )
+        .revisedby
+          %p
+            Last revised on August 19, 2025 at 14:31:11.
+            See the
+            %a{:href => "/nlab/history/Dedekind+completion", :style => "color: #005c19"} history
+            of this page for a list of all contributions to it.
+        .navigation.navfoot
+          %a#edit.navlink{:accesskey => "E", :href => "/nlab/edit/Dedekind+completion", :rel => "nofollow"} Edit
+          %a{:href => "https://nforum.ncatlab.org/discussion/12560/#Item_2"} Discuss
+          %span.backintime
+            %a#to_previous_revision.navlinkbackintime{:accesskey => "B", :href => "/nlab/revision/Dedekind+completion/27", :rel => "nofollow"} Previous revision
+          %a#see_changes.navlink{:accesskey => "C", :href => "/nlab/show/diff/Dedekind+completion", :rel => "nofollow"} Changes from previous revision
+          %a#history.navlink{:accesskey => "S", :href => "/nlab/history/Dedekind+completion", :rel => "nofollow"} History (27 revisions)
+          %a{:href => "/nlab/show/Dedekind+completion/cite", :style => "color: black"} Cite
+          %a#view_print{:accesskey => "p", :href => "/nlab/print/Dedekind+completion", :rel => "nofollow"} Print
+          %a#view_source{:href => "/nlab/source/Dedekind+completion", :rel => "nofollow"} Source
+      / Content
+    / Container

@@ -1,0 +1,3129 @@
+!!! XML
+!!! 1.1
+%html{:xmlns => "http://www.w3.org/1999/xhtml"}
+  %head
+    %title
+      Gelfand-Naimark-Segal construction in nLab
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:content => "index,follow", :name => "robots"}/
+    %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/
+    %link{:href => "/stylesheets/instiki.css?1676280126", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/stylesheets/mathematics.css?1660229990", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/stylesheets/syntax.css?1660229990", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/stylesheets/nlab.css?1676280126", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css", :rel => "stylesheet", :type => "text/css"}/
+    :css
+      h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+        color: #226622;
+      }
+      a:visited.existingWikiWord {
+        color: #164416;
+      }
+    :css
+      <!--/*--><![CDATA[/*><!--*/
+          .toc ul {margin: 0; padding: 0;}
+      .toc ul ul {margin: 0; padding: 0 0 0 10px;}
+      .toc li > p {margin: 0}
+      .toc ul li {list-style-type: none; position: relative;}
+      .toc div {border-top:1px dotted #ccc;}
+      .rightHandSide h2 {font-size: 1.5em;color:#008B26}
+      table.plaintable {
+          border-collapse:collapse;
+          margin-left:30px;
+          border:0;
+      }
+      .plaintable td {border:1px solid #000; padding: 3px;}
+      .plaintable th {padding: 3px;}
+      .plaintable caption {
+          font-weight: bold;
+          font-size:1.1em;
+          text-align:center;
+          margin-left:30px;
+      }
+          
+         
+      /* Query boxes for questioning and answering mechanism */
+      div.query{
+      background: #f6fff3;
+      border: solid #ce9;
+      border-width: 2px 1px;
+      padding: 0 1em;
+      margin: 0 1em;
+      max-height: 20em;
+      overflow: auto;
+      }
+      
+      /* Standout boxes for putting important text */
+      div.standout{
+      background: #fff1f1;
+      border: solid black;
+      border-width: 2px 1px;
+      padding: 0 1em;
+      margin: 0 1em;
+      overflow: auto;
+      }
+      
+      /* Icon for links to n-category arXiv documents 
+       (commented out for now i.e. disabled)
+      a[href*="http://arxiv.org/"] {
+        background-image: url(../files/arXiv_icon.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 22px;
+        } */
+          
+      /* Icon for links to n-category cafe posts (disabled) 
+      a[href*="http://golem.ph.utexas.edu/category"] {
+        background-image: url(../files/n-cafe_5.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 25px;
+        } */
+      
+      /* Icon for links to pdf files (disabled)
+      a[href$=".pdf"] {
+        background-image: url(../files/pdficon_small.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 25px;
+        } */
+      
+      /* Icon for links to pages, etc. -inside- pdf files (disabled)
+      a[href*=".pdf#"] {
+        background-image: url(../files/pdf_entry.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 25px;
+        } */
+      
+      a.existingWikiWord {
+      color: #226622;
+      }
+      
+      a.existingWikiWord:visited {
+      color: #226622;
+      }
+      
+      
+      a.existingWikiWord[title] {
+      border: 0px;
+      color: #aa0505;
+      text-decoration: none;
+      }
+          
+      a.existingWikiWord[title]:visited {
+      border: 0px;
+      color: #551111;
+      text-decoration: none;
+      }
+      
+      a[href^="http://"] {
+      border: 0px;
+      color: #003399;
+      }
+      
+      a[href^="http://"]:visited {
+      border: 0px;
+      color: #330066;
+      }
+      
+      a[href^="https://"] {
+      border: 0px;
+      color: #003399;
+      }
+      
+      a[href^="https://"]:visited {
+      border: 0px;
+      color: #330066;
+      }
+      
+      div.dropDown .hide {
+      display: none;
+      }
+      
+      div.dropDown:hover .hide {
+      display:block;
+      }
+      
+      div.clickDown .hide {
+      display: none;
+      }
+      
+      div.clickDown:focus {
+      outline:none;
+      }
+      
+      div.clickDown:focus .hide, div.clickDown:hover .hide {
+      display: block;
+      }
+      
+      div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+      display:block;
+      }
+      
+      div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+      display:none;
+      }
+      
+      div.clickDown .clickToReveal:after {
+      content: "A(Hover to reveal, click to "hold")";
+      font-size: 60%;
+      }
+      
+      div.clickDown .clickToHide:after {
+      content: "A(Click to hide)";
+      font-size: 60%;
+      }
+      div.clickDown .clickToHide, div.clickDown .clickToReveal {
+      white-space: pre-wrap;
+      }
+      
+      .un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+      margin-left: 1em;
+      }
+      
+      span.theorem_label {
+      margin-left: -1em;
+      }
+      .proof span.theorem_label {
+      margin-left: 0em;
+      }
+      :target {
+          background-color: #BBBBBB;
+          border-radius: 5pt;
+      }
+      
+        /*]]>*/-->
+    %script{:src => "/javascripts/prototype.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/effects.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/dragdrop.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/controls.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/application.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/page_helper.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/thm_numbering.js?1660229990", :type => "text/javascript"}
+    %script{:type => "text/x-mathjax-config"}
+      :cdata
+        <!--//--><![CDATA[//><!--
+        MathJax.Ajax.config.path["Contrib"] = "/MathJax";
+        MathJax.Hub.Config({
+        MathML: { useMathMLspacing: true },
+        "HTML-CSS": { scale: 90,
+        extensions: ["handle-floats.js"]
+        }
+        });
+        MathJax.Hub.Queue( function () {
+        var fos = document.getElementsByTagName('foreignObject');
+        for (var i = 0; i < fos.length; i++) {
+        MathJax.Hub.Typeset(fos[i]);
+        }
+        });
+        \//--><!]]>
+    :javascript
+      <!--//--><![CDATA[//><!--
+      window.addEventListener("DOMContentLoaded", function () {
+        var div = document.createElement('div');
+        var math = document.createElementNS('http://www.w3.org/1998/Math/MathML', 'math');
+        document.body.appendChild(div);
+        div.appendChild(math);
+      // Test for MathML support comparable to WebKit version https://trac.webkit.org/changeset/203640 or higher.
+        div.setAttribute('style', 'font-style: italic');
+        var mathml_unsupported = !(window.getComputedStyle(div.firstChild).getPropertyValue('font-style') === 'normal');
+        div.parentNode.removeChild(div);
+        if (mathml_unsupported) {
+          // MathML does not seem to be supported...
+          var s = document.createElement('script');
+          s.src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=MML_HTMLorMML-full";
+          document.querySelector('head').appendChild(s);
+        } else {
+          document.head.insertAdjacentHTML("beforeend", '<style>svg[viewBox] {max-width: 100%}</style>');
+        }
+      });
+      //--><!]]>
+    %link{:href => "https://ncatlab.org/nlab/atom_with_headlines", :rel => "alternate", :title => "Atom with headlines", :type => "application/atom+xml"}/
+    %link{:href => "https://ncatlab.org/nlab/atom_with_content", :rel => "alternate", :title => "Atom with full content", :type => "application/atom+xml"}/
+    :javascript
+      document.observe("dom:loaded", function() {
+        generateThmNumbers();
+      });
+  %body
+    #Container
+      #Content
+        %h1#pageName
+          %span{:style => "float: left; margin: 0.5em 0.25em -0.25em 0"}
+            %svg{:height => "1.8em", :viewbox => "0 0 190 181", :width => "1.872em", :xmlns => "http://www.w3.org/2000/svg"}
+              %path{:d => "M72.8 145c-1.6 17.3-15.7 10-23.6 20.2-5.6 7.3 4.8 15 11.4 15 11.5-.2 19-13.4 26.4-20.3 3.3-3 8.2-4 11.2-7.2a14 14 0 0 0 2.9-11.1c-1.4-9.6-12.4-18.6-16.9-27.2-5-9.6-10.7-27.4-24.1-27.7-17.4-.3-.4 26 4.7 30.7 2.4 2.3 5.4 4.1 7.3 6.9 1.6 2.3 2.1 5.8-1 7.2-5.9 2.6-12.4-6.3-15.5-10-8.8-10.6-15.5-23-26.2-31.8-5.2-4.3-11.8-8-18-3.7-7.3 4.9-4.2 12.9.2 18.5a81 81 0 0 0 30.7 23c3.3 1.5 12.8 5.6 10 10.7-2.5 5.2-11.7 3-15.6 1.1-8.4-3.8-24.3-21.3-34.4-13.7-3.5 2.6-2.3 7.6-1.2 11.1 2.8 9 12.2 17.2 20.9 20.5 17.3 6.7 34.3-8 50.8-12.1z", :fill => "#226622"}
+              %path{:d => "M145.9 121.3c-.2-7.5 0-19.6-4.5-26-5.4-7.5-12.9-1-14.1 5.8-1.4 7.8 2.7 14.1 4.8 21.3 3.4 12 5.8 29-.8 40.1-3.6-6.7-5.2-13-7-20.4-2.1-8.2-12.8-13.2-15.1-1.9-2 9.7 9 21.2 12 30.1 1.2 4 2 8.8 6.4 10.3 6.9 2.3 13.3-4.7 17.7-8.8 12.2-11.5 36.6-20.7 43.4-36.4 6.7-15.7-13.7-14-21.3-7.2-9.1 8-11.9 20.5-23.6 25.1 7.5-23.7 31.8-37.6 38.4-61.4 2-7.3-.8-29.6-13-19.8-14.5 11.6-6.6 37.6-23.3 49.2z", :fill => "#a41e32"}
+              %path{:d => "M86.3 47.5c0-13-10.2-27.6-5.8-40.4 2.8-8.4 14.1-10.1 17-1 3.8 11.6-.3 26.3-1.8 38 11.7-.7 10.5-16 14.8-24.3 2.1-4.2 5.7-9.1 11-6.7 6 2.7 7.4 9.2 6.6 15.1-2.2 14-12.2 18.8-22.4 27-3.4 2.7-8 6.6-5.9 11.6 2 4.4 7 4.5 10.7 2.8 7.4-3.3 13.4-16.5 21.7-16 14.6.7 12 21.9.9 26.2-5 1.9-10.2 2.3-15.2 3.9-5.8 1.8-9.4 8.7-15.7 8.9-6.1.1-9-6.9-14.3-9-14.4-6-33.3-2-44.7-14.7-3.7-4.2-9.6-12-4.9-17.4 9.3-10.7 28 7.2 35.7 12 2 1.1 11 6.9 11.4 1.1.4-5.2-10-8.2-13.5-10-11.1-5.2-30-15.3-35-27.3-2.5-6 2.8-13.8 9.4-13.6 6.9.2 13.4 7 17.5 12C70.9 34 75 43.8 86.3 47.4z", :fill => "#193c78"}
+          %span.webName nLab
+          Gelfand-Naimark-Segal construction
+        .navigation
+          %span.skipNav
+            %a{:href => "#navEnd"} Skip the Navigation Links
+            |
+          %span{:style => "display:inline-block; width: 0.3em;"}
+          %a{:accesskey => "H", :href => "/nlab/show/HomePage", :title => "Home page"} Home Page
+          |
+          %a{:accesskey => "A", :href => "/nlab/all_pages", :title => "List of all pages"} All Pages
+          |
+          %a{:accesskey => "U", :href => "/nlab/latest_revisions", :title => "Latest edits and page creations"} Latest Revisions
+          |
+          %a{:href => "https://nforum.ncatlab.org/discussion/12829/#Item_7", :style => "color: black", :title => "Discuss this page in its dedicated thread on the nForum"} Discuss this page
+          |
+          %form#navigationSearchForm{"accept-charset" => "utf-8", :action => "/nlab/search", :method => "get"}
+            %fieldset.search
+              %input#searchField{:name => "query", :onblur => "this.value == '' ? this.value = 'Search' : true", :onfocus => "this.value == 'Search' ? this.value = '' : true", :style => "display:inline-block; float: left;", :type => "text", :value => "Search"}/
+          %span#navEnd
+        #revision
+          %meta{:content => "application/xhtml+xml;charset=utf-8", "http-equiv" => "Content-type"}/
+          %title Contents
+          .rightHandSide
+            .toc.clickDown{:tabindex => "0"}
+              %h3#context Context
+              %h4#functional_analysis Functional analysis
+              .hide
+                %div
+                  %ul
+                    %li
+                      %strong
+                        %a.existingWikiWord{:href => "/nlab/show/functional+analysis"} Functional Analysis
+                  %h2#overview_diagrams Overview diagrams
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/TVS+relationships"} topological vector spaces
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/diagram+of+LCTVS+properties"} locally convex topological vector spaces
+                  %h2#basic_concepts Basic concepts
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/topological+vector+space"} topological vector space
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/locally+convex+topological+vector+space"} locally convex topological vector space
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/Banach+space"} Banach Spaces
+                          %ul
+                            %li
+                              %a.existingWikiWord{:href => "/nlab/show/reflexive+Banach+space"} reflexive
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/Smith+space+%28functional+analysis%29"} Smith Spaces
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/Hilbert+space"}> Hilbert Spaces
+                            ,
+                            = succeed "," do
+                              %a.existingWikiWord{:href => "/nlab/show/Fr%C3%A9chet+space"} Fréchet Spaces
+                            = succeed "," do
+                              %a.existingWikiWord{:href => "/nlab/show/Sobolev+space"} Sobolev spaces
+                            %a.existingWikiWord{:href => "/nlab/show/Lebesgue+space"} Lebesgue Spaces
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/bornological+vector+space"} Bornological Vector Spaces
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/barrelled+topological+vector+space"} Barrelled Vector Spaces
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/linear+operator"} linear operator
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/bounded+linear+operator"}> bounded
+                            ,
+                            = succeed "," do
+                              %a.existingWikiWord{:href => "/nlab/show/unbounded+linear+operator"} unbounded
+                            = succeed "," do
+                              %a.existingWikiWord{:href => "/nlab/show/self-adjoint+operator"} self-adjoint
+                            = succeed "," do
+                              %a.existingWikiWord{:href => "/nlab/show/compact+operator"} compact
+                            %a.existingWikiWord{:href => "/nlab/show/Fredholm+operator"} Fredholm
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/spectrum+of+an+operator"} spectrum of an operator
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/operator+algebras"} operator algebras
+                      %ul
+                        %li
+                          %a.existingWikiWord{:href => "/nlab/show/functional+calculus"} functional calculus
+                  %h2#theorems Theorems
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Stone-Weierstrass+theorem"} Stone-Weierstrass theorem
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/spectral+theory"} spectral theory
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/spectral+theorem"} spectral theorem
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/Gelfand+duality"} Gelfand duality
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/functional+calculus"} functional calculus
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Riesz+representation+theorem"} Riesz representation theorem
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/measure+theory"} measure theory
+                  %h2#topics_in_functional_analysis Topics in Functional Analysis
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/basis+in+functional+analysis"} Bases
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/algebraic+theories+in+functional+analysis"} Algebraic Theories in Functional Analysis
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/an+elementary+treatment+of+Hilbert+spaces"} An Elementary Treatment of Hilbert Spaces
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/isomorphism+classes+of+Banach+spaces"} When are two Banach spaces isomorphic?
+                  %div
+                    %p
+                      %a{:href => "/nlab/edit/functional+analysis+-+contents"} Edit this sidebar
+              %h4#algebraic_field_theory Algebraic Field Theory
+              .hide
+                %div
+                  %p
+                    %strong
+                      %a.existingWikiWord{:href => "/nlab/show/algebraic+quantum+field+theory"} algebraic quantum field theory
+                    (
+                    %a.existingWikiWord{:href => "/nlab/show/perturbative+AQFT"}> perturbative
+                    ,
+                    = succeed "," do
+                      %a.existingWikiWord{:href => "/nlab/show/AQFT+on+curved+spacetime"} on curved spacetimes
+                    = succeed ")" do
+                      %a.existingWikiWord{:href => "/nlab/show/homotopical+algebraic+quantum+field+theory"} homotopical
+                  %p
+                    %a.existingWikiWord{:href => "/nlab/show/A+first+idea+of+quantum+field+theory"} Introduction
+                  %h2#concepts Concepts
+                  %p
+                    %strong>
+                      %a.existingWikiWord{:href => "/nlab/show/field+theory"} field theory
+                    \:
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/classical+field+theory"}> classical
+                        ,
+                        = succeed "," do
+                          %a.existingWikiWord{:href => "/nlab/show/prequantum+field+theory"} pre-quantum
+                        = succeed "," do
+                          %a.existingWikiWord{:href => "/nlab/show/quantum+field+theory"} quantum
+                        %a.existingWikiWord{:href => "/nlab/show/perturbative+quantum+field+theory"} perturbative quantum
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/relativistic+field+theory"}> relativistic
+                        ,
+                        = succeed "," do
+                          %a.existingWikiWord{:href => "/nlab/show/Euclidean+field+theory"} Euclidean
+                        %a.existingWikiWord{:href => "/nlab/show/thermal+quantum+field+theory"} thermal
+                  %p
+                    %strong
+                      %a.existingWikiWord{:href => "/nlab/show/Lagrangian+field+theory"} Lagrangian field theory
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/field+%28physics%29"} field (physics)
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/field+bundle"} field bundle
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/field+history"} field history
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/space+of+field+histories"} space of field histories
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Lagrangian+density"} Lagrangian density
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/Euler-Lagrange+form"}> Euler-Lagrange form
+                            ,
+                            %a.existingWikiWord{:href => "/nlab/show/presymplectic+current"} presymplectic current
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/Euler-Lagrange+equations"} Euler-Lagrange
+                            %a.existingWikiWord{:href => "/nlab/show/equations+of+motion"} equations of motion
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/locally+variational+field+theory"} locally variational field theory
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/covariant+phase+space"} covariant phase space
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/Peierls-Poisson+bracket"} Peierls-Poisson bracket
+                          %ul
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/advanced+and+retarded+propagator"}> advanced and retarded propagator
+                                ,
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/causal+propagator"} causal propagator
+                  %p
+                    %strong
+                      %a.existingWikiWord{:href => "/nlab/show/quantization"} quantization
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/geometric+quantization"} geometric quantization
+                        %a.existingWikiWord{:href => "/nlab/show/geometric+quantization+of+symplectic+groupoids"} of symplectic groupoids
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/algebraic+deformation+quantization"}> algebraic deformation quantization
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/star+algebra"} star algebra
+                  %p
+                    %strong>
+                      %a.existingWikiWord{:href => "/nlab/show/quantum+mechanical+system"} quantum mechanical system
+                    ,
+                    %strong
+                      %a.existingWikiWord{:href => "/nlab/show/quantum+probability"} quantum probability
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/subsystem"} subsystem
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/observables"} observables
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/field+observables"} field observables
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/local+observables"} local observables
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/polynomial+observables"} polynomial observables
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/microcausal+observables"} microcausal observables
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/operator+algebra"}> operator algebra
+                            ,
+                            = succeed "," do
+                              %a.existingWikiWord{:href => "/nlab/show/C%2A-algebra"} C*-algebra
+                            %a.existingWikiWord{:href => "/nlab/show/von+Neumann+algebra"} von Neumann algebra
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/local+net+of+observables"} local net of observables
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/causal+locality"} causal locality
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/Haag-Kastler+axioms"} Haag-Kastler axioms
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/Wightman+axioms"} Wightman axioms
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/field+net"} field net
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/conformal+net"} conformal net
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/state+on+a+star-algebra"}> state on a star-algebra
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/expectation+value"} expectation value
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/pure+state"} pure state
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/wave+function"} wave function
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/collapse+of+the+wave+function"}> collapse of the wave function
+                            \/
+                            %a.existingWikiWord{:href => "/nlab/show/conditional+expectation+value"} conditional expectation value
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/mixed+state"}> mixed state
+                            ,
+                            %a.existingWikiWord{:href => "/nlab/show/density+matrix"} density matrix
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/space+of+quantum+states"} space of quantum states
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/vacuum+state"} vacuum state
+                          %ul
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/quasi-free+state"}> quasi-free state
+                                ,
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/Hadamard+state"} Hadamard state
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/Wightman+propagator"} Wightman propagator
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/picture+of+quantum+mechanics"} picture of quantum mechanics
+                  %p
+                    %strong
+                      %a.existingWikiWord{:href => "/nlab/show/free+field"} free field
+                      %a.existingWikiWord{:href => "/nlab/show/quantization"} quantization
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/star+algebra"}> star algebra
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/Moyal+deformation+quantization"} Moyal deformation quantization
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Wick+algebra"} Wick algebra
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/canonical+commutation+relations"}> canonical commutation relations
+                            ,
+                            %a.existingWikiWord{:href => "/nlab/show/Weyl+relations"} Weyl relations
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/normal+ordered+product"} normal ordered product
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Fock+space"} Fock space
+                  %p
+                    %strong
+                      %a.existingWikiWord{:href => "/nlab/show/gauge+theories"} gauge theories
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/gauge+symmetry"} gauge symmetry
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/BRST+complex"}> BRST complex
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/BV-BRST+formalism"} BV-BRST formalism
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/local+BV-BRST+complex"} local BV-BRST complex
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/BV-operator"} BV-operator
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/quantum+master+equation"} quantum master equation
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/master+Ward+identity"} master Ward identity
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/gauge+anomaly"} gauge anomaly
+                  %p
+                    %strong
+                      %a.existingWikiWord{:href => "/nlab/show/interacting+field+theory"} interacting field
+                      %a.existingWikiWord{:href => "/nlab/show/quantization"} quantization
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/causal+perturbation+theory"}> causal perturbation theory
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/perturbative+AQFT"} perturbative AQFT
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/interaction"} interaction
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/S-matrix"}> S-matrix
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/scattering+amplitude"} scattering amplitude
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/causal+additivity"} causal additivity
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/time-ordered+product"}> time-ordered product
+                            ,
+                            %a.existingWikiWord{:href => "/nlab/show/Feynman+propagator"} Feynman propagator
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/Feynman+diagram"}> Feynman diagram
+                            ,
+                            %a.existingWikiWord{:href => "/nlab/show/Feynman+perturbation+series"} Feynman perturbation series
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/effective+action"} effective action
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/vacuum+stability"} vacuum stability
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/interacting+field+algebra"} interacting field algebra
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/Bogoliubov%27s+formula"} Bogoliubov's formula
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/quantum+M%C3%B8ller+operator"} quantum Møller operator
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/adiabatic+limit"} adiabatic limit
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/infrared+divergence"} infrared divergence
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/interacting+vacuum"} interacting vacuum
+                  %p
+                    %strong
+                      %a.existingWikiWord{:href => "/nlab/show/renormalization"} renormalization
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/renormalization+scheme"} ("re-")normalization scheme
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/extension+of+distributions"} extension of distributions
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/renormalization+condition"} ("re"-)normalization condition
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/quantum+anomaly"} quantum anomaly
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/renormalization+group"} renormalization group
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/interaction+vertex+redefinition"} interaction vertex redefinition
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/St%C3%BCckelberg-Petermann+renormalization+group"} Stückelberg-Petermann renormalization group
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/renormalization+group+flow"}> renormalization group flow
+                            \/
+                            %a.existingWikiWord{:href => "/nlab/show/running+coupling+constants"} running coupling constants
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/effective+quantum+field+theory"} effective quantum field theory
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/UV+cutoff"} UV cutoff
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/counterterms"} counterterms
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/relative+effective+action"} relative effective action
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/Wilsonian+RG"}> Wilsonian RG
+                            ,
+                            %a.existingWikiWord{:href => "/nlab/show/Polchinski+flow+equation"} Polchinski flow equation
+                  %h2#Theorems Theorems
+                  %h3#states_and_observables States and observables
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/order-theoretic+structure+in+quantum+mechanics"} order-theoretic structure in quantum mechanics
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/Alfsen-Shultz+theorem"} Alfsen-Shultz theorem
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/Harding-D%C3%B6ring-Hamhalter+theorem"} Harding-Döring-Hamhalter theorem
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Kochen-Specker+theorem"} Kochen-Specker theorem
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Bell%27s+theorem"} Bell's theorem
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Fell%27s+theorem"} Fell's theorem
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Gleason%27s+theorem"} Gleason's theorem
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Wigner+theorem"} Wigner theorem
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Bub-Clifton+theorem"} Bub-Clifton theorem
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Kadison-Singer+problem"} Kadison-Singer problem
+                  %h3#operator_algebra Operator algebra
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Wick%27s+theorem"} Wick's theorem
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/GNS+construction"} GNS construction
+                      %ul
+                        %li
+                          %a.existingWikiWord{:href => "/nlab/show/cyclic+vector"}> cyclic vector
+                          ,
+                          %a.existingWikiWord{:href => "/nlab/show/separating+vector"} separating vector
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/modular+theory"} modular theory
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Fell%27s+theorem"} Fell's theorem
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Stone-von+Neumann+theorem"} Stone-von Neumann theorem
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Haag%27s+theorem"} Haag's theorem
+                  %h3#local_qft Local QFT
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Reeh-Schlieder+theorem"} Reeh-Schlieder theorem
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Bisognano-Wichmann+theorem"} Bisognano-Wichmann theorem
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/PCT+theorem"} PCT theorem
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/spin-statistics+theorem"} spin-statistics theorem
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/DHR+superselection+theory"} DHR superselection theory
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Osterwalder-Schrader+theorem"} Osterwalder-Schrader theorem
+                        (
+                        %a.existingWikiWord{:href => "/nlab/show/Wick+rotation"}> Wick rotation
+                        )
+                  %h3#perturbative_qft Perturbative QFT
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Schwinger-Dyson+equation"} Schwinger-Dyson equation
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/main+theorem+of+perturbative+renormalization"} main theorem of perturbative renormalization
+          %h1#contents Contents
+          .maruku_toc
+            %ul
+              %li
+                %a{:href => "#idea"} Idea
+              %li
+                %a{:href => "#details"} Details
+              %ul
+                %li
+                  %a{:href => "#ForCStarAlgebras"}
+                    For
+                    = succeed "-algebras" do
+                      %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                        %semantics
+                          %mrow
+                            %msup
+                              %mi C
+                              %mo *
+                          %annotation{:encoding => "application/x-tex"} C^\ast
+                %li
+                  %a{:href => "#ForCStarCategories"}
+                    For
+                    = succeed "-categories" do
+                      %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                        %semantics
+                          %mrow
+                            %msup
+                              %mi C
+                              %mo *
+                          %annotation{:encoding => "application/x-tex"} C^\ast
+              %li
+                %a{:href => "#functorial_aspects"} Functorial Aspects
+              %li
+                %a{:href => "#related_concepts"} Related concepts
+              %li
+                %a{:href => "#references"} References
+          %h2#idea Idea
+          %p
+            The
+            %em Gelfand-Naimark-Segal construction
+            (“GNS construction”) represents a
+            %a.existingWikiWord{:href => "/nlab/show/state+on+a+star-algebra"} state on a star-algebra
+            over the
+            %a.existingWikiWord{:href => "/nlab/show/complex+numbers"} complex numbers
+            — which
+            %em a priori
+            is defined purely algebraically as a non-degenerate positive linear function
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi ρ
+                  %mspace{:width => "thickmathspace"}
+                  %mo{:lspace => "verythinmathspace"} :
+                  %mspace{:width => "thickmathspace"}
+                  %mi 𝒜
+                  %mo ⟶
+                  %mi ℂ
+                  %mspace{:width => "thinmathspace"}
+                  %mo ,
+                %annotation{:encoding => "application/x-tex"}
+                  \\rho \;\colon\; \mathcal{A} \longrightarrow \mathbb{C}
+                  \\,,
+          %p
+            — by a
+            %a.existingWikiWord{:href => "/nlab/show/vector"} vector
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi ψ
+                  %mo ∈
+                  %mi ℋ
+                %annotation{:encoding => "application/x-tex"} \psi \in \mathcal{H}
+            in a
+            %a.existingWikiWord{:href => "/nlab/show/complex+numbers"} complex
+            %a.existingWikiWord{:href => "/nlab/show/Hilbert+space"} Hilbert space
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msub
+                    %mi ℋ
+                    %mi ρ
+                %annotation{:encoding => "application/x-tex"} \mathcal{H}_\rho
+            as the “
+            %a.existingWikiWord{:href => "/nlab/show/expectation+value"}> expectation value
+            ”
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mrow
+                    %mtable{:columnalign => "right left right left right left right left right left", :columnspacing => "0em", :displaystyle => "true"}
+                      %mtr
+                        %mtd
+                          %mi ρ
+                          %mo{:stretchy => "false"} (
+                          %mi A
+                          %mo{:stretchy => "false"} )
+                        %mtd
+                          %mo =
+                          %mo{:stretchy => "false"} ⟨
+                          %mi ψ
+                          %mo{:stretchy => "false"} |
+                          %mspace{:width => "thinmathspace"}
+                          %mi A
+                          %mspace{:width => "thinmathspace"}
+                          %mo{:stretchy => "false"} |
+                          %mi ψ
+                          %mo{:stretchy => "false"} ⟩
+                      %mtr
+                        %mtd
+                        %mtd
+                          %mo ≔
+                          %mo{:stretchy => "false"} ⟨
+                          %mi ψ
+                          %mo ,
+                          %mi π
+                          %mo{:stretchy => "false"} (
+                          %mi A
+                          %mo{:stretchy => "false"} )
+                          %mi ψ
+                          %mo{:stretchy => "false"} ⟩
+                %annotation{:encoding => "application/x-tex"}
+                  \\begin{aligned}
+                  \\rho(A)
+                  \&amp; = \langle \psi \vert \, A \, \vert \psi \rangle
+                  \\\
+                  \&amp; \coloneqq \langle \psi, \pi(A) \psi \rangle
+                  \\end{aligned}
+          %p
+            with respect to some
+            %a.existingWikiWord{:href => "/nlab/show/star-representation"} star-representation
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi π
+                  %mspace{:width => "thickmathspace"}
+                  %mo{:lspace => "verythinmathspace"} :
+                  %mspace{:width => "thickmathspace"}
+                  %mi 𝒜
+                  %mo ⟶
+                  %mi End
+                  %mo{:stretchy => "false"} (
+                  %msub
+                    %mi ℋ
+                    %mi ρ
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"}
+                  \\pi \;\colon\; \mathcal{A} \longrightarrow End(\mathcal{H}_\rho)
+          %p
+            of
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi 𝒜
+                %annotation{:encoding => "application/x-tex"} \mathcal{A}
+            on (a
+            %a.existingWikiWord{:href => "/nlab/show/dense+subspace"} dense subspace
+            of)
+            = succeed ";" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi ℋ
+                      %mi ρ
+                  %annotation{:encoding => "application/x-tex"} \mathcal{H}_\rho
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mo{:stretchy => "false"} ⟨
+                  %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                  %mo ,
+                  %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                  %mo{:stretchy => "false"} ⟩
+                %annotation{:encoding => "application/x-tex"} \langle -,-\rangle
+            denotes the
+            %a.existingWikiWord{:href => "/nlab/show/Hermitian+form"} Hermitian
+            %a.existingWikiWord{:href => "/nlab/show/inner+product"} inner product
+            on the
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/Hilbert+space"} Hilbert space
+          %p
+            It follows that every
+            = succeed "/" do
+              %a.existingWikiWord{:href => "/nlab/show/mixed+state"} mixed state
+            %a.existingWikiWord{:href => "/nlab/show/density+matrix"} density matrix
+            on
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msub
+                    %mi ℋ
+                    %mi ρ
+                %annotation{:encoding => "application/x-tex"} \mathcal{H}_\rho
+            gives another algebraic state on
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi 𝒜
+                  %annotation{:encoding => "application/x-tex"} \mathcal{A}
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi 𝒜
+                %annotation{:encoding => "application/x-tex"} \mathcal{A}
+            arising this way are called the
+            %strong folium
+            of states corresponding to
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi ρ
+                  %annotation{:encoding => "application/x-tex"} \rho
+            = succeed "," do
+              %a{:href => "#Haag96"} Haag 1996 p 124
+            = succeed "&rbrack;." do
+              %a{:href => "#Moretti17"} Moretti 2017 Def. 14.9
+          %p
+            Originally and typically by default the GNS construction is considered for
+            %a.existingWikiWord{:href => "/nlab/show/C%2A-algebras"} C*-algebras
+            and
+            %a.existingWikiWord{:href => "/nlab/show/C%2A-representations"} C*-representations
+            (
+            %a{:href => "#GelfandNaimark43"}> Gelfand &amp; Naimark 1943
+            ,
+            = succeed "," do
+              %a{:href => "#Segal47"} Segal 1947
+            = succeed ")," do
+              %a{:href => "#Schmuedgen90"} Schmüdgen 1990
+            %a.existingWikiWord{:href => "/nlab/show/unital+algebra"} unital
+            %a.existingWikiWord{:href => "/nlab/show/star+algebras"} star algebras
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi 𝒜
+                %annotation{:encoding => "application/x-tex"} \mathcal{A}
+            (
+            %a{:href => "#KhavkineMoretti15"}> Khavkine &amp; Moretti 2015
+            ) as well as to other
+            %a.existingWikiWord{:href => "/nlab/show/coefficient"} coefficient
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/rings"} rings
+            %a.existingWikiWord{:href => "/nlab/show/formal+power+series+algebras"} formal power series algebras
+            over
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi ℂ
+                  %mo{:stretchy => "false"} [
+                  %mo{:stretchy => "false"} [
+                  %mi ℏ
+                  %mo{:stretchy => "false"} ]
+                  %mo{:stretchy => "false"} ]
+                %annotation{:encoding => "application/x-tex"} \mathbb{C}[ [\hbar] ]
+            (
+            %a{:href => "#BordemannWaldmann96"}> Bordemann &amp; Waldmann 1996
+            ).
+          %p
+            The GNS-construction plays a central role in
+            %a.existingWikiWord{:href => "/nlab/show/algebraic+quantum+field+theory"} algebraic quantum field theory
+            (cf.
+            = succeed "," do
+              %a{:href => "#Haag96"} Haag 1996
+            = succeed "," do
+              %a{:href => "#Moretti17"} Moretti 2017
+            = succeed ")," do
+              %a{:href => "#KhavkineMoretti15"} Khavkine &amp; Moretti 2015
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi 𝒜
+                %annotation{:encoding => "application/x-tex"} \mathcal{A}
+            plays the role of an
+            %a.existingWikiWord{:href => "/nlab/show/algebra+of+observables"} algebra of observables
+            and
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi ρ
+                  %mo{:lspace => "verythinmathspace"} :
+                  %mi 𝒜
+                  %mo →
+                  %mi ℂ
+                %annotation{:encoding => "application/x-tex"} \rho \colon \mathcal{A} \to \mathbb{C}
+            the role of an actual
+            %a.existingWikiWord{:href => "/nlab/show/state"} state
+            of a
+            %a.existingWikiWord{:href => "/nlab/show/physical+system"} physical system
+            (whence the terminology) jointly constituting the “
+            %a.existingWikiWord{:href => "/nlab/show/Heisenberg+picture"}> Heisenberg picture
+            ”-perspective of
+            = succeed ";" do
+              %a.existingWikiWord{:href => "/nlab/show/quantum+physics"} quantum physics
+            %a.existingWikiWord{:href => "/nlab/show/Hilbert+space"} Hilbert
+            %a.existingWikiWord{:href => "/nlab/show/space+of+states"} space of states
+            as in the
+            %a.existingWikiWord{:href => "/nlab/show/Schr%C3%B6dinger+picture"} Schrödinger picture
+            of quantum physics. In this context the version for
+            %a.existingWikiWord{:href => "/nlab/show/C%2A-algebras"} C*-algebras
+            corresponds to
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/non-perturbative+quantum+field+theory"} non-perturbative quantum field theory
+            %a.existingWikiWord{:href => "/nlab/show/formal+power+series+algebras"} formal power series algebras
+            corresponds to
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/perturbative+quantum+field+theory"} perturbative quantum field theory
+          %h2#details Details
+          %blockquote
+            %p under construction
+          %h3#ForCStarAlgebras
+            For
+            = succeed "-algebras" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msup
+                      %mi C
+                      %mo *
+                  %annotation{:encoding => "application/x-tex"} C^\ast
+          .num_theorem
+            %h6#theorem Theorem
+            %p Given
+            %ol
+              %li
+                %p
+                  a
+                  %a.existingWikiWord{:href => "/nlab/show/C%2A-algebra"} C*-algebra
+                  = succeed ";" do
+                    %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                      %semantics
+                        %mrow
+                          %mi 𝒜
+                        %annotation{:encoding => "application/x-tex"} \mathcal{A}
+              %li
+                %p
+                  a
+                  %a.existingWikiWord{:href => "/nlab/show/state+on+a+star-algebra"} state
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi ρ
+                        %mspace{:width => "thickmathspace"}
+                        %mo{:lspace => "verythinmathspace"} :
+                        %mspace{:width => "thickmathspace"}
+                        %mi 𝒜
+                        %mo →
+                        %mi ℂ
+                      %annotation{:encoding => "application/x-tex"} \rho \;\colon\; \mathcal{A} \to \mathbb{C}
+                  in the sense of
+                %ol
+                  %li
+                    %p
+                      a
+                      %a.existingWikiWord{:href => "/nlab/show/linear+map"} linear map
+                      on the
+                      %a.existingWikiWord{:href => "/nlab/show/underlying"} underlying
+                      %a.existingWikiWord{:href => "/nlab/show/vector+space"} vector space
+                    #eq:UnderlyingLinearMapOfStateExpectationValue.maruku-equation
+                      %span.maruku-eq-number (1)
+                      %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                        %semantics
+                          %mrow
+                            %mi ρ
+                            %mspace{:width => "thinmathspace"}
+                            %mo{:lspace => "verythinmathspace"} :
+                            %mspace{:width => "thinmathspace"}
+                            %mi 𝒜
+                            %mo →
+                            %mi ℂ
+                            %mspace{:width => "thinmathspace"}
+                            %mo ,
+                          %annotation{:encoding => "application/x-tex"}
+                            \\rho \,\colon\, \mathcal{A} \to \mathbb{C}
+                            \\,,
+                  %li
+                    %p
+                      which takes star-involution to
+                      %a.existingWikiWord{:href => "/nlab/show/complex+conjugation"} complex conjugation
+                    #eq:StateRespectsStar.maruku-equation
+                      %span.maruku-eq-number (2)
+                      %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                        %semantics
+                          %mrow
+                            %mi A
+                            %mo ∈
+                            %mi 𝒜
+                            %mspace{:width => "thickmathspace"}
+                            %mspace{:width => "thickmathspace"}
+                            %mspace{:width => "thickmathspace"}
+                            %mo ⊢
+                            %mspace{:width => "thickmathspace"}
+                            %mspace{:width => "thickmathspace"}
+                            %mspace{:width => "thickmathspace"}
+                            %mi ρ
+                            %mo{:maxsize => "1.2em", :minsize => "1.2em"} (
+                            %msup
+                              %mi A
+                              %mo *
+                            %mo{:maxsize => "1.2em", :minsize => "1.2em"} )
+                            %mo =
+                            %mover
+                              %mrow
+                                %mi ρ
+                                %mo{:stretchy => "false"} (
+                                %mi A
+                                %mo{:stretchy => "false"} )
+                              %mo ¯
+                            %mspace{:width => "thinmathspace"}
+                            %mo ,
+                          %annotation{:encoding => "application/x-tex"}
+                            A \in \mathcal{A}
+                            \\;\;\;
+                            \\vdash
+                            \\;\;\;
+                            \\rho\big(A^\ast\big) = \overline{\rho(A)}
+                            \\,,
+                  %li
+                    %p
+                      and satisfies “
+                      %a{:href => "state+on+a+star-algebra#PositivityCondition"}> positivity
+                      ” in the sense that
+                    #eq:StateSatisfiesPositivity.maruku-equation
+                      %span.maruku-eq-number (3)
+                      %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                        %semantics
+                          %mrow
+                            %mi A
+                            %mo ∈
+                            %mi 𝒜
+                            %mspace{:width => "thickmathspace"}
+                            %mspace{:width => "thickmathspace"}
+                            %mspace{:width => "thickmathspace"}
+                            %mo ⊢
+                            %mspace{:width => "thickmathspace"}
+                            %mspace{:width => "thickmathspace"}
+                            %mspace{:width => "thickmathspace"}
+                            %mi ρ
+                            %mo{:stretchy => "false"} (
+                            %msup
+                              %mi A
+                              %mo *
+                            %mi A
+                            %mo{:stretchy => "false"} )
+                            %mo ∈
+                            %msub
+                              %mi ℝ
+                              %mrow
+                                %mo ≥
+                                %mn 0
+                            %mo ⊂
+                            %mi ℂ
+                            %mspace{:width => "thinmathspace"}
+                            %mo ,
+                          %annotation{:encoding => "application/x-tex"}
+                            A \in \mathcal{A}
+                            \\;\;\;
+                            \\vdash
+                            \\;\;\;
+                            \\rho(A^\ast A)
+                            \\in
+                            \\mathbb{R}_{\geq 0} \subset \mathbb{C}
+                            \\,,
+            %p then there exists
+            %ol
+              %li
+                %p
+                  a
+                  %a.existingWikiWord{:href => "/nlab/show/C%2A-representation"} C*-representation
+                .maruku-equation
+                  %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi π
+                        %mspace{:width => "thickmathspace"}
+                        %mo{:lspace => "verythinmathspace"} :
+                        %mspace{:width => "thickmathspace"}
+                        %mi 𝒜
+                        %mo ⟶
+                        %mi End
+                        %mo{:stretchy => "false"} (
+                        %mi ℋ
+                        %mo{:stretchy => "false"} )
+                      %annotation{:encoding => "application/x-tex"}
+                        \\pi
+                        \\;\colon\;
+                        \\mathcal{A}
+                        \\longrightarrow
+                        End(\mathcal{H})
+                %p
+                  of
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi 𝒜
+                      %annotation{:encoding => "application/x-tex"} \mathcal{A}
+                  on some
+                  %a.existingWikiWord{:href => "/nlab/show/Hilbert+space"} Hilbert space
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi ℋ
+                      %annotation{:encoding => "application/x-tex"} \mathcal{H}
+              %li
+                %p
+                  a
+                  %a.existingWikiWord{:href => "/nlab/show/cyclic+vector"} cyclic vector
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %msub
+                          %mi ψ
+                          %mi ρ
+                        %mo ∈
+                        %mi ℋ
+                      %annotation{:encoding => "application/x-tex"} \psi_\rho \in \mathcal{H}
+            %p
+              such that
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi ρ
+                  %annotation{:encoding => "application/x-tex"} \rho
+              is the
+              %a.existingWikiWord{:href => "/nlab/show/pure+state"} pure state
+              corresponding to
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msub
+                        %mi ψ
+                        %mi ρ
+                    %annotation{:encoding => "application/x-tex"} \psi_\rho
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mrow
+                      %mtable{:columnalign => "right left right left right left right left right left", :columnspacing => "0em", :displaystyle => "true"}
+                        %mtr
+                          %mtd
+                            %mi ρ
+                            %mo{:stretchy => "false"} (
+                            %mi A
+                            %mo{:stretchy => "false"} )
+                          %mtd
+                            %mo =
+                            %mo{:stretchy => "false"} ⟨
+                            %msub
+                              %mi ψ
+                              %mi ρ
+                            %mo{:stretchy => "false"} |
+                            %mspace{:width => "thinmathspace"}
+                            %mi A
+                            %mspace{:width => "thinmathspace"}
+                            %mo{:stretchy => "false"} |
+                            %msub
+                              %mi ψ
+                              %mi ρ
+                            %mo{:stretchy => "false"} ⟩
+                        %mtr
+                          %mtd
+                          %mtd
+                            %mo ≔
+                            %mo{:stretchy => "false"} ⟨
+                            %msub
+                              %mi ψ
+                              %mi ρ
+                            %mo ,
+                            %mi π
+                            %mo{:stretchy => "false"} (
+                            %mi A
+                            %mo{:stretchy => "false"} )
+                            %msub
+                              %mi ψ
+                              %mi ρ
+                            %mo{:stretchy => "false"} ⟩
+                  %annotation{:encoding => "application/x-tex"}
+                    \\begin{aligned}
+                    \\rho(A)
+                    \&amp; = \langle \psi_\rho \vert\, A \, \vert \psi_\rho \rangle
+                    \\\
+                    \&amp; \coloneqq
+                    \\langle \psi_\rho , \pi(A) \psi_\rho \rangle
+                    \\end{aligned}
+            %p
+              for all
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi A
+                      %mo ∈
+                      %mi 𝒜
+                    %annotation{:encoding => "application/x-tex"} A \in \mathcal{A}
+          %p
+          #ProofOfGNS.proof
+            %h6 Proof
+            %p
+              Consider on the
+              %a.existingWikiWord{:href => "/nlab/show/underlying"} underlying
+              %a.existingWikiWord{:href => "/nlab/show/complex+vector+space"} complex vector space
+              of
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi 𝒜
+                  %annotation{:encoding => "application/x-tex"} \mathcal{A}
+              the
+              %a.existingWikiWord{:href => "/nlab/show/sesquilinear+form"} sesquilinear form
+              (
+              %a.existingWikiWord{:href => "/nlab/show/inner+product"}> inner product
+              )
+            #eq:InnerProductBeforeDevidingOutNullVectors.maruku-equation
+              %span.maruku-eq-number (4)
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo{:stretchy => "false"} ⟨
+                    %mi A
+                    %mo ,
+                    %mi B
+                    %msub
+                      %mo{:stretchy => "false"} ⟩
+                      %mi ρ
+                    %mspace{:width => "thickmathspace"}
+                    %mo ≔
+                    %mspace{:width => "thickmathspace"}
+                    %mi ρ
+                    %mo{:maxsize => "1.2em", :minsize => "1.2em"} (
+                    %msup
+                      %mi A
+                      %mo *
+                    %mi B
+                    %mo{:maxsize => "1.2em", :minsize => "1.2em"} )
+                    %mspace{:width => "thinmathspace"}
+                    %mo .
+                  %annotation{:encoding => "application/x-tex"}
+                    \\langle A,B \rangle_\rho
+                    \\;\coloneqq\;
+                    \\rho
+                    \\big(
+                    A^\ast B
+                    \\big)
+                    \\,.
+            %p
+              By the “
+              %a{:href => "state+on+a+star-algebra#PositivityCondition"}> positivity
+              ”-condition
+              %a.maruku-eqref{:href => "#eq:StateSatisfiesPositivity"} (3)
+              on
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi ρ
+                    %annotation{:encoding => "application/x-tex"} \rho
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo{:stretchy => "false"} ⟨
+                    %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                    %mo ,
+                    %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                    %mo{:stretchy => "false"} ⟩
+                  %annotation{:encoding => "application/x-tex"} \langle-,-\rangle
+              is
+              = succeed "," do
+                %a{:href => "sesquilinear+form#Definity"} positive semi-definite
+              = succeed ":" do
+                %a.existingWikiWord{:href => "/nlab/show/Cauchy-Schwarz+inequality"} Cauchy-Schwarz inequality
+            #eq:CauchySchwarzBeforeDividingOutNullVectors.maruku-equation
+              %span.maruku-eq-number (5)
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msup
+                      %mrow
+                        %mo{:maxsize => "1.2em", :minsize => "1.2em"} |
+                        %mi ρ
+                        %mo{:maxsize => "1.2em", :minsize => "1.2em"} (
+                        %msup
+                          %mi A
+                          %mo *
+                        %mi B
+                        %mo{:maxsize => "1.2em", :minsize => "1.2em"} )
+                        %mo{:maxsize => "1.2em", :minsize => "1.2em"} |
+                      %mn 2
+                    %mspace{:width => "thickmathspace"}
+                    %mo ≤
+                    %mspace{:width => "thickmathspace"}
+                    %mi ρ
+                    %mo{:maxsize => "1.2em", :minsize => "1.2em"} (
+                    %msup
+                      %mi A
+                      %mo *
+                    %mi A
+                    %mo{:maxsize => "1.2em", :minsize => "1.2em"} )
+                    %mspace{:width => "thinmathspace"}
+                    %mi ρ
+                    %mo{:stretchy => "false"} (
+                    %msup
+                      %mi B
+                      %mo *
+                    %mi B
+                    %mo{:stretchy => "false"} )
+                    %mspace{:width => "thinmathspace"}
+                    %mo .
+                  %annotation{:encoding => "application/x-tex"}
+                    {\big\vert
+                    \\rho\big( A^\ast B \big)
+                    \\big\vert}^2
+                    \\;\leq\;
+                    \\rho\big(A^\ast A\big)
+                    \\,
+                    \\rho(B^\ast B)
+                    \\,.
+            %p
+              However,
+              %a.maruku-eqref{:href => "#eq:InnerProductBeforeDevidingOutNullVectors"} (4)
+              will in general not be definite, in that there may be a non-trivial
+              %a.existingWikiWord{:href => "/nlab/show/linear+subspace"} linear subspace
+              of
+              = succeed "=0" do
+                %a.existingWikiWord{:href => "/nlab/show/norm"} norm
+            #eq:TheNullIdeal.maruku-equation
+              %span.maruku-eq-number (6)
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi 𝒩
+                    %mspace{:width => "thickmathspace"}
+                    %mo ≔
+                    %mspace{:width => "thickmathspace"}
+                    %mo{:maxsize => "1.8em", :minsize => "1.8em"} {
+                    %mi A
+                    %mo ∈
+                    %mi 𝒜
+                    %mspace{:width => "thinmathspace"}
+                    %mo{:stretchy => "false"} |
+                    %mspace{:width => "thinmathspace"}
+                    %mi ρ
+                    %mo{:maxsize => "1.2em", :minsize => "1.2em"} (
+                    %msup
+                      %mi A
+                      %mo *
+                    %mi A
+                    %mo{:maxsize => "1.2em", :minsize => "1.2em"} )
+                    %mo =
+                    %mn 0
+                    %mo{:maxsize => "1.8em", :minsize => "1.8em"} }
+                    %mspace{:width => "thinmathspace"}
+                    %mo ,
+                  %annotation{:encoding => "application/x-tex"}
+                    \\mathcal{N}
+                    \\;\coloneqq\;
+                    \\Big\{
+                    A \in \mathcal{A}
+                    \\,\vert\,
+                    \\rho\big(A^\ast A\big) = 0
+                    \\Big\}
+                    \\,,
+            %p and hence we have to quotient out by this null-space in order to produce the desired Hilbert space.
+            %p
+              Observe that this null space
+              %a.maruku-eqref{:href => "#eq:TheNullIdeal"} (6)
+              is not just a
+              %a.existingWikiWord{:href => "/nlab/show/linear+subspace"} linear subspace
+              but a left
+              %a.existingWikiWord{:href => "/nlab/show/ideal"} ideal
+              for the algebra structure, as follows by the
+              %a.existingWikiWord{:href => "/nlab/show/Cauchy-Schwarz+inequality"} Cauchy-Schwarz inequality
+              = succeed ":" do
+                %a.maruku-eqref{:href => "#eq:CauchySchwarzBeforeDividingOutNullVectors"} (5)
+            #eq:NullSpaceIsLeftIdeal.maruku-equation
+              %span.maruku-eq-number (7)
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mrow
+                      %mtable{:columnalign => "left", :displaystyle => "false", :rowspacing => "0.5ex"}
+                        %mtr
+                          %mtd
+                            %mi N
+                            %mo ∈
+                            %mi 𝒩
+                        %mtr
+                          %mtd
+                            %mi A
+                            %mo ∈
+                            %mi 𝒜
+                      %mo }
+                    %mspace{:width => "thickmathspace"}
+                    %mspace{:width => "thickmathspace"}
+                    %mspace{:width => "thickmathspace"}
+                    %mo ⊢
+                    %mspace{:width => "thickmathspace"}
+                    %mspace{:width => "thickmathspace"}
+                    %mspace{:width => "thickmathspace"}
+                    %mrow
+                      %mo {
+                      %mtable{:columnalign => "left", :displaystyle => "false", :rowspacing => "0.5ex"}
+                        %mtr
+                          %mtd
+                            %mo{:maxsize => "1.2em", :minsize => "1.2em"} |
+                            %mi ρ
+                            %mo{:maxsize => "1.2em", :minsize => "1.2em"} (
+                            %mo{:stretchy => "false"} (
+                            %mi A
+                            %mi N
+                            %msup
+                              %mo{:stretchy => "false"} )
+                              %mo *
+                            %mi A
+                            %mi N
+                            %mo{:maxsize => "1.2em", :minsize => "1.2em"} )
+                            %msup
+                              %mo{:maxsize => "1.2em", :minsize => "1.2em"} |
+                              %mn 2
+                        %mtr
+                          %mtd
+                            %mspace{:width => "thickmathspace"}
+                            %mo =
+                            %mspace{:width => "thickmathspace"}
+                            %mo{:maxsize => "1.2em", :minsize => "1.2em"} |
+                            %mi ρ
+                            %mo{:maxsize => "1.2em", :minsize => "1.2em"} (
+                            %mo{:stretchy => "false"} (
+                            %msup
+                              %mi N
+                              %mo *
+                            %msup
+                              %mi A
+                              %mo *
+                            %mi A
+                            %mo{:stretchy => "false"} )
+                            %mi N
+                            %mo{:maxsize => "1.2em", :minsize => "1.2em"} )
+                            %msup
+                              %mo{:maxsize => "1.2em", :minsize => "1.2em"} |
+                              %mn 2
+                        %mtr
+                          %mtd
+                            %mspace{:width => "thickmathspace"}
+                            %mo ≤
+                            %mspace{:width => "thickmathspace"}
+                            %mi ρ
+                            %mo{:maxsize => "1.2em", :minsize => "1.2em"} (
+                            %mo{:stretchy => "false"} (
+                            %msup
+                              %mi N
+                              %mo *
+                            %msup
+                              %mi A
+                              %mo *
+                            %mi A
+                            %mo{:stretchy => "false"} )
+                            %mo{:stretchy => "false"} (
+                            %msup
+                              %mi N
+                              %mo *
+                            %msup
+                              %mi A
+                              %mo *
+                            %mi A
+                            %msup
+                              %mo{:stretchy => "false"} )
+                              %mo *
+                            %mo{:maxsize => "1.2em", :minsize => "1.2em"} )
+                            %mspace{:width => "thinmathspace"}
+                            %munder
+                              %munder
+                                %mrow
+                                  %mi ρ
+                                  %mo{:maxsize => "1.2em", :minsize => "1.2em"} (
+                                  %msup
+                                    %mi N
+                                    %mo *
+                                  %mi N
+                                  %mo{:maxsize => "1.2em", :minsize => "1.2em"} )
+                                  %mspace{:width => "thinmathspace"}
+                                  %mo .
+                                %mo ⏟
+                              %mrow
+                                %mo =
+                                %mn 0
+                  %annotation{:encoding => "application/x-tex"}
+                    \\left.
+                    \\begin{array}{l}
+                    N \in \mathcal{N}
+                    \\\
+                    A \in \mathcal{A}
+                    \\end{array}
+                    \\right\}
+                    \\;\;\;
+                    \\vdash
+                    \\;\;\;
+                    \\left\{
+                    \\begin{array}{l}
+                    \\big\vert
+                    \\rho\big(
+                    (A N)^\ast
+                    A N
+                    \\big)
+                    \\big\vert^2
+                    \\\
+                    \\;=\;
+                    \\big\vert
+                    \\rho\big(
+                    (N^\ast A^\ast A) N
+                    \\big)
+                    \\big\vert^2
+                    \\\
+                    \\;\leq\;
+                    \\rho\big(
+                    (N^\ast A^\ast A)
+                    (N^\ast A^\ast A)^\ast
+                    \\big)
+                    \\,
+                    \\underset{
+                    \= 0
+                    }{
+                    \\underbrace{
+                    \\rho\big(
+                    N^\ast N
+                    \\big)
+                    \\,.
+                    }
+                    }
+                    \\end{array}
+                    \\right.
+            %p
+              Similarly, the
+              %a.existingWikiWord{:href => "/nlab/show/Cauchy-Schwarz+inequality"} Cauchy-Schwarz inequality
+              %a.maruku-eqref{:href => "#eq:CauchySchwarzBeforeDividingOutNullVectors"} (5)
+              implies that any inner product with a null vector vanishes:
+            #eq:InnerProductWithNullVectorIsNullVector.maruku-equation
+              %span.maruku-eq-number (8)
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mrow
+                      %mtable{:columnalign => "left", :displaystyle => "false", :rowspacing => "0.5ex"}
+                        %mtr
+                          %mtd
+                            %mi N
+                            %mo ∈
+                            %mi 𝒩
+                        %mtr
+                          %mtd
+                            %mi A
+                            %mo ∈
+                            %mi 𝒜
+                      %mo }
+                    %mspace{:width => "thickmathspace"}
+                    %mspace{:width => "thickmathspace"}
+                    %mo ⇒
+                    %mspace{:width => "thickmathspace"}
+                    %mspace{:width => "thickmathspace"}
+                    %mi ρ
+                    %mo{:maxsize => "1.2em", :minsize => "1.2em"} (
+                    %msup
+                      %mi A
+                      %mo *
+                    %mi N
+                    %mo{:maxsize => "1.2em", :minsize => "1.2em"} )
+                    %mspace{:width => "thickmathspace"}
+                    %mo =
+                    %mspace{:width => "thickmathspace"}
+                    %mn 0
+                    %mspace{:width => "thinmathspace"}
+                    %mo .
+                  %annotation{:encoding => "application/x-tex"}
+                    \\left.
+                    \\begin{array}{l}
+                    N \in \mathcal{N}
+                    \\\
+                    A \in \mathcal{A}
+                    \\end{array}
+                    \\right\}
+                    \\;\;
+                    \\Rightarrow
+                    \\;\;
+                    \\rho\big(
+                    A^\ast N
+                    \\big)
+                    \\;=\;
+                    0
+                    \\,.
+            %p
+              Therefore,
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo{:stretchy => "false"} ⟨
+                    %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                    %mo ,
+                    %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                    %mo{:stretchy => "false"} ⟩
+                  %annotation{:encoding => "application/x-tex"} \langle-,-\rangle
+              first of all descends to the
+              %a.existingWikiWord{:href => "/nlab/show/quotient+vector+space"} quotient vector space
+            #eq:HilbertSpaceAsQuotientOfStarAlgebraByNullSpace.maruku-equation
+              %span.maruku-eq-number (9)
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi.mathscript ℋ
+                    %mspace{:width => "thickmathspace"}
+                    %mo ≔
+                    %mspace{:width => "thickmathspace"}
+                    %mi 𝒜
+                    %mo{:stretchy => "false"} /
+                    %mi 𝒩
+                    %mspace{:width => "thinmathspace"}
+                    %mo ,
+                  %annotation{:encoding => "application/x-tex"}
+                    \\mathscr{H}
+                    \\;\coloneqq\;
+                    \\mathcal{A}/\mathcal{N}
+                    \\,,
+            %p because
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mtable{:columnalign => "left", :displaystyle => "false", :rowspacing => "0.5ex"}
+                      %mtr
+                        %mtd
+                          %mo{:maxsize => "1.2em", :minsize => "1.2em"} ⟨
+                          %msub
+                            %mi A
+                            %mn 1
+                          %mo ,
+                          %mspace{:width => "thinmathspace"}
+                          %msub
+                            %mi A
+                            %mn 2
+                          %mo +
+                          %msub
+                            %mi N
+                            %mn 2
+                          %mo{:maxsize => "1.2em", :minsize => "1.2em"} ⟩
+                      %mtr
+                        %mtd
+                          %mspace{:width => "thickmathspace"}
+                          %mo ≡
+                          %mspace{:width => "thickmathspace"}
+                          %mi ρ
+                          %mo{:maxsize => "1.2em", :minsize => "1.2em"} (
+                          %msubsup
+                            %mi A
+                            %mn 1
+                            %mo *
+                          %mo{:stretchy => "false"} (
+                          %msub
+                            %mi A
+                            %mn 2
+                          %mo +
+                          %msub
+                            %mi N
+                            %mn 2
+                          %mo{:stretchy => "false"} )
+                          %mo{:maxsize => "1.2em", :minsize => "1.2em"} )
+                      %mtr
+                        %mtd
+                          %mspace{:width => "thickmathspace"}
+                          %mo =
+                          %mspace{:width => "thickmathspace"}
+                          %mi ρ
+                          %mo{:maxsize => "1.2em", :minsize => "1.2em"} (
+                          %msubsup
+                            %mi A
+                            %mn 1
+                            %mo *
+                          %msub
+                            %mi A
+                            %mn 2
+                          %mo{:maxsize => "1.2em", :minsize => "1.2em"} )
+                          %mo +
+                          %mi ρ
+                          %mo{:maxsize => "1.2em", :minsize => "1.2em"} (
+                          %msubsup
+                            %mi A
+                            %mn 1
+                            %mo *
+                          %msub
+                            %mi N
+                            %mn 2
+                          %mo{:maxsize => "1.2em", :minsize => "1.2em"} )
+                      %mtr
+                        %mtd
+                          %mspace{:width => "thickmathspace"}
+                          %mo =
+                          %mspace{:width => "thickmathspace"}
+                          %mi ρ
+                          %mo{:maxsize => "1.2em", :minsize => "1.2em"} (
+                          %msubsup
+                            %mi A
+                            %mn 1
+                            %mo *
+                          %msub
+                            %mi A
+                            %mn 2
+                          %mo{:maxsize => "1.2em", :minsize => "1.2em"} )
+                          %mspace{:width => "thinmathspace"}
+                          %mo ,
+                  %annotation{:encoding => "application/x-tex"}
+                    \\begin{array}{l}
+                    \\big\langle
+                    A_1
+                    ,\,
+                    A_2 + N_2
+                    \\big\rangle
+                    \\\
+                    \\;\equiv\;
+                    \\rho\big(
+                    A_1^\ast
+                    (A_2 + N_2)
+                    \\big)
+                    \\\
+                    \\;=\;
+                    \\rho\big(
+                    A_1^\ast
+                    A_2
+                    \\big)
+                    +
+                    \\rho\big(
+                    A_1^\ast
+                    N_2
+                    \\big)
+                    \\\
+                    \\;=\;
+                    \\rho\big(
+                    A_1^\ast
+                    A_2
+                    \\big)
+                    \\,,
+                    \\end{array}
+            %p
+              where in the last step we used
+              = succeed "," do
+                %a.maruku-eqref{:href => "#eq:InnerProductWithNullVectorIsNullVector"} (8)
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mtable{:columnalign => "left", :displaystyle => "false", :rowspacing => "0.5ex"}
+                      %mtr
+                        %mtd
+                          %mo{:maxsize => "1.2em", :minsize => "1.2em"} ⟨
+                          %msub
+                            %mi A
+                            %mn 1
+                          %mo +
+                          %msub
+                            %mi N
+                            %mn 1
+                          %mo ,
+                          %mspace{:width => "thinmathspace"}
+                          %msub
+                            %mi A
+                            %mn 2
+                          %mo{:maxsize => "1.2em", :minsize => "1.2em"} ⟩
+                      %mtr
+                        %mtd
+                          %mspace{:width => "thickmathspace"}
+                          %mo =
+                          %mspace{:width => "thickmathspace"}
+                          %mover
+                            %mrow
+                              %mo{:maxsize => "1.2em", :minsize => "1.2em"} ⟨
+                              %msub
+                                %mi A
+                                %mn 2
+                              %mo ,
+                              %mspace{:width => "thinmathspace"}
+                              %msub
+                                %mi A
+                                %mn 1
+                              %mo +
+                              %msub
+                                %mi N
+                                %mn 1
+                              %mo{:maxsize => "1.2em", :minsize => "1.2em"} ⟩
+                            %mo ¯
+                      %mtr
+                        %mtd
+                          %mspace{:width => "thickmathspace"}
+                          %mo =
+                          %mspace{:width => "thickmathspace"}
+                          %mover
+                            %mrow
+                              %mo{:maxsize => "1.2em", :minsize => "1.2em"} ⟨
+                              %msub
+                                %mi A
+                                %mn 2
+                              %mo ,
+                              %mspace{:width => "thinmathspace"}
+                              %msub
+                                %mi A
+                                %mn 1
+                              %mo{:maxsize => "1.2em", :minsize => "1.2em"} ⟩
+                            %mo ¯
+                          %mspace{:width => "thickmathspace"}
+                          %mo =
+                          %mspace{:width => "thickmathspace"}
+                          %mo{:maxsize => "1.2em", :minsize => "1.2em"} ⟨
+                          %msub
+                            %mi A
+                            %mn 1
+                          %mo ,
+                          %mspace{:width => "thinmathspace"}
+                          %msub
+                            %mi A
+                            %mn 2
+                          %mo{:maxsize => "1.2em", :minsize => "1.2em"} ⟩
+                          %mspace{:width => "thinmathspace"}
+                          %mo ,
+                  %annotation{:encoding => "application/x-tex"}
+                    \\begin{array}{l}
+                    \\big\langle
+                    A_1 + N_1
+                    ,\,
+                    A_2
+                    \\big\rangle
+                    \\\
+                    \\;=\;
+                    \\overline{
+                    \\big\langle
+                    A_2
+                    ,\,
+                    A_1 + N_1
+                    \\big\rangle
+                    }
+                    \\\
+                    \\;=\;
+                    \\overline{
+                    \\big\langle
+                    A_2
+                    ,\,
+                    A_1
+                    \\big\rangle
+                    }
+                    \\;=\;
+                    \\big\langle
+                    A_1
+                    ,\,
+                    A_2
+                    \\big\rangle
+                    \\,,
+                    \\end{array}
+            %p
+              where in the first and last step we used
+              = succeed "." do
+                %a.maruku-eqref{:href => "#eq:StateRespectsStar"} (2)
+            %p
+              Descended to the quotient this way, the pairing
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo{:stretchy => "false"} ⟨
+                    %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                    %mo ,
+                    %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                    %mo{:stretchy => "false"} ⟩
+                  %annotation{:encoding => "application/x-tex"} \langle-,-\rangle
+              becomes
+              %a{:href => "sesquilinear+form#Definity"} positive definite
+              by construction, so that it defines a
+              %a.existingWikiWord{:href => "/nlab/show/Hermitian+form"} Hermitian
+              (by
+              = succeed ")" do
+                %a.maruku-eqref{:href => "#eq:StateRespectsStar"} (2)
+              %a.existingWikiWord{:href => "/nlab/show/inner+product"} inner product
+              on
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi.mathscript ℋ
+                    %annotation{:encoding => "application/x-tex"} \mathscr{H}
+              = succeed "." do
+                %a.existingWikiWord{:href => "/nlab/show/Hilbert+space"} Hilbert space
+            %p
+              Finally, again by the left-ideal property
+              = succeed "," do
+                %a.maruku-eqref{:href => "#eq:NullSpaceIsLeftIdeal"} (7)
+              %a.existingWikiWord{:href => "/nlab/show/action"} action
+              of
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi 𝒜
+                  %annotation{:encoding => "application/x-tex"} \mathcal{A}
+              on itself also descends to an action on the quotient Hilbert space
+              = succeed ":" do
+                %a.maruku-eqref{:href => "#eq:HilbertSpaceAsQuotientOfStarAlgebraByNullSpace"} (9)
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mrow
+                      %mtable
+                        %mtr
+                          %mtd
+                            %mi 𝒜
+                            %mo ⊗
+                            %mi ℋ
+                          %mtd
+                            %mover
+                              %mo ⟶
+                              %mrow
+                                %mspace{:width => "thickmathspace"}
+                                %mspace{:width => "thickmathspace"}
+                                %mspace{:width => "thickmathspace"}
+                                %mspace{:width => "thickmathspace"}
+                                %mspace{:width => "thickmathspace"}
+                                %mi π
+                                %mspace{:width => "thickmathspace"}
+                                %mspace{:width => "thickmathspace"}
+                                %mspace{:width => "thickmathspace"}
+                                %mspace{:width => "thickmathspace"}
+                                %mspace{:width => "thickmathspace"}
+                          %mtd
+                            %mi ℋ
+                        %mtr
+                          %mtd
+                            %mo{:stretchy => "false"} (
+                            %mi A
+                            %mo ,
+                            %mo{:stretchy => "false"} [
+                            %mi ψ
+                            %mo{:stretchy => "false"} ]
+                            %mo{:stretchy => "false"} )
+                          %mtd
+                            %mo ↦
+                          %mtd
+                            %mo{:stretchy => "false"} [
+                            %mi A
+                            %mo ⋅
+                            %mi ψ
+                            %mo{:stretchy => "false"} ]
+                            %mspace{:width => "thinmathspace"}
+                            %mo ,
+                  %annotation{:encoding => "application/x-tex"}
+                    \\array{
+                    \\mathcal{A} \otimes \mathcal{H}
+                    \&amp;
+                    \\overset{
+                    \\;\;\;\;\;
+                    \\pi
+                    \\;\;\;\;\;
+                    }{
+                    \\longrightarrow
+                    }
+                    \&amp;
+                    \\mathcal{H}
+                    \\\
+                    (A, [\psi]) &amp;\mapsto&amp; [A \cdot \psi]
+                    \\,,
+                    }
+            %p
+              and so the cyclic vector in question is that represented by the
+              %a.existingWikiWord{:href => "/nlab/show/unit+element"} unit element
+              = succeed ":" do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mn 1
+                      %mo ∈
+                      %mi 𝒜
+                    %annotation{:encoding => "application/x-tex"} 1 \in \mathcal{A}
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi ψ
+                      %mi ρ
+                    %mspace{:width => "thickmathspace"}
+                    %mo ≔
+                    %mspace{:width => "thickmathspace"}
+                    %mo{:stretchy => "false"} [
+                    %mn 1
+                    %mo{:stretchy => "false"} ]
+                    %mspace{:width => "thickmathspace"}
+                    %mo ∈
+                    %mspace{:width => "thickmathspace"}
+                    %mi.mathscript ℋ
+                    %mspace{:width => "thinmathspace"}
+                    %mo .
+                  %annotation{:encoding => "application/x-tex"}
+                    \\psi_\rho
+                    \\;\coloneqq\;
+                    [1]
+                    \\;\in\;
+                    \\mathscr{H}
+                    \\,.
+            %p
+              Hence on this Hilbert space
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi.mathscript ℋ
+                    %annotation{:encoding => "application/x-tex"} \mathscr{H}
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi ρ
+                  %annotation{:encoding => "application/x-tex"} \rho
+              is now represented by the tautological
+              %a.existingWikiWord{:href => "/nlab/show/density+matrix"} density matrix
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mrow
+                      %mo |
+                      %msub
+                        %mi ψ
+                        %mi ρ
+                      %mo ⟩
+                    %mrow
+                      %mo ⟨
+                      %msub
+                        %mi ψ
+                        %mi ρ
+                      %mo ⟩
+                    %mspace{:width => "thickmathspace"}
+                    %mo =
+                    %mspace{:width => "thickmathspace"}
+                    %mrow
+                      %mo{:maxsize => "1.2em", :minsize => "1.2em"} |
+                      %mo{:stretchy => "false"} [
+                      %mn 1
+                      %mo{:stretchy => "false"} ]
+                      %mo{:maxsize => "1.2em", :minsize => "1.2em"} ⟩
+                    %mrow
+                      %mo{:maxsize => "1.2em", :minsize => "1.2em"} ⟨
+                      %mo{:stretchy => "false"} [
+                      %mn 1
+                      %mo{:stretchy => "false"} ]
+                      %mo{:maxsize => "1.2em", :minsize => "1.2em"} |
+                    %mspace{:width => "thinmathspace"}
+                    %mo .
+                  %annotation{:encoding => "application/x-tex"}
+                    \\left\vert
+                    \\psi_\rho
+                    \\right\rangle
+                    \\left\langle
+                    \\psi_\rho
+                    \\right\rangle
+                    \\;=\;
+                    {\big\vert [1] \big\rangle}
+                    {\big\langle [1] \big\vert}
+                    \\,.
+            %p
+          %p
+          .num_remark
+            %h6 Remark
+            %p
+              In summary, the GNS construction constitutes a kind of
+              %em
+                %a.existingWikiWord{:href => "/nlab/show/operator-state+correspondence"} operator-state correspondence
+              modulo null-operators:
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mtable{:columnalign => "right center left", :displaystyle => "false", :rowspacing => "0.5ex"}
+                      %mtr
+                        %mtd
+                          %mi 𝒜
+                          %mo{:stretchy => "false"} /
+                          %mi 𝒩
+                        %mtd
+                          %mover
+                            %mo ↔
+                            %mphantom
+                              %mrow
+                                %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                                %mo −
+                                %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                        %mtd
+                          %mi.mathscript ℋ
+                      %mtr
+                        %mtd
+                          %mo{:stretchy => "false"} [
+                          %mi A
+                          %mo{:stretchy => "false"} ]
+                        %mtd
+                          %mo ↦
+                        %mtd
+                          %mi A
+                          %mo ⋅
+                          %msub
+                            %mi ψ
+                            %mi ρ
+                  %annotation{:encoding => "application/x-tex"}
+                    \\begin{array}{rcl}
+                    \\mathcal{A}/\mathcal{N}
+                    \&amp;\xleftrightarrow{\phantom{---}}&amp;
+                    \\mathscr{H}
+                    \\\
+                    [A]
+                    \&amp;\mapsto&amp;
+                    A \cdot \psi_\rho
+                    \\end{array}
+            %p
+          %h3#ForCStarCategories
+            For
+            = succeed "-categories" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msup
+                      %mi C
+                      %mo *
+                  %annotation{:encoding => "application/x-tex"} C^\ast
+          %p
+            The GNS construction for
+            = succeed "-algebras" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msup
+                      %mi C
+                      %mo *
+                  %annotation{:encoding => "application/x-tex"} C^\ast
+            %a{:href => "#GhezLinaRoberts85"} Ghez, Lina &amp; Roberts 1985, Prop. 1.9
+            applied to
+            %a.existingWikiWord{:href => "/nlab/show/C%2A-categories"} C*-categories
+            (the
+            %a.existingWikiWord{:href => "/nlab/show/horizontal+categorification"} horizontal categorification
+            of
+            = succeed "-algebras):" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msup
+                      %mi C
+                      %mo *
+                  %annotation{:encoding => "application/x-tex"} C^\ast
+          .num_theorem
+            %h6#theorem_2 Theorem
+            %p
+              Let
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi 𝒞
+                  %annotation{:encoding => "application/x-tex"} \mathcal{C}
+              be a
+              = succeed "." do
+                %a.existingWikiWord{:href => "/nlab/show/C-star+category"}
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}>
+                    %semantics
+                      %mrow
+                        %msup
+                          %mi C
+                          %mo *
+                      %annotation{:encoding => "application/x-tex"} C^\ast
+                  \-category
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi A
+                    %mo ∈
+                    %mo{:lspace => "0em", :rspace => "thinmathspace"} Ob
+                    %mi 𝒞
+                  %annotation{:encoding => "application/x-tex"} A \in \operatorname{Ob}\mathcal{C}
+              and let
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi σ
+                  %annotation{:encoding => "application/x-tex"} \sigma
+              be a state on the
+              = succeed "-algebra" do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msup
+                        %mi C
+                        %mo *
+                    %annotation{:encoding => "application/x-tex"} C^\ast
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi 𝒞
+                      %mo{:stretchy => "false"} (
+                      %mi A
+                      %mo ,
+                      %mi A
+                      %mo{:stretchy => "false"} )
+                    %annotation{:encoding => "application/x-tex"} \mathcal{C}(A,A)
+              = succeed "-representation" do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mo *
+                    %annotation{:encoding => "application/x-tex"} *
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi ρ
+                      %mi σ
+                    %mo{:lspace => "verythinmathspace"} :
+                    %mi 𝒞
+                    %mo →
+                    %mstyle{:mathvariant => "bold"}
+                      %mi Hilb
+                  %annotation{:encoding => "application/x-tex"}
+                    \\rho_\sigma \colon \mathcal{C} \to \mathbf{Hilb}
+            %p
+              together with a cyclic vector
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi ξ
+                    %mo ∈
+                    %msub
+                      %mi ρ
+                      %mi σ
+                    %mo{:stretchy => "false"} (
+                    %mi A
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} \xi \in \rho_\sigma(A)
+              such that for all
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi x
+                      %mo ∈
+                      %mi 𝒞
+                      %mo{:stretchy => "false"} (
+                      %mi A
+                      %mo ,
+                      %mi A
+                      %mo{:stretchy => "false"} )
+                    %annotation{:encoding => "application/x-tex"} x \in \mathcal{C}(A,A)
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi σ
+                    %mo{:stretchy => "false"} (
+                    %mi x
+                    %mo{:stretchy => "false"} )
+                    %mo =
+                    %mo{:stretchy => "false"} ⟨
+                    %mi ξ
+                    %mo ,
+                    %msub
+                      %mi ρ
+                      %mi σ
+                    %mo{:stretchy => "false"} (
+                    %mi x
+                    %mo{:stretchy => "false"} )
+                    %mi ξ
+                    %mo{:stretchy => "false"} ⟩
+                    %mo .
+                  %annotation{:encoding => "application/x-tex"}
+                    \\sigma(x) = \langle \xi, \rho_\sigma(x)\xi \rangle.
+          %p
+            A
+            %a.existingWikiWord{:href => "/nlab/show/C%2A-algebra"} C*-algebra
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi 𝒜
+                %annotation{:encoding => "application/x-tex"} \mathcal{A}
+            is a
+            = succeed "-category" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msup
+                      %mi C
+                      %mo *
+                  %annotation{:encoding => "application/x-tex"} C^\ast
+            %a.existingWikiWord{:href => "/nlab/show/object"} object
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo •
+                  %annotation{:encoding => "application/x-tex"} \bullet
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi A
+                    %mo =
+                    %mi 𝒜
+                    %mo{:stretchy => "false"} (
+                    %mo •
+                    %mo ,
+                    %mo •
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} A = \mathcal{A}(\bullet,\bullet)
+          %h2#functorial_aspects Functorial Aspects
+          %p
+            See
+            = succeed "." do
+              %em
+                %a.existingWikiWord{:href => "/nlab/show/Functorial+Aspects+of+the+GNS+Representation"} Functorial Aspects of the GNS Representation
+          %h2#related_concepts Related concepts
+          %ul
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/Riesz+representation+theorem"} Riesz representation theorem
+          %div
+            %p
+              %strong
+                %a.existingWikiWord{:href => "/nlab/show/quantum+probability+theory"} quantum probability theory
+                –
+                %a.existingWikiWord{:href => "/nlab/show/observables"} observables
+                and
+                %a.existingWikiWord{:href => "/nlab/show/states"} states
+            %ul
+              %li
+                %p
+                  %strong
+                    %a.existingWikiWord{:href => "/nlab/show/states"} states
+                %ul
+                  %li
+                    %p
+                      %a.existingWikiWord{:href => "/nlab/show/classical+state"} classical state
+                  %li
+                    %p
+                      %a.existingWikiWord{:href => "/nlab/show/quantum+state"} quantum state
+                    %ul
+                      %li
+                        %p
+                          %a.existingWikiWord{:href => "/nlab/show/space+of+states+%28in+geometric+quantization%29"} space of states (in geometric quantization)
+                      %li
+                        %p
+                          %a.existingWikiWord{:href => "/nlab/show/state+on+a+star-algebra"}> state on a star-algebra
+                          ,
+                          %a.existingWikiWord{:href => "/nlab/show/quasi-state"} quasi-state
+                      %li
+                        %p
+                          %a.existingWikiWord{:href => "/nlab/show/qbit"}> qbit
+                          ,
+                          %a.existingWikiWord{:href => "/nlab/show/Bell+state"} Bell state
+                        %p
+                          %a.existingWikiWord{:href => "/nlab/show/dimer"}> dimer
+                          ,
+                          %a.existingWikiWord{:href => "/nlab/show/tensor+network+state"} tensor network state
+                      %li
+                        %p
+                          %a.existingWikiWord{:href => "/nlab/show/quantum+state+preparation"} quantum state preparation
+                      %li
+                        %p
+                          %a.existingWikiWord{:href => "/nlab/show/probability+amplitude"}> probability amplitude
+                          ,
+                          %a.existingWikiWord{:href => "/nlab/show/quantum+fluctuation"} quantum fluctuation
+                      %li
+                        %p
+                          %a.existingWikiWord{:href => "/nlab/show/pure+state"} pure state
+                        %ul
+                          %li
+                            %p
+                              %a.existingWikiWord{:href => "/nlab/show/wave+function"} wave function
+                          %li
+                            %p
+                              %a.existingWikiWord{:href => "/nlab/show/bra-ket"} bra-ket
+                          %li
+                            %p
+                              %a.existingWikiWord{:href => "/nlab/show/Bell+state"} Bell state
+                      %li
+                        %p
+                          %a.existingWikiWord{:href => "/nlab/show/quantum+superposition"}> quantum superposition
+                          ,
+                          %a.existingWikiWord{:href => "/nlab/show/quantum+interference"} quantum interference
+                      %li
+                        %p
+                          %a.existingWikiWord{:href => "/nlab/show/quantum+entanglement"} quantum entanglement
+                      %li
+                        %p
+                          %a.existingWikiWord{:href => "/nlab/show/quantum+measurement"} quantum measurement
+                        %p
+                          %a.existingWikiWord{:href => "/nlab/show/wave+function+collapse"} wave function collapse
+                        %p
+                          %a.existingWikiWord{:href => "/nlab/show/Born+rule"} Born rule
+                        %p
+                          %a.existingWikiWord{:href => "/nlab/show/deferred+measurement+principle"} deferred measurement principle
+                        %p
+                          %a.existingWikiWord{:href => "/nlab/show/quantum+reader+monad"} quantum reader monad
+                        %p
+                          %a.existingWikiWord{:href => "/nlab/show/measurement+problem"} measurement problem
+                      %li
+                        %p
+                          %a.existingWikiWord{:href => "/nlab/show/superselection+sector"} superselection sector
+                      %li
+                        %p
+                          %a.existingWikiWord{:href => "/nlab/show/mixed+state"}> mixed state
+                          ,
+                          %a.existingWikiWord{:href => "/nlab/show/density+matrix"} density matrix
+                        %p
+                          %a.existingWikiWord{:href => "/nlab/show/entanglement+entropy"} entanglement entropy
+                        %p
+                          %a.existingWikiWord{:href => "/nlab/show/holographic+entanglement+entropy"} holographic entanglement entropy
+                      %li
+                        %p
+                          %a.existingWikiWord{:href => "/nlab/show/coherent+quantum+state"} coherent quantum state
+                  %li
+                    %p
+                      %a.existingWikiWord{:href => "/nlab/show/ground+state"}> ground state
+                      ,
+                      %a.existingWikiWord{:href => "/nlab/show/excited+state"} excited state
+                  %li
+                    %p
+                      %a.existingWikiWord{:href => "/nlab/show/quasi-free+state"} quasi-free state
+                  %li
+                    %p
+                      %a.existingWikiWord{:href => "/nlab/show/Fock+space"}> Fock space
+                      ,
+                      %a.existingWikiWord{:href => "/nlab/show/second+quantization"} second quantization
+                  %li
+                    %p
+                      %a.existingWikiWord{:href => "/nlab/show/vacuum"}> vacuum
+                      ,
+                      %a.existingWikiWord{:href => "/nlab/show/vacuum+state"} vacuum state
+                    %ul
+                      %li
+                        %p
+                          %a.existingWikiWord{:href => "/nlab/show/Hadamard+state"} Hadamard state
+                      %li
+                        %p
+                          %a.existingWikiWord{:href => "/nlab/show/vacuum+diagram"} vacuum diagram
+                      %li
+                        %p
+                          %a.existingWikiWord{:href => "/nlab/show/vacuum+expectation+value"}> vacuum expectation value
+                          ,
+                          = succeed "," do
+                            %a.existingWikiWord{:href => "/nlab/show/vacuum+amplitude"} vacuum amplitude
+                          %a.existingWikiWord{:href => "/nlab/show/vacuum+fluctuation"} vacuum fluctuation
+                      %li
+                        %p
+                          %a.existingWikiWord{:href => "/nlab/show/vacuum+energy"} vacuum energy
+                      %li
+                        %p
+                          %a.existingWikiWord{:href => "/nlab/show/vacuum+polarization"} vacuum polarization
+                      %li
+                        %p
+                          %a.existingWikiWord{:href => "/nlab/show/interacting+vacuum"} interacting vacuum
+                      %li
+                        %p
+                          %a.existingWikiWord{:href => "/nlab/show/thermal+vacuum"}> thermal vacuum
+                          ,
+                          %a.existingWikiWord{:href => "/nlab/show/KMS+state"} KMS state
+                      %li
+                        %p
+                          %a.existingWikiWord{:href => "/nlab/show/vacuum+stability"} vacuum stability
+                        %ul
+                          %li
+                            %a.existingWikiWord{:href => "/nlab/show/false+vacuum"}> false vacuum
+                            ,
+                            = succeed "," do
+                              %a.existingWikiWord{:href => "/nlab/show/tachyon"} tachyon
+                            %a.existingWikiWord{:href => "/nlab/show/Coleman-De+Luccia+instanton"} Coleman-De Luccia instanton
+                      %li
+                        %p
+                          %a.existingWikiWord{:href => "/nlab/show/theta+vacuum"} theta vacuum
+                      %li
+                        %p
+                          %a.existingWikiWord{:href => "/nlab/show/perturbative+string+theory+vacuum"} perturbative string theory vacuum
+                        %ul
+                          %li
+                            %p
+                              %a.existingWikiWord{:href => "/nlab/show/non-geometric+string+theory+vacuum"} non-geometric string theory vacuum
+                          %li
+                            %p
+                              %a.existingWikiWord{:href => "/nlab/show/landscape+of+string+theory+vacua"} landscape of string theory vacua
+                  %li
+                    %p
+                      %a.existingWikiWord{:href => "/nlab/show/entangled+state"} entangled state
+                  %li
+                    %p
+                      %a.existingWikiWord{:href => "/nlab/show/tensor+network+state"} tensor network state
+                    %ul
+                      %li
+                        %p
+                          %a.existingWikiWord{:href => "/nlab/show/matrix+product+state"} matrix product state
+                      %li
+                        %p
+                          %a.existingWikiWord{:href => "/nlab/show/tree+tensor+network+state"} tree tensor network state
+              %li
+                %p
+                  %strong
+                    %a.existingWikiWord{:href => "/nlab/show/observables"} observables
+                %ul
+                  %li
+                    %p
+                      %a.existingWikiWord{:href => "/nlab/show/quantum+observable"}> quantum observable
+                      ,
+                      %a.existingWikiWord{:href => "/nlab/show/beable"} beable
+                  %li
+                    %p
+                      %a.existingWikiWord{:href => "/nlab/show/algebra+of+observables"}> algebra of observables
+                      ,
+                      %a.existingWikiWord{:href => "/nlab/show/star-algebra"} star-algebra
+                  %li
+                    %p
+                      %a.existingWikiWord{:href => "/nlab/show/Bohr+topos"} Bohr topos
+                  %li
+                    %p
+                      %a.existingWikiWord{:href => "/nlab/show/quantum+operator+%28in+geometric+quantization%29"} quantum operator (in geometric quantization)
+                  %li
+                    %p
+                      %a.existingWikiWord{:href => "/nlab/show/quantum+operation"}> quantum operation
+                      ,
+                      = succeed "," do
+                        %a.existingWikiWord{:href => "/nlab/show/quantum+effect"} quantum effect
+                      %a.existingWikiWord{:href => "/nlab/show/effect+algebra"} effect algebra
+                  %li
+                    %p
+                      in
+                      %a.existingWikiWord{:href => "/nlab/show/quantum+field+theory"} quantum field theory
+                    %ul
+                      %li
+                        %p
+                          %a.existingWikiWord{:href => "/nlab/show/local+observable"} local observable
+                      %li
+                        %p
+                          %a.existingWikiWord{:href => "/nlab/show/polynomial+observable"} polynomial observable
+                        %ul
+                          %li
+                            %p
+                              %a.existingWikiWord{:href => "/nlab/show/linear+observable"} linear observable
+                            %ul
+                              %li
+                                %a.existingWikiWord{:href => "/nlab/show/field+observable"} field observable
+                      %li
+                        %p
+                          %a.existingWikiWord{:href => "/nlab/show/regular+observable"} regular observable
+                      %li
+                        %p
+                          %a.existingWikiWord{:href => "/nlab/show/microcausal+observable"} microcausal observable
+                      %li
+                        %p
+                          %a.existingWikiWord{:href => "/nlab/show/normal-ordered+product"}> normal-ordered product
+                          ,
+                          = succeed "," do
+                            %a.existingWikiWord{:href => "/nlab/show/time-ordered+products"} time-ordered products
+                          %a.existingWikiWord{:href => "/nlab/show/retarded+product"} retarded product
+                      %li
+                        %p
+                          %a.existingWikiWord{:href => "/nlab/show/Wick+algebra"} Wick algebra
+                      %li
+                        %p
+                          %a.existingWikiWord{:href => "/nlab/show/scattering+amplitude"} scattering amplitude
+                      %li
+                        %p
+                          %a.existingWikiWord{:href => "/nlab/show/interacting+field+algebra+of+observables"}> interacting field algebra of observables
+                          ,
+                          %a.existingWikiWord{:href => "/nlab/show/Bogoliubov%27s+formula"} Bogoliubov's formula
+              %li
+                %p
+                  %a.existingWikiWord{:href => "/nlab/show/GNS+construction"} GNS construction
+              %li
+                %p
+                  %a.existingWikiWord{:href => "/nlab/show/theorems"} theorems
+                %ul
+                  %li
+                    %p
+                      %a.existingWikiWord{:href => "/nlab/show/order-theoretic+structure+in+quantum+mechanics"} order-theoretic structure in quantum mechanics
+                    %ul
+                      %li
+                        %p
+                          %a.existingWikiWord{:href => "/nlab/show/Gleason%27s+theorem"} Gleason's theorem
+                      %li
+                        %p
+                          %a.existingWikiWord{:href => "/nlab/show/Alfsen-Shultz+theorem"} Alfsen-Shultz theorem
+                      %li
+                        %p
+                          %a.existingWikiWord{:href => "/nlab/show/Harding-D%C3%B6ring-Hamhalter+theorem"} Harding-Döring-Hamhalter theorem
+                      %li
+                        %p
+                          %a.existingWikiWord{:href => "/nlab/show/Kochen-Specker+theorem"} Kochen-Specker theorem
+                      %li
+                        %p
+                          %a.existingWikiWord{:href => "/nlab/show/Nuiten%27s+lemma"} Nuiten's lemma
+                  %li
+                    %p
+                      %a.existingWikiWord{:href => "/nlab/show/Wigner%27s+theorem"} Wigner's theorem
+                  %li
+                    %p
+                      %a.existingWikiWord{:href => "/nlab/show/no-cloning+theorem"} no-cloning theorem
+                  %li
+                    %p
+                      %a.existingWikiWord{:href => "/nlab/show/Bell%27s+theorem"} Bell's theorem
+          %h2#references References
+          %p
+            The original construction for
+            %a.existingWikiWord{:href => "/nlab/show/C%2A-algebras"} C*-algebras
+            and
+            %a.existingWikiWord{:href => "/nlab/show/C%2A-representations"} C*-representations
+            is due to:
+          %ul
+            %li#GelfandNaimark43
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Israel+Gelfand"}> Israel Gelfand
+                ,
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/Mark+Naimark"} Mark Naimark
+                = succeed "," do
+                  %em On the imbedding of normed rings into the ring of operators on a Hilbert space
+              %p reprinted in:
+              %p
+                Robert Doran (ed.),
+                = succeed "," do
+                  %em
+                    %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}>
+                      %semantics
+                        %mrow
+                          %msup
+                            %mi C
+                            %mo *
+                        %annotation{:encoding => "application/x-tex"} C^\ast
+                    \-Algebras: 1943–1993
+                = succeed "," do
+                  %strong 167
+                = succeed ")" do
+                  %a{:href => "http://dx.doi.org/10.1090/conm/167"} doi:10.1090/conm/167
+            %li#Segal47
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Irving+Segal"}> Irving Segal
+                ,
+                = succeed "," do
+                  %em Irreducible representations of operator algebras
+                = succeed "," do
+                  %a{:href => "http://www.ams.org/journals/bull/1947-53-02/S0002-9904-1947-08742-5/S0002-9904-1947-08742-5.pdf"} pdf
+                = succeed ")" do
+                  %a{:href => "https://projecteuclid.org/journals/bulletin-of-the-american-mathematical-society-new-series/volume-53/issue-2/Irreducible-representations-of-operator-algebras/bams/1183510397.full"} euclid
+          %p Textbook accounts:
+          %ul
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Gerard+Murphy"}> Gerard Murphy
+                , Section 3.4 of:
+                = succeed "," do
+                  %em
+                    %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}>
+                      %semantics
+                        %mrow
+                          %msup
+                            %mi C
+                            %mo *
+                        %annotation{:encoding => "application/x-tex"} C^\ast
+                    \-algebras and Operator Theory
+                = succeed ")" do
+                  %a{:href => "https://doi.org/10.1016/C2009-0-22289-6"} doi:10.1016/C2009-0-22289-6
+            %li#Schmuedgen90
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Konrad+Schm%C3%BCdgen"}> Konrad Schmüdgen
+                , Section 8.3 of:
+                = succeed "," do
+                  %em Unbounded operator algebras and representation theory
+                = succeed ")" do
+                  %a{:href => "https://link.springer.com/book/10.1007/978-3-0348-7469-4"} doi:10.1007/978-3-0348-7469-4
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Kehe+Zhu"}> Kehe Zhu
+                , Section 14 of:
+                = succeed "," do
+                  %em An Introduction to Operator Algebras
+                = succeed ")" do
+                  %a{:href => "https://www.routledge.com/An-Introduction-to-Operator-Algebras/Zhu/p/book/9780849378751"} ISBN:9780849378751
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Richard+V.+Kadison"}> Richard V. Kadison
+                ,
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/John+R.+Ringrose"} John R. Ringrose
+                = succeed "," do
+                  %em Fundamentals of the theory of operator algebras – Volume I: Elementary Theory
+                = succeed "," do
+                  %strong 15
+                = succeed "," do
+                  %a{:href => "https://bookstore.ams.org/gsm-15"} ISBN:978-0-8218-0819-1
+                = succeed ")" do
+                  %a{:href => "http://www.zentralblatt-math.org/zmath/en/advanced/?q=an:0888.46039&format=complete"} ZMATH
+          %p
+            in the context of
+            = succeed ":" do
+              %a.existingWikiWord{:href => "/nlab/show/algebraic+quantum+field+theory"} algebraic quantum field theory
+          %ul
+            %li#Haag96
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Rudolf+Haag"}> Rudolf Haag
+                , pp 123 of:
+                = succeed "," do
+                  %em
+                    %a.existingWikiWord{:href => "/nlab/show/Local+Quantum+Physics+--+Fields%2C+Particles%2C+Algebras"} Local Quantum Physics – Fields, Particles, Algebras
+                = succeed "&rbrack;" do
+                  %a{:href => "https://www.springer.com/gp/book/9783540610496"} ISBN 978-3-642-61458-3
+            %li#Moretti17
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Valter+Moretti"}> Valter Moretti
+                , §14.1.3-5 in:
+                = succeed "," do
+                  %em Spectral Theory and Quantum Mechanics – Mathematical Foundations of Quantum Theories, Symmetries and Introduction to the Algebraic Formulation
+                = succeed "&rbrack;" do
+                  %a{:href => "https://doi.org/10.1007/978-3-319-70706-8"} doi:10.1007/978-3-319-70706-8
+          %p
+            Review with an eye towards
+            %a.existingWikiWord{:href => "/nlab/show/quantum+probability"} quantum probability
+            and
+            = succeed ":" do
+              %a.existingWikiWord{:href => "/nlab/show/entropy"} entropy
+          %ul
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/A.+P.+Balachandran"}> A. P. Balachandran
+              , T. R. Govindarajan, Amilcar R. de Queiroz, A. F. Reyes-Lega, Section II of:
+              = succeed "," do
+                %em Algebraic approach to entanglement and entropy
+              %strong 88
+              (2013) 022301 &amp;lbrack;
+              %a{:href => "http://arxiv.org/abs/1301.1300"}> arXiv:1301.1300
+              ,
+              = succeed "&rbrack;" do
+                %a{:href => "https://doi.org/10.1103/PhysRevA.88.022301"} doi:10.1103/PhysRevA.88.022301
+          %p See also
+          %ul
+            %li
+              Wikipedia,
+              %em
+                %a{:href => "https://en.wikipedia.org/wiki/Gelfand%E2%80%93Naimark%E2%80%93Segal_construction"} Gelfand-Naimark-Segal construction
+          %p
+            In the generality of
+            %a.existingWikiWord{:href => "/nlab/show/C-star+category"}
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}>
+                %semantics
+                  %mrow
+                    %msup
+                      %mi C
+                      %mo *
+                  %annotation{:encoding => "application/x-tex"} C^\ast
+              \-categories
+            (and with an eye towards
+            = succeed "):" do
+              %a.existingWikiWord{:href => "/nlab/show/W-star+category"}
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}>
+                  %semantics
+                    %mrow
+                      %msup
+                        %mi W
+                        %mo *
+                    %annotation{:encoding => "application/x-tex"} W^\ast
+                \-categories
+          %ul
+            %li#GhezLinaRoberts85
+              %a.existingWikiWord{:href => "/nlab/show/P.+Ghez"}> P. Ghez
+              ,
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/Ricardo+Lima"} Ricardo Lima
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/John+E.+Roberts"} John E. Roberts
+              = succeed "," do
+                %em
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}>
+                    %semantics
+                      %mrow
+                        %msup
+                          %mi W
+                          %mo *
+                      %annotation{:encoding => "application/x-tex"} W^\ast
+                  \-categories
+              %strong 120
+              1 (1985) 79-109 &amp;lbrack;
+              %a{:href => "https://projecteuclid.org/journals/pacific-journal-of-mathematics/volume-120/issue-1/Wast-categories/pjm/1102703884.full"}> euclid:pjm/1102703884
+              \&amp;rbrack;
+          %p
+            For general unital
+            = succeed ":" do
+              %a.existingWikiWord{:href => "/nlab/show/star-algebras"} star-algebras
+          %ul
+            %li#KhavkineMoretti15
+              %a.existingWikiWord{:href => "/nlab/show/Igor+Khavkine"}> Igor Khavkine
+              ,
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/Valter+Moretti"} Valter Moretti
+              = succeed "," do
+                %em Algebraic QFT in Curved Spacetime and quasifree Hadamard states: an introduction
+              %a.existingWikiWord{:href => "/nlab/show/Romeo+Brunetti"} Romeo Brunetti
+              et al. (eds.)
+              %em Advances in Algebraic Quantum Field Theory
+              Springer (2015) &amp;lbrack;
+              %a{:href => "https://doi.org/10.1007/978-3-319-21353-8"}> doi:10.1007/978-3-319-21353-8
+              \&amp;rbrack;
+          %p
+            and in relation with the classical moment problem and the notion of
+            = succeed ":" do
+              %a.existingWikiWord{:href => "/nlab/show/POVM"} POVM
+          %ul
+            %li#DragoMoretti19
+              Nicolò Drago,
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/Valter+Moretti"} Valter Moretti
+              = succeed "," do
+                %em
+                  The notion of observable and the moment problem for
+                  = succeed "-algebras" do
+                    %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                      %semantics
+                        %mrow
+                          %mo *
+                        %annotation{:encoding => "application/x-tex"} \ast
+              = succeed ")" do
+                %a{:href => "https://arxiv.org/abs/1903.07496"} arXiv.org:1903.07496
+          %p
+            For
+            %a.existingWikiWord{:href => "/nlab/show/formal+power+series+algebras"} formal power series algebras
+            over
+            = succeed ":" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi ℂ
+                    %mo{:stretchy => "false"} [
+                    %mo{:stretchy => "false"} [
+                    %mi ℏ
+                    %mo{:stretchy => "false"} ]
+                    %mo{:stretchy => "false"} ]
+                  %annotation{:encoding => "application/x-tex"} \mathbb{C}[ [ \hbar ] ]
+          %ul
+            %li#BordemannWaldmann96
+              %a.existingWikiWord{:href => "/nlab/show/Martin+Bordemann"}> Martin Bordemann
+              ,
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/Stefan+Waldmann"} Stefan Waldmann
+              = succeed "," do
+                %em Formal GNS Construction and States in Deformation Quantization
+              = succeed "," do
+                %a{:href => "https://arxiv.org/abs/q-alg/9607019"} arXiv:q-alg/9607019
+              = succeed ")" do
+                %a{:href => "https://doi.org/10.1007/s002200050402"} doi:10.1007/s002200050402
+          %p
+            Discussion in terms of
+            %a.existingWikiWord{:href => "/nlab/show/universal+properties"} universal properties
+            in (
+            %a.existingWikiWord{:href => "/nlab/show/higher+category+theory"}> higher
+            )
+            %a.existingWikiWord{:href => "/nlab/show/category+theory"} category theory
+            is in
+          %ul
+            %li#Jacobs10
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Bart+Jacobs"}> Bart Jacobs
+                ,
+                = succeed "," do
+                  %em Involutive Categories and Monoids, with a GNS-correspondence
+                = succeed ")" do
+                  %a{:href => "https://arxiv.org/abs/1003.4552"} arXiv:1003.4552
+            %li#Parzygnat16
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Arthur+Parzygnat"}> Arthur Parzygnat
+                ,
+                %em From observables and states to Hilbert space and back: a 2-categorical adjunction
+                (
+                %a{:href => "https://arxiv.org/abs/1609.08975"}> arXiv:1609.08975
+                )
+          .property
+            category:
+            %a.category_link{:href => "/nlab/all_pages/operator+algebras"} operator algebras
+        .revisedby
+          %p
+            Last revised on September 26, 2025 at 15:05:20.
+            See the
+            %a{:href => "/nlab/history/Gelfand-Naimark-Segal+construction", :style => "color: #005c19"} history
+            of this page for a list of all contributions to it.
+        .navigation.navfoot
+          %a#edit.navlink{:accesskey => "E", :href => "/nlab/edit/Gelfand-Naimark-Segal+construction", :rel => "nofollow"} Edit
+          %a{:href => "https://nforum.ncatlab.org/discussion/12829/#Item_7"} Discuss
+          %span.backintime
+            %a#to_previous_revision.navlinkbackintime{:accesskey => "B", :href => "/nlab/revision/Gelfand-Naimark-Segal+construction/34", :rel => "nofollow"} Previous revision
+          %a#see_changes.navlink{:accesskey => "C", :href => "/nlab/show/diff/Gelfand-Naimark-Segal+construction", :rel => "nofollow"} Changes from previous revision
+          %a#history.navlink{:accesskey => "S", :href => "/nlab/history/Gelfand-Naimark-Segal+construction", :rel => "nofollow"} History (34 revisions)
+          %a{:href => "/nlab/show/Gelfand-Naimark-Segal+construction/cite", :style => "color: black"} Cite
+          %a#view_print{:accesskey => "p", :href => "/nlab/print/Gelfand-Naimark-Segal+construction", :rel => "nofollow"} Print
+          %a#view_source{:href => "/nlab/source/Gelfand-Naimark-Segal+construction", :rel => "nofollow"} Source
+      / Content
+    / Container

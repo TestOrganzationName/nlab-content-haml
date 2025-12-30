@@ -1,0 +1,4236 @@
+!!! XML
+!!! 1.1
+%html{:xmlns => "http://www.w3.org/1999/xhtml"}
+  %head
+    %title
+      Schwinger-Dyson equation in nLab
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:content => "index,follow", :name => "robots"}/
+    %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/
+    %link{:href => "/stylesheets/instiki.css?1676280126", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/stylesheets/mathematics.css?1660229990", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/stylesheets/syntax.css?1660229990", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/stylesheets/nlab.css?1676280126", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css", :rel => "stylesheet", :type => "text/css"}/
+    :css
+      h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+        color: #226622;
+      }
+      a:visited.existingWikiWord {
+        color: #164416;
+      }
+    :css
+      <!--/*--><![CDATA[/*><!--*/
+          .toc ul {margin: 0; padding: 0;}
+      .toc ul ul {margin: 0; padding: 0 0 0 10px;}
+      .toc li > p {margin: 0}
+      .toc ul li {list-style-type: none; position: relative;}
+      .toc div {border-top:1px dotted #ccc;}
+      .rightHandSide h2 {font-size: 1.5em;color:#008B26}
+      table.plaintable {
+          border-collapse:collapse;
+          margin-left:30px;
+          border:0;
+      }
+      .plaintable td {border:1px solid #000; padding: 3px;}
+      .plaintable th {padding: 3px;}
+      .plaintable caption {
+          font-weight: bold;
+          font-size:1.1em;
+          text-align:center;
+          margin-left:30px;
+      }
+          
+         
+      /* Query boxes for questioning and answering mechanism */
+      div.query{
+      background: #f6fff3;
+      border: solid #ce9;
+      border-width: 2px 1px;
+      padding: 0 1em;
+      margin: 0 1em;
+      max-height: 20em;
+      overflow: auto;
+      }
+      
+      /* Standout boxes for putting important text */
+      div.standout{
+      background: #fff1f1;
+      border: solid black;
+      border-width: 2px 1px;
+      padding: 0 1em;
+      margin: 0 1em;
+      overflow: auto;
+      }
+      
+      /* Icon for links to n-category arXiv documents 
+       (commented out for now i.e. disabled)
+      a[href*="http://arxiv.org/"] {
+        background-image: url(../files/arXiv_icon.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 22px;
+        } */
+          
+      /* Icon for links to n-category cafe posts (disabled) 
+      a[href*="http://golem.ph.utexas.edu/category"] {
+        background-image: url(../files/n-cafe_5.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 25px;
+        } */
+      
+      /* Icon for links to pdf files (disabled)
+      a[href$=".pdf"] {
+        background-image: url(../files/pdficon_small.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 25px;
+        } */
+      
+      /* Icon for links to pages, etc. -inside- pdf files (disabled)
+      a[href*=".pdf#"] {
+        background-image: url(../files/pdf_entry.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 25px;
+        } */
+      
+      a.existingWikiWord {
+      color: #226622;
+      }
+      
+      a.existingWikiWord:visited {
+      color: #226622;
+      }
+      
+      
+      a.existingWikiWord[title] {
+      border: 0px;
+      color: #aa0505;
+      text-decoration: none;
+      }
+          
+      a.existingWikiWord[title]:visited {
+      border: 0px;
+      color: #551111;
+      text-decoration: none;
+      }
+      
+      a[href^="http://"] {
+      border: 0px;
+      color: #003399;
+      }
+      
+      a[href^="http://"]:visited {
+      border: 0px;
+      color: #330066;
+      }
+      
+      a[href^="https://"] {
+      border: 0px;
+      color: #003399;
+      }
+      
+      a[href^="https://"]:visited {
+      border: 0px;
+      color: #330066;
+      }
+      
+      div.dropDown .hide {
+      display: none;
+      }
+      
+      div.dropDown:hover .hide {
+      display:block;
+      }
+      
+      div.clickDown .hide {
+      display: none;
+      }
+      
+      div.clickDown:focus {
+      outline:none;
+      }
+      
+      div.clickDown:focus .hide, div.clickDown:hover .hide {
+      display: block;
+      }
+      
+      div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+      display:block;
+      }
+      
+      div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+      display:none;
+      }
+      
+      div.clickDown .clickToReveal:after {
+      content: "A(Hover to reveal, click to "hold")";
+      font-size: 60%;
+      }
+      
+      div.clickDown .clickToHide:after {
+      content: "A(Click to hide)";
+      font-size: 60%;
+      }
+      div.clickDown .clickToHide, div.clickDown .clickToReveal {
+      white-space: pre-wrap;
+      }
+      
+      .un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+      margin-left: 1em;
+      }
+      
+      span.theorem_label {
+      margin-left: -1em;
+      }
+      .proof span.theorem_label {
+      margin-left: 0em;
+      }
+      :target {
+          background-color: #BBBBBB;
+          border-radius: 5pt;
+      }
+      
+        /*]]>*/-->
+    %script{:src => "/javascripts/prototype.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/effects.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/dragdrop.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/controls.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/application.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/page_helper.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/thm_numbering.js?1660229990", :type => "text/javascript"}
+    %script{:type => "text/x-mathjax-config"}
+      :cdata
+        <!--//--><![CDATA[//><!--
+        MathJax.Ajax.config.path["Contrib"] = "/MathJax";
+        MathJax.Hub.Config({
+        MathML: { useMathMLspacing: true },
+        "HTML-CSS": { scale: 90,
+        extensions: ["handle-floats.js"]
+        }
+        });
+        MathJax.Hub.Queue( function () {
+        var fos = document.getElementsByTagName('foreignObject');
+        for (var i = 0; i < fos.length; i++) {
+        MathJax.Hub.Typeset(fos[i]);
+        }
+        });
+        \//--><!]]>
+    :javascript
+      <!--//--><![CDATA[//><!--
+      window.addEventListener("DOMContentLoaded", function () {
+        var div = document.createElement('div');
+        var math = document.createElementNS('http://www.w3.org/1998/Math/MathML', 'math');
+        document.body.appendChild(div);
+        div.appendChild(math);
+      // Test for MathML support comparable to WebKit version https://trac.webkit.org/changeset/203640 or higher.
+        div.setAttribute('style', 'font-style: italic');
+        var mathml_unsupported = !(window.getComputedStyle(div.firstChild).getPropertyValue('font-style') === 'normal');
+        div.parentNode.removeChild(div);
+        if (mathml_unsupported) {
+          // MathML does not seem to be supported...
+          var s = document.createElement('script');
+          s.src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=MML_HTMLorMML-full";
+          document.querySelector('head').appendChild(s);
+        } else {
+          document.head.insertAdjacentHTML("beforeend", '<style>svg[viewBox] {max-width: 100%}</style>');
+        }
+      });
+      //--><!]]>
+    %link{:href => "https://ncatlab.org/nlab/atom_with_headlines", :rel => "alternate", :title => "Atom with headlines", :type => "application/atom+xml"}/
+    %link{:href => "https://ncatlab.org/nlab/atom_with_content", :rel => "alternate", :title => "Atom with full content", :type => "application/atom+xml"}/
+    :javascript
+      document.observe("dom:loaded", function() {
+        generateThmNumbers();
+      });
+  %body
+    #Container
+      #Content
+        %h1#pageName
+          %span{:style => "float: left; margin: 0.5em 0.25em -0.25em 0"}
+            %svg{:height => "1.8em", :viewbox => "0 0 190 181", :width => "1.872em", :xmlns => "http://www.w3.org/2000/svg"}
+              %path{:d => "M72.8 145c-1.6 17.3-15.7 10-23.6 20.2-5.6 7.3 4.8 15 11.4 15 11.5-.2 19-13.4 26.4-20.3 3.3-3 8.2-4 11.2-7.2a14 14 0 0 0 2.9-11.1c-1.4-9.6-12.4-18.6-16.9-27.2-5-9.6-10.7-27.4-24.1-27.7-17.4-.3-.4 26 4.7 30.7 2.4 2.3 5.4 4.1 7.3 6.9 1.6 2.3 2.1 5.8-1 7.2-5.9 2.6-12.4-6.3-15.5-10-8.8-10.6-15.5-23-26.2-31.8-5.2-4.3-11.8-8-18-3.7-7.3 4.9-4.2 12.9.2 18.5a81 81 0 0 0 30.7 23c3.3 1.5 12.8 5.6 10 10.7-2.5 5.2-11.7 3-15.6 1.1-8.4-3.8-24.3-21.3-34.4-13.7-3.5 2.6-2.3 7.6-1.2 11.1 2.8 9 12.2 17.2 20.9 20.5 17.3 6.7 34.3-8 50.8-12.1z", :fill => "#226622"}
+              %path{:d => "M145.9 121.3c-.2-7.5 0-19.6-4.5-26-5.4-7.5-12.9-1-14.1 5.8-1.4 7.8 2.7 14.1 4.8 21.3 3.4 12 5.8 29-.8 40.1-3.6-6.7-5.2-13-7-20.4-2.1-8.2-12.8-13.2-15.1-1.9-2 9.7 9 21.2 12 30.1 1.2 4 2 8.8 6.4 10.3 6.9 2.3 13.3-4.7 17.7-8.8 12.2-11.5 36.6-20.7 43.4-36.4 6.7-15.7-13.7-14-21.3-7.2-9.1 8-11.9 20.5-23.6 25.1 7.5-23.7 31.8-37.6 38.4-61.4 2-7.3-.8-29.6-13-19.8-14.5 11.6-6.6 37.6-23.3 49.2z", :fill => "#a41e32"}
+              %path{:d => "M86.3 47.5c0-13-10.2-27.6-5.8-40.4 2.8-8.4 14.1-10.1 17-1 3.8 11.6-.3 26.3-1.8 38 11.7-.7 10.5-16 14.8-24.3 2.1-4.2 5.7-9.1 11-6.7 6 2.7 7.4 9.2 6.6 15.1-2.2 14-12.2 18.8-22.4 27-3.4 2.7-8 6.6-5.9 11.6 2 4.4 7 4.5 10.7 2.8 7.4-3.3 13.4-16.5 21.7-16 14.6.7 12 21.9.9 26.2-5 1.9-10.2 2.3-15.2 3.9-5.8 1.8-9.4 8.7-15.7 8.9-6.1.1-9-6.9-14.3-9-14.4-6-33.3-2-44.7-14.7-3.7-4.2-9.6-12-4.9-17.4 9.3-10.7 28 7.2 35.7 12 2 1.1 11 6.9 11.4 1.1.4-5.2-10-8.2-13.5-10-11.1-5.2-30-15.3-35-27.3-2.5-6 2.8-13.8 9.4-13.6 6.9.2 13.4 7 17.5 12C70.9 34 75 43.8 86.3 47.4z", :fill => "#193c78"}
+          %span.webName nLab
+          Schwinger-Dyson equation
+        .navigation
+          %span.skipNav
+            %a{:href => "#navEnd"} Skip the Navigation Links
+            |
+          %span{:style => "display:inline-block; width: 0.3em;"}
+          %a{:accesskey => "H", :href => "/nlab/show/HomePage", :title => "Home page"} Home Page
+          |
+          %a{:accesskey => "A", :href => "/nlab/all_pages", :title => "List of all pages"} All Pages
+          |
+          %a{:accesskey => "U", :href => "/nlab/latest_revisions", :title => "Latest edits and page creations"} Latest Revisions
+          |
+          %a{:href => "https://nforum.ncatlab.org/discussion/8229/#Item_4", :style => "color: black", :title => "Discuss this page in its dedicated thread on the nForum"} Discuss this page
+          |
+          %form#navigationSearchForm{"accept-charset" => "utf-8", :action => "/nlab/search", :method => "get"}
+            %fieldset.search
+              %input#searchField{:name => "query", :onblur => "this.value == '' ? this.value = 'Search' : true", :onfocus => "this.value == 'Search' ? this.value = '' : true", :style => "display:inline-block; float: left;", :type => "text", :value => "Search"}/
+          %span#navEnd
+        #revision
+          %meta{:content => "application/xhtml+xml;charset=utf-8", "http-equiv" => "Content-type"}/
+          %title Contents
+          .rightHandSide
+            .toc.clickDown{:tabindex => "0"}
+              %h3#context Context
+              %h4#algebraic_quantum_field_theory Algebraic Quantum Field Theory
+              .hide
+                %div
+                  %p
+                    %strong
+                      %a.existingWikiWord{:href => "/nlab/show/algebraic+quantum+field+theory"} algebraic quantum field theory
+                    (
+                    %a.existingWikiWord{:href => "/nlab/show/perturbative+AQFT"}> perturbative
+                    ,
+                    = succeed "," do
+                      %a.existingWikiWord{:href => "/nlab/show/AQFT+on+curved+spacetime"} on curved spacetimes
+                    = succeed ")" do
+                      %a.existingWikiWord{:href => "/nlab/show/homotopical+algebraic+quantum+field+theory"} homotopical
+                  %p
+                    %a.existingWikiWord{:href => "/nlab/show/A+first+idea+of+quantum+field+theory"} Introduction
+                  %h2#concepts Concepts
+                  %p
+                    %strong>
+                      %a.existingWikiWord{:href => "/nlab/show/field+theory"} field theory
+                    \:
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/classical+field+theory"}> classical
+                        ,
+                        = succeed "," do
+                          %a.existingWikiWord{:href => "/nlab/show/prequantum+field+theory"} pre-quantum
+                        = succeed "," do
+                          %a.existingWikiWord{:href => "/nlab/show/quantum+field+theory"} quantum
+                        %a.existingWikiWord{:href => "/nlab/show/perturbative+quantum+field+theory"} perturbative quantum
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/relativistic+field+theory"}> relativistic
+                        ,
+                        = succeed "," do
+                          %a.existingWikiWord{:href => "/nlab/show/Euclidean+field+theory"} Euclidean
+                        %a.existingWikiWord{:href => "/nlab/show/thermal+quantum+field+theory"} thermal
+                  %p
+                    %strong
+                      %a.existingWikiWord{:href => "/nlab/show/Lagrangian+field+theory"} Lagrangian field theory
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/field+%28physics%29"} field (physics)
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/field+bundle"} field bundle
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/field+history"} field history
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/space+of+field+histories"} space of field histories
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Lagrangian+density"} Lagrangian density
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/Euler-Lagrange+form"}> Euler-Lagrange form
+                            ,
+                            %a.existingWikiWord{:href => "/nlab/show/presymplectic+current"} presymplectic current
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/Euler-Lagrange+equations"} Euler-Lagrange
+                            %a.existingWikiWord{:href => "/nlab/show/equations+of+motion"} equations of motion
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/locally+variational+field+theory"} locally variational field theory
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/covariant+phase+space"} covariant phase space
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/Peierls-Poisson+bracket"} Peierls-Poisson bracket
+                          %ul
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/advanced+and+retarded+propagator"}> advanced and retarded propagator
+                                ,
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/causal+propagator"} causal propagator
+                  %p
+                    %strong
+                      %a.existingWikiWord{:href => "/nlab/show/quantization"} quantization
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/geometric+quantization"} geometric quantization
+                        %a.existingWikiWord{:href => "/nlab/show/geometric+quantization+of+symplectic+groupoids"} of symplectic groupoids
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/algebraic+deformation+quantization"}> algebraic deformation quantization
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/star+algebra"} star algebra
+                  %p
+                    %strong>
+                      %a.existingWikiWord{:href => "/nlab/show/quantum+mechanical+system"} quantum mechanical system
+                    ,
+                    %strong
+                      %a.existingWikiWord{:href => "/nlab/show/quantum+probability"} quantum probability
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/subsystem"} subsystem
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/observables"} observables
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/field+observables"} field observables
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/local+observables"} local observables
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/polynomial+observables"} polynomial observables
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/microcausal+observables"} microcausal observables
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/operator+algebra"}> operator algebra
+                            ,
+                            = succeed "," do
+                              %a.existingWikiWord{:href => "/nlab/show/C%2A-algebra"} C*-algebra
+                            %a.existingWikiWord{:href => "/nlab/show/von+Neumann+algebra"} von Neumann algebra
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/local+net+of+observables"} local net of observables
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/causal+locality"} causal locality
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/Haag-Kastler+axioms"} Haag-Kastler axioms
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/Wightman+axioms"} Wightman axioms
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/field+net"} field net
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/conformal+net"} conformal net
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/state+on+a+star-algebra"}> state on a star-algebra
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/expectation+value"} expectation value
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/pure+state"} pure state
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/wave+function"} wave function
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/collapse+of+the+wave+function"}> collapse of the wave function
+                            \/
+                            %a.existingWikiWord{:href => "/nlab/show/conditional+expectation+value"} conditional expectation value
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/mixed+state"}> mixed state
+                            ,
+                            %a.existingWikiWord{:href => "/nlab/show/density+matrix"} density matrix
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/space+of+quantum+states"} space of quantum states
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/vacuum+state"} vacuum state
+                          %ul
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/quasi-free+state"}> quasi-free state
+                                ,
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/Hadamard+state"} Hadamard state
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/Wightman+propagator"} Wightman propagator
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/picture+of+quantum+mechanics"} picture of quantum mechanics
+                  %p
+                    %strong
+                      %a.existingWikiWord{:href => "/nlab/show/free+field"} free field
+                      %a.existingWikiWord{:href => "/nlab/show/quantization"} quantization
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/star+algebra"}> star algebra
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/Moyal+deformation+quantization"} Moyal deformation quantization
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Wick+algebra"} Wick algebra
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/canonical+commutation+relations"}> canonical commutation relations
+                            ,
+                            %a.existingWikiWord{:href => "/nlab/show/Weyl+relations"} Weyl relations
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/normal+ordered+product"} normal ordered product
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Fock+space"} Fock space
+                  %p
+                    %strong
+                      %a.existingWikiWord{:href => "/nlab/show/gauge+theories"} gauge theories
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/gauge+symmetry"} gauge symmetry
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/BRST+complex"}> BRST complex
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/BV-BRST+formalism"} BV-BRST formalism
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/local+BV-BRST+complex"} local BV-BRST complex
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/BV-operator"} BV-operator
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/quantum+master+equation"} quantum master equation
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/master+Ward+identity"} master Ward identity
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/gauge+anomaly"} gauge anomaly
+                  %p
+                    %strong
+                      %a.existingWikiWord{:href => "/nlab/show/interacting+field+theory"} interacting field
+                      %a.existingWikiWord{:href => "/nlab/show/quantization"} quantization
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/causal+perturbation+theory"}> causal perturbation theory
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/perturbative+AQFT"} perturbative AQFT
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/interaction"} interaction
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/S-matrix"}> S-matrix
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/scattering+amplitude"} scattering amplitude
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/causal+additivity"} causal additivity
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/time-ordered+product"}> time-ordered product
+                            ,
+                            %a.existingWikiWord{:href => "/nlab/show/Feynman+propagator"} Feynman propagator
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/Feynman+diagram"}> Feynman diagram
+                            ,
+                            %a.existingWikiWord{:href => "/nlab/show/Feynman+perturbation+series"} Feynman perturbation series
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/effective+action"} effective action
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/vacuum+stability"} vacuum stability
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/interacting+field+algebra"} interacting field algebra
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/Bogoliubov%27s+formula"} Bogoliubov's formula
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/quantum+M%C3%B8ller+operator"} quantum Møller operator
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/adiabatic+limit"} adiabatic limit
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/infrared+divergence"} infrared divergence
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/interacting+vacuum"} interacting vacuum
+                  %p
+                    %strong
+                      %a.existingWikiWord{:href => "/nlab/show/renormalization"} renormalization
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/renormalization+scheme"} ("re-")normalization scheme
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/extension+of+distributions"} extension of distributions
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/renormalization+condition"} ("re"-)normalization condition
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/quantum+anomaly"} quantum anomaly
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/renormalization+group"} renormalization group
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/interaction+vertex+redefinition"} interaction vertex redefinition
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/St%C3%BCckelberg-Petermann+renormalization+group"} Stückelberg-Petermann renormalization group
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/renormalization+group+flow"}> renormalization group flow
+                            \/
+                            %a.existingWikiWord{:href => "/nlab/show/running+coupling+constants"} running coupling constants
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/effective+quantum+field+theory"} effective quantum field theory
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/UV+cutoff"} UV cutoff
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/counterterms"} counterterms
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/relative+effective+action"} relative effective action
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/Wilsonian+RG"}> Wilsonian RG
+                            ,
+                            %a.existingWikiWord{:href => "/nlab/show/Polchinski+flow+equation"} Polchinski flow equation
+                  %h2#Theorems Theorems
+                  %h3#states_and_observables States and observables
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/order-theoretic+structure+in+quantum+mechanics"} order-theoretic structure in quantum mechanics
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/Alfsen-Shultz+theorem"} Alfsen-Shultz theorem
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/Harding-D%C3%B6ring-Hamhalter+theorem"} Harding-Döring-Hamhalter theorem
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Kochen-Specker+theorem"} Kochen-Specker theorem
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Bell%27s+theorem"} Bell's theorem
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Fell%27s+theorem"} Fell's theorem
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Gleason%27s+theorem"} Gleason's theorem
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Wigner+theorem"} Wigner theorem
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Bub-Clifton+theorem"} Bub-Clifton theorem
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Kadison-Singer+problem"} Kadison-Singer problem
+                  %h3#operator_algebra Operator algebra
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Wick%27s+theorem"} Wick's theorem
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/GNS+construction"} GNS construction
+                      %ul
+                        %li
+                          %a.existingWikiWord{:href => "/nlab/show/cyclic+vector"}> cyclic vector
+                          ,
+                          %a.existingWikiWord{:href => "/nlab/show/separating+vector"} separating vector
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/modular+theory"} modular theory
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Fell%27s+theorem"} Fell's theorem
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Stone-von+Neumann+theorem"} Stone-von Neumann theorem
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Haag%27s+theorem"} Haag's theorem
+                  %h3#local_qft Local QFT
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Reeh-Schlieder+theorem"} Reeh-Schlieder theorem
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Bisognano-Wichmann+theorem"} Bisognano-Wichmann theorem
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/PCT+theorem"} PCT theorem
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/spin-statistics+theorem"} spin-statistics theorem
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/DHR+superselection+theory"} DHR superselection theory
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Osterwalder-Schrader+theorem"} Osterwalder-Schrader theorem
+                        (
+                        %a.existingWikiWord{:href => "/nlab/show/Wick+rotation"}> Wick rotation
+                        )
+                  %h3#perturbative_qft Perturbative QFT
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Schwinger-Dyson+equation"} Schwinger-Dyson equation
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/main+theorem+of+perturbative+renormalization"} main theorem of perturbative renormalization
+          %h1#contents Contents
+          .maruku_toc
+            %ul
+              %li
+                %a{:href => "#idea"} Idea
+              %li
+                %a{:href => "#details"} Details
+              %li
+                %a{:href => "#examples"} Examples
+              %ul
+                %li
+                  %a{:href => "#QuantumCommutatorsAreTimeOrderedOrdinaryProducts"} Quantum commutators are time-ordered ordinary products of observables
+                %ul
+                  %li
+                    %a{:href => "#CCRFromPathIntegralInQM"} In Quantum Mechanics
+                  %li
+                    %a{:href => "#CCRFromPathIntegralInQFT"} In Quantum Field Theory
+              %li
+                %a{:href => "#related_concepts"} Related concepts
+              %li
+                %a{:href => "#references"} References
+          %h2#idea Idea
+          %p
+            In
+            %a.existingWikiWord{:href => "/nlab/show/perturbative+quantum+field+theory"} perturbative quantum field theory
+            the
+            %em Schwinger-Dyson equation
+            (named after
+            = succeed "," do
+              %a{:href => "#Dyson49"} Dyson 1949
+            = succeed ")" do
+              %a{:href => "#Schinger51"} Schwinger 1951
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/on-shell"} on-shell
+            %a.existingWikiWord{:href => "/nlab/show/time-ordered+product"} time-ordered product
+            of the
+            %a.existingWikiWord{:href => "/nlab/show/functional+derivative"} functional derivative
+            of the
+            %a.existingWikiWord{:href => "/nlab/show/action+functional"} action functional
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi S
+                %annotation{:encoding => "application/x-tex"} S
+            for a
+            %a.existingWikiWord{:href => "/nlab/show/free+field+theory"} free field theory
+            and another
+            %a.existingWikiWord{:href => "/nlab/show/observable"} observable
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi A
+                %annotation{:encoding => "application/x-tex"} A
+            with the
+            %a.existingWikiWord{:href => "/nlab/show/time+ordered+product"} time ordering
+            of the corresponding
+            %a.existingWikiWord{:href => "/nlab/show/functional+derivative"} functional derivative
+            of just
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi A
+                %annotation{:encoding => "application/x-tex"} A
+            itself, times
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi i
+                  %mi ℏ
+                %annotation{:encoding => "application/x-tex"} i \hbar
+            (
+            %a.existingWikiWord{:href => "/nlab/show/imaginary+unit"} imaginary unit
+            times
+            = succeed "):" do
+              %a.existingWikiWord{:href => "/nlab/show/Planck%27s+constant"} Planck's constant
+          #eq:EquationSchwingerDyson.maruku-equation
+            %span.maruku-eq-number (1)
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi 𝒯
+                  %mrow
+                    %mo (
+                    %munder
+                      %mo ∫
+                      %mi Σ
+                    %mfrac
+                      %mrow
+                        %mi δ
+                        %mi S
+                      %mrow
+                        %mi δ
+                        %msup
+                          %mstyle{:mathvariant => "bold"}
+                            %mi Φ
+                          %mi a
+                        %mo{:stretchy => "false"} (
+                        %mi x
+                        %mo{:stretchy => "false"} )
+                    %mo ⋅
+                    %msup
+                      %mi A
+                      %mi a
+                    %mo{:stretchy => "false"} (
+                    %mi x
+                    %mo{:stretchy => "false"} )
+                    %mspace{:width => "thinmathspace"}
+                    %msub
+                      %mi dvol
+                      %mi Σ
+                    %mo{:stretchy => "false"} (
+                    %mi x
+                    %mo{:stretchy => "false"} )
+                    %mo )
+                  %mspace{:width => "thickmathspace"}
+                  %mo =
+                  %mspace{:width => "thickmathspace"}
+                  %mi{:mathvariant => "normal"} i
+                  %mi ℏ
+                  %mspace{:width => "thinmathspace"}
+                  %mi 𝒯
+                  %mrow
+                    %mo (
+                    %munder
+                      %mo ∫
+                      %mi Σ
+                    %mfrac
+                      %mrow
+                        %mi δ
+                        %msup
+                          %mi A
+                          %mi a
+                        %mo{:stretchy => "false"} (
+                        %mi x
+                        %mo{:stretchy => "false"} )
+                      %mrow
+                        %mi δ
+                        %msup
+                          %mstyle{:mathvariant => "bold"}
+                            %mi Φ
+                          %mi a
+                        %mo{:stretchy => "false"} (
+                        %mi x
+                        %mo{:stretchy => "false"} )
+                    %mspace{:width => "thinmathspace"}
+                    %msub
+                      %mi dvol
+                      %mi Σ
+                    %mo{:stretchy => "false"} (
+                    %mi x
+                    %mo{:stretchy => "false"} )
+                    %mo )
+                  %mphantom
+                    %mi AAA
+                  %mtext on-shell
+                %annotation{:encoding => "application/x-tex"}
+                  \\mathcal{T}
+                  \\left(
+                  \\underset{\Sigma}{\int}
+                  \\frac{\delta S}{\delta \mathbf{\Phi}^a(x)}
+                  \\cdot
+                  A^a(x)
+                  \\, dvol_\Sigma(x)
+                  \\right)
+                  \\;=\;
+                  \\mathrm{i} \hbar
+                  \\,
+                  \\mathcal{T}
+                  \\left(
+                  \\underset{\Sigma}{\int}
+                  \\frac{\delta A^a(x)}{\delta \mathbf{\Phi}^a(x)}
+                  \\,
+                  dvol_\Sigma(x)
+                  \\right)
+                  \\phantom{AAA}
+                  \\text{on-shell}
+          %p
+            (cf.
+            = succeed "," do
+              %a{:href => "#HenneauxTeitelboim92"} Henneaux &amp; Teitelboim 1992 (15.25)
+            = succeed ")." do
+              %a{:href => "#Rejzner16"} Rejzner 2016 Rem. 7.7
+          %p
+            If one can arrange or imagine that the
+            %a.existingWikiWord{:href => "/nlab/show/expectation+values"} expectation values
+            of
+            %a.existingWikiWord{:href => "/nlab/show/time-ordered+products"} time-ordered products
+            are given by a
+            %a.existingWikiWord{:href => "/nlab/show/path+integral"} path integral
+            against an
+            %a.existingWikiWord{:href => "/nlab/show/exponential"} exponentiated
+            %a.existingWikiWord{:href => "/nlab/show/action+functional"} action functional
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi exp
+                    %mo{:stretchy => "false"} (
+                    %mstyle{:displaystyle => "false"}
+                      %mfrac
+                        %mi{:mathvariant => "normal"} i
+                        %mi ℏ
+                    %mi S
+                    %mo{:maxsize => "1.2em", :minsize => "1.2em"} (
+                    %mstyle{:mathvariant => "bold"}
+                      %mi Φ
+                    %mo{:stretchy => "false"} )
+                    %mo{:maxsize => "1.2em", :minsize => "1.2em"} )
+                  %annotation{:encoding => "application/x-tex"} \exp(\tfrac{\mathrm{i}}{\hbar}S\big(\mathbf{\Phi})\big)
+            %a.maruku-eqref{:href => "#eq:EquationSchwingerDyson"} (1)
+            may be understood as the result of path-
+            %a.existingWikiWord{:href => "/nlab/show/integration+by+parts"}> integration by parts
+            , whereby the (
+            %a.existingWikiWord{:href => "/nlab/show/variational+calculus"}> variational
+            )
+            %a.existingWikiWord{:href => "/nlab/show/derivative"} derivative
+            of the observable
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi A
+                %annotation{:encoding => "application/x-tex"} A
+            on the right is moved over to the factor
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi exp
+                  %mo{:stretchy => "false"} (
+                  %mstyle{:displaystyle => "false"}
+                    %mfrac
+                      %mi{:mathvariant => "normal"} i
+                      %mi ℏ
+                  %mi S
+                  %mo{:maxsize => "1.2em", :minsize => "1.2em"} (
+                  %mstyle{:mathvariant => "bold"}
+                    %mi Φ
+                  %mo{:stretchy => "false"} )
+                  %mo{:maxsize => "1.2em", :minsize => "1.2em"} )
+                %annotation{:encoding => "application/x-tex"} \exp(\tfrac{\mathrm{i}}{\hbar}S\big(\mathbf{\Phi})\big)
+            which is then implicit on the left. In this
+            = succeed "-perspective" do
+              %a.existingWikiWord{:href => "/nlab/show/path+integral"} path integral
+            = succeed ")" do
+              %a.existingWikiWord{:href => "/nlab/show/quantum+mechanics"} quantum mechanics
+            %a{:href => "#Feynman48"} Feynman 1948 (45-46)
+            (who referred to it as “this very important relation”).
+          %p
+            Alternatively and rigorousoly, the SD equation
+            %a.maruku-eqref{:href => "#eq:EquationSchwingerDyson"} (1)
+            may be understood as a special case of the quantum-correction of the
+            %a.existingWikiWord{:href => "/nlab/show/BV-differential"} BV-differential
+            by the
+            %a.existingWikiWord{:href => "/nlab/show/BV-operator"} BV-operator
+            in
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/pQFT"} pQFT
+            = succeed ";" do
+              %em
+                %a.existingWikiWord{:href => "/nlab/show/Schwinger-Dyson+operator"} Schwinger-Dyson operator
+            = succeed "." do
+              %a{:href => "BV-operator#SchwingerDysonEquation"} there
+          %p
+            Often the equation
+            %a.maruku-eqref{:href => "#eq:EquationSchwingerDyson"} (1)
+            is displayed before spacetime-smearing of observables, in terms of
+            %a.existingWikiWord{:href => "/nlab/show/operator+products"} operator products
+            of
+            = succeed ":" do
+              %a.existingWikiWord{:href => "/nlab/show/operator-valued+distributions"} operator-valued distributions
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msup
+                    %mi A
+                    %mi a
+                  %mo{:stretchy => "false"} (
+                  %mi x
+                  %mo{:stretchy => "false"} )
+                  %mspace{:width => "thickmathspace"}
+                  %mo ≔
+                  %mspace{:width => "thickmathspace"}
+                  %mi δ
+                  %mo{:stretchy => "false"} (
+                  %mi x
+                  %mo −
+                  %msub
+                    %mi x
+                    %mn 0
+                  %mo{:stretchy => "false"} )
+                  %msubsup
+                    %mi δ
+                    %mrow
+                      %msub
+                        %mi a
+                        %mn 0
+                    %mi a
+                  %msup
+                    %mstyle{:mathvariant => "bold"}
+                      %mi Φ
+                    %mrow
+                      %msub
+                        %mi a
+                        %mn 1
+                  %mo{:stretchy => "false"} (
+                  %msub
+                    %mi x
+                    %mn 1
+                  %mo{:stretchy => "false"} )
+                  %mi ⋯
+                  %msup
+                    %mstyle{:mathvariant => "bold"}
+                      %mi Φ
+                    %mrow
+                      %msub
+                        %mi a
+                        %mi n
+                  %mo{:stretchy => "false"} (
+                  %msub
+                    %mi x
+                    %mi n
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"}
+                  A^a(x)
+                  \\;\coloneqq\;
+                  \\delta(x-x_0) \delta^a_{a_0}
+                  \\mathbf{\Phi}^{a_1}(x_1) \cdots \mathbf{\Phi}^{a_n}(x_n)
+          %p
+            which makes the
+            %a.existingWikiWord{:href => "/nlab/show/distribution"} distributional
+            %a.existingWikiWord{:href => "/nlab/show/Schwinger-Dyson+equation"} Schwinger-Dyson equation
+            read
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mrow
+                    %mtable{:columnalign => "right left right left right left right left right left", :columnspacing => "0em", :displaystyle => "true"}
+                      %mtr
+                        %mtd
+                        %mtd
+                          %mi T
+                          %mrow
+                            %mo (
+                            %mfrac
+                              %mrow
+                                %mi δ
+                                %mi S
+                              %mrow
+                                %mi δ
+                                %msup
+                                  %mstyle{:mathvariant => "bold"}
+                                    %mi Φ
+                                  %mrow
+                                    %msub
+                                      %mi a
+                                      %mn 0
+                                %mo{:stretchy => "false"} (
+                                %msub
+                                  %mi x
+                                  %mn 0
+                                %mo{:stretchy => "false"} )
+                            %mo ⋅
+                            %msup
+                              %mstyle{:mathvariant => "bold"}
+                                %mi Φ
+                              %mrow
+                                %msub
+                                  %mi a
+                                  %mn 1
+                            %mo{:stretchy => "false"} (
+                            %msub
+                              %mi x
+                              %mn 1
+                            %mo{:stretchy => "false"} )
+                            %mi ⋯
+                            %msup
+                              %mstyle{:mathvariant => "bold"}
+                                %mi Φ
+                              %mrow
+                                %msub
+                                  %mi a
+                                  %mi n
+                            %mo{:stretchy => "false"} (
+                            %msub
+                              %mi x
+                              %mi n
+                            %mo{:stretchy => "false"} )
+                            %mo )
+                      %mtr
+                        %mtd
+                        %mtd
+                          %munder
+                            %mo =
+                            %mtext on-shell
+                          %mi i
+                          %mi ℏ
+                          %munder
+                            %mo{:lspace => "thinmathspace", :rspace => "thinmathspace"} ∑
+                            %mi k
+                          %mi T
+                          %mrow
+                            %mo (
+                            %msup
+                              %mstyle{:mathvariant => "bold"}
+                                %mi Φ
+                              %mrow
+                                %msub
+                                  %mi a
+                                  %mn 1
+                            %mo{:stretchy => "false"} (
+                            %msub
+                              %mi x
+                              %mn 1
+                            %mo{:stretchy => "false"} )
+                            %mi ⋯
+                            %msup
+                              %mstyle{:mathvariant => "bold"}
+                                %mi Φ
+                              %mrow
+                                %msub
+                                  %mi a
+                                  %mrow
+                                    %mi k
+                                    %mo −
+                                    %mn 1
+                            %mo{:stretchy => "false"} (
+                            %msub
+                              %mi x
+                              %mrow
+                                %mi k
+                                %mo −
+                                %mn 1
+                            %mo{:stretchy => "false"} )
+                            %mo ⋅
+                            %mi δ
+                            %mo{:stretchy => "false"} (
+                            %msub
+                              %mi x
+                              %mn 0
+                            %mo −
+                            %msub
+                              %mi x
+                              %mi k
+                            %mo{:stretchy => "false"} )
+                            %msubsup
+                              %mi δ
+                              %mrow
+                                %msub
+                                  %mi a
+                                  %mi k
+                              %mrow
+                                %msub
+                                  %mi a
+                                  %mn 0
+                            %mo ⋅
+                            %msup
+                              %mstyle{:mathvariant => "bold"}
+                                %mi Φ
+                              %mrow
+                                %msub
+                                  %mi a
+                                  %mrow
+                                    %mi k
+                                    %mo +
+                                    %mn 1
+                            %mo{:stretchy => "false"} (
+                            %msub
+                              %mi x
+                              %mrow
+                                %mi k
+                                %mo +
+                                %mn 1
+                            %mo{:stretchy => "false"} )
+                            %mi ⋯
+                            %msup
+                              %mstyle{:mathvariant => "bold"}
+                                %mi Φ
+                              %mrow
+                                %msub
+                                  %mi a
+                                  %mi n
+                            %mo{:stretchy => "false"} (
+                            %msub
+                              %mi x
+                              %mi m
+                            %mo{:stretchy => "false"} )
+                            %mo )
+                %annotation{:encoding => "application/x-tex"}
+                  \\begin{aligned}
+                  \&amp; T
+                  \\left(
+                  \\frac{\delta S}{\delta \mathbf{\Phi}^{a_0}(x_0)}
+                  \\cdot
+                  \\mathbf{\Phi}^{a_1}(x_1) \cdots \mathbf{\Phi}^{a_n}(x_n)
+                  \\right)
+                  \\\
+                  \&amp;
+                  \\underset{\text{on-shell}}{=}
+                  i \hbar
+                  \\underset{k}{\sum}
+                  T
+                  \\left(
+                  \\mathbf{\Phi}^{a_1}(x_1)
+                  \\cdots
+                  \\mathbf{\Phi}^{a_{k-1}}(x_{k-1})
+                  \\cdot
+                  \\delta(x_0 - x_k) \delta^{a_0}_{a_k}
+                  \\cdot
+                  \\mathbf{\Phi}^{a_{k+1}}(x_{k+1})
+                  \\cdots
+                  \\mathbf{\Phi}^{a_n}(x_m)
+                  \\right)
+                  \\end{aligned}
+          %p
+            (e.q.
+            = succeed ")" do
+              %a{:href => "#Dermisek09"} Dermisek 09
+          %p
+            In particular this means that if
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mo{:stretchy => "false"} (
+                  %msub
+                    %mi x
+                    %mn 0
+                  %mo ,
+                  %msub
+                    %mi a
+                    %mn 0
+                  %mo{:stretchy => "false"} )
+                  %mo ≠
+                  %mo{:stretchy => "false"} (
+                  %msub
+                    %mi x
+                    %mi k
+                  %mo ,
+                  %msub
+                    %mi a
+                    %mi k
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} (x_0,a_0) \neq (x_k, a_k)
+            for all
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi k
+                  %mo ∈
+                  %mo{:stretchy => "false"} {
+                  %mn 1
+                  %mo ,
+                  %mi ⋯
+                  %mo ,
+                  %mi n
+                  %mo{:stretchy => "false"} }
+                %annotation{:encoding => "application/x-tex"} k \in \{1,\cdots ,n\}
+            then
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi T
+                  %mrow
+                    %mo (
+                    %mfrac
+                      %mrow
+                        %mi δ
+                        %mi S
+                      %mrow
+                        %mi δ
+                        %msup
+                          %mstyle{:mathvariant => "bold"}
+                            %mi Φ
+                          %mrow
+                            %msub
+                              %mi a
+                              %mn 0
+                        %mo{:stretchy => "false"} (
+                        %msub
+                          %mi x
+                          %mn 0
+                        %mo{:stretchy => "false"} )
+                    %mo ⋅
+                    %msup
+                      %mstyle{:mathvariant => "bold"}
+                        %mi Φ
+                      %mrow
+                        %msub
+                          %mi a
+                          %mn 1
+                    %mo{:stretchy => "false"} (
+                    %msub
+                      %mi x
+                      %mn 1
+                    %mo{:stretchy => "false"} )
+                    %mi ⋯
+                    %msup
+                      %mstyle{:mathvariant => "bold"}
+                        %mi Φ
+                      %mrow
+                        %msub
+                          %mi a
+                          %mi n
+                    %mo{:stretchy => "false"} (
+                    %msub
+                      %mi x
+                      %mi n
+                    %mo{:stretchy => "false"} )
+                    %mo )
+                  %mspace{:width => "thickmathspace"}
+                  %mo =
+                  %mspace{:width => "thickmathspace"}
+                  %mn 0
+                  %mphantom
+                    %mi AAA
+                  %mtext on-shell
+                %annotation{:encoding => "application/x-tex"}
+                  T
+                  \\left(
+                  \\frac{\delta S}{\delta \mathbf{\Phi}^{a_0}(x_0)}
+                  \\cdot
+                  \\mathbf{\Phi}^{a_1}(x_1) \cdots \mathbf{\Phi}^{a_n}(x_n)
+                  \\right)
+                  \\;=\;
+                  0
+                  \\phantom{AAA}
+                  \\text{on-shell}
+          %p
+            Since (by the
+            = succeed ")" do
+              %a.existingWikiWord{:href => "/nlab/show/principle+of+extremal+action"} principle of extremal action
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mfrac
+                    %mrow
+                      %mi δ
+                      %mi S
+                    %mrow
+                      %mi δ
+                      %msup
+                        %mstyle{:mathvariant => "bold"}
+                          %mi Φ
+                        %mrow
+                          %msub
+                            %mi a
+                            %mn 0
+                      %mo{:stretchy => "false"} (
+                      %msub
+                        %mi x
+                        %mn 0
+                      %mo{:stretchy => "false"} )
+                  %mspace{:width => "thickmathspace"}
+                  %mo =
+                  %mspace{:width => "thickmathspace"}
+                  %mn 0
+                %annotation{:encoding => "application/x-tex"}
+                  \\frac{\delta S}{\delta \mathbf{\Phi}^{a_0}(x_0)}
+                  \\;=\;
+                  0
+          %p
+            is the
+            %a.existingWikiWord{:href => "/nlab/show/Euler-Lagrange+equation"} Euler-Lagrange
+            %a.existingWikiWord{:href => "/nlab/show/equation+of+motion"} equation of motion
+            (for the
+            = succeed ")" do
+              %a.existingWikiWord{:href => "/nlab/show/classical+field+theory"} classical field theory
+            = succeed "\u201D," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi x
+                      %mn 0
+                  %annotation{:encoding => "application/x-tex"} x_0
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msub
+                    %mi x
+                    %mn 0
+                %annotation{:encoding => "application/x-tex"} x_0
+            still hold for
+            %a.existingWikiWord{:href => "/nlab/show/time-ordered+product"} time-ordered
+            %a.existingWikiWord{:href => "/nlab/show/quantum+theory"} quantum
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/expectation+values"} expectation values
+            = succeed ";" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi x
+                      %mn 0
+                  %annotation{:encoding => "application/x-tex"} x_0
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msub
+                    %mi x
+                    %mn 0
+                %annotation{:encoding => "application/x-tex"} x_0
+            then there is a correction (governed by the
+            %a.existingWikiWord{:href => "/nlab/show/BV-operator"} BV-operator
+            of the theory, see
+            = succeed ")." do
+              %a{:href => "BV-operator#DysonSchwinger"} this prop.
+          %h2#details Details
+          %p
+            For details and proof see at
+            %em
+              %a.existingWikiWord{:href => "/nlab/show/BV-operator"} BV-operator
+            = succeed "," do
+              %a{:href => "BV-operator#DysonSchwinger"} this prop.
+            = succeed "," do
+              %a{:href => "#Rejzner16"} Rejzner 16, remark 7.7
+            %a{:href => "#HenneauxTeitelboim92"} Henneaux-Teitelboim 92, section 15.5.3
+          %h2#examples Examples
+          %div
+            %h3#QuantumCommutatorsAreTimeOrderedOrdinaryProducts Quantum commutators are time-ordered ordinary products of observables
+            %p#RelationToOperatorProductAndTimeOrder
+              The
+              %a.existingWikiWord{:href => "/nlab/show/path+integral"} path integral
+              formulation (and generally the notion of
+              %a.existingWikiWord{:href => "/nlab/show/time-ordered+products"} time-ordered products
+              satisfying the
+              = succeed ")" do
+                %a.existingWikiWord{:href => "/nlab/show/Schwinger-Dyson+equation"} Schwinger-Dyson equation
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/quantum+physics"} quantum physics
+            %p As slogans, in slightly increasing order of accuracy:
+            .un_remark{:style => "border:solid #0000cc;background: #cbe6ef;border-width:1pt;padding:4pt 25pt;margin:5pt 10pt;border-radius:10pt;"}
+              %p
+                %strong Slogan:
+                The
+                %a.existingWikiWord{:href => "/nlab/show/quantum+observable"} quantum
+                (
+                %a.existingWikiWord{:href => "/nlab/show/linear+operator"}> operator
+                ) product of
+                %a.existingWikiWord{:href => "/nlab/show/observables"} observables
+                is their ordinary product after slightly shifting their
+                %a.existingWikiWord{:href => "/nlab/show/time"} time
+                domains into operator order.
+            %p Or more technically:
+            .un_remark{:style => "border:solid #0000cc;background: #cbe6ef;border-width:1pt;padding:4pt 25pt;margin:5pt 10pt;border-radius:10pt;"}
+              %p
+                %strong Slogan:
+                The operator product
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msub
+                        %mi O
+                        %mn 2
+                      %mo{:stretchy => "false"} (
+                      %mi t
+                      %mo{:stretchy => "false"} )
+                      %mo ⋆
+                      %msub
+                        %mi O
+                        %mn 1
+                      %mo{:stretchy => "false"} (
+                      %mi t
+                      %mo{:stretchy => "false"} )
+                    %annotation{:encoding => "application/x-tex"} O_2(t) \star O_1(t)
+                of observables at equal time
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi t
+                    %annotation{:encoding => "application/x-tex"} t
+                is their ordinary product after slightly shifting the observation
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msub
+                        %mi O
+                        %mn 2
+                    %annotation{:encoding => "application/x-tex"} O_2
+                to after
+                = succeed "," do
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %msub
+                          %mi O
+                          %mn 1
+                      %annotation{:encoding => "application/x-tex"} O_1
+                = succeed "." do
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %munder
+                          %mi lim
+                          %munder
+                            %mo ⟶
+                            %mrow
+                              %mi ϵ
+                              %msub
+                                %mo →
+                                %mo +
+                              %mn 0
+                        %msub
+                          %mi O
+                          %mn 2
+                        %mo{:stretchy => "false"} (
+                        %mi t
+                        %mo +
+                        %mi ϵ
+                        %mo{:stretchy => "false"} )
+                        %msub
+                          %mi O
+                          %mn 1
+                        %mo{:stretchy => "false"} (
+                        %mi t
+                        %mo{:stretchy => "false"} )
+                      %annotation{:encoding => "application/x-tex"} \underset{\underset{\epsilon \to_+ 0}{\longrightarrow}}{\lim} O_2(t + \epsilon)  O_1(t)
+            %p Or rather:
+            .un_remark{:style => "border:solid #0000cc;background: #cbe6ef;border-width:1pt;padding:4pt 25pt;margin:5pt 10pt;border-radius:10pt;"}
+              %p
+                %strong Slogan:
+                The non-commutativity of quantum observables (such as witnessed by the
+                %a.existingWikiWord{:href => "/nlab/show/canonical+commutation+relation"} canonical
+                %a.existingWikiWord{:href => "/nlab/show/commutator"} commutator
+                between
+                %a.existingWikiWord{:href => "/nlab/show/field+observables"} field observables
+                and their
+                = succeed ")" do
+                  %a.existingWikiWord{:href => "/nlab/show/canonical+momenta"} canonical momenta
+                = succeed "." do
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %munder
+                          %mi lim
+                          %munder
+                            %mo ⟶
+                            %mrow
+                              %mi ϵ
+                              %msub
+                                %mo →
+                                %mo +
+                              %mn 0
+                        %mo{:maxsize => "1.2em", :minsize => "1.2em"} (
+                        %msub
+                          %mi O
+                          %mn 2
+                        %mo{:stretchy => "false"} (
+                        %mi t
+                        %mo +
+                        %mi ϵ
+                        %mo{:stretchy => "false"} )
+                        %msub
+                          %mi O
+                          %mn 1
+                        %mo{:stretchy => "false"} (
+                        %mi t
+                        %mo{:stretchy => "false"} )
+                        %mo −
+                        %msub
+                          %mi O
+                          %mn 1
+                        %mo{:stretchy => "false"} (
+                        %mi t
+                        %mo +
+                        %mi ϵ
+                        %mo{:stretchy => "false"} )
+                        %msub
+                          %mi O
+                          %mn 2
+                        %mo{:stretchy => "false"} (
+                        %mi t
+                        %mo{:stretchy => "false"} )
+                        %mo{:maxsize => "1.2em", :minsize => "1.2em"} )
+                      %annotation{:encoding => "application/x-tex"} \underset{\underset{\epsilon \to_+ 0}{\longrightarrow}}{\lim} \big( O_2(t + \epsilon)  O_1(t)  - O_1(t + \epsilon)  O_2(t)\big)
+            %p
+              Here these (limits of) ordinary products of ordinary observables (on
+              = succeed "-valued" do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi ℂ
+                    %annotation{:encoding => "application/x-tex"} \mathbb{C}
+              %a.existingWikiWord{:href => "/nlab/show/path+integral"} path integral
+              with respect to some (arbitrary) state. We proceed to say this in more technical detail.
+            %p
+              This insight goes back to
+              = succeed "," do
+                %a{:href => "path+integral#Feynman48"} Feynman 1948 p. 381
+              %a.existingWikiWord{:href => "/nlab/show/non-relativistic+particle"} non-relativistic
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/quantum+mechanics"} quantum mechanics
+            %ul
+              %li
+                %em
+                  %a{:href => "#CCRFromPathIntegralInQM"} In Quantum Mechanics
+            %p
+              But this generalizes to
+              %a.existingWikiWord{:href => "/nlab/show/relativistic+quantum+field+theory"} relativistic
+              %a.existingWikiWord{:href => "/nlab/show/quantum+field+theory"} quantum
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/field+theory"} field theory
+            %ul
+              %li
+                %em>
+                  %a{:href => "#CCRFromPathIntegralInQFT"} In Quantum Field Theory
+                \.
+            %p
+              In fact, the analogous statement remains true also in
+              %a.existingWikiWord{:href => "/nlab/show/light-front+quantization"} light-front quantization
+              (cf. Rem.
+              %a.maruku-ref{:href => "#SDCCRDerivationInLightFrontForm"}
+              below), where it says that the canonical commutators are given by ordinary products of observables after shifting their
+              %em light-front-parameter
+              domain into operator order.
+            %h4#CCRFromPathIntegralInQM In Quantum Mechanics
+            %p
+              The following is the original observation of
+              = succeed "." do
+                %a{:href => "path+integral#Feynman48"} Feynman 1948, p. 381
+            %p
+              (This has been recalled by
+              = succeed ";" do
+                %a{:href => "path+integral#FeynmanHibbsStyer2010"} Feynman, Hibbs &amp; Styer 2010 (7.45)
+              = succeed ";" do
+                %a{:href => "path+integral#Shulman1981"} Schulman 1981, Ch. 8
+              = succeed ";" do
+                %a{:href => "path+integral#Nagaosa99"} Nagaosa 1999, pp. 33
+              = succeed ";" do
+                %a{:href => "path+integral#Ong2012"} Ong 2012
+              = succeed "," do
+                %a{:href => "path+integral#Rischke21\n"} Rischke 2021 Section 5.6
+              %a.existingWikiWord{:href => "/nlab/show/Schwinger-Dyson+equation"} Schwinger-Dyson equation
+              in the argument nor comments on generalization beyond the 1d discretized nonrelativistic path integral that Feynman considered and which we recall now.)
+            %p
+              %br/
+            %p
+              Consider the
+              %a.existingWikiWord{:href => "/nlab/show/path+integral"} path integral
+              for a
+              %a.existingWikiWord{:href => "/nlab/show/particle"} particle
+              propagating on a
+              %a.existingWikiWord{:href => "/nlab/show/circle"} circle
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msup
+                        %mi S
+                        %mn 1
+                    %annotation{:encoding => "application/x-tex"} S^1
+              %a.existingWikiWord{:href => "/nlab/show/integral"} integral
+              over positions
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi x
+                      %mi t
+                  %annotation{:encoding => "application/x-tex"} x_t
+              at
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi N
+                  %annotation{:encoding => "application/x-tex"} N
+              discrete time steps
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi t
+                      %mo ∈
+                      %mstyle{:mathvariant => "bold"}
+                        %mi N
+                      %mo ≔
+                      %mo{:stretchy => "false"} {
+                      %mn 0
+                      %mo ,
+                      %mn 1
+                      %mo ,
+                      %mi ⋯
+                      %mo ,
+                      %mi N
+                      %mo −
+                      %mn 1
+                      %mo{:stretchy => "false"} }
+                    %annotation{:encoding => "application/x-tex"} t \in \mathbf{N} \coloneqq \{0, 1, \cdots, N-1\}
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi x
+                    %mo{:lspace => "verythinmathspace"} :
+                    %mstyle{:mathvariant => "bold"}
+                      %mi N
+                    %mo ⟶
+                    %msup
+                      %mi S
+                      %mn 1
+                    %mpadded{:width => "0"}
+                      %mspace{:width => "thinmathspace"}
+                    %mo .
+                  %annotation{:encoding => "application/x-tex"}
+                    x \colon \mathbf{N} \longrightarrow S^1
+                    \\mathrlap\,.
+            %p
+              To recall that the
+              %a.existingWikiWord{:href => "/nlab/show/quantum+probability+theory"} quantum expectation value
+              of an
+              %a.existingWikiWord{:href => "/nlab/show/observable"} observable
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi O
+                    %mo{:lspace => "verythinmathspace"} :
+                    %mo{:stretchy => "false"} (
+                    %msup
+                      %mi S
+                      %mn 1
+                    %msup
+                      %mo{:stretchy => "false"} )
+                      %mstyle{:mathvariant => "bold"}
+                        %mi N
+                    %mo ⟶
+                    %mi ℂ
+                  %annotation{:encoding => "application/x-tex"} O \colon (S^1) ^{\mathbf{N}} \longrightarrow \mathbb{C}
+              with respect to a
+              %a.existingWikiWord{:href => "/nlab/show/pure+quantum+state"} pure quantum state
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi ψ
+                    %mo{:lspace => "verythinmathspace"} :
+                    %msup
+                      %mi S
+                      %mn 1
+                    %mo ⟶
+                    %mi ℂ
+                  %annotation{:encoding => "application/x-tex"} \psi \colon S^1 \longrightarrow \mathbb{C}
+              is expressed as the following (discretized) path integral:
+            #eq:ExpectationValuesForParticleOnS1ViaDiscretized.maruku-equation
+              %span.maruku-eq-number (2)
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo{:maxsize => "1.2em", :minsize => "1.2em"} ⟨
+                    %mi O
+                    %mo{:maxsize => "1.2em", :minsize => "1.2em"} ⟩
+                    %mspace{:width => "thickmathspace"}
+                    %mo ≔
+                    %mspace{:width => "thickmathspace"}
+                    %mstyle{:displaystyle => "false"}
+                      %mfrac
+                        %mn 1
+                        %mi 𝒩
+                    %mo ∫
+                    %mi O
+                    %mo{:stretchy => "false"} (
+                    %mi x
+                    %mo{:stretchy => "false"} )
+                    %mspace{:width => "thinmathspace"}
+                    %mi exp
+                    %mo{:maxsize => "1.2em", :minsize => "1.2em"} (
+                    %mstyle{:displaystyle => "false"}
+                      %mfrac
+                        %mi{:mathvariant => "normal"} i
+                        %mi ℏ
+                    %mi S
+                    %mo{:stretchy => "false"} (
+                    %mi x
+                    %mo{:stretchy => "false"} )
+                    %mo{:maxsize => "1.2em", :minsize => "1.2em"} )
+                    %mspace{:width => "thinmathspace"}
+                    %msup
+                      %mi ψ
+                      %mo *
+                    %mo{:stretchy => "false"} (
+                    %msub
+                      %mi x
+                      %mi N
+                    %mo{:stretchy => "false"} )
+                    %mi ψ
+                    %mo{:stretchy => "false"} (
+                    %msub
+                      %mi x
+                      %mn 0
+                    %mo{:stretchy => "false"} )
+                    %mspace{:width => "thinmathspace"}
+                    %mi D
+                    %mi x
+                    %mpadded{:width => "0"}
+                      %mrow
+                        %mspace{:width => "thinmathspace"}
+                        %mo ,
+                  %annotation{:encoding => "application/x-tex"}
+                    \\big\langle
+                    O
+                    \\big\rangle
+                    \\;\coloneqq\;
+                    \\tfrac{1}{\mathcal{N}}
+                    \\int
+                    O(x)
+                    \\,
+                    \\exp\big(\tfrac{\mathrm{i}}{\hbar} S(x)\big)
+                    \\,
+                    \\psi^\ast(x_N)
+                    \\psi(x_0)
+                    \\,
+                    D x
+                    \\mathrlap{\,,}
+            %p where
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi 𝒩
+                    %mo ≔
+                    %mo ∫
+                    %mi exp
+                    %mo{:maxsize => "1.2em", :minsize => "1.2em"} (
+                    %mstyle{:displaystyle => "false"}
+                      %mfrac
+                        %mi{:mathvariant => "normal"} i
+                        %mi ℏ
+                    %mi S
+                    %mo{:stretchy => "false"} (
+                    %mi x
+                    %mo{:stretchy => "false"} )
+                    %mo{:maxsize => "1.2em", :minsize => "1.2em"} )
+                    %mspace{:width => "thinmathspace"}
+                    %msup
+                      %mi ψ
+                      %mo *
+                    %mo{:stretchy => "false"} (
+                    %msub
+                      %mi x
+                      %mi N
+                    %mo{:stretchy => "false"} )
+                    %mi ψ
+                    %mo{:stretchy => "false"} (
+                    %msub
+                      %mi x
+                      %mn 0
+                    %mo{:stretchy => "false"} )
+                    %mspace{:width => "thinmathspace"}
+                    %mi D
+                    %mi x
+                  %annotation{:encoding => "application/x-tex"}
+                    \\mathcal{N}
+                    \\coloneqq
+                    \\int
+                    \\exp\big(\tfrac{\mathrm{i}}{\hbar} S(x)\big)
+                    \\,
+                    \\psi^\ast(x_N)
+                    \\psi(x_0)
+                    \\,
+                    D x
+            %p
+              is the normalization factor (the “
+              %a.existingWikiWord{:href => "/nlab/show/partition+function"}> partition function
+              ”), and where
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo ∫
+                    %mi D
+                    %mi x
+                    %mspace{:width => "thinmathspace"}
+                    %mo ≔
+                    %mspace{:width => "thinmathspace"}
+                    %msub
+                      %mo ∫
+                      %mrow
+                        %msup
+                          %mi S
+                          %mn 1
+                    %mi ⋯
+                    %msub
+                      %mo ∫
+                      %mrow
+                        %msup
+                          %mi S
+                          %mn 1
+                    %mi{:mathvariant => "normal"} d
+                    %msub
+                      %mi x
+                      %mn 0
+                    %mi ⋯
+                    %mi{:mathvariant => "normal"} d
+                    %msub
+                      %mi x
+                      %mrow
+                        %mstyle{:mathvariant => "bold"}
+                          %mi N
+                        %mo −
+                        %mn 1
+                    %mpadded{:width => "0"}
+                      %mrow
+                        %mspace{:width => "thinmathspace"}
+                        %mo .
+                  %annotation{:encoding => "application/x-tex"}
+                    \\int D x
+                    \\,\coloneqq\,
+                    \\int_{S^1} \cdots \int_{S^1}
+                    \\mathrm{d}x_0 \cdots \mathrm{d}x_{\mathbf{N}-1}
+                    \\mathrlap{\,.}
+            %p
+              With that simple setup, ordinary
+              %a.existingWikiWord{:href => "/nlab/show/integration+by+parts"} integration by parts
+              gives for an observable which is a
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/partial+derivative"} partial derivative
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi O
+                    %mo{:stretchy => "false"} (
+                    %mi x
+                    %mo{:stretchy => "false"} )
+                    %mspace{:width => "thinmathspace"}
+                    %mo =
+                    %mspace{:width => "thinmathspace"}
+                    %mstyle{:displaystyle => "false"}
+                      %mfrac
+                        %mrow
+                          %mo ∂
+                          %mi F
+                        %mrow
+                          %mo ∂
+                          %msub
+                            %mi x
+                            %mi t
+                    %mo{:stretchy => "false"} (
+                    %mi x
+                    %mo{:stretchy => "false"} )
+                    %mspace{:width => "thinmathspace"}
+                    %mo ,
+                    %mphantom
+                      %mrow
+                        %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                        %mo −
+                    %mn 1
+                    %mo &lt;
+                    %mi t
+                    %mo &lt;
+                    %mi N
+                    %mpadded{:width => "0"}
+                      %mrow
+                        %mspace{:width => "thinmathspace"}
+                        %mo ,
+                  %annotation{:encoding => "application/x-tex"}
+                    O(x)
+                    \\,=\,
+                    \\tfrac{\partial F}{\partial x_t} (x)
+                    \\,,
+                    \\phantom{--}
+                    1 \lt t \lt N
+                    \\mathrlap{\,,}
+            %p
+              that its
+              %a.existingWikiWord{:href => "/nlab/show/expectation+value"} expectation value
+              is equivalently expressed as:
+            #eq:PartialIntegrationInDiscretizedPathIntegral.maruku-equation
+              %span.maruku-eq-number (3)
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mrow
+                      %mtable{:columnalign => "right left right left right left right left right left", :columnspacing => "0em", :displaystyle => "true"}
+                        %mtr
+                          %mtd
+                            %mo{:maxsize => "1.2em", :minsize => "1.2em"} ⟨
+                            %mi O
+                            %mo{:maxsize => "1.2em", :minsize => "1.2em"} ⟩
+                          %mtd
+                            %mo ≡
+                            %mo{:maxsize => "1.2em", :minsize => "1.2em"} ⟨
+                            %mstyle{:displaystyle => "false"}
+                              %mfrac
+                                %mrow
+                                  %mo ∂
+                                  %mi F
+                                %mrow
+                                  %mo ∂
+                                  %msub
+                                    %mi x
+                                    %mi t
+                            %mo{:maxsize => "1.2em", :minsize => "1.2em"} ⟩
+                        %mtr
+                          %mtd
+                          %mtd
+                            %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                            %mstyle{:displaystyle => "false"}
+                              %mfrac
+                                %mi{:mathvariant => "normal"} i
+                                %mi ℏ
+                            %mo{:maxsize => "1.2em", :minsize => "1.2em"} ⟨
+                            %mi F
+                            %mstyle{:displaystyle => "false"}
+                              %mfrac
+                                %mrow
+                                  %mo ∂
+                                  %mi S
+                                %mrow
+                                  %mo ∂
+                                  %msub
+                                    %mi x
+                                    %mi t
+                            %mo{:maxsize => "1.2em", :minsize => "1.2em"} ⟩
+                  %annotation{:encoding => "application/x-tex"}
+                    \\begin{aligned}
+                    \\big\langle
+                    O
+                    \\big\rangle
+                    \&amp; \equiv
+                    \\big\langle
+                    \\tfrac{\partial F}{\partial x_t}
+                    \\big\rangle
+                    \\\
+                    \&amp;
+                    \-\tfrac{\mathrm{i}}{\hbar}
+                    \\big\langle
+                    F
+                    \\tfrac{\partial S}{\partial x_t}
+                    \\big\rangle
+                    \\end{aligned}
+            %p
+              (which we may recognize as the 1d discretized form of what is now called the
+              %em
+                %a.existingWikiWord{:href => "/nlab/show/Schwinger-Dyson+equation"} Schwinger-Dyson equation
+              in
+              %a.existingWikiWord{:href => "/nlab/show/quantum+field+theory"} quantum field theory
+              more generally).
+            %p
+              Specializing this to the
+              %a.existingWikiWord{:href => "/nlab/show/free+field+theory"} free
+              %a.existingWikiWord{:href => "/nlab/show/non-relativistic+particle"} non-relativistic particle
+              of
+              %a.existingWikiWord{:href => "/nlab/show/mass"} mass
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi m
+                      %mo &gt;
+                      %mn 0
+                    %annotation{:encoding => "application/x-tex"} m \gt 0
+              %a.existingWikiWord{:href => "/nlab/show/action+functional"} action functional
+              is
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi S
+                    %mo{:stretchy => "false"} (
+                    %mi x
+                    %mo{:stretchy => "false"} )
+                    %mspace{:width => "thinmathspace"}
+                    %mo =
+                    %mspace{:width => "thinmathspace"}
+                    %munder
+                      %mo{:lspace => "thinmathspace", :rspace => "thinmathspace"} ∑
+                      %mrow
+                        %mn 1
+                        %mo ≤
+                        %mi t
+                        %mo &lt;
+                        %mi N
+                    %mstyle{:displaystyle => "false"}
+                      %mfrac
+                        %mi m
+                        %mn 2
+                    %mo{:stretchy => "false"} (
+                    %msub
+                      %mi x
+                      %mrow
+                        %mi t
+                        %mo +
+                        %mn 1
+                    %mo −
+                    %msub
+                      %mi x
+                      %mi t
+                    %msup
+                      %mo{:stretchy => "false"} )
+                      %mn 2
+                    %mstyle{:displaystyle => "false"}
+                      %mfrac
+                        %mn 1
+                        %mi N
+                    %mpadded{:width => "0"}
+                      %mrow
+                        %mspace{:width => "thinmathspace"}
+                        %mo ,
+                  %annotation{:encoding => "application/x-tex"}
+                    S(x)
+                    \\,=\,
+                    \\sum_{1 \leq t \lt N}
+                    \\tfrac{m}{2}
+                    (
+                    x_{t+1}
+                    \-
+                    x_{t}
+                    )^2
+                    \\tfrac{1}{N}
+                    \\mathrlap{\,,}
+            %p the key point to observe is that
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mstyle{:displaystyle => "false"}
+                      %mfrac
+                        %mrow
+                          %mo ∂
+                          %mi S
+                        %mrow
+                          %mo ∂
+                          %msub
+                            %mi x
+                            %mi t
+                    %mspace{:width => "thinmathspace"}
+                    %mo =
+                    %mspace{:width => "thinmathspace"}
+                    %mi m
+                    %mstyle{:displaystyle => "false"}
+                      %mfrac
+                        %mrow
+                          %mo{:stretchy => "false"} (
+                          %msub
+                            %mi x
+                            %mi t
+                          %mo −
+                          %msub
+                            %mi x
+                            %mrow
+                              %mi t
+                              %mo −
+                              %mn 1
+                          %mo{:stretchy => "false"} )
+                        %mrow
+                          %mn 1
+                          %mo{:stretchy => "false"} /
+                          %mi N
+                    %mo −
+                    %mi m
+                    %mstyle{:displaystyle => "false"}
+                      %mfrac
+                        %mrow
+                          %mo{:stretchy => "false"} (
+                          %msub
+                            %mi x
+                            %mrow
+                              %mi t
+                              %mo +
+                              %mn 1
+                          %mo −
+                          %msub
+                            %mi t
+                            %mi n
+                          %mo{:stretchy => "false"} )
+                        %mrow
+                          %mn 1
+                          %mo{:stretchy => "false"} /
+                          %mi N
+                    %mpadded{:width => "0"}
+                      %mrow
+                        %mspace{:width => "thinmathspace"}
+                        %mo .
+                  %annotation{:encoding => "application/x-tex"}
+                    \\tfrac{\partial S}{\partial x_t}
+                    \\,=\,
+                    m
+                    \\tfrac{
+                    (x_{t} - x_{t-1})
+                    }{1/N}
+                    \-
+                    m
+                    \\tfrac{
+                    (x_{t+1} - t_n)
+                    }{1/N}
+                    \\mathrlap{\,.}
+            %p
+              Using this when entering equation
+              %a.maruku-eqref{:href => "#eq:PartialIntegrationInDiscretizedPathIntegral"} (3)
+              with the choice
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi F
+                    %mo ≔
+                    %msub
+                      %mi x
+                      %mi t
+                  %annotation{:encoding => "application/x-tex"}
+                    F
+                    \\coloneqq
+                    x_t
+            %p gives:
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi{:mathvariant => "normal"} i
+                    %mi ℏ
+                    %mo =
+                    %mo{:maxsize => "1.2em", :minsize => "1.2em"} ⟨
+                    %msub
+                      %mi x
+                      %mi t
+                    %mspace{:width => "thinmathspace"}
+                    %mi m
+                    %mstyle{:displaystyle => "false"}
+                      %mfrac
+                        %mrow
+                          %mo{:stretchy => "false"} (
+                          %msub
+                            %mi x
+                            %mi t
+                          %mo −
+                          %msub
+                            %mi x
+                            %mrow
+                              %mi t
+                              %mo −
+                              %mn 1
+                          %mo{:stretchy => "false"} )
+                        %mrow
+                          %mn 1
+                          %mo{:stretchy => "false"} /
+                          %mi N
+                    %mo{:maxsize => "1.2em", :minsize => "1.2em"} ⟩
+                    %mo −
+                    %mo{:maxsize => "1.2em", :minsize => "1.2em"} ⟨
+                    %mi m
+                    %mstyle{:displaystyle => "false"}
+                      %mfrac
+                        %mrow
+                          %mo{:stretchy => "false"} (
+                          %msub
+                            %mi x
+                            %mrow
+                              %mi t
+                              %mo +
+                              %mn 1
+                          %mo −
+                          %msub
+                            %mi x
+                            %mi t
+                          %mo{:stretchy => "false"} )
+                        %mrow
+                          %mn 1
+                          %mo{:stretchy => "false"} /
+                          %mi N
+                    %mspace{:width => "thinmathspace"}
+                    %msub
+                      %mi x
+                      %mi t
+                    %mo{:maxsize => "1.2em", :minsize => "1.2em"} ⟩
+                    %mpadded{:width => "0"}
+                      %mrow
+                        %mspace{:width => "thinmathspace"}
+                        %mo .
+                  %annotation{:encoding => "application/x-tex"}
+                    \\mathrm{i}\hbar
+                    \=
+                    \\big\langle
+                    x_t
+                    \\,
+                    m
+                    \\tfrac{
+                    (x_{t} - x_{t-1})
+                    }{1/N}
+                    \\big\rangle
+                    \-
+                    \\big\langle
+                    m
+                    \\tfrac{
+                    (x_{t+1} - x_{t})
+                    }{1/N}
+                    \\,
+                    x_t
+                    \\big\rangle
+                    \\mathrlap{\,.}
+            %p Here we recognize
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi p
+                      %mrow
+                        %mi t
+                        %mo +
+                        %mn 1
+                        %mo{:stretchy => "false"} /
+                        %mn 2
+                    %mo ≔
+                    %mi m
+                    %mstyle{:displaystyle => "false"}
+                      %mfrac
+                        %mrow
+                          %mo{:stretchy => "false"} (
+                          %msub
+                            %mi x
+                            %mrow
+                              %mi t
+                              %mo +
+                              %mn 1
+                          %mo −
+                          %msub
+                            %mi x
+                            %mi t
+                          %mo{:stretchy => "false"} )
+                        %mrow
+                          %mn 1
+                          %mo{:stretchy => "false"} /
+                          %mi N
+                  %annotation{:encoding => "application/x-tex"}
+                    p_{t+1/2}
+                    \\coloneqq
+                    m
+                    \\tfrac{
+                    (x_{t+1} - x_{t})
+                    }
+                    {1/N}
+            %p
+              as the discrete approximation to the
+              %a.existingWikiWord{:href => "/nlab/show/momentum"} momentum
+              observable at time
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi t
+                      %mo +
+                      %mn 1
+                      %mo{:stretchy => "false"} /
+                      %mn 2
+                    %annotation{:encoding => "application/x-tex"} t + 1/2
+            #eq:FeynmanCCRViaTimeShiftedProduct.maruku-equation
+              %span.maruku-eq-number (4)
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mrow
+                      %mtable{:columnalign => "right left right left right left right left right left", :columnspacing => "0em", :displaystyle => "true"}
+                        %mtr
+                          %mtd
+                            %mi{:mathvariant => "normal"} i
+                            %mi ℏ
+                          %mtd
+                            %mo =
+                            %mo{:maxsize => "1.2em", :minsize => "1.2em"} ⟨
+                            %msub
+                              %mi x
+                              %mi t
+                            %mo ⋅
+                            %msub
+                              %mi p
+                              %mrow
+                                %mi t
+                                %mo −
+                                %mn 1
+                                %mo{:stretchy => "false"} /
+                                %mn 2
+                            %mspace{:width => "thinmathspace"}
+                            %mo −
+                            %mspace{:width => "thinmathspace"}
+                            %msub
+                              %mi p
+                              %mrow
+                                %mi t
+                                %mo +
+                                %mn 1
+                                %mo{:stretchy => "false"} /
+                                %mn 2
+                            %mo ⋅
+                            %msub
+                              %mi x
+                              %mi t
+                            %mo{:maxsize => "1.2em", :minsize => "1.2em"} ⟩
+                            %mspace{:width => "thinmathspace"}
+                            %mo .
+                  %annotation{:encoding => "application/x-tex"}
+                    \\begin{aligned}
+                    \\mathrm{i}\hbar
+                    \&amp; =
+                    \\big\langle
+                    x_t
+                    \\cdot
+                    p_{t - 1/2}
+                    \\,-\,
+                    p_{t + 1/2}
+                    \\cdot
+                    x_t
+                    \\big\rangle
+                    \\,.
+                    \\end{aligned}
+            %p In the time continuum limit, this becomes
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi{:mathvariant => "normal"} i
+                    %mi ℏ
+                    %mspace{:width => "thinmathspace"}
+                    %mo =
+                    %mspace{:width => "thinmathspace"}
+                    %mo{:maxsize => "1.2em", :minsize => "1.2em"} ⟨
+                    %msub
+                      %mi x
+                      %mi t
+                    %mo ⋅
+                    %msub
+                      %mi p
+                      %mrow
+                        %mi t
+                        %mo −
+                        %mi ϵ
+                    %mspace{:width => "thinmathspace"}
+                    %mo −
+                    %mspace{:width => "thinmathspace"}
+                    %msub
+                      %mi p
+                      %mrow
+                        %mi t
+                        %mo +
+                        %mi ϵ
+                    %mo ⋅
+                    %msub
+                      %mi x
+                      %mi t
+                    %mo{:maxsize => "1.2em", :minsize => "1.2em"} ⟩
+                  %annotation{:encoding => "application/x-tex"}
+                    \\mathrm{i}\hbar
+                    \\,=\,
+                    \\big\langle
+                    x_t
+                    \\cdot
+                    p_{t - \epsilon}
+                    \\,-\,
+                    p_{t + \epsilon}
+                    \\cdot
+                    x_t
+                    \\big\rangle
+            %p
+              for
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi ϵ
+                      %mo →
+                      %mn 0
+                    %annotation{:encoding => "application/x-tex"} \epsilon \to 0
+            %p
+              But this is clearly the path integral expression for what in operator formalism is the
+              %a.existingWikiWord{:href => "/nlab/show/canonical+commutation+relation"} canonical commutation relation
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi{:mathvariant => "normal"} i
+                    %mi ℏ
+                    %mo =
+                    %mover
+                      %mi x
+                      %mo{:stretchy => "false"} ^
+                    %mo ⋅
+                    %mover
+                      %mi p
+                      %mo{:stretchy => "false"} ^
+                    %mo −
+                    %mover
+                      %mi p
+                      %mo{:stretchy => "false"} ^
+                    %mo ⋅
+                    %mover
+                      %mi x
+                      %mo{:stretchy => "false"} ^
+                    %mspace{:width => "thinmathspace"}
+                    %mo .
+                  %annotation{:encoding => "application/x-tex"}
+                    \\mathrm{i}\hbar
+                    \=
+                    \\hat x \cdot \hat p - \hat p \cdot \hat x
+                    \\,.
+            %p
+              In conclusion, the observable corresponding to a quantum operator product
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi B
+                    %mo ⋅
+                    %mi A
+                  %annotation{:encoding => "application/x-tex"} B \cdot A
+              of observables at times
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi t
+                  %annotation{:encoding => "application/x-tex"} t
+              may be thought of as the result of first shifting the temporal supports of the observables so that
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi B
+                  %annotation{:encoding => "application/x-tex"} B
+              is observation at a time just a little
+              %em after
+              that of
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi A
+                    %annotation{:encoding => "application/x-tex"} A
+            %p
+              As Feynman 1948 also noticed, the same conclusion holds with an ordinary
+              %a.existingWikiWord{:href => "/nlab/show/potential+energy"} potential energy
+              term included in the
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/action+functional"} action functional
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi ϵ
+                    %mo →
+                    %mn 0
+                  %annotation{:encoding => "application/x-tex"} \epsilon\to 0
+              limit.
+            %h4#CCRFromPathIntegralInQFT In Quantum Field Theory
+            %p
+              In fact, by using the
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/Schwinger-Dyson+equation"} Schwinger-Dyson equation
+              = succeed ")" do
+                %a{:href => "https://physics.stackexchange.com/a/685812/5603"} physics.SE:685812
+              %a.existingWikiWord{:href => "/nlab/show/quantum+mechanics"} quantum mechanics
+              of a
+              %a.existingWikiWord{:href => "/nlab/show/nonrelativistic+particle"} nonrelativistic particle
+              to general
+              %a.existingWikiWord{:href => "/nlab/show/quantum+field+theories"} quantum field theories
+              with ordinary
+              %a.existingWikiWord{:href => "/nlab/show/potential+energy"} potential energy
+              terms, as follows.
+            %blockquote
+              %p
+                (Conversely, the product of
+                = succeed "-values" do
+                  %a.existingWikiWord{:href => "/nlab/show/observable"} observable
+                %a.existingWikiWord{:href => "/nlab/show/time-ordered+product"} time-ordered product
+                of the corresponding
+                %a.existingWikiWord{:href => "/nlab/show/linear+operators"} linear operators
+                (eg.
+                = succeed ";" do
+                  %a{:href => "path+integral#Polchinski98"} Polchinski 1998 (A.1.17)
+                = succeed ".)" do
+                  %a{:href => "path+integral#Rischke21"} Rischke 2021 (5.63)
+            %p
+              Imagine a
+              = succeed "-formulation" do
+                %a.existingWikiWord{:href => "/nlab/show/path+integral"} path integral
+              = succeed "-dimensional" do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mn 1
+                      %mo +
+                      %mi d
+                    %annotation{:encoding => "application/x-tex"} 1+d
+              %a.existingWikiWord{:href => "/nlab/show/quantum+field+theory"} quantum field theory
+              determined by a
+              %a.existingWikiWord{:href => "/nlab/show/Lagrangian+density"} Lagrangian density
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi L
+                  %annotation{:encoding => "application/x-tex"} L
+              with an ordinary
+              %a.existingWikiWord{:href => "/nlab/show/potential+energy"} potential energy
+              term and denote the corresponding
+              %a.existingWikiWord{:href => "/nlab/show/expectation+values"} expectation values
+              in some state by
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo{:stretchy => "false"} ⟨
+                    %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                    %mo{:stretchy => "false"} ⟩
+                  %annotation{:encoding => "application/x-tex"} \langle-\rangle
+              — or else regard
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo{:stretchy => "false"} ⟨
+                    %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                    %mo{:stretchy => "false"} ⟩
+                  %annotation{:encoding => "application/x-tex"} \langle-\rangle
+              as denoting the
+              %a.existingWikiWord{:href => "/nlab/show/time-ordered+product"} time-ordered product
+              of its arguments, that’s all we need.
+            %p
+              Let
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi ϕ
+                  %annotation{:encoding => "application/x-tex"} \phi
+              be one of the
+              %a.existingWikiWord{:href => "/nlab/show/field+%28physics%29"} field
+              species. (It could be a
+              %a.existingWikiWord{:href => "/nlab/show/scalar+field"} scalar field
+              but it may just as well be a component of any more complex field.)
+            %p
+              Assuming we are on cylindrical
+              %a.existingWikiWord{:href => "/nlab/show/Minkowski+spacetime"} Minkowski spacetime
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msup
+                      %mi ℝ
+                      %mrow
+                        %mn 1
+                        %mo ,
+                        %mi d
+                    %mo{:stretchy => "false"} /
+                    %msup
+                      %mi ℤ
+                      %mi d
+                  %annotation{:encoding => "application/x-tex"} \mathbb{R}^{1,d} / \mathbb{Z}^{d}
+              — just for notational simplicity — then the
+              %a.existingWikiWord{:href => "/nlab/show/Schwinger-Dyson+equation"} Schwinger-Dyson equation
+              for field insertion
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi ϕ
+                    %mo{:stretchy => "false"} (
+                    %mi y
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} \phi(y)
+              says that
+            #eq:SchwingerDysonForComputingCCRs.maruku-equation
+              %span.maruku-eq-number (5)
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo{:maxsize => "2.4em", :minsize => "2.4em"} ⟨
+                    %munder
+                      %munder
+                        %mrow
+                          %mo{:maxsize => "1.8em", :minsize => "1.8em"} (
+                          %mfrac
+                            %mrow
+                              %mo ∂
+                              %mi L
+                            %mrow
+                              %mo ∂
+                              %mi ϕ
+                          %mo{:stretchy => "false"} (
+                          %mi x
+                          %mo{:stretchy => "false"} )
+                          %mo −
+                          %msub
+                            %mo ∂
+                            %mi μ
+                          %mfrac
+                            %mrow
+                              %mo ∂
+                              %mi L
+                            %mrow
+                              %mo ∂
+                              %mo{:stretchy => "false"} (
+                              %msub
+                                %mo ∂
+                                %mi μ
+                              %mi ϕ
+                              %mo{:stretchy => "false"} )
+                          %mo{:maxsize => "1.8em", :minsize => "1.8em"} )
+                        %mo ⏟
+                      %mrow
+                        %mi δ
+                        %mi S
+                        %mo{:stretchy => "false"} /
+                        %mi δ
+                        %mi ϕ
+                        %mo{:stretchy => "false"} (
+                        %mi x
+                        %mo{:stretchy => "false"} )
+                    %mspace{:width => "thinmathspace"}
+                    %mi ϕ
+                    %mo{:stretchy => "false"} (
+                    %mi y
+                    %mo{:stretchy => "false"} )
+                    %mo{:maxsize => "2.4em", :minsize => "2.4em"} ⟩
+                    %mspace{:width => "thickmathspace"}
+                    %mo =
+                    %mspace{:width => "thickmathspace"}
+                    %mi{:mathvariant => "normal"} i
+                    %mi ℏ
+                    %mrow
+                      %mo ⟨
+                      %mfrac
+                        %mrow
+                          %mo ∂
+                          %mi ϕ
+                          %mo{:stretchy => "false"} (
+                          %mi y
+                          %mo{:stretchy => "false"} )
+                        %mrow
+                          %mo ∂
+                          %mi ϕ
+                      %mo{:stretchy => "false"} (
+                      %mi x
+                      %mo{:stretchy => "false"} )
+                      %mo ⟩
+                    %mspace{:width => "thickmathspace"}
+                    %mo =
+                    %mspace{:width => "thickmathspace"}
+                    %mi{:mathvariant => "normal"} i
+                    %mi ℏ
+                    %mspace{:width => "thinmathspace"}
+                    %msup
+                      %mi δ
+                      %mrow
+                        %mn 1
+                        %mo +
+                        %mi d
+                    %mo{:stretchy => "false"} (
+                    %mi x
+                    %mo −
+                    %mi y
+                    %mo{:stretchy => "false"} )
+                    %mpadded{:width => "0"}
+                      %mrow
+                        %mspace{:width => "thinmathspace"}
+                        %mo .
+                  %annotation{:encoding => "application/x-tex"}
+                    \\bigg\langle
+                    \\underset
+                    {
+                    \\delta S / \delta \phi(x)
+                    }{
+                    \\underbrace{
+                    \\Big(
+                    \\frac{ \partial L }{ \partial \phi }
+                    (x)
+                    \-
+                    \\partial_\mu
+                    \\frac{ \partial L }{ \partial (\partial_\mu \phi) }
+                    \\Big)
+                    }
+                    }
+                    \\,
+                    \\phi(y)
+                    \\bigg\rangle
+                    \\;=\;
+                    \\mathrm{i}\hbar
+                    \\left\langle
+                    \\frac{ \partial \phi(y) }{ \partial \phi}(x)
+                    \\right\rangle
+                    \\;=\;
+                    \\mathrm{i}\hbar
+                    \\,
+                    \\delta^{1+d}(x-y)
+                    \\mathrlap{\,.}
+            %blockquote
+              %p
+                This is the field theoretic version of Feynman’s
+                = succeed "." do
+                  %a.maruku-eqref{:href => "#eq:PartialIntegrationInDiscretizedPathIntegral"} (3)
+            %p
+              Now consider the
+              %a.existingWikiWord{:href => "/nlab/show/integration"} integration
+              of this expression in the variable
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi x
+                  %annotation{:encoding => "application/x-tex"} x
+              over the spacetime region in a small time interval
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo{:stretchy => "false"} (
+                    %msup
+                      %mi y
+                      %mn 0
+                    %mo −
+                    %mi ϵ
+                    %mo ,
+                    %msup
+                      %mi y
+                      %mn 0
+                    %mo +
+                    %mi ϵ
+                    %mo{:stretchy => "false"} )
+                    %mo ×
+                    %msup
+                      %mi ℝ
+                      %mi d
+                    %mo{:stretchy => "false"} /
+                    %msup
+                      %mi ℤ
+                      %mi d
+                  %annotation{:encoding => "application/x-tex"} (y^0- \epsilon, y^0 + \epsilon) \times \mathbb{R}^{d}/\mathbb{Z}^{d}
+              and let
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi ϵ
+                      %mo →
+                      %mn 0
+                    %annotation{:encoding => "application/x-tex"} \epsilon \to 0
+            %ol
+              %li
+                %p
+                  the first summand on the left of
+                  %a.maruku-eqref{:href => "#eq:SchwingerDysonForComputingCCRs"} (5)
+                  vanishes (being asymptotically proportional to
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi ϵ
+                      %annotation{:encoding => "application/x-tex"} \epsilon
+                  since we are assuming that the potential term and hence the
+                  = succeed "-dependence" do
+                    %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                      %semantics
+                        %mrow
+                          %mi ϕ
+                        %annotation{:encoding => "application/x-tex"} \phi
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi L
+                      %annotation{:encoding => "application/x-tex"} L
+                  is that of an ordinary smooth function),
+              %li
+                %p
+                  by
+                  %a.existingWikiWord{:href => "/nlab/show/Stokes%27s+theorem"} Stokes's theorem
+                  the spatial integral over the spatial components of the second summand vanishes and
+              %li
+                %p
+                  the remaining temporal integral of its temporal component gives two boundary terms (where we now decompose
+                  = succeed "):" do
+                    %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                      %semantics
+                        %mrow
+                          %mi x
+                          %mo =
+                          %mo{:stretchy => "false"} (
+                          %msup
+                            %mi x
+                            %mn 0
+                          %mo ,
+                          %mover
+                            %mi x
+                            %mo{:stretchy => "false"} →
+                          %mo{:stretchy => "false"} )
+                        %annotation{:encoding => "application/x-tex"} x = (x^0, \vec x)
+            #eq:IntegratedSchwingerDysonForComputingCCRs.maruku-equation
+              %span.maruku-eq-number (6)
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %munder
+                      %mi lim
+                      %munder
+                        %mo ⟶
+                        %mrow
+                          %mi ϵ
+                          %mo →
+                          %mn 0
+                    %msub
+                      %mo ∫
+                      %mrow
+                        %msup
+                          %mi ℝ
+                          %mi d
+                        %mo{:stretchy => "false"} /
+                        %msup
+                          %mi ℤ
+                          %mi d
+                    %msup
+                      %mi{:mathvariant => "normal"} d
+                      %mi d
+                    %mover
+                      %mi x
+                      %mo{:stretchy => "false"} →
+                    %mspace{:width => "thinmathspace"}
+                    %mrow
+                      %mo ⟨
+                      %mfrac
+                        %mrow
+                          %mo ∂
+                          %mi L
+                        %mrow
+                          %mo ∂
+                          %mo{:stretchy => "false"} (
+                          %msub
+                            %mo ∂
+                            %mn 0
+                          %mi ϕ
+                          %mo{:stretchy => "false"} )
+                      %mo{:stretchy => "false"} (
+                      %msup
+                        %mi y
+                        %mn 0
+                      %mo +
+                      %mi ϵ
+                      %mo ,
+                      %mover
+                        %mi x
+                        %mo{:stretchy => "false"} →
+                      %mo{:stretchy => "false"} )
+                      %mspace{:width => "thinmathspace"}
+                      %mi ϕ
+                      %mo{:stretchy => "false"} (
+                      %msup
+                        %mi y
+                        %mn 0
+                      %mo ,
+                      %mover
+                        %mi y
+                        %mo{:stretchy => "false"} →
+                      %mo{:stretchy => "false"} )
+                      %mspace{:width => "thickmathspace"}
+                      %mo −
+                      %mspace{:width => "thickmathspace"}
+                      %mfrac
+                        %mrow
+                          %mo ∂
+                          %mi L
+                        %mrow
+                          %mo ∂
+                          %mo{:stretchy => "false"} (
+                          %msub
+                            %mo ∂
+                            %mn 0
+                          %mi ϕ
+                          %mo{:stretchy => "false"} )
+                      %mo{:stretchy => "false"} (
+                      %msup
+                        %mi y
+                        %mn 0
+                      %mo −
+                      %mi ϵ
+                      %mo ,
+                      %mover
+                        %mi x
+                        %mo{:stretchy => "false"} →
+                      %mo{:stretchy => "false"} )
+                      %mspace{:width => "thinmathspace"}
+                      %mi ϕ
+                      %mo{:stretchy => "false"} (
+                      %msup
+                        %mi y
+                        %mn 0
+                      %mo ,
+                      %mover
+                        %mi y
+                        %mo{:stretchy => "false"} →
+                      %mo{:stretchy => "false"} )
+                      %mo ⟩
+                    %mspace{:width => "thickmathspace"}
+                    %mo =
+                    %mspace{:width => "thickmathspace"}
+                    %mo −
+                    %mi{:mathvariant => "normal"} i
+                    %mi ℏ
+                    %mpadded{:width => "0"}
+                      %mrow
+                        %mspace{:width => "thinmathspace"}
+                        %mo .
+                  %annotation{:encoding => "application/x-tex"}
+                    \\underset{\underset{\epsilon\to 0}{\longrightarrow}}{\lim}
+                    \\int_{\mathbb{R}^{d}/\mathbb{Z}^{d}}
+                    \\mathrm{d}^d \vec x
+                    \\,
+                    \\left\langle
+                    \\frac{ \partial L }{ \partial (\partial_0 \phi) }
+                    (y^0 + \epsilon, \vec x)
+                    \\,
+                    \\phi(y^0, \vec y)
+                    \\;-\;
+                    \\frac{ \partial L }{ \partial (\partial_0 \phi) }
+                    (y^0 - \epsilon, \vec x)
+                    \\,
+                    \\phi(y^0, \vec y)
+                    \\right\rangle
+                    \\;=\;
+                    \-\mathrm{i}\hbar
+                    \\mathrlap{\,.}
+            %p
+              Here we recognize the
+              %a.existingWikiWord{:href => "/nlab/show/canonical+momentum"} canonical momentum
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi π
+                  %annotation{:encoding => "application/x-tex"} \pi
+              to the field
+              = succeed ":" do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi ϕ
+                    %annotation{:encoding => "application/x-tex"} \phi
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi π
+                    %mo{:stretchy => "false"} (
+                    %mi x
+                    %mo{:stretchy => "false"} )
+                    %mspace{:width => "thickmathspace"}
+                    %mo ≔
+                    %mspace{:width => "thickmathspace"}
+                    %mfrac
+                      %mrow
+                        %mo ∂
+                        %mi L
+                      %mrow
+                        %mo ∂
+                        %mo{:stretchy => "false"} (
+                        %msub
+                          %mo ∂
+                          %mn 0
+                        %mi ϕ
+                        %mo{:stretchy => "false"} )
+                    %mo{:stretchy => "false"} (
+                    %mi x
+                    %mo{:stretchy => "false"} )
+                    %mpadded{:width => "0"}
+                      %mrow
+                        %mspace{:width => "thinmathspace"}
+                        %mo ,
+                  %annotation{:encoding => "application/x-tex"}
+                    \\pi(x)
+                    \\;\coloneqq\;
+                    \\frac{ \partial L }{ \partial (\partial_0 \phi) }(x)
+                    \\mathrlap{\,,}
+            %p so that
+            #eq:IntegratedSchwingerDysonForComputingCCRsViaMomenta.maruku-equation
+              %span.maruku-eq-number (7)
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %munder
+                      %mi lim
+                      %munder
+                        %mo ⟶
+                        %mrow
+                          %mi ϵ
+                          %mo →
+                          %mn 0
+                    %msub
+                      %mo ∫
+                      %mrow
+                        %msup
+                          %mi ℝ
+                          %mi d
+                        %mo{:stretchy => "false"} /
+                        %msup
+                          %mi ℤ
+                          %mi d
+                    %msup
+                      %mi{:mathvariant => "normal"} d
+                      %mi d
+                    %mi x
+                    %mspace{:width => "thinmathspace"}
+                    %mo{:maxsize => "1.8em", :minsize => "1.8em"} ⟨
+                    %mi π
+                    %mo{:stretchy => "false"} (
+                    %msup
+                      %mi y
+                      %mn 0
+                    %mo +
+                    %mi ϵ
+                    %mo ,
+                    %mover
+                      %mi x
+                      %mo{:stretchy => "false"} →
+                    %mo{:stretchy => "false"} )
+                    %mspace{:width => "thinmathspace"}
+                    %mi ϕ
+                    %mo{:stretchy => "false"} (
+                    %msup
+                      %mi y
+                      %mn 0
+                    %mo ,
+                    %mover
+                      %mi y
+                      %mo{:stretchy => "false"} →
+                    %mo{:stretchy => "false"} )
+                    %mspace{:width => "thickmathspace"}
+                    %mo −
+                    %mspace{:width => "thickmathspace"}
+                    %mi π
+                    %mo{:stretchy => "false"} (
+                    %msup
+                      %mi y
+                      %mn 0
+                    %mo −
+                    %mi ϵ
+                    %mo ,
+                    %mover
+                      %mi x
+                      %mo{:stretchy => "false"} →
+                    %mo{:stretchy => "false"} )
+                    %mspace{:width => "thinmathspace"}
+                    %mi ϕ
+                    %mo{:stretchy => "false"} (
+                    %msup
+                      %mi y
+                      %mn 0
+                    %mo ,
+                    %mover
+                      %mi y
+                      %mo{:stretchy => "false"} →
+                    %mo{:stretchy => "false"} )
+                    %mo{:maxsize => "1.8em", :minsize => "1.8em"} ⟩
+                    %mspace{:width => "thickmathspace"}
+                    %mo =
+                    %mspace{:width => "thickmathspace"}
+                    %mo −
+                    %mi{:mathvariant => "normal"} i
+                    %mi ℏ
+                    %mpadded{:width => "0"}
+                      %mrow
+                        %mspace{:width => "thinmathspace"}
+                        %mo .
+                  %annotation{:encoding => "application/x-tex"}
+                    \\underset{\underset{\epsilon\to 0}{\longrightarrow}}{\lim}
+                    \\int_{\mathbb{R}^{d}/\mathbb{Z}^{d}}
+                    \\mathrm{d}^d x
+                    \\,
+                    \\Big\langle
+                    \\pi(y^0 + \epsilon, \vec x)
+                    \\,
+                    \\phi(y^0, \vec y)
+                    \\;-\;
+                    \\pi(y^0 - \epsilon, \vec x)
+                    \\,
+                    \\phi(y^0, \vec y)
+                    \\Big\rangle
+                    \\;=\;
+                    \-\mathrm{i}\hbar
+                    \\mathrlap{\,.}
+            %blockquote
+              %p
+                This is the field-theoretic version of Feynman’s
+                = succeed "." do
+                  %a.maruku-eqref{:href => "#eq:FeynmanCCRViaTimeShiftedProduct"} (4)
+            %p
+              We may redo this derivation after multiplication of the original Schwinger-Dyson equation
+              %a.maruku-eqref{:href => "#eq:SchwingerDysonForComputingCCRs"} (5)
+              with any “smearing function”
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi f
+                    %mo{:stretchy => "false"} (
+                    %mover
+                      %mi x
+                      %mo{:stretchy => "false"} →
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} f(\vec x)
+              (a spatial
+              = succeed ")." do
+                %a.existingWikiWord{:href => "/nlab/show/bump+function"} bump function
+              %a.existingWikiWord{:href => "/nlab/show/Stokes%27+theorem"} Stokes' theorem
+              above we are now faced with an
+              %a.existingWikiWord{:href => "/nlab/show/integration+by+parts"} integration by parts
+              that picks up terms proportional to the
+              %a.existingWikiWord{:href => "/nlab/show/gradient"} gradient
+              of
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi f
+                  %annotation{:encoding => "application/x-tex"} f
+              — but if the dependence of
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi L
+                  %annotation{:encoding => "application/x-tex"} L
+              on spatial derivatives of
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi ϕ
+                  %annotation{:encoding => "application/x-tex"} \phi
+              does not have unusual singularities (i.e. if the
+              %a.existingWikiWord{:href => "/nlab/show/kinetic+energy"} kinetic energy
+              term in
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi L
+                  %annotation{:encoding => "application/x-tex"} L
+              is a standard one) then these terms vanish with
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi ϵ
+                  %annotation{:encoding => "application/x-tex"} \epsilon
+              just as the
+              %a.existingWikiWord{:href => "/nlab/show/potential+energy"} potential energy
+              term does, and hence we end up with
+            #eq:IntegratedSchwingerDysonForComputingCCRsViaMomenta.maruku-equation
+              %span.maruku-eq-number (8)
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %munder
+                      %mi lim
+                      %munder
+                        %mo ⟶
+                        %mrow
+                          %mi ϵ
+                          %mo →
+                          %mn 0
+                    %msub
+                      %mo ∫
+                      %mrow
+                        %msup
+                          %mi ℝ
+                          %mi d
+                        %mo{:stretchy => "false"} /
+                        %msup
+                          %mi ℤ
+                          %mi d
+                    %mo ∫
+                    %msup
+                      %mi{:mathvariant => "normal"} d
+                      %mi d
+                    %mover
+                      %mi x
+                      %mo{:stretchy => "false"} →
+                    %mspace{:width => "thinmathspace"}
+                    %mi f
+                    %mo{:stretchy => "false"} (
+                    %mover
+                      %mi x
+                      %mo{:stretchy => "false"} →
+                    %mo{:stretchy => "false"} )
+                    %mspace{:width => "thinmathspace"}
+                    %mo{:maxsize => "1.8em", :minsize => "1.8em"} ⟨
+                    %mi π
+                    %mo{:stretchy => "false"} (
+                    %msup
+                      %mi y
+                      %mn 0
+                    %mo +
+                    %mi ϵ
+                    %mo ,
+                    %mover
+                      %mi x
+                      %mo{:stretchy => "false"} →
+                    %mo{:stretchy => "false"} )
+                    %mspace{:width => "thinmathspace"}
+                    %mi ϕ
+                    %mo{:stretchy => "false"} (
+                    %msup
+                      %mi y
+                      %mn 0
+                    %mo ,
+                    %mover
+                      %mi y
+                      %mo{:stretchy => "false"} →
+                    %mo{:stretchy => "false"} )
+                    %mspace{:width => "thickmathspace"}
+                    %mo −
+                    %mspace{:width => "thickmathspace"}
+                    %mi π
+                    %mo{:stretchy => "false"} (
+                    %msup
+                      %mi y
+                      %mn 0
+                    %mo −
+                    %mi ϵ
+                    %mo ,
+                    %mover
+                      %mi x
+                      %mo{:stretchy => "false"} →
+                    %mo{:stretchy => "false"} )
+                    %mspace{:width => "thinmathspace"}
+                    %mi ϕ
+                    %mo{:stretchy => "false"} (
+                    %msup
+                      %mi y
+                      %mn 0
+                    %mo ,
+                    %mover
+                      %mi y
+                      %mo{:stretchy => "false"} →
+                    %mo{:stretchy => "false"} )
+                    %mo{:maxsize => "1.8em", :minsize => "1.8em"} ⟩
+                    %mspace{:width => "thickmathspace"}
+                    %mo =
+                    %mspace{:width => "thickmathspace"}
+                    %mo −
+                    %mi{:mathvariant => "normal"} i
+                    %mi ℏ
+                    %mi f
+                    %mo{:stretchy => "false"} (
+                    %mover
+                      %mi y
+                      %mo{:stretchy => "false"} →
+                    %mo{:stretchy => "false"} )
+                    %mpadded{:width => "0"}
+                      %mrow
+                        %mspace{:width => "thinmathspace"}
+                        %mo .
+                  %annotation{:encoding => "application/x-tex"}
+                    \\underset{\underset{\epsilon\to 0}{\longrightarrow}}{\lim}
+                    \\int_{\mathbb{R}^{d}/\mathbb{Z}^{d}}
+                    \\int \mathrm{d}^d \vec x
+                    \\,
+                    f(\vec x)
+                    \\,
+                    \\Big\langle
+                    \\pi(y^0 + \epsilon, \vec x)
+                    \\,
+                    \\phi(y^0, \vec y)
+                    \\;-\;
+                    \\pi(y^0 - \epsilon, \vec x)
+                    \\,
+                    \\phi(y^0, \vec y)
+                    \\Big\rangle
+                    \\;=\;
+                    \-\mathrm{i}\hbar f(\vec y)
+                    \\mathrlap{\,.}
+            %p
+              But since this holds for all smearing functions
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi f
+                    %annotation{:encoding => "application/x-tex"} f
+              %a.existingWikiWord{:href => "/nlab/show/distribution"} distributional
+              equation
+            #eq:UnIntegratedSchwingerDysonForComputingCCRsViaMomenta.maruku-equation
+              %span.maruku-eq-number (9)
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %munder
+                      %mi lim
+                      %munder
+                        %mo ⟶
+                        %mrow
+                          %mi ϵ
+                          %mo →
+                          %mn 0
+                    %mo{:maxsize => "1.8em", :minsize => "1.8em"} ⟨
+                    %mi π
+                    %mo{:stretchy => "false"} (
+                    %msup
+                      %mi y
+                      %mn 0
+                    %mo +
+                    %mi ϵ
+                    %mo ,
+                    %mover
+                      %mi x
+                      %mo{:stretchy => "false"} →
+                    %mo{:stretchy => "false"} )
+                    %mspace{:width => "thinmathspace"}
+                    %mi ϕ
+                    %mo{:stretchy => "false"} (
+                    %msup
+                      %mi y
+                      %mn 0
+                    %mo ,
+                    %mover
+                      %mi y
+                      %mo{:stretchy => "false"} →
+                    %mo{:stretchy => "false"} )
+                    %mspace{:width => "thickmathspace"}
+                    %mo −
+                    %mspace{:width => "thickmathspace"}
+                    %mi π
+                    %mo{:stretchy => "false"} (
+                    %msup
+                      %mi y
+                      %mn 0
+                    %mo −
+                    %mi ϵ
+                    %mo ,
+                    %mover
+                      %mi x
+                      %mo{:stretchy => "false"} →
+                    %mo{:stretchy => "false"} )
+                    %mspace{:width => "thinmathspace"}
+                    %mi ϕ
+                    %mo{:stretchy => "false"} (
+                    %msup
+                      %mi y
+                      %mn 0
+                    %mo ,
+                    %mover
+                      %mi y
+                      %mo{:stretchy => "false"} →
+                    %mo{:stretchy => "false"} )
+                    %mo{:maxsize => "1.8em", :minsize => "1.8em"} ⟩
+                    %mspace{:width => "thickmathspace"}
+                    %mo =
+                    %mspace{:width => "thickmathspace"}
+                    %mo −
+                    %mi{:mathvariant => "normal"} i
+                    %mi ℏ
+                    %mspace{:width => "thinmathspace"}
+                    %msup
+                      %mi δ
+                      %mi d
+                    %mo{:stretchy => "false"} (
+                    %mover
+                      %mi x
+                      %mo{:stretchy => "false"} →
+                    %mo −
+                    %mover
+                      %mi y
+                      %mo{:stretchy => "false"} →
+                    %mo{:stretchy => "false"} )
+                    %mpadded{:width => "0"}
+                      %mrow
+                        %mspace{:width => "thinmathspace"}
+                        %mo ,
+                  %annotation{:encoding => "application/x-tex"}
+                    \\underset{\underset{\epsilon\to 0}{\longrightarrow}}{\lim}
+                    \\Big\langle
+                    \\pi(y^0 + \epsilon, \vec x)
+                    \\,
+                    \\phi(y^0, \vec y)
+                    \\;-\;
+                    \\pi(y^0 - \epsilon, \vec x)
+                    \\,
+                    \\phi(y^0, \vec y)
+                    \\Big\rangle
+                    \\;=\;
+                    \-\mathrm{i}\hbar
+                    \\,
+                    \\delta^d(\vec x - \vec y)
+                    \\mathrlap{\,,}
+            %p
+              which is the claimed incarnation of the
+              %a.existingWikiWord{:href => "/nlab/show/canonical+commutation+relation"} canonical commutation relation
+              of field operators at equal times,
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo{:maxsize => "1.2em", :minsize => "1.2em"} [
+                    %mover
+                      %mi π
+                      %mo ^
+                    %mo{:stretchy => "false"} (
+                    %mover
+                      %mi x
+                      %mo{:stretchy => "false"} →
+                    %mo{:stretchy => "false"} )
+                    %mo ,
+                    %mover
+                      %mi ϕ
+                      %mo ^
+                    %mo{:stretchy => "false"} (
+                    %mover
+                      %mi x
+                      %mo{:stretchy => "false"} →
+                    %mo{:stretchy => "false"} )
+                    %mo{:maxsize => "1.2em", :minsize => "1.2em"} ]
+                    %mspace{:width => "thinmathspace"}
+                    %mo =
+                    %mspace{:width => "thinmathspace"}
+                    %mo −
+                    %mi{:mathvariant => "normal"} i
+                    %mi ℏ
+                    %mspace{:width => "thinmathspace"}
+                    %msup
+                      %mi δ
+                      %mi d
+                    %mo{:stretchy => "false"} (
+                    %mover
+                      %mi x
+                      %mo{:stretchy => "false"} →
+                    %mo −
+                    %mover
+                      %mi y
+                      %mo{:stretchy => "false"} →
+                    %mo{:stretchy => "false"} )
+                    %mpadded{:width => "0"}
+                      %mrow
+                        %mspace{:width => "thinmathspace"}
+                        %mo ,
+                  %annotation{:encoding => "application/x-tex"}
+                    \\big[
+                    \\widehat{\pi}(\vec x), \widehat{\phi}(\vec x)
+                    \\big]
+                    \\,=\,
+                    \-\mathrm{i}\hbar
+                    \\,
+                    \\delta^d(\vec x - \vec y)
+                    \\mathrlap{\,,}
+            %p now re-expressed as an expectation value of ordinary products of observables after shifting their temporal domains into operator order.
+            %p
+            #SDCCRDerivationInLightFrontForm.num_remark
+              %h6 Remark
+              %p
+                The analogous conclusion holds also for
+                = succeed "," do
+                  %strong
+                    %a.existingWikiWord{:href => "/nlab/show/light+front+quantization"} light front quantization
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msup
+                        %mi x
+                        %mn 0
+                    %annotation{:encoding => "application/x-tex"} x^0
+                now played by the light front parameter
+                = succeed "," do
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %msup
+                          %mi x
+                          %mo +
+                      %annotation{:encoding => "application/x-tex"} x^+
+              .maruku-equation
+                %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msup
+                        %mi x
+                        %mo ±
+                      %mo ≔
+                      %mo{:stretchy => "false"} (
+                      %msup
+                        %mi x
+                        %mn 0
+                      %mo ±
+                      %msup
+                        %mi x
+                        %mi d
+                      %mo{:stretchy => "false"} )
+                      %mo{:stretchy => "false"} /
+                      %msqrt
+                        %mn 2
+                      %mspace{:width => "thinmathspace"}
+                      %mo .
+                    %annotation{:encoding => "application/x-tex"}
+                      x^\pm \coloneqq (x^0 \pm x^d)/\sqrt{2}
+                      \\,.
+              %p
+                Here the light-front
+                %a.existingWikiWord{:href => "/nlab/show/canonical+momentum"} canonical momentum
+                to a field
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi ϕ
+                    %annotation{:encoding => "application/x-tex"} \phi
+                is (cf.
+                %a{:href => "light+front+quantization#Burkardt96"} Burkardt 1996 table 2.1
+                for the following equations):
+              .maruku-equation
+                %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi π
+                      %mspace{:width => "thinmathspace"}
+                      %mo =
+                      %mspace{:width => "thinmathspace"}
+                      %mfrac
+                        %mrow
+                          %mo ∂
+                          %mi L
+                        %mrow
+                          %mo ∂
+                          %mo{:stretchy => "false"} (
+                          %msub
+                            %mo ∂
+                            %mo +
+                          %mi ϕ
+                          %mo{:stretchy => "false"} )
+                      %mpadded{:width => "0"}
+                        %mrow
+                          %mspace{:width => "thinmathspace"}
+                          %mo ,
+                    %annotation{:encoding => "application/x-tex"}
+                      \\pi
+                      \\,=\,
+                      \\frac
+                      { \partial L }
+                      { \partial (\partial_+ \phi) }
+                      \\mathrlap{\,,}
+              %p
+                which for
+                %a.existingWikiWord{:href => "/nlab/show/Lagrangian+densities"} Lagrangian densities
+                with standard
+                %a.existingWikiWord{:href => "/nlab/show/kinetic+energy"} kinetic energy
+                term
+              .maruku-equation
+                %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi L
+                      %mspace{:width => "thinmathspace"}
+                      %mo =
+                      %mspace{:width => "thinmathspace"}
+                      %msub
+                        %mo ∂
+                        %mo +
+                      %mi ϕ
+                      %mspace{:width => "thinmathspace"}
+                      %msub
+                        %mo ∂
+                        %mo −
+                      %mi ϕ
+                      %mspace{:width => "thinmathspace"}
+                      %mo −
+                      %mspace{:width => "thinmathspace"}
+                      %mstyle{:displaystyle => "false"}
+                        %mfrac
+                          %mn 1
+                          %mn 2
+                      %mo{:stretchy => "false"} (
+                      %msub
+                        %mover
+                          %mo ∇
+                          %mo{:stretchy => "false"} →
+                        %mo ⊥
+                      %mi ϕ
+                      %msup
+                        %mo{:stretchy => "false"} )
+                        %mn 2
+                      %mo −
+                      %mi V
+                      %mo{:stretchy => "false"} (
+                      %mi ϕ
+                      %mo{:stretchy => "false"} )
+                    %annotation{:encoding => "application/x-tex"}
+                      L
+                      \\,=\,
+                      \\partial_+ \phi \, \partial_- \phi
+                      \\,-\,
+                      \\tfrac{1}{2} (\vec \nabla_\perp \phi)^2 - V(\phi)
+              %p comes out as
+              .maruku-equation
+                %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi π
+                      %mspace{:width => "thinmathspace"}
+                      %mo =
+                      %mspace{:width => "thinmathspace"}
+                      %msub
+                        %mo ∂
+                        %mo −
+                      %mi ϕ
+                      %mpadded{:width => "0"}
+                        %mrow
+                          %mspace{:width => "thinmathspace"}
+                          %mo .
+                    %annotation{:encoding => "application/x-tex"}
+                      \\pi
+                      \\,=\,
+                      \\partial_- \phi
+                      \\mathrlap{\,.}
+              %p
+                While the nature of this light front momentum in canonical quantization (where it is a
+                = succeed ")" do
+                  %a.existingWikiWord{:href => "/nlab/show/second+class+constraint"} second class constraint
+              .maruku-equation
+                %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mo{:maxsize => "1.8em", :minsize => "1.8em"} [
+                      %mover
+                        %mi π
+                        %mo ^
+                      %mo{:maxsize => "1.2em", :minsize => "1.2em"} (
+                      %msup
+                        %mi x
+                        %mo +
+                      %mo ,
+                      %msup
+                        %mi x
+                        %mo −
+                      %mo ,
+                      %msub
+                        %mover
+                          %mi x
+                          %mo{:stretchy => "false"} →
+                        %mo ⊥
+                      %mo{:maxsize => "1.2em", :minsize => "1.2em"} )
+                      %mo ,
+                      %mspace{:width => "thinmathspace"}
+                      %mover
+                        %mi ϕ
+                        %mo ^
+                      %mo{:maxsize => "1.2em", :minsize => "1.2em"} (
+                      %msup
+                        %mi x
+                        %mo +
+                      %mo ,
+                      %msup
+                        %mi y
+                        %mo −
+                      %mo ,
+                      %msub
+                        %mover
+                          %mi y
+                          %mo{:stretchy => "false"} →
+                        %mo ⊥
+                      %mo{:maxsize => "1.2em", :minsize => "1.2em"} )
+                      %mo{:maxsize => "1.8em", :minsize => "1.8em"} ]
+                      %mspace{:width => "thinmathspace"}
+                      %mo =
+                      %mspace{:width => "thinmathspace"}
+                      %mo −
+                      %mi{:mathvariant => "normal"} i
+                      %mi ℏ
+                      %mstyle{:displaystyle => "false"}
+                        %mfrac
+                          %mn 1
+                          %mn 2
+                      %mi δ
+                      %mo{:maxsize => "1.2em", :minsize => "1.2em"} (
+                      %msup
+                        %mi x
+                        %mo −
+                      %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                      %msup
+                        %mi y
+                        %mo −
+                      %mo{:maxsize => "1.2em", :minsize => "1.2em"} )
+                      %msup
+                        %mi δ
+                        %mrow
+                          %mi d
+                          %mo −
+                          %mn 1
+                      %mo{:maxsize => "1.2em", :minsize => "1.2em"} (
+                      %msub
+                        %mover
+                          %mi x
+                          %mo{:stretchy => "false"} →
+                        %mo ⊥
+                      %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                      %msub
+                        %mover
+                          %mi y
+                          %mo{:stretchy => "false"} →
+                        %mo ⊥
+                      %mo{:maxsize => "1.2em", :minsize => "1.2em"} )
+                      %mpadded{:width => "0"}
+                        %mrow
+                          %mspace{:width => "thinmathspace"}
+                          %mo .
+                    %annotation{:encoding => "application/x-tex"}
+                      \\Big[
+                      \\widehat{\pi}\big(x^+, x^-, \vec x_\perp\big)
+                      ,\,
+                      \\widehat{\phi}\big(x^+, y^-, \vec y_\perp\big)
+                      \\Big]
+                      \\,=\,
+                      \-\mathrm{i}\hbar
+                      \\tfrac{1}{2}
+                      \\delta\big(x^- - y^-\big)
+                      \\delta^{d-1}\big(\vec x_\perp - \vec y_\perp\big)
+                      \\mathrlap{\,.}
+              %p
+                And so the above Schwinger-Dyson argument, just with the time coordinate
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msup
+                        %mi x
+                        %mn 0
+                    %annotation{:encoding => "application/x-tex"} x^0
+                replaced by the light front parameter
+                = succeed "," do
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %msup
+                          %mi x
+                          %mo +
+                      %annotation{:encoding => "application/x-tex"} x^+
+              #eq:LightFrontUnIntegratedSchwingerDysonForComputingCCRsViaMomenta.maruku-equation
+                %span.maruku-eq-number (10)
+                %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mtable{:columnalign => "left", :displaystyle => "false", :rowspacing => "0.5ex"}
+                        %mtr
+                          %mtd
+                            %munder
+                              %mi lim
+                              %munder
+                                %mo ⟶
+                                %mrow
+                                  %mi ϵ
+                                  %mo →
+                                  %mn 0
+                            %mo{:maxsize => "1.8em", :minsize => "1.8em"} ⟨
+                            %mi π
+                            %mo{:maxsize => "1.2em", :minsize => "1.2em"} (
+                            %msup
+                              %mi y
+                              %mo +
+                            %mo{:lspace => "verythinmathspace", :rspace => "0em"} +
+                            %mi ϵ
+                            %mo ,
+                            %msup
+                              %mi x
+                              %mo −
+                            %mo ,
+                            %msub
+                              %mover
+                                %mi x
+                                %mo{:stretchy => "false"} →
+                              %mo ⊥
+                            %mo{:maxsize => "1.2em", :minsize => "1.2em"} )
+                            %mspace{:width => "thinmathspace"}
+                            %mi ϕ
+                            %mo{:maxsize => "1.2em", :minsize => "1.2em"} (
+                            %msup
+                              %mi y
+                              %mo +
+                            %mo ,
+                            %msup
+                              %mi y
+                              %mo −
+                            %mo ,
+                            %msub
+                              %mover
+                                %mi y
+                                %mo{:stretchy => "false"} →
+                              %mo ⊥
+                            %mo{:maxsize => "1.2em", :minsize => "1.2em"} )
+                            %mspace{:width => "thickmathspace"}
+                            %mo −
+                            %mspace{:width => "thickmathspace"}
+                            %mi π
+                            %mo{:maxsize => "1.2em", :minsize => "1.2em"} (
+                            %msup
+                              %mi y
+                              %mo +
+                            %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                            %mi ϵ
+                            %mo ,
+                            %msup
+                              %mi x
+                              %mo −
+                            %mo ,
+                            %msub
+                              %mover
+                                %mi x
+                                %mo{:stretchy => "false"} →
+                              %mo ⊥
+                            %mo{:maxsize => "1.2em", :minsize => "1.2em"} )
+                            %mspace{:width => "thinmathspace"}
+                            %mi ϕ
+                            %mo{:maxsize => "1.2em", :minsize => "1.2em"} (
+                            %msup
+                              %mi y
+                              %mo +
+                            %mo ,
+                            %msup
+                              %mi y
+                              %mo −
+                            %mo ,
+                            %msub
+                              %mover
+                                %mi y
+                                %mo{:stretchy => "false"} →
+                              %mo ⊥
+                            %mo{:maxsize => "1.2em", :minsize => "1.2em"} )
+                            %mo{:maxsize => "1.8em", :minsize => "1.8em"} ⟩
+                        %mtr
+                          %mtd
+                            %mspace{:width => "thickmathspace"}
+                            %mo =
+                            %mspace{:width => "thickmathspace"}
+                            %mo −
+                            %mi{:mathvariant => "normal"} i
+                            %mi ℏ
+                            %mspace{:width => "thinmathspace"}
+                            %mstyle{:displaystyle => "false"}
+                              %mfrac
+                                %mn 1
+                                %mn 2
+                            %mi δ
+                            %mo{:stretchy => "false"} (
+                            %msup
+                              %mi x
+                              %mo −
+                            %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                            %msup
+                              %mi y
+                              %mo −
+                            %mo{:stretchy => "false"} )
+                            %msup
+                              %mi δ
+                              %mrow
+                                %mi d
+                                %mo −
+                                %mn 1
+                            %mo{:stretchy => "false"} (
+                            %msub
+                              %mover
+                                %mi x
+                                %mo{:stretchy => "false"} →
+                              %mo ⊥
+                            %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                            %msub
+                              %mover
+                                %mi y
+                                %mo{:stretchy => "false"} →
+                              %mo ⊥
+                            %mo{:stretchy => "false"} )
+                            %mpadded{:width => "0"}
+                              %mrow
+                                %mspace{:width => "thinmathspace"}
+                                %mo .
+                    %annotation{:encoding => "application/x-tex"}
+                      \\begin{array}{l}
+                      \\underset{\underset{\epsilon\to 0}{\longrightarrow}}{\lim}
+                      \\Big\langle
+                      \\pi\big(y^+ + \epsilon, x^-, \vec x_\perp\big)
+                      \\,
+                      \\phi\big(y^+, y^-, \vec y_\perp\big)
+                      \\;-\;
+                      \\pi\big(y^+ - \epsilon, x^-, \vec x_\perp\big)
+                      \\,
+                      \\phi\big(y^+, y^-, \vec y_\perp\big)
+                      \\Big\rangle
+                      \\\
+                      \\;=\;
+                      \-\mathrm{i}\hbar
+                      \\,
+                      \\tfrac{1}{2}
+                      \\delta(x^- - y^-)
+                      \\delta^{d-1}(\vec x_\perp - \vec y_{\perp})
+                      \\mathrlap{\,.}
+                      \\end{array}
+              %p
+                (Just beware the somewhat subtle factor of
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mn 1
+                      %mo{:stretchy => "false"} /
+                      %mn 2
+                    %annotation{:encoding => "application/x-tex"} 1/2
+                on the right of
+                = succeed "." do
+                  %a.maruku-eqref{:href => "#eq:LightFrontUnIntegratedSchwingerDysonForComputingCCRsViaMomenta"} (10)
+                = succeed "." do
+                  %a{:href => "light+front+quantization#Burkardt96"} Burkardt 1996 §A p. 76
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mn 2
+                    %annotation{:encoding => "application/x-tex"} 2
+                on the left, originating in:
+                = succeed ".)" do
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi δ
+                        %mo{:stretchy => "false"} (
+                        %msub
+                          %mo ∂
+                          %mo +
+                        %mi ϕ
+                        %msub
+                          %mo ∂
+                          %mo −
+                        %mi ϕ
+                        %mo{:stretchy => "false"} )
+                        %mo{:stretchy => "false"} /
+                        %mi δ
+                        %mi ϕ
+                        %mo =
+                        %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                        %msub
+                          %mo ∂
+                          %mo +
+                        %msub
+                          %mo ∂
+                          %mo −
+                        %mi ϕ
+                        %mo −
+                        %msub
+                          %mo ∂
+                          %mo −
+                        %msub
+                          %mo ∂
+                          %mo +
+                        %mi ϕ
+                        %mo =
+                        %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                        %mn 2
+                        %msub
+                          %mo ∂
+                          %mo +
+                        %msub
+                          %mo ∂
+                          %mo −
+                        %mi ϕ
+                      %annotation{:encoding => "application/x-tex"}
+                        \\delta(\partial_+ \phi \partial_- \phi)/\delta\phi
+                        \=
+                        \-\partial_+ \partial_- \phi - \partial_- \partial_+ \phi
+                        \=
+                        \-2 \partial_+ \partial_- \phi
+              %p
+            %p
+              %br/
+            %p
+              %br/
+          %h2#related_concepts Related concepts
+          %ul
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/path+integral"} path integral
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Feynman+diagram"} Feynman diagram
+          %h2#references References
+          %p
+            Precursor discussion for
+            %a.existingWikiWord{:href => "/nlab/show/quantum+mechanics"} quantum mechanics
+            (QFT in
+            = succeed "-dimensions)" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mn 1
+                    %mo +
+                    %mn 0
+                  %annotation{:encoding => "application/x-tex"} 1+0
+          %ul
+            %li#Feynman48
+              %a.existingWikiWord{:href => "/nlab/show/Richard+P.+Feynman"}> Richard P. Feynman
+              , equations (45-46) in:
+              = succeed "," do
+                %em Space-Time Approach to Non-Relativistic Quantum Mechanics
+              %strong 20
+              (1948) 367 &amp;lbrack;
+              %a{:href => "https://doi.org/10.1103/RevModPhys.20.367"}> doi:10.1103/RevModPhys.20.367
+              ,
+              = succeed "&rbrack;" do
+                %a{:href => "http://www-f1.ijs.si/~ramsak/km1/feynman.pdf"} pdf
+              %blockquote
+                %p (referred to as “this very important equation”)
+          %p The Dyson-Schwinger equation is named after:
+          %ul
+            %li#Dyson49
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Freeman+Dyson"}> Freeman Dyson
+                ,
+                = succeed "," do
+                  %em The S Matrix in Quantum Electrodynamics
+                = succeed ")" do
+                  %a{:href => "https://doi.org/10.1103/PhysRev.75.1736"} doi:10.1103/PhysRev.75.1736
+            %li#Schinger51
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Julian+Schwinger"}> Julian Schwinger
+                ,
+                = succeed "," do
+                  %em On Green’s functions of quantized fields I + II
+                = succeed ")" do
+                  %a{:href => "https://doi.org/10.1073%2Fpnas.37.7.452"} doi:10.1073/pnas.37.7.452
+          %p
+            The traditional informal account in terms of
+            = succeed "-heuristics" do
+              %a.existingWikiWord{:href => "/nlab/show/path+integral"} path integral
+          %ul
+            %li#HenneauxTeitelboim92
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Marc+Henneaux"}> Marc Henneaux
+                ,
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/Claudio+Teitelboim"} Claudio Teitelboim
+                = succeed "," do
+                  %em
+                    %a.existingWikiWord{:href => "/nlab/show/Quantization+of+Gauge+Systems"} Quantization of Gauge Systems
+                = succeed "&rbrack;" do
+                  %a{:href => "https://doi.org/10.2307/j.ctv10crg0r"} doi:10.2307/j.ctv10crg0r
+            %li#Dermisek09
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Radovan+Dermisek"}> Radovan Dermisek
+                ,
+                = succeed "," do
+                  %em Schwinger-Dyson equations
+                = succeed ")" do
+                  %a{:href => "http://www.physics.indiana.edu/~dermisek/QFT_09/qft-II-4-4p.pdf"} pdf
+          %p
+            Rigorous derivation in terms of
+            %a.existingWikiWord{:href => "/nlab/show/BV-formalism"} BV-formalism
+            in
+            = succeed "/" do
+              %a.existingWikiWord{:href => "/nlab/show/causal+perturbation+theory"} causal perturbation theory
+            = succeed ":" do
+              %a.existingWikiWord{:href => "/nlab/show/pAQFT"} pAQFT
+          %ul
+            %li#Rejzner16
+              %a.existingWikiWord{:href => "/nlab/show/Katarzyna+Rejzner"}> Katarzyna Rejzner
+              \: Remark 7.7 in:
+              = succeed "," do
+                %em Perturbative Algebraic Quantum Field Theory
+              = succeed "&rbrack;" do
+                %a{:href => "https://doi.org/10.1007/978-3-319-25901-7"} doi:10.1007/978-3-319-25901-7
+          %p
+            and in the context of the
+            = succeed ":" do
+              %a.existingWikiWord{:href => "/nlab/show/master+Ward+identity"} master Ward identity
+          %ul
+            %li#DuetschFredenhagen02
+              %a.existingWikiWord{:href => "/nlab/show/Michael+D%C3%BCtsch"}> Michael Dütsch
+              ,
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/Klaus+Fredenhagen"} Klaus Fredenhagen
+              = succeed "," do
+                %em The Master Ward Identity and Generalized Schwinger-Dyson Equation in Classical Field Theory
+              %strong 243
+              (2003) 275-314 &amp;lbrack;
+              %a{:href => "https://arxiv.org/abs/hep-th/0211242"}> arXiv:hep-th/0211242
+              \&amp;rbrack;
+          %p See also
+          %ul
+            %li
+              Wikipedia,
+              %em
+                %a{:href => "https://en.wikipedia.org/wiki/Schwinger%E2%80%93Dyson_equation"} Schwinger-Dyson equation
+          %p
+            Discussion of
+            %a.existingWikiWord{:href => "/nlab/show/round+chord+diagrams"} round chord diagrams
+            organizing Dyson-Schwinger equations:
+          %ul
+            %li
+              %p
+                Nicolas Marie,
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/Karen+Yeats"} Karen Yeats
+                = succeed "," do
+                  %em A chord diagram expansion coming from some Dyson-Schwinger equations
+                = succeed ")" do
+                  %a{:href => "https://arxiv.org/abs/1210.5457"} arXiv:1210.5457
+            %li
+              %p
+                Markus Hihn,
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/Karen+Yeats"} Karen Yeats
+                = succeed "," do
+                  %em Generalized chord diagram expansions of Dyson-Schwinger equations
+                = succeed ")" do
+                  %a{:href => "https://arxiv.org/abs/1602.02550"} arXiv:1602.02550
+            %li
+              %p
+                Paul-Hermann Balduf, Amelia Cantwell,
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/Kurusch+Ebrahimi-Fard"} Kurusch Ebrahimi-Fard
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/Karen+Yeats"} Karen Yeats
+                %em Tubings, chord diagrams, and Dyson-Schwinger equations
+                [
+                %a{:href => "https://arxiv.org/abs/2302.02019"}> arXiv:2302.02019
+                ]
+          %p Review in:
+          %ul
+            %li
+              Ali Assem Mahmoud, Section 3 of:
+              %em On the Enumerative Structures in Quantum Field Theory
+              (
+              %a{:href => "https://arxiv.org/abs/2008.11661"}> arXiv:2008.11661
+              )
+        .revisedby
+          %p
+            Last revised on November 26, 2025 at 08:02:24.
+            See the
+            %a{:href => "/nlab/history/Schwinger-Dyson+equation", :style => "color: #005c19"} history
+            of this page for a list of all contributions to it.
+        .navigation.navfoot
+          %a#edit.navlink{:accesskey => "E", :href => "/nlab/edit/Schwinger-Dyson+equation", :rel => "nofollow"} Edit
+          %a{:href => "https://nforum.ncatlab.org/discussion/8229/#Item_4"} Discuss
+          %span.backintime
+            %a#to_previous_revision.navlinkbackintime{:accesskey => "B", :href => "/nlab/revision/Schwinger-Dyson+equation/15", :rel => "nofollow"} Previous revision
+          %a#see_changes.navlink{:accesskey => "C", :href => "/nlab/show/diff/Schwinger-Dyson+equation", :rel => "nofollow"} Changes from previous revision
+          %a#history.navlink{:accesskey => "S", :href => "/nlab/history/Schwinger-Dyson+equation", :rel => "nofollow"} History (15 revisions)
+          %a{:href => "/nlab/show/Schwinger-Dyson+equation/cite", :style => "color: black"} Cite
+          %a#view_print{:accesskey => "p", :href => "/nlab/print/Schwinger-Dyson+equation", :rel => "nofollow"} Print
+          %a#view_source{:href => "/nlab/source/Schwinger-Dyson+equation", :rel => "nofollow"} Source
+      / Content
+    / Container

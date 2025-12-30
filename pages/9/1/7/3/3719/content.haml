@@ -1,0 +1,1442 @@
+!!! XML
+!!! 1.1
+%html{:xmlns => "http://www.w3.org/1999/xhtml"}
+  %head
+    %title
+      An Introduction to Homological Algebra in nLab
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:content => "index,follow", :name => "robots"}/
+    %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/
+    %link{:href => "/stylesheets/instiki.css?1660229990", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/stylesheets/mathematics.css?1660229990", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/stylesheets/syntax.css?1660229990", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/stylesheets/nlab.css?1660229990", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css", :rel => "stylesheet", :type => "text/css"}/
+    :css
+      h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+        color: #226622;
+      }
+      a:visited.existingWikiWord {
+        color: #164416;
+      }
+    :css
+      <!--/*--><![CDATA[/*><!--*/
+          .toc ul {margin: 0; padding: 0;}
+      .toc ul ul {margin: 0; padding: 0 0 0 10px;}
+      .toc li > p {margin: 0}
+      .toc ul li {list-style-type: none; position: relative;}
+      .toc div {border-top:1px dotted #ccc;}
+      .rightHandSide h2 {font-size: 1.5em;color:#008B26}
+      table.plaintable {
+          border-collapse:collapse;
+          margin-left:30px;
+          border:0;
+      }
+      .plaintable td {border:1px solid #000; padding: 3px;}
+      .plaintable th {padding: 3px;}
+      .plaintable caption {
+          font-weight: bold;
+          font-size:1.1em;
+          text-align:center;
+          margin-left:30px;
+      }
+          
+         
+      /* Query boxes for questioning and answering mechanism */
+      div.query{
+      background: #f6fff3;
+      border: solid #ce9;
+      border-width: 2px 1px;
+      padding: 0 1em;
+      margin: 0 1em;
+      max-height: 20em;
+      overflow: auto;
+      }
+      
+      /* Standout boxes for putting important text */
+      div.standout{
+      background: #fff1f1;
+      border: solid black;
+      border-width: 2px 1px;
+      padding: 0 1em;
+      margin: 0 1em;
+      overflow: auto;
+      }
+      
+      /* Icon for links to n-category arXiv documents 
+       (commented out for now i.e. disabled)
+      a[href*="http://arxiv.org/"] {
+        background-image: url(../files/arXiv_icon.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 22px;
+        } */
+          
+      /* Icon for links to n-category cafe posts (disabled) 
+      a[href*="http://golem.ph.utexas.edu/category"] {
+        background-image: url(../files/n-cafe_5.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 25px;
+        } */
+      
+      /* Icon for links to pdf files (disabled)
+      a[href$=".pdf"] {
+        background-image: url(../files/pdficon_small.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 25px;
+        } */
+      
+      /* Icon for links to pages, etc. -inside- pdf files (disabled)
+      a[href*=".pdf#"] {
+        background-image: url(../files/pdf_entry.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 25px;
+        } */
+      
+      a.existingWikiWord {
+      color: #226622;
+      }
+      
+      a.existingWikiWord:visited {
+      color: #226622;
+      }
+      
+      
+      a.existingWikiWord[title] {
+      border: 0px;
+      color: #aa0505;
+      text-decoration: none;
+      }
+          
+      a.existingWikiWord[title]:visited {
+      border: 0px;
+      color: #551111;
+      text-decoration: none;
+      }
+      
+      a[href^="http://"] {
+      border: 0px;
+      color: #003399;
+      }
+      
+      a[href^="http://"]:visited {
+      border: 0px;
+      color: #330066;
+      }
+      
+      a[href^="https://"] {
+      border: 0px;
+      color: #003399;
+      }
+      
+      a[href^="https://"]:visited {
+      border: 0px;
+      color: #330066;
+      }
+      
+      div.dropDown .hide {
+      display: none;
+      }
+      
+      div.dropDown:hover .hide {
+      display:block;
+      }
+      
+      div.clickDown .hide {
+      display: none;
+      }
+      
+      div.clickDown:focus {
+      outline:none;
+      }
+      
+      div.clickDown:focus .hide, div.clickDown:hover .hide {
+      display: block;
+      }
+      
+      div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+      display:block;
+      }
+      
+      div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+      display:none;
+      }
+      
+      div.clickDown .clickToReveal:after {
+      content: "A(Hover to reveal, click to "hold")";
+      font-size: 60%;
+      }
+      
+      div.clickDown .clickToHide:after {
+      content: "A(Click to hide)";
+      font-size: 60%;
+      }
+      div.clickDown .clickToHide, div.clickDown .clickToReveal {
+      white-space: pre-wrap;
+      }
+      
+      .un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+      margin-left: 1em;
+      }
+      
+      span.theorem_label {
+      margin-left: -1em;
+      }
+      .proof span.theorem_label {
+      margin-left: 0em;
+      }
+      :target {
+          background-color: #BBBBBB;
+          border-radius: 5pt;
+      }
+      
+        /*]]>*/-->
+    %script{:src => "/javascripts/prototype.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/effects.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/dragdrop.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/controls.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/application.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/page_helper.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/thm_numbering.js?1660229990", :type => "text/javascript"}
+    %script{:type => "text/x-mathjax-config"}
+      :cdata
+        <!--//--><![CDATA[//><!--
+        MathJax.Ajax.config.path["Contrib"] = "/MathJax";
+        MathJax.Hub.Config({
+        MathML: { useMathMLspacing: true },
+        "HTML-CSS": { scale: 90,
+        extensions: ["handle-floats.js"]
+        }
+        });
+        MathJax.Hub.Queue( function () {
+        var fos = document.getElementsByTagName('foreignObject');
+        for (var i = 0; i < fos.length; i++) {
+        MathJax.Hub.Typeset(fos[i]);
+        }
+        });
+        \//--><!]]>
+    :javascript
+      <!--//--><![CDATA[//><!--
+      window.addEventListener("DOMContentLoaded", function () {
+        var div = document.createElement('div');
+        var math = document.createElementNS('http://www.w3.org/1998/Math/MathML', 'math');
+        document.body.appendChild(div);
+        div.appendChild(math);
+      // Test for MathML support comparable to WebKit version https://trac.webkit.org/changeset/203640 or higher.
+        div.setAttribute('style', 'font-style: italic');
+        var mathml_unsupported = !(window.getComputedStyle(div.firstChild).getPropertyValue('font-style') === 'normal');
+        div.parentNode.removeChild(div);
+        if (mathml_unsupported) {
+          // MathML does not seem to be supported...
+          var s = document.createElement('script');
+          s.src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=MML_HTMLorMML-full";
+          document.querySelector('head').appendChild(s);
+        } else {
+          document.head.insertAdjacentHTML("beforeend", '<style>svg[viewBox] {max-width: 100%}</style>');
+        }
+      });
+      //--><!]]>
+    %link{:href => "https://ncatlab.org/nlab/atom_with_headlines", :rel => "alternate", :title => "Atom with headlines", :type => "application/atom+xml"}/
+    %link{:href => "https://ncatlab.org/nlab/atom_with_content", :rel => "alternate", :title => "Atom with full content", :type => "application/atom+xml"}/
+    :javascript
+      document.observe("dom:loaded", function() {
+        generateThmNumbers();
+      });
+  %body
+    #Container
+      #Content
+        %h1#pageName
+          %span{:style => "float: left; margin: 0.5em 0.25em -0.25em 0"}
+            %svg{:height => "1.8em", :viewbox => "0 0 190 181", :width => "1.872em", :xmlns => "http://www.w3.org/2000/svg"}
+              %path{:d => "M72.8 145c-1.6 17.3-15.7 10-23.6 20.2-5.6 7.3 4.8 15 11.4 15 11.5-.2 19-13.4 26.4-20.3 3.3-3 8.2-4 11.2-7.2a14 14 0 0 0 2.9-11.1c-1.4-9.6-12.4-18.6-16.9-27.2-5-9.6-10.7-27.4-24.1-27.7-17.4-.3-.4 26 4.7 30.7 2.4 2.3 5.4 4.1 7.3 6.9 1.6 2.3 2.1 5.8-1 7.2-5.9 2.6-12.4-6.3-15.5-10-8.8-10.6-15.5-23-26.2-31.8-5.2-4.3-11.8-8-18-3.7-7.3 4.9-4.2 12.9.2 18.5a81 81 0 0 0 30.7 23c3.3 1.5 12.8 5.6 10 10.7-2.5 5.2-11.7 3-15.6 1.1-8.4-3.8-24.3-21.3-34.4-13.7-3.5 2.6-2.3 7.6-1.2 11.1 2.8 9 12.2 17.2 20.9 20.5 17.3 6.7 34.3-8 50.8-12.1z", :fill => "#226622"}
+              %path{:d => "M145.9 121.3c-.2-7.5 0-19.6-4.5-26-5.4-7.5-12.9-1-14.1 5.8-1.4 7.8 2.7 14.1 4.8 21.3 3.4 12 5.8 29-.8 40.1-3.6-6.7-5.2-13-7-20.4-2.1-8.2-12.8-13.2-15.1-1.9-2 9.7 9 21.2 12 30.1 1.2 4 2 8.8 6.4 10.3 6.9 2.3 13.3-4.7 17.7-8.8 12.2-11.5 36.6-20.7 43.4-36.4 6.7-15.7-13.7-14-21.3-7.2-9.1 8-11.9 20.5-23.6 25.1 7.5-23.7 31.8-37.6 38.4-61.4 2-7.3-.8-29.6-13-19.8-14.5 11.6-6.6 37.6-23.3 49.2z", :fill => "#a41e32"}
+              %path{:d => "M86.3 47.5c0-13-10.2-27.6-5.8-40.4 2.8-8.4 14.1-10.1 17-1 3.8 11.6-.3 26.3-1.8 38 11.7-.7 10.5-16 14.8-24.3 2.1-4.2 5.7-9.1 11-6.7 6 2.7 7.4 9.2 6.6 15.1-2.2 14-12.2 18.8-22.4 27-3.4 2.7-8 6.6-5.9 11.6 2 4.4 7 4.5 10.7 2.8 7.4-3.3 13.4-16.5 21.7-16 14.6.7 12 21.9.9 26.2-5 1.9-10.2 2.3-15.2 3.9-5.8 1.8-9.4 8.7-15.7 8.9-6.1.1-9-6.9-14.3-9-14.4-6-33.3-2-44.7-14.7-3.7-4.2-9.6-12-4.9-17.4 9.3-10.7 28 7.2 35.7 12 2 1.1 11 6.9 11.4 1.1.4-5.2-10-8.2-13.5-10-11.1-5.2-30-15.3-35-27.3-2.5-6 2.8-13.8 9.4-13.6 6.9.2 13.4 7 17.5 12C70.9 34 75 43.8 86.3 47.4z", :fill => "#193c78"}
+          %span.webName nLab
+          An Introduction to Homological Algebra
+        .navigation
+          %span.skipNav
+            %a{:href => "#navEnd"} Skip the Navigation Links
+            |
+          %span{:style => "display:inline-block; width: 0.3em;"}
+          %a{:accesskey => "H", :href => "/nlab/show/HomePage", :title => "Home page"} Home Page
+          |
+          %a{:accesskey => "A", :href => "/nlab/all_pages", :title => "List of all pages"} All Pages
+          |
+          %a{:accesskey => "U", :href => "/nlab/latest_revisions", :title => "Latest edits and page creations"} Latest Revisions
+          |
+          %a{:href => "https://nforum.ncatlab.org/discussion/964/#Item_6", :style => "color: black", :title => "Discuss this page in its dedicated thread on the nForum"} Discuss this page
+          |
+          %form#navigationSearchForm{"accept-charset" => "utf-8", :action => "/nlab/search", :method => "get"}
+            %fieldset.search
+              %input#searchField{:name => "query", :onblur => "this.value == '' ? this.value = 'Search' : true", :onfocus => "this.value == 'Search' ? this.value = '' : true", :style => "display:inline-block; float: left;", :type => "text", :value => "Search"}/
+          %span#navEnd
+        #revision
+          %meta{:content => "application/xhtml+xml;charset=utf-8", "http-equiv" => "Content-type"}/
+          %title Contents
+          .rightHandSide
+            .toc.clickDown{:tabindex => "0"}
+              %h3#context Context
+              %h4#homological_algebra Homological algebra
+              .hide
+                %div
+                  %p
+                    %strong
+                      %a.existingWikiWord{:href => "/nlab/show/homological+algebra"} homological algebra
+                  %p
+                    (also
+                    = succeed ")" do
+                      %a.existingWikiWord{:href => "/nlab/show/nonabelian+homological+algebra"} nonabelian homological algebra
+                  %p
+                    %em
+                      %a.existingWikiWord{:href => "/schreiber/show/Introduction+to+Homological+Algebra"} Introduction
+                  %p
+                    %strong Context
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/additive+and+abelian+categories"} additive and abelian categories
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/Ab-enriched+category"} Ab-enriched category
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/pre-additive+category"} pre-additive category
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/additive+category"} additive category
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/pre-abelian+category"} pre-abelian category
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/abelian+category"} abelian category
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/Grothendieck+category"} Grothendieck category
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/abelian+sheaves"} abelian sheaves
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/semi-abelian+category"} semi-abelian category
+                  %p
+                    %strong Basic definitions
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/kernel"}> kernel
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/cokernel"} cokernel
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/complex"} complex
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/differential"} differential
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/homology"} homology
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/category+of+chain+complexes"} category of chain complexes
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/chain+complex"} chain complex
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/chain+map"} chain map
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/chain+homotopy"} chain homotopy
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/chain+homology+and+cohomology"} chain homology and cohomology
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/quasi-isomorphism"} quasi-isomorphism
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/homological+resolution"} homological resolution
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/cochain+on+a+simplicial+set"} simplicial homology
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/generalized+homology"} generalized homology
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/exact+sequence"}> exact sequence
+                        ,
+                      %ul
+                        %li
+                          %a.existingWikiWord{:href => "/nlab/show/short+exact+sequence"}> short exact sequence
+                          ,
+                          = succeed "," do
+                            %a.existingWikiWord{:href => "/nlab/show/long+exact+sequence"} long exact sequence
+                          %a.existingWikiWord{:href => "/nlab/show/split+exact+sequence"} split exact sequence
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/injective+object"}> injective object
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/projective+object"} projective object
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/injective+resolution"}> injective resolution
+                            ,
+                            %a.existingWikiWord{:href => "/nlab/show/projective+resolution"} projective resolution
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/flat+resolution"} flat resolution
+                  %p
+                    %strong Stable homotopy theory notions
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/derived+category"} derived category
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/triangulated+category"}> triangulated category
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/enhanced+triangulated+category"} enhanced triangulated category
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/stable+%28%E2%88%9E%2C1%29-category"} stable (∞,1)-category
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/stable+model+category"} stable model category
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/pretriangulated+dg-category"} pretriangulated dg-category
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/A-%E2%88%9E-category"} A-∞-category
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/%28%E2%88%9E%2C1%29-category+of+chain+complexes"} (∞,1)-category of chain complexes
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/derived+functor"}> derived functor
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/derived+functor+in+homological+algebra"} derived functor in homological algebra
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/Tor"}> Tor
+                            ,
+                            %a.existingWikiWord{:href => "/nlab/show/Ext"} Ext
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/homotopy+limit"}> homotopy limit
+                            ,
+                            %a.existingWikiWord{:href => "/nlab/show/homotopy+colimit"} homotopy colimit
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/abelian+sheaf+cohomology"} abelian sheaf cohomology
+                  %p
+                    %strong Constructions
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/double+complex"} double complex
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Koszul-Tate+resolution"}> Koszul-Tate resolution
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/BRST-BV+complex"} BRST-BV complex
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/spectral+sequence"} spectral sequence
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/spectral+sequence+of+a+filtered+complex"} spectral sequence of a filtered complex
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/spectral+sequence+of+a+double+complex"} spectral sequence of a double complex
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/Grothendieck+spectral+sequence"} Grothendieck spectral sequence
+                          %ul
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/Leray+spectral+sequence"} Leray spectral sequence
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/Serre+spectral+sequence"} Serre spectral sequence
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/Hochschild-Serre+spectral+sequence"} Hochschild-Serre spectral sequence
+                  %p
+                    %strong Lemmas
+                  %p
+                    %a.existingWikiWord{:href => "/nlab/show/diagram+chasing"} diagram chasing
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/3x3+lemma"} 3x3 lemma
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/four+lemma"}> four lemma
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/five+lemma"} five lemma
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/snake+lemma"}> snake lemma
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/connecting+homomorphism"} connecting homomorphism
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/horseshoe+lemma"} horseshoe lemma
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Baer%27s+criterion"} Baer's criterion
+                  %p
+                    %a.existingWikiWord{:href => "/nlab/show/Schanuel%27s+lemma"} Schanuel's lemma
+                  %p
+                    %strong Homology theories
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/singular+homology"} singular homology
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/cyclic+homology"} cyclic homology
+                  %p
+                    %strong Theorems
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Dold-Kan+correspondence"} Dold-Kan correspondence
+                        \/
+                        = succeed "," do
+                          %a.existingWikiWord{:href => "/nlab/show/monoidal+Dold-Kan+correspondence"} monoidal
+                        %a.existingWikiWord{:href => "/nlab/show/operadic+Dold-Kan+correspondence"} operadic
+                      %ul
+                        %li
+                          %a.existingWikiWord{:href => "/nlab/show/Moore+complex"}> Moore complex
+                          ,
+                          = succeed "," do
+                            %a.existingWikiWord{:href => "/nlab/show/Alexander-Whitney+map"} Alexander-Whitney map
+                          %a.existingWikiWord{:href => "/nlab/show/Eilenberg-Zilber+map"} Eilenberg-Zilber map
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Eilenberg-Zilber+theorem"} Eilenberg-Zilber theorem
+                      %ul
+                        %li
+                          %a.existingWikiWord{:href => "/nlab/show/cochain+on+a+simplicial+set"} cochain on a simplicial set
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/universal+coefficient+theorem"} universal coefficient theorem
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/K%C3%BCnneth+theorem"} Künneth theorem
+          %p This entry provides a hyperlinked index for the textbook
+          %ul
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Charles+Weibel"}> Charles Weibel
+                ,
+              %p
+                %strong An Introduction to Homological Algebra
+              %p Cambridge University Press (1994)
+              %p
+                %a{:href => "https://doi.org/10.1017/CBO9781139644136"} doi:10.1017/CBO9781139644136
+              %p
+                %a{:href => "https://web.math.rochester.edu/people/faculty/doug//otherpapers/weibel-hom.pdf"} pdf
+          %p
+            which gives a first exposition to central concepts in
+            = succeed "." do
+              %em
+                %a.existingWikiWord{:href => "/nlab/show/homological+algebra"} homological algebra
+          %p For a more comprehensive account of the theory see also chapters 8 and 12-18 of
+          %ul
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/Masaki+Kashiwara"}> Masaki Kashiwara
+              ,
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/Pierre+Schapira"} Pierre Schapira
+              = succeed "," do
+                %em
+                  %a.existingWikiWord{:href => "/nlab/show/Categories+and+Sheaves"} Categories and Sheaves
+              = succeed "," do
+                %strong 332
+          %p
+            and see the
+            = succeed "Lab" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi n
+                  %annotation{:encoding => "application/x-tex"} n
+          %ul
+            %li
+              %em
+                %a.existingWikiWord{:href => "/schreiber/show/Introduction+to+Homological+Algebra"} Introduction to Homological Algebra
+              (
+              %a.existingWikiWord{:href => "/nlab/files/IntroductionToHomologicalAlgebra-170509.pdf", :title => "pdf"}> pdf
+              )
+          %h1#contents Contents
+          .maruku_toc
+            %ul
+              %li
+                %a{:href => "#1_chain_complexes"} 1 Chain complexes
+              %ul
+                %li
+                  %a{:href => "#11_complexes_of_modules"}
+                    1.1 Complexes of
+                    = succeed "-modules" do
+                      %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                        %semantics
+                          %mrow
+                            %mi R
+                          %annotation{:encoding => "application/x-tex"} R
+                %li
+                  %a{:href => "#12_operations_on_chain_complexes"} 1.2 Operations on chain complexes
+                %li
+                  %a{:href => "#13_long_exact_sequences"} 1.3 Long exact sequences
+                %li
+                  %a{:href => "#14_chain_homotopies"} 1.4 Chain homotopies
+                %li
+                  %a{:href => "#15_mapping_cones_and_cyclinders"} 1.5 Mapping cones and cyclinders
+                %li
+                  %a{:href => "#16_more_on_abelian_categories"} 1.6 More on abelian categories
+              %li
+                %a{:href => "#2_derived_functors"} 2 Derived functors
+              %ul
+                %li
+                  %a{:href => "#21_functor"}
+                    2.1
+                    = succeed "-Functor" do
+                      %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                        %semantics
+                          %mrow
+                            %mi δ
+                          %annotation{:encoding => "application/x-tex"} \delta
+                %li
+                  %a{:href => "#22_projective_resolutions"} 2.2 Projective resolutions
+                %li
+                  %a{:href => "#23_injective_resolutions"} 2.3 Injective resolutions
+                %li
+                  %a{:href => "#24_left_derived_functors"} 2.4 Left derived functors
+                %li
+                  %a{:href => "#25_right_derived_functors"} 2.5 Right derived functors
+                %li
+                  %a{:href => "#26_adjoint_functors_and_leftright_exactness"} 2.6 Adjoint functors and left/right exactness
+                %li
+                  %a{:href => "#27_balancing__and_"}
+                    2.7 Balancing
+                    %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                      %semantics
+                        %mrow
+                          %mi Tor
+                        %annotation{:encoding => "application/x-tex"} Tor
+                    and
+                    %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                      %semantics
+                        %mrow
+                          %mi Ext
+                        %annotation{:encoding => "application/x-tex"} Ext
+              %li
+                %a{:href => "#3_tor_and_ext"} 3 Tor and Ext
+              %ul
+                %li
+                  %a{:href => "#31__for_abelian_groups"}
+                    3.1
+                    %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                      %semantics
+                        %mrow
+                          %mi Tor
+                        %annotation{:encoding => "application/x-tex"} Tor
+                    for abelian groups
+                %li
+                  %a{:href => "#32__and_flatness"}
+                    3.2
+                    %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                      %semantics
+                        %mrow
+                          %mi Tor
+                        %annotation{:encoding => "application/x-tex"} Tor
+                    and flatness
+                %li
+                  %a{:href => "#33__for_nice_rings"}
+                    3.3
+                    %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                      %semantics
+                        %mrow
+                          %mi Ext
+                        %annotation{:encoding => "application/x-tex"} Ext
+                    for nice rings
+                %li
+                  %a{:href => "#34__and_extensions"}
+                    3.4
+                    %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                      %semantics
+                        %mrow
+                          %mi Ext
+                        %annotation{:encoding => "application/x-tex"} Ext
+                    and extensions
+                %li
+                  %a{:href => "#35_derived_functors_of_the_inverse_limit"} 3.5 Derived functors of the inverse limit
+                %li
+                  %a{:href => "#36_universal_coefficient_theorem"} 3.6 Universal coefficient theorem
+              %li
+                %a{:href => "#4_homological_dimension"} 4 Homological dimension
+              %ul
+                %li
+                  %a{:href => "#41_dimensions"} 4.1 Dimensions
+                %li
+                  %a{:href => "#42_rings_of_small_dimension"} 4.2 Rings of Small Dimension
+                %li
+                  %a{:href => "#43_change_of_rings_theorem"} 4.3 Change of Rings Theorem
+                %li
+                  %a{:href => "#44_local_rings"} 4.4 Local rings
+                %li
+                  %a{:href => "#45_koszul_complexes"} 4.5 Koszul Complexes
+                %li
+                  %a{:href => "#46_local_cohomology"} 4.6 Local Cohomology
+              %li
+                %a{:href => "#5_spectral_sequences"} 5 Spectral sequences
+              %ul
+                %li
+                  %a{:href => "#51_introduction"} 5.1 Introduction
+                %li
+                  %a{:href => "#52_terminology"} 5.2 Terminology
+                %li
+                  %a{:href => "#53_lerayserre_spectral_sequence"} 5.3 Leray-Serre Spectral Sequence
+                %li
+                  %a{:href => "#54_spectral_sequence_of_a_filtration"} 5.4 Spectral sequence of a filtration
+                %li
+                  %a{:href => "#55_convergence"} 5.5 Convergence
+                %li
+                  %a{:href => "#56_spectral_sequence_of_a_double_complex"} 5.6 Spectral sequence of a double complex
+                %li
+                  %a{:href => "#57_hypercohomology"} 5.7 Hypercohomology
+                %li
+                  %a{:href => "#58_grothendieck_spectral_sequence"} 5.8 Grothendieck spectral sequence
+                %li
+                  %a{:href => "#59_exact_couples"} 5.9 Exact couples
+              %li
+                %a{:href => "#6_group_homology_and_cohomology"} 6 Group homology and cohomology
+              %li
+                %a{:href => "#7_lie_algebra_homology_and_cohomology"} 7 Lie algebra homology and cohomology
+              %li
+                %a{:href => "#8_simplicial_methods_in_homological_algebra"} 8 Simplicial methods in homological algebra
+              %ul
+                %li
+                  %a{:href => "#81_simplicial_object"} 8.1 Simplicial object
+                %li
+                  %a{:href => "#82_operations_on_simplicial_objects"} 8.2 Operations on simplicial objects
+                %li
+                  %a{:href => "#83_simplicial_homotopy_groups"} 8.3 Simplicial homotopy groups
+                %li
+                  %a{:href => "#84_the_doldkan_correspondence"} 8.4 The Dold-Kan correspondence
+                %li
+                  %a{:href => "#85_the_eilenbergzilber_theorem"} 8.5 The Eilenberg-Zilber theorem
+                %li
+                  %a{:href => "#86_canonical_resolutions"} 8.6 Canonical resolutions
+                %li
+                  %a{:href => "#87_cotriple_homology"} 8.7 Cotriple homology
+                %li
+                  %a{:href => "#88_andrequillen_homology_and_cohomology"} 8.8 Andre-Quillen Homology and Cohomology
+              %li
+                %a{:href => "#9_hochschild_and_cyclic_homology"} 9 Hochschild and cyclic homology
+              %ul
+                %li
+                  %a{:href => "#91_hochschild_homology_and_cohomology_of_algebras"} 9.1 Hochschild Homology and Cohomology of Algebras
+                %li
+                  %a{:href => "#92_derivations_differentials_and_separable_algebra"} 9.2 Derivations, Differentials and Separable Algebra
+                %li
+                  %a{:href => "#93__extensions_smooth_algebras"}
+                    9.3
+                    = succeed "," do
+                      %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                        %semantics
+                          %mrow
+                            %msup
+                              %mi H
+                              %mn 2
+                          %annotation{:encoding => "application/x-tex"} H^2
+                %li
+                  %a{:href => "#94_hochschild_products"} 9.4 Hochschild products
+                %li
+                  %a{:href => "#95_morita_invariance"} 9.5 Morita Invariance
+                %li
+                  %a{:href => "#96_cyclic_homology"} 9.6 Cyclic Homology
+                %li
+                  %a{:href => "#97_group_rings"} 9.7 Group Rings
+                %li
+                  %a{:href => "#98_mixed_complexes"} 9.8 Mixed Complexes
+                %li
+                  %a{:href => "#99_graded_algebras"} 9.9 Graded Algebras
+                %li
+                  %a{:href => "#910_lie_algebras_of_matrices"} 9.10 Lie Algebras of Matrices
+              %li
+                %a{:href => "#10_the_derived_category"} 10 The derived category
+              %li
+                %a{:href => "#a_category_theory_language"} A Category Theory Language
+              %ul
+                %li
+                  %a{:href => "#a1_categories"} A.1 Categories
+                %li
+                  %a{:href => "#a2_functors"} A.2 Functors
+                %li
+                  %a{:href => "#a3_natural_transformations"} A.3 Natural transformations
+                %li
+                  %a{:href => "#a4_abelian_categories"} A.4 Abelian categories
+                %li
+                  %a{:href => "#a5_limits_and_colimits"} A.5 Limits and colimits
+                %li
+                  %a{:href => "#a6_adjoint_functors"} A.6 Adjoint functors
+          %h2#1_chain_complexes 1 Chain complexes
+          %h3#11_complexes_of_modules
+            1.1 Complexes of
+            = succeed "-modules" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi R
+                  %annotation{:encoding => "application/x-tex"} R
+          %ul
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/abelian+group"}> abelian group
+                ,
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/commutative+ring"} commutative ring
+                %a.existingWikiWord{:href => "/nlab/show/module"} module
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/exact+sequence"} exact sequence
+          %p
+            %strong Definition 1.1.1
+            %a.existingWikiWord{:href => "/nlab/show/chain+complex"} chain complex
+          %ul
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/chain+map"}> chain map
+                ,
+                %a.existingWikiWord{:href => "/nlab/show/chain+homotopy"} chain homotopy
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/category+of+chain+complexes"} category of chain complexes
+          %p
+            %strong Exercise 1.1.2
+            %a{:href => "chain+map#OnHomology"} homology is functorial
+          %p
+            %strong Exercise 1.1.3
+            %a{:href => "split+exact+sequence#OfVectorSpaces"} exact sequences of chain complexes are split
+          %p
+            %strong Exercise 1.1.4
+            %a.existingWikiWord{:href => "/nlab/show/internal+hom+of+chain+complexes"} internal hom of chain complexes
+          %p
+            %strong Definition 1.1.2
+            %a.existingWikiWord{:href => "/nlab/show/quasi-isomorphism"} quasi-isomorphism
+          %p
+            %a.existingWikiWord{:href => "/nlab/show/cochain+complex"}> cochain complex
+            ,
+            %a.existingWikiWord{:href => "/nlab/show/bounded+chain+complex"} bounded chain complex
+          %p
+            %strong Exercise 1.1.5
+            %a{:href => "exact+sequence#ExactnessAndQuasiIsomorphisms"} exactness and weak nullity
+          %p
+            %strong Application 1.1.3
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/chain+on+a+simplicial+set"} chain on a simplicial set
+            %a.existingWikiWord{:href => "/nlab/show/simplicial+homology"} simplicial homology
+          %p
+            %strong Exercise 1.17
+            %a{:href => "simplicial+homology#OfTetrahedon"} simplicial homology of the tetrahedron
+          %p
+            %strong Application 1.1.4
+            %a.existingWikiWord{:href => "/nlab/show/singular+homology"} singular homology
+          %h3#12_operations_on_chain_complexes 1.2 Operations on chain complexes
+          %ul
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/additive+and+abelian+categories"} additive and abelian categories
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Ab-enriched+category"} Ab-enriched category
+              %ul
+                %li
+                  %p
+                    %a.existingWikiWord{:href => "/nlab/show/pre-additive+category"} pre-additive category
+                %li
+                  %p
+                    %a.existingWikiWord{:href => "/nlab/show/additive+category"}> additive category
+                    ,
+                  %ul
+                    %li
+                      %a.existingWikiWord{:href => "/nlab/show/additive+functor"} additive functor
+          %p
+            %strong Exercise 1.2.1
+            %a{:href => "chain+homology+and+cohomology#ChainHomologyRespectsDirectProduct"} homology respects direct product
+          %p
+            %strong Definition 1.2.1
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/kernel"} kernel
+            %a.existingWikiWord{:href => "/nlab/show/cokernel"} cokernel
+          %ul
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/quotient"} quotient
+          %p
+            %strong Exercise 1.2.2
+            %a{:href => "Mod#RModIsAbelian"} in an abelian category kernels/cokernels are the monos/epis
+          %p
+            %strong Exercise 1.2.3
+            %a{:href => "category+of+chain+complexes#KernelsOfChainComplexes"} (co)kernels of chain maps are degreewise (co)kernels
+          %p
+            %strong Definition 1.2.2
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/abelian+category"} abelian category
+            %a.existingWikiWord{:href => "/nlab/show/abelian+subcategory"} abelian subcategory
+          %p
+            %strong Theorem 1.2.3
+            %a{:href => "category+of+chain+complexes#IsAbelian"} a category of chain complexes is itself abelian
+          %p
+            %strong Exercise 1.2.4
+            %a{:href => "category+of+chain+complexes#ShortExactSequencesDegreewise"} exact sequence of chain complexes is degreewise exact
+          %p
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi R
+                %annotation{:encoding => "application/x-tex"} R
+            %a.existingWikiWord{:href => "/nlab/show/Mod"} Mod
+          %p
+            %strong Example 1.2.4
+            %a.existingWikiWord{:href => "/nlab/show/double+complex"} double complex
+          %p
+            %strong Sing trick 1.2.5
+            %a{:href => "double+complex#EquivalenceOfTheTwoDefinitions"} double complex with commuting/anti-commuting differentials
+          %p
+            %strong Total complex 1.2.6
+            %a.existingWikiWord{:href => "/nlab/show/total+complex"} total complex
+          %p
+            %strong Exercise 1.2.5
+            %a{:href => "total+complex#TotOfBoundedDegreewiseExactIsExact"} total complex of a bounded degreewise exact double complex is itself exact
+          %p
+            %strong Example 1.2.4
+            %a.existingWikiWord{:href => "/nlab/show/double+complex"} double complex
+          %p
+            %strong Truncations 1.2.7
+            %a.existingWikiWord{:href => "/nlab/show/truncation+of+a+chain+complex"} truncation of a chain complex
+          %p
+            %strong Translation 1.2.8
+            %a.existingWikiWord{:href => "/nlab/show/suspension+of+a+chain+complex"} suspension of a chain complex
+          %p
+            %strong Exercise 1.2.8
+            %a.existingWikiWord{:href => "/nlab/show/mapping+cone"} mapping cone
+          %h3#13_long_exact_sequences 1.3 Long exact sequences
+          %p
+            %strong Theorem 1.3.1
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/connecting+homomorphism"} connecting homomorphism
+            %a.existingWikiWord{:href => "/nlab/show/long+exact+sequences+in+homology"} long exact sequences in homology
+          %p
+            %strong Exercise 1.3.1
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/3x3+lemma"} 3x3 lemma
+          %p
+            %strong Snake lemma 1.3.2
+            %a.existingWikiWord{:href => "/nlab/show/snake+lemma"} snake lemma
+          %p
+            %strong Exercise 1.3.3
+            %a.existingWikiWord{:href => "/nlab/show/5+lemma"} 5 lemma
+          %p
+            %strong Remark 1.3.5
+            %a.existingWikiWord{:href => "/nlab/show/exact+triangle"} exact triangle
+          %h3#14_chain_homotopies 1.4 Chain homotopies
+          %ul
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/homotopy+theory"} homotopy theory
+          %p
+            %strong Definition 1.4.1
+            %a.existingWikiWord{:href => "/nlab/show/split+exact+sequence"} split exact sequence
+          %p
+            %strong Exercise 1.4.1
+            %a{:href => "split+exact+sequence#OfVectorSpaces"} splitness of exact sequences of free modules
+          %p
+            %strong Definition 1.4.3
+            %a.existingWikiWord{:href => "/nlab/show/null+homotopy"} null homotopy
+          %p
+            %strong Exercise 1.4.3
+            %a{:href => "split+exact+sequence#RelationToChainHomotopy"} split exact means identity is null homotopic
+          %p
+            %strong Definition 1.4.4
+            %a.existingWikiWord{:href => "/nlab/show/chain+homotopy"} chain homotopy
+          %p
+            %strong Lemma 1.4.5
+            %a{:href => "chain%20map#OnHomology"} chain homotopy respects homology
+          %p
+            %strong Exercise 1.4.5
+            %a.existingWikiWord{:href => "/nlab/show/homotopy+category+of+chain+complexes"} homotopy category of chain complexes
+          %h3#15_mapping_cones_and_cyclinders 1.5 Mapping cones and cyclinders
+          %p
+            %strong 1.5.1
+            %a.existingWikiWord{:href => "/nlab/show/mapping+cone"} mapping cone
+          %p
+            %strong 1.5.5
+            %a.existingWikiWord{:href => "/nlab/show/mapping+cylinder"} mapping cylinder
+          %p
+            %strong 1.5.8
+            %a.existingWikiWord{:href => "/nlab/show/fiber+sequence"} fiber sequence
+          %h3#16_more_on_abelian_categories 1.6 More on abelian categories
+          %p
+            %strong Theorem 1.6.1
+            %a.existingWikiWord{:href => "/nlab/show/Freyd-Mitchell+embedding+theorem"} Freyd-Mitchell embedding theorem
+          %p
+            %strong Functor categories 1.6.4
+            %a.existingWikiWord{:href => "/nlab/show/functor+category"} functor category
+          %p
+            %a.existingWikiWord{:href => "/nlab/show/presheaf"} presheaf
+          %p
+            %strong Definition 1.6.5
+            %a.existingWikiWord{:href => "/nlab/show/abelian+sheaf"} abelian sheaf
+          %p
+            %strong Definition 1.6.6
+            left/right
+            %a.existingWikiWord{:href => "/nlab/show/exact+functor"} exact functor
+          %p
+            %strong Yoneda embedding 1.6.10
+            %a.existingWikiWord{:href => "/nlab/show/Yoneda+embedding"} Yoneda embedding
+          %p
+            %strong Yoneda lemma 1.6.11
+            %a.existingWikiWord{:href => "/nlab/show/Yoneda+lemma"} Yoneda lemma
+          %p
+            %a{:href => "http://ncatlab.org/nlab/show/Freyd-Mitchell+embedding+theorem#Proof"} proof of the Freyd-Mitchell embedding theorem
+          %h2#2_derived_functors 2 Derived functors
+          %p
+            %a.existingWikiWord{:href => "/nlab/show/derived+functor+in+homological+algebra"} derived functor in homological algebra
+          %h3#21_functor
+            2.1
+            = succeed "-Functor" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi δ
+                  %annotation{:encoding => "application/x-tex"} \delta
+          %p
+            %strong Definition 2.1.1
+            %a.existingWikiWord{:href => "/nlab/show/delta-functor"} delta-functor
+          %h3#22_projective_resolutions 2.2 Projective resolutions
+          %p
+            %a.existingWikiWord{:href => "/nlab/show/projective+module"} projective module
+            (
+            %a.existingWikiWord{:href => "/nlab/show/cofibrant+object"} cofibrant object
+            in the
+            = succeed ")" do
+              %a.existingWikiWord{:href => "/nlab/show/model+structure+on+chain+complexes"} model structure on chain complexes
+          %p
+            %strong Definition 2.2.4
+            %a.existingWikiWord{:href => "/nlab/show/projective+resolution"} projective resolution
+            (
+            %a.existingWikiWord{:href => "/nlab/show/cofibrant+replacement"}> cofibrant replacement
+            )
+          %p
+            %strong Horseshoe lemma 2.2.8
+            %a.existingWikiWord{:href => "/nlab/show/horseshoe+lemma"} horseshoe lemma
+          %h3#23_injective_resolutions 2.3 Injective resolutions
+          %p
+            %a.existingWikiWord{:href => "/nlab/show/injective+module"} injective module
+            (
+            %a.existingWikiWord{:href => "/nlab/show/fibrant+object"} fibrant object
+            in the other
+            = succeed ")" do
+              %a.existingWikiWord{:href => "/nlab/show/model+structure+on+chain+complexes"} model structure on chain complexes
+          %p
+            %strong Baer’s criterion 2.3.1
+            %a.existingWikiWord{:href => "/nlab/show/Baer%27s+criterion"} Baer's criterion
+          %p
+            %strong Definition 2.3.5
+            %a.existingWikiWord{:href => "/nlab/show/injective+resolution"} injective resolution
+            (
+            %a.existingWikiWord{:href => "/nlab/show/fibrant+replacement"}> fibrant replacement
+            )
+          %p
+            %strong Definition 2.3.9
+            %a.existingWikiWord{:href => "/nlab/show/adjoint+functor"} adjoint functor
+          %h3#24_left_derived_functors 2.4 Left derived functors
+          %p
+            %a.existingWikiWord{:href => "/nlab/show/left+derived+functor"} left derived functor
+          %h3#25_right_derived_functors 2.5 Right derived functors
+          %p
+            %a.existingWikiWord{:href => "/nlab/show/right+derived+functor"} right derived functor
+          %p
+            %strong Application 2.5.4
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/global+section+functor"} global section functor
+            %a.existingWikiWord{:href => "/nlab/show/abelian+sheaf+cohomology"} abelian sheaf cohomology
+          %h3#26_adjoint_functors_and_leftright_exactness 2.6 Adjoint functors and left/right exactness
+          %p
+            %a.existingWikiWord{:href => "/nlab/show/adjoint+functor"} adjoint functor
+          %p
+            %strong Definition 2.6.4
+            %a.existingWikiWord{:href => "/nlab/show/Tor"} Tor
+          %p
+            %strong Application 2.6.5
+            %a.existingWikiWord{:href => "/nlab/show/sheafification"} sheafification
+          %p
+            %strong Application 2.6.6
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/direct+image"} direct image
+            %a.existingWikiWord{:href => "/nlab/show/inverse+image"} inverse image
+          %p
+            %strong Application 2.6.7
+            %a.existingWikiWord{:href => "/nlab/show/colimit"} colimit
+          %p
+            %strong Variation 2.6.9
+            %a.existingWikiWord{:href => "/nlab/show/limit"} limit
+          %p
+            %strong Definition 2.6.13
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/filtered+category"} filtered category
+            %a.existingWikiWord{:href => "/nlab/show/filtered+colimit"} filtered colimit
+          %h3#27_balancing__and_
+            2.7 Balancing
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi Tor
+                %annotation{:encoding => "application/x-tex"} Tor
+            and
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi Ext
+                %annotation{:encoding => "application/x-tex"} Ext
+          %p
+            %strong Tensor product of complexes 2.7.1
+            %a.existingWikiWord{:href => "/nlab/show/tensor+product+of+chain+complexes"} tensor product of chain complexes
+          %p
+            %strong Lemma 2.7.3
+            %a.existingWikiWord{:href => "/nlab/show/acyclic+assembly+lemma"} acyclic assembly lemma
+          %h2#3_tor_and_ext 3 Tor and Ext
+          %p
+            %a.existingWikiWord{:href => "/nlab/show/Tor"} Tor
+            and
+            %a.existingWikiWord{:href => "/nlab/show/Ext"} Ext
+          %h3#31__for_abelian_groups
+            3.1
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi Tor
+                %annotation{:encoding => "application/x-tex"} Tor
+            for abelian groups
+          %p
+            %strong Proposition 3.1.2-3.1.3
+            %a{:href => "Tor#RelationToTorsionGroups"} relation to torsion subgroups
+          %h3#32__and_flatness
+            3.2
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi Tor
+                %annotation{:encoding => "application/x-tex"} Tor
+            and flatness
+          %p
+            %strong Definition 3.2.1
+            %a.existingWikiWord{:href => "/nlab/show/flat+module"} flat module
+          %p
+            %strong Definition 3.2.3
+            %a.existingWikiWord{:href => "/nlab/show/Pontrjagin+duality"} Pontrjagin duality
+          %p
+            %strong Flat resolution lemma 3.2.8
+            %a.existingWikiWord{:href => "/nlab/show/flat+resolution+lemma"} flat resolution lemma
+          %p
+            %strong Corollary 3.2.13
+            %a{:href => "Tor#Localization"} Localization for Tor
+          %h3#33__for_nice_rings
+            3.3
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi Ext
+                %annotation{:encoding => "application/x-tex"} Ext
+            for nice rings
+          %p
+            %strong Corollary 3.3.11
+            %a{:href => "Ext#Localization"} Localization for Ext
+          %h3#34__and_extensions
+            3.4
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi Ext
+                %annotation{:encoding => "application/x-tex"} Ext
+            and extensions
+          %p
+            %a.existingWikiWord{:href => "/nlab/show/extension"} extension
+          %p
+            %a.existingWikiWord{:href => "/nlab/show/group+extension"} group extension
+          %p
+            %strong Vista 3.4.6
+            %span.newWikiWord
+              Yoneda extension group
+              %a{:href => "/nlab/new/Yoneda+extension+group"} ?
+          %h3#35_derived_functors_of_the_inverse_limit 3.5 Derived functors of the inverse limit
+          %p
+            %a.existingWikiWord{:href => "/nlab/show/tower"} tower
+          %p
+            %a.existingWikiWord{:href => "/nlab/show/additive+and+abelian+categories"} (AB4)-category
+          %p
+            %a.existingWikiWord{:href => "/nlab/show/directed+limit"} directed limit
+          %p
+            %strong Definition 3.5.1
+            %a.existingWikiWord{:href => "/nlab/show/lim%5E1"} lim^1
+          %p
+            %strong Definition 3.5.6
+            %a.existingWikiWord{:href => "/nlab/show/Mittag-Leffler+condition"} Mittag-Leffler condition
+          %p
+            %strong Exercise 3.5.5
+            %a.existingWikiWord{:href => "/nlab/show/pullback"} pullback
+          %h3#36_universal_coefficient_theorem 3.6 Universal coefficient theorem
+          %p
+            %strong Theorem 2.6.1
+            %a.existingWikiWord{:href => "/nlab/show/K%C3%BCnneth+formula"} Künneth formula
+          %p
+            %strong Universal cofficient theorem for homology 3.6.2
+            %a{:href => "universal+coefficient+theorem#InHomology"} universal coefficient theorem in homology
+          %p
+            %strong Theorem 3.6.3
+            %span.newWikiWord
+              Künneth formula for complexes
+              %a{:href => "/nlab/new/K%C3%BCnneth+formula+for+complexes"} ?
+          %p
+            %strong Application 3.6.4
+            %a{:href => "universal+coefficient+theorem#InTopology"} universal coefficient theorem in topology
+          %p
+            %strong Universal coefficient theorem in cohomology 3.6.5
+            %a{:href => "universal+coefficient+theorem#InCohomology"} universal coefficient theorem in cohomology
+          %p
+            %a.existingWikiWord{:href => "/nlab/show/Eilenberg-Zilber+theorem"} Eilenberg-Zilber theorem
+          %p
+            %strong Exercise 3.6.2
+            %span.newWikiWord
+              hereditary ring
+              %a{:href => "/nlab/new/hereditary+ring"} ?
+          %h2#4_homological_dimension 4 Homological dimension
+          %h3#41_dimensions 4.1 Dimensions
+          %ul
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/dimension"} dimension
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/global+dimension+theorem"} global dimension theorem
+            %li
+              %p
+                %span.newWikiWord
+                  homological dimension
+                  %a{:href => "/nlab/new/homological+dimension"} ?
+          %h3#42_rings_of_small_dimension 4.2 Rings of Small Dimension
+          %h3#43_change_of_rings_theorem 4.3 Change of Rings Theorem
+          %h3#44_local_rings 4.4 Local rings
+          %ul
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/local+ring"} local ring
+          %h3#45_koszul_complexes 4.5 Koszul Complexes
+          %ul
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/Koszul+complex"} Koszul complex
+          %h3#46_local_cohomology 4.6 Local Cohomology
+          %h2#5_spectral_sequences 5 Spectral sequences
+          %h3#51_introduction 5.1 Introduction
+          %h3#52_terminology 5.2 Terminology
+          %ul
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/spectral+sequence"} spectral sequence
+          %h3#53_lerayserre_spectral_sequence 5.3 Leray-Serre Spectral Sequence
+          %ul
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/Leray-Serre+spectral+sequence"} Leray-Serre spectral sequence
+          %h3#54_spectral_sequence_of_a_filtration 5.4 Spectral sequence of a filtration
+          %ul
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/spectral+sequence+of+a+filtration"} spectral sequence of a filtration
+          %h3#55_convergence 5.5 Convergence
+          %h3#56_spectral_sequence_of_a_double_complex 5.6 Spectral sequence of a double complex
+          %ul
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/spectral+sequence+of+a+double+complex"} spectral sequence of a double complex
+          %h3#57_hypercohomology 5.7 Hypercohomology
+          %ul
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/hypercohomology"} hypercohomology
+          %h3#58_grothendieck_spectral_sequence 5.8 Grothendieck spectral sequence
+          %ul
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/Grothendieck+spectral+sequence"} Grothendieck spectral sequence
+          %h3#59_exact_couples 5.9 Exact couples
+          %ul
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/exact+couple"} exact couple
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Bockstein+spectral+sequence"} Bockstein spectral sequence
+          %h2#6_group_homology_and_cohomology 6 Group homology and cohomology
+          %ul
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/group+cohomology"} group cohomology
+          %h2#7_lie_algebra_homology_and_cohomology 7 Lie algebra homology and cohomology
+          %ul
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/Lie+algebra+homology"}> Lie algebra homology
+              ,
+              %a.existingWikiWord{:href => "/nlab/show/Lie+algebra+cohomology"} Lie algebra cohomology
+          %h2#8_simplicial_methods_in_homological_algebra 8 Simplicial methods in homological algebra
+          %h3#81_simplicial_object 8.1 Simplicial object
+          %ul
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/simplicial+object"} simplicial object
+          %h3#82_operations_on_simplicial_objects 8.2 Operations on simplicial objects
+          %h3#83_simplicial_homotopy_groups 8.3 Simplicial homotopy groups
+          %ul
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/simplicial+homotopy+group"} simplicial homotopy group
+          %h3#84_the_doldkan_correspondence 8.4 The Dold-Kan correspondence
+          %ul
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/Dold-Kan+correspondence"} Dold-Kan correspondence
+          %h3#85_the_eilenbergzilber_theorem 8.5 The Eilenberg-Zilber theorem
+          %ul
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/Eilenberg-Zilber+theorem"} Eilenberg-Zilber theorem
+          %h3#86_canonical_resolutions 8.6 Canonical resolutions
+          %ul
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/monad"}> monad
+                (=triple)
+                %a.existingWikiWord{:href => "/nlab/show/comonad"} comonad
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/bar+construction"}> bar construction
+                ,
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/classifying+space"} classifying space
+          %h3#87_cotriple_homology 8.7 Cotriple homology
+          %ul
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/bar+construction"} bar construction
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/monadic+descent"} monadic descent
+          %h3#88_andrequillen_homology_and_cohomology 8.8 Andre-Quillen Homology and Cohomology
+          %ul
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/K%C3%A4hler+differential"} Kähler differential
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/cotangent+complex"} cotangent complex
+          %h2#9_hochschild_and_cyclic_homology 9 Hochschild and cyclic homology
+          %h3#91_hochschild_homology_and_cohomology_of_algebras 9.1 Hochschild Homology and Cohomology of Algebras
+          %ul
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/Hochschild+cohomology"} Hochschild cohomology
+          %h3#92_derivations_differentials_and_separable_algebra 9.2 Derivations, Differentials and Separable Algebra
+          %ul
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/derivation"} derivation
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/differential"} differential
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/separable+algebra"} separable algebra
+          %h3#93__extensions_smooth_algebras
+            9.3
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msup
+                      %mi H
+                      %mn 2
+                  %annotation{:encoding => "application/x-tex"} H^2
+          %ul
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/smooth+algebra"} smooth algebra
+          %h3#94_hochschild_products 9.4 Hochschild products
+          %ul
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/Hochschild-Kostant-Rosenberg+theorem"} Hochschild-Kostant-Rosenberg theorem
+          %h3#95_morita_invariance 9.5 Morita Invariance
+          %h3#96_cyclic_homology 9.6 Cyclic Homology
+          %ul
+            %li
+              %span.newWikiWord
+                cyclic cohomology
+                %a{:href => "/nlab/new/cyclic+cohomology"} ?
+          %h3#97_group_rings 9.7 Group Rings
+          %h3#98_mixed_complexes 9.8 Mixed Complexes
+          %h3#99_graded_algebras 9.9 Graded Algebras
+          %h3#910_lie_algebras_of_matrices 9.10 Lie Algebras of Matrices
+          %h2#10_the_derived_category 10 The derived category
+          %ul
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/derived+category"} derived category
+          %h2#a_category_theory_language A Category Theory Language
+          %ul
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/category+theory"} category theory
+          %h3#a1_categories A.1 Categories
+          %ul
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/category"} category
+          %h3#a2_functors A.2 Functors
+          %ul
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/functor"} functor
+          %h3#a3_natural_transformations A.3 Natural transformations
+          %ul
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/natural+transformation"} natural transformation
+          %h3#a4_abelian_categories A.4 Abelian categories
+          %ul
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/abelian+category"} abelian category
+          %h3#a5_limits_and_colimits A.5 Limits and colimits
+          %ul
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/limit"}> limit
+              ,
+              %a.existingWikiWord{:href => "/nlab/show/colimit"} colimit
+          %h3#a6_adjoint_functors A.6 Adjoint functors
+          %ul
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/adjoint+functor"} adjoint functor
+          .property
+            category:
+            %a.category_link{:href => "/nlab/all_pages/reference"} reference
+        .revisedby
+          %p
+            Last revised on July 29, 2021 at 18:43:52.
+            See the
+            %a{:href => "/nlab/history/An+Introduction+to+Homological+Algebra", :style => "color: #005c19"} history
+            of this page for a list of all contributions to it.
+        .navigation.navfoot
+          %a#edit.navlink{:accesskey => "E", :href => "/nlab/edit/An+Introduction+to+Homological+Algebra", :rel => "nofollow"} Edit
+          %a{:href => "https://nforum.ncatlab.org/discussion/964/#Item_6"} Discuss
+          %span.backintime
+            %a#to_previous_revision.navlinkbackintime{:accesskey => "B", :href => "/nlab/revision/An+Introduction+to+Homological+Algebra/22", :rel => "nofollow"} Previous revision
+          %a#see_changes.navlink{:accesskey => "C", :href => "/nlab/show/diff/An+Introduction+to+Homological+Algebra", :rel => "nofollow"} Changes from previous revision
+          %a#history.navlink{:accesskey => "S", :href => "/nlab/history/An+Introduction+to+Homological+Algebra", :rel => "nofollow"} History (22 revisions)
+          %a{:href => "/nlab/show/An+Introduction+to+Homological+Algebra/cite", :style => "color: black"} Cite
+          %a#view_print{:accesskey => "p", :href => "/nlab/print/An+Introduction+to+Homological+Algebra", :rel => "nofollow"} Print
+          %a#view_source{:href => "/nlab/source/An+Introduction+to+Homological+Algebra", :rel => "nofollow"} Source
+      / Content
+    / Container
