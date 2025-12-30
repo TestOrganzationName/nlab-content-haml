@@ -1,0 +1,3371 @@
+!!! XML
+!!! 1.1
+%html{:xmlns => "http://www.w3.org/1999/xhtml"}
+  %head
+    %title
+      A first idea of quantum field theory -- Feynman diagrams in nLab
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:content => "index,follow", :name => "robots"}/
+    %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/
+    %link{:href => "/stylesheets/instiki.css?1660229990", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/stylesheets/mathematics.css?1660229990", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/stylesheets/syntax.css?1660229990", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/stylesheets/nlab.css?1660229990", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css", :rel => "stylesheet", :type => "text/css"}/
+    :css
+      h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+        color: #226622;
+      }
+      a:visited.existingWikiWord {
+        color: #164416;
+      }
+    :css
+      <!--/*--><![CDATA[/*><!--*/
+          .toc ul {margin: 0; padding: 0;}
+      .toc ul ul {margin: 0; padding: 0 0 0 10px;}
+      .toc li > p {margin: 0}
+      .toc ul li {list-style-type: none; position: relative;}
+      .toc div {border-top:1px dotted #ccc;}
+      .rightHandSide h2 {font-size: 1.5em;color:#008B26}
+      table.plaintable {
+          border-collapse:collapse;
+          margin-left:30px;
+          border:0;
+      }
+      .plaintable td {border:1px solid #000; padding: 3px;}
+      .plaintable th {padding: 3px;}
+      .plaintable caption {
+          font-weight: bold;
+          font-size:1.1em;
+          text-align:center;
+          margin-left:30px;
+      }
+          
+         
+      /* Query boxes for questioning and answering mechanism */
+      div.query{
+      background: #f6fff3;
+      border: solid #ce9;
+      border-width: 2px 1px;
+      padding: 0 1em;
+      margin: 0 1em;
+      max-height: 20em;
+      overflow: auto;
+      }
+      
+      /* Standout boxes for putting important text */
+      div.standout{
+      background: #fff1f1;
+      border: solid black;
+      border-width: 2px 1px;
+      padding: 0 1em;
+      margin: 0 1em;
+      overflow: auto;
+      }
+      
+      /* Icon for links to n-category arXiv documents 
+       (commented out for now i.e. disabled)
+      a[href*="http://arxiv.org/"] {
+        background-image: url(../files/arXiv_icon.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 22px;
+        } */
+          
+      /* Icon for links to n-category cafe posts (disabled) 
+      a[href*="http://golem.ph.utexas.edu/category"] {
+        background-image: url(../files/n-cafe_5.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 25px;
+        } */
+      
+      /* Icon for links to pdf files (disabled)
+      a[href$=".pdf"] {
+        background-image: url(../files/pdficon_small.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 25px;
+        } */
+      
+      /* Icon for links to pages, etc. -inside- pdf files (disabled)
+      a[href*=".pdf#"] {
+        background-image: url(../files/pdf_entry.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 25px;
+        } */
+      
+      a.existingWikiWord {
+      color: #226622;
+      }
+      
+      a.existingWikiWord:visited {
+      color: #226622;
+      }
+      
+      
+      a.existingWikiWord[title] {
+      border: 0px;
+      color: #aa0505;
+      text-decoration: none;
+      }
+          
+      a.existingWikiWord[title]:visited {
+      border: 0px;
+      color: #551111;
+      text-decoration: none;
+      }
+      
+      a[href^="http://"] {
+      border: 0px;
+      color: #003399;
+      }
+      
+      a[href^="http://"]:visited {
+      border: 0px;
+      color: #330066;
+      }
+      
+      a[href^="https://"] {
+      border: 0px;
+      color: #003399;
+      }
+      
+      a[href^="https://"]:visited {
+      border: 0px;
+      color: #330066;
+      }
+      
+      div.dropDown .hide {
+      display: none;
+      }
+      
+      div.dropDown:hover .hide {
+      display:block;
+      }
+      
+      div.clickDown .hide {
+      display: none;
+      }
+      
+      div.clickDown:focus {
+      outline:none;
+      }
+      
+      div.clickDown:focus .hide, div.clickDown:hover .hide {
+      display: block;
+      }
+      
+      div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+      display:block;
+      }
+      
+      div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+      display:none;
+      }
+      
+      div.clickDown .clickToReveal:after {
+      content: "A(Hover to reveal, click to "hold")";
+      font-size: 60%;
+      }
+      
+      div.clickDown .clickToHide:after {
+      content: "A(Click to hide)";
+      font-size: 60%;
+      }
+      div.clickDown .clickToHide, div.clickDown .clickToReveal {
+      white-space: pre-wrap;
+      }
+      
+      .un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+      margin-left: 1em;
+      }
+      
+      span.theorem_label {
+      margin-left: -1em;
+      }
+      .proof span.theorem_label {
+      margin-left: 0em;
+      }
+      :target {
+          background-color: #BBBBBB;
+          border-radius: 5pt;
+      }
+      
+        /*]]>*/-->
+    %script{:src => "/javascripts/prototype.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/effects.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/dragdrop.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/controls.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/application.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/page_helper.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/thm_numbering.js?1660229990", :type => "text/javascript"}
+    %script{:type => "text/x-mathjax-config"}
+      :cdata
+        <!--//--><![CDATA[//><!--
+        MathJax.Ajax.config.path["Contrib"] = "/MathJax";
+        MathJax.Hub.Config({
+        MathML: { useMathMLspacing: true },
+        "HTML-CSS": { scale: 90,
+        extensions: ["handle-floats.js"]
+        }
+        });
+        MathJax.Hub.Queue( function () {
+        var fos = document.getElementsByTagName('foreignObject');
+        for (var i = 0; i < fos.length; i++) {
+        MathJax.Hub.Typeset(fos[i]);
+        }
+        });
+        \//--><!]]>
+    :javascript
+      <!--//--><![CDATA[//><!--
+      window.addEventListener("DOMContentLoaded", function () {
+        var div = document.createElement('div');
+        var math = document.createElementNS('http://www.w3.org/1998/Math/MathML', 'math');
+        document.body.appendChild(div);
+        div.appendChild(math);
+      // Test for MathML support comparable to WebKit version https://trac.webkit.org/changeset/203640 or higher.
+        div.setAttribute('style', 'font-style: italic');
+        var mathml_unsupported = !(window.getComputedStyle(div.firstChild).getPropertyValue('font-style') === 'normal');
+        div.parentNode.removeChild(div);
+        if (mathml_unsupported) {
+          // MathML does not seem to be supported...
+          var s = document.createElement('script');
+          s.src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=MML_HTMLorMML-full";
+          document.querySelector('head').appendChild(s);
+        } else {
+          document.head.insertAdjacentHTML("beforeend", '<style>svg[viewBox] {max-width: 100%}</style>');
+        }
+      });
+      //--><!]]>
+    %link{:href => "https://ncatlab.org/nlab/atom_with_headlines", :rel => "alternate", :title => "Atom with headlines", :type => "application/atom+xml"}/
+    %link{:href => "https://ncatlab.org/nlab/atom_with_content", :rel => "alternate", :title => "Atom with full content", :type => "application/atom+xml"}/
+    :javascript
+      document.observe("dom:loaded", function() {
+        generateThmNumbers();
+      });
+  %body
+    #Container
+      #Content
+        %h1#pageName
+          %span{:style => "float: left; margin: 0.5em 0.25em -0.25em 0"}
+            %svg{:height => "1.8em", :viewbox => "0 0 190 181", :width => "1.872em", :xmlns => "http://www.w3.org/2000/svg"}
+              %path{:d => "M72.8 145c-1.6 17.3-15.7 10-23.6 20.2-5.6 7.3 4.8 15 11.4 15 11.5-.2 19-13.4 26.4-20.3 3.3-3 8.2-4 11.2-7.2a14 14 0 0 0 2.9-11.1c-1.4-9.6-12.4-18.6-16.9-27.2-5-9.6-10.7-27.4-24.1-27.7-17.4-.3-.4 26 4.7 30.7 2.4 2.3 5.4 4.1 7.3 6.9 1.6 2.3 2.1 5.8-1 7.2-5.9 2.6-12.4-6.3-15.5-10-8.8-10.6-15.5-23-26.2-31.8-5.2-4.3-11.8-8-18-3.7-7.3 4.9-4.2 12.9.2 18.5a81 81 0 0 0 30.7 23c3.3 1.5 12.8 5.6 10 10.7-2.5 5.2-11.7 3-15.6 1.1-8.4-3.8-24.3-21.3-34.4-13.7-3.5 2.6-2.3 7.6-1.2 11.1 2.8 9 12.2 17.2 20.9 20.5 17.3 6.7 34.3-8 50.8-12.1z", :fill => "#226622"}
+              %path{:d => "M145.9 121.3c-.2-7.5 0-19.6-4.5-26-5.4-7.5-12.9-1-14.1 5.8-1.4 7.8 2.7 14.1 4.8 21.3 3.4 12 5.8 29-.8 40.1-3.6-6.7-5.2-13-7-20.4-2.1-8.2-12.8-13.2-15.1-1.9-2 9.7 9 21.2 12 30.1 1.2 4 2 8.8 6.4 10.3 6.9 2.3 13.3-4.7 17.7-8.8 12.2-11.5 36.6-20.7 43.4-36.4 6.7-15.7-13.7-14-21.3-7.2-9.1 8-11.9 20.5-23.6 25.1 7.5-23.7 31.8-37.6 38.4-61.4 2-7.3-.8-29.6-13-19.8-14.5 11.6-6.6 37.6-23.3 49.2z", :fill => "#a41e32"}
+              %path{:d => "M86.3 47.5c0-13-10.2-27.6-5.8-40.4 2.8-8.4 14.1-10.1 17-1 3.8 11.6-.3 26.3-1.8 38 11.7-.7 10.5-16 14.8-24.3 2.1-4.2 5.7-9.1 11-6.7 6 2.7 7.4 9.2 6.6 15.1-2.2 14-12.2 18.8-22.4 27-3.4 2.7-8 6.6-5.9 11.6 2 4.4 7 4.5 10.7 2.8 7.4-3.3 13.4-16.5 21.7-16 14.6.7 12 21.9.9 26.2-5 1.9-10.2 2.3-15.2 3.9-5.8 1.8-9.4 8.7-15.7 8.9-6.1.1-9-6.9-14.3-9-14.4-6-33.3-2-44.7-14.7-3.7-4.2-9.6-12-4.9-17.4 9.3-10.7 28 7.2 35.7 12 2 1.1 11 6.9 11.4 1.1.4-5.2-10-8.2-13.5-10-11.1-5.2-30-15.3-35-27.3-2.5-6 2.8-13.8 9.4-13.6 6.9.2 13.4 7 17.5 12C70.9 34 75 43.8 86.3 47.4z", :fill => "#193c78"}
+          %span.webName nLab
+          A first idea of quantum field theory -- Feynman diagrams
+        .navigation
+          %span.skipNav
+            %a{:href => "#navEnd"} Skip the Navigation Links
+            |
+          %span{:style => "display:inline-block; width: 0.3em;"}
+          %a{:accesskey => "H", :href => "/nlab/show/HomePage", :title => "Home page"} Home Page
+          |
+          %a{:accesskey => "A", :href => "/nlab/all_pages", :title => "List of all pages"} All Pages
+          |
+          %a{:accesskey => "U", :href => "/nlab/latest_revisions", :title => "Latest edits and page creations"} Latest Revisions
+          |
+          %a{:href => "https://nforum.ncatlab.org/discussions/?CategoryID=0", :style => "color:black", :title => "Discuss this page on the nForum. It does not yet have a dedicated thread; feel free to create one, giving it the same name as the title of this page"} Discuss this page
+          |
+          %form#navigationSearchForm{"accept-charset" => "utf-8", :action => "/nlab/search", :method => "get"}
+            %fieldset.search
+              %input#searchField{:name => "query", :onblur => "this.value == '' ? this.value = 'Search' : true", :onfocus => "this.value == 'Search' ? this.value = '' : true", :style => "display:inline-block; float: left;", :type => "text", :value => "Search"}/
+          %span#navEnd
+        #revision
+          %meta{:content => "application/xhtml+xml;charset=utf-8", "http-equiv" => "Content-type"}/
+          %title Feynman diagrams
+          %h2#FeynmanDiagrams Feynman diagrams
+          %p
+            So far we considered only the
+            %a.existingWikiWord{:href => "/nlab/show/axioms"} axioms
+            on a consistent perturbative S-matrix /
+            %a.existingWikiWord{:href => "/nlab/show/time-ordered+products"} time-ordered products
+            and its formal consequences. Now we discuss the actual construction of
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/time-ordered+products"} time-ordered products
+            = succeed "." do
+              %em
+                %a.existingWikiWord{:href => "/nlab/show/renormalization"} renormalization
+                of
+                %a.existingWikiWord{:href => "/nlab/show/Feynman+diagrams"} Feynman diagrams
+          %p
+            We first discuss how
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/time-ordered+product"} time-ordered product
+            = succeed "," do
+              %a{:href => "#PerturbativeSMatrixAndTimeOrderedProducts"} above
+            %a.maruku-ref{:href => "#TimeOrderedProductAwayFromDiagonal"}
+            below). Moreover, we discuss how on that locus the time-ordered product is naturally expressed as a sum of
+            %a.existingWikiWord{:href => "/nlab/show/products+of+distributions"} products of distributions
+            of
+            %a.existingWikiWord{:href => "/nlab/show/Feynman+propagators"} Feynman propagators
+            that are labeled by
+            = succeed ":" do
+              %a.existingWikiWord{:href => "/nlab/show/Feynman+diagrams"} Feynman diagrams
+            %em
+              %a.existingWikiWord{:href => "/nlab/show/Feynman+perturbation+series"} Feynman perturbation series
+            (prop.
+            %a.maruku-ref{:href => "#FeynmanPerturbationSeriesAwayFromCoincidingPoints"}
+            below).
+          %p
+            This means that the full
+            %a.existingWikiWord{:href => "/nlab/show/time-ordered+product"} time-ordered product
+            is an
+            %a.existingWikiWord{:href => "/nlab/show/extension+of+distributions"} extension of distributions
+            of these
+            %em
+              %a.existingWikiWord{:href => "/nlab/show/scattering+amplitudes"}> scattering amplitudes
+              \- to the locus of coinciding vertices. The space of possible such extensions turns out to be finite-dimensional in each order of
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi g
+                      %mo{:stretchy => "false"} /
+                      %mi ℏ
+                      %mo ,
+                      %mi j
+                      %mo{:stretchy => "false"} /
+                      %mi ℏ
+                    %annotation{:encoding => "application/x-tex"} g/\hbar, j/\hbar
+              %a.existingWikiWord{:href => "/nlab/show/point-supported+distributions"} point-supported distributions
+              at the interaction points whose
+              %a.existingWikiWord{:href => "/nlab/show/degree+of+a+distribution"} scaling degree
+              is bounded by the given Feynman propagators.
+          #TuplesOfCompactlySupportedPolynomialLocalFunctionalsWithPairwiseDisjointSupport.num_defn
+            %h6#definition Definition
+            %p
+              For
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi k
+                      %mo ∈
+                      %mi ℕ
+                    %annotation{:encoding => "application/x-tex"} k \in \mathbb{N}
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msubsup
+                      %mrow
+                        %mo (
+                        %msub
+                          %mi ℱ
+                          %mi loc
+                        %mo{:stretchy => "false"} ⟨
+                        %mi g
+                        %mo ,
+                        %mi j
+                        %mo{:stretchy => "false"} ⟩
+                        %mo )
+                      %mi pds
+                      %mrow
+                        %msup
+                          %mo ⊗
+                          %mi k
+                    %mo ↪
+                    %msup
+                      %mrow
+                        %mo (
+                        %msub
+                          %mi ℱ
+                          %mi loc
+                        %mo{:stretchy => "false"} ⟨
+                        %mi g
+                        %mo ,
+                        %mi j
+                        %mo{:stretchy => "false"} ⟩
+                        %mo )
+                      %mrow
+                        %msup
+                          %mo ⊗
+                          %mi k
+                  %annotation{:encoding => "application/x-tex"}
+                    \\left(\mathcal{F}_{loc}\langle g,j\rangle\right)^{\otimes^k}_{pds}
+                    \\hookrightarrow
+                    \\left(\mathcal{F}_{loc}\langle g,j\rangle\right)^{\otimes^k}
+            %p
+              for the subspace of the
+              = succeed "-fold" do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi k
+                    %annotation{:encoding => "application/x-tex"} k
+              %a.existingWikiWord{:href => "/nlab/show/tensor+product"} tensor product
+              of the space of compactly supported polynomial local densities (def.
+              = succeed ")" do
+                %a.maruku-ref{:href => "#CompactlySupportedPolynomialLocalDensities"}
+              %a.existingWikiWord{:href => "/nlab/show/tuples"} tuples
+              which have pairwise disjoint spacetime
+              = succeed "." do
+                %a.existingWikiWord{:href => "/nlab/show/support"} support
+          #TimeOrderedProductAwayFromDiagonal.num_prop
+            %h6#proposition Proposition
+            %p
+              %strong
+                (
+                %a.existingWikiWord{:href => "/nlab/show/time-ordered+product"} time-ordered product
+                away from the diagonal)
+            %p
+              Restricted to
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msubsup
+                      %mrow
+                        %mo (
+                        %msub
+                          %mi ℱ
+                          %mi loc
+                        %mo{:stretchy => "false"} ⟨
+                        %mi g
+                        %mo ,
+                        %mi j
+                        %mo{:stretchy => "false"} ⟩
+                        %mo )
+                      %mi pds
+                      %mrow
+                        %msup
+                          %mo ⊗
+                          %mi k
+                  %annotation{:encoding => "application/x-tex"} \left(\mathcal{F}_{loc}\langle g,j\rangle\right)^{\otimes^k}_{pds}
+              (def.
+              = succeed ")" do
+                %a.maruku-ref{:href => "#TuplesOfCompactlySupportedPolynomialLocalFunctionalsWithPairwiseDisjointSupport"}
+              %a.existingWikiWord{:href => "/nlab/show/time-ordered+product"} time-ordered product
+              (def.
+              = succeed ")," do
+                %a.maruku-ref{:href => "#TimeOrderedProduct"}
+              %a.existingWikiWord{:href => "/nlab/show/star+product"} star product
+              that is induced by the
+              %a.existingWikiWord{:href => "/nlab/show/Feynman+propagator"} Feynman propagator
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi ω
+                      %mi F
+                  %annotation{:encoding => "application/x-tex"} \omega_F
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi F
+                    %msub
+                      %mo ⋆
+                      %mrow
+                        %msub
+                          %mi ω
+                          %mi F
+                    %mi G
+                    %mspace{:width => "thickmathspace"}
+                    %mo ≔
+                    %mspace{:width => "thickmathspace"}
+                    %mi prod
+                    %mo ∘
+                    %mi exp
+                    %mrow
+                      %mo (
+                      %mi ℏ
+                      %mrow
+                        %mo ⟨
+                        %msub
+                          %mi ω
+                          %mi F
+                        %mo ,
+                        %mfrac
+                          %mi δ
+                          %mrow
+                            %mi δ
+                            %mi ϕ
+                        %mo ⊗
+                        %mfrac
+                          %mi δ
+                          %mrow
+                            %mi δ
+                            %mi ϕ
+                        %mo ⟩
+                      %mo )
+                    %mo{:stretchy => "false"} (
+                    %mi F
+                    %mo ⊗
+                    %mi G
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"}
+                    F \star_{\omega_F} G
+                    \\;\coloneqq\;
+                    prod \circ
+                    \\exp\left(
+                    \\hbar
+                    \\left\langle
+                    \\omega_F , \frac{\delta}{\delta \phi} \otimes \frac{\delta}{\delta \phi}
+                    \\right\rangle
+                    \\right)
+                    (F \otimes G)
+            %p in that
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi T
+                    %mo{:stretchy => "false"} (
+                    %msub
+                      %mi L
+                      %mn 1
+                    %mi ⋯
+                    %msub
+                      %mi L
+                      %mi k
+                    %mo{:stretchy => "false"} )
+                    %mo =
+                    %msub
+                      %mi L
+                      %mn 1
+                    %msub
+                      %mo ⋆
+                      %mrow
+                        %msub
+                          %mi ω
+                          %mi F
+                    %msub
+                      %mi L
+                      %mn 2
+                    %msub
+                      %mo ⋆
+                      %mrow
+                        %msub
+                          %mi ω
+                          %mi F
+                    %mi ⋯
+                    %msub
+                      %mo ⋆
+                      %mrow
+                        %msub
+                          %mi ω
+                          %mi F
+                    %msub
+                      %mi L
+                      %mi k
+                    %mspace{:width => "thinmathspace"}
+                    %mo .
+                  %annotation{:encoding => "application/x-tex"}
+                    T( L_1 \cdots L_k )
+                    \=
+                    L_1 \star_{\omega_F} L_2 \star_{\omega_F} \cdots \star_{\omega_F} L_k
+                    \\,.
+          .proof
+            %h6#proof Proof
+            %p
+              Since the
+              %a.existingWikiWord{:href => "/nlab/show/singular+support"} singular support
+              of the
+              %a.existingWikiWord{:href => "/nlab/show/Feynman+propagator"} Feynman propagator
+              is on the
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/diagonal"} diagonal
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msubsup
+                      %mrow
+                        %mo (
+                        %msub
+                          %mi ℱ
+                          %mi loc
+                        %mo{:stretchy => "false"} ⟨
+                        %mi g
+                        %mo ,
+                        %mi j
+                        %mo{:stretchy => "false"} ⟩
+                        %mo )
+                      %mi pds
+                      %mrow
+                        %msup
+                          %mo ⊗
+                          %mi k
+                  %annotation{:encoding => "application/x-tex"} \left(\mathcal{F}_{loc}\langle g,j\rangle\right)^{\otimes^k}_{pds}
+              is by definition in the complement of the diagonal, the star product
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mo ⋆
+                      %mrow
+                        %msub
+                          %mi ω
+                          %mi F
+                  %annotation{:encoding => "application/x-tex"} \star_{\omega_F}
+              is well defined. By construction it satisfies the axioms “peturbation” and “normalization” in def.
+              = succeed "." do
+                %a.maruku-ref{:href => "#TimeOrderedProduct"}
+              = succeed "\u201D:" do
+                %a.existingWikiWord{:href => "/nlab/show/causal+factorization"} causal factorization
+            %p
+              Unwinding the definition of the
+              %a.existingWikiWord{:href => "/nlab/show/Hadamard+state"} Hadamard state
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi ω
+                  %annotation{:encoding => "application/x-tex"} \omega
+              and the
+              %a.existingWikiWord{:href => "/nlab/show/Feynman+propagator"} Feynman propagator
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msub
+                        %mi ω
+                        %mi F
+                    %annotation{:encoding => "application/x-tex"} \omega_F
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mrow
+                      %mtable{:columnalign => "right left right left right left right left right left", :columnspacing => "0em", :displaystyle => "true"}
+                        %mtr
+                          %mtd
+                            %mi ω
+                          %mtd
+                            %mo =
+                            %mstyle{:displaystyle => "false"}
+                              %mfrac
+                                %mi i
+                                %mn 2
+                            %mo{:stretchy => "false"} (
+                            %msub
+                              %mi Δ
+                              %mi R
+                            %mo −
+                            %msub
+                              %mi Δ
+                              %mi A
+                            %mo{:stretchy => "false"} )
+                            %mo +
+                            %mi H
+                        %mtr
+                          %mtd
+                            %msub
+                              %mi ω
+                              %mi F
+                          %mtd
+                            %mo =
+                            %mstyle{:displaystyle => "false"}
+                              %mfrac
+                                %mi i
+                                %mn 2
+                            %mo{:stretchy => "false"} (
+                            %msub
+                              %mi Δ
+                              %mi R
+                            %mo +
+                            %msub
+                              %mi Δ
+                              %mi A
+                            %mo{:stretchy => "false"} )
+                            %mo +
+                            %mi H
+                  %annotation{:encoding => "application/x-tex"}
+                    \\begin{aligned}
+                    \\omega &amp; = \tfrac{i}{2}( \Delta_R - \Delta_A ) + H
+                    \\\
+                    \\omega_F &amp; = \tfrac{i}{2}( \Delta_R + \Delta_A ) + H
+                    \\end{aligned}
+            %p where the propagators on the right have, in particular, the following properties:
+            %ol
+              %li
+                %p
+                  the
+                  %a.existingWikiWord{:href => "/nlab/show/advanced+propagator"} advanced propagator
+                  vanishes when its first argument is not in the causal past of its second argument:
+                .maruku-equation
+                  %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mo{:stretchy => "false"} (
+                        %mi supp
+                        %mo{:stretchy => "false"} (
+                        %mi F
+                        %mo{:stretchy => "false"} )
+                        %mo ≥
+                        %mi supp
+                        %mo{:stretchy => "false"} (
+                        %mi G
+                        %mo{:stretchy => "false"} )
+                        %mo{:stretchy => "false"} )
+                        %mspace{:width => "thickmathspace"}
+                        %mo ⇒
+                        %mspace{:width => "thickmathspace"}
+                        %mrow
+                          %mo (
+                          %mrow
+                            %mo ⟨
+                            %msub
+                              %mi Δ
+                              %mi A
+                            %mo ,
+                            %mfrac
+                              %mrow
+                                %mi δ
+                                %mi F
+                              %mrow
+                                %mi δ
+                                %mi ϕ
+                            %mo ⊗
+                            %mfrac
+                              %mrow
+                                %mi δ
+                                %mi G
+                              %mrow
+                                %mi δ
+                                %mi ϕ
+                            %mo ⟩
+                          %mo =
+                          %mn 0
+                          %mo )
+                        %mspace{:width => "thinmathspace"}
+                        %mo .
+                      %annotation{:encoding => "application/x-tex"}
+                        (supp(F) \geq supp(G))
+                        \\;\Rightarrow\;
+                        \\left(
+                        \\left\langle \Delta_A , \frac{\delta F}{\delta \phi} \otimes \frac{\delta G}{\delta \phi}  \right\rangle = 0
+                        \\right)
+                        \\,.
+              %li
+                %p
+                  the
+                  %a.existingWikiWord{:href => "/nlab/show/retarded+propagator"} retarded propagator
+                  equals the
+                  %a.existingWikiWord{:href => "/nlab/show/advanced+propagator"} advanced propagator
+                  with arguments switched:
+                .maruku-equation
+                  %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mrow
+                          %mo ⟨
+                          %msub
+                            %mi Δ
+                            %mi R
+                          %mo ,
+                          %mfrac
+                            %mrow
+                              %mi δ
+                              %mi F
+                            %mrow
+                              %mi δ
+                              %mi ϕ
+                          %mo ⊗
+                          %mfrac
+                            %mrow
+                              %mi δ
+                              %mi G
+                            %mrow
+                              %mi δ
+                              %mi ϕ
+                          %mo ⟩
+                        %mo =
+                        %mrow
+                          %mo ⟨
+                          %msub
+                            %mi Δ
+                            %mi A
+                          %mo ,
+                          %mfrac
+                            %mrow
+                              %mi δ
+                              %mi G
+                            %mrow
+                              %mi δ
+                              %mi ϕ
+                          %mo ⊗
+                          %mfrac
+                            %mrow
+                              %mi δ
+                              %mi F
+                            %mrow
+                              %mi δ
+                              %mi ϕ
+                          %mo ⟩
+                      %annotation{:encoding => "application/x-tex"}
+                        \\left\langle \Delta_R , \frac{\delta F}{\delta \phi} \otimes \frac{\delta G}{\delta \phi} \right\rangle
+                        \=
+                        \\left\langle \Delta_A , \frac{\delta G}{\delta \phi} \otimes \frac{\delta F}{\delta \phi} \right\rangle
+              %li
+                %p
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi H
+                      %annotation{:encoding => "application/x-tex"} H
+                  is symmetric:
+                .maruku-equation
+                  %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mrow
+                          %mo ⟨
+                          %mi H
+                          %mo ,
+                          %mfrac
+                            %mrow
+                              %mi δ
+                              %mi F
+                            %mrow
+                              %mi δ
+                              %mi ϕ
+                          %mo ⊗
+                          %mfrac
+                            %mrow
+                              %mi δ
+                              %mi G
+                            %mrow
+                              %mi δ
+                              %mi ϕ
+                          %mo ⟩
+                        %mo =
+                        %mrow
+                          %mo ⟨
+                          %mi H
+                          %mo ,
+                          %mfrac
+                            %mrow
+                              %mi δ
+                              %mi G
+                            %mrow
+                              %mi δ
+                              %mi ϕ
+                          %mo ⊗
+                          %mfrac
+                            %mrow
+                              %mi δ
+                              %mi F
+                            %mrow
+                              %mi δ
+                              %mi ϕ
+                          %mo ⟩
+                      %annotation{:encoding => "application/x-tex"}
+                        \\left\langle H, \frac{\delta F}{\delta \phi} \otimes \frac{\delta G}{\delta \phi} \right\rangle
+                        \=
+                        \\left\langle H, \frac{\delta G}{\delta \phi} \otimes \frac{\delta F}{\delta \phi} \right\rangle
+            %p
+              It follows for causal ordering
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi supp
+                    %mo{:stretchy => "false"} (
+                    %mi F
+                    %mo{:stretchy => "false"} )
+                    %mo ≥
+                    %mi supp
+                    %mo{:stretchy => "false"} (
+                    %mi G
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} supp(F) \geq supp(G)
+              (def.
+              = succeed ")" do
+                %a.maruku-ref{:href => "#CausalOrdering"}
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mrow
+                      %mtable{:columnalign => "right left right left right left right left right left", :columnspacing => "0em", :displaystyle => "true"}
+                        %mtr
+                          %mtd
+                            %mi F
+                            %msub
+                              %mo ⋆
+                              %mrow
+                                %msub
+                                  %mi ω
+                                  %mi F
+                            %mi G
+                          %mtd
+                            %mo =
+                            %mi prod
+                            %mo ∘
+                            %mi exp
+                            %mrow
+                              %mo (
+                              %mi ℏ
+                              %mrow
+                                %mo ⟨
+                                %msub
+                                  %mi ω
+                                  %mi F
+                                %mo ,
+                                %mfrac
+                                  %mi δ
+                                  %mrow
+                                    %mi δ
+                                    %mi ϕ
+                                %mo ⊗
+                                %mfrac
+                                  %mi δ
+                                  %mrow
+                                    %mi δ
+                                    %mi ϕ
+                                %mo ⟩
+                              %mo )
+                            %mo{:stretchy => "false"} (
+                            %mi F
+                            %mo ⊗
+                            %mi G
+                            %mo{:stretchy => "false"} )
+                        %mtr
+                          %mtd
+                          %mtd
+                            %mo =
+                            %mi prod
+                            %mo ∘
+                            %mi exp
+                            %mrow
+                              %mo (
+                              %mi ℏ
+                              %mrow
+                                %mo ⟨
+                                %mstyle{:displaystyle => "false"}
+                                  %mfrac
+                                    %mi i
+                                    %mn 2
+                                %mo{:stretchy => "false"} (
+                                %msub
+                                  %mi Δ
+                                  %mi R
+                                %mo +
+                                %msub
+                                  %mi Δ
+                                  %mi A
+                                %mo{:stretchy => "false"} )
+                                %mo +
+                                %mi H
+                                %mo ,
+                                %mfrac
+                                  %mi δ
+                                  %mrow
+                                    %mi δ
+                                    %mi ϕ
+                                %mo ⊗
+                                %mfrac
+                                  %mi δ
+                                  %mrow
+                                    %mi δ
+                                    %mi ϕ
+                                %mo ⟩
+                              %mo )
+                            %mo{:stretchy => "false"} (
+                            %mi F
+                            %mo ⊗
+                            %mi G
+                            %mo{:stretchy => "false"} )
+                        %mtr
+                          %mtd
+                          %mtd
+                            %mo =
+                            %mi prod
+                            %mo ∘
+                            %mi exp
+                            %mrow
+                              %mo (
+                              %mi ℏ
+                              %mrow
+                                %mo ⟨
+                                %mstyle{:displaystyle => "false"}
+                                  %mfrac
+                                    %mi i
+                                    %mn 2
+                                %msub
+                                  %mi Δ
+                                  %mi R
+                                %mo +
+                                %mi H
+                                %mo ,
+                                %mfrac
+                                  %mi δ
+                                  %mrow
+                                    %mi δ
+                                    %mi ϕ
+                                %mo ⊗
+                                %mfrac
+                                  %mi δ
+                                  %mrow
+                                    %mi δ
+                                    %mi ϕ
+                                %mo ⟩
+                              %mo )
+                            %mo{:stretchy => "false"} (
+                            %mi F
+                            %mo ⊗
+                            %mi G
+                            %mo{:stretchy => "false"} )
+                        %mtr
+                          %mtd
+                          %mtd
+                            %mo =
+                            %mi prod
+                            %mo ∘
+                            %mi exp
+                            %mrow
+                              %mo (
+                              %mi ℏ
+                              %mrow
+                                %mo ⟨
+                                %mstyle{:displaystyle => "false"}
+                                  %mfrac
+                                    %mi i
+                                    %mn 2
+                                %mo{:stretchy => "false"} (
+                                %msub
+                                  %mi Δ
+                                  %mi R
+                                %mo −
+                                %msub
+                                  %mi Δ
+                                  %mi A
+                                %mo{:stretchy => "false"} )
+                                %mo +
+                                %mi H
+                                %mo ,
+                                %mfrac
+                                  %mi δ
+                                  %mrow
+                                    %mi δ
+                                    %mi ϕ
+                                %mo ⊗
+                                %mfrac
+                                  %mi δ
+                                  %mrow
+                                    %mi δ
+                                    %mi ϕ
+                                %mo ⟩
+                              %mo )
+                            %mo{:stretchy => "false"} (
+                            %mi F
+                            %mo ⊗
+                            %mi G
+                            %mo{:stretchy => "false"} )
+                        %mtr
+                          %mtd
+                          %mtd
+                            %mo =
+                            %mi prod
+                            %mo ∘
+                            %mi exp
+                            %mrow
+                              %mo (
+                              %mi ℏ
+                              %mrow
+                                %mo ⟨
+                                %mi ω
+                                %mo ,
+                                %mfrac
+                                  %mi δ
+                                  %mrow
+                                    %mi δ
+                                    %mi ϕ
+                                %mo ⊗
+                                %mfrac
+                                  %mi δ
+                                  %mrow
+                                    %mi δ
+                                    %mi ϕ
+                                %mo ⟩
+                              %mo )
+                            %mo{:stretchy => "false"} (
+                            %mi F
+                            %mo ⊗
+                            %mi G
+                            %mo{:stretchy => "false"} )
+                        %mtr
+                          %mtd
+                          %mtd
+                            %mo =
+                            %mi F
+                            %msub
+                              %mo ⋆
+                              %mi ω
+                            %mi G
+                  %annotation{:encoding => "application/x-tex"}
+                    \\begin{aligned}
+                    F \star_{\omega_F} G
+                    \&amp; =
+                    prod \circ \exp\left(
+                    \\hbar
+                    \\left\langle  \omega_F , \frac{\delta }{\delta \phi} \otimes \frac{\delta}{\delta \phi}  \right\rangle
+                    \\right)
+                    ( F \otimes G )
+                    \\\
+                    \&amp; =
+                    prod \circ
+                    \\exp\left(
+                    \\hbar
+                    \\left\langle  \tfrac{i}{2}( \Delta_R + \Delta_A ) + H  , \frac{\delta }{\delta \phi} \otimes \frac{\delta}{\delta \phi}  \right\rangle
+                    \\right)
+                    ( F \otimes G )
+                    \\\
+                    \&amp; =
+                    prod \circ
+                    \\exp\left(
+                    \\hbar
+                    \\left\langle  \tfrac{i}{2}\Delta_R + H  , \frac{\delta }{\delta \phi} \otimes \frac{\delta}{\delta \phi}  \right\rangle
+                    \\right)
+                    ( F \otimes G )
+                    \\\
+                    \&amp; =
+                    prod \circ
+                    \\exp\left(
+                    \\hbar
+                    \\left\langle  \tfrac{i}{2}( \Delta_R - \Delta_A ) + H  , \frac{\delta }{\delta \phi} \otimes \frac{\delta}{\delta \phi}  \right\rangle
+                    \\right)
+                    ( F \otimes G )
+                    \\\
+                    \&amp; =
+                    prod \circ
+                    \\exp\left(
+                    \\hbar
+                    \\left\langle  \omega , \frac{\delta }{\delta \phi} \otimes \frac{\delta}{\delta \phi}  \right\rangle
+                    \\right)
+                    ( F \otimes G )
+                    \\\
+                    \&amp; =
+                    F \star_{\omega} G
+                    \\end{aligned}
+            %p
+              and for
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi supp
+                    %mo{:stretchy => "false"} (
+                    %mi G
+                    %mo{:stretchy => "false"} )
+                    %mo ≥
+                    %mi supp
+                    %mo{:stretchy => "false"} (
+                    %mi F
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} supp(G) \geq supp(F)
+              that
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mrow
+                      %mtable{:columnalign => "right left right left right left right left right left", :columnspacing => "0em", :displaystyle => "true"}
+                        %mtr
+                          %mtd
+                            %mi F
+                            %msub
+                              %mo ⋆
+                              %mrow
+                                %msub
+                                  %mi ω
+                                  %mi F
+                            %mi G
+                          %mtd
+                            %mo =
+                            %mi prod
+                            %mo ∘
+                            %mi exp
+                            %mrow
+                              %mo (
+                              %mi ℏ
+                              %mrow
+                                %mo ⟨
+                                %msub
+                                  %mi ω
+                                  %mi F
+                                %mo ,
+                                %mfrac
+                                  %mi δ
+                                  %mrow
+                                    %mi δ
+                                    %mi ϕ
+                                %mo ⊗
+                                %mfrac
+                                  %mi δ
+                                  %mrow
+                                    %mi δ
+                                    %mi ϕ
+                                %mo ⟩
+                              %mo )
+                            %mo{:stretchy => "false"} (
+                            %mi F
+                            %mo ⊗
+                            %mi G
+                            %mo{:stretchy => "false"} )
+                        %mtr
+                          %mtd
+                          %mtd
+                            %mo =
+                            %mi prod
+                            %mo ∘
+                            %mi exp
+                            %mrow
+                              %mo (
+                              %mi ℏ
+                              %mrow
+                                %mo ⟨
+                                %mstyle{:displaystyle => "false"}
+                                  %mfrac
+                                    %mi i
+                                    %mn 2
+                                %mo{:stretchy => "false"} (
+                                %msub
+                                  %mi Δ
+                                  %mi R
+                                %mo +
+                                %msub
+                                  %mi Δ
+                                  %mi A
+                                %mo{:stretchy => "false"} )
+                                %mo +
+                                %mi H
+                                %mo ,
+                                %mfrac
+                                  %mi δ
+                                  %mrow
+                                    %mi δ
+                                    %mi ϕ
+                                %mo ⊗
+                                %mfrac
+                                  %mi δ
+                                  %mrow
+                                    %mi δ
+                                    %mi ϕ
+                                %mo ⟩
+                              %mo )
+                            %mo{:stretchy => "false"} (
+                            %mi F
+                            %mo ⊗
+                            %mi G
+                            %mo{:stretchy => "false"} )
+                        %mtr
+                          %mtd
+                          %mtd
+                            %mo =
+                            %mi prod
+                            %mo ∘
+                            %mi exp
+                            %mrow
+                              %mo (
+                              %mi ℏ
+                              %mrow
+                                %mo ⟨
+                                %mstyle{:displaystyle => "false"}
+                                  %mfrac
+                                    %mi i
+                                    %mn 2
+                                %msub
+                                  %mi Δ
+                                  %mi A
+                                %mo +
+                                %mi H
+                                %mo ,
+                                %mfrac
+                                  %mi δ
+                                  %mrow
+                                    %mi δ
+                                    %mi ϕ
+                                %mo ⊗
+                                %mfrac
+                                  %mi δ
+                                  %mrow
+                                    %mi δ
+                                    %mi ϕ
+                                %mo ⟩
+                              %mo )
+                            %mo{:stretchy => "false"} (
+                            %mi F
+                            %mo ⊗
+                            %mi G
+                            %mo{:stretchy => "false"} )
+                        %mtr
+                          %mtd
+                          %mtd
+                            %mo =
+                            %mi prod
+                            %mo ∘
+                            %mi exp
+                            %mrow
+                              %mo (
+                              %mi ℏ
+                              %mrow
+                                %mo ⟨
+                                %mstyle{:displaystyle => "false"}
+                                  %mfrac
+                                    %mi i
+                                    %mn 2
+                                %msub
+                                  %mi Δ
+                                  %mi R
+                                %mo +
+                                %mi H
+                                %mo ,
+                                %mfrac
+                                  %mi δ
+                                  %mrow
+                                    %mi δ
+                                    %mi ϕ
+                                %mo ⊗
+                                %mfrac
+                                  %mi δ
+                                  %mrow
+                                    %mi δ
+                                    %mi ϕ
+                                %mo ⟩
+                              %mo )
+                            %mo{:stretchy => "false"} (
+                            %mi G
+                            %mo ⊗
+                            %mi F
+                            %mo{:stretchy => "false"} )
+                        %mtr
+                          %mtd
+                          %mtd
+                            %mo =
+                            %mi prod
+                            %mo ∘
+                            %mi exp
+                            %mrow
+                              %mo (
+                              %mi ℏ
+                              %mrow
+                                %mo ⟨
+                                %mstyle{:displaystyle => "false"}
+                                  %mfrac
+                                    %mi i
+                                    %mn 2
+                                %mo{:stretchy => "false"} (
+                                %msub
+                                  %mi Δ
+                                  %mi R
+                                %mo −
+                                %msub
+                                  %mi Δ
+                                  %mi A
+                                %mo{:stretchy => "false"} )
+                                %mo +
+                                %mi H
+                                %mo ,
+                                %mfrac
+                                  %mi δ
+                                  %mrow
+                                    %mi δ
+                                    %mi ϕ
+                                %mo ⊗
+                                %mfrac
+                                  %mi δ
+                                  %mrow
+                                    %mi δ
+                                    %mi ϕ
+                                %mo ⟩
+                              %mo )
+                            %mo{:stretchy => "false"} (
+                            %mi G
+                            %mo ⊗
+                            %mi F
+                            %mo{:stretchy => "false"} )
+                        %mtr
+                          %mtd
+                          %mtd
+                            %mo =
+                            %mi G
+                            %msub
+                              %mo ⋆
+                              %mi ω
+                            %mi F
+                            %mspace{:width => "thinmathspace"}
+                            %mo .
+                  %annotation{:encoding => "application/x-tex"}
+                    \\begin{aligned}
+                    F \star_{\omega_F} G
+                    \&amp; =
+                    prod \circ \exp\left(
+                    \\hbar
+                    \\left\langle  \omega_F , \frac{\delta }{\delta \phi} \otimes \frac{\delta}{\delta \phi}  \right\rangle
+                    \\right)
+                    ( F \otimes G )
+                    \\\
+                    \&amp; =
+                    prod \circ \exp\left(
+                    \\hbar
+                    \\left\langle  \tfrac{i}{2}( \Delta_R + \Delta_A ) + H  , \frac{\delta }{\delta \phi} \otimes \frac{\delta}{\delta \phi}  \right\rangle
+                    \\right)
+                    ( F \otimes G )
+                    \\\
+                    \&amp; =
+                    prod \circ \exp\left(
+                    \\hbar
+                    \\left\langle  \tfrac{i}{2} \Delta_A + H  , \frac{\delta }{\delta \phi} \otimes \frac{\delta}{\delta \phi}  \right\rangle
+                    \\right)
+                    ( F \otimes G )
+                    \\\
+                    \&amp; =
+                    prod \circ \exp\left(
+                    \\hbar
+                    \\left\langle  \tfrac{i}{2} \Delta_R + H  , \frac{\delta }{\delta \phi} \otimes \frac{\delta}{\delta \phi}  \right\rangle
+                    \\right)
+                    ( G \otimes F )
+                    \\\
+                    \&amp; =
+                    prod \circ \exp\left(
+                    \\hbar
+                    \\left\langle  \tfrac{i}{2} (\Delta_R - \Delta_A) + H  , \frac{\delta }{\delta \phi} \otimes \frac{\delta}{\delta \phi}  \right\rangle
+                    \\right)
+                    ( G \otimes F )
+                    \\\
+                    \&amp; =
+                    G \star_{\omega} F
+                    \\,.
+                    \\end{aligned}
+            %p
+              This shows that
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mo ⋆
+                      %mi F
+                  %annotation{:encoding => "application/x-tex"} \star_F
+              is a consistent time-ordered product on the subspace of functionals with disjoint support. It is immediate from the above that it is the unique solution on this subspace.
+          #TimeOrderedProductAssociative.num_remark
+            %h6#remark Remark
+            %p
+              %strong
+                (
+                %a.existingWikiWord{:href => "/nlab/show/time-ordered+product"} time-ordered product
+                is
+                = succeed ")" do
+                  %a.existingWikiWord{:href => "/nlab/show/associativity"} assocativative
+            %p
+              Prop.
+              %a.maruku-ref{:href => "#TimeOrderedProductAwayFromDiagonal"}
+              implies in particular that the time-ordered product is
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/associativity"} associative
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi T
+                    %mo{:stretchy => "false"} (
+                    %mi T
+                    %mo{:stretchy => "false"} (
+                    %msub
+                      %mi V
+                      %mn 1
+                    %mi ⋯
+                    %msub
+                      %mi V
+                      %mrow
+                        %msub
+                          %mi k
+                          %mn 1
+                    %mo{:stretchy => "false"} )
+                    %mi ⋯
+                    %mi T
+                    %mo{:stretchy => "false"} (
+                    %msub
+                      %mi V
+                      %mrow
+                        %msub
+                          %mi k
+                          %mrow
+                            %mi n
+                            %mo −
+                            %mn 1
+                        %mo +
+                        %mn 1
+                    %mi ⋯
+                    %msub
+                      %mi V
+                      %mrow
+                        %msub
+                          %mi k
+                          %mi n
+                    %mo{:stretchy => "false"} )
+                    %mo{:stretchy => "false"} )
+                    %mo =
+                    %mi T
+                    %mo{:stretchy => "false"} (
+                    %msub
+                      %mi V
+                      %mn 1
+                    %mi ⋯
+                    %msub
+                      %mi V
+                      %mrow
+                        %msub
+                          %mi k
+                          %mn 1
+                    %mi ⋯
+                    %msub
+                      %mi V
+                      %mrow
+                        %msub
+                          %mi k
+                          %mrow
+                            %mi n
+                            %mo −
+                            %mn 1
+                        %mo +
+                        %mn 1
+                    %mi ⋯
+                    %msub
+                      %mi V
+                      %mrow
+                        %msub
+                          %mi n
+                          %mi n
+                    %mo{:stretchy => "false"} )
+                    %mspace{:width => "thinmathspace"}
+                    %mo .
+                  %annotation{:encoding => "application/x-tex"}
+                    T( T(V_1 \cdots V_{k_1}) \cdots T(V_{k_{n-1}+1} \cdots V_{k_n} ) )
+                    \=
+                    T( V_1 \cdots V_{k_1} \cdots V_{k_{n-1}+1} \cdots V_{n_n} )
+                    \\,.
+          %p
+            It follows that the problem of constructing time-ordered products, and hence (by prop.
+            = succeed ")" do
+              %a.maruku-ref{:href => "#TimeOrderedProductInducesPerturbativeSMatrix"}
+            %a.existingWikiWord{:href => "/nlab/show/extension+of+distributions"} extension
+            of the distribution
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi prod
+                  %mo ∘
+                  %mi exp
+                  %mrow
+                    %mo (
+                    %mrow
+                      %mo ⟨
+                      %msub
+                        %mi ω
+                        %mi F
+                      %mo ,
+                      %mfrac
+                        %mi δ
+                        %mrow
+                          %mi δ
+                          %mi ϕ
+                      %mo ⊗
+                      %mfrac
+                        %mi δ
+                        %mrow
+                          %mi δ
+                          %mi ϕ
+                      %mo ⟩
+                    %mo )
+                %annotation{:encoding => "application/x-tex"} prod \circ \exp\left( \left\langle  \omega_F , \frac{\delta }{\delta \phi} \otimes \frac{\delta}{\delta \phi}  \right\rangle \right)
+            to the diagonal.
+          %p
+            Moreover, by the nature of the exponential expression, this means in each order to extend
+            %a.existingWikiWord{:href => "/nlab/show/product+of+distributions"} products
+            of Feynman propagators labeled by
+            %a.existingWikiWord{:href => "/nlab/show/graphs"} graphs
+            whose
+            %a.existingWikiWord{:href => "/nlab/show/vertices"} vertices
+            correspond to the polynomial factors in
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi F
+                %annotation{:encoding => "application/x-tex"} F
+            and
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi G
+                %annotation{:encoding => "application/x-tex"} G
+            and whose
+            %a.existingWikiWord{:href => "/nlab/show/edges"} edges
+            indicate over which variables the Feynman propagators are to be multiplied.
+          #ScalarFieldFeynmanDiagram.num_defn
+            %h6#definition_2 Definition
+            %p
+              %strong
+                (
+                %a.existingWikiWord{:href => "/nlab/show/scalar+field"} scalar field
+                = succeed ")" do
+                  %a.existingWikiWord{:href => "/nlab/show/Feynman+diagram"} Feynman diagram
+            %p
+              A
+              %em
+                %a.existingWikiWord{:href => "/nlab/show/scalar+field"} scalar field
+                %a.existingWikiWord{:href => "/nlab/show/Feynman+diagram"} Feynman diagram
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi Γ
+                  %annotation{:encoding => "application/x-tex"} \Gamma
+              is
+            %ol
+              %li
+                %p
+                  a
+                  %a.existingWikiWord{:href => "/nlab/show/natural+number"} natural number
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi v
+                        %mo ∈
+                        %mi 𝒩
+                      %annotation{:encoding => "application/x-tex"} v \in \mathcal{N}
+                  (number of
+                  = succeed ");" do
+                    %a.existingWikiWord{:href => "/nlab/show/vertices"} vertices
+              %li
+                %p
+                  a
+                  = succeed "-" do
+                    %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                      %semantics
+                        %mrow
+                          %mi v
+                        %annotation{:encoding => "application/x-tex"} v
+                  %a.existingWikiWord{:href => "/nlab/show/tuple"} tuple
+                  of elements
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mo{:stretchy => "false"} (
+                        %msub
+                          %mi V
+                          %mi r
+                        %mo ∈
+                        %msub
+                          %mi ℱ
+                          %mi loc
+                        %mo{:stretchy => "false"} ⟨
+                        %mi g
+                        %mo ,
+                        %mi j
+                        %mo{:stretchy => "false"} ⟩
+                        %msub
+                          %mo{:stretchy => "false"} )
+                          %mrow
+                            %mi r
+                            %mo ∈
+                            %mo{:stretchy => "false"} {
+                            %mn 1
+                            %mo ,
+                            %mi ⋯
+                            %mo ,
+                            %mi v
+                            %mo{:stretchy => "false"} }
+                      %annotation{:encoding => "application/x-tex"} (V_r \in \mathcal{F}_{loc} \langle g,j\rangle)_{r \in \{1, \cdots, v\}}
+                  (the interaction and external field vertices)
+              %li
+                %p
+                  for each
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi a
+                        %mo &lt;
+                        %mi b
+                        %mo ∈
+                        %mo{:stretchy => "false"} {
+                        %mn 1
+                        %mo ,
+                        %mi ⋯
+                        %mo ,
+                        %mi v
+                        %mo{:stretchy => "false"} }
+                      %annotation{:encoding => "application/x-tex"} a \lt b \in \{1, \cdots, v\}
+                  a natural number
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %msub
+                          %mi e
+                          %mrow
+                            %mi a
+                            %mo ,
+                            %mi b
+                        %mo ∈
+                        %mi ℕ
+                      %annotation{:encoding => "application/x-tex"} e_{a,b} \in \mathbb{N}
+                  (“of
+                  %a.existingWikiWord{:href => "/nlab/show/edges"} edges
+                  from the
+                  = succeed "th" do
+                    %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                      %semantics
+                        %mrow
+                          %mi a
+                        %annotation{:encoding => "application/x-tex"} a
+                  = succeed "th" do
+                    %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                      %semantics
+                        %mrow
+                          %mi b
+                        %annotation{:encoding => "application/x-tex"} b
+            %p
+              For a given
+              %a.existingWikiWord{:href => "/nlab/show/tuple"} tuple
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo{:stretchy => "false"} (
+                    %msub
+                      %mi V
+                      %mi j
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} (V_j)
+              of interaction vertices we write
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi FDiag
+                      %mrow
+                        %mo{:stretchy => "false"} (
+                        %msub
+                          %mi V
+                          %mi j
+                        %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"}
+                    FDiag_{(V_j)}
+            %p for set of scalar field Feynman diagrams with that tuple of vertices.
+          #FeynmanPerturbationSeriesAwayFromCoincidingPoints.num_prop
+            %h6#proposition_2 Proposition
+            %p
+              %strong
+                (
+                %a.existingWikiWord{:href => "/nlab/show/Feynman+perturbation+series"} Feynman perturbation series
+                away from coinciding vertices)
+            %p
+              For
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi v
+                    %mo ∈
+                    %mi ℕ
+                  %annotation{:encoding => "application/x-tex"} v \in \mathbb{N}
+              the
+              = succeed "-fold" do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi v
+                    %annotation{:encoding => "application/x-tex"} v
+              %a.existingWikiWord{:href => "/nlab/show/time-ordered+product"} time-ordered product
+              away from the diagonal, given by prop.
+              %a.maruku-ref{:href => "#TimeOrderedProductAwayFromDiagonal"}
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi T
+                      %mi v
+                    %mspace{:width => "thickmathspace"}
+                    %mo{:lspace => "verythinmathspace"} :
+                    %mspace{:width => "thickmathspace"}
+                    %msubsup
+                      %mrow
+                        %mo (
+                        %msub
+                          %mi ℱ
+                          %mi loc
+                        %mo{:stretchy => "false"} ⟨
+                        %mi g
+                        %mo ,
+                        %mi j
+                        %mo{:stretchy => "false"} ⟩
+                        %mo )
+                      %mi pds
+                      %mrow
+                        %msup
+                          %mo ⊗
+                          %mi v
+                    %mo ⟶
+                    %mi 𝒲
+                    %mo{:stretchy => "false"} [
+                    %mo{:stretchy => "false"} [
+                    %mi g
+                    %mo{:stretchy => "false"} /
+                    %mi ℏ
+                    %mo ,
+                    %mi j
+                    %mo{:stretchy => "false"} /
+                    %mi ℏ
+                    %mo{:stretchy => "false"} ]
+                    %mo{:stretchy => "false"} ]
+                  %annotation{:encoding => "application/x-tex"}
+                    T_v
+                    \\;\colon\;
+                    \\left(\mathcal{F}_{loc}\langle g,j\rangle\right)_{pds}^{\otimes^{v}}
+                    \\longrightarrow
+                    \\mathcal{W}[ [ g/\hbar, j/\hbar] ]
+            %p is equal to
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi T
+                      %mi k
+                    %mo{:stretchy => "false"} (
+                    %msub
+                      %mi V
+                      %mn 1
+                    %mi ⋯
+                    %msub
+                      %mi V
+                      %mi v
+                    %mo{:stretchy => "false"} )
+                    %mspace{:width => "thickmathspace"}
+                    %mo =
+                    %mspace{:width => "thickmathspace"}
+                    %mi prod
+                    %mo ∘
+                    %munder
+                      %mo{:lspace => "thinmathspace", :rspace => "thinmathspace"} ∑
+                      %mrow
+                        %mi Γ
+                        %mo ∈
+                        %msub
+                          %mi 𝒢
+                          %mrow
+                            %mo{:stretchy => "false"} (
+                            %msub
+                              %mi V
+                              %mi j
+                            %msubsup
+                              %mo{:stretchy => "false"} )
+                              %mrow
+                                %mi j
+                                %mo =
+                                %mn 1
+                              %mi v
+                    %munder
+                      %mo{:lspace => "thinmathspace", :rspace => "thinmathspace"} ∏
+                      %mrow
+                        %mi r
+                        %mo &lt;
+                        %mi s
+                        %mo ∈
+                        %mo{:stretchy => "false"} {
+                        %mn 1
+                        %mo ,
+                        %mi ⋯
+                        %mo ,
+                        %mi v
+                        %mo{:stretchy => "false"} }
+                    %mstyle{:displaystyle => "false"}
+                      %mfrac
+                        %mn 1
+                        %mrow
+                          %msub
+                            %mi e
+                            %mrow
+                              %mi r
+                              %mo ,
+                              %mi s
+                          %mo !
+                    %mrow
+                      %mo ⟨
+                      %mi ℏ
+                      %msub
+                        %mi ω
+                        %mi F
+                      %mspace{:width => "thinmathspace"}
+                      %mo ,
+                      %mspace{:width => "thinmathspace"}
+                      %mfrac
+                        %mrow
+                          %msup
+                            %mi δ
+                            %mrow
+                              %msub
+                                %mi e
+                                %mrow
+                                  %mi r
+                                  %mo ,
+                                  %mi s
+                        %mrow
+                          %mi δ
+                          %msubsup
+                            %mi ϕ
+                            %mi r
+                            %mrow
+                              %msub
+                                %mi e
+                                %mrow
+                                  %mi r
+                                  %mo ,
+                                  %mi s
+                      %mfrac
+                        %mrow
+                          %msup
+                            %mi δ
+                            %mrow
+                              %msub
+                                %mi e
+                                %mrow
+                                  %mi r
+                                  %mo ,
+                                  %mi s
+                        %mrow
+                          %mi δ
+                          %msubsup
+                            %mi ϕ
+                            %mi s
+                            %mrow
+                              %msub
+                                %mi e
+                                %mrow
+                                  %mi r
+                                  %mo ,
+                                  %mi s
+                      %mo ⟩
+                    %mo{:stretchy => "false"} (
+                    %msub
+                      %mi V
+                      %mn 1
+                    %mo ⊗
+                    %mi ⋯
+                    %mo ⊗
+                    %msub
+                      %mi V
+                      %mi v
+                    %mo{:stretchy => "false"} )
+                    %mspace{:width => "thinmathspace"}
+                    %mo ,
+                  %annotation{:encoding => "application/x-tex"}
+                    T_k(V_1 \cdots V_v)
+                    \\;=\;
+                    prod
+                    \\circ
+                    \\underset{\Gamma \in \mathcal{G}_{(V_j)_{j = 1}^{v}}}{\sum}
+                    \\underset{ r \lt s \in \{1, \cdots, v\} }{\prod}
+                    \\tfrac{1}{e_{r,s}!}
+                    \\left\langle
+                    \\hbar \omega_F
+                    \\,,\,
+                    \\frac{\delta^{e_{r,s}}}{\delta \phi_r^{e_{r,s}}}
+                    \\frac{\delta^{e_{r,s}}}{ \delta \phi_s^{e_{r,s}} }
+                    \\right\rangle
+                    (V_1 \otimes \cdots \otimes V_v)
+                    \\,,
+            %p
+              where the edge numbers
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi e
+                      %mrow
+                        %mi r
+                        %mo ,
+                        %mi s
+                    %mo =
+                    %msub
+                      %mi e
+                      %mrow
+                        %mi r
+                        %mo ,
+                        %mi s
+                    %mo{:stretchy => "false"} (
+                    %mi Γ
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} e_{r,s} = e_{r,s}(\Gamma)
+              are those of the given Feynman diagram
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi Γ
+                    %annotation{:encoding => "application/x-tex"} \Gamma
+          %p
+            (
+            %a{:href => "Feynman+diagram#Keller10"}> Keller 10, IV.1
+            )
+          .proof
+            %h6#proof_2 Proof
+            %p
+              We proceed by
+              %a.existingWikiWord{:href => "/nlab/show/induction"} induction
+              over the number of
+              = succeed "." do
+                %a.existingWikiWord{:href => "/nlab/show/vertices"} vertices
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi v
+                    %mo ≥
+                    %mn 1
+                  %annotation{:encoding => "application/x-tex"} v \geq 1
+              vertices. It follows that
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mrow
+                      %mtable{:columnalign => "right left right left right left right left right left", :columnspacing => "0em", :displaystyle => "true"}
+                        %mtr
+                          %mtd
+                            %mi T
+                            %mo{:stretchy => "false"} (
+                            %msub
+                              %mi V
+                              %mn 1
+                            %mi ⋯
+                            %msub
+                              %mi V
+                              %mi v
+                            %msub
+                              %mi V
+                              %mrow
+                                %mi v
+                                %mo +
+                                %mn 1
+                            %mo{:stretchy => "false"} )
+                          %mtd
+                            %mo =
+                            %mi T
+                            %mo{:stretchy => "false"} (
+                            %mi T
+                            %mo{:stretchy => "false"} (
+                            %msub
+                              %mi V
+                              %mn 1
+                            %mi ⋯
+                            %msub
+                              %mi V
+                              %mi v
+                            %mo{:stretchy => "false"} )
+                            %msub
+                              %mi V
+                              %mrow
+                                %mi v
+                                %mo +
+                                %mn 1
+                            %mo{:stretchy => "false"} )
+                        %mtr
+                          %mtd
+                          %mtd
+                            %mo =
+                            %mi prod
+                            %mo ∘
+                            %mi exp
+                            %mrow
+                              %mo (
+                              %mrow
+                                %mo ⟨
+                                %mi ℏ
+                                %msub
+                                  %mi ω
+                                  %mi F
+                                %mo ,
+                                %mfrac
+                                  %mi δ
+                                  %mrow
+                                    %mi δ
+                                    %mi ϕ
+                                %mo ⊗
+                                %mfrac
+                                  %mi δ
+                                  %mrow
+                                    %mi δ
+                                    %mi ϕ
+                                %mo ⟩
+                              %mo )
+                            %mrow
+                              %mo (
+                              %mi prod
+                              %mo ∘
+                              %munder
+                                %mo{:lspace => "thinmathspace", :rspace => "thinmathspace"} ∑
+                                %mrow
+                                  %mi Γ
+                                  %mo ∈
+                                  %msub
+                                    %mi 𝒢
+                                    %mrow
+                                      %mo{:stretchy => "false"} (
+                                      %msub
+                                        %mi V
+                                        %mi j
+                                      %msubsup
+                                        %mo{:stretchy => "false"} )
+                                        %mrow
+                                          %mi j
+                                          %mo =
+                                          %mn 1
+                                        %mi v
+                              %munder
+                                %mo{:lspace => "thinmathspace", :rspace => "thinmathspace"} ∏
+                                %mrow
+                                  %mi r
+                                  %mo &gt;
+                                  %mi s
+                                  %mo ∈
+                                  %mo{:stretchy => "false"} {
+                                  %mn 1
+                                  %mo ,
+                                  %mi ⋯
+                                  %mo ,
+                                  %mi v
+                                  %mo{:stretchy => "false"} }
+                              %mfrac
+                                %mn 1
+                                %mrow
+                                  %msub
+                                    %mi e
+                                    %mrow
+                                      %mi r
+                                      %mo ,
+                                      %mi s
+                                  %mo !
+                              %mrow
+                                %mo ⟨
+                                %mi ℏ
+                                %msub
+                                  %mi ω
+                                  %mi F
+                                %mspace{:width => "thinmathspace"}
+                                %mo ,
+                                %mspace{:width => "thinmathspace"}
+                                %mfrac
+                                  %mrow
+                                    %msup
+                                      %mi δ
+                                      %mrow
+                                        %msub
+                                          %mi e
+                                          %mrow
+                                            %mi r
+                                            %mo ,
+                                            %mi s
+                                  %mrow
+                                    %mi δ
+                                    %msubsup
+                                      %mi ϕ
+                                      %mi r
+                                      %mrow
+                                        %msub
+                                          %mi e
+                                          %mrow
+                                            %mi r
+                                            %mo ,
+                                            %mi s
+                                %mfrac
+                                  %mrow
+                                    %msup
+                                      %mi δ
+                                      %mrow
+                                        %msub
+                                          %mi e
+                                          %mrow
+                                            %mi r
+                                            %mo ,
+                                            %mi s
+                                  %mrow
+                                    %mi δ
+                                    %msubsup
+                                      %mi ϕ
+                                      %mi s
+                                      %mrow
+                                        %msub
+                                          %mi e
+                                          %mrow
+                                            %mi r
+                                            %mo ,
+                                            %mi s
+                                %mo ⟩
+                              %mo{:stretchy => "false"} (
+                              %msub
+                                %mi V
+                                %mn 1
+                              %mo ⊗
+                              %mi ⋯
+                              %mo ⊗
+                              %msub
+                                %mi V
+                                %mi v
+                              %mo{:stretchy => "false"} )
+                              %mo )
+                            %mspace{:width => "thickmathspace"}
+                            %mo ⊗
+                            %mspace{:width => "thickmathspace"}
+                            %msub
+                              %mi V
+                              %mrow
+                                %mi v
+                                %mo +
+                                %mn 1
+                        %mtr
+                          %mtd
+                          %mtd
+                            %mo =
+                            %mi prod
+                            %mo ∘
+                            %munder
+                              %mo{:lspace => "thinmathspace", :rspace => "thinmathspace"} ∑
+                              %mrow
+                                %mi Γ
+                                %mo ∈
+                                %msub
+                                  %mi 𝒢
+                                  %mrow
+                                    %mo{:stretchy => "false"} (
+                                    %msub
+                                      %mi V
+                                      %mi j
+                                    %msubsup
+                                      %mo{:stretchy => "false"} )
+                                      %mrow
+                                        %mi j
+                                        %mo =
+                                        %mn 1
+                                      %mi v
+                            %munder
+                              %mo{:lspace => "thinmathspace", :rspace => "thinmathspace"} ∏
+                              %mrow
+                                %mi r
+                                %mo &gt;
+                                %mi s
+                                %mo ∈
+                                %mo{:stretchy => "false"} {
+                                %mn 1
+                                %mo ,
+                                %mi ⋯
+                                %mo ,
+                                %mi v
+                                %mo{:stretchy => "false"} }
+                            %mstyle{:displaystyle => "false"}
+                              %mfrac
+                                %mn 1
+                                %mrow
+                                  %msub
+                                    %mi e
+                                    %mrow
+                                      %mi r
+                                      %mo ,
+                                      %mi s
+                                  %mo !
+                            %mrow
+                              %mo ⟨
+                              %mi ℏ
+                              %msub
+                                %mi ω
+                                %mi F
+                              %mspace{:width => "thinmathspace"}
+                              %mo ,
+                              %mspace{:width => "thinmathspace"}
+                              %mfrac
+                                %mrow
+                                  %msup
+                                    %mi δ
+                                    %mrow
+                                      %msub
+                                        %mi e
+                                        %mrow
+                                          %mi r
+                                          %mo ,
+                                          %mi s
+                                %mrow
+                                  %mi δ
+                                  %msubsup
+                                    %mi ϕ
+                                    %mi r
+                                    %mrow
+                                      %msub
+                                        %mi e
+                                        %mrow
+                                          %mi r
+                                          %mo ,
+                                          %mi s
+                              %mfrac
+                                %mrow
+                                  %msup
+                                    %mi δ
+                                    %mrow
+                                      %msub
+                                        %mi e
+                                        %mrow
+                                          %mi r
+                                          %mo ,
+                                          %mi s
+                                %mrow
+                                  %mi δ
+                                  %msubsup
+                                    %mi ϕ
+                                    %mi s
+                                    %mrow
+                                      %msub
+                                        %mi e
+                                        %mrow
+                                          %mi r
+                                          %mo ,
+                                          %mi s
+                              %mo ⟩
+                            %mrow
+                              %mo (
+                              %munder
+                                %mo{:lspace => "thinmathspace", :rspace => "thinmathspace"} ∑
+                                %mrow
+                                  %msub
+                                    %mi e
+                                    %mrow
+                                      %mn 1
+                                      %mo ,
+                                      %mrow
+                                        %mi v
+                                        %mo +
+                                        %mn 1
+                                  %mo ,
+                                  %mi ⋯
+                                  %msub
+                                    %mi e
+                                    %mrow
+                                      %mi v
+                                      %mo ,
+                                      %mi v
+                                      %mo +
+                                      %mn 1
+                                  %mo ∈
+                                  %mi ℕ
+                              %munder
+                                %mo{:lspace => "thinmathspace", :rspace => "thinmathspace"} ∏
+                                %mrow
+                                  %mi t
+                                  %mo ∈
+                                  %mo{:stretchy => "false"} {
+                                  %mn 1
+                                  %mo ,
+                                  %mi ⋯
+                                  %mi v
+                                  %mo{:stretchy => "false"} }
+                              %mstyle{:displaystyle => "false"}
+                                %mfrac
+                                  %mn 1
+                                  %mrow
+                                    %msub
+                                      %mi e
+                                      %mrow
+                                        %mi t
+                                        %mo ,
+                                        %mi v
+                                        %mo +
+                                        %mn 1
+                                    %mo !
+                              %mrow
+                                %mo (
+                                %mfrac
+                                  %mrow
+                                    %msup
+                                      %mi δ
+                                      %mrow
+                                        %msub
+                                          %mi e
+                                          %mrow
+                                            %mn 1
+                                            %mo ,
+                                            %mi v
+                                            %mo +
+                                            %mn 1
+                                    %msub
+                                      %mi V
+                                      %mn 1
+                                  %mrow
+                                    %mi δ
+                                    %msubsup
+                                      %mi ϕ
+                                      %mn 1
+                                      %mrow
+                                        %msub
+                                          %mi e
+                                          %mrow
+                                            %mn 1
+                                            %mo ,
+                                            %mi v
+                                            %mo +
+                                            %mn 1
+                                %mo ⊗
+                                %mi ⋯
+                                %mo ⊗
+                                %mfrac
+                                  %mrow
+                                    %msup
+                                      %mi δ
+                                      %mrow
+                                        %msub
+                                          %mi e
+                                          %mrow
+                                            %mi v
+                                            %mo ,
+                                            %mi v
+                                            %mo +
+                                            %mn 1
+                                    %msub
+                                      %mi V
+                                      %mi v
+                                  %mrow
+                                    %mi δ
+                                    %msubsup
+                                      %mi ϕ
+                                      %mi v
+                                      %mrow
+                                        %msub
+                                          %mi e
+                                          %mrow
+                                            %mi v
+                                            %mo ,
+                                            %mi v
+                                            %mo +
+                                            %mn 1
+                                %mo )
+                              %mspace{:width => "thickmathspace"}
+                              %mo ⊗
+                              %mspace{:width => "thickmathspace"}
+                              %mfrac
+                                %mrow
+                                  %msup
+                                    %mi δ
+                                    %mrow
+                                      %msub
+                                        %mi e
+                                        %mrow
+                                          %mn 1
+                                          %mo ,
+                                          %mi v
+                                          %mo +
+                                          %mn 1
+                                      %mo +
+                                      %mi ⋯
+                                      %mo +
+                                      %msub
+                                        %mi e
+                                        %mrow
+                                          %mi v
+                                          %mo ,
+                                          %mi v
+                                          %mo +
+                                          %mn 1
+                                  %msub
+                                    %mi V
+                                    %mrow
+                                      %mi v
+                                      %mo +
+                                      %mn 1
+                                %mrow
+                                  %mi δ
+                                  %msubsup
+                                    %mi ϕ
+                                    %mrow
+                                      %mi v
+                                      %mo −
+                                      %mn 1
+                                    %mrow
+                                      %msub
+                                        %mi e
+                                        %mrow
+                                          %mn 1
+                                          %mo ,
+                                          %mi v
+                                          %mo +
+                                          %mn 1
+                                      %mo +
+                                      %mi ⋯
+                                      %mo +
+                                      %msub
+                                        %mi e
+                                        %mrow
+                                          %mi v
+                                          %mo ,
+                                          %mi v
+                                          %mo +
+                                          %mn 1
+                              %mo )
+                        %mtr
+                          %mtd
+                          %mtd
+                            %mo =
+                            %mi prod
+                            %mo ∘
+                            %munder
+                              %mo{:lspace => "thinmathspace", :rspace => "thinmathspace"} ∑
+                              %mrow
+                                %mi Γ
+                                %mo ∈
+                                %msub
+                                  %mi 𝒢
+                                  %mrow
+                                    %mo{:stretchy => "false"} (
+                                    %msub
+                                      %mi V
+                                      %mi j
+                                    %msubsup
+                                      %mo{:stretchy => "false"} )
+                                      %mrow
+                                        %mi j
+                                        %mo =
+                                        %mn 1
+                                      %mrow
+                                        %mi v
+                                        %mo +
+                                        %mn 1
+                            %munder
+                              %mo{:lspace => "thinmathspace", :rspace => "thinmathspace"} ∏
+                              %mrow
+                                %mi r
+                                %mo &lt;
+                                %mi s
+                                %mo ∈
+                                %mo{:stretchy => "false"} {
+                                %mn 1
+                                %mo ,
+                                %mi ⋯
+                                %mo ,
+                                %mi v
+                                %mo +
+                                %mn 1
+                                %mo{:stretchy => "false"} }
+                            %mstyle{:displaystyle => "false"}
+                              %mfrac
+                                %mn 1
+                                %mrow
+                                  %msub
+                                    %mi e
+                                    %mrow
+                                      %mi r
+                                      %mo ,
+                                      %mi s
+                                  %mo !
+                            %mrow
+                              %mo ⟨
+                              %mi ℏ
+                              %msub
+                                %mi ω
+                                %mi F
+                              %mspace{:width => "thinmathspace"}
+                              %mo ,
+                              %mspace{:width => "thinmathspace"}
+                              %mfrac
+                                %mrow
+                                  %msup
+                                    %mi δ
+                                    %mrow
+                                      %msub
+                                        %mi e
+                                        %mrow
+                                          %mi r
+                                          %mo ,
+                                          %mi s
+                                %mrow
+                                  %mi δ
+                                  %msubsup
+                                    %mi ϕ
+                                    %mi r
+                                    %mrow
+                                      %msub
+                                        %mi e
+                                        %mrow
+                                          %mi r
+                                          %mo ,
+                                          %mi s
+                              %mfrac
+                                %mrow
+                                  %msup
+                                    %mi δ
+                                    %mrow
+                                      %msub
+                                        %mi e
+                                        %mrow
+                                          %mi r
+                                          %mo ,
+                                          %mi s
+                                %mrow
+                                  %mi δ
+                                  %msubsup
+                                    %mi ϕ
+                                    %mi s
+                                    %mrow
+                                      %msub
+                                        %mi e
+                                        %mrow
+                                          %mi r
+                                          %mo ,
+                                          %mi s
+                              %mo ⟩
+                            %mo{:stretchy => "false"} (
+                            %msub
+                              %mi V
+                              %mn 1
+                            %mo ⊗
+                            %mi ⋯
+                            %mo ⊗
+                            %msub
+                              %mi V
+                              %mrow
+                                %mi v
+                                %mo +
+                                %mn 1
+                            %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"}
+                    \\begin{aligned}
+                    T(V_1 \cdots V_v V_{v+1})
+                    \&amp; =
+                    T( T(V_1 \cdots V_v) V_{v+1} )
+                    \\\
+                    \&amp;=
+                    prod \circ
+                    \\exp\left(
+                    \\left\langle
+                    \\hbar \omega_F, \frac{\delta}{\delta \phi} \otimes \frac{\delta}{\delta \phi}
+                    \\right\rangle
+                    \\right)
+                    \\left(
+                    prod
+                    \\circ
+                    \\underset{\Gamma \in \mathcal{G}_{(V_j)_{j = 1}^{v}}}{\sum}
+                    \\underset{ r \gt s \in \{1, \cdots, v\} }{\prod}
+                    \\frac{1}{e_{r,s}!}
+                    \\left\langle
+                    \\hbar \omega_F
+                    \\,,\,
+                    \\frac{\delta^{e_{r,s}}}{\delta \phi_r^{e_{r,s}}}
+                    \\frac{\delta^{e_{r,s}}}{ \delta \phi_s^{e_{r,s}} }
+                    \\right\rangle
+                    (V_1 \otimes \cdots \otimes V_v)
+                    \\right)
+                    \\;\otimes\;
+                    V_{v+1}
+                    \\\
+                    \&amp; =
+                    prod
+                    \\circ
+                    \\underset{\Gamma \in \mathcal{G}_{(V_j)_{j = 1}^{v}}}{\sum}
+                    \\underset{ r \gt s \in \{1, \cdots, v\} }{\prod}
+                    \\tfrac{1}{e_{r,s}!}
+                    \\left\langle
+                    \\hbar \omega_F
+                    \\,,\,
+                    \\frac{\delta^{e_{r,s}}}{\delta \phi_r^{e_{r,s}}}
+                    \\frac{\delta^{e_{r,s}}}{ \delta \phi_s^{e_{r,s}} }
+                    \\right\rangle
+                    \\left(
+                    \\underset{e_{1,{v+1}}, \cdots e_{v,v+1} \in \mathbb{N}}{\sum}
+                    \\underset{t \in \{1, \cdots v\}}{\prod}
+                    \\tfrac{1}{e_{t,v+1} !}
+                    \\left(
+                    \\frac{\delta^{e_{1,v+1}} V_1 }{\delta \phi_{1}^{e_{1,v+1}}}
+                    \\otimes
+                    \\cdots
+                    \\otimes
+                    \\frac{ \delta^{e_{v,v+1}} V_v}{ \delta \phi_{v}^{e_{v,v+1}} }
+                    \\right)
+                    \\;\otimes\;
+                    \\frac{\delta^{e_{1,v+1} + \cdots + e_{v,v+1}} V_{v+1}}{\delta \phi_{v-1}^{e_{1,v+1} + \cdots + e_{v,v+1}}}
+                    \\right)
+                    \\\
+                    \&amp;=
+                    prod
+                    \\circ
+                    \\underset{\Gamma \in \mathcal{G}_{(V_j)_{j = 1}^{v+1}}}{\sum}
+                    \\underset{ r \lt s \in \{1, \cdots, v+1\} }{\prod}
+                    \\tfrac{1}{e_{r,s}!}
+                    \\left\langle
+                    \\hbar \omega_F
+                    \\,,\,
+                    \\frac{\delta^{e_{r,s}}}{\delta \phi_r^{e_{r,s}}}
+                    \\frac{\delta^{e_{r,s}}}{ \delta \phi_s^{e_{r,s}} }
+                    \\right\rangle
+                    (V_1 \otimes \cdots \otimes V_{v+1})
+                    \\end{aligned}
+            %p
+              Here in the first step we use the
+              %a.existingWikiWord{:href => "/nlab/show/associativity"} associativity
+              of the time-ordered product (remark
+              = succeed ")," do
+                %a.maruku-ref{:href => "#TimeOrderedProductAssociative"}
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/product+rule"} product rule
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi v
+                  %annotation{:encoding => "application/x-tex"} v
+              vertices to the new
+              = succeed "st" do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi v
+                      %mo +
+                      %mn 1
+                    %annotation{:encoding => "application/x-tex"} v+1
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi v
+                    %mo +
+                    %mn 1
+                  %annotation{:encoding => "application/x-tex"} v+1
+              vertices.
+          .num_remark
+            %h6#remark_2 Remark
+            %p
+              %strong
+                (
+                %a.existingWikiWord{:href => "/nlab/show/loop+order"} loop order
+                and powers of
+                = succeed ")" do
+                  %a.existingWikiWord{:href => "/nlab/show/Planck%27s+constant"} Planck's constant
+            %p
+              From prop.
+              %a.maruku-ref{:href => "#FeynmanPerturbationSeriesAwayFromCoincidingPoints"}
+              one deduces that the order in
+              %a.existingWikiWord{:href => "/nlab/show/Planck%27s+constant"} Planck's constant
+              that a (
+              %a.existingWikiWord{:href => "/nlab/show/planar+graph"}> planar
+              )
+              %a.existingWikiWord{:href => "/nlab/show/Feynman+diagram"} Feynman diagram
+              contributes to the S-matrix is given (up to a possible offset due to external vertices) by the “number of loops” in the diagram.
+            %p
+              In the computation of
+              %a.existingWikiWord{:href => "/nlab/show/scattering+amplitudes"} scattering amplitudes
+              for
+              = succeed "/" do
+                %a.existingWikiWord{:href => "/nlab/show/field+%28physics%29"} fields
+              %a.existingWikiWord{:href => "/nlab/show/particles"} particles
+              via
+              %a.existingWikiWord{:href => "/nlab/show/perturbative+quantum+field+theory"} perturbative quantum field theory
+              the
+              %a.existingWikiWord{:href => "/nlab/show/scattering+matrix"} scattering matrix
+              (
+              %a.existingWikiWord{:href => "/nlab/show/Feynman+perturbation+series"}> Feynman perturbation series
+              ) is a
+              %a.existingWikiWord{:href => "/nlab/show/formal+power+series"} formal power series
+              in (the
+              %a.existingWikiWord{:href => "/nlab/show/coupling+constant"} coupling constant
+              and)
+              %a.existingWikiWord{:href => "/nlab/show/Planck%27s+constant"} Planck's constant
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi ℏ
+                  %annotation{:encoding => "application/x-tex"} \hbar
+              whose contributions may be labeled by
+              = succeed "." do
+                %a.existingWikiWord{:href => "/nlab/show/Feynman+diagrams"} Feynman diagrams
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi Γ
+                  %annotation{:encoding => "application/x-tex"} \Gamma
+              is a finite labeled
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/graph"} graph
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi ℏ
+                  %annotation{:encoding => "application/x-tex"} \hbar
+              to which this graph contributes is
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msup
+                      %mi ℏ
+                      %mrow
+                        %mi E
+                        %mo{:stretchy => "false"} (
+                        %mi Γ
+                        %mo{:stretchy => "false"} )
+                        %mo −
+                        %mi V
+                        %mo{:stretchy => "false"} (
+                        %mi Γ
+                        %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"}
+                    \\hbar^{ E(\Gamma) - V(\Gamma) }
+            %p where
+            %ol
+              %li
+                %p
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi V
+                        %mo{:stretchy => "false"} (
+                        %mi Γ
+                        %mo{:stretchy => "false"} )
+                        %mo ∈
+                        %mi ℕ
+                      %annotation{:encoding => "application/x-tex"} V(\Gamma) \in \mathbb{N}
+                  is the number of
+                  %a.existingWikiWord{:href => "/nlab/show/vertices"} vertices
+                  of the graph
+              %li
+                %p
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi E
+                        %mo{:stretchy => "false"} (
+                        %mi Γ
+                        %mo{:stretchy => "false"} )
+                        %mo ∈
+                        %mi ℕ
+                      %annotation{:encoding => "application/x-tex"} E(\Gamma) \in \mathbb{N}
+                  is the number of
+                  %a.existingWikiWord{:href => "/nlab/show/edges"} edges
+                  in the graph.
+            %p This comes about, according to the above, because
+            %ol
+              %li
+                %p
+                  the explicit
+                  = succeed "-dependence" do
+                    %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                      %semantics
+                        %mrow
+                          %mi ℏ
+                        %annotation{:encoding => "application/x-tex"} \hbar
+                  %a.existingWikiWord{:href => "/nlab/show/S-matrix"} S-matrix
+                  is
+                .maruku-equation
+                  %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi S
+                        %mrow
+                          %mo (
+                          %mstyle{:displaystyle => "false"}
+                            %mfrac
+                              %mi g
+                              %mi ℏ
+                          %msub
+                            %mi L
+                            %mi int
+                          %mo )
+                        %mo =
+                        %munder
+                          %mo{:lspace => "thinmathspace", :rspace => "thinmathspace"} ∑
+                          %mrow
+                            %mi k
+                            %mo ∈
+                            %mi ℕ
+                        %mfrac
+                          %mrow
+                            %msup
+                              %mi g
+                              %mi k
+                          %mrow
+                            %msup
+                              %mi ℏ
+                              %mi k
+                            %mi k
+                            %mo !
+                        %mi T
+                        %mo{:stretchy => "false"} (
+                        %munder
+                          %munder
+                            %mrow
+                              %msub
+                                %mi L
+                                %mi int
+                              %mi ⋯
+                              %msub
+                                %mi L
+                                %mi int
+                            %mo ⏟
+                          %mrow
+                            %mi k
+                            %mspace{:width => "thinmathspace"}
+                            %mtext factors
+                        %mo{:stretchy => "false"} )
+                      %annotation{:encoding => "application/x-tex"}
+                        S\left(\tfrac{g}{\hbar} L_{int} \right)
+                        \=
+                        \\underset{k \in \mathbb{N}}{\sum} \frac{g^k}{\hbar^k k!} T( \underset{k \, \text{factors}}{\underbrace{L_{int} \cdots L_{int}}} )
+              %li
+                %p
+                  the further
+                  = succeed "-dependence" do
+                    %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                      %semantics
+                        %mrow
+                          %mi ℏ
+                        %annotation{:encoding => "application/x-tex"} \hbar
+                  %a.existingWikiWord{:href => "/nlab/show/time-ordered+product"} time-ordered product
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi T
+                        %mo{:stretchy => "false"} (
+                        %mi ⋯
+                        %mo{:stretchy => "false"} )
+                      %annotation{:encoding => "application/x-tex"} T(\cdots)
+                  is
+                .maruku-equation
+                  %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi T
+                        %mo{:stretchy => "false"} (
+                        %msub
+                          %mi L
+                          %mi int
+                        %msub
+                          %mi L
+                          %mi int
+                        %mo{:stretchy => "false"} )
+                        %mo =
+                        %mi prod
+                        %mo ∘
+                        %mi exp
+                        %mrow
+                          %mo (
+                          %mi ℏ
+                          %mo ∫
+                          %msub
+                            %mi ω
+                            %mi F
+                          %mo{:stretchy => "false"} (
+                          %mi x
+                          %mo ,
+                          %mi y
+                          %mo{:stretchy => "false"} )
+                          %mfrac
+                            %mi δ
+                            %mrow
+                              %mi δ
+                              %mi ϕ
+                              %mo{:stretchy => "false"} (
+                              %mi x
+                              %mo{:stretchy => "false"} )
+                          %mo ⊗
+                          %mfrac
+                            %mi δ
+                            %mrow
+                              %mi δ
+                              %mi ϕ
+                              %mo{:stretchy => "false"} (
+                              %mi y
+                              %mo{:stretchy => "false"} )
+                          %mo )
+                        %mo{:stretchy => "false"} (
+                        %msub
+                          %mi L
+                          %mi int
+                        %mo ⊗
+                        %msub
+                          %mi L
+                          %mi int
+                        %mo{:stretchy => "false"} )
+                        %mspace{:width => "thinmathspace"}
+                        %mo ,
+                      %annotation{:encoding => "application/x-tex"}
+                        T(L_{int} L_{int}) = prod \circ \exp\left( \hbar \int \omega_{F}(x,y) \frac{\delta}{\delta \phi(x)} \otimes \frac{\delta}{\delta \phi(y)}  \right) ( L_{int} \otimes L_{int} )
+                        \\,,
+            %p
+              where
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi ω
+                      %mi F
+                  %annotation{:encoding => "application/x-tex"} \omega_F
+              denotes the
+              %a.existingWikiWord{:href => "/nlab/show/Feynman+propagator"} Feynman propagator
+              and
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi ϕ
+                    %mo{:stretchy => "false"} (
+                    %mi x
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} \phi(x)
+              the field observable at point
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi x
+                  %annotation{:encoding => "application/x-tex"} x
+              (where we are notationally suppressing the internal degrees of freedom of the fields for simplicity, writing them as
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/scalar+fields"} scalar fields
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi ℏ
+                  %annotation{:encoding => "application/x-tex"} \hbar
+              powers).
+            %p The resulting terms of the S-matrix series are thus labeled by
+            %ol
+              %li
+                %p
+                  the number of factors of the
+                  %a.existingWikiWord{:href => "/nlab/show/interaction"} interaction
+                  = succeed "," do
+                    %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                      %semantics
+                        %mrow
+                          %msub
+                            %mi L
+                            %mi int
+                        %annotation{:encoding => "application/x-tex"} L_{int}
+                  %a.existingWikiWord{:href => "/nlab/show/vertices"} vertices
+                  of the corresponding Feynman diagram and hence each contibute with
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %msup
+                          %mi ℏ
+                          %mrow
+                            %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                            %mn 1
+                      %annotation{:encoding => "application/x-tex"} \hbar^{-1}
+              %li
+                %p
+                  the number of integrals over the Feynman propagator
+                  = succeed "," do
+                    %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                      %semantics
+                        %mrow
+                          %msub
+                            %mi ω
+                            %mi F
+                        %annotation{:encoding => "application/x-tex"} \omega_F
+                  = succeed "." do
+                    %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                      %semantics
+                        %mrow
+                          %msup
+                            %mi ℏ
+                            %mn 1
+                        %annotation{:encoding => "application/x-tex"} \hbar^1
+            %p
+              Now the formula for the
+              %a.existingWikiWord{:href => "/nlab/show/Euler+characteristic+of+planar+graphs"} Euler characteristic of planar graphs
+              says that the number of regions in a plane that are encircled by edges, the
+              %em faces
+              here thought of as the number of “loops”, is
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi L
+                    %mo{:stretchy => "false"} (
+                    %mi Γ
+                    %mo{:stretchy => "false"} )
+                    %mo =
+                    %mn 1
+                    %mo +
+                    %mi E
+                    %mo{:stretchy => "false"} (
+                    %mi Γ
+                    %mo{:stretchy => "false"} )
+                    %mo −
+                    %mi V
+                    %mo{:stretchy => "false"} (
+                    %mi Γ
+                    %mo{:stretchy => "false"} )
+                    %mspace{:width => "thinmathspace"}
+                    %mo .
+                  %annotation{:encoding => "application/x-tex"}
+                    L(\Gamma) =  1 + E(\Gamma) - V(\Gamma)
+                    \\,.
+            %p
+              Hence a planar Feynman diagram
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi Γ
+                  %annotation{:encoding => "application/x-tex"} \Gamma
+              contributes with
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msup
+                      %mi ℏ
+                      %mrow
+                        %mi L
+                        %mo{:stretchy => "false"} (
+                        %mi Γ
+                        %mo{:stretchy => "false"} )
+                        %mo −
+                        %mn 1
+                    %mspace{:width => "thinmathspace"}
+                    %mo .
+                  %annotation{:encoding => "application/x-tex"}
+                    \\hbar^{L(\Gamma)-1}
+                    \\,.
+            %p So far this is the discussion for internal edges. An actual scattering matrix element is of the form
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo{:stretchy => "false"} ⟨
+                    %msub
+                      %mi ψ
+                      %mi out
+                    %mo{:stretchy => "false"} |
+                    %mi S
+                    %mrow
+                      %mo (
+                      %mstyle{:displaystyle => "false"}
+                        %mfrac
+                          %mi g
+                          %mi ℏ
+                      %msub
+                        %mi L
+                        %mi int
+                      %mo )
+                    %mo{:stretchy => "false"} |
+                    %msub
+                      %mi ψ
+                      %mi in
+                    %mo{:stretchy => "false"} ⟩
+                    %mspace{:width => "thinmathspace"}
+                    %mo ,
+                  %annotation{:encoding => "application/x-tex"}
+                    \\langle \psi_{out} \vert S\left(\tfrac{g}{\hbar} L_{int} \right)
+                    \\vert \psi_{in} \rangle
+                    \\,,
+            %p where
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo{:stretchy => "false"} |
+                    %msub
+                      %mi ψ
+                      %mi in
+                    %mo{:stretchy => "false"} ⟩
+                    %mo ∝
+                    %mstyle{:displaystyle => "false"}
+                      %mfrac
+                        %mn 1
+                        %msqrt
+                          %mrow
+                            %msup
+                              %mi ℏ
+                              %mrow
+                                %msub
+                                  %mi n
+                                  %mi in
+                    %msup
+                      %mi ϕ
+                      %mo †
+                    %mo{:stretchy => "false"} (
+                    %msub
+                      %mi k
+                      %mn 1
+                    %mo{:stretchy => "false"} )
+                    %mi ⋯
+                    %msup
+                      %mi ϕ
+                      %mo †
+                    %mo{:stretchy => "false"} (
+                    %msub
+                      %mi k
+                      %mrow
+                        %msub
+                          %mi n
+                          %mi in
+                    %mo{:stretchy => "false"} )
+                    %mo{:stretchy => "false"} |
+                    %mi vac
+                    %mo{:stretchy => "false"} ⟩
+                  %annotation{:encoding => "application/x-tex"}
+                    \\vert \psi_{in}\rangle
+                    \\propto
+                    \\tfrac{1}{\sqrt{\hbar^{n_{in}}}}
+                    \\phi^\dagger(k_1) \cdots \phi^\dagger(k_{n_{in}}) \vert vac \rangle
+            %p
+              is a state of
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi n
+                      %mi in
+                  %annotation{:encoding => "application/x-tex"} n_{in}
+              free field quanta and similarly
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo{:stretchy => "false"} |
+                    %msub
+                      %mi ψ
+                      %mi out
+                    %mo{:stretchy => "false"} ⟩
+                    %mo ∝
+                    %mstyle{:displaystyle => "false"}
+                      %mfrac
+                        %mn 1
+                        %msqrt
+                          %mrow
+                            %msup
+                              %mi ℏ
+                              %mrow
+                                %msub
+                                  %mi n
+                                  %mi out
+                    %msup
+                      %mi ϕ
+                      %mo †
+                    %mo{:stretchy => "false"} (
+                    %msub
+                      %mi k
+                      %mn 1
+                    %mo{:stretchy => "false"} )
+                    %mi ⋯
+                    %msup
+                      %mi ϕ
+                      %mo †
+                    %mo{:stretchy => "false"} (
+                    %msub
+                      %mi k
+                      %mrow
+                        %msub
+                          %mi n
+                          %mi out
+                    %mo{:stretchy => "false"} )
+                    %mo{:stretchy => "false"} |
+                    %mi vac
+                    %mo{:stretchy => "false"} ⟩
+                  %annotation{:encoding => "application/x-tex"}
+                    \\vert \psi_{out}\rangle
+                    \\propto
+                    \\tfrac{1}{\sqrt{\hbar^{n_{out}}}}
+                    \\phi^\dagger(k_1) \cdots \phi^\dagger(k_{n_{out}}) \vert vac \rangle
+            %p
+              is a state of
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi n
+                      %mi out
+                  %annotation{:encoding => "application/x-tex"} n_{out}
+              field quanta. The normalization of these states, in view of the commutation relation
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mo{:stretchy => "false"} [
+                      %mi ϕ
+                      %mo{:stretchy => "false"} (
+                      %mi k
+                      %mo{:stretchy => "false"} )
+                      %mo ,
+                      %msup
+                        %mi ϕ
+                        %mo †
+                      %mo{:stretchy => "false"} (
+                      %mi q
+                      %mo{:stretchy => "false"} )
+                      %mo{:stretchy => "false"} ]
+                      %mo ∝
+                      %mi ℏ
+                    %annotation{:encoding => "application/x-tex"} [\phi(k), \phi^\dagger(q)] \propto \hbar
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi ℏ
+                    %annotation{:encoding => "application/x-tex"} \hbar
+            %p
+              This means that an actual
+              %a.existingWikiWord{:href => "/nlab/show/scattering+amplitude"} scattering amplitude
+              given by a
+              %a.existingWikiWord{:href => "/nlab/show/Feynman+diagram"} Feynman diagram
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi Γ
+                  %annotation{:encoding => "application/x-tex"} \Gamma
+              with
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi E
+                      %mi ext
+                    %mo{:stretchy => "false"} (
+                    %mi Γ
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} E_{ext}(\Gamma)
+              external vertices scales as
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msup
+                      %mi ℏ
+                      %mrow
+                        %mi L
+                        %mo{:stretchy => "false"} (
+                        %mi Γ
+                        %mo{:stretchy => "false"} )
+                        %mo −
+                        %mn 1
+                        %mo +
+                        %msub
+                          %mi E
+                          %mi ext
+                        %mo{:stretchy => "false"} (
+                        %mi Γ
+                        %mo{:stretchy => "false"} )
+                        %mo{:stretchy => "false"} /
+                        %mn 2
+                    %mspace{:width => "thinmathspace"}
+                    %mo .
+                  %annotation{:encoding => "application/x-tex"}
+                    \\hbar^{L(\Gamma) - 1 + E_{ext}(\Gamma)/2 }
+                    \\,.
+            %p
+              (For the analogous discussion of the dependence on the actual
+              %a.existingWikiWord{:href => "/nlab/show/quantum+observables"} quantum observables
+              on
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi ℏ
+                  %annotation{:encoding => "application/x-tex"} \hbar
+              given by
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/Bogoliubov%27s+formula"} Bogoliubov's formula
+              = succeed ".)" do
+                %a{:href => "Bogoliubov's+formula#PowersInPlancksConstant"} there
+        .revisedby
+          %p
+            Created on December  6, 2017 at 00:11:30.
+            See the
+            %a{:href => "/nlab/history/A+first+idea+of+quantum+field+theory+--+Feynman+diagrams", :style => "color: #005c19"} history
+            of this page for a list of all contributions to it.
+        .navigation.navfoot
+          %a#edit.navlink{:accesskey => "E", :href => "/nlab/edit/A+first+idea+of+quantum+field+theory+--+Feynman+diagrams", :rel => "nofollow"} Edit
+          %a{:href => "https://nforum.ncatlab.org/discussions/?CategoryID=0"} Discuss
+          %a{:href => "/nlab/show/A+first+idea+of+quantum+field+theory+--+Feynman+diagrams/cite", :style => "color: black"} Cite
+          %a#view_print{:accesskey => "p", :href => "/nlab/print/A+first+idea+of+quantum+field+theory+--+Feynman+diagrams", :rel => "nofollow"} Print
+          %a#view_source{:href => "/nlab/source/A+first+idea+of+quantum+field+theory+--+Feynman+diagrams", :rel => "nofollow"} Source
+      / Content
+    / Container

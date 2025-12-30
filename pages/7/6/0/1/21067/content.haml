@@ -1,0 +1,1603 @@
+!!! XML
+!!! 1.1
+%html{:xmlns => "http://www.w3.org/1999/xhtml"}
+  %head
+    %title
+      algebra over a monad in nLab
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:content => "index,follow", :name => "robots"}/
+    %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/
+    %link{:href => "/stylesheets/instiki.css?1676280126", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/stylesheets/mathematics.css?1660229990", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/stylesheets/syntax.css?1660229990", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/stylesheets/nlab.css?1676280126", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css", :rel => "stylesheet", :type => "text/css"}/
+    :css
+      h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+        color: #226622;
+      }
+      a:visited.existingWikiWord {
+        color: #164416;
+      }
+    :css
+      <!--/*--><![CDATA[/*><!--*/
+          .toc ul {margin: 0; padding: 0;}
+      .toc ul ul {margin: 0; padding: 0 0 0 10px;}
+      .toc li > p {margin: 0}
+      .toc ul li {list-style-type: none; position: relative;}
+      .toc div {border-top:1px dotted #ccc;}
+      .rightHandSide h2 {font-size: 1.5em;color:#008B26}
+      table.plaintable {
+          border-collapse:collapse;
+          margin-left:30px;
+          border:0;
+      }
+      .plaintable td {border:1px solid #000; padding: 3px;}
+      .plaintable th {padding: 3px;}
+      .plaintable caption {
+          font-weight: bold;
+          font-size:1.1em;
+          text-align:center;
+          margin-left:30px;
+      }
+          
+         
+      /* Query boxes for questioning and answering mechanism */
+      div.query{
+      background: #f6fff3;
+      border: solid #ce9;
+      border-width: 2px 1px;
+      padding: 0 1em;
+      margin: 0 1em;
+      max-height: 20em;
+      overflow: auto;
+      }
+      
+      /* Standout boxes for putting important text */
+      div.standout{
+      background: #fff1f1;
+      border: solid black;
+      border-width: 2px 1px;
+      padding: 0 1em;
+      margin: 0 1em;
+      overflow: auto;
+      }
+      
+      /* Icon for links to n-category arXiv documents 
+       (commented out for now i.e. disabled)
+      a[href*="http://arxiv.org/"] {
+        background-image: url(../files/arXiv_icon.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 22px;
+        } */
+          
+      /* Icon for links to n-category cafe posts (disabled) 
+      a[href*="http://golem.ph.utexas.edu/category"] {
+        background-image: url(../files/n-cafe_5.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 25px;
+        } */
+      
+      /* Icon for links to pdf files (disabled)
+      a[href$=".pdf"] {
+        background-image: url(../files/pdficon_small.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 25px;
+        } */
+      
+      /* Icon for links to pages, etc. -inside- pdf files (disabled)
+      a[href*=".pdf#"] {
+        background-image: url(../files/pdf_entry.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 25px;
+        } */
+      
+      a.existingWikiWord {
+      color: #226622;
+      }
+      
+      a.existingWikiWord:visited {
+      color: #226622;
+      }
+      
+      
+      a.existingWikiWord[title] {
+      border: 0px;
+      color: #aa0505;
+      text-decoration: none;
+      }
+          
+      a.existingWikiWord[title]:visited {
+      border: 0px;
+      color: #551111;
+      text-decoration: none;
+      }
+      
+      a[href^="http://"] {
+      border: 0px;
+      color: #003399;
+      }
+      
+      a[href^="http://"]:visited {
+      border: 0px;
+      color: #330066;
+      }
+      
+      a[href^="https://"] {
+      border: 0px;
+      color: #003399;
+      }
+      
+      a[href^="https://"]:visited {
+      border: 0px;
+      color: #330066;
+      }
+      
+      div.dropDown .hide {
+      display: none;
+      }
+      
+      div.dropDown:hover .hide {
+      display:block;
+      }
+      
+      div.clickDown .hide {
+      display: none;
+      }
+      
+      div.clickDown:focus {
+      outline:none;
+      }
+      
+      div.clickDown:focus .hide, div.clickDown:hover .hide {
+      display: block;
+      }
+      
+      div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+      display:block;
+      }
+      
+      div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+      display:none;
+      }
+      
+      div.clickDown .clickToReveal:after {
+      content: "A(Hover to reveal, click to "hold")";
+      font-size: 60%;
+      }
+      
+      div.clickDown .clickToHide:after {
+      content: "A(Click to hide)";
+      font-size: 60%;
+      }
+      div.clickDown .clickToHide, div.clickDown .clickToReveal {
+      white-space: pre-wrap;
+      }
+      
+      .un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+      margin-left: 1em;
+      }
+      
+      span.theorem_label {
+      margin-left: -1em;
+      }
+      .proof span.theorem_label {
+      margin-left: 0em;
+      }
+      :target {
+          background-color: #BBBBBB;
+          border-radius: 5pt;
+      }
+      
+        /*]]>*/-->
+    %script{:src => "/javascripts/prototype.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/effects.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/dragdrop.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/controls.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/application.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/page_helper.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/thm_numbering.js?1660229990", :type => "text/javascript"}
+    %script{:type => "text/x-mathjax-config"}
+      :cdata
+        <!--//--><![CDATA[//><!--
+        MathJax.Ajax.config.path["Contrib"] = "/MathJax";
+        MathJax.Hub.Config({
+        MathML: { useMathMLspacing: true },
+        "HTML-CSS": { scale: 90,
+        extensions: ["handle-floats.js"]
+        }
+        });
+        MathJax.Hub.Queue( function () {
+        var fos = document.getElementsByTagName('foreignObject');
+        for (var i = 0; i < fos.length; i++) {
+        MathJax.Hub.Typeset(fos[i]);
+        }
+        });
+        \//--><!]]>
+    :javascript
+      <!--//--><![CDATA[//><!--
+      window.addEventListener("DOMContentLoaded", function () {
+        var div = document.createElement('div');
+        var math = document.createElementNS('http://www.w3.org/1998/Math/MathML', 'math');
+        document.body.appendChild(div);
+        div.appendChild(math);
+      // Test for MathML support comparable to WebKit version https://trac.webkit.org/changeset/203640 or higher.
+        div.setAttribute('style', 'font-style: italic');
+        var mathml_unsupported = !(window.getComputedStyle(div.firstChild).getPropertyValue('font-style') === 'normal');
+        div.parentNode.removeChild(div);
+        if (mathml_unsupported) {
+          // MathML does not seem to be supported...
+          var s = document.createElement('script');
+          s.src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=MML_HTMLorMML-full";
+          document.querySelector('head').appendChild(s);
+        } else {
+          document.head.insertAdjacentHTML("beforeend", '<style>svg[viewBox] {max-width: 100%}</style>');
+        }
+      });
+      //--><!]]>
+    %link{:href => "https://ncatlab.org/nlab/atom_with_headlines", :rel => "alternate", :title => "Atom with headlines", :type => "application/atom+xml"}/
+    %link{:href => "https://ncatlab.org/nlab/atom_with_content", :rel => "alternate", :title => "Atom with full content", :type => "application/atom+xml"}/
+    :javascript
+      document.observe("dom:loaded", function() {
+        generateThmNumbers();
+      });
+  %body
+    #Container
+      #Content
+        %h1#pageName
+          %span{:style => "float: left; margin: 0.5em 0.25em -0.25em 0"}
+            %svg{:height => "1.8em", :viewbox => "0 0 190 181", :width => "1.872em", :xmlns => "http://www.w3.org/2000/svg"}
+              %path{:d => "M72.8 145c-1.6 17.3-15.7 10-23.6 20.2-5.6 7.3 4.8 15 11.4 15 11.5-.2 19-13.4 26.4-20.3 3.3-3 8.2-4 11.2-7.2a14 14 0 0 0 2.9-11.1c-1.4-9.6-12.4-18.6-16.9-27.2-5-9.6-10.7-27.4-24.1-27.7-17.4-.3-.4 26 4.7 30.7 2.4 2.3 5.4 4.1 7.3 6.9 1.6 2.3 2.1 5.8-1 7.2-5.9 2.6-12.4-6.3-15.5-10-8.8-10.6-15.5-23-26.2-31.8-5.2-4.3-11.8-8-18-3.7-7.3 4.9-4.2 12.9.2 18.5a81 81 0 0 0 30.7 23c3.3 1.5 12.8 5.6 10 10.7-2.5 5.2-11.7 3-15.6 1.1-8.4-3.8-24.3-21.3-34.4-13.7-3.5 2.6-2.3 7.6-1.2 11.1 2.8 9 12.2 17.2 20.9 20.5 17.3 6.7 34.3-8 50.8-12.1z", :fill => "#226622"}
+              %path{:d => "M145.9 121.3c-.2-7.5 0-19.6-4.5-26-5.4-7.5-12.9-1-14.1 5.8-1.4 7.8 2.7 14.1 4.8 21.3 3.4 12 5.8 29-.8 40.1-3.6-6.7-5.2-13-7-20.4-2.1-8.2-12.8-13.2-15.1-1.9-2 9.7 9 21.2 12 30.1 1.2 4 2 8.8 6.4 10.3 6.9 2.3 13.3-4.7 17.7-8.8 12.2-11.5 36.6-20.7 43.4-36.4 6.7-15.7-13.7-14-21.3-7.2-9.1 8-11.9 20.5-23.6 25.1 7.5-23.7 31.8-37.6 38.4-61.4 2-7.3-.8-29.6-13-19.8-14.5 11.6-6.6 37.6-23.3 49.2z", :fill => "#a41e32"}
+              %path{:d => "M86.3 47.5c0-13-10.2-27.6-5.8-40.4 2.8-8.4 14.1-10.1 17-1 3.8 11.6-.3 26.3-1.8 38 11.7-.7 10.5-16 14.8-24.3 2.1-4.2 5.7-9.1 11-6.7 6 2.7 7.4 9.2 6.6 15.1-2.2 14-12.2 18.8-22.4 27-3.4 2.7-8 6.6-5.9 11.6 2 4.4 7 4.5 10.7 2.8 7.4-3.3 13.4-16.5 21.7-16 14.6.7 12 21.9.9 26.2-5 1.9-10.2 2.3-15.2 3.9-5.8 1.8-9.4 8.7-15.7 8.9-6.1.1-9-6.9-14.3-9-14.4-6-33.3-2-44.7-14.7-3.7-4.2-9.6-12-4.9-17.4 9.3-10.7 28 7.2 35.7 12 2 1.1 11 6.9 11.4 1.1.4-5.2-10-8.2-13.5-10-11.1-5.2-30-15.3-35-27.3-2.5-6 2.8-13.8 9.4-13.6 6.9.2 13.4 7 17.5 12C70.9 34 75 43.8 86.3 47.4z", :fill => "#193c78"}
+          %span.webName nLab
+          algebra over a monad
+        .navigation
+          %span.skipNav
+            %a{:href => "#navEnd"} Skip the Navigation Links
+            |
+          %span{:style => "display:inline-block; width: 0.3em;"}
+          %a{:accesskey => "H", :href => "/nlab/show/HomePage", :title => "Home page"} Home Page
+          |
+          %a{:accesskey => "A", :href => "/nlab/all_pages", :title => "List of all pages"} All Pages
+          |
+          %a{:accesskey => "U", :href => "/nlab/latest_revisions", :title => "Latest edits and page creations"} Latest Revisions
+          |
+          %a{:href => "https://nforum.ncatlab.org/discussion/10843/#Item_17", :style => "color: black", :title => "Discuss this page in its dedicated thread on the nForum"} Discuss this page
+          |
+          %form#navigationSearchForm{"accept-charset" => "utf-8", :action => "/nlab/search", :method => "get"}
+            %fieldset.search
+              %input#searchField{:name => "query", :onblur => "this.value == '' ? this.value = 'Search' : true", :onfocus => "this.value == 'Search' ? this.value = '' : true", :style => "display:inline-block; float: left;", :type => "text", :value => "Search"}/
+          %span#navEnd
+        #revision
+          %meta{:content => "application/xhtml+xml;charset=utf-8", "http-equiv" => "Content-type"}/
+          %title Contents
+          .rightHandSide
+            .toc.clickDown{:tabindex => "0"}
+              %h3#context Context
+              %h4#categorical_algebra Categorical algebra
+              .hide
+                %div
+                  %p
+                    %a.existingWikiWord{:href => "/nlab/show/category+theory"}> category theory
+                    +
+                    %a.existingWikiWord{:href => "/nlab/show/algebra"} algebra
+                  %p
+                    %strong
+                      %a.existingWikiWord{:href => "/nlab/show/internalization"} internalization
+                      and
+                      %a.existingWikiWord{:href => "/nlab/show/categorical+algebra"} categorical algebra
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/monoid+object"} monoid object
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/commutative+monoid+object"} commutative monoid object
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/idempotent+monoid+object"} idempotent monoid object
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/semilattice+object"} semilattice object
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/group+object"} group object
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/ring+object"} ring object
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/algebra+object"} algebra object
+                        (associative,
+                        = succeed "," do
+                          %a.existingWikiWord{:href => "/nlab/show/Lie+algebra+object"} Lie
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/module+object"}> module object
+                        \/
+                        %a.existingWikiWord{:href => "/nlab/show/action+object"} action object
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/internal+locale"} internal locale
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/internal+category"} internal category
+                        (
+                        %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                          %semantics
+                            %mrow
+                              %mo →
+                            %annotation{:encoding => "application/x-tex"} \to
+                        = succeed ")" do
+                          %a.existingWikiWord{:href => "/nlab/show/internal+infinity-categories+contents"} more
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/internal+groupoid"} internal groupoid
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/internal+site"} internal site
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/internal+diagram"} internal diagram
+                  %p
+                    %strong
+                      %a.existingWikiWord{:href => "/nlab/show/universal+algebra"} universal algebra
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/algebra+over+a+Lawvere+theory"} algebras over
+                        %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                          %semantics
+                            %mrow
+                              %mspace{:width => "thinmathspace"}
+                            %annotation{:encoding => "application/x-tex"} \,
+                        %a.existingWikiWord{:href => "/nlab/show/algebraic+theories"} algebraic theories
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/algebra+over+a+monad"} algebras over
+                        %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                          %semantics
+                            %mrow
+                              %mspace{:width => "thinmathspace"}
+                            %annotation{:encoding => "application/x-tex"} \,
+                        %a.existingWikiWord{:href => "/nlab/show/monads"} monads
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/algebra+over+an+operad"} algebras over
+                        %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                          %semantics
+                            %mrow
+                              %mspace{:width => "thinmathspace"}
+                            %annotation{:encoding => "application/x-tex"} \,
+                        %a.existingWikiWord{:href => "/nlab/show/operads"} operads
+                  %p
+                    %strong
+                      %a.existingWikiWord{:href => "/nlab/show/categorical+semantics"} categorical semantics
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/internal+logic"}> internal logic
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/internal+language"} internal language
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/relation+between+category+theory+and+type+theory"} relation between category theory and type theory
+          %h1#contents Contents
+          .maruku_toc
+            %ul
+              %li
+                %a{:href => "#idea"} Idea
+              %li
+                %a{:href => "#Definition"} Definition
+              %ul
+                %li
+                  %a{:href => "#Algebras"} Algebras
+                %li
+                  %a{:href => "#homomorphisms"} Homomorphisms
+                %li
+                  %a{:href => "#FreeAlgebras"} Free algebras
+                %li
+                  %a{:href => "#tensor_product"} Tensor product
+              %li
+                %a{:href => "#examples"} Examples
+              %li
+                %a{:href => "#generalizations"} Generalizations
+              %li
+                %a{:href => "#related_concepts"} Related concepts
+              %li
+                %a{:href => "#references"} References
+              %ul
+                %li
+                  %a{:href => "#general"} General
+                %li
+                  %a{:href => "#ReferencesKleisliStyle"} Kleisli/extension system-style
+          %h2#idea Idea
+          %p
+            There are different, related ways in which one could view the notion of
+            = succeed ":" do
+              %em
+                algebra over a
+                %a.existingWikiWord{:href => "/nlab/show/monad"} monad
+          %ul
+            %li
+              If one views monads as a generalization of
+              %a.existingWikiWord{:href => "/nlab/show/algebraic+theories"} algebraic theories
+              (see
+              = succeed ")," do
+                %a.existingWikiWord{:href => "/nlab/show/algebraic+theory#RelationToMonads"} algebraic theory - relation to monads
+              = succeed "." do
+                %a.existingWikiWord{:href => "/nlab/show/algebra+over+a+Lawvere+theory"} algebra over a theory
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/operations"} operations
+            %li
+              From the 2-dimensional point of view, an algebra over a monad is a special case of a
+              %a.existingWikiWord{:href => "/nlab/show/module+over+a+monad"} module over a monad
+              for the bicategory
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/Cat"} Cat
+              = succeed "." do
+                %a.existingWikiWord{:href => "/nlab/show/terminal+category"} terminal category
+            %li
+              If one views monads as a way to model computational effects (see
+              = succeed ")," do
+                %a.existingWikiWord{:href => "/nlab/show/monad+in+computer+science"} monad in computer science
+          %p
+            Algebras over a monad are usually objects equipped with extra
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/structure"} structure
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/properties"} properties
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/algebra+over+an+endofunctor"} algebras over the underlying endofunctor
+            = succeed ".)" do
+              %a.existingWikiWord{:href => "/nlab/show/properties"} properties
+          %p
+            The corresponding
+            %a.existingWikiWord{:href => "/nlab/show/formal+duality"} dual
+            notion is that of
+            = succeed "." do
+              %em
+                %a.existingWikiWord{:href => "/nlab/show/coalgebra+over+a+comonad"} coalgebra over a comonad
+          %h2#Definition Definition
+          %p
+            Let
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mo{:stretchy => "false"} (
+                  %mi T
+                  %mo ,
+                  %mi η
+                  %mo ,
+                  %mi μ
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} (T,\eta, \mu)
+            be a
+            %a.existingWikiWord{:href => "/nlab/show/monad"} monad
+            on a
+            %a.existingWikiWord{:href => "/nlab/show/category"} category
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi 𝒞
+                  %annotation{:encoding => "application/x-tex"} \mathcal{C}
+          %h3#Algebras Algebras
+          %p
+          .num_defn
+            %h6 Definition
+            %p
+              An
+              %strong
+                algebra over
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi T
+                    %annotation{:encoding => "application/x-tex"} T
+              (or just
+              %strong
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}>
+                  %semantics
+                    %mrow
+                      %mi T
+                    %annotation{:encoding => "application/x-tex"} T
+                \-algebra
+              or
+              = succeed ")" do
+                %strong
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}>
+                    %semantics
+                      %mrow
+                        %mi T
+                      %annotation{:encoding => "application/x-tex"} T
+                  \-module
+            %ol
+              %li
+                %p
+                  an
+                  %a.existingWikiWord{:href => "/nlab/show/object"} object
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi A
+                      %annotation{:encoding => "application/x-tex"} A
+                  of
+                  = succeed "," do
+                    %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                      %semantics
+                        %mrow
+                          %mi 𝒞
+                        %annotation{:encoding => "application/x-tex"} \mathcal{C}
+              %li
+                %p
+                  a
+                  %a.existingWikiWord{:href => "/nlab/show/morphism"} morphism
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi a
+                        %mo{:lspace => "verythinmathspace"} :
+                        %mi T
+                        %mo{:stretchy => "false"} (
+                        %mi A
+                        %mo{:stretchy => "false"} )
+                        %mo ⟶
+                        %mi A
+                      %annotation{:encoding => "application/x-tex"} a \colon T (A) \longrightarrow A
+                  of
+                  = succeed "," do
+                    %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                      %semantics
+                        %mrow
+                          %mi 𝒞
+                        %annotation{:encoding => "application/x-tex"} \mathcal{C}
+            %p
+              such that the following
+              %a.existingWikiWord{:href => "/nlab/show/commuting+diagram"} diagrams commute
+              in
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi 𝒞
+                  %annotation{:encoding => "application/x-tex"} \mathcal{C}
+              (cf. the definition of
+              %em
+                %a.existingWikiWord{:href => "/nlab/show/module+object"} module object
+              = succeed "):" do
+                %a{:href => "module+object#MonoidsInMonoidalCategory"} here
+            #eq:UnitProperty.maruku-equation
+              %span.maruku-eq-number (1)
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mtext Unit Property:
+                  %annotation{:encoding => "application/x-tex"}
+                    \\text{Unit Property:}
+            %svg{:height => "89.192pt", :version => "1.2", :viewbox => "0 0 125.853 89.192", :width => "125.853pt", :xmlns => "http://www.w3.org/2000/svg", "xmlns:xlink" => "http://www.w3.org/1999/xlink"}
+              %defs
+                %g
+                  %symbol{:id => "b8QMF8X_lBzdtWoiolPS51ABK9M=-glyph0-0", :overflow => "visible"}
+                    %path{:d => "", :style => "stroke:none;"}
+                  %symbol{:id => "b8QMF8X_lBzdtWoiolPS51ABK9M=-glyph0-1", :overflow => "visible"}
+                    %path{:d => "M 2.515625 -1.640625 C 2 -0.765625 1.5 -0.46875 0.78125 -0.421875 C 0.625 -0.421875 0.5 -0.421875 0.5 -0.140625 C 0.5 -0.0625 0.578125 0 0.6875 0 C 0.953125 0 1.609375 -0.03125 1.875 -0.03125 C 2.3125 -0.03125 2.78125 0 3.203125 0 C 3.28125 0 3.46875 0 3.46875 -0.28125 C 3.46875 -0.421875 3.34375 -0.421875 3.265625 -0.421875 C 2.921875 -0.453125 2.640625 -0.578125 2.640625 -0.9375 C 2.640625 -1.140625 2.71875 -1.296875 2.921875 -1.625 L 4.046875 -3.5 L 7.828125 -3.5 C 7.828125 -3.359375 7.828125 -3.25 7.84375 -3.109375 C 7.890625 -2.71875 8.078125 -1.1875 8.078125 -0.90625 C 8.078125 -0.453125 7.3125 -0.421875 7.078125 -0.421875 C 6.921875 -0.421875 6.75 -0.421875 6.75 -0.15625 C 6.75 0 6.890625 0 6.984375 0 C 7.234375 0 7.53125 -0.03125 7.78125 -0.03125 L 8.625 -0.03125 C 9.53125 -0.03125 10.171875 0 10.1875 0 C 10.296875 0 10.453125 0 10.453125 -0.28125 C 10.453125 -0.421875 10.328125 -0.421875 10.109375 -0.421875 C 9.28125 -0.421875 9.265625 -0.5625 9.234375 -1 L 8.328125 -10.25 C 8.296875 -10.546875 8.234375 -10.578125 8.078125 -10.578125 C 7.921875 -10.578125 7.828125 -10.546875 7.703125 -10.328125 Z M 4.296875 -3.921875 L 7.265625 -8.90625 L 7.78125 -3.921875 Z M 4.296875 -3.921875 ", :style => "stroke:none;"}
+                  %symbol{:id => "b8QMF8X_lBzdtWoiolPS51ABK9M=-glyph0-2", :overflow => "visible"}
+                    %path{:d => "M 6.171875 -9.03125 C 6.265625 -9.390625 6.296875 -9.53125 6.515625 -9.578125 C 6.640625 -9.609375 7.125 -9.609375 7.4375 -9.609375 C 8.921875 -9.609375 9.609375 -9.546875 9.609375 -8.40625 C 9.609375 -8.171875 9.546875 -7.609375 9.46875 -7.0625 L 9.453125 -6.890625 C 9.453125 -6.828125 9.515625 -6.734375 9.59375 -6.734375 C 9.75 -6.734375 9.75 -6.8125 9.796875 -7.046875 L 10.21875 -9.671875 C 10.25 -9.8125 10.25 -9.828125 10.25 -9.875 C 10.25 -10.046875 10.15625 -10.046875 9.859375 -10.046875 L 1.765625 -10.046875 C 1.421875 -10.046875 1.40625 -10.03125 1.3125 -9.765625 L 0.421875 -7.09375 C 0.40625 -7.0625 0.359375 -6.90625 0.359375 -6.890625 C 0.359375 -6.8125 0.421875 -6.734375 0.5 -6.734375 C 0.625 -6.734375 0.65625 -6.796875 0.71875 -6.984375 C 1.328125 -8.78125 1.640625 -9.609375 3.609375 -9.609375 L 4.609375 -9.609375 C 4.96875 -9.609375 5.109375 -9.609375 5.109375 -9.453125 C 5.109375 -9.40625 5.109375 -9.375 5.03125 -9.109375 L 3.046875 -1.15625 C 2.90625 -0.578125 2.875 -0.421875 1.296875 -0.421875 C 0.9375 -0.421875 0.828125 -0.421875 0.828125 -0.140625 C 0.828125 0 1 0 1.0625 0 C 1.4375 0 1.828125 -0.03125 2.1875 -0.03125 L 4.5 -0.03125 C 4.875 -0.03125 5.265625 0 5.640625 0 C 5.8125 0 5.953125 0 5.953125 -0.28125 C 5.953125 -0.421875 5.84375 -0.421875 5.46875 -0.421875 C 4.125 -0.421875 4.125 -0.5625 4.125 -0.78125 C 4.125 -0.796875 4.125 -0.90625 4.1875 -1.140625 Z M 6.171875 -9.03125 ", :style => "stroke:none;"}
+                  %symbol{:id => "b8QMF8X_lBzdtWoiolPS51ABK9M=-glyph1-0", :overflow => "visible"}
+                    %path{:d => "", :style => "stroke:none;"}
+                  %symbol{:id => "b8QMF8X_lBzdtWoiolPS51ABK9M=-glyph1-1", :overflow => "visible"}
+                    %path{:d => "M 4.8125 3.59375 C 4.8125 3.5625 4.8125 3.53125 4.5625 3.28125 C 3.078125 1.78125 2.25 -0.671875 2.25 -3.6875 C 2.25 -6.5625 2.953125 -9.03125 4.671875 -10.78125 C 4.8125 -10.921875 4.8125 -10.953125 4.8125 -10.984375 C 4.8125 -11.078125 4.734375 -11.109375 4.6875 -11.109375 C 4.484375 -11.109375 3.28125 -10.046875 2.546875 -8.59375 C 1.796875 -7.09375 1.453125 -5.515625 1.453125 -3.6875 C 1.453125 -2.375 1.65625 -0.609375 2.421875 0.984375 C 3.296875 2.75 4.515625 3.71875 4.6875 3.71875 C 4.734375 3.71875 4.8125 3.6875 4.8125 3.59375 Z M 4.8125 3.59375 ", :style => "stroke:none;"}
+                  %symbol{:id => "b8QMF8X_lBzdtWoiolPS51ABK9M=-glyph1-2", :overflow => "visible"}
+                    %path{:d => "M 4.171875 -3.6875 C 4.171875 -4.8125 4.03125 -6.65625 3.203125 -8.375 C 2.328125 -10.140625 1.109375 -11.109375 0.953125 -11.109375 C 0.890625 -11.109375 0.8125 -11.078125 0.8125 -10.984375 C 0.8125 -10.953125 0.8125 -10.921875 1.0625 -10.671875 C 2.546875 -9.171875 3.375 -6.71875 3.375 -3.703125 C 3.375 -0.828125 2.6875 1.640625 0.96875 3.390625 C 0.8125 3.53125 0.8125 3.5625 0.8125 3.59375 C 0.8125 3.6875 0.890625 3.71875 0.953125 3.71875 C 1.140625 3.71875 2.359375 2.65625 3.078125 1.203125 C 3.84375 -0.3125 4.171875 -1.90625 4.171875 -3.6875 Z M 4.171875 -3.6875 ", :style => "stroke:none;"}
+                  %symbol{:id => "b8QMF8X_lBzdtWoiolPS51ABK9M=-glyph2-0", :overflow => "visible"}
+                    %path{:d => "", :style => "stroke:none;"}
+                  %symbol{:id => "b8QMF8X_lBzdtWoiolPS51ABK9M=-glyph2-1", :overflow => "visible"}
+                    %path{:d => "M 5.140625 -2.71875 C 5.1875 -2.875 5.21875 -3.046875 5.21875 -3.265625 C 5.21875 -4 4.703125 -4.359375 4 -4.359375 C 3.203125 -4.359375 2.6875 -3.875 2.40625 -3.5 C 2.328125 -4.03125 1.890625 -4.359375 1.390625 -4.359375 C 1.03125 -4.359375 0.796875 -4.125 0.625 -3.828125 C 0.40625 -3.375 0.296875 -2.875 0.296875 -2.84375 C 0.296875 -2.75 0.359375 -2.71875 0.4375 -2.71875 C 0.578125 -2.71875 0.578125 -2.75 0.65625 -3.015625 C 0.78125 -3.515625 0.953125 -4.078125 1.359375 -4.078125 C 1.609375 -4.078125 1.671875 -3.84375 1.671875 -3.609375 C 1.671875 -3.4375 1.625 -3.25 1.546875 -2.921875 C 1.53125 -2.84375 1.375 -2.265625 1.34375 -2.125 L 0.984375 -0.640625 C 0.9375 -0.5 0.875 -0.25 0.875 -0.203125 C 0.875 0.015625 1.0625 0.09375 1.1875 0.09375 C 1.375 0.09375 1.515625 -0.015625 1.59375 -0.140625 C 1.625 -0.203125 1.703125 -0.53125 1.75 -0.734375 L 1.96875 -1.625 C 2 -1.765625 2.109375 -2.140625 2.140625 -2.296875 C 2.265625 -2.828125 2.265625 -2.828125 2.5 -3.15625 C 2.828125 -3.640625 3.28125 -4.078125 3.953125 -4.078125 C 4.3125 -4.078125 4.515625 -3.875 4.515625 -3.40625 C 4.515625 -3.21875 4.4375 -2.859375 4.4375 -2.84375 L 3.3125 1.59375 C 3.28125 1.734375 3.28125 1.796875 3.28125 1.8125 C 3.28125 2.0625 3.46875 2.125 3.59375 2.125 C 3.9375 2.125 4.015625 1.796875 4.046875 1.671875 Z M 5.140625 -2.71875 ", :style => "stroke:none;"}
+                  %symbol{:id => "b8QMF8X_lBzdtWoiolPS51ABK9M=-glyph2-2", :overflow => "visible"}
+                    %path{:d => "M 3.875 -3.765625 C 3.78125 -3.9375 3.5 -4.359375 2.890625 -4.359375 C 1.71875 -4.359375 0.421875 -2.984375 0.421875 -1.515625 C 0.421875 -0.5 1.09375 0.09375 1.84375 0.09375 C 2.484375 0.09375 3.015625 -0.40625 3.203125 -0.609375 C 3.375 0.078125 4.046875 0.09375 4.171875 0.09375 C 4.625 0.09375 4.84375 -0.28125 4.921875 -0.4375 C 5.125 -0.796875 5.265625 -1.375 5.265625 -1.40625 C 5.265625 -1.46875 5.21875 -1.546875 5.109375 -1.546875 C 4.984375 -1.546875 4.96875 -1.484375 4.90625 -1.234375 C 4.765625 -0.6875 4.578125 -0.171875 4.203125 -0.171875 C 3.96875 -0.171875 3.875 -0.359375 3.875 -0.640625 C 3.875 -0.8125 3.96875 -1.140625 4.03125 -1.390625 C 4.09375 -1.640625 4.234375 -2.234375 4.28125 -2.40625 L 4.46875 -3.15625 C 4.515625 -3.390625 4.625 -3.8125 4.625 -3.859375 C 4.625 -4.09375 4.4375 -4.171875 4.3125 -4.171875 C 4.171875 -4.171875 3.921875 -4.0625 3.875 -3.765625 Z M 3.203125 -1.0625 C 2.703125 -0.390625 2.1875 -0.171875 1.875 -0.171875 C 1.421875 -0.171875 1.1875 -0.59375 1.1875 -1.109375 C 1.1875 -1.5625 1.46875 -2.625 1.671875 -3.0625 C 1.96875 -3.65625 2.453125 -4.078125 2.90625 -4.078125 C 3.546875 -4.078125 3.734375 -3.359375 3.734375 -3.234375 C 3.734375 -3.203125 3.484375 -2.234375 3.421875 -1.96875 C 3.296875 -1.515625 3.296875 -1.484375 3.203125 -1.0625 Z M 3.203125 -1.0625 ", :style => "stroke:none;"}
+                  %symbol{:id => "b8QMF8X_lBzdtWoiolPS51ABK9M=-glyph3-0", :overflow => "visible"}
+                    %path{:d => "", :style => "stroke:none;"}
+                  %symbol{:id => "b8QMF8X_lBzdtWoiolPS51ABK9M=-glyph3-1", :overflow => "visible"}
+                    %path{:d => "M 1.921875 -6.078125 C 1.921875 -6.375 1.703125 -6.640625 1.375 -6.640625 C 1.09375 -6.640625 0.828125 -6.40625 0.828125 -6.09375 C 0.828125 -5.75 1.109375 -5.546875 1.375 -5.546875 C 1.71875 -5.546875 1.921875 -5.828125 1.921875 -6.078125 Z M 0.4375 -4.25 L 0.4375 -3.921875 C 1.078125 -3.921875 1.171875 -3.859375 1.171875 -3.375 L 1.171875 -0.765625 C 1.171875 -0.328125 1.046875 -0.328125 0.421875 -0.328125 L 0.421875 0 C 0.796875 -0.03125 1.359375 -0.03125 1.5 -0.03125 C 1.625 -0.03125 2.21875 -0.03125 2.5625 0 L 2.5625 -0.328125 C 1.921875 -0.328125 1.890625 -0.375 1.890625 -0.765625 L 1.890625 -4.359375 Z M 0.4375 -4.25 ", :style => "stroke:none;"}
+                  %symbol{:id => "b8QMF8X_lBzdtWoiolPS51ABK9M=-glyph3-2", :overflow => "visible"}
+                    %path{:d => "M 3.25 -6.75 L 3.25 -6.421875 C 3.921875 -6.421875 4 -6.34375 4 -5.859375 L 4 -3.78125 C 3.65625 -4.15625 3.1875 -4.359375 2.671875 -4.359375 C 1.4375 -4.359375 0.34375 -3.390625 0.34375 -2.125 C 0.34375 -0.90625 1.328125 0.09375 2.578125 0.09375 C 3.15625 0.09375 3.640625 -0.171875 3.96875 -0.515625 L 3.96875 0.09375 L 5.46875 0 L 5.46875 -0.328125 C 4.796875 -0.328125 4.71875 -0.390625 4.71875 -0.875 L 4.71875 -6.859375 Z M 3.96875 -1.21875 C 3.96875 -1.046875 3.96875 -1 3.828125 -0.8125 C 3.546875 -0.421875 3.09375 -0.171875 2.625 -0.171875 C 2.171875 -0.171875 1.78125 -0.421875 1.546875 -0.78125 C 1.28125 -1.171875 1.21875 -1.65625 1.21875 -2.109375 C 1.21875 -2.6875 1.3125 -3.09375 1.546875 -3.4375 C 1.78125 -3.796875 2.21875 -4.078125 2.71875 -4.078125 C 3.203125 -4.078125 3.671875 -3.84375 3.96875 -3.328125 Z M 3.96875 -1.21875 ", :style => "stroke:none;"}
+              %g{:id => "b8QMF8X_lBzdtWoiolPS51ABK9M=-surface1"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "6.868337", "xlink:href" => "#b8QMF8X_lBzdtWoiolPS51ABK9M=-glyph0-1", :y => "16.545116"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "86.175881", "xlink:href" => "#b8QMF8X_lBzdtWoiolPS51ABK9M=-glyph0-2", :y => "16.545116"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "96.689388", "xlink:href" => "#b8QMF8X_lBzdtWoiolPS51ABK9M=-glyph1-1", :y => "16.545116"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "102.329544", "xlink:href" => "#b8QMF8X_lBzdtWoiolPS51ABK9M=-glyph0-1", :y => "16.545116"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "113.199819", "xlink:href" => "#b8QMF8X_lBzdtWoiolPS51ABK9M=-glyph1-2", :y => "16.545116"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "97.072171", "xlink:href" => "#b8QMF8X_lBzdtWoiolPS51ABK9M=-glyph0-1", :y => "82.971354"}
+                %path{:d => "M -38.839567 31.644897 L 16.370944 31.644897 ", :style => "fill:none;stroke-width:0.47818;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;", :transform => "matrix(0.991022,0,0,-0.991022,62.854155,44.204546)"}
+                %path{:d => "M -2.487509 2.868279 C -2.034221 1.145783 -1.02122 0.333806 -0.000335812 -0.00123292 C -1.02122 -0.336272 -2.034221 -1.148249 -2.487509 -2.870745 ", :style => "fill:none;stroke-width:0.47818;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;", :transform => "matrix(0.991022,0,0,-0.991022,79.316739,12.842528)"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "49.148318", "xlink:href" => "#b8QMF8X_lBzdtWoiolPS51ABK9M=-glyph2-1", :y => "7.438613"}
+                %path{:d => "M -38.839567 22.693439 L 27.45877 -26.143445 ", :style => "fill:none;stroke-width:0.47818;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;", :transform => "matrix(0.991022,0,0,-0.991022,62.854155,44.204546)"}
+                %path{:d => "M -2.485764 2.867624 C -2.03079 1.146561 -1.020804 0.33365 -0.000373492 -0.00158421 C -1.017924 -0.334932 -2.031722 -1.145291 -2.485006 -2.869523 ", :style => "fill:none;stroke-width:0.47818;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;", :transform => "matrix(0.797902,0.587696,0.587696,-0.797902,90.259042,70.252862)"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "45.179274", "xlink:href" => "#b8QMF8X_lBzdtWoiolPS51ABK9M=-glyph3-1", :y => "56.396102"}
+                  %use{:x => "48.09285", "xlink:href" => "#b8QMF8X_lBzdtWoiolPS51ABK9M=-glyph3-2", :y => "56.396102"}
+                %path{:d => "M 40.012884 18.456179 L 40.012884 -22.710279 ", :style => "fill:none;stroke-width:0.47818;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;", :transform => "matrix(0.991022,0,0,-0.991022,62.854155,44.204546)"}
+                %path{:d => "M -2.485641 2.868583 C -2.032309 1.146063 -1.019272 0.334089 0.00163903 -0.000936084 C -1.019259 -0.336002 -2.032263 -1.148016 -2.485526 -2.870555 ", :style => "fill:none;stroke-width:0.47818;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;", :transform => "matrix(-0.0000198204,0.991002,0.991002,0.0000198204,102.50874,66.947594)"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "105.992362", "xlink:href" => "#b8QMF8X_lBzdtWoiolPS51ABK9M=-glyph2-2", :y => "48.675047"}
+            %p
+              %br/
+            #eq:ActionProperty.maruku-equation
+              %span.maruku-eq-number (2)
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mtext Action Property:
+                  %annotation{:encoding => "application/x-tex"}
+                    \\text{Action Property:}
+            %svg{:height => "94.423pt", :version => "1.2", :viewbox => "0 0 160.769 94.423", :width => "160.769pt", :xmlns => "http://www.w3.org/2000/svg", "xmlns:xlink" => "http://www.w3.org/1999/xlink"}
+              %defs
+                %g
+                  %symbol{:id => "H0st5voj1rpxn6drfq8fFWlJLsc=-glyph0-0", :overflow => "visible"}
+                    %path{:d => "", :style => "stroke:none;"}
+                  %symbol{:id => "H0st5voj1rpxn6drfq8fFWlJLsc=-glyph0-1", :overflow => "visible"}
+                    %path{:d => "M 6.203125 -9.0625 C 6.28125 -9.421875 6.3125 -9.546875 6.53125 -9.609375 C 6.65625 -9.640625 7.140625 -9.640625 7.453125 -9.640625 C 8.953125 -9.640625 9.640625 -9.578125 9.640625 -8.421875 C 9.640625 -8.203125 9.578125 -7.640625 9.5 -7.09375 L 9.484375 -6.90625 C 9.484375 -6.84375 9.546875 -6.765625 9.625 -6.765625 C 9.78125 -6.765625 9.78125 -6.828125 9.828125 -7.078125 L 10.25 -9.703125 C 10.28125 -9.84375 10.28125 -9.859375 10.28125 -9.90625 C 10.28125 -10.078125 10.1875 -10.078125 9.890625 -10.078125 L 1.765625 -10.078125 C 1.421875 -10.078125 1.40625 -10.0625 1.328125 -9.796875 L 0.421875 -7.125 C 0.40625 -7.09375 0.359375 -6.921875 0.359375 -6.90625 C 0.359375 -6.828125 0.421875 -6.765625 0.5 -6.765625 C 0.625 -6.765625 0.65625 -6.828125 0.71875 -7.015625 C 1.34375 -8.8125 1.65625 -9.640625 3.625 -9.640625 L 4.625 -9.640625 C 4.984375 -9.640625 5.125 -9.640625 5.125 -9.484375 C 5.125 -9.4375 5.125 -9.40625 5.046875 -9.140625 L 3.0625 -1.15625 C 2.90625 -0.578125 2.875 -0.4375 1.3125 -0.4375 C 0.9375 -0.4375 0.828125 -0.4375 0.828125 -0.15625 C 0.828125 0 1 0 1.0625 0 C 1.4375 0 1.828125 -0.03125 2.203125 -0.03125 L 4.515625 -0.03125 C 4.890625 -0.03125 5.296875 0 5.65625 0 C 5.828125 0 5.96875 0 5.96875 -0.28125 C 5.96875 -0.4375 5.875 -0.4375 5.484375 -0.4375 C 4.140625 -0.4375 4.140625 -0.5625 4.140625 -0.78125 C 4.140625 -0.796875 4.140625 -0.90625 4.203125 -1.140625 Z M 6.203125 -9.0625 ", :style => "stroke:none;"}
+                  %symbol{:id => "H0st5voj1rpxn6drfq8fFWlJLsc=-glyph0-2", :overflow => "visible"}
+                    %path{:d => "M 2.53125 -1.65625 C 2 -0.765625 1.5 -0.46875 0.78125 -0.4375 C 0.625 -0.421875 0.5 -0.421875 0.5 -0.15625 C 0.5 -0.0625 0.578125 0 0.6875 0 C 0.953125 0 1.625 -0.03125 1.890625 -0.03125 C 2.3125 -0.03125 2.796875 0 3.203125 0 C 3.296875 0 3.484375 0 3.484375 -0.28125 C 3.484375 -0.421875 3.359375 -0.4375 3.265625 -0.4375 C 2.921875 -0.453125 2.640625 -0.578125 2.640625 -0.9375 C 2.640625 -1.140625 2.734375 -1.3125 2.921875 -1.640625 L 4.0625 -3.5 L 7.84375 -3.5 C 7.859375 -3.375 7.859375 -3.25 7.875 -3.125 C 7.921875 -2.734375 8.09375 -1.1875 8.09375 -0.90625 C 8.09375 -0.453125 7.34375 -0.4375 7.109375 -0.4375 C 6.9375 -0.4375 6.78125 -0.4375 6.78125 -0.15625 C 6.78125 0 6.90625 0 7 0 C 7.25 0 7.546875 -0.03125 7.796875 -0.03125 L 8.640625 -0.03125 C 9.546875 -0.03125 10.203125 0 10.21875 0 C 10.328125 0 10.484375 0 10.484375 -0.28125 C 10.484375 -0.4375 10.359375 -0.4375 10.140625 -0.4375 C 9.3125 -0.4375 9.296875 -0.5625 9.25 -1.015625 L 8.34375 -10.28125 C 8.328125 -10.578125 8.265625 -10.609375 8.09375 -10.609375 C 7.953125 -10.609375 7.859375 -10.578125 7.734375 -10.359375 Z M 4.3125 -3.9375 L 7.296875 -8.9375 L 7.796875 -3.9375 Z M 4.3125 -3.9375 ", :style => "stroke:none;"}
+                  %symbol{:id => "H0st5voj1rpxn6drfq8fFWlJLsc=-glyph1-0", :overflow => "visible"}
+                    %path{:d => "", :style => "stroke:none;"}
+                  %symbol{:id => "H0st5voj1rpxn6drfq8fFWlJLsc=-glyph1-1", :overflow => "visible"}
+                    %path{:d => "M 6.140625 17.078125 C 6.140625 17.015625 6.109375 16.984375 6.078125 16.9375 C 5.390625 16.21875 4.390625 15.015625 3.765625 12.59375 C 3.421875 11.234375 3.28125 9.703125 3.28125 8.328125 C 3.28125 4.40625 4.21875 1.671875 6 -0.25 C 6.140625 -0.390625 6.140625 -0.421875 6.140625 -0.453125 C 6.140625 -0.59375 6.015625 -0.59375 5.953125 -0.59375 C 5.734375 -0.59375 4.9375 0.296875 4.734375 0.515625 C 3.21875 2.3125 2.265625 5 2.265625 8.3125 C 2.265625 10.421875 2.625 13.40625 4.578125 15.921875 C 4.71875 16.09375 5.6875 17.21875 5.953125 17.21875 C 6.015625 17.21875 6.140625 17.21875 6.140625 17.078125 Z M 6.140625 17.078125 ", :style => "stroke:none;"}
+                  %symbol{:id => "H0st5voj1rpxn6drfq8fFWlJLsc=-glyph1-2", :overflow => "visible"}
+                    %path{:d => "M 4.53125 8.328125 C 4.53125 6.21875 4.15625 3.21875 2.21875 0.71875 C 2.0625 0.53125 1.09375 -0.59375 0.828125 -0.59375 C 0.765625 -0.59375 0.65625 -0.5625 0.65625 -0.453125 C 0.65625 -0.390625 0.6875 -0.34375 0.75 -0.296875 C 1.453125 0.46875 2.421875 1.671875 3.03125 4.046875 C 3.375 5.390625 3.5 6.921875 3.5 8.3125 C 3.5 9.8125 3.375 11.328125 2.984375 12.78125 C 2.421875 14.859375 1.546875 16.046875 0.78125 16.875 C 0.65625 17.015625 0.65625 17.046875 0.65625 17.078125 C 0.65625 17.1875 0.765625 17.21875 0.828125 17.21875 C 1.0625 17.21875 1.875 16.3125 2.046875 16.109375 C 3.5625 14.3125 4.53125 11.640625 4.53125 8.328125 Z M 4.53125 8.328125 ", :style => "stroke:none;"}
+                  %symbol{:id => "H0st5voj1rpxn6drfq8fFWlJLsc=-glyph2-0", :overflow => "visible"}
+                    %path{:d => "", :style => "stroke:none;"}
+                  %symbol{:id => "H0st5voj1rpxn6drfq8fFWlJLsc=-glyph2-1", :overflow => "visible"}
+                    %path{:d => "M 4.828125 3.609375 C 4.828125 3.5625 4.828125 3.53125 4.578125 3.28125 C 3.09375 1.78125 2.265625 -0.671875 2.265625 -3.703125 C 2.265625 -6.578125 2.953125 -9.0625 4.6875 -10.8125 C 4.828125 -10.953125 4.828125 -10.984375 4.828125 -11.03125 C 4.828125 -11.109375 4.75 -11.140625 4.703125 -11.140625 C 4.5 -11.140625 3.28125 -10.078125 2.5625 -8.625 C 1.796875 -7.125 1.453125 -5.53125 1.453125 -3.703125 C 1.453125 -2.375 1.671875 -0.609375 2.4375 0.984375 C 3.3125 2.765625 4.53125 3.734375 4.703125 3.734375 C 4.75 3.734375 4.828125 3.703125 4.828125 3.609375 Z M 4.828125 3.609375 ", :style => "stroke:none;"}
+                  %symbol{:id => "H0st5voj1rpxn6drfq8fFWlJLsc=-glyph2-2", :overflow => "visible"}
+                    %path{:d => "M 4.1875 -3.703125 C 4.1875 -4.828125 4.046875 -6.671875 3.203125 -8.390625 C 2.328125 -10.171875 1.109375 -11.140625 0.953125 -11.140625 C 0.890625 -11.140625 0.8125 -11.109375 0.8125 -11.03125 C 0.8125 -10.984375 0.8125 -10.953125 1.0625 -10.703125 C 2.5625 -9.203125 3.390625 -6.75 3.390625 -3.71875 C 3.390625 -0.828125 2.6875 1.65625 0.96875 3.40625 C 0.8125 3.53125 0.8125 3.5625 0.8125 3.609375 C 0.8125 3.703125 0.890625 3.734375 0.953125 3.734375 C 1.140625 3.734375 2.359375 2.65625 3.09375 1.203125 C 3.84375 -0.3125 4.1875 -1.921875 4.1875 -3.703125 Z M 4.1875 -3.703125 ", :style => "stroke:none;"}
+                  %symbol{:id => "H0st5voj1rpxn6drfq8fFWlJLsc=-glyph3-0", :overflow => "visible"}
+                    %path{:d => "", :style => "stroke:none;"}
+                  %symbol{:id => "H0st5voj1rpxn6drfq8fFWlJLsc=-glyph3-1", :overflow => "visible"}
+                    %path{:d => "M 4.484375 -6 C 4.5625 -6.34375 4.578125 -6.375 4.984375 -6.375 L 5.734375 -6.375 C 6.765625 -6.375 6.890625 -6.046875 6.890625 -5.546875 C 6.890625 -5.296875 6.828125 -4.875 6.8125 -4.828125 C 6.796875 -4.71875 6.78125 -4.625 6.78125 -4.609375 C 6.78125 -4.484375 6.875 -4.453125 6.9375 -4.453125 C 7.046875 -4.453125 7.078125 -4.5 7.109375 -4.703125 L 7.375 -6.5625 C 7.375 -6.703125 7.265625 -6.703125 7.078125 -6.703125 L 1.25 -6.703125 C 1 -6.703125 0.984375 -6.703125 0.90625 -6.484375 L 0.3125 -4.78125 C 0.28125 -4.71875 0.25 -4.640625 0.25 -4.59375 C 0.25 -4.5 0.328125 -4.453125 0.40625 -4.453125 C 0.515625 -4.453125 0.53125 -4.5 0.59375 -4.671875 C 1.15625 -6.25 1.453125 -6.375 2.953125 -6.375 L 3.34375 -6.375 C 3.640625 -6.375 3.640625 -6.359375 3.640625 -6.28125 C 3.640625 -6.25 3.609375 -6.046875 3.59375 -6.015625 L 2.28125 -0.8125 C 2.203125 -0.4375 2.171875 -0.328125 1.140625 -0.328125 C 0.828125 -0.328125 0.71875 -0.328125 0.71875 -0.140625 C 0.71875 -0.125 0.71875 0 0.890625 0 C 1.15625 0 1.84375 -0.03125 2.109375 -0.03125 L 2.953125 -0.03125 C 3.234375 -0.03125 3.921875 0 4.203125 0 C 4.28125 0 4.421875 0 4.421875 -0.1875 C 4.421875 -0.328125 4.3125 -0.328125 4.046875 -0.328125 C 3.8125 -0.328125 3.734375 -0.328125 3.484375 -0.34375 C 3.15625 -0.375 3.125 -0.421875 3.125 -0.546875 C 3.125 -0.578125 3.125 -0.625 3.15625 -0.71875 Z M 4.484375 -6 ", :style => "stroke:none;"}
+                  %symbol{:id => "H0st5voj1rpxn6drfq8fFWlJLsc=-glyph3-2", :overflow => "visible"}
+                    %path{:d => "M 3.890625 -3.78125 C 3.796875 -3.9375 3.5 -4.375 2.90625 -4.375 C 1.71875 -4.375 0.421875 -2.984375 0.421875 -1.53125 C 0.421875 -0.5 1.09375 0.09375 1.859375 0.09375 C 2.484375 0.09375 3.03125 -0.40625 3.203125 -0.609375 C 3.390625 0.078125 4.0625 0.09375 4.1875 0.09375 C 4.640625 0.09375 4.859375 -0.28125 4.9375 -0.453125 C 5.140625 -0.796875 5.28125 -1.375 5.28125 -1.421875 C 5.28125 -1.46875 5.234375 -1.546875 5.125 -1.546875 C 5 -1.546875 4.984375 -1.484375 4.921875 -1.234375 C 4.78125 -0.6875 4.59375 -0.171875 4.203125 -0.171875 C 3.984375 -0.171875 3.890625 -0.359375 3.890625 -0.640625 C 3.890625 -0.8125 3.984375 -1.15625 4.046875 -1.390625 C 4.09375 -1.640625 4.25 -2.234375 4.296875 -2.421875 L 4.484375 -3.171875 C 4.53125 -3.40625 4.640625 -3.828125 4.640625 -3.875 C 4.640625 -4.09375 4.453125 -4.1875 4.328125 -4.1875 C 4.1875 -4.1875 3.9375 -4.078125 3.890625 -3.78125 Z M 3.203125 -1.0625 C 2.71875 -0.390625 2.203125 -0.171875 1.875 -0.171875 C 1.421875 -0.171875 1.203125 -0.59375 1.203125 -1.109375 C 1.203125 -1.578125 1.46875 -2.640625 1.6875 -3.078125 C 1.96875 -3.671875 2.453125 -4.09375 2.90625 -4.09375 C 3.5625 -4.09375 3.75 -3.375 3.75 -3.25 C 3.75 -3.203125 3.5 -2.234375 3.4375 -1.984375 C 3.3125 -1.515625 3.3125 -1.5 3.203125 -1.0625 Z M 3.203125 -1.0625 ", :style => "stroke:none;"}
+                  %symbol{:id => "H0st5voj1rpxn6drfq8fFWlJLsc=-glyph3-3", :overflow => "visible"}
+                    %path{:d => "M 2.390625 -3.5 C 2.453125 -3.6875 2.53125 -4.015625 2.53125 -4.0625 C 2.53125 -4.265625 2.375 -4.375 2.203125 -4.375 C 1.859375 -4.375 1.78125 -4.046875 1.75 -3.90625 L 0.359375 1.59375 C 0.328125 1.75 0.328125 1.796875 0.328125 1.828125 C 0.328125 2.078125 0.53125 2.125 0.640625 2.125 C 0.6875 2.125 0.921875 2.125 1.046875 1.859375 C 1.078125 1.78125 1.359375 0.609375 1.5625 -0.1875 C 1.734375 -0.0625 2.078125 0.09375 2.578125 0.09375 C 3.390625 0.09375 3.921875 -0.5625 3.953125 -0.609375 C 4.125 0.078125 4.796875 0.09375 4.921875 0.09375 C 5.375 0.09375 5.609375 -0.28125 5.6875 -0.453125 C 5.890625 -0.796875 6.015625 -1.375 6.015625 -1.421875 C 6.015625 -1.46875 5.984375 -1.546875 5.859375 -1.546875 C 5.75 -1.546875 5.71875 -1.484375 5.671875 -1.234375 C 5.53125 -0.6875 5.34375 -0.171875 4.953125 -0.171875 C 4.71875 -0.171875 4.640625 -0.359375 4.640625 -0.640625 C 4.640625 -0.8125 4.75 -1.234375 4.8125 -1.53125 L 5.078125 -2.53125 C 5.125 -2.796875 5.1875 -3 5.265625 -3.296875 C 5.3125 -3.515625 5.40625 -3.90625 5.40625 -3.96875 C 5.40625 -4.203125 5.203125 -4.265625 5.09375 -4.265625 C 4.75 -4.265625 4.6875 -4.015625 4.578125 -3.578125 L 4.375 -2.75 L 4.0625 -1.515625 L 3.96875 -1.125 C 3.9375 -1.0625 3.671875 -0.6875 3.453125 -0.5 C 3.28125 -0.359375 2.984375 -0.171875 2.625 -0.171875 C 2.15625 -0.171875 1.84375 -0.421875 1.84375 -1.046875 C 1.84375 -1.296875 1.921875 -1.59375 1.984375 -1.828125 Z M 2.390625 -3.5 ", :style => "stroke:none;"}
+                  %symbol{:id => "H0st5voj1rpxn6drfq8fFWlJLsc=-glyph4-0", :overflow => "visible"}
+                    %path{:d => "", :style => "stroke:none;"}
+                  %symbol{:id => "H0st5voj1rpxn6drfq8fFWlJLsc=-glyph4-1", :overflow => "visible"}
+                    %path{:d => "M 3.296875 2.484375 C 3.375 2.484375 3.5 2.484375 3.5 2.359375 C 3.5 2.3125 3.484375 2.3125 3.359375 2.171875 C 2 0.90625 1.671875 -0.9375 1.671875 -2.484375 C 1.671875 -5.328125 2.84375 -6.671875 3.34375 -7.125 C 3.484375 -7.25 3.5 -7.265625 3.5 -7.3125 C 3.5 -7.359375 3.453125 -7.4375 3.359375 -7.4375 C 3.203125 -7.4375 2.703125 -6.921875 2.625 -6.828125 C 1.296875 -5.453125 1.015625 -3.671875 1.015625 -2.484375 C 1.015625 -0.25 1.953125 1.53125 3.296875 2.484375 Z M 3.296875 2.484375 ", :style => "stroke:none;"}
+                  %symbol{:id => "H0st5voj1rpxn6drfq8fFWlJLsc=-glyph4-2", :overflow => "visible"}
+                    %path{:d => "M 3.0625 -2.484375 C 3.0625 -3.421875 2.90625 -4.546875 2.28125 -5.71875 C 1.796875 -6.625 0.90625 -7.4375 0.71875 -7.4375 C 0.625 -7.4375 0.59375 -7.359375 0.59375 -7.3125 C 0.59375 -7.265625 0.59375 -7.25 0.71875 -7.125 C 2.09375 -5.8125 2.421875 -4 2.421875 -2.484375 C 2.421875 0.359375 1.234375 1.71875 0.734375 2.171875 C 0.609375 2.296875 0.59375 2.3125 0.59375 2.359375 C 0.59375 2.40625 0.625 2.484375 0.71875 2.484375 C 0.875 2.484375 1.375 1.96875 1.453125 1.875 C 2.78125 0.5 3.0625 -1.28125 3.0625 -2.484375 Z M 3.0625 -2.484375 ", :style => "stroke:none;"}
+              %g{:id => "H0st5voj1rpxn6drfq8fFWlJLsc=-surface1"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "6.768353", "xlink:href" => "#H0st5voj1rpxn6drfq8fFWlJLsc=-glyph0-1", :y => "20.307902"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "17.312669", "xlink:href" => "#H0st5voj1rpxn6drfq8fFWlJLsc=-glyph1-1", :y => "8.276424"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "24.119822", "xlink:href" => "#H0st5voj1rpxn6drfq8fFWlJLsc=-glyph0-1", :y => "20.307902"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "34.664138", "xlink:href" => "#H0st5voj1rpxn6drfq8fFWlJLsc=-glyph2-1", :y => "20.307902"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "40.320821", "xlink:href" => "#H0st5voj1rpxn6drfq8fFWlJLsc=-glyph0-2", :y => "20.307902"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "51.22295", "xlink:href" => "#H0st5voj1rpxn6drfq8fFWlJLsc=-glyph2-2", :y => "20.307902"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "56.878391", "xlink:href" => "#H0st5voj1rpxn6drfq8fFWlJLsc=-glyph1-2", :y => "8.276424"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "132.324107", "xlink:href" => "#H0st5voj1rpxn6drfq8fFWlJLsc=-glyph0-1", :y => "20.307902"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "142.868419", "xlink:href" => "#H0st5voj1rpxn6drfq8fFWlJLsc=-glyph0-2", :y => "20.307902"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "24.503975", "xlink:href" => "#H0st5voj1rpxn6drfq8fFWlJLsc=-glyph0-1", :y => "88.413721"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "35.048286", "xlink:href" => "#H0st5voj1rpxn6drfq8fFWlJLsc=-glyph0-2", :y => "88.413721"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "137.595893", "xlink:href" => "#H0st5voj1rpxn6drfq8fFWlJLsc=-glyph0-2", :y => "88.413721"}
+                %path{:d => "M -10.001827 31.646849 L 45.212433 31.646849 ", :style => "fill:none;stroke-width:0.47818;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;", :transform => "matrix(0.993926,0,0,-0.993926,80.269205,48.048386)"}
+                %path{:d => "M -2.486416 2.869687 C -2.030522 1.148294 -1.020481 0.334759 0.00135008 0.000698925 C -1.020481 -0.333361 -2.030522 -1.146896 -2.486416 -2.868289 ", :style => "fill:none;stroke-width:0.47818;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;", :transform => "matrix(0.993926,0,0,-0.993926,125.443971,16.594445)"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "87.326081", "xlink:href" => "#H0st5voj1rpxn6drfq8fFWlJLsc=-glyph3-1", :y => "10.624078"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "94.913466", "xlink:href" => "#H0st5voj1rpxn6drfq8fFWlJLsc=-glyph4-1", :y => "10.624078"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "99.004716", "xlink:href" => "#H0st5voj1rpxn6drfq8fFWlJLsc=-glyph3-2", :y => "10.624078"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "104.593066", "xlink:href" => "#H0st5voj1rpxn6drfq8fFWlJLsc=-glyph4-2", :y => "10.624078"}
+                %path{:d => "M -45.317889 16.959989 L -45.317889 -24.204091 ", :style => "fill:none;stroke-width:0.47818;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;", :transform => "matrix(0.993926,0,0,-0.993926,80.269205,48.048386)"}
+                %path{:d => "M -2.487615 2.868767 C -2.031678 1.147349 -1.0216 0.333818 0.000258145 -0.000228591 C -1.021587 -0.334316 -2.031632 -1.147887 -2.4875 -2.869324 ", :style => "fill:none;stroke-width:0.47818;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;", :transform => "matrix(-0.0000198785,0.993906,0.993906,0.0000198785,35.22679,72.343493)"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "38.723085", "xlink:href" => "#H0st5voj1rpxn6drfq8fFWlJLsc=-glyph3-3", :y => "53.053799"}
+                %path{:d => "M 63.161292 22.190979 L 63.161292 -24.204091 ", :style => "fill:none;stroke-width:0.47818;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;", :transform => "matrix(0.993926,0,0,-0.993926,80.269205,48.048386)"}
+                %path{:d => "M -2.487508 2.86785 C -2.031614 1.146457 -1.021573 0.332922 0.000258135 -0.0011378 C -1.021573 -0.335198 -2.031614 -1.148733 -2.487508 -2.870126 ", :style => "fill:none;stroke-width:0.47818;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;", :transform => "matrix(0,0.993926,0.993926,0,143.048006,72.343493)"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "146.542223", "xlink:href" => "#H0st5voj1rpxn6drfq8fFWlJLsc=-glyph3-2", :y => "51.417796"}
+                %path{:d => "M -27.844574 -36.874799 L 50.514165 -36.874799 ", :style => "fill:none;stroke-width:0.47818;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;", :transform => "matrix(0.993926,0,0,-0.993926,80.269205,48.048386)"}
+                %path{:d => "M -2.485104 2.870869 C -2.03314 1.149476 -1.019169 0.335942 -0.00126762 0.00188133 C -1.019169 -0.336109 -2.03314 -1.145714 -2.485104 -2.871037 ", :style => "fill:none;stroke-width:0.47818;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;", :transform => "matrix(0.993926,0,0,-0.993926,130.716104,84.701089)"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "88.978981", "xlink:href" => "#H0st5voj1rpxn6drfq8fFWlJLsc=-glyph3-2", :y => "81.205768"}
+            %p
+          %p
+          .num_remark
+            %h6 Remark
+            %p
+              The diagram
+              %a.maruku-eqref{:href => "#eq:UnitProperty"} (1)
+              is also sometimes called the
+              = succeed "," do
+                %em unit triangle
+              %a.maruku-eqref{:href => "#eq:ActionProperty"} (2)
+              is also called the
+              %em multiplication square
+              or
+              = succeed "." do
+                %em algebra square
+          %h3#homomorphisms Homomorphisms
+          %p
+            Let
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mo{:stretchy => "false"} (
+                  %mi A
+                  %mo ,
+                  %mi a
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} (A,a)
+            and
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mo{:stretchy => "false"} (
+                  %mi B
+                  %mo ,
+                  %mi b
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} (B,b)
+            be
+            = succeed "-algebras." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi T
+                  %annotation{:encoding => "application/x-tex"} T
+            %strong
+              %a.existingWikiWord{:href => "/nlab/show/homomorphism"} homomorphism
+              of
+              = succeed "-algebras" do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi T
+                    %annotation{:encoding => "application/x-tex"} T
+            is a
+            %a.existingWikiWord{:href => "/nlab/show/morphism"} morphism
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi f
+                  %mo{:lspace => "verythinmathspace"} :
+                  %mi A
+                  %mo →
+                  %mi B
+                %annotation{:encoding => "application/x-tex"} f \colon A \to B
+            of
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi 𝒞
+                %annotation{:encoding => "application/x-tex"} \mathcal{C}
+            which makes the following
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/commuting+diagram"} diagram commute
+          %svg{:height => "88.085pt", :version => "1.2", :viewbox => "0 0 125.982 88.085", :width => "125.982pt", :xmlns => "http://www.w3.org/2000/svg", "xmlns:xlink" => "http://www.w3.org/1999/xlink"}
+            %defs
+              %g
+                %symbol{:id => "zyMSE5CIhUc39q8mRBlgAX5bLOA=-glyph0-0", :overflow => "visible"}
+                  %path{:d => "", :style => "stroke:none;"}
+                %symbol{:id => "zyMSE5CIhUc39q8mRBlgAX5bLOA=-glyph0-1", :overflow => "visible"}
+                  %path{:d => "M 6.171875 -9.03125 C 6.265625 -9.375 6.28125 -9.515625 6.515625 -9.578125 C 6.625 -9.609375 7.125 -9.609375 7.421875 -9.609375 C 8.90625 -9.609375 9.609375 -9.546875 9.609375 -8.390625 C 9.609375 -8.171875 9.546875 -7.609375 9.453125 -7.0625 L 9.4375 -6.875 C 9.4375 -6.828125 9.5 -6.734375 9.59375 -6.734375 C 9.734375 -6.734375 9.734375 -6.8125 9.78125 -7.046875 L 10.203125 -9.65625 C 10.234375 -9.796875 10.234375 -9.828125 10.234375 -9.875 C 10.234375 -10.03125 10.15625 -10.03125 9.859375 -10.03125 L 1.765625 -10.03125 C 1.421875 -10.03125 1.40625 -10.015625 1.3125 -9.75 L 0.421875 -7.09375 C 0.40625 -7.0625 0.359375 -6.890625 0.359375 -6.875 C 0.359375 -6.8125 0.421875 -6.734375 0.5 -6.734375 C 0.625 -6.734375 0.65625 -6.796875 0.703125 -6.984375 C 1.328125 -8.78125 1.640625 -9.609375 3.609375 -9.609375 L 4.609375 -9.609375 C 4.953125 -9.609375 5.109375 -9.609375 5.109375 -9.4375 C 5.109375 -9.390625 5.109375 -9.359375 5.03125 -9.09375 L 3.046875 -1.15625 C 2.90625 -0.578125 2.875 -0.421875 1.296875 -0.421875 C 0.9375 -0.421875 0.828125 -0.421875 0.828125 -0.140625 C 0.828125 0 0.984375 0 1.0625 0 C 1.4375 0 1.8125 -0.03125 2.1875 -0.03125 L 4.5 -0.03125 C 4.875 -0.03125 5.265625 0 5.640625 0 C 5.796875 0 5.953125 0 5.953125 -0.28125 C 5.953125 -0.421875 5.84375 -0.421875 5.453125 -0.421875 C 4.125 -0.421875 4.125 -0.5625 4.125 -0.78125 C 4.125 -0.796875 4.125 -0.90625 4.1875 -1.140625 Z M 6.171875 -9.03125 ", :style => "stroke:none;"}
+                %symbol{:id => "zyMSE5CIhUc39q8mRBlgAX5bLOA=-glyph0-2", :overflow => "visible"}
+                  %path{:d => "M 2.515625 -1.640625 C 2 -0.765625 1.5 -0.46875 0.78125 -0.421875 C 0.625 -0.421875 0.5 -0.421875 0.5 -0.140625 C 0.5 -0.0625 0.578125 0 0.6875 0 C 0.953125 0 1.609375 -0.03125 1.875 -0.03125 C 2.3125 -0.03125 2.78125 0 3.203125 0 C 3.28125 0 3.46875 0 3.46875 -0.28125 C 3.46875 -0.421875 3.34375 -0.421875 3.25 -0.421875 C 2.921875 -0.453125 2.640625 -0.578125 2.640625 -0.9375 C 2.640625 -1.140625 2.71875 -1.296875 2.921875 -1.625 L 4.046875 -3.484375 L 7.8125 -3.484375 C 7.828125 -3.359375 7.828125 -3.234375 7.84375 -3.109375 C 7.890625 -2.71875 8.0625 -1.1875 8.0625 -0.90625 C 8.0625 -0.453125 7.3125 -0.421875 7.078125 -0.421875 C 6.90625 -0.421875 6.75 -0.421875 6.75 -0.15625 C 6.75 0 6.875 0 6.96875 0 C 7.21875 0 7.515625 -0.03125 7.765625 -0.03125 L 8.609375 -0.03125 C 9.515625 -0.03125 10.171875 0 10.1875 0 C 10.28125 0 10.453125 0 10.453125 -0.28125 C 10.453125 -0.421875 10.3125 -0.421875 10.09375 -0.421875 C 9.28125 -0.421875 9.265625 -0.5625 9.21875 -1 L 8.3125 -10.234375 C 8.28125 -10.53125 8.234375 -10.5625 8.0625 -10.5625 C 7.921875 -10.5625 7.828125 -10.53125 7.6875 -10.3125 Z M 4.296875 -3.921875 L 7.265625 -8.890625 L 7.765625 -3.921875 Z M 4.296875 -3.921875 ", :style => "stroke:none;"}
+                %symbol{:id => "zyMSE5CIhUc39q8mRBlgAX5bLOA=-glyph0-3", :overflow => "visible"}
+                  %path{:d => "M 5.421875 -9.09375 C 5.546875 -9.640625 5.609375 -9.671875 6.1875 -9.671875 L 8.109375 -9.671875 C 9.78125 -9.671875 9.78125 -8.25 9.78125 -8.125 C 9.78125 -6.921875 8.578125 -5.40625 6.625 -5.40625 L 4.5 -5.40625 Z M 7.921875 -5.28125 C 9.53125 -5.578125 11 -6.703125 11 -8.0625 C 11 -9.21875 9.96875 -10.109375 8.296875 -10.109375 L 3.546875 -10.109375 C 3.265625 -10.109375 3.140625 -10.109375 3.140625 -9.828125 C 3.140625 -9.671875 3.265625 -9.671875 3.484375 -9.671875 C 4.390625 -9.671875 4.390625 -9.5625 4.390625 -9.390625 C 4.390625 -9.359375 4.390625 -9.28125 4.328125 -9.0625 L 2.34375 -1.09375 C 2.203125 -0.578125 2.171875 -0.421875 1.140625 -0.421875 C 0.859375 -0.421875 0.703125 -0.421875 0.703125 -0.15625 C 0.703125 0 0.796875 0 1.09375 0 L 6.171875 0 C 8.4375 0 10.1875 -1.71875 10.1875 -3.21875 C 10.1875 -4.421875 9.109375 -5.171875 7.921875 -5.28125 Z M 5.8125 -0.421875 L 3.8125 -0.421875 C 3.609375 -0.421875 3.578125 -0.421875 3.484375 -0.4375 C 3.328125 -0.453125 3.3125 -0.484375 3.3125 -0.609375 C 3.3125 -0.703125 3.34375 -0.796875 3.375 -0.9375 L 4.40625 -5.109375 L 7.1875 -5.109375 C 8.9375 -5.109375 8.9375 -3.484375 8.9375 -3.359375 C 8.9375 -1.9375 7.65625 -0.421875 5.8125 -0.421875 Z M 5.8125 -0.421875 ", :style => "stroke:none;"}
+                %symbol{:id => "zyMSE5CIhUc39q8mRBlgAX5bLOA=-glyph1-0", :overflow => "visible"}
+                  %path{:d => "", :style => "stroke:none;"}
+                %symbol{:id => "zyMSE5CIhUc39q8mRBlgAX5bLOA=-glyph1-1", :overflow => "visible"}
+                  %path{:d => "M 4.453125 -5.96875 C 4.546875 -6.3125 4.5625 -6.34375 4.953125 -6.34375 L 5.703125 -6.34375 C 6.734375 -6.34375 6.859375 -6.015625 6.859375 -5.515625 C 6.859375 -5.28125 6.796875 -4.84375 6.78125 -4.796875 C 6.765625 -4.6875 6.75 -4.609375 6.75 -4.578125 C 6.75 -4.453125 6.84375 -4.421875 6.90625 -4.421875 C 7.015625 -4.421875 7.046875 -4.484375 7.078125 -4.671875 L 7.34375 -6.53125 C 7.34375 -6.671875 7.234375 -6.671875 7.046875 -6.671875 L 1.25 -6.671875 C 1 -6.671875 0.96875 -6.671875 0.90625 -6.453125 L 0.3125 -4.75 C 0.28125 -4.703125 0.25 -4.625 0.25 -4.5625 C 0.25 -4.484375 0.328125 -4.421875 0.40625 -4.421875 C 0.515625 -4.421875 0.53125 -4.46875 0.59375 -4.640625 C 1.15625 -6.21875 1.4375 -6.34375 2.9375 -6.34375 L 3.328125 -6.34375 C 3.625 -6.34375 3.625 -6.328125 3.625 -6.25 C 3.625 -6.21875 3.59375 -6.03125 3.578125 -5.984375 L 2.28125 -0.8125 C 2.1875 -0.4375 2.15625 -0.328125 1.140625 -0.328125 C 0.8125 -0.328125 0.71875 -0.328125 0.71875 -0.140625 C 0.71875 -0.125 0.71875 0 0.890625 0 C 1.15625 0 1.828125 -0.03125 2.09375 -0.03125 L 2.9375 -0.03125 C 3.21875 -0.03125 3.90625 0 4.1875 0 C 4.265625 0 4.40625 0 4.40625 -0.1875 C 4.40625 -0.328125 4.296875 -0.328125 4.03125 -0.328125 C 3.796875 -0.328125 3.71875 -0.328125 3.453125 -0.34375 C 3.140625 -0.375 3.109375 -0.421875 3.109375 -0.546875 C 3.109375 -0.578125 3.109375 -0.625 3.140625 -0.71875 Z M 4.453125 -5.96875 ", :style => "stroke:none;"}
+                %symbol{:id => "zyMSE5CIhUc39q8mRBlgAX5bLOA=-glyph1-2", :overflow => "visible"}
+                  %path{:d => "M 3.78125 -3.921875 L 4.6875 -3.921875 C 4.890625 -3.921875 5.015625 -3.921875 5.015625 -4.109375 C 5.015625 -4.25 4.875 -4.25 4.71875 -4.25 L 3.828125 -4.25 C 4 -5.140625 4.09375 -5.703125 4.1875 -6.140625 C 4.234375 -6.3125 4.265625 -6.421875 4.40625 -6.53125 C 4.53125 -6.640625 4.609375 -6.671875 4.71875 -6.671875 C 4.875 -6.671875 5.03125 -6.640625 5.15625 -6.5625 C 5.109375 -6.53125 5.046875 -6.5 5 -6.484375 C 4.828125 -6.390625 4.71875 -6.21875 4.71875 -6.015625 C 4.71875 -5.78125 4.890625 -5.65625 5.109375 -5.65625 C 5.390625 -5.65625 5.65625 -5.890625 5.65625 -6.234375 C 5.65625 -6.703125 5.1875 -6.9375 4.71875 -6.9375 C 4.375 -6.9375 3.75 -6.78125 3.4375 -5.875 C 3.359375 -5.65625 3.359375 -5.625 3.09375 -4.25 L 2.34375 -4.25 C 2.15625 -4.25 2.03125 -4.25 2.03125 -4.0625 C 2.03125 -3.921875 2.15625 -3.921875 2.328125 -3.921875 L 3.03125 -3.921875 L 2.3125 -0.09375 C 2.125 0.890625 1.984375 1.734375 1.453125 1.734375 C 1.421875 1.734375 1.21875 1.734375 1.03125 1.609375 C 1.484375 1.515625 1.484375 1.09375 1.484375 1.078125 C 1.484375 0.859375 1.3125 0.71875 1.09375 0.71875 C 0.828125 0.71875 0.546875 0.953125 0.546875 1.328125 C 0.546875 1.734375 0.96875 2.015625 1.453125 2.015625 C 2.0625 2.015625 2.46875 1.375 2.609375 1.140625 C 2.953125 0.484375 3.1875 -0.75 3.203125 -0.84375 Z M 3.78125 -3.921875 ", :style => "stroke:none;"}
+                %symbol{:id => "zyMSE5CIhUc39q8mRBlgAX5bLOA=-glyph1-3", :overflow => "visible"}
+                  %path{:d => "M 3.859375 -3.75 C 3.78125 -3.921875 3.484375 -4.34375 2.890625 -4.34375 C 1.71875 -4.34375 0.421875 -2.984375 0.421875 -1.515625 C 0.421875 -0.5 1.078125 0.09375 1.84375 0.09375 C 2.46875 0.09375 3.015625 -0.40625 3.1875 -0.59375 C 3.375 0.078125 4.046875 0.09375 4.15625 0.09375 C 4.609375 0.09375 4.84375 -0.28125 4.921875 -0.4375 C 5.109375 -0.796875 5.25 -1.375 5.25 -1.40625 C 5.25 -1.46875 5.21875 -1.53125 5.09375 -1.53125 C 4.984375 -1.53125 4.953125 -1.484375 4.90625 -1.234375 C 4.765625 -0.6875 4.578125 -0.171875 4.1875 -0.171875 C 3.96875 -0.171875 3.875 -0.359375 3.875 -0.640625 C 3.875 -0.8125 3.96875 -1.140625 4.015625 -1.390625 C 4.078125 -1.640625 4.234375 -2.234375 4.265625 -2.40625 L 4.46875 -3.15625 C 4.515625 -3.390625 4.625 -3.8125 4.625 -3.859375 C 4.625 -4.078125 4.4375 -4.15625 4.3125 -4.15625 C 4.15625 -4.15625 3.921875 -4.0625 3.859375 -3.75 Z M 3.1875 -1.0625 C 2.703125 -0.390625 2.1875 -0.171875 1.875 -0.171875 C 1.421875 -0.171875 1.1875 -0.59375 1.1875 -1.109375 C 1.1875 -1.5625 1.453125 -2.625 1.671875 -3.0625 C 1.96875 -3.65625 2.4375 -4.078125 2.90625 -4.078125 C 3.546875 -4.078125 3.734375 -3.359375 3.734375 -3.234375 C 3.734375 -3.1875 3.484375 -2.234375 3.421875 -1.96875 C 3.296875 -1.515625 3.296875 -1.484375 3.1875 -1.0625 Z M 3.1875 -1.0625 ", :style => "stroke:none;"}
+                %symbol{:id => "zyMSE5CIhUc39q8mRBlgAX5bLOA=-glyph1-4", :overflow => "visible"}
+                  %path{:d => "M 2.40625 -6.546875 C 2.421875 -6.5625 2.4375 -6.6875 2.4375 -6.703125 C 2.4375 -6.75 2.40625 -6.84375 2.28125 -6.84375 C 2.25 -6.84375 1.9375 -6.8125 1.71875 -6.796875 L 1.15625 -6.75 C 0.953125 -6.734375 0.84375 -6.71875 0.84375 -6.546875 C 0.84375 -6.40625 0.984375 -6.40625 1.109375 -6.40625 C 1.578125 -6.40625 1.578125 -6.34375 1.578125 -6.265625 C 1.578125 -6.203125 1.484375 -5.8125 1.421875 -5.578125 L 0.5625 -2.15625 C 0.484375 -1.8125 0.484375 -1.671875 0.484375 -1.5 C 0.484375 -0.484375 1.109375 0.09375 1.859375 0.09375 C 3.078125 0.09375 4.34375 -1.296875 4.34375 -2.734375 C 4.34375 -3.703125 3.703125 -4.34375 2.921875 -4.34375 C 2.359375 -4.34375 1.9375 -4 1.71875 -3.8125 Z M 1.859375 -0.171875 C 1.515625 -0.171875 1.15625 -0.453125 1.15625 -1.171875 C 1.15625 -1.4375 1.1875 -1.6875 1.3125 -2.15625 C 1.375 -2.4375 1.453125 -2.71875 1.53125 -3 C 1.578125 -3.1875 1.578125 -3.203125 1.703125 -3.359375 C 2.03125 -3.765625 2.46875 -4.078125 2.890625 -4.078125 C 3.375 -4.078125 3.5625 -3.59375 3.5625 -3.140625 C 3.5625 -2.78125 3.359375 -1.71875 3.0625 -1.140625 C 2.796875 -0.609375 2.328125 -0.171875 1.859375 -0.171875 Z M 1.859375 -0.171875 ", :style => "stroke:none;"}
+            %g{:id => "zyMSE5CIhUc39q8mRBlgAX5bLOA=-surface1"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "7.006549", "xlink:href" => "#zyMSE5CIhUc39q8mRBlgAX5bLOA=-glyph0-1", :y => "19.125332"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "17.506227", "xlink:href" => "#zyMSE5CIhUc39q8mRBlgAX5bLOA=-glyph0-2", :y => "19.125332"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "96.70974", "xlink:href" => "#zyMSE5CIhUc39q8mRBlgAX5bLOA=-glyph0-1", :y => "19.125332"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "107.209418", "xlink:href" => "#zyMSE5CIhUc39q8mRBlgAX5bLOA=-glyph0-3", :y => "19.125332"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "12.256019", "xlink:href" => "#zyMSE5CIhUc39q8mRBlgAX5bLOA=-glyph0-2", :y => "81.766633"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "101.95921", "xlink:href" => "#zyMSE5CIhUc39q8mRBlgAX5bLOA=-glyph0-3", :y => "81.766633"}
+              %path{:d => "M -28.296443 30.27798 L 26.915719 30.27798 ", :style => "fill:none;stroke-width:0.47818;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;", :transform => "matrix(0.989719,0,0,-0.989719,62.982093,45.392477)"}
+              %path{:d => "M -2.486016 2.871064 C -2.03213 1.1463 -1.021743 0.333254 0.00048545 0.00172046 C -1.021743 -0.33376 -2.03213 -1.146806 -2.486016 -2.867623 ", :style => "fill:none;stroke-width:0.47818;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;", :transform => "matrix(0.989719,0,0,-0.989719,89.858895,15.427484)"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "55.69875", "xlink:href" => "#zyMSE5CIhUc39q8mRBlgAX5bLOA=-glyph1-1", :y => "10.030803"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "63.257579", "xlink:href" => "#zyMSE5CIhUc39q8mRBlgAX5bLOA=-glyph1-2", :y => "10.030803"}
+              %path{:d => "M -45.769046 20.821383 L -45.769046 -20.344022 ", :style => "fill:none;stroke-width:0.47818;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;", :transform => "matrix(0.989719,0,0,-0.989719,62.982093,45.392477)"}
+              %path{:d => "M -2.484643 2.868697 C -2.030758 1.147881 -1.02037 0.334835 0.00185817 -0.000645709 C -1.02037 -0.336126 -2.030758 -1.149172 -2.484643 -2.869989 ", :style => "fill:none;stroke-width:0.47818;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;", :transform => "matrix(0,0.989719,0.989719,0,17.684233,65.763786)"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "21.164481", "xlink:href" => "#zyMSE5CIhUc39q8mRBlgAX5bLOA=-glyph1-3", :y => "47.515424"}
+              %path{:d => "M 45.319773 20.821383 L 45.319773 -20.344022 ", :style => "fill:none;stroke-width:0.47818;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;", :transform => "matrix(0.989719,0,0,-0.989719,62.982093,45.392477)"}
+              %path{:d => "M -2.484643 2.870956 C -2.030758 1.146193 -1.02037 0.333146 0.00185817 0.00161297 C -1.02037 -0.333867 -2.030758 -1.146914 -2.484643 -2.86773 ", :style => "fill:none;stroke-width:0.47818;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;", :transform => "matrix(0,0.989719,0.989719,0,107.834341,65.763786)"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "111.314035", "xlink:href" => "#zyMSE5CIhUc39q8mRBlgAX5bLOA=-glyph1-4", :y => "48.816905"}
+              %path{:d => "M -33.600978 -33.017283 L 32.220254 -33.017283 ", :style => "fill:none;stroke-width:0.47818;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;", :transform => "matrix(0.989719,0,0,-0.989719,62.982093,45.392477)"}
+              %path{:d => "M -2.4858 2.86806 C -2.031915 1.147244 -1.021527 0.334197 0.000700842 -0.00128299 C -1.021527 -0.332816 -2.031915 -1.145863 -2.4858 -2.870626 ", :style => "fill:none;stroke-width:0.47818;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;", :transform => "matrix(0.989719,0,0,-0.989719,95.108681,78.069043)"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "59.476507", "xlink:href" => "#zyMSE5CIhUc39q8mRBlgAX5bLOA=-glyph1-2", :y => "72.672104"}
+          %p
+            The
+            %a.existingWikiWord{:href => "/nlab/show/category"} category
+            formed by
+            = succeed "-algebras" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi T
+                  %annotation{:encoding => "application/x-tex"} T
+            %strong
+              %a.existingWikiWord{:href => "/nlab/show/Eilenberg-Moore+category"} Eilenberg-Moore category
+            of
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi T
+                %annotation{:encoding => "application/x-tex"} T
+            and often denoted by
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msup
+                      %mi 𝒞
+                      %mi T
+                  %annotation{:encoding => "application/x-tex"} \mathcal{C}^T
+          %h3#FreeAlgebras Free algebras
+          %p
+            Given a
+            %a.existingWikiWord{:href => "/nlab/show/monad"} monad
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mo{:stretchy => "false"} (
+                  %mi T
+                  %mo ,
+                  %mi μ
+                  %mo ,
+                  %mi η
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} (T,\mu,\eta)
+            on a
+            %a.existingWikiWord{:href => "/nlab/show/category"} category
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi 𝒞
+                  %annotation{:encoding => "application/x-tex"} \mathcal{C}
+            %a.existingWikiWord{:href => "/nlab/show/object"} object
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi X
+                %annotation{:encoding => "application/x-tex"} X
+            of
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi 𝒞
+                  %annotation{:encoding => "application/x-tex"} \mathcal{C}
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi T
+                  %mi X
+                %annotation{:encoding => "application/x-tex"} T X
+            is canonically equipped with a
+            = succeed "-algebra" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi T
+                  %annotation{:encoding => "application/x-tex"} T
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/structure"} structure
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi μ
+                %annotation{:encoding => "application/x-tex"} \mu
+            of the monad. The relevant diagrams commute by the monad axioms.
+          %p
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}>
+              %semantics
+                %mrow
+                  %mi T
+                %annotation{:encoding => "application/x-tex"} T
+            \-Algebras of this sort are called
+            = succeed "." do
+              %strong
+                %a.existingWikiWord{:href => "/nlab/show/free+construction"} free
+                = succeed "-algebras" do
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi T
+                      %annotation{:encoding => "application/x-tex"} T
+          %p
+            Given any
+            %a.existingWikiWord{:href => "/nlab/show/morphism"} morphism
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi ϕ
+                  %mo{:lspace => "verythinmathspace"} :
+                  %mi X
+                  %mo →
+                  %mi Y
+                %annotation{:encoding => "application/x-tex"} \phi \colon X \to Y
+            of
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi 𝒞
+                  %annotation{:encoding => "application/x-tex"} \mathcal{C}
+            %a.existingWikiWord{:href => "/nlab/show/morphism"} morphism
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi T
+                  %mi ϕ
+                  %mo{:lspace => "verythinmathspace"} :
+                  %mi T
+                  %mi X
+                  %mo ⟶
+                  %mi T
+                  %mi Y
+                %annotation{:encoding => "application/x-tex"} T \phi \colon T X \longrightarrow T Y
+            is evidently a
+            %a.existingWikiWord{:href => "/nlab/show/homomorphism"} homomorphism
+            of
+            = succeed "-algebras," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi T
+                  %annotation{:encoding => "application/x-tex"} T
+            %a.existingWikiWord{:href => "/nlab/show/natural+transformation"} naturality
+            of
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi μ
+                  %annotation{:encoding => "application/x-tex"} \mu
+            = succeed "-algebras" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi T
+                  %annotation{:encoding => "application/x-tex"} T
+            = succeed "-algebras" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi T
+                  %annotation{:encoding => "application/x-tex"} T
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi T
+                  %mi X
+                %annotation{:encoding => "application/x-tex"} T X
+            and
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi T
+                  %mi Y
+                %annotation{:encoding => "application/x-tex"} T Y
+            arises this way, in general.
+          %p However, for any morphism of the form
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi f
+                  %mo{:lspace => "verythinmathspace"} :
+                  %mi X
+                  %mo ⟶
+                  %mi T
+                  %mi Y
+                %annotation{:encoding => "application/x-tex"}
+                  f \colon X \longrightarrow T Y
+          %p
+            in
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi 𝒞
+                %annotation{:encoding => "application/x-tex"} \mathcal{C}
+            (called a
+            = succeed "-" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi T
+                  %annotation{:encoding => "application/x-tex"} T
+            = succeed ")," do
+              %em
+                %a.existingWikiWord{:href => "/nlab/show/Kleisli+morphism"} Kleisli morphism
+          #eq:AlgebraMapInducedByKleisliMorphism.maruku-equation
+            %span.maruku-eq-number (3)
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msub
+                    %mi μ
+                    %mi Y
+                  %mo ∘
+                  %mi T
+                  %mi f
+                  %mspace{:width => "thickmathspace"}
+                  %mo{:lspace => "verythinmathspace"} :
+                  %mspace{:width => "thickmathspace"}
+                  %mi T
+                  %mi X
+                  %mover
+                    %mo →
+                    %mrow
+                      %mspace{:width => "thickmathspace"}
+                      %mspace{:width => "thickmathspace"}
+                      %mi T
+                      %mi f
+                      %mspace{:width => "thickmathspace"}
+                      %mspace{:width => "thickmathspace"}
+                  %mi T
+                  %mi T
+                  %mi Y
+                  %mover
+                    %mo →
+                    %mrow
+                      %mspace{:width => "thickmathspace"}
+                      %mspace{:width => "thickmathspace"}
+                      %msub
+                        %mi μ
+                        %mi Y
+                      %mspace{:width => "thickmathspace"}
+                      %mspace{:width => "thickmathspace"}
+                  %mi TY
+                %annotation{:encoding => "application/x-tex"}
+                  \\mu_{Y} \circ T f
+                  \\;\colon\;
+                  T X
+                  \\xrightarrow{\;\; T f  \;\;}
+                  T T Y
+                  \\xrightarrow{\;\; \mu_Y \;\;}
+                  TY
+          %p
+            %em is
+            a
+            %a.existingWikiWord{:href => "/nlab/show/homomorphism"} homomorphism
+            of
+            = succeed "-algebras" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi T
+                  %annotation{:encoding => "application/x-tex"} T
+            = succeed "-algebras," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi T
+                  %annotation{:encoding => "application/x-tex"} T
+            %a.existingWikiWord{:href => "/nlab/show/natural+transformation"} naturality
+            of
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi μ
+                  %annotation{:encoding => "application/x-tex"} \mu
+            = succeed "-algebras" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi T
+                  %annotation{:encoding => "application/x-tex"} T
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi T
+                  %mi X
+                %annotation{:encoding => "application/x-tex"} T X
+            and
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi T
+                  %mi Y
+                %annotation{:encoding => "application/x-tex"} T Y
+            %em do
+            arise this way.
+          %p
+            Moreover, given in addition a morphism in
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi 𝒞
+                %annotation{:encoding => "application/x-tex"} \mathcal{C}
+            of the form
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi g
+                    %mo{:lspace => "verythinmathspace"} :
+                    %mi Y
+                    %mo ⟶
+                    %mi T
+                    %mi Z
+                  %annotation{:encoding => "application/x-tex"} g \colon Y \longrightarrow T Z
+            %a.existingWikiWord{:href => "/nlab/show/composition"} composition
+            of the corresponding
+            = succeed "-algebra" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi T
+                  %annotation{:encoding => "application/x-tex"} T
+            %a.maruku-eqref{:href => "#eq:AlgebraMapInducedByKleisliMorphism"} (3)
+            of
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi f
+                %annotation{:encoding => "application/x-tex"} f
+            and
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi g
+                %annotation{:encoding => "application/x-tex"} g
+            equals the
+            = succeed "-algebra" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi T
+                  %annotation{:encoding => "application/x-tex"} T
+            = succeed "," do
+              %em
+                %a.existingWikiWord{:href => "/nlab/show/Kleisli+composition"} Kleisli composite
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi g
+                  %msub
+                    %mo ∘
+                    %mi T
+                  %mi f
+                  %mspace{:width => "thickmathspace"}
+                  %mo ≔
+                  %mspace{:width => "thickmathspace"}
+                  %mi X
+                  %mover
+                    %mo →
+                    %mi f
+                  %mi T
+                  %mi Y
+                  %mover
+                    %mo →
+                    %mrow
+                      %mi T
+                      %mi g
+                  %mi T
+                  %mi T
+                  %mi Z
+                  %mover
+                    %mo →
+                    %mrow
+                      %msub
+                        %mi μ
+                        %mi Z
+                  %mi T
+                  %mi Z
+                  %mspace{:width => "thinmathspace"}
+                  %mo .
+                %annotation{:encoding => "application/x-tex"}
+                  g \circ_T f
+                  \\;\coloneqq\;
+                  X
+                  \\xrightarrow{ f }
+                  T Y
+                  \\xrightarrow{ T g }
+                  T T Z
+                  \\xrightarrow{ \mu_Z }
+                  T Z
+                  \\,.
+          %p
+            The
+            %a.existingWikiWord{:href => "/nlab/show/category"} category
+            of
+            %a.existingWikiWord{:href => "/nlab/show/Kleisli+morphisms"} Kleisli morphisms
+            equipped with this
+            %a.existingWikiWord{:href => "/nlab/show/Kleisli+composition"} Kleisli composition
+            is called the
+            %em
+              %a.existingWikiWord{:href => "/nlab/show/Kleisli+category"} Kleisli category
+            and is
+            %a.existingWikiWord{:href => "/nlab/show/equivalence+of+categories"} equivalent
+            to the
+            %a.existingWikiWord{:href => "/nlab/show/full+subcategory"} full subcategory
+            of
+            = succeed "-algebras" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi T
+                  %annotation{:encoding => "application/x-tex"} T
+            = succeed "-algebras" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi T
+                  %annotation{:encoding => "application/x-tex"} T
+            %a{:href => "Kleisli+category#InTermsOfKleisliMorphisms"} there
+            for more).
+          %h3#tensor_product Tensor product
+          %p
+            In the case of a
+            %a.existingWikiWord{:href => "/nlab/show/commutative+monad"} commutative monad
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi T
+                %annotation{:encoding => "application/x-tex"} T
+            , one can define a
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/tensor+product+of+algebras+over+a+commutative+monad"} tensor product of monad algebras
+          %h2#examples Examples
+          %p Many monads are named after their (free) algebras:
+          %ul
+            %li
+              %p
+                The algebras of the
+                %em free monoid monad
+                on
+                %a.existingWikiWord{:href => "/nlab/show/Set"} Set
+                are
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/monoids"} monoids
+            %li
+              %p
+                The algebras of the
+                %em free commutative monoid monad
+                on
+                %a.existingWikiWord{:href => "/nlab/show/Set"} Set
+                are
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/commutative+monoids"} commutative monoids
+            %li
+              %p
+                The algebras of the
+                %em free group monad
+                on
+                %a.existingWikiWord{:href => "/nlab/show/Set"} Set
+                are groups, and their morphisms are the group homomorphisms.
+            %li
+              %p …and so on.
+          %p
+            In these cases, the notion of
+            = succeed "," do
+              %em free group
+            = succeed "," do
+              %em free monoid
+          %ul
+            %li
+              %p
+                Given a
+                %a.existingWikiWord{:href => "/nlab/show/monoid"} monoid
+                or
+                %a.existingWikiWord{:href => "/nlab/show/group"} group
+                = succeed "," do
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi M
+                      %annotation{:encoding => "application/x-tex"} M
+                = succeed "-" do
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi M
+                      %annotation{:encoding => "application/x-tex"} M
+                %a.existingWikiWord{:href => "/nlab/show/action+monad"} action monad
+                on
+                %a.existingWikiWord{:href => "/nlab/show/Set"} Set
+                are the
+                = succeed "-sets," do
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi M
+                      %annotation{:encoding => "application/x-tex"} M
+                %a.existingWikiWord{:href => "/nlab/show/action"} action
+                of
+                = succeed "." do
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi M
+                      %annotation{:encoding => "application/x-tex"} M
+                = succeed "." do
+                  %a.existingWikiWord{:href => "/nlab/show/equivariant+maps"} equivariant maps
+            %li
+              %p
+                The example above generalizes to
+                %a.existingWikiWord{:href => "/nlab/show/action+monads"} action monads
+                given by
+                %a.existingWikiWord{:href => "/nlab/show/monoid+objects"} monoid objects
+                in a general
+                = succeed "." do
+                  %a.existingWikiWord{:href => "/nlab/show/monoidal+category"} monoidal category
+                %a.existingWikiWord{:href => "/nlab/show/Lie+groups"} Lie groups
+                on
+                %a.existingWikiWord{:href => "/nlab/show/manifolds"} manifolds
+                and actions of
+                %a.existingWikiWord{:href => "/nlab/show/rings"} rings
+                on their
+                = succeed "." do
+                  %a.existingWikiWord{:href => "/nlab/show/modules"} modules
+            %li
+              %p
+                The algebras of the
+                %a.existingWikiWord{:href => "/nlab/show/maybe+monad"} maybe monad
+                = succeed "," do
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mo{:stretchy => "false"} (
+                        %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                        %msub
+                          %mo{:stretchy => "false"} )
+                          %mo *
+                        %mo{:lspace => "verythinmathspace"} :
+                        %mi Set
+                        %mo →
+                        %mi Set
+                      %annotation{:encoding => "application/x-tex"} (-)_*\colon Set \to Set
+            %li
+              %p
+                The algebras of the
+                %a.existingWikiWord{:href => "/nlab/show/power+set"} power set
+                monad are the sup-
+                %a.existingWikiWord{:href => "/nlab/show/semilattices"}> semilattices
+                \.
+            %li
+              %p
+                The algebras of the
+                %a.existingWikiWord{:href => "/nlab/show/distribution+monad"} distribution monad
+                are
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/convex+spaces"} convex spaces
+                %a.existingWikiWord{:href => "/nlab/show/probability+monads"} probability monads
+                correspond to generalized
+                %a.existingWikiWord{:href => "/nlab/show/convex+spaces"} convex spaces
+                or
+                %a.existingWikiWord{:href => "/nlab/show/conical+spaces"} conical spaces
+                (see
+                = succeed ")." do
+                  %a.existingWikiWord{:href => "/nlab/show/probability+monad#algebras_expectation_values"} probability monad - algebras
+          %h2#generalizations Generalizations
+          %p
+            An algebra over a monad is a special case of a
+            %a.existingWikiWord{:href => "/nlab/show/module+over+a+monad"} module over a monad
+            in a
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/bicategory"} bicategory
+          %p
+            The Eilenberg-Moore and Kleisli categories are also special cases of more general 2-dimensional
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/universal+constructions"} universal constructions
+            %a.existingWikiWord{:href => "/nlab/show/Eilenberg-Moore+object"} Eilenberg-Moore object
+            and the
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/Kleisli+object"} Kleisli object
+          %h2#related_concepts Related concepts
+          %ul
+            %li
+              %p
+                %strong> algebra over a monad
+                ,
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/module+over+a+monad"} module over a monad
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/algebra+over+an+endofunctor"} algebra over an endofunctor
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/coalgebra+over+an+endofunctor"} coalgebra over an endofunctor
+                %a.existingWikiWord{:href => "/nlab/show/algebra+over+a+profunctor"} algebra over a profunctor
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/%E2%88%9E-algebra+over+an+%28%E2%88%9E%2C1%29-monad"} ∞-algebra over an (∞,1)-monad
+              %ul
+                %li
+                  %a.existingWikiWord{:href => "/nlab/show/model+structure+on+algebras+over+a+monad"} model structure on algebras over a monad
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/algebra+over+an+algebraic+theory"} algebra over an algebraic theory
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/%E2%88%9E-algebra+over+an+%28%E2%88%9E%2C1%29-algebraic+theory"} ∞-algebra over an (∞,1)-algebraic theory
+              %ul
+                %li
+                  %a.existingWikiWord{:href => "/nlab/show/homotopy+T-algebra"} homotopy T-algebra
+                  \/
+                  %a.existingWikiWord{:href => "/nlab/show/model+structure+on+simplicial+T-algebras"} model structure on simplicial T-algebras
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/algebra+over+an+operad"} algebra over an operad
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/%E2%88%9E-algebra+over+an+%28%E2%88%9E%2C1%29-operad"} ∞-algebra over an (∞,1)-operad
+              %ul
+                %li
+                  %a.existingWikiWord{:href => "/nlab/show/model+structure+on+algebras+over+an+operad"} model structure on algebras over an operad
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Eilenberg-Moore+category"}> Eilenberg-Moore category
+                ,
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/Kleisli+category"} Kleisli category
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/Eilenberg-Moore+object"} Eilenberg-Moore object
+                %a.existingWikiWord{:href => "/nlab/show/Kleisli+object"} Kleisli object
+          %h2#references References
+          %h3#general General
+          %blockquote
+            %p
+              See the
+              %em
+                %a{:href => "monad#References"} References
+              at
+              = succeed "," do
+                %em
+                  %a.existingWikiWord{:href => "/nlab/show/monad"} monad
+          %ul
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/Saunders+MacLane"}> Saunders MacLane
+              , §VI.2 of:
+              = succeed "," do
+                %em
+                  %a.existingWikiWord{:href => "/nlab/show/Categories+for+the+Working+Mathematician"} Categories for the Working Mathematician
+              %strong 5
+              Springer (1971) &amp;lbrack;
+              %a{:href => "https://link.springer.com/book/10.1007/978-1-4757-4721-8"}> doi:10.1007/978-1-4757-4721-8
+              \&amp;rbrack;
+          %p An introduction to the basic ideas, which gives some intuition for newcomers, can be found in
+          %ul
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/Paolo+Perrone"}> Paolo Perrone
+              , Chapter 5 of:
+              = succeed "," do
+                %em Notes on Category Theory with examples from basic mathematics
+              = succeed "&rbrack;" do
+                %a{:href => "http://arxiv.org/abs/1912.10642"} arXiv:1912.10642
+          %h3#ReferencesKleisliStyle Kleisli/extension system-style
+          %p
+            For monads presented in “
+            %a.existingWikiWord{:href => "/nlab/show/extension+system"}> extension system
+            ”/“
+            %a.existingWikiWord{:href => "/nlab/show/Kleisli+triple"}> Kleisli triple
+            ”-form (the way traditionally used for
+            %a.existingWikiWord{:href => "/nlab/show/monads+in+computer+science"} monads in computer science
+            – i.e. in terms of a “bind”-operation taking
+            %a.existingWikiWord{:href => "/nlab/show/Kleisli+maps"} Kleisli maps
+            to actual
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/morphisms"} morphisms
+            = succeed "&rbrack;" do
+              %a{:href => "#Uustalu21Lecture2"} Uustalu (2021), p. 4
+          %ul
+            %li#MarmolejoWood10
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/F.+Marmolejo"}> F. Marmolejo
+                ,
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/Richard+J.+Wood"} Richard J. Wood
+                %em Monads as extension systems – no iteration is necessary
+                %a.existingWikiWord{:href => "/nlab/show/TAC"} TAC
+                %strong 24
+                4 (2010) 84-113 &amp;lbrack;
+                %a{:href => "http://www.tac.mta.ca/tac/volumes/24/4/24-04abs.html"}> tac:24-04
+                \&amp;rbrack;
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Thorsten+Altenkirch"}> Thorsten Altenkirch
+                ,
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/James+Chapman"} James Chapman
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/Tarmo+Uustalu"} Tarmo Uustalu
+                = succeed "," do
+                  %em Monads need not be endofunctors
+                %strong 11
+                1:3 (2015) 1–40 &amp;lbrack;
+                %a{:href => "https://arxiv.org/abs/1412.7148"}> arXiv:1412.7148
+                ,
+                = succeed "," do
+                  %a{:href => "http://www.cs.nott.ac.uk/~txa/publ/jrelmon.pdf"} pdf
+                = succeed "&rbrack;" do
+                  %a{:href => "https://doi.org/10.2168/LMCS-11(1:3)2015"} doi:10.2168/LMCS-11(1:3)2015
+              %blockquote
+                %p
+                  (stated in the generality of
+                  = succeed ")" do
+                    %a.existingWikiWord{:href => "/nlab/show/relative+monads"} relative monads
+            %li#Uustalu21Lecture2
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Tarmo+Uustalu"}> Tarmo Uustalu
+                , p. 4 of:
+                %em Monads and Interaction Lecture 2
+                lecture notes for
+                %a{:href => "https://staffwww.dcs.shef.ac.uk/people/G.Struth/mgs21.html"} MGS 2021
+                (2021) &amp;lbrack;
+                %a{:href => "https://cs.ioc.ee/~tarmo/mgs21/mgs2.pdf"}> pdf
+                ,
+                = succeed "&rbrack;" do
+                  %a.existingWikiWord{:href => "/nlab/files/Uustalu-Monads2.pdf", :title => "pdf"} pdf
+          %p See also
+          %ul
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/R.+F.+C.+Walters"}> R. F. C. Walters
+              , Chapter I of:
+              = succeed "," do
+                %em A categorical approach to universal algebra
+              = succeed "&rbrack;" do
+                %a{:href => "https://openresearch-repository.anu.edu.au/handle/1885/133321"} anu:1885/133321
+        .revisedby
+          %p
+            Last revised on June 25, 2025 at 00:12:02.
+            See the
+            %a{:href => "/nlab/history/algebra+over+a+monad", :style => "color: #005c19"} history
+            of this page for a list of all contributions to it.
+        .navigation.navfoot
+          %a#edit.navlink{:accesskey => "E", :href => "/nlab/edit/algebra+over+a+monad", :rel => "nofollow"} Edit
+          %a{:href => "https://nforum.ncatlab.org/discussion/10843/#Item_17"} Discuss
+          %span.backintime
+            %a#to_previous_revision.navlinkbackintime{:accesskey => "B", :href => "/nlab/revision/algebra+over+a+monad/21", :rel => "nofollow"} Previous revision
+          %a#see_changes.navlink{:accesskey => "C", :href => "/nlab/show/diff/algebra+over+a+monad", :rel => "nofollow"} Changes from previous revision
+          %a#history.navlink{:accesskey => "S", :href => "/nlab/history/algebra+over+a+monad", :rel => "nofollow"} History (21 revisions)
+          %a{:href => "/nlab/show/algebra+over+a+monad/cite", :style => "color: black"} Cite
+          %a#view_print{:accesskey => "p", :href => "/nlab/print/algebra+over+a+monad", :rel => "nofollow"} Print
+          %a#view_source{:href => "/nlab/source/algebra+over+a+monad", :rel => "nofollow"} Source
+      / Content
+    / Container

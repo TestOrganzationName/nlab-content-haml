@@ -1,0 +1,1916 @@
+!!! XML
+!!! 1.1
+%html{:xmlns => "http://www.w3.org/1999/xhtml"}
+  %head
+    %title
+      A Survey of Elliptic Cohomology in nLab
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:content => "index,follow", :name => "robots"}/
+    %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/
+    %link{:href => "/stylesheets/instiki.css?1660229990", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/stylesheets/mathematics.css?1660229990", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/stylesheets/syntax.css?1660229990", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/stylesheets/nlab.css?1660229990", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css", :rel => "stylesheet", :type => "text/css"}/
+    :css
+      h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+        color: #226622;
+      }
+      a:visited.existingWikiWord {
+        color: #164416;
+      }
+    :css
+      <!--/*--><![CDATA[/*><!--*/
+          .toc ul {margin: 0; padding: 0;}
+      .toc ul ul {margin: 0; padding: 0 0 0 10px;}
+      .toc li > p {margin: 0}
+      .toc ul li {list-style-type: none; position: relative;}
+      .toc div {border-top:1px dotted #ccc;}
+      .rightHandSide h2 {font-size: 1.5em;color:#008B26}
+      table.plaintable {
+          border-collapse:collapse;
+          margin-left:30px;
+          border:0;
+      }
+      .plaintable td {border:1px solid #000; padding: 3px;}
+      .plaintable th {padding: 3px;}
+      .plaintable caption {
+          font-weight: bold;
+          font-size:1.1em;
+          text-align:center;
+          margin-left:30px;
+      }
+          
+         
+      /* Query boxes for questioning and answering mechanism */
+      div.query{
+      background: #f6fff3;
+      border: solid #ce9;
+      border-width: 2px 1px;
+      padding: 0 1em;
+      margin: 0 1em;
+      max-height: 20em;
+      overflow: auto;
+      }
+      
+      /* Standout boxes for putting important text */
+      div.standout{
+      background: #fff1f1;
+      border: solid black;
+      border-width: 2px 1px;
+      padding: 0 1em;
+      margin: 0 1em;
+      overflow: auto;
+      }
+      
+      /* Icon for links to n-category arXiv documents 
+       (commented out for now i.e. disabled)
+      a[href*="http://arxiv.org/"] {
+        background-image: url(../files/arXiv_icon.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 22px;
+        } */
+          
+      /* Icon for links to n-category cafe posts (disabled) 
+      a[href*="http://golem.ph.utexas.edu/category"] {
+        background-image: url(../files/n-cafe_5.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 25px;
+        } */
+      
+      /* Icon for links to pdf files (disabled)
+      a[href$=".pdf"] {
+        background-image: url(../files/pdficon_small.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 25px;
+        } */
+      
+      /* Icon for links to pages, etc. -inside- pdf files (disabled)
+      a[href*=".pdf#"] {
+        background-image: url(../files/pdf_entry.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 25px;
+        } */
+      
+      a.existingWikiWord {
+      color: #226622;
+      }
+      
+      a.existingWikiWord:visited {
+      color: #226622;
+      }
+      
+      
+      a.existingWikiWord[title] {
+      border: 0px;
+      color: #aa0505;
+      text-decoration: none;
+      }
+          
+      a.existingWikiWord[title]:visited {
+      border: 0px;
+      color: #551111;
+      text-decoration: none;
+      }
+      
+      a[href^="http://"] {
+      border: 0px;
+      color: #003399;
+      }
+      
+      a[href^="http://"]:visited {
+      border: 0px;
+      color: #330066;
+      }
+      
+      a[href^="https://"] {
+      border: 0px;
+      color: #003399;
+      }
+      
+      a[href^="https://"]:visited {
+      border: 0px;
+      color: #330066;
+      }
+      
+      div.dropDown .hide {
+      display: none;
+      }
+      
+      div.dropDown:hover .hide {
+      display:block;
+      }
+      
+      div.clickDown .hide {
+      display: none;
+      }
+      
+      div.clickDown:focus {
+      outline:none;
+      }
+      
+      div.clickDown:focus .hide, div.clickDown:hover .hide {
+      display: block;
+      }
+      
+      div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+      display:block;
+      }
+      
+      div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+      display:none;
+      }
+      
+      div.clickDown .clickToReveal:after {
+      content: "A(Hover to reveal, click to "hold")";
+      font-size: 60%;
+      }
+      
+      div.clickDown .clickToHide:after {
+      content: "A(Click to hide)";
+      font-size: 60%;
+      }
+      div.clickDown .clickToHide, div.clickDown .clickToReveal {
+      white-space: pre-wrap;
+      }
+      
+      .un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+      margin-left: 1em;
+      }
+      
+      span.theorem_label {
+      margin-left: -1em;
+      }
+      .proof span.theorem_label {
+      margin-left: 0em;
+      }
+      :target {
+          background-color: #BBBBBB;
+          border-radius: 5pt;
+      }
+      
+        /*]]>*/-->
+    %script{:src => "/javascripts/prototype.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/effects.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/dragdrop.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/controls.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/application.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/page_helper.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/thm_numbering.js?1660229990", :type => "text/javascript"}
+    %script{:type => "text/x-mathjax-config"}
+      :cdata
+        <!--//--><![CDATA[//><!--
+        MathJax.Ajax.config.path["Contrib"] = "/MathJax";
+        MathJax.Hub.Config({
+        MathML: { useMathMLspacing: true },
+        "HTML-CSS": { scale: 90,
+        extensions: ["handle-floats.js"]
+        }
+        });
+        MathJax.Hub.Queue( function () {
+        var fos = document.getElementsByTagName('foreignObject');
+        for (var i = 0; i < fos.length; i++) {
+        MathJax.Hub.Typeset(fos[i]);
+        }
+        });
+        \//--><!]]>
+    :javascript
+      <!--//--><![CDATA[//><!--
+      window.addEventListener("DOMContentLoaded", function () {
+        var div = document.createElement('div');
+        var math = document.createElementNS('http://www.w3.org/1998/Math/MathML', 'math');
+        document.body.appendChild(div);
+        div.appendChild(math);
+      // Test for MathML support comparable to WebKit version https://trac.webkit.org/changeset/203640 or higher.
+        div.setAttribute('style', 'font-style: italic');
+        var mathml_unsupported = !(window.getComputedStyle(div.firstChild).getPropertyValue('font-style') === 'normal');
+        div.parentNode.removeChild(div);
+        if (mathml_unsupported) {
+          // MathML does not seem to be supported...
+          var s = document.createElement('script');
+          s.src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=MML_HTMLorMML-full";
+          document.querySelector('head').appendChild(s);
+        } else {
+          document.head.insertAdjacentHTML("beforeend", '<style>svg[viewBox] {max-width: 100%}</style>');
+        }
+      });
+      //--><!]]>
+    %link{:href => "https://ncatlab.org/nlab/atom_with_headlines", :rel => "alternate", :title => "Atom with headlines", :type => "application/atom+xml"}/
+    %link{:href => "https://ncatlab.org/nlab/atom_with_content", :rel => "alternate", :title => "Atom with full content", :type => "application/atom+xml"}/
+    :javascript
+      document.observe("dom:loaded", function() {
+        generateThmNumbers();
+      });
+  %body
+    #Container
+      #Content
+        %h1#pageName
+          %span{:style => "float: left; margin: 0.5em 0.25em -0.25em 0"}
+            %svg{:height => "1.8em", :viewbox => "0 0 190 181", :width => "1.872em", :xmlns => "http://www.w3.org/2000/svg"}
+              %path{:d => "M72.8 145c-1.6 17.3-15.7 10-23.6 20.2-5.6 7.3 4.8 15 11.4 15 11.5-.2 19-13.4 26.4-20.3 3.3-3 8.2-4 11.2-7.2a14 14 0 0 0 2.9-11.1c-1.4-9.6-12.4-18.6-16.9-27.2-5-9.6-10.7-27.4-24.1-27.7-17.4-.3-.4 26 4.7 30.7 2.4 2.3 5.4 4.1 7.3 6.9 1.6 2.3 2.1 5.8-1 7.2-5.9 2.6-12.4-6.3-15.5-10-8.8-10.6-15.5-23-26.2-31.8-5.2-4.3-11.8-8-18-3.7-7.3 4.9-4.2 12.9.2 18.5a81 81 0 0 0 30.7 23c3.3 1.5 12.8 5.6 10 10.7-2.5 5.2-11.7 3-15.6 1.1-8.4-3.8-24.3-21.3-34.4-13.7-3.5 2.6-2.3 7.6-1.2 11.1 2.8 9 12.2 17.2 20.9 20.5 17.3 6.7 34.3-8 50.8-12.1z", :fill => "#226622"}
+              %path{:d => "M145.9 121.3c-.2-7.5 0-19.6-4.5-26-5.4-7.5-12.9-1-14.1 5.8-1.4 7.8 2.7 14.1 4.8 21.3 3.4 12 5.8 29-.8 40.1-3.6-6.7-5.2-13-7-20.4-2.1-8.2-12.8-13.2-15.1-1.9-2 9.7 9 21.2 12 30.1 1.2 4 2 8.8 6.4 10.3 6.9 2.3 13.3-4.7 17.7-8.8 12.2-11.5 36.6-20.7 43.4-36.4 6.7-15.7-13.7-14-21.3-7.2-9.1 8-11.9 20.5-23.6 25.1 7.5-23.7 31.8-37.6 38.4-61.4 2-7.3-.8-29.6-13-19.8-14.5 11.6-6.6 37.6-23.3 49.2z", :fill => "#a41e32"}
+              %path{:d => "M86.3 47.5c0-13-10.2-27.6-5.8-40.4 2.8-8.4 14.1-10.1 17-1 3.8 11.6-.3 26.3-1.8 38 11.7-.7 10.5-16 14.8-24.3 2.1-4.2 5.7-9.1 11-6.7 6 2.7 7.4 9.2 6.6 15.1-2.2 14-12.2 18.8-22.4 27-3.4 2.7-8 6.6-5.9 11.6 2 4.4 7 4.5 10.7 2.8 7.4-3.3 13.4-16.5 21.7-16 14.6.7 12 21.9.9 26.2-5 1.9-10.2 2.3-15.2 3.9-5.8 1.8-9.4 8.7-15.7 8.9-6.1.1-9-6.9-14.3-9-14.4-6-33.3-2-44.7-14.7-3.7-4.2-9.6-12-4.9-17.4 9.3-10.7 28 7.2 35.7 12 2 1.1 11 6.9 11.4 1.1.4-5.2-10-8.2-13.5-10-11.1-5.2-30-15.3-35-27.3-2.5-6 2.8-13.8 9.4-13.6 6.9.2 13.4 7 17.5 12C70.9 34 75 43.8 86.3 47.4z", :fill => "#193c78"}
+          %span.webName nLab
+          A Survey of Elliptic Cohomology
+        .navigation
+          %span.skipNav
+            %a{:href => "#navEnd"} Skip the Navigation Links
+            |
+          %span{:style => "display:inline-block; width: 0.3em;"}
+          %a{:accesskey => "H", :href => "/nlab/show/HomePage", :title => "Home page"} Home Page
+          |
+          %a{:accesskey => "A", :href => "/nlab/all_pages", :title => "List of all pages"} All Pages
+          |
+          %a{:accesskey => "U", :href => "/nlab/latest_revisions", :title => "Latest edits and page creations"} Latest Revisions
+          |
+          %a{:href => "https://nforum.ncatlab.org/discussion/11823/#Item_1", :style => "color: black", :title => "Discuss this page in its dedicated thread on the nForum"} Discuss this page
+          |
+          %form#navigationSearchForm{"accept-charset" => "utf-8", :action => "/nlab/search", :method => "get"}
+            %fieldset.search
+              %input#searchField{:name => "query", :onblur => "this.value == '' ? this.value = 'Search' : true", :onfocus => "this.value == 'Search' ? this.value = '' : true", :style => "display:inline-block; float: left;", :type => "text", :value => "Search"}/
+          %span#navEnd
+        #revision
+          %meta{:content => "application/xhtml+xml;charset=utf-8", "http-equiv" => "Content-type"}/
+          %title
+          .rightHandSide
+            .toc.clickDown{:tabindex => "0"}
+              %h3#context Context
+              %h4#cohomology Cohomology
+              .hide
+                %div
+                  %p
+                    %strong
+                      %a.existingWikiWord{:href => "/nlab/show/cohomology"} cohomology
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/cocycle"}> cocycle
+                        ,
+                        = succeed "," do
+                          %a.existingWikiWord{:href => "/nlab/show/coboundary"} coboundary
+                        %a.existingWikiWord{:href => "/nlab/show/coefficient"} coefficient
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/homology"} homology
+                      %ul
+                        %li
+                          %a.existingWikiWord{:href => "/nlab/show/chain"}> chain
+                          ,
+                          = succeed "," do
+                            %a.existingWikiWord{:href => "/nlab/show/cycle"} cycle
+                          %a.existingWikiWord{:href => "/nlab/show/boundary"} boundary
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/characteristic+class"} characteristic class
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/universal+characteristic+class"} universal characteristic class
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/secondary+characteristic+class"} secondary characteristic class
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/differential+characteristic+class"} differential characteristic class
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/fiber+sequence"}> fiber sequence
+                        \/
+                        %a.existingWikiWord{:href => "/nlab/show/long+exact+sequence+in+cohomology"} long exact sequence in cohomology
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/fiber+%E2%88%9E-bundle"}> fiber ∞-bundle
+                        ,
+                        = succeed "," do
+                          %a.existingWikiWord{:href => "/nlab/show/principal+%E2%88%9E-bundle"} principal ∞-bundle
+                        = succeed "," do
+                          %a.existingWikiWord{:href => "/nlab/show/associated+%E2%88%9E-bundle"} associated ∞-bundle
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/twisted+%E2%88%9E-bundle"} twisted ∞-bundle
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/%E2%88%9E-group+extension"} ∞-group extension
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/obstruction"} obstruction
+                  %h3#special_and_general_types Special and general types
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/cochain+cohomology"} cochain cohomology
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/ordinary+cohomology"}> ordinary cohomology
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/singular+cohomology"} singular cohomology
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/group+cohomology"}> group cohomology
+                        ,
+                        = succeed "," do
+                          %a.existingWikiWord{:href => "/nlab/show/nonabelian+group+cohomology"} nonabelian group cohomology
+                        %a.existingWikiWord{:href => "/nlab/show/Lie+group+cohomology"} Lie group cohomology
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Galois+cohomology"} Galois cohomology
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/groupoid+cohomology"}> groupoid cohomology
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/nonabelian+groupoid+cohomology"} nonabelian groupoid cohomology
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/generalized+%28Eilenberg-Steenrod%29+cohomology"} generalized (Eilenberg-Steenrod) cohomology
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/cobordism+cohomology+theory"} cobordism cohomology theory
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/integral+cohomology"} integral cohomology
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/K-theory"} K-theory
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/elliptic+cohomology"}> elliptic cohomology
+                            ,
+                            %a.existingWikiWord{:href => "/nlab/show/tmf"} tmf
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/taf"} taf
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/abelian+sheaf+cohomology"} abelian sheaf cohomology
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/Deligne+cohomology"} Deligne cohomology
+                          %ul
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/de+Rham+cohomology"} de Rham cohomology
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/Dolbeault+cohomology"} Dolbeault cohomology
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/etale+cohomology"} etale cohomology
+                          %ul
+                            %li
+                              %a.existingWikiWord{:href => "/nlab/show/group+of+units"}> group of units
+                              ,
+                              = succeed "," do
+                                %a.existingWikiWord{:href => "/nlab/show/Picard+group"} Picard group
+                              %a.existingWikiWord{:href => "/nlab/show/Brauer+group"} Brauer group
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/crystalline+cohomology"} crystalline cohomology
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/syntomic+cohomology"} syntomic cohomology
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/motivic+cohomology"} motivic cohomology
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/cohomology+of+operads"} cohomology of operads
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Hochschild+cohomology"}> Hochschild cohomology
+                        ,
+                        %span.newWikiWord
+                          cyclic cohomology
+                          %a{:href => "/nlab/new/cyclic+cohomology"} ?
+                      %ul
+                        %li
+                          %a.existingWikiWord{:href => "/nlab/show/string+topology"} string topology
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/nonabelian+cohomology"} nonabelian cohomology
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/principal+%E2%88%9E-bundle"} principal ∞-bundle
+                          %ul
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/universal+principal+%E2%88%9E-bundle"}> universal principal ∞-bundle
+                                ,
+                                %a.existingWikiWord{:href => "/nlab/show/groupal+model+for+universal+principal+%E2%88%9E-bundles"} groupal model for universal principal ∞-bundles
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/principal+bundle"}> principal bundle
+                                ,
+                                %a.existingWikiWord{:href => "/nlab/show/Atiyah+Lie+groupoid"} Atiyah Lie groupoid
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/principal+2-bundle"}> principal 2-bundle
+                                \/
+                                %a.existingWikiWord{:href => "/nlab/show/gerbe"} gerbe
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/locally+constant+%E2%88%9E-stack"}> covering ∞-bundle
+                            \/
+                            %a.existingWikiWord{:href => "/nlab/show/local+system"} local system
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/%28%E2%88%9E%2C1%29-vector+bundle"} (∞,1)-vector bundle
+                            \/
+                            %a.existingWikiWord{:href => "/nlab/show/%28%E2%88%9E%2Cn%29-vector+bundle"} (∞,n)-vector bundle
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/quantum+anomaly"} quantum anomaly
+                          %ul
+                            %li
+                              %a.existingWikiWord{:href => "/nlab/show/orientation"}> orientation
+                              ,
+                              = succeed "," do
+                                %a.existingWikiWord{:href => "/nlab/show/Spin+structure"} Spin structure
+                              = succeed "," do
+                                %a.existingWikiWord{:href => "/nlab/show/Spin%5Ec+structure"} Spin^c structure
+                              = succeed "," do
+                                %a.existingWikiWord{:href => "/nlab/show/String+structure"} String structure
+                              %a.existingWikiWord{:href => "/nlab/show/Fivebrane+structure"} Fivebrane structure
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/cohomology+with+constant+coefficients"} cohomology with constant coefficients
+                        \/
+                        %a.existingWikiWord{:href => "/nlab/show/cohomology+with+a+local+system+of+coefficients"} with a local system of coefficients
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/%E2%88%9E-Lie+algebra+cohomology"} ∞-Lie algebra cohomology
+                      %ul
+                        %li
+                          %a.existingWikiWord{:href => "/nlab/show/Lie+algebra+cohomology"}> Lie algebra cohomology
+                          ,
+                          = succeed "," do
+                            %a.existingWikiWord{:href => "/nlab/show/nonabelian+Lie+algebra+cohomology"} nonabelian Lie algebra cohomology
+                          = succeed "," do
+                            %a.existingWikiWord{:href => "/nlab/show/Lie+algebra+extensions"} Lie algebra extensions
+                          = succeed "," do
+                            %a.existingWikiWord{:href => "/nlab/show/Gelfand-Fuks+cohomology"} Gelfand-Fuks cohomology
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Gerstenhaber-Schack+cohomology"} bialgebra cohomology
+                  %h3#special_notions Special notions
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/%3Fech+cohomology"} ?ech cohomology
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/hypercohomology"} hypercohomology
+                  %h3#variants Variants
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/equivariant+cohomology"} equivariant cohomology
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/equivariant+homotopy+theory"} equivariant homotopy theory
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/Bredon+cohomology"} Bredon cohomology
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/twisted+cohomology"} twisted cohomology
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/twisted+bundle"} twisted bundle
+                          %ul
+                            %li
+                              %a.existingWikiWord{:href => "/nlab/show/twisted+K-theory"}> twisted K-theory
+                              ,
+                              = succeed "," do
+                                %a.existingWikiWord{:href => "/nlab/show/twisted+spin+structure"} twisted spin structure
+                              %a.existingWikiWord{:href => "/nlab/show/twisted+spin%5Ec+structure"} twisted spin^c structure
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/twisted+differential+c-structures"} twisted differential c-structures
+                          %ul
+                            %li
+                              %a.existingWikiWord{:href => "/nlab/show/twisted+differential+string+structure"}> twisted differential string structure
+                              ,
+                              %a.existingWikiWord{:href => "/nlab/show/twisted+differential+fivebrane+structure"} twisted differential fivebrane structure
+                    %li
+                      %p differential cohomology
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/differential+cohomology"} differential generalized (Eilenberg-Steenrod) cohomology
+                          %ul
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/differential+cobordism+cohomology"} differential cobordism cohomology
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/Deligne+cohomology"} Deligne cohomology
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/differential+K-theory"} differential K-theory
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/differential+elliptic+cohomology"} differential elliptic cohomology
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/schreiber/show/differential+cohomology+in+a+cohesive+topos"} differential cohomology in a cohesive topos
+                          %ul
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/Chern-Weil+theory"} Chern-Weil theory
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/%E2%88%9E-Chern-Weil+theory"} ∞-Chern-Weil theory
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/relative+cohomology"} relative cohomology
+                  %h3#extra_structure Extra structure
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Hodge+structure"} Hodge structure
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/orientation"}> orientation
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/orientation+in+generalized+cohomology"} in generalized cohomology
+                  %h3#operations Operations
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/cohomology+operations"} cohomology operations
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/cup+product"} cup product
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/connecting+homomorphism"}> connecting homomorphism
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/Bockstein+homomorphism"} Bockstein homomorphism
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/fiber+integration"}> fiber integration
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/transgression"} transgression
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/cohomology+localization"} cohomology localization
+                  %h3#theorems Theorems
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/universal+coefficient+theorem"} universal coefficient theorem
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/K%C3%BCnneth+theorem"} Künneth theorem
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/de+Rham+theorem"}> de Rham theorem
+                        ,
+                        = succeed "," do
+                          %a.existingWikiWord{:href => "/nlab/show/Poincare+lemma"} Poincare lemma
+                        %a.existingWikiWord{:href => "/nlab/show/Stokes+theorem"} Stokes theorem
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Hodge+theory"}> Hodge theory
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/Hodge+theorem"} Hodge theorem
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/nonabelian+Hodge+theory"}> nonabelian Hodge theory
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/noncommutative+Hodge+theory"} noncommutative Hodge theory
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Brown+representability+theorem"} Brown representability theorem
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/abelian+sheaf+cohomology"} hypercovering theorem
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Eckmann-Hilton+duality"} Eckmann-Hilton-Fuks duality
+                  %div
+                    %p
+                      %a{:href => "/nlab/edit/cohomology+-+contents"} Edit this sidebar
+              %h4#higher_geometry Higher geometry
+              .hide
+                %div
+                  %p
+                    %strong
+                      %a.existingWikiWord{:href => "/nlab/show/higher+geometry"} higher geometry
+                    \/
+                    %strong
+                      %a.existingWikiWord{:href => "/nlab/show/derived+geometry"} derived geometry
+                  %p
+                    %strong Ingredients
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/higher+topos+theory"} higher topos theory
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/higher+algebra"} higher algebra
+                  %p
+                    %strong Concepts
+                  %ul
+                    %li
+                      %p
+                        %strong
+                          geometric
+                          %a.existingWikiWord{:href => "/nlab/show/big+and+little+toposes"} little
+                          = succeed "es" do
+                            %a.existingWikiWord{:href => "/nlab/show/%28%E2%88%9E%2C1%29-topos"} (∞,1)-topos
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/structured+%28%E2%88%9E%2C1%29-topos"} structured (∞,1)-topos
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/geometry+%28for+structured+%28%E2%88%9E%2C1%29-toposes%29"} geometry (for structured (∞,1)-toposes)
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/generalized+scheme"} generalized scheme
+                    %li
+                      %p
+                        %strong
+                          geometric
+                          %a.existingWikiWord{:href => "/nlab/show/big+and+little+toposes"} big
+                          = succeed "es" do
+                            %a.existingWikiWord{:href => "/nlab/show/%28%E2%88%9E%2C1%29-topos"} (∞,1)-topos
+                      %ul
+                        %li
+                          %a.existingWikiWord{:href => "/nlab/show/cohesive+%28%E2%88%9E%2C1%29-topos"} cohesive (∞,1)-topos
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/function+algebras+on+%E2%88%9E-stacks"} function algebras on ∞-stacks
+                      %ul
+                        %li
+                          %a.existingWikiWord{:href => "/nlab/show/geometric+%E2%88%9E-stacks"} geometric ∞-stacks
+                  %p
+                    %strong Constructions
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/loop+space+object"}> loop space object
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/free+loop+space+object"} free loop space object
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/fundamental+%E2%88%9E-groupoid+in+a+locally+%E2%88%9E-connected+%28%E2%88%9E%2C1%29-topos"} fundamental ∞-groupoid in a locally ∞-connected (∞,1)-topos
+                        \/
+                        %a.existingWikiWord{:href => "/nlab/show/fundamental+%E2%88%9E-groupoid+of+a+locally+%E2%88%9E-connected+%28%E2%88%9E%2C1%29-topos"} of a locally ∞-connected (∞,1)-topos
+                  %p
+                    %strong Examples
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/derived+algebraic+geometry"} derived algebraic geometry
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/%C3%A9tale+%28%E2%88%9E%2C1%29-site"}> étale (∞,1)-site
+                            ,
+                            %a.existingWikiWord{:href => "/nlab/show/Hochschild+cohomology"} Hochschild cohomology
+                            of
+                            = succeed "s" do
+                              %a.existingWikiWord{:href => "/nlab/show/dg-algebra"} dg-algebra
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/dg-geometry"} dg-geometry
+                          %ul
+                            %li
+                              %a.existingWikiWord{:href => "/nlab/show/dg-scheme"} dg-scheme
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/schematic+homotopy+type"} schematic homotopy type
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/derived+noncommutative+geometry"} derived noncommutative geometry
+                      %ul
+                        %li
+                          %a.existingWikiWord{:href => "/nlab/show/noncommutative+geometry"} noncommutative geometry
+                    %li
+                      %p derived smooth geometry
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/differential+geometry"}> differential geometry
+                            ,
+                            %a.existingWikiWord{:href => "/nlab/show/differential+topology"} differential topology
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/derived+smooth+manifold"}> derived smooth manifold
+                            ,
+                            %a.existingWikiWord{:href => "/nlab/show/dg-manifold"} dg-manifold
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/smooth+%E2%88%9E-groupoid"}> smooth ∞-groupoid
+                            ,
+                            %a.existingWikiWord{:href => "/nlab/show/%E2%88%9E-Lie+algebroid"} ∞-Lie algebroid
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/higher+symplectic+geometry"} higher symplectic geometry
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/higher+Klein+geometry"} higher Klein geometry
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/higher+Cartan+geometry"} higher Cartan geometry
+                  %p
+                    %strong Theorems
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Isbell+duality"} Isbell duality
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Hochschild+cohomology"}> Jones' theorem
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/Hochschild+cohomology"} Deligne-Kontsevich conjecture
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Tannaka+duality+for+geometric+stacks"} Tannaka duality for geometric stacks
+              %h4#higher_algebra Higher algebra
+              .hide
+                %div
+                  %p
+                    %strong
+                      %a.existingWikiWord{:href => "/nlab/show/higher+algebra"} higher algebra
+                  %p
+                    %a.existingWikiWord{:href => "/nlab/show/universal+algebra"} universal algebra
+                  %h2#algebraic_theories Algebraic theories
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/algebraic+theory"} algebraic theory
+                        \/
+                        %a.existingWikiWord{:href => "/nlab/show/2-algebraic+theory"} 2-algebraic theory
+                        \/
+                        %a.existingWikiWord{:href => "/nlab/show/%28%E2%88%9E%2C1%29-algebraic+theory"} (∞,1)-algebraic theory
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/monad"} monad
+                        \/
+                        %a.existingWikiWord{:href => "/nlab/show/%28%E2%88%9E%2C1%29-monad"} (∞,1)-monad
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/operad"} operad
+                        \/
+                        %a.existingWikiWord{:href => "/nlab/show/%28%E2%88%9E%2C1%29-operad"} (∞,1)-operad
+                  %h2#algebras_and_modules Algebras and modules
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/algebra+over+a+monad"} algebra over a monad
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/%E2%88%9E-algebra+over+an+%28%E2%88%9E%2C1%29-monad"} ∞-algebra over an (∞,1)-monad
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/algebra+over+an+algebraic+theory"} algebra over an algebraic theory
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/%E2%88%9E-algebra+over+an+%28%E2%88%9E%2C1%29-algebraic+theory"} ∞-algebra over an (∞,1)-algebraic theory
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/algebra+over+an+operad"} algebra over an operad
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/%E2%88%9E-algebra+over+an+%28%E2%88%9E%2C1%29-operad"} ∞-algebra over an (∞,1)-operad
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/action"}> action
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/%E2%88%9E-action"} ∞-action
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/representation"}> representation
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/%E2%88%9E-representation"} ∞-representation
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/module"}> module
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/%E2%88%9E-module"} ∞-module
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/associated+bundle"}> associated bundle
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/associated+%E2%88%9E-bundle"} associated ∞-bundle
+                  %h2#higher_algebras Higher algebras
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/monoidal+%28%E2%88%9E%2C1%29-category"} monoidal (∞,1)-category
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/symmetric+monoidal+%28%E2%88%9E%2C1%29-category"} symmetric monoidal (∞,1)-category
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/monoid+in+an+%28%E2%88%9E%2C1%29-category"} monoid in an (∞,1)-category
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/commutative+monoid+in+an+%28%E2%88%9E%2C1%29-category"} commutative monoid in an (∞,1)-category
+                    %li
+                      %p symmetric monoidal (∞,1)-category of spectra
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/smash+product+of+spectra"} smash product of spectra
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/symmetric+monoidal+smash+product+of+spectra"} symmetric monoidal smash product of spectra
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/ring+spectrum"}> ring spectrum
+                            ,
+                            = succeed "," do
+                              %a.existingWikiWord{:href => "/nlab/show/module+spectrum"} module spectrum
+                            %a.existingWikiWord{:href => "/nlab/show/algebra+spectrum"} algebra spectrum
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/A-%E2%88%9E+algebra"} A-∞ algebra
+                      %ul
+                        %li
+                          %a.existingWikiWord{:href => "/nlab/show/A-%E2%88%9E+ring"}> A-∞ ring
+                          ,
+                          %a.existingWikiWord{:href => "/nlab/show/A-%E2%88%9E+space"} A-∞ space
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/C-%E2%88%9E+algebra"} C-∞ algebra
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/E-%E2%88%9E+ring"}> E-∞ ring
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/E-%E2%88%9E+algebra"} E-∞ algebra
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/%E2%88%9E-module"}> ∞-module
+                            ,
+                            %a.existingWikiWord{:href => "/nlab/show/%28%E2%88%9E%2C1%29-module+bundle"} (∞,1)-module bundle
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/multiplicative+cohomology+theory"} multiplicative cohomology theory
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/L-%E2%88%9E+algebra"} L-∞ algebra
+                      %ul
+                        %li
+                          %a.existingWikiWord{:href => "/nlab/show/deformation+theory"} deformation theory
+                  %h2#model_category_presentations Model category presentations
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/model+structure+on+simplicial+T-algebras"} model structure on simplicial T-algebras
+                        \/
+                        %a.existingWikiWord{:href => "/nlab/show/homotopy+T-algebra"} homotopy T-algebra
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/model+structure+on+operads"} model structure on operads
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/model+structure+on+algebras+over+an+operad"} model structure on algebras over an operad
+                  %h2#geometry_on_formal_duals_of_algebras Geometry on formal duals of algebras
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Isbell+duality"} Isbell duality
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/derived+geometry"} derived geometry
+                  %h2#theorems Theorems
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Deligne+conjecture"} Deligne conjecture
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/delooping+hypothesis"} delooping hypothesis
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/monoidal+Dold-Kan+correspondence"} monoidal Dold-Kan correspondence
+                  %div
+                    %p
+                      %a{:href => "/nlab/edit/higher+algebra+-+contents"} Edit this sidebar
+          .standout
+            %p This entry is about the text
+            %ul
+              %li
+                %a.existingWikiWord{:href => "/nlab/show/Jacob+Lurie"}> Jacob Lurie
+                ,
+                = succeed "," do
+                  %em A Survey of Elliptic Cohomology
+                = succeed "," do
+                  %em Algebraic Topology
+                = succeed "," do
+                  %a{:href => "http://www.math.harvard.edu/~lurie/papers/survey.pdf"} pdf
+                = succeed ")" do
+                  %a{:href => "https://doi.org/10.1007/978-3-642-01200-6_9"} doi:10.1007/978-3-642-01200-6_9
+            %p It
+            %ul
+              %li
+                %p
+                  reviews basics of
+                  %a.existingWikiWord{:href => "/nlab/show/elliptic+cohomology"} elliptic cohomology
+              %li
+                %p
+                  indicates the construction of the
+                  = succeed "-" do
+                    %a.existingWikiWord{:href => "/nlab/show/tmf"} tmf
+                  %a.existingWikiWord{:href => "/nlab/show/spectrum"} spectrum
+              %li
+                %p
+                  and discusses this in the context of
+                  = succeed "." do
+                    %a.existingWikiWord{:href => "/nlab/show/equivariant+cohomology"} equivariant cohomology
+            %p The central theorem is
+            %ul
+              %li
+                %p
+                  the realization of the moduli space of
+                  = succeed "s" do
+                    %a.existingWikiWord{:href => "/nlab/show/elliptic+curve"} elliptic curve
+                  %a.existingWikiWord{:href => "/nlab/show/structured+%28%E2%88%9E%2C1%29-topos"} structured (∞,1)-topos
+              %li
+                %p
+                  with a structure
+                  %a.existingWikiWord{:href => "/nlab/show/%28%E2%88%9E%2C1%29-sheaf"} (∞,1)-sheaf
+                  of
+                  = succeed "-valued" do
+                    %a.existingWikiWord{:href => "/nlab/show/E-%E2%88%9E+ring"} E-∞ ring
+              %li
+                %p
+                  such that the
+                  = succeed "-" do
+                    %a.existingWikiWord{:href => "/nlab/show/tmf"} tmf
+                  %a.existingWikiWord{:href => "/nlab/show/spectrum"} spectrum
+                  is the
+                  %a.existingWikiWord{:href => "/nlab/show/E-%E2%88%9E+ring"} E-∞ ring
+                  of global sections of this structure sheaf.
+          %p
+            See also
+            %em
+              %a.existingWikiWord{:href => "/nlab/show/Elliptic+Cohomology+I"} Elliptic Cohomology I
+            and
+            = succeed "." do
+              %em
+                %a.existingWikiWord{:href => "/nlab/show/Chromatic+Homotopy+Theory"} Chromatic Homotopy Theory
+          %h1#table_of_contents Table of Contents
+          %ol
+            %li
+              %p
+                %a{:href => "#Summary"} Summary
+              %p The following entry has some paragraphs that summarize central ideas.
+              %ol
+                %li
+                  %p
+                    %a{:href => "#gluingallellipticcohomologytheoriestothetmfspectrum"} gluing all elliptic cohomology theories to the tmf spectrum
+                %li
+                  %p
+                    %a{:href => "#interpretationintermsofhighertopostheory"} interpretation in terms of higher topos theory
+            %li
+              %p Partial surveys
+              %p
+                These links point to pages that contain notes on aspects of the theory that are in the style of and originate from
+                = succeed ":" do
+                  %a{:href => "http://nd.edu/~rgrady/elliptic_seminar.html"} a seminar on A Survey of Elliptic Cohomology
+              %ol
+                %li
+                  %p
+                    %a.existingWikiWord{:href => "/nlab/show/A+Survey+of+Elliptic+Cohomology+-+cohomology+theories"} A Survey of Elliptic Cohomology - cohomology theories
+                %li
+                  %p
+                    %a.existingWikiWord{:href => "/nlab/show/A+Survey+of+Elliptic+Cohomology+-+formal+groups+and+cohomology"} A Survey of Elliptic Cohomology - formal groups and cohomology
+                %li
+                  %p
+                    %a.existingWikiWord{:href => "/nlab/show/A+Survey+of+Elliptic+Cohomology+-+E-infinity+rings+and+derived+schemes"} A Survey of Elliptic Cohomology - E-infinity rings and derived schemes
+                %li
+                  %p
+                    %a.existingWikiWord{:href => "/nlab/show/A+Survey+of+Elliptic+Cohomology+-+elliptic+curves"} A Survey of Elliptic Cohomology - elliptic curves
+                %li
+                  %p
+                    %a.existingWikiWord{:href => "/nlab/show/A+Survey+of+Elliptic+Cohomology+-+equivariant+cohomology"} A Survey of Elliptic Cohomology - equivariant cohomology
+                %li
+                  %p
+                    %a.existingWikiWord{:href => "/nlab/show/A+Survey+of+Elliptic+Cohomology+-+derived+group+schemes+and+%28pre-%29orientations"} A Survey of Elliptic Cohomology - derived group schemes and (pre-)orientations
+                %li
+                  %p
+                    %a.existingWikiWord{:href => "/nlab/show/A+Survey+of+Elliptic+Cohomology+-+A-equivariant+cohomology"} A Survey of Elliptic Cohomology - A-equivariant cohomology
+                %li
+                  %p
+                    %a.existingWikiWord{:href => "/nlab/show/A+Survey+of+Elliptic+Cohomology+-+the+derived+moduli+stack+of+derived+elliptic+curves"} A Survey of Elliptic Cohomology - the derived moduli stack of derived elliptic curves
+                %li
+                  %p
+                    %a.existingWikiWord{:href => "/nlab/show/A+Survey+of+Elliptic+Cohomology+-+towards+a+proof"} A Survey of Elliptic Cohomology - towards a proof
+                %li
+                  %p
+                    %a.existingWikiWord{:href => "/nlab/show/A+Survey+of+Elliptic+Cohomology+-+compactifying+the+derived+moduli+stack"} A Survey of Elliptic Cohomology - compactifying the derived moduli stack
+                %li
+                  %p
+                    %a.existingWikiWord{:href => "/nlab/show/A+Survey+of+Elliptic+Cohomology+-+descent+ss+and+coefficients"} A Survey of Elliptic Cohomology - descent ss and coefficients
+            %li
+              %p towards geometric models
+              %p
+                These links point to pages that have an exposition of the Stolz-Teichner program for constructing
+                = succeed "." do
+                  %a.existingWikiWord{:href => "/nlab/show/geometric+models+for+elliptic+cohomology"} geometric models for elliptic cohomology
+          %ul
+            %li
+              %p Outline of the constructions and statements
+              %ul
+                %li
+                  %p
+                    %a.existingWikiWord{:href => "/nlab/show/Axiomatic+field+theories+and+their+motivation+from+topology"} Axiomatic field theories and their motivation from topology
+                %li
+                  %p
+                    %a.existingWikiWord{:href => "/nlab/show/%281%2C1%29-dimensional+Euclidean+field+theories+and+K-theory"} (1,1)-dimensional Euclidean field theories and K-theory
+                %li
+                  %p
+                    %a.existingWikiWord{:href => "/nlab/show/%282%2C1%29-dimensional+Euclidean+field+theories+and+tmf"} (2,1)-dimensional Euclidean field theories and tmf
+            %li
+              %p Definitions
+              %ul
+                %li
+                  %p
+                    %a.existingWikiWord{:href => "/nlab/show/bordism+categories+following+Stolz-Teichner"} bordism categories following Stolz-Teichner
+                %li
+                  %p
+                    %span.newWikiWord
+                      (2,1)-dimensional Euclidean field theories
+                      %a{:href => "/nlab/new/%282%2C1%29-dimensional+Euclidean+field+theories"} ?
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Geometric+Models+for+Elliptic+Cohomology"} Geometric models for elliptic cohomology – Axiomatic field theories and their motivation from topology
+          %h1#contents Contents
+          %p Here is the table of contents of the Survey reproduced. Behind the links are linked keyword lists for relevant terms.
+          .maruku_toc
+            %ul
+              %li
+                %a{:href => "#Summary"} Summary
+              %ul
+                %li
+                  %a{:href => "#gluingallellipticcohomologytheoriestothetmfspectrum"} Gluing all elliptic cohomology theories to the tmf spectrum
+                %li
+                  %a{:href => "#interpretationintermsofhighertopostheory"} Interpretation in terms of higher topos theory
+              %li
+                %a{:href => "#equivariantellipticcohomology"} equivariant elliptic cohomology
+              %li
+                %a{:href => "#Contents"} Contents
+              %ul
+                %li
+                  %a{:href => "#EllipticCohomology"} 1. Elliptic Cohomology
+                %ul
+                  %li
+                    %a{:href => "#CohomologyTheories"} 1.1 Cohomology Theories
+                  %li
+                    %a{:href => "#FormalgroupsFromCohomologyTheories"} 1.2 Formal Groups from Cohomology Theories
+                  %li
+                    %a{:href => "#EllipticCohomology"} 1.3 Elliptic Cohomology
+                %li
+                  %a{:href => "#DerivedAlgebraicCohomology"} 2 Derived Algebraic geometry
+                %ul
+                  %li
+                    %a{:href => "#21__rings"}
+                      2.1
+                      %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                        %semantics
+                          %mrow
+                            %msub
+                              %mi E
+                              %mn ∞
+                          %annotation{:encoding => "application/x-tex"} E_\infty
+                      rings
+                  %li
+                    %a{:href => "#22_derived_schemes"} 2.2 Derived Schemes
+                %li
+                  %a{:href => "#3_derived_group_schemes_and_orientations"} 3 Derived Group Schemes and Orientations
+                %ul
+                  %li
+                    %a{:href => "#31_orientations_of_the_multiplicative_group"} 3.1 Orientations of the Multiplicative Group
+                  %li
+                    %a{:href => "#32_orientations_of_the_additive_group"} 3.2 Orientations of the Additive Group
+                  %li
+                    %a{:href => "#33_the_geometry_of_preorientations"} 3.3 The Geometry of Preorientations
+                  %li
+                    %a{:href => "#34_equivariant_cohomology_for_abelian_groups"}
+                      3.4 Equivariant
+                      = succeed "-Cohomology" do
+                        %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                          %semantics
+                            %mrow
+                              %mi A
+                            %annotation{:encoding => "application/x-tex"} A
+                  %li
+                    %a{:href => "#35_the_nonabelian_case"} 3.5 The Nonabelian Case
+                %li
+                  %a{:href => "#4_oriented_elliptic_curves"} 4 Oriented Elliptic Curves
+                %ul
+                  %li
+                    %a{:href => "#41_construction_of_the_moduli_stack"} 4.1 Construction of the Moduli Stack
+                  %li
+                    %a{:href => "#42_the_proof_of_theorem_44_the_local_case"} 4.2 The Proof of Theorem 4.4: The Local Case
+                  %li
+                    %a{:href => "#43_elliptic_cohomology_near_"}
+                      4.3 Elliptic Cohomology near
+                      %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                        %semantics
+                          %mrow
+                            %mn ∞
+                          %annotation{:encoding => "application/x-tex"} \infty
+                %li
+                  %a{:href => "#5_applications"} 5 Applications
+                %ul
+                  %li
+                    %a{:href => "#51_2equivariant_elliptic_cohomology"} 5.1 2-Equivariant Elliptic Cohomology
+                  %li
+                    %a{:href => "#52_loop_group_representations"} 5.2 Loop Group Representations
+                  %li
+                    %a{:href => "#53_string_orientation"} 5.3 String Orientation
+                  %li
+                    %a{:href => "#54_higher_equivariance"} 5.4 Higher Equivariance
+                  %li
+                    %a{:href => "#55_elliptic_cohomology_and_geometry"} 5.5 Elliptic Cohomology and Geometry
+              %li
+                %a{:href => "#furtherreferences"} Further references
+          %h2#Summary Summary
+          %p The text starts with showing or recalling that
+          %ul
+            %li
+              %p
+                the collection of all
+                %a.existingWikiWord{:href => "/nlab/show/elliptic+cohomology"} elliptic cohomology
+                theories and
+            %li
+              %p
+                the gluing of their representing
+                %a.existingWikiWord{:href => "/nlab/show/spectrum"} spectra
+                into the single
+                %a.existingWikiWord{:href => "/nlab/show/tmf"} tmf
+                spectrum
+          %p
+            is best understood in terms of global sections of the structure sheaf of functions on the refinement of the moduli
+            %a.existingWikiWord{:href => "/nlab/show/space"} space
+            of all elliptic curves to a
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/structured+%28%E2%88%9E%2C1%29-topos"} structured (∞,1)-topos
+          %p
+            Then it uses this
+            %a.existingWikiWord{:href => "/nlab/show/higher+topos+theory"} higher topos theoretic
+            %a.existingWikiWord{:href => "/nlab/show/derived+algebraic+geometry"} derived algebraic geometry
+            perspective to analyze further properties of
+            %a.existingWikiWord{:href => "/nlab/show/elliptic+cohomology"} elliptic cohomology
+            theories, in particular their refinements to
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/equivariant+cohomology"} equivariant cohomology
+          %h3#gluingallellipticcohomologytheoriestothetmfspectrum Gluing all elliptic cohomology theories to the tmf spectrum
+          %p
+            The triple of
+            %a.existingWikiWord{:href => "/nlab/show/generalized+%28Eilenberg-Steenrod%29+cohomology"} generalized (Eilenberg-Steenrod) cohomology
+            theories
+          %ol
+            %li
+              %p
+                periodic ordinary
+                %a.existingWikiWord{:href => "/nlab/show/integral+cohomology"} integral cohomology
+            %li
+              %p
+                complex
+                %a.existingWikiWord{:href => "/nlab/show/K-theory"} K-theory
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/elliptic+cohomology"} elliptic cohomology
+          %p
+            constitutes the collection of all possible
+            %a.existingWikiWord{:href => "/nlab/show/generalized+%28Eilenberg-Steenrod%29+cohomology"} generalized (Eilenberg-Steenrod) cohomology
+            theories with the extra
+            %a.existingWikiWord{:href => "/nlab/show/stuff%2C+structure%2C+property"} property
+            that they are
+          %ul
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/multiplicative+cohomology+theory"} multiplicative
+          %p and
+          %ul
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/periodic+cohomology+theory"}> periodic
+              \.
+          %p
+            It so happens that all multiplicative periodic generalized Eilenberg-Steenrod cohomology theories
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi A
+                %annotation{:encoding => "application/x-tex"} A
+            are characterized by the
+            %a.existingWikiWord{:href => "/nlab/show/formal+group"} formal group
+            (an
+            %a.existingWikiWord{:href => "/nlab/show/infinitesimal+space"} infinitesimal
+            = succeed ")" do
+              %a.existingWikiWord{:href => "/nlab/show/group"} group
+            %a.existingWikiWord{:href => "/nlab/show/ring"} ring
+            of functions is the
+            %a.existingWikiWord{:href => "/nlab/show/cohomology+ring"} cohomology ring
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi A
+                  %mo{:stretchy => "false"} (
+                  %mi ℂ
+                  %msup
+                    %mi P
+                    %mn ∞
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} A(\mathbb{C}P^\infty)
+            obtained by evaluating
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi A
+                %annotation{:encoding => "application/x-tex"} A
+            on the complex projective space
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi ℂ
+                  %msup
+                    %mi P
+                    %mn ∞
+                  %mo ≃
+                  %mi ℬ
+                  %mi U
+                  %mo{:stretchy => "false"} (
+                  %mn 1
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} \mathbb{C}P^\infty \simeq \mathcal{B} U(1)
+            – the
+            %a.existingWikiWord{:href => "/nlab/show/classifying+space"} classifying space
+            for complex
+            = succeed "s" do
+              %a.existingWikiWord{:href => "/nlab/show/line+bundle"} line bundle
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi ℂ
+                  %msup
+                    %mi P
+                    %mn ∞
+                  %mo ×
+                  %mi ℂ
+                  %msup
+                    %mi P
+                    %mn ∞
+                  %mo →
+                  %mi ℂ
+                  %msup
+                    %mi P
+                    %mn ∞
+                %annotation{:encoding => "application/x-tex"} \mathbb{C}P^\infty \times \mathbb{C}P^\infty \to \mathbb{C}P^\infty
+            that representes the
+            %a.existingWikiWord{:href => "/nlab/show/tensor+product"} tensor product
+            of complex
+            = succeed "s." do
+              %a.existingWikiWord{:href => "/nlab/show/line+bundle"} line bundle
+          %p There are precisely three different types of such formal groups:
+          %ul
+            %li
+              %p the additive formal group (a single one)
+            %li
+              %p the multiplicative formal group (a single one)
+            %li
+              %p
+                a formal group defined by an
+                %a.existingWikiWord{:href => "/nlab/show/elliptic+curve"} elliptic curve
+                (many).
+          %p
+            The first case corresponds to periodic
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/integral+cohomology"} integral cohomology
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/K-theory"} K-theory
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/elliptic+cohomology"} elliptic cohomology
+          %p
+            It is therefore natural to subsume all elliptic cohomology theories into one single cohomology theory. This is the theory called
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/tmf"} tmf
+          %p
+            It turns out that the right way to formalize what “subsume” means in the above sentence involves formulating the way in which an
+            %a.existingWikiWord{:href => "/nlab/show/elliptic+cohomology"} elliptic cohomology
+            theory is associated to a given
+            %a.existingWikiWord{:href => "/nlab/show/elliptic+curve"} elliptic curve
+            in the correct
+            %a.existingWikiWord{:href => "/nlab/show/higher+category+theory"} higher categorical
+            language:
+          %p
+            The collection of all 1-dimensional
+            = succeed "s" do
+              %a.existingWikiWord{:href => "/nlab/show/elliptic+curve"} elliptic curve
+            %a.existingWikiWord{:href => "/nlab/show/space"} space
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msub
+                    %mi M
+                    %mrow
+                      %mn 1
+                      %mo ,
+                      %mn 1
+                %annotation{:encoding => "application/x-tex"} M_{1,1}
+            – a
+            %a.existingWikiWord{:href => "/nlab/show/stack"} stack
+            – defined by the property that it is the
+            %a.existingWikiWord{:href => "/nlab/show/classifying+space"} classifying space
+            for elliptic curves in that elliptic curves over a ring
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi R
+                %annotation{:encoding => "application/x-tex"} R
+            correspond to classifying maps
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi ϕ
+                    %mo :
+                    %mi Spec
+                    %mi R
+                    %mo →
+                    %msub
+                      %mi M
+                      %mrow
+                        %mn 1
+                        %mo ,
+                        %mn 1
+                  %annotation{:encoding => "application/x-tex"} \phi : Spec R \to M_{1,1}
+          %p
+            Then the classical assignment of an
+            %a.existingWikiWord{:href => "/nlab/show/elliptic+cohomology"} elliptic cohomology
+            theory to an
+            %a.existingWikiWord{:href => "/nlab/show/elliptic+curve"} elliptic curve
+            is an assignment
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mo{:stretchy => "false"} {
+                  %mi ϕ
+                  %mo :
+                  %mi Spec
+                  %mi R
+                  %mo →
+                  %msub
+                    %mi M
+                    %mrow
+                      %mn 1
+                      %mo ,
+                      %mn 1
+                  %mo{:stretchy => "false"} }
+                  %mo →
+                  %mi CohomologyTheories
+                  %mspace{:width => "thinmathspace"}
+                  %mo .
+                %annotation{:encoding => "application/x-tex"}
+                  \\{\phi : Spec R \to M_{1,1}\}
+                  \\to
+                  CohomologyTheories
+                  \\,.
+          %p
+            We may think of maps
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi Spec
+                  %mi R
+                  %mo →
+                  %msub
+                    %mi M
+                    %mrow
+                      %mn 1
+                      %mo ,
+                      %mn 1
+                %annotation{:encoding => "application/x-tex"} Spec R \to M_{1,1}
+            as picking certain subsets of the generalized
+            %a.existingWikiWord{:href => "/nlab/show/space"} space
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msub
+                    %mi M
+                    %mrow
+                      %mn 1
+                      %mo ,
+                      %mn 1
+                %annotation{:encoding => "application/x-tex"} M_{1,1}
+            and of morphisms
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mrow
+                    %mtable
+                      %mtr
+                        %mtd
+                          %mi Spec
+                          %mo{:stretchy => "false"} (
+                          %mi R
+                          %mo{:stretchy => "false"} )
+                        %mtd
+                        %mtd
+                          %mo →
+                        %mtd
+                        %mtd
+                          %mi Spec
+                          %mo{:stretchy => "false"} (
+                          %mi R
+                          %mo ′
+                          %mo{:stretchy => "false"} )
+                      %mtr
+                        %mtd
+                        %mtd
+                          %mo ↘
+                        %mtd
+                        %mtd
+                          %mo ↙
+                      %mtr
+                        %mtd
+                        %mtd
+                        %mtd
+                          %msub
+                            %mi M
+                            %mrow
+                              %mn 1
+                              %mo ,
+                              %mn 1
+                %annotation{:encoding => "application/x-tex"}
+                  \\array{
+                  Spec(R) &amp;&amp;\to&amp;&amp; Spec(R')
+                  \\\
+                  \&amp; \searrow &amp;&amp; \swarrow
+                  \\\
+                  \&amp;&amp; M_{1,1}
+                  }
+          %p
+            as maps between such subsets. Hence the assignment of cohomology theories to elliptic curves is much like a
+            %a.existingWikiWord{:href => "/nlab/show/sheaf"} sheaf
+            of cohomology theories on the moduli
+            %a.existingWikiWord{:href => "/nlab/show/space"} space
+            (
+            %a.existingWikiWord{:href => "/nlab/show/stack"}> stack
+            ) of
+            = succeed "s." do
+              %a.existingWikiWord{:href => "/nlab/show/elliptic+curve"} elliptic curve
+          %p
+            In order to
+            %em glue
+            all elliptic cohomology theories in some way one would like to take something like the
+            %a.existingWikiWord{:href => "/nlab/show/category+of+elements"} category of elements
+            of this
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/sheaf"} sheaf
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/homotopy+limit"} homotopy limit
+          %p
+            As emphasized at
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/generalized+%28Eilenberg-Steenrod%29+cohomology"} generalized (Eilenberg-Steenrod) cohomology
+            %a.existingWikiWord{:href => "/nlab/show/spectrum"} spectrum
+            that represents it. It is and was well known how to do this for each elliptic curve separately. What is not so clear is how this can be done coherently for all elliptic curves at once: we need a lift of the above cohomology-theory-valued sheaf to a sheaf of representing
+            %a.existingWikiWord{:href => "/nlab/show/spectrum"} spectra
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mrow
+                    %mtable
+                      %mtr
+                        %mtd
+                        %mtd
+                        %mtd
+                          %mi Spectra
+                      %mtr
+                        %mtd
+                        %mtd
+                          %msup
+                            %mrow
+                            %mo ?
+                          %mo ↗
+                        %mtd
+                          %mspace{:width => "thickmathspace"}
+                          %mspace{:width => "thickmathspace"}
+                          %mspace{:width => "thickmathspace"}
+                          %msup
+                            %mo{:stretchy => "false"} ↓
+                            %mi represent
+                      %mtr
+                        %mtd
+                          %mo{:stretchy => "false"} {
+                          %mi ϕ
+                          %mo :
+                          %mi Spec
+                          %mi R
+                          %mo →
+                          %msub
+                            %mi M
+                            %mrow
+                              %mn 1
+                              %mo ,
+                              %mn 1
+                          %mo{:stretchy => "false"} }
+                        %mtd
+                          %mo →
+                        %mtd
+                          %mi CohomologyTheories
+                  %mspace{:width => "thinmathspace"}
+                  %mo .
+                %annotation{:encoding => "application/x-tex"}
+                  \\array{
+                  \&amp;&amp; Spectra
+                  \\\
+                  \&amp; {}^{?}\nearrow &amp; \;\;\;\downarrow^{represent}
+                  \\\
+                  \\{\phi : Spec R \to M_{1,1}\}
+                  \&amp;\to&amp;
+                  CohomologyTheories
+                  }
+                  \\,.
+          %p
+            In this generality this turns out to be a hard problem. But by definition here we are really interested just in the special case where all cohomology theories in question are
+            %a.existingWikiWord{:href => "/nlab/show/multiplicative+cohomology+theory"} multiplicative cohomology theories
+            and where hence all spectra in question are
+            %a.existingWikiWord{:href => "/nlab/show/commutative+ring+spectrum"} commutative ring spectra
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mrow
+                    %mtable
+                      %mtr
+                        %mtd
+                        %mtd
+                        %mtd
+                          %mi CommRingSpectra
+                      %mtr
+                        %mtd
+                        %mtd
+                          %msup
+                            %mrow
+                            %mrow
+                              %msub
+                                %mi O
+                                %mrow
+                                  %msup
+                                    %mi M
+                                    %mi der
+                          %mo ↗
+                        %mtd
+                          %mo{:stretchy => "false"} ↓
+                      %mtr
+                        %mtd
+                          %mo{:stretchy => "false"} {
+                          %mi ϕ
+                          %mo :
+                          %mi Spec
+                          %mi R
+                          %mo →
+                          %msub
+                            %mi M
+                            %mrow
+                              %mn 1
+                              %mo ,
+                              %mn 1
+                          %mo{:stretchy => "false"} }
+                        %mtd
+                          %mo →
+                        %mtd
+                          %mi MultiplicativeCohomologyTheories
+                  %mspace{:width => "thinmathspace"}
+                  %mo .
+                %annotation{:encoding => "application/x-tex"}
+                  \\array{
+                  \&amp;&amp; CommRingSpectra
+                  \\\
+                  \&amp; {}^{O_{M^{der}}}\nearrow &amp; \downarrow
+                  \\\
+                  \\{\phi : Spec R \to M_{1,1}\}
+                  \&amp;\to&amp;
+                  MultiplicativeCohomologyTheories
+                  }
+                  \\,.
+          %p
+            As indicated, this problem does turn out to have a solution:
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/Paul+Goerss"} Goerss
+            %a.existingWikiWord{:href => "/nlab/show/Mike+Hopkins"} Hopkins
+            and
+            %a.existingWikiWord{:href => "/nlab/show/Haynes+Miller"} Miller
+            showed that the desired lift denoted
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msub
+                    %mi O
+                    %mrow
+                      %msup
+                        %mi M
+                        %mi der
+                %annotation{:encoding => "application/x-tex"} O_{M^{der}}
+            above exists – the
+            %em
+              %a.existingWikiWord{:href => "/nlab/show/Goerss-Hopkins-Miller+theorem"} Goerss-Hopkins-Miller theorem
+          %p
+            Accordingly, one can then obtain the
+            %a.existingWikiWord{:href => "/nlab/show/tmf"} tmf
+            spectrum as the
+            %a.existingWikiWord{:href => "/nlab/show/homotopy+limit"} homotopy limit
+            of this sheaf of
+            = succeed "s" do
+              %a.existingWikiWord{:href => "/nlab/show/E-%E2%88%9E+ring"} E-∞ ring
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi O
+                      %mrow
+                        %msup
+                          %mi M
+                          %mi der
+                  %annotation{:encoding => "application/x-tex"} O_{M^{der}}
+            %a.existingWikiWord{:href => "/nlab/show/limit+in+a+quasi-category"} limit in a quasi-category
+            that such a homotopy limit computes global sections. It is an
+            = succeed "-version" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mn ∞
+                  %annotation{:encoding => "application/x-tex"} \infty
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/Grothendieck+construction"} Grothendieck construction
+          %h3#interpretationintermsofhighertopostheory Interpretation in terms of higher topos theory
+          %p
+            What is noteworthy about the above construction is that, as the notation above suggests, sheaves of
+            = succeed "s" do
+              %a.existingWikiWord{:href => "/nlab/show/E-infinity+ring"} E-infinity ring
+            = succeed "s," do
+              %a.existingWikiWord{:href => "/nlab/show/ringed+space"} ringed space
+            = succeed "." do
+              %strong structure sheaves
+          %p
+            Accordingly, the morphism
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msub
+                    %mi O
+                    %mrow
+                      %msup
+                        %mi M
+                        %mi der
+                %annotation{:encoding => "application/x-tex"} O_{M^{der}}
+            makes the moduli
+            %a.existingWikiWord{:href => "/nlab/show/space"} space
+            of elliptic curves into a
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/structured+%28%E2%88%9E%2C1%29-topos"} structured (∞,1)-topos
+          %p
+            This perspective embeds the theory of
+            %a.existingWikiWord{:href => "/nlab/show/elliptic+cohomology"} elliptic cohomology
+            and of the
+            %a.existingWikiWord{:href => "/nlab/show/tmf"} tmf
+            spectrum as an application into the general context of
+            %a.existingWikiWord{:href => "/nlab/show/higher+topos+theory"} higher topos theory
+            and
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/derived+algebraic+geometry"} derived algebraic geometry
+          %h2#equivariantellipticcohomology equivariant elliptic cohomology
+          %ul
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/equivariant+elliptic+cohomology"} equivariant elliptic cohomology
+          %h2#Contents Contents
+          %h3#EllipticCohomology 1. Elliptic Cohomology
+          %h4#CohomologyTheories 1.1 Cohomology Theories
+          %ul
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/cohomology"} cohomology
+              %ul
+                %li
+                  %p
+                    %a.existingWikiWord{:href => "/nlab/show/generalized+%28Eilenberg-Steenrod%29+cohomology"} generalized (Eilenberg-Steenrod) cohomology
+                %li
+                  %p
+                    %a.existingWikiWord{:href => "/nlab/show/integral+cohomology"} integral cohomology
+                %li
+                  %p
+                    %a.existingWikiWord{:href => "/nlab/show/K-theory"} K-theory
+                %li
+                  %p
+                    %a.existingWikiWord{:href => "/nlab/show/elliptic+cohomology"} elliptic cohomology
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/multiplicative+cohomology+theory"} multiplicative cohomology theory
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/periodic+cohomology+theory"} periodic cohomology theory
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/topological+modular+form"} topological modular form
+          %h4#FormalgroupsFromCohomologyTheories 1.2 Formal Groups from Cohomology Theories
+          %ul
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/formal+group"} formal group
+          %h4#EllipticCohomology 1.3 Elliptic Cohomology
+          %ul
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/elliptic+curve"} elliptic curve
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/elliptic+cohomology"} elliptic cohomology
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/E-%E2%88%9E+ring"} E-∞ ring
+          %h3#DerivedAlgebraicCohomology 2 Derived Algebraic geometry
+          %ul
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/derived+algebraic+geometry"} derived algebraic geometry
+              %ul
+                %li
+                  %p
+                    %a.existingWikiWord{:href => "/nlab/show/higher+topos+theory"} higher topos theory
+                %li
+                  %p
+                    %a.existingWikiWord{:href => "/nlab/show/higher+algebra"} higher algebra
+          %h4#21__rings
+            2.1
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msub
+                    %mi E
+                    %mn ∞
+                %annotation{:encoding => "application/x-tex"} E_\infty
+            rings
+          %ul
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/commutative+algebra+in+an+%28%E2%88%9E%2C1%29-category"} commutative algebra in an (∞,1)-category
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/E-%E2%88%9E+ring"} E-∞ ring
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/commutative+ring+spectrum"} commutative ring spectrum
+          %h4#22_derived_schemes 2.2 Derived Schemes
+          %ul
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/structured+%28%E2%88%9E%2C1%29-topos"} structured (∞,1)-topos
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/derived+scheme"} derived scheme
+          %h3#3_derived_group_schemes_and_orientations 3 Derived Group Schemes and Orientations
+          %ul
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/group+scheme"} group scheme
+          %h4#31_orientations_of_the_multiplicative_group 3.1 Orientations of the Multiplicative Group
+          %h4#32_orientations_of_the_additive_group 3.2 Orientations of the Additive Group
+          %h4#33_the_geometry_of_preorientations 3.3 The Geometry of Preorientations
+          %h4#34_equivariant_cohomology_for_abelian_groups
+            3.4 Equivariant
+            = succeed "-Cohomology" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi A
+                  %annotation{:encoding => "application/x-tex"} A
+          %h4#35_the_nonabelian_case 3.5 The Nonabelian Case
+          %h3#4_oriented_elliptic_curves 4 Oriented Elliptic Curves
+          %h4#41_construction_of_the_moduli_stack 4.1 Construction of the Moduli Stack
+          %h4#42_the_proof_of_theorem_44_the_local_case 4.2 The Proof of Theorem 4.4: The Local Case
+          %h4#43_elliptic_cohomology_near_
+            4.3 Elliptic Cohomology near
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mn ∞
+                %annotation{:encoding => "application/x-tex"} \infty
+          %h3#5_applications 5 Applications
+          %h4#51_2equivariant_elliptic_cohomology 5.1 2-Equivariant Elliptic Cohomology
+          %ul
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/equivariant+elliptic+cohomology"} equivariant elliptic cohomology
+          %h4#52_loop_group_representations 5.2 Loop Group Representations
+          %ul
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/loop+group"} loop group
+          %h4#53_string_orientation 5.3 String Orientation
+          %ul
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/string+structure"} string structure
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/sigma-orientation"} sigma-orientation
+          %h4#54_higher_equivariance 5.4 Higher Equivariance
+          %h4#55_elliptic_cohomology_and_geometry 5.5 Elliptic Cohomology and Geometry
+          %h2#furtherreferences Further references
+          %p
+            Lots of literature on
+            = succeed "s" do
+              %a.existingWikiWord{:href => "/nlab/show/modular+form"} modular form
+          %ul
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/Nora+Ganter"}> Nora Ganter
+              ,
+              %a{:href => "http://www.math.uiuc.edu/~ganter/talbot/index.html"} Topological modular forms literature list
+          %p
+            An introduction to and survey of the
+            %a.existingWikiWord{:href => "/nlab/show/Goerss-Hopkins-Miller-Lurie+theorem"} Goerss-Hopkins-Miller-Lurie theorem
+            is in
+          %ul
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/Paul+Goerss"}> Paul Goerss
+              ,
+              %em Topological modular forms (after Hopkins, Miller, and Lurie)
+              Séminaire BOURBAKI Mars 2009 61ème année, 2008-2009, no 1005(2009)(
+              %a{:href => "http://arxiv.org/abs/0910.5130"}> arXiv
+              )
+          %p which has grown out of
+          %ul
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/Topological+Algebraic+Geometry+-+A+Workshop"}> Topological Algebraic Geometry - A Workshop
+              \.
+          %p A good bit of details is in
+          %ul
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/David+Gepner"}> David Gepner
+              ,
+              = succeed "," do
+                %em
+                  %a.existingWikiWord{:href => "/nlab/show/Homotopy+topoi+and+equivariant+elliptic+cohomology"} Homotopy topoi and equivariant elliptic cohomology
+              = succeed ")" do
+                %a{:href => "http://www.ms.unimelb.edu.au/~nganter/talbot/gepner.thesisformat.pdf"} pdf
+        .revisedby
+          %p
+            Last revised on November  2, 2020 at 04:04:21.
+            See the
+            %a{:href => "/nlab/history/A+Survey+of+Elliptic+Cohomology", :style => "color: #005c19"} history
+            of this page for a list of all contributions to it.
+        .navigation.navfoot
+          %a#edit.navlink{:accesskey => "E", :href => "/nlab/edit/A+Survey+of+Elliptic+Cohomology", :rel => "nofollow"} Edit
+          %a{:href => "https://nforum.ncatlab.org/discussion/11823/#Item_1"} Discuss
+          %span.backintime
+            %a#to_previous_revision.navlinkbackintime{:accesskey => "B", :href => "/nlab/revision/A+Survey+of+Elliptic+Cohomology/37", :rel => "nofollow"} Previous revision
+          %a#see_changes.navlink{:accesskey => "C", :href => "/nlab/show/diff/A+Survey+of+Elliptic+Cohomology", :rel => "nofollow"} Changes from previous revision
+          %a#history.navlink{:accesskey => "S", :href => "/nlab/history/A+Survey+of+Elliptic+Cohomology", :rel => "nofollow"} History (37 revisions)
+          %a{:href => "/nlab/show/A+Survey+of+Elliptic+Cohomology/cite", :style => "color: black"} Cite
+          %a#view_print{:accesskey => "p", :href => "/nlab/print/A+Survey+of+Elliptic+Cohomology", :rel => "nofollow"} Print
+          %a#view_source{:href => "/nlab/source/A+Survey+of+Elliptic+Cohomology", :rel => "nofollow"} Source
+      / Content
+    / Container

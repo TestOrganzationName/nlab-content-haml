@@ -1,0 +1,2636 @@
+!!! XML
+!!! 1.1
+%html{:xmlns => "http://www.w3.org/1999/xhtml"}
+  %head
+    %title
+      adjoint monad in nLab
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:content => "index,follow", :name => "robots"}/
+    %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/
+    %link{:href => "/stylesheets/instiki.css?1676280126", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/stylesheets/mathematics.css?1660229990", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/stylesheets/syntax.css?1660229990", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/stylesheets/nlab.css?1676280126", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css", :rel => "stylesheet", :type => "text/css"}/
+    :css
+      h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+        color: #226622;
+      }
+      a:visited.existingWikiWord {
+        color: #164416;
+      }
+    :css
+      <!--/*--><![CDATA[/*><!--*/
+          .toc ul {margin: 0; padding: 0;}
+      .toc ul ul {margin: 0; padding: 0 0 0 10px;}
+      .toc li > p {margin: 0}
+      .toc ul li {list-style-type: none; position: relative;}
+      .toc div {border-top:1px dotted #ccc;}
+      .rightHandSide h2 {font-size: 1.5em;color:#008B26}
+      table.plaintable {
+          border-collapse:collapse;
+          margin-left:30px;
+          border:0;
+      }
+      .plaintable td {border:1px solid #000; padding: 3px;}
+      .plaintable th {padding: 3px;}
+      .plaintable caption {
+          font-weight: bold;
+          font-size:1.1em;
+          text-align:center;
+          margin-left:30px;
+      }
+          
+         
+      /* Query boxes for questioning and answering mechanism */
+      div.query{
+      background: #f6fff3;
+      border: solid #ce9;
+      border-width: 2px 1px;
+      padding: 0 1em;
+      margin: 0 1em;
+      max-height: 20em;
+      overflow: auto;
+      }
+      
+      /* Standout boxes for putting important text */
+      div.standout{
+      background: #fff1f1;
+      border: solid black;
+      border-width: 2px 1px;
+      padding: 0 1em;
+      margin: 0 1em;
+      overflow: auto;
+      }
+      
+      /* Icon for links to n-category arXiv documents 
+       (commented out for now i.e. disabled)
+      a[href*="http://arxiv.org/"] {
+        background-image: url(../files/arXiv_icon.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 22px;
+        } */
+          
+      /* Icon for links to n-category cafe posts (disabled) 
+      a[href*="http://golem.ph.utexas.edu/category"] {
+        background-image: url(../files/n-cafe_5.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 25px;
+        } */
+      
+      /* Icon for links to pdf files (disabled)
+      a[href$=".pdf"] {
+        background-image: url(../files/pdficon_small.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 25px;
+        } */
+      
+      /* Icon for links to pages, etc. -inside- pdf files (disabled)
+      a[href*=".pdf#"] {
+        background-image: url(../files/pdf_entry.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 25px;
+        } */
+      
+      a.existingWikiWord {
+      color: #226622;
+      }
+      
+      a.existingWikiWord:visited {
+      color: #226622;
+      }
+      
+      
+      a.existingWikiWord[title] {
+      border: 0px;
+      color: #aa0505;
+      text-decoration: none;
+      }
+          
+      a.existingWikiWord[title]:visited {
+      border: 0px;
+      color: #551111;
+      text-decoration: none;
+      }
+      
+      a[href^="http://"] {
+      border: 0px;
+      color: #003399;
+      }
+      
+      a[href^="http://"]:visited {
+      border: 0px;
+      color: #330066;
+      }
+      
+      a[href^="https://"] {
+      border: 0px;
+      color: #003399;
+      }
+      
+      a[href^="https://"]:visited {
+      border: 0px;
+      color: #330066;
+      }
+      
+      div.dropDown .hide {
+      display: none;
+      }
+      
+      div.dropDown:hover .hide {
+      display:block;
+      }
+      
+      div.clickDown .hide {
+      display: none;
+      }
+      
+      div.clickDown:focus {
+      outline:none;
+      }
+      
+      div.clickDown:focus .hide, div.clickDown:hover .hide {
+      display: block;
+      }
+      
+      div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+      display:block;
+      }
+      
+      div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+      display:none;
+      }
+      
+      div.clickDown .clickToReveal:after {
+      content: "A(Hover to reveal, click to "hold")";
+      font-size: 60%;
+      }
+      
+      div.clickDown .clickToHide:after {
+      content: "A(Click to hide)";
+      font-size: 60%;
+      }
+      div.clickDown .clickToHide, div.clickDown .clickToReveal {
+      white-space: pre-wrap;
+      }
+      
+      .un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+      margin-left: 1em;
+      }
+      
+      span.theorem_label {
+      margin-left: -1em;
+      }
+      .proof span.theorem_label {
+      margin-left: 0em;
+      }
+      :target {
+          background-color: #BBBBBB;
+          border-radius: 5pt;
+      }
+      
+        /*]]>*/-->
+    %script{:src => "/javascripts/prototype.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/effects.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/dragdrop.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/controls.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/application.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/page_helper.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/thm_numbering.js?1660229990", :type => "text/javascript"}
+    %script{:type => "text/x-mathjax-config"}
+      :cdata
+        <!--//--><![CDATA[//><!--
+        MathJax.Ajax.config.path["Contrib"] = "/MathJax";
+        MathJax.Hub.Config({
+        MathML: { useMathMLspacing: true },
+        "HTML-CSS": { scale: 90,
+        extensions: ["handle-floats.js"]
+        }
+        });
+        MathJax.Hub.Queue( function () {
+        var fos = document.getElementsByTagName('foreignObject');
+        for (var i = 0; i < fos.length; i++) {
+        MathJax.Hub.Typeset(fos[i]);
+        }
+        });
+        \//--><!]]>
+    :javascript
+      <!--//--><![CDATA[//><!--
+      window.addEventListener("DOMContentLoaded", function () {
+        var div = document.createElement('div');
+        var math = document.createElementNS('http://www.w3.org/1998/Math/MathML', 'math');
+        document.body.appendChild(div);
+        div.appendChild(math);
+      // Test for MathML support comparable to WebKit version https://trac.webkit.org/changeset/203640 or higher.
+        div.setAttribute('style', 'font-style: italic');
+        var mathml_unsupported = !(window.getComputedStyle(div.firstChild).getPropertyValue('font-style') === 'normal');
+        div.parentNode.removeChild(div);
+        if (mathml_unsupported) {
+          // MathML does not seem to be supported...
+          var s = document.createElement('script');
+          s.src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=MML_HTMLorMML-full";
+          document.querySelector('head').appendChild(s);
+        } else {
+          document.head.insertAdjacentHTML("beforeend", '<style>svg[viewBox] {max-width: 100%}</style>');
+        }
+      });
+      //--><!]]>
+    %link{:href => "https://ncatlab.org/nlab/atom_with_headlines", :rel => "alternate", :title => "Atom with headlines", :type => "application/atom+xml"}/
+    %link{:href => "https://ncatlab.org/nlab/atom_with_content", :rel => "alternate", :title => "Atom with full content", :type => "application/atom+xml"}/
+    :javascript
+      document.observe("dom:loaded", function() {
+        generateThmNumbers();
+      });
+  %body
+    #Container
+      #Content
+        %h1#pageName
+          %span{:style => "float: left; margin: 0.5em 0.25em -0.25em 0"}
+            %svg{:height => "1.8em", :viewbox => "0 0 190 181", :width => "1.872em", :xmlns => "http://www.w3.org/2000/svg"}
+              %path{:d => "M72.8 145c-1.6 17.3-15.7 10-23.6 20.2-5.6 7.3 4.8 15 11.4 15 11.5-.2 19-13.4 26.4-20.3 3.3-3 8.2-4 11.2-7.2a14 14 0 0 0 2.9-11.1c-1.4-9.6-12.4-18.6-16.9-27.2-5-9.6-10.7-27.4-24.1-27.7-17.4-.3-.4 26 4.7 30.7 2.4 2.3 5.4 4.1 7.3 6.9 1.6 2.3 2.1 5.8-1 7.2-5.9 2.6-12.4-6.3-15.5-10-8.8-10.6-15.5-23-26.2-31.8-5.2-4.3-11.8-8-18-3.7-7.3 4.9-4.2 12.9.2 18.5a81 81 0 0 0 30.7 23c3.3 1.5 12.8 5.6 10 10.7-2.5 5.2-11.7 3-15.6 1.1-8.4-3.8-24.3-21.3-34.4-13.7-3.5 2.6-2.3 7.6-1.2 11.1 2.8 9 12.2 17.2 20.9 20.5 17.3 6.7 34.3-8 50.8-12.1z", :fill => "#226622"}
+              %path{:d => "M145.9 121.3c-.2-7.5 0-19.6-4.5-26-5.4-7.5-12.9-1-14.1 5.8-1.4 7.8 2.7 14.1 4.8 21.3 3.4 12 5.8 29-.8 40.1-3.6-6.7-5.2-13-7-20.4-2.1-8.2-12.8-13.2-15.1-1.9-2 9.7 9 21.2 12 30.1 1.2 4 2 8.8 6.4 10.3 6.9 2.3 13.3-4.7 17.7-8.8 12.2-11.5 36.6-20.7 43.4-36.4 6.7-15.7-13.7-14-21.3-7.2-9.1 8-11.9 20.5-23.6 25.1 7.5-23.7 31.8-37.6 38.4-61.4 2-7.3-.8-29.6-13-19.8-14.5 11.6-6.6 37.6-23.3 49.2z", :fill => "#a41e32"}
+              %path{:d => "M86.3 47.5c0-13-10.2-27.6-5.8-40.4 2.8-8.4 14.1-10.1 17-1 3.8 11.6-.3 26.3-1.8 38 11.7-.7 10.5-16 14.8-24.3 2.1-4.2 5.7-9.1 11-6.7 6 2.7 7.4 9.2 6.6 15.1-2.2 14-12.2 18.8-22.4 27-3.4 2.7-8 6.6-5.9 11.6 2 4.4 7 4.5 10.7 2.8 7.4-3.3 13.4-16.5 21.7-16 14.6.7 12 21.9.9 26.2-5 1.9-10.2 2.3-15.2 3.9-5.8 1.8-9.4 8.7-15.7 8.9-6.1.1-9-6.9-14.3-9-14.4-6-33.3-2-44.7-14.7-3.7-4.2-9.6-12-4.9-17.4 9.3-10.7 28 7.2 35.7 12 2 1.1 11 6.9 11.4 1.1.4-5.2-10-8.2-13.5-10-11.1-5.2-30-15.3-35-27.3-2.5-6 2.8-13.8 9.4-13.6 6.9.2 13.4 7 17.5 12C70.9 34 75 43.8 86.3 47.4z", :fill => "#193c78"}
+          %span.webName nLab
+          adjoint monad
+        .navigation
+          %span.skipNav
+            %a{:href => "#navEnd"} Skip the Navigation Links
+            |
+          %span{:style => "display:inline-block; width: 0.3em;"}
+          %a{:accesskey => "H", :href => "/nlab/show/HomePage", :title => "Home page"} Home Page
+          |
+          %a{:accesskey => "A", :href => "/nlab/all_pages", :title => "List of all pages"} All Pages
+          |
+          %a{:accesskey => "U", :href => "/nlab/latest_revisions", :title => "Latest edits and page creations"} Latest Revisions
+          |
+          %a{:href => "https://nforum.ncatlab.org/discussion/17008/#Item_2", :style => "color: black", :title => "Discuss this page in its dedicated thread on the nForum"} Discuss this page
+          |
+          %form#navigationSearchForm{"accept-charset" => "utf-8", :action => "/nlab/search", :method => "get"}
+            %fieldset.search
+              %input#searchField{:name => "query", :onblur => "this.value == '' ? this.value = 'Search' : true", :onfocus => "this.value == 'Search' ? this.value = '' : true", :style => "display:inline-block; float: left;", :type => "text", :value => "Search"}/
+          %span#navEnd
+        #revision
+          %meta{:content => "application/xhtml+xml;charset=utf-8", "http-equiv" => "Content-type"}/
+          %title Contents
+          .rightHandSide
+            .toc.clickDown{:tabindex => "0"}
+              %h3#context Context
+              %h4#category_theory Category theory
+              .hide
+                %div
+                  %p
+                    %strong
+                      %a.existingWikiWord{:href => "/nlab/show/category+theory"} category theory
+                  %h2#sidebar_concepts Concepts
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/category"} category
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/functor"} functor
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/natural+transformation"} natural transformation
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Cat"} Cat
+                  %h2#sidebar_universal_constructions Universal constructions
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/universal+construction"} universal construction
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/representable+functor"} representable functor
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/adjoint+functor"} adjoint functor
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/limit"}> limit
+                            \/
+                            %a.existingWikiWord{:href => "/nlab/show/colimit"} colimit
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/weighted+limit"} weighted limit
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/end"}> end
+                            \/
+                            %a.existingWikiWord{:href => "/nlab/show/coend"} coend
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/Kan+extension"} Kan extension
+                  %h2#sidebar_theorems Theorems
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Yoneda+lemma"} Yoneda lemma
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Isbell+duality"} Isbell duality
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Grothendieck+construction"} Grothendieck construction
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/adjoint+functor+theorem"} adjoint functor theorem
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/monadicity+theorem"} monadicity theorem
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/adjoint+lifting+theorem"} adjoint lifting theorem
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Tannaka+duality"} Tannaka duality
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Gabriel-Ulmer+duality"} Gabriel-Ulmer duality
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/small+object+argument"} small object argument
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Freyd-Mitchell+embedding+theorem"} Freyd-Mitchell embedding theorem
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/relation+between+type+theory+and+category+theory"} relation between type theory and category theory
+                  %h2#sidebar_extensions Extensions
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/sheaf+and+topos+theory"} sheaf and topos theory
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/enriched+category+theory"} enriched category theory
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/higher+category+theory"} higher category theory
+                  %h2#sidebar_applications Applications
+                  %ul
+                    %li
+                      %a.existingWikiWord{:href => "/nlab/show/applications+of+%28higher%29+category+theory"} applications of (higher) category theory
+                  %div
+                    %p
+                      %a{:href => "/nlab/edit/category+theory+-+contents"} Edit this sidebar
+              %h4#2category_theory 2-Category theory
+              .hide
+                %div
+                  %p
+                    %strong
+                      %a.existingWikiWord{:href => "/nlab/show/2-category+theory"} 2-category theory
+                  %p
+                    %strong Definitions
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/2-category"} 2-category
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/strict+2-category"} strict 2-category
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/bicategory"} bicategory
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/enriched+bicategory"} enriched bicategory
+                  %p
+                    %strong Transfors between 2-categories
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/2-functor"} 2-functor
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/pseudofunctor"} pseudofunctor
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/lax+functor"} lax functor
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/equivalence+of+2-categories"} equivalence of 2-categories
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/2-natural+transformation"} 2-natural transformation
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/lax+natural+transformation"} lax natural transformation
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/icon"} icon
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/modification"} modification
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Yoneda+lemma+for+bicategories"} Yoneda lemma for bicategories
+                  %p
+                    %strong Morphisms in 2-categories
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/fully+faithful+morphism"} fully faithful morphism
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/faithful+morphism"} faithful morphism
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/conservative+morphism"} conservative morphism
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/pseudomonic+morphism"} pseudomonic morphism
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/discrete+morphism"} discrete morphism
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/eso+morphism"} eso morphism
+                  %p
+                    %strong Structures in 2-categories
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/adjunction"} adjunction
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/mate"} mate
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/monad"} monad
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/cartesian+object"} cartesian object
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/fibration+in+a+2-category"} fibration in a 2-category
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/codiscrete+cofibration"} codiscrete cofibration
+                  %p
+                    %strong Limits in 2-categories
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/2-limit"} 2-limit
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/2-pullback"} 2-pullback
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/comma+object"} comma object
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/inserter"} inserter
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/inverter"} inverter
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/equifier"} equifier
+                  %p
+                    %strong Structures on 2-categories
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/2-monad"} 2-monad
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/lax-idempotent+2-monad"} lax-idempotent 2-monad
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/pseudomonad"} pseudomonad
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/pseudoalgebra+for+a+2-monad"} pseudoalgebra for a 2-monad
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/monoidal+2-category"} monoidal 2-category
+                      %ul
+                        %li
+                          %a.existingWikiWord{:href => "/nlab/show/cartesian+bicategory"} cartesian bicategory
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Gray+tensor+product"} Gray tensor product
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/proarrow+equipment"} proarrow equipment
+          %h1#contents Contents
+          .maruku_toc
+            %ul
+              %li
+                %a{:href => "#definition"} Definition
+              %li
+                %a{:href => "#construction"} Construction
+              %li
+                %a{:href => "#duality"} Duality
+              %li
+                %a{:href => "#examples"} Examples
+              %li
+                %a{:href => "#properties"} Properties
+              %ul
+                %li
+                  %a{:href => "#general"} General
+                %li
+                  %a{:href => "#general_adjoint_coalgebras_"}
+                    General adjoint (co)algebras
+                    %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                      %semantics
+                        %mrow
+                          %mi End
+                          %mo{:stretchy => "false"} (
+                          %mi A
+                          %mo{:stretchy => "false"} )
+                        %annotation{:encoding => "application/x-tex"} End(A)
+              %li
+                %a{:href => "#examples_2"} Examples
+              %ul
+                %li
+                  %a{:href => "#adjoint_modalities"} Adjoint modalities
+              %li
+                %a{:href => "#references"} References
+          %h2#definition Definition
+          %p
+            A
+            %a.existingWikiWord{:href => "/nlab/show/monad"} monad
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mo{:stretchy => "false"} (
+                  %mi T
+                  %mo ,
+                  %mi μ
+                  %mo ,
+                  %mi η
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} (T,\mu,\eta)
+            is left (resp. right)
+            %a.existingWikiWord{:href => "/nlab/show/adjoint+functor"} adjoint
+            to a
+            %a.existingWikiWord{:href => "/nlab/show/comonad"} comonad
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo{:stretchy => "false"} (
+                    %mi G
+                    %mo ,
+                    %mi δ
+                    %mo ,
+                    %mi ϵ
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} (G,\delta,\epsilon)
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi T
+                %annotation{:encoding => "application/x-tex"} T
+            is
+            %em
+              %a.existingWikiWord{:href => "/nlab/show/left+adjoint"} left adjoint
+            (resp.
+            = succeed ")" do
+              %em
+                %a.existingWikiWord{:href => "/nlab/show/right+adjoint"} right adjoint
+            %a.existingWikiWord{:href => "/nlab/show/1-morphism"} 1-morphism
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi G
+                %annotation{:encoding => "application/x-tex"} G
+            of the comonad, and
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi δ
+                %annotation{:encoding => "application/x-tex"} \delta
+            and
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi ϵ
+                %annotation{:encoding => "application/x-tex"} \epsilon
+            are conjugate/adjoint/
+            %a.existingWikiWord{:href => "/nlab/show/mate"} mate
+            2-cells to
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi μ
+                %annotation{:encoding => "application/x-tex"} \mu
+            and
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi η
+                %annotation{:encoding => "application/x-tex"} \eta
+            in the sense explained below.
+          %h2#construction Construction
+          %p
+            In fact given a
+            %a.existingWikiWord{:href => "/nlab/show/monad"} monad
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mstyle{:mathvariant => "bold"}
+                    %mi T
+                  %mo =
+                  %mo{:stretchy => "false"} (
+                  %mi T
+                  %mo ,
+                  %msup
+                    %mi μ
+                    %mi T
+                  %mo ,
+                  %msup
+                    %mi η
+                    %mi T
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} \mathbf{T} = (T,\mu^T,\eta^T)
+            which has a
+            %em
+              %a.existingWikiWord{:href => "/nlab/show/right+adjoint"} right adjoint
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi G
+                  %annotation{:encoding => "application/x-tex"} G
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi G
+                %annotation{:encoding => "application/x-tex"} G
+            is a part of a comonad
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mstyle{:mathvariant => "bold"}
+                    %mi G
+                  %mo =
+                  %mo{:stretchy => "false"} (
+                  %mi G
+                  %mo ,
+                  %msup
+                    %mi δ
+                    %mi G
+                  %mo ,
+                  %msup
+                    %mi ϵ
+                    %mi G
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} \mathbf{G} = (G,\delta^G,\epsilon^G)
+            where
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msup
+                    %mi δ
+                    %mi G
+                %annotation{:encoding => "application/x-tex"} \delta^G
+            and
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msup
+                    %mi ϵ
+                    %mi G
+                %annotation{:encoding => "application/x-tex"} \epsilon^G
+            are in some sense dual to
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msup
+                    %mi μ
+                    %mi T
+                %annotation{:encoding => "application/x-tex"} \mu^T
+            and
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msup
+                      %mi η
+                      %mi T
+                  %annotation{:encoding => "application/x-tex"} \eta^T
+          %p Thus there is a bijective correspondence between monads having a right adjoint and comonads having a left adjoint (and “2-dually” between comonads having a right adjoint and monads having a left adjoint, as explained below). This is little more than a consequence of two general facts:
+          %ol
+            %li
+              %p
+                If
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi T
+                      %mo ⊣
+                      %mi G
+                    %annotation{:encoding => "application/x-tex"} T\dashv G
+                then
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msup
+                        %mi T
+                        %mi k
+                      %mo ⊣
+                      %msup
+                        %mi G
+                        %mi k
+                    %annotation{:encoding => "application/x-tex"} T^k \dashv G^k
+                for every
+                %a.existingWikiWord{:href => "/nlab/show/natural+number"} natural number
+                = succeed "." do
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi k
+                      %annotation{:encoding => "application/x-tex"} k
+            %li
+              %p
+                Given two
+                %a.existingWikiWord{:href => "/nlab/show/adjunctions"} adjunctions
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi S
+                      %mo ⊣
+                      %mi T
+                    %annotation{:encoding => "application/x-tex"} S\dashv T
+                and
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi S
+                      %mo ′
+                      %mo ⊣
+                      %mi T
+                      %mo ′
+                    %annotation{:encoding => "application/x-tex"} S'\dashv T'
+                where
+                = succeed "," do
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi S
+                        %mo ,
+                        %mi S
+                        %mo ′
+                        %mo :
+                        %mi B
+                        %mo →
+                        %mi A
+                      %annotation{:encoding => "application/x-tex"} S,S': B\to A
+                %a.existingWikiWord{:href => "/nlab/show/bijection"} bijection
+                between the
+                %a.existingWikiWord{:href => "/nlab/show/natural+transformations"} natural transformations
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi ϕ
+                      %mo :
+                      %mi S
+                      %mo ′
+                      %mo ⇒
+                      %mi S
+                    %annotation{:encoding => "application/x-tex"} \phi:S'\Rightarrow S
+                and natural transformations
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi ψ
+                      %mo :
+                      %mi T
+                      %mo ⇒
+                      %mi T
+                      %mo ′
+                    %annotation{:encoding => "application/x-tex"} \psi:T\Rightarrow T'
+                such that
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mrow
+                    %mtable
+                      %mtr
+                        %mtd
+                          %mi A
+                          %mo{:stretchy => "false"} (
+                          %mi S
+                          %mo ,
+                          %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                          %mo{:stretchy => "false"} )
+                        %mtd
+                          %mo →
+                        %mtd
+                          %mi B
+                          %mo{:stretchy => "false"} (
+                          %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                          %mo ,
+                          %mi T
+                          %mo{:stretchy => "false"} )
+                      %mtr
+                        %mtd
+                          %msup
+                            %mrow
+                            %mpadded{:lspace => "-100%width", :width => "0"}
+                              %mrow
+                                %mi A
+                                %mo{:stretchy => "false"} (
+                                %mi ϕ
+                                %mo ,
+                                %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                                %mo{:stretchy => "false"} )
+                          %mo{:stretchy => "false"} ↓
+                        %mtd
+                        %mtd
+                          %mo{:stretchy => "false"} ↓
+                          %msup
+                            %mrow
+                            %mpadded{:width => "0"}
+                              %mrow
+                                %mi B
+                                %mo{:stretchy => "false"} (
+                                %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                                %mo ,
+                                %mi ψ
+                                %mo{:stretchy => "false"} )
+                      %mtr
+                        %mtd
+                          %mi A
+                          %mo{:stretchy => "false"} (
+                          %mi S
+                          %mo ′
+                          %mo ,
+                          %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                          %mo{:stretchy => "false"} )
+                        %mtd
+                          %mo →
+                        %mtd
+                          %mi B
+                          %mo{:stretchy => "false"} (
+                          %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                          %mo ,
+                          %mi T
+                          %mo ′
+                          %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"}
+                  \\array{
+                  A (S,-) &amp;\to&amp; B(-,T)
+                  \\\
+                  {}^{\mathllap{A(\phi,-)}}\downarrow &amp;&amp;\downarrow {}^{\mathrlap{B(-,\psi)}}
+                  \\\
+                  A(S',-)&amp;\to &amp; B(-,T')
+                  }
+          %p
+            where the horizontal arrows are the natural bijections given by the adjunctions.
+            %a{:href => "#EilenbergMoore65"} Eilenberg &amp; Moore 1965
+            would write
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi ϕ
+                  %mo ⊣
+                  %mi ψ
+                %annotation{:encoding => "application/x-tex"} \phi\dashv\psi
+            and talk about “adjointness for morphisms” (of functors), which is of course relative to the given adjunctions among functors. MacLane calls the correspondence
+            %em conjugation
+            (p 99-102 in
+            = succeed ")." do
+              %em
+                %a.existingWikiWord{:href => "/nlab/show/Categories+for+Working+Mathematician"} Categories for Working Mathematician
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/mates"} mates
+          %p
+            If
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi η
+                  %mo ,
+                  %mi η
+                  %mo ′
+                %annotation{:encoding => "application/x-tex"} \eta,\eta'
+            and
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi ϵ
+                  %mo ,
+                  %mi ϵ
+                  %mo ′
+                %annotation{:encoding => "application/x-tex"} \epsilon,\epsilon'
+            are their
+            %a.existingWikiWord{:href => "/nlab/show/unit+of+an+adjunction"} unit
+            and counit of course the upper arrow is
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mo{:stretchy => "false"} (
+                  %mi S
+                  %mi M
+                  %mover
+                    %mo →
+                    %mi f
+                  %mi N
+                  %mo{:stretchy => "false"} )
+                  %mo ↦
+                  %mi T
+                  %mi f
+                  %mo ∘
+                  %msub
+                    %mi η
+                    %mi M
+                %annotation{:encoding => "application/x-tex"} (S M\stackrel{f}\to N)\mapsto T f\circ \eta_M
+            and the lower arrow
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo{:stretchy => "false"} (
+                    %mi S
+                    %mo ′
+                    %mi M
+                    %mover
+                      %mo →
+                      %mi g
+                    %mi N
+                    %mo{:stretchy => "false"} )
+                    %mo ↦
+                    %mi T
+                    %mo ′
+                    %mi g
+                    %mo ∘
+                    %mi η
+                    %msub
+                      %mo ′
+                      %mi M
+                  %annotation{:encoding => "application/x-tex"} (S'M\stackrel{g}\to N)\mapsto T'g\circ\eta'_M
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi T
+                  %mo ′
+                  %mo{:stretchy => "false"} (
+                  %mi f
+                  %mo ∘
+                  %msub
+                    %mi ϕ
+                    %mi M
+                  %mo{:stretchy => "false"} )
+                  %mo ∘
+                  %mi η
+                  %msub
+                    %mo ′
+                    %mi M
+                  %mo =
+                  %msub
+                    %mi ψ
+                    %mi N
+                  %mo ∘
+                  %mi T
+                  %mi f
+                  %mo ∘
+                  %msub
+                    %mi η
+                    %mi M
+                %annotation{:encoding => "application/x-tex"} T'(f\circ\phi_M)\circ\eta'_M = \psi_N\circ T f\circ\eta_M
+          %p
+            or
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi T
+                    %mo ′
+                    %mi f
+                    %mo ∘
+                    %mi T
+                    %mo ′
+                    %msub
+                      %mi ϕ
+                      %mi M
+                    %mo ∘
+                    %mi η
+                    %msub
+                      %mo ′
+                      %mi M
+                    %mo =
+                    %mi T
+                    %mo ′
+                    %mi f
+                    %mo ∘
+                    %msub
+                      %mi ψ
+                      %mi SM
+                    %mo ∘
+                    %msub
+                      %mi η
+                      %mi M
+                  %annotation{:encoding => "application/x-tex"} T'f\circ T'\phi_M\circ\eta'_M = T'f\circ \psi_{SM}\circ\eta_M
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi ϕ
+                  %annotation{:encoding => "application/x-tex"} \phi
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi B
+                  %mo{:stretchy => "false"} (
+                  %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                  %mo ,
+                  %mi ψ
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} B(-,\psi)
+            is clear from the above
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/diagram"} diagram
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/isomorphism"} invertible
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi B
+                  %mo{:stretchy => "false"} (
+                  %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                  %mo ,
+                  %mi ψ
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} B(-,\psi)
+            determines
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi ψ
+                  %annotation{:encoding => "application/x-tex"} \psi
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi ψ
+                      %mi N
+                    %mo =
+                    %mi B
+                    %mo{:stretchy => "false"} (
+                    %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                    %mo ,
+                    %mi ψ
+                    %mo{:stretchy => "false"} )
+                    %mo{:stretchy => "false"} (
+                    %msub
+                      %mi id
+                      %mi N
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} \psi_N = B(-,\psi)(id_N)
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi ψ
+                %annotation{:encoding => "application/x-tex"} \psi
+            (given
+            = succeed ")" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi ϕ
+                  %annotation{:encoding => "application/x-tex"} \phi
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi ψ
+                %annotation{:encoding => "application/x-tex"} \psi
+            is the composition
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi ψ
+                    %mo =
+                    %mi T
+                    %mo ′
+                    %mi ϵ
+                    %mo ∘
+                    %mi T
+                    %mo ′
+                    %mi ϕ
+                    %mi T
+                    %mo ∘
+                    %mi η
+                    %mo ′
+                    %mi T
+                  %annotation{:encoding => "application/x-tex"} \psi  = T'\epsilon \circ T'\phi T \circ \eta'T
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi T
+                  %mover
+                    %mo ⟶
+                    %mrow
+                      %mi η
+                      %mo ′
+                      %mi T
+                  %mi T
+                  %mo ′
+                  %mi S
+                  %mo ′
+                  %mi T
+                  %mover
+                    %mo ⟶
+                    %mrow
+                      %mi T
+                      %mo ′
+                      %mi ϕ
+                      %mi T
+                  %mi T
+                  %mo ′
+                  %mi S
+                  %mi T
+                  %mover
+                    %mo ⟶
+                    %mrow
+                      %mi T
+                      %mo ′
+                      %mi ϵ
+                  %mi T
+                  %mo ′
+                %annotation{:encoding => "application/x-tex"}
+                  T\stackrel{\eta' T}\longrightarrow T'S' T\stackrel{T'\phi T}\longrightarrow T' S T \stackrel{T'\epsilon}\longrightarrow T'
+          %p and checks that it works. The inverse is similarly given by the composition
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi S
+                  %mo ′
+                  %mover
+                    %mo ⟶
+                    %mrow
+                      %mi S
+                      %mo ′
+                      %mi η
+                  %mi S
+                  %mo ′
+                  %mi T
+                  %mi S
+                  %mover
+                    %mo ⟶
+                    %mrow
+                      %mi S
+                      %mo ′
+                      %mi ψ
+                      %mi S
+                  %mi S
+                  %mo ′
+                  %mi T
+                  %mo ′
+                  %mi S
+                  %mover
+                    %mo ⟶
+                    %mrow
+                      %mi ϵ
+                      %mo ′
+                      %mi S
+                  %mi S
+                %annotation{:encoding => "application/x-tex"}
+                  S'\stackrel{S'\eta}\longrightarrow S' T S\stackrel{S'\psi S}\longrightarrow S'T'S\stackrel{\epsilon' S}\longrightarrow S
+          %p
+            This correspondence now enables in our special case to dualize
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msup
+                    %mi μ
+                    %mi T
+                %annotation{:encoding => "application/x-tex"} \mu^T
+            to
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msup
+                      %mi δ
+                      %mi G
+                  %annotation{:encoding => "application/x-tex"} \delta^G
+          %h2#duality Duality
+          %p
+            The construction above easily dualises to a bijection between
+            %em comonads
+            on
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi 𝒞
+                %annotation{:encoding => "application/x-tex"} \mathcal{C}
+            having a
+            %em right
+            adjoint and
+            %em monads
+            having a
+            %em left
+            adjoint. However, 1-categorical duality is not enough to analyse this: in the
+            %a.existingWikiWord{:href => "/nlab/show/opposite+category"} opposite category
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msup
+                      %mi 𝒞
+                      %mi op
+                  %annotation{:encoding => "application/x-tex"} \mathcal{C}^{op}
+            = succeed ");" do
+              %a.existingWikiWord{:href => "/nlab/show/opposite+adjunction"} opposite adjunction
+          %p
+            Instead, as explained in
+            = succeed "," do
+              %a{:href => "https://math.stackexchange.com/a/3564754"} math.SE:a/3564754
+            %a.existingWikiWord{:href => "/nlab/show/monads"} monads
+            and
+            %a.existingWikiWord{:href => "/nlab/show/adjunctions"} adjunctions
+            in any
+            = succeed ";" do
+              %a.existingWikiWord{:href => "/nlab/show/2-category"} 2-category
+            = succeed "." do
+              %strong
+                %a.existingWikiWord{:href => "/nlab/show/Cat"} Cat
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msup
+                      %mstyle{:mathvariant => "bold"}
+                        %mi Cat
+                      %mi op
+                  %annotation{:encoding => "application/x-tex"} \mathbf{Cat}^{op}
+            %a.existingWikiWord{:href => "/nlab/show/1-cell+dual"} 1-cell dual
+            of
+            = succeed ":" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mstyle{:mathvariant => "bold"}
+                      %mi Cat
+                  %annotation{:encoding => "application/x-tex"} \mathbf{Cat}
+          %h2#examples Examples
+          %p
+          #AdjointMonadsInducedFromAdjointTriples.num_remark
+            %h6 Example
+            %p
+              %strong (adjoint monads induced from adjoint triples of adjoint functors)
+              %br/
+              Every
+              %a.existingWikiWord{:href => "/nlab/show/adjoint+triple"} adjoint triple
+              (of
+              = succeed ")" do
+                %a.existingWikiWord{:href => "/nlab/show/adjoint+functors"} adjoint functors
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msup
+                      %mi F
+                      %mo *
+                    %mo ⊣
+                    %msub
+                      %mi F
+                      %mo *
+                    %mo ⊣
+                    %msup
+                      %mi F
+                      %mo !
+                  %annotation{:encoding => "application/x-tex"} F^*\dashv F_* \dashv F^!
+              %a{:href => "monad#RelationBetweenAdjunctionsAndMonads"} induces
+              an
+              %a.existingWikiWord{:href => "/nlab/show/adjoint+pair"} adjoint pair
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msub
+                        %mi F
+                        %mo *
+                      %msup
+                        %mi F
+                        %mo *
+                      %mo ⊣
+                      %msub
+                        %mi F
+                        %mo *
+                      %msup
+                        %mi F
+                        %mo !
+                    %annotation{:encoding => "application/x-tex"} F_* F^*\dashv F_* F^!
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi F
+                      %mo *
+                    %msup
+                      %mi F
+                      %mo *
+                  %annotation{:encoding => "application/x-tex"} F_* F^*
+              is underlying a monad induced by the adjunction
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msup
+                      %mi F
+                      %mo *
+                    %mo ⊣
+                    %msub
+                      %mi F
+                      %mo *
+                  %annotation{:encoding => "application/x-tex"} F^*\dashv F_*
+              and
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi F
+                      %mo *
+                    %msup
+                      %mi F
+                      %mo !
+                  %annotation{:encoding => "application/x-tex"} F_* F^!
+              is underlying a comonad induced by the adjuntion
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msub
+                        %mi F
+                        %mo *
+                      %mo ⊣
+                      %msup
+                        %mi F
+                        %mo !
+                    %annotation{:encoding => "application/x-tex"} F_*\dashv F^!
+          %p
+            (See also at
+            = succeed ".)" do
+              %em
+                %a.existingWikiWord{:href => "/nlab/show/adjoint+modality"} adjoint modality
+          %h2#properties Properties
+          %h3#general General
+          %p
+          #IsomorphismOfEMCategories.num_prop
+            %h6 Proposition
+            %p
+              Given an
+              %a.existingWikiWord{:href => "/nlab/show/adjoint+functor"} adjoint pair
+              of a
+              %a.existingWikiWord{:href => "/nlab/show/monad"} monad
+              and comonad
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo ◊
+                    %mspace{:width => "thinmathspace"}
+                    %mo ⊣
+                    %mspace{:width => "thinmathspace"}
+                    %mo □
+                  %annotation{:encoding => "application/x-tex"}
+                    \\lozenge \,\dashv\, \Box
+            %p
+              on some category
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi 𝒞
+                    %annotation{:encoding => "application/x-tex"} \mathcal{C}
+              %a.existingWikiWord{:href => "/nlab/show/equivalence+of+categories"} equivalence
+              between their
+              %a.existingWikiWord{:href => "/nlab/show/Eilenberg-Moore+categories"} Eilenberg-Moore categories
+              of
+              %a.existingWikiWord{:href => "/nlab/show/algebra+over+a+monad"} algebras
+              over
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo ◊
+                  %annotation{:encoding => "application/x-tex"} \lozenge
+              and
+              %a.existingWikiWord{:href => "/nlab/show/coalgebra+over+a+comonad"} coalgebras
+              over
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mo □
+                    %annotation{:encoding => "application/x-tex"} \Box
+              %a.existingWikiWord{:href => "/nlab/show/forgetful+functors"} forgetful functors
+              to
+              = succeed ":" do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi 𝒞
+                    %annotation{:encoding => "application/x-tex"} \mathcal{C}
+            %svg{:height => "58.696pt", :version => "1.2", :viewbox => "0 0 108.743 58.696", :width => "108.743pt", :xmlns => "http://www.w3.org/2000/svg", "xmlns:xlink" => "http://www.w3.org/1999/xlink"}
+              %defs
+                %g
+                  %symbol{:id => "WTY4oedsQkHvYKfU-taHXw4onDA=-glyph0-0", :overflow => "visible"}
+                    %path{:d => "", :style => "stroke:none;"}
+                  %symbol{:id => "WTY4oedsQkHvYKfU-taHXw4onDA=-glyph0-1", :overflow => "visible"}
+                    %path{:d => "M 7.59375 -3.046875 L 7.328125 -3.046875 C 7.046875 -1.1875 6.75 -0.34375 4.75 -0.34375 L 3.125 -0.34375 C 2.609375 -0.34375 2.578125 -0.421875 2.578125 -0.828125 L 2.578125 -4.03125 L 3.65625 -4.03125 C 4.796875 -4.03125 4.9375 -3.65625 4.9375 -2.640625 L 5.203125 -2.640625 L 5.203125 -5.765625 L 4.9375 -5.765625 C 4.9375 -4.75 4.796875 -4.375 3.65625 -4.375 L 2.578125 -4.375 L 2.578125 -7.28125 C 2.578125 -7.671875 2.609375 -7.75 3.125 -7.75 L 4.703125 -7.75 C 6.453125 -7.75 6.828125 -7.15625 7 -5.453125 L 7.265625 -5.453125 L 6.953125 -8.09375 L 0.484375 -8.09375 L 0.484375 -7.75 L 0.71875 -7.75 C 1.578125 -7.75 1.609375 -7.640625 1.609375 -7.1875 L 1.609375 -0.90625 C 1.609375 -0.46875 1.578125 -0.34375 0.71875 -0.34375 L 0.484375 -0.34375 L 0.484375 0 L 7.109375 0 Z M 7.59375 -3.046875 ", :style => "stroke:none;"}
+                  %symbol{:id => "WTY4oedsQkHvYKfU-taHXw4onDA=-glyph0-2", :overflow => "visible"}
+                    %path{:d => "M 2.734375 -7.890625 C 2.65625 -8.125 2.640625 -8.125 2.359375 -8.125 L 0.515625 -8.125 L 0.515625 -7.78125 L 0.765625 -7.78125 C 1.609375 -7.78125 1.65625 -7.65625 1.65625 -7.21875 L 1.65625 -1.21875 C 1.65625 -0.90625 1.65625 -0.34375 0.515625 -0.34375 L 0.515625 0 C 0.828125 -0.03125 1.46875 -0.03125 1.796875 -0.03125 C 2.125 -0.03125 2.765625 -0.03125 3.0625 0 L 3.0625 -0.34375 C 1.9375 -0.34375 1.9375 -0.90625 1.9375 -1.21875 L 1.9375 -7.71875 L 1.953125 -7.71875 L 4.8125 -0.21875 C 4.859375 -0.09375 4.90625 0 5.015625 0 C 5.125 0 5.15625 -0.0625 5.21875 -0.234375 L 8.109375 -7.78125 L 8.125 -7.78125 L 8.125 -0.90625 C 8.125 -0.46875 8.078125 -0.34375 7.234375 -0.34375 L 6.984375 -0.34375 L 6.984375 0 C 7.265625 -0.03125 8.21875 -0.03125 8.5625 -0.03125 C 8.90625 -0.03125 9.859375 -0.03125 10.125 0 L 10.125 -0.34375 L 9.890625 -0.34375 C 9.03125 -0.34375 9 -0.46875 9 -0.90625 L 9 -7.21875 C 9 -7.65625 9.03125 -7.78125 9.890625 -7.78125 L 10.125 -7.78125 L 10.125 -8.125 L 8.28125 -8.125 C 8.03125 -8.125 8.015625 -8.109375 7.921875 -7.890625 L 5.328125 -1.125 Z M 2.734375 -7.890625 ", :style => "stroke:none;"}
+                  %symbol{:id => "WTY4oedsQkHvYKfU-taHXw4onDA=-glyph0-3", :overflow => "visible"}
+                    %path{:d => "M 3.859375 2.890625 C 3.859375 2.859375 3.859375 2.828125 3.65625 2.625 C 2.46875 1.421875 1.8125 -0.53125 1.8125 -2.953125 C 1.8125 -5.265625 2.359375 -7.25 3.75 -8.65625 C 3.859375 -8.765625 3.859375 -8.78125 3.859375 -8.828125 C 3.859375 -8.890625 3.8125 -8.921875 3.75 -8.921875 C 3.609375 -8.921875 2.625 -8.0625 2.046875 -6.890625 C 1.4375 -5.703125 1.171875 -4.421875 1.171875 -2.953125 C 1.171875 -1.90625 1.328125 -0.484375 1.953125 0.78125 C 2.65625 2.21875 3.625 2.984375 3.75 2.984375 C 3.8125 2.984375 3.859375 2.953125 3.859375 2.890625 Z M 3.859375 2.890625 ", :style => "stroke:none;"}
+                  %symbol{:id => "WTY4oedsQkHvYKfU-taHXw4onDA=-glyph0-4", :overflow => "visible"}
+                    %path{:d => "M 3.359375 -2.953125 C 3.359375 -3.859375 3.234375 -5.34375 2.5625 -6.71875 C 1.859375 -8.140625 0.890625 -8.921875 0.765625 -8.921875 C 0.71875 -8.921875 0.65625 -8.890625 0.65625 -8.828125 C 0.65625 -8.78125 0.65625 -8.765625 0.859375 -8.5625 C 2.046875 -7.359375 2.71875 -5.390625 2.71875 -2.96875 C 2.71875 -0.671875 2.15625 1.3125 0.765625 2.71875 C 0.65625 2.828125 0.65625 2.859375 0.65625 2.890625 C 0.65625 2.953125 0.71875 2.984375 0.765625 2.984375 C 0.921875 2.984375 1.890625 2.125 2.46875 0.96875 C 3.078125 -0.25 3.359375 -1.53125 3.359375 -2.953125 Z M 3.359375 -2.953125 ", :style => "stroke:none;"}
+                  %symbol{:id => "WTY4oedsQkHvYKfU-taHXw4onDA=-glyph1-0", :overflow => "visible"}
+                    %path{:d => "", :style => "stroke:none;"}
+                  %symbol{:id => "WTY4oedsQkHvYKfU-taHXw4onDA=-glyph1-1", :overflow => "visible"}
+                    %path{:d => "M 7.140625 -3.234375 C 7.25 -3.390625 7.25 -3.40625 7.25 -3.46875 C 7.25 -3.546875 7.171875 -3.65625 7.171875 -3.671875 L 4.21875 -8.3125 C 4.15625 -8.421875 4.09375 -8.515625 3.953125 -8.515625 C 3.828125 -8.515625 3.765625 -8.421875 3.703125 -8.3125 L 0.765625 -3.703125 C 0.671875 -3.546875 0.671875 -3.515625 0.671875 -3.453125 C 0.671875 -3.390625 0.75 -3.265625 0.75 -3.265625 L 3.703125 1.375 C 3.765625 1.484375 3.828125 1.578125 3.953125 1.578125 C 4.09375 1.578125 4.15625 1.484375 4.21875 1.375 Z M 1.1875 -3.453125 L 3.953125 -7.84375 L 6.734375 -3.46875 L 3.96875 0.890625 L 3.953125 0.890625 Z M 1.1875 -3.453125 ", :style => "stroke:none;"}
+                  %symbol{:id => "WTY4oedsQkHvYKfU-taHXw4onDA=-glyph1-2", :overflow => "visible"}
+                    %path{:d => "M 8.578125 -7.75 C 8.578125 -8.125 8.53125 -8.171875 8.15625 -8.171875 L 1.078125 -8.171875 C 0.71875 -8.171875 0.671875 -8.140625 0.671875 -7.75 L 0.671875 -0.421875 C 0.671875 -0.046875 0.703125 0 1.09375 0 L 8.140625 0 C 8.53125 0 8.578125 -0.03125 8.578125 -0.421875 Z M 1.140625 -7.6875 L 8.09375 -7.6875 L 8.09375 -0.46875 L 1.140625 -0.46875 Z M 1.140625 -7.6875 ", :style => "stroke:none;"}
+                  %symbol{:id => "WTY4oedsQkHvYKfU-taHXw4onDA=-glyph2-0", :overflow => "visible"}
+                    %path{:d => "", :style => "stroke:none;"}
+                  %symbol{:id => "WTY4oedsQkHvYKfU-taHXw4onDA=-glyph2-1", :overflow => "visible"}
+                    %path{:d => "M 5.890625 -1.859375 C 5.890625 -1.9375 5.84375 -1.953125 5.78125 -1.953125 C 5.578125 -1.953125 5.296875 -1.765625 5.28125 -1.765625 C 5.046875 -1.609375 5 -1.53125 4.84375 -1.328125 C 4.484375 -0.765625 3.953125 -0.375 3.1875 -0.375 C 2.109375 -0.375 1.15625 -1.140625 1.15625 -2.921875 C 1.15625 -4 1.578125 -5.40625 2.21875 -6.34375 C 2.734375 -7.109375 3.375 -7.734375 4.609375 -7.734375 C 5.046875 -7.734375 5.34375 -7.5625 5.34375 -7.125 C 5.34375 -6.703125 4.90625 -5.859375 4.75 -5.625 C 4.6875 -5.5 4.6875 -5.46875 4.6875 -5.453125 C 4.6875 -5.359375 4.75 -5.359375 4.8125 -5.359375 C 5.046875 -5.359375 5.5 -5.625 5.640625 -5.8125 C 5.65625 -5.859375 6.34375 -7.03125 6.34375 -7.640625 C 6.34375 -8.28125 5.8125 -8.390625 5.390625 -8.390625 C 3.65625 -8.390625 2.25 -7.25 1.703125 -6.59375 C 0.28125 -4.875 0.140625 -3.03125 0.140625 -2.40625 C 0.140625 -0.671875 1.015625 0.28125 2.40625 0.28125 C 4.3125 0.28125 5.890625 -1.5625 5.890625 -1.859375 Z M 5.890625 -1.859375 ", :style => "stroke:none;"}
+                  %symbol{:id => "WTY4oedsQkHvYKfU-taHXw4onDA=-glyph3-0", :overflow => "visible"}
+                    %path{:d => "", :style => "stroke:none;"}
+                  %symbol{:id => "WTY4oedsQkHvYKfU-taHXw4onDA=-glyph3-1", :overflow => "visible"}
+                    %path{:d => "M 5.28125 -4.546875 C 5.375 -4.9375 5.5625 -5.125 6.125 -5.15625 C 6.203125 -5.15625 6.265625 -5.203125 6.265625 -5.296875 C 6.265625 -5.34375 6.234375 -5.40625 6.140625 -5.40625 C 6.109375 -5.40625 5.9375 -5.390625 5.359375 -5.390625 C 4.734375 -5.390625 4.625 -5.40625 4.5625 -5.40625 C 4.421875 -5.40625 4.40625 -5.328125 4.40625 -5.265625 C 4.40625 -5.15625 4.5 -5.15625 4.578125 -5.15625 C 5.0625 -5.140625 5.0625 -4.921875 5.0625 -4.8125 C 5.0625 -4.765625 5.046875 -4.71875 5.046875 -4.671875 C 5.03125 -4.625 4.375 -1.96875 4.34375 -1.859375 C 4.0625 -0.71875 3.0625 -0.09375 2.28125 -0.09375 C 1.734375 -0.09375 1.234375 -0.421875 1.234375 -1.15625 C 1.234375 -1.28125 1.265625 -1.5 1.296875 -1.625 L 2.078125 -4.796875 C 2.15625 -5.078125 2.171875 -5.15625 2.75 -5.15625 C 2.90625 -5.15625 3 -5.15625 3 -5.296875 C 3 -5.3125 3 -5.40625 2.875 -5.40625 C 2.71875 -5.40625 2.53125 -5.390625 2.375 -5.390625 L 1.875 -5.390625 C 1.109375 -5.390625 0.90625 -5.40625 0.859375 -5.40625 C 0.828125 -5.40625 0.703125 -5.40625 0.703125 -5.265625 C 0.703125 -5.15625 0.796875 -5.15625 0.921875 -5.15625 C 1.1875 -5.15625 1.421875 -5.15625 1.421875 -5.015625 C 1.421875 -4.96875 1.34375 -4.6875 1.296875 -4.53125 L 1.125 -3.828125 L 0.71875 -2.15625 C 0.609375 -1.71875 0.578125 -1.59375 0.578125 -1.390625 C 0.578125 -0.453125 1.296875 0.171875 2.234375 0.171875 C 3.3125 0.171875 4.328125 -0.75 4.59375 -1.765625 Z M 5.28125 -4.546875 ", :style => "stroke:none;"}
+                  %symbol{:id => "WTY4oedsQkHvYKfU-taHXw4onDA=-glyph4-0", :overflow => "visible"}
+                    %path{:d => "", :style => "stroke:none;"}
+                  %symbol{:id => "WTY4oedsQkHvYKfU-taHXw4onDA=-glyph4-1", :overflow => "visible"}
+                    %path{:d => "M 6.0625 -2.703125 C 6.0625 -2.953125 5.984375 -2.984375 5.9375 -2.984375 C 5.828125 -2.984375 5.8125 -2.78125 5.8125 -2.671875 C 5.78125 -2.09375 5.359375 -1.46875 4.671875 -1.46875 C 4.1875 -1.46875 3.8125 -1.765625 3.34375 -2.1875 C 2.84375 -2.65625 2.421875 -3 1.875 -3 C 0.953125 -3 0.46875 -2.046875 0.46875 -1.265625 C 0.46875 -1 0.5625 -0.96875 0.59375 -0.96875 C 0.65625 -0.96875 0.71875 -1.03125 0.71875 -1.234375 C 0.75 -2 1.28125 -2.484375 1.875 -2.484375 C 2.34375 -2.484375 2.71875 -2.203125 3.1875 -1.78125 C 3.703125 -1.296875 4.125 -0.96875 4.671875 -0.96875 C 5.5625 -0.96875 6.0625 -1.890625 6.0625 -2.703125 Z M 6.0625 -2.703125 ", :style => "stroke:none;"}
+              %g{:id => "WTY4oedsQkHvYKfU-taHXw4onDA=-surface1"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "5.272793", "xlink:href" => "#WTY4oedsQkHvYKfU-taHXw4onDA=-glyph0-1", :y => "13.27226"}
+                  %use{:x => "13.19631", "xlink:href" => "#WTY4oedsQkHvYKfU-taHXw4onDA=-glyph0-2", :y => "13.27226"}
+                  %use{:x => "23.867248", "xlink:href" => "#WTY4oedsQkHvYKfU-taHXw4onDA=-glyph0-3", :y => "13.27226"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "28.397028", "xlink:href" => "#WTY4oedsQkHvYKfU-taHXw4onDA=-glyph1-1", :y => "13.27226"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "36.325962", "xlink:href" => "#WTY4oedsQkHvYKfU-taHXw4onDA=-glyph0-4", :y => "13.27226"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "66.311659", "xlink:href" => "#WTY4oedsQkHvYKfU-taHXw4onDA=-glyph0-1", :y => "13.27226"}
+                  %use{:x => "74.235176", "xlink:href" => "#WTY4oedsQkHvYKfU-taHXw4onDA=-glyph0-2", :y => "13.27226"}
+                  %use{:x => "84.906114", "xlink:href" => "#WTY4oedsQkHvYKfU-taHXw4onDA=-glyph0-3", :y => "13.27226"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "89.434899", "xlink:href" => "#WTY4oedsQkHvYKfU-taHXw4onDA=-glyph1-2", :y => "13.27226"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "98.685985", "xlink:href" => "#WTY4oedsQkHvYKfU-taHXw4onDA=-glyph0-4", :y => "13.27226"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "50.104599", "xlink:href" => "#WTY4oedsQkHvYKfU-taHXw4onDA=-glyph2-1", :y => "54.041109"}
+                %path{:d => "M -23.443076 8.443413 L -8.25152 -11.844716 ", :style => "fill:none;stroke-width:0.47818;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;", :transform => "matrix(0.994847,0,0,-0.994847,54.24416,29.196783)"}
+                %path{:d => "M -2.486999 2.870832 C -2.031563 1.146642 -1.020128 0.335497 -0.00125651 -0.000516258 C -1.021895 -0.335179 -2.032689 -1.1481 -2.486671 -2.868376 ", :style => "fill:none;stroke-width:0.47818;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;", :transform => "matrix(0.596182,0.796365,0.796365,-0.596182,46.176941,41.172568)"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "29.278463", "xlink:href" => "#WTY4oedsQkHvYKfU-taHXw4onDA=-glyph3-1", :y => "39.296475"}
+                %path{:d => "M -8.114093 18.993869 L 6.303947 18.993869 ", :style => "fill:none;stroke-width:0.47818;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;", :transform => "matrix(0.994847,0,0,-0.994847,54.24416,29.196783)"}
+                %path{:d => "M -2.486741 2.868537 C -2.031269 1.148738 -1.018236 0.335956 -0.00127781 -0.00172135 C -1.018236 -0.335472 -2.031269 -1.148254 -2.486741 -2.868053 ", :style => "fill:none;stroke-width:0.47818;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;", :transform => "matrix(0.994847,0,0,-0.994847,60.755177,10.299069)"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "50.306553", "xlink:href" => "#WTY4oedsQkHvYKfU-taHXw4onDA=-glyph4-1", :y => "7.50115"}
+                %path{:d => "M 22.606697 8.443413 L 7.085317 -11.848642 ", :style => "fill:none;stroke-width:0.47818;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;", :transform => "matrix(0.994847,0,0,-0.994847,54.24416,29.196783)"}
+                %path{:d => "M -2.487404 2.867291 C -2.032971 1.148467 -1.020822 0.335721 0.00174866 0.000577998 C -1.02077 -0.336557 -2.030959 -1.148726 -2.484393 -2.869821 ", :style => "fill:none;stroke-width:0.47818;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;", :transform => "matrix(-0.60435,0.790177,0.790177,0.60435,61.149038,41.17405)"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "71.666923", "xlink:href" => "#WTY4oedsQkHvYKfU-taHXw4onDA=-glyph3-1", :y => "39.296475"}
+            %p
+          This is due to
+          = succeed "," do
+            %a{:href => "#EilenbergMoore65"} Eilenberg &amp; Moore 1965
+          = succeed "," do
+            %a{:href => "#MacLaneMoerdijk92"} MacLane &amp; Moerdijk 1992, Thm. 2 on p. 249
+          %h3#general_adjoint_coalgebras_
+            General adjoint (co)algebras
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi End
+                  %mo{:stretchy => "false"} (
+                  %mi A
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} End(A)
+          %p
+            Given a
+            %a.existingWikiWord{:href => "/nlab/show/small+category"} small category
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi A
+                  %annotation{:encoding => "application/x-tex"} A
+            %a.existingWikiWord{:href => "/nlab/show/endofunctor+category"} endofunctor category
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi End
+                  %mo{:stretchy => "false"} (
+                  %mi A
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} End(A)
+            (of
+            %a.existingWikiWord{:href => "/nlab/show/endofunctors"} endofunctors
+            and
+            %a.existingWikiWord{:href => "/nlab/show/natural+transformations"} natural transformations
+            between them, with
+            %a.existingWikiWord{:href => "/nlab/show/vertical+composition"} vertical composition
+            as
+            = succeed ")" do
+              %a.existingWikiWord{:href => "/nlab/show/composition"} composition
+            %a.existingWikiWord{:href => "/nlab/show/monoidal+category"} monoidal
+            with respect to the composition as the tensor product of objects (endofunctor) and Godement product (
+            %a.existingWikiWord{:href => "/nlab/show/horizontal+composition"}> horizontal composition
+            ) as the
+            %a.existingWikiWord{:href => "/nlab/show/tensor+product"} tensor product
+            of morphisms (natural transformations). Hence we can consider
+            %a.existingWikiWord{:href => "/nlab/show/operads"} operads
+            and
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/algebras+over+operads"} algebras over operads
+          %p
+            In any case, given an adjunction
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi T
+                    %mo ⊣
+                    %mi G
+                  %annotation{:encoding => "application/x-tex"} T\dashv G
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msup
+                    %mi T
+                    %mi n
+                  %mo →
+                  %mi T
+                %annotation{:encoding => "application/x-tex"} T^n\to T
+            dualize to cooperations
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi G
+                    %mo →
+                    %msup
+                      %mi G
+                      %mi n
+                  %annotation{:encoding => "application/x-tex"} G\to G^n
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msup
+                    %mi T
+                    %mi k
+                  %mo →
+                  %msup
+                    %mi T
+                    %mi l
+                %annotation{:encoding => "application/x-tex"} T^k\to T^l
+            dualize to the multioperations
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msup
+                      %mi G
+                      %mi l
+                    %mo →
+                    %msup
+                      %mi G
+                      %mi k
+                  %annotation{:encoding => "application/x-tex"} G^l\to G^k
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi T
+                  %annotation{:encoding => "application/x-tex"} T
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi G
+                %annotation{:encoding => "application/x-tex"} G
+            (and more generally there is a duality among the identities for multioperations). This is essentially the consequence of
+          %p
+            %strong Lemma.
+            (
+            %a.existingWikiWord{:href => "/nlab/show/Zoran+%C5%A0koda"}> Zoran
+            ) Given the adjunction
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi T
+                  %mo ⊣
+                  %mi G
+                %annotation{:encoding => "application/x-tex"} T\dashv G
+            with unit
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi η
+                %annotation{:encoding => "application/x-tex"} \eta
+            and counit
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi ϵ
+                  %annotation{:encoding => "application/x-tex"} \epsilon
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msup
+                    %mi T
+                    %mi k
+                  %mover
+                    %mo ⟶
+                    %mi α
+                  %msup
+                    %mi T
+                    %mi l
+                  %mover
+                    %mo ⟶
+                    %mi β
+                  %msup
+                    %mi T
+                    %mi s
+                %annotation{:encoding => "application/x-tex"}
+                  T^k \stackrel{\alpha}\longrightarrow T^l\stackrel\beta\longrightarrow T^s
+          %p
+            the composition
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msup
+                    %mi α
+                    %mo *
+                  %mo ∘
+                  %msup
+                    %mi β
+                    %mo *
+                %annotation{:encoding => "application/x-tex"} \alpha^*\circ\beta^*
+            of the dual (in the above sense) sequence
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msup
+                    %mi G
+                    %mi k
+                  %mover
+                    %mo ⟵
+                    %mrow
+                      %msup
+                        %mi α
+                        %mo *
+                  %msup
+                    %mi G
+                    %mi l
+                  %mover
+                    %mo ⟵
+                    %mrow
+                      %msup
+                        %mi β
+                        %mo *
+                  %msup
+                    %mi G
+                    %mi s
+                %annotation{:encoding => "application/x-tex"}
+                  G^k \stackrel{\alpha^*}\longleftarrow G^l\stackrel{\beta^*}\longleftarrow G^s
+          %p
+            equal to the dual
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mo{:stretchy => "false"} (
+                  %mi β
+                  %mo ∘
+                  %mi α
+                  %msup
+                    %mo{:stretchy => "false"} )
+                    %mo *
+                %annotation{:encoding => "application/x-tex"} (\beta\circ\alpha)^*
+            of
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi β
+                    %mo ∘
+                    %mi α
+                  %annotation{:encoding => "application/x-tex"} \beta\circ\alpha
+          %p
+            %em> Proof
+            \.
+            %a.existingWikiWord{:href => "/nlab/show/Mike+Shulman"} Mike Shulman
+            notices that this is a special case of known contravariant functoriality of
+            = succeed "s," do
+              %a.existingWikiWord{:href => "/nlab/show/mate"} mate
+          %p We need to prove that the composition
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msup
+                    %mi G
+                    %mi s
+                  %mover
+                    %mo →
+                    %mrow
+                      %msub
+                        %mi η
+                        %mi l
+                      %msup
+                        %mi G
+                        %mi s
+                  %msup
+                    %mi G
+                    %mi l
+                  %msup
+                    %mi T
+                    %mi l
+                  %msup
+                    %mi G
+                    %mi s
+                  %mover
+                    %mo →
+                    %mrow
+                      %msup
+                        %mi G
+                        %mi l
+                      %mi β
+                      %msup
+                        %mi G
+                        %mi s
+                  %msup
+                    %mi G
+                    %mi l
+                  %msup
+                    %mi T
+                    %mi s
+                  %msup
+                    %mi G
+                    %mi s
+                  %mover
+                    %mo →
+                    %mrow
+                      %msup
+                        %mi G
+                        %mi l
+                      %msub
+                        %mi ϵ
+                        %mi s
+                  %msup
+                    %mi G
+                    %mi l
+                  %mover
+                    %mo →
+                    %mrow
+                      %msub
+                        %mi η
+                        %mi k
+                      %msup
+                        %mi G
+                        %mi l
+                  %msup
+                    %mi G
+                    %mi k
+                  %msup
+                    %mi T
+                    %mi k
+                  %msup
+                    %mi G
+                    %mi l
+                  %mover
+                    %mo →
+                    %mrow
+                      %msup
+                        %mi G
+                        %mi k
+                      %mi α
+                      %msup
+                        %mi G
+                        %mi l
+                  %msup
+                    %mi G
+                    %mi k
+                  %msup
+                    %mi T
+                    %mi l
+                  %msup
+                    %mi G
+                    %mi l
+                  %mover
+                    %mo →
+                    %mrow
+                      %msup
+                        %mi G
+                        %mi k
+                      %msub
+                        %mi ϵ
+                        %mi l
+                  %msup
+                    %mi G
+                    %mi k
+                %annotation{:encoding => "application/x-tex"}
+                  G^s\stackrel{\eta_l G^s}\to G^l T^l G^s\stackrel{G^l\beta G^s}\to G^l T^s G^s\stackrel{G^l \epsilon_s}\to G^l\stackrel{\eta_k G^l}\to G^k T^k G^l\stackrel{G^k\alpha G^l}\to G^k T^l G^l\stackrel{G^k\epsilon_l}\to G^k
+          %p equals the composition
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msup
+                    %mi G
+                    %mi s
+                  %mover
+                    %mo →
+                    %mrow
+                      %msub
+                        %mi η
+                        %mi k
+                      %msup
+                        %mi G
+                        %mi l
+                  %msup
+                    %mi G
+                    %mi k
+                  %msup
+                    %mi T
+                    %mi k
+                  %msup
+                    %mi G
+                    %mi s
+                  %mover
+                    %mo →
+                    %mrow
+                      %msup
+                        %mi G
+                        %mi k
+                      %mi α
+                      %msup
+                        %mi G
+                        %mi l
+                  %msup
+                    %mi G
+                    %mi k
+                  %msup
+                    %mi T
+                    %mi l
+                  %msup
+                    %mi G
+                    %mi s
+                  %mover
+                    %mo →
+                    %mrow
+                      %msup
+                        %mi G
+                        %mi k
+                      %mi β
+                      %msup
+                        %mi G
+                        %mi s
+                  %msup
+                    %mi G
+                    %mi k
+                  %msup
+                    %mi T
+                    %mi s
+                  %msup
+                    %mi G
+                    %mi s
+                  %mover
+                    %mo →
+                    %mrow
+                      %msup
+                        %mi G
+                        %mi k
+                      %msub
+                        %mi ϵ
+                        %mi s
+                  %msup
+                    %mi G
+                    %mi k
+                  %mo .
+                %annotation{:encoding => "application/x-tex"}
+                  G^s\stackrel{\eta_k G^l}\to G^k T^k G^s\stackrel{G^k\alpha G^l}\to G^k T^l G^s\stackrel{G^k\beta G^s}\to G^k T^s G^s\stackrel{G^k\epsilon_s}\to G^k.
+          %p
+            Note that in the two compositions there is an opposite order between the expressions involving
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi α
+                %annotation{:encoding => "application/x-tex"} \alpha
+            and those involving
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi β
+                  %annotation{:encoding => "application/x-tex"} \beta
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi α
+                %annotation{:encoding => "application/x-tex"} \alpha
+            and
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi β
+                %annotation{:encoding => "application/x-tex"} \beta
+            in effect):
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mrow
+                    %mtable
+                      %mtr
+                        %mtd
+                          %msup
+                            %mi G
+                            %mi s
+                        %mtd
+                          %mover
+                            %mo →
+                            %mrow
+                              %msub
+                                %mi η
+                                %mi l
+                              %msup
+                                %mi G
+                                %mi s
+                        %mtd
+                          %msup
+                            %mi G
+                            %mi l
+                          %msup
+                            %mi T
+                            %mi l
+                          %msup
+                            %mi G
+                            %mi s
+                        %mtd
+                          %mover
+                            %mo →
+                            %mrow
+                              %msup
+                                %mi G
+                                %mi l
+                              %mi β
+                              %msup
+                                %mi G
+                                %mi s
+                        %mtd
+                          %msup
+                            %mi G
+                            %mi l
+                          %msup
+                            %mi T
+                            %mi s
+                          %msup
+                            %mi G
+                            %mi s
+                        %mtd
+                          %mover
+                            %mo ⟶
+                            %mrow
+                              %msup
+                                %mi G
+                                %mi l
+                              %msub
+                                %mi ϵ
+                                %mi s
+                        %mtd
+                          %msup
+                            %mi G
+                            %mi l
+                      %mtr
+                        %mtd
+                          %msup
+                            %mi η
+                            %mi k
+                          %msup
+                            %mi G
+                            %mi s
+                          %mo{:stretchy => "false"} ↓
+                        %mtd
+                        %mtd
+                          %mo{:stretchy => "false"} ↓
+                          %msub
+                            %mi η
+                            %mi k
+                          %msup
+                            %mi G
+                            %mi l
+                          %msup
+                            %mi T
+                            %mi l
+                          %msup
+                            %mi G
+                            %mi s
+                        %mtd
+                        %mtd
+                          %mo{:stretchy => "false"} ↓
+                          %msub
+                            %mi η
+                            %mi k
+                          %msup
+                            %mi G
+                            %mi l
+                          %msup
+                            %mi T
+                            %mi s
+                          %msup
+                            %mi G
+                            %mi s
+                        %mtd
+                        %mtd
+                          %mo{:stretchy => "false"} ↓
+                          %msub
+                            %mi η
+                            %mi k
+                          %msup
+                            %mi G
+                            %mi l
+                      %mtr
+                        %mtd
+                          %msup
+                            %mi G
+                            %mi k
+                          %msup
+                            %mi T
+                            %mi k
+                          %msup
+                            %mi G
+                            %mi s
+                        %mtd
+                          %mover
+                            %mo ⟶
+                            %mrow
+                              %msup
+                                %mi G
+                                %mi k
+                              %msup
+                                %mi T
+                                %mi k
+                              %msub
+                                %mi η
+                                %mi l
+                              %msup
+                                %mi G
+                                %mi s
+                        %mtd
+                          %msup
+                            %mi G
+                            %mi k
+                          %msup
+                            %mi T
+                            %mi k
+                          %msup
+                            %mi G
+                            %mi l
+                          %msup
+                            %mi T
+                            %mi l
+                          %msup
+                            %mi G
+                            %mi s
+                        %mtd
+                          %mover
+                            %mo ⟶
+                            %mrow
+                              %msup
+                                %mi G
+                                %mi k
+                              %msup
+                                %mi T
+                                %mi k
+                              %msup
+                                %mi G
+                                %mi l
+                              %mi β
+                              %msup
+                                %mi G
+                                %mi s
+                        %mtd
+                          %msup
+                            %mi G
+                            %mi k
+                          %msup
+                            %mi T
+                            %mi k
+                          %msup
+                            %mi G
+                            %mi l
+                          %msup
+                            %mi T
+                            %mi s
+                          %msup
+                            %mi G
+                            %mi s
+                        %mtd
+                          %mover
+                            %mo ⟶
+                            %mrow
+                              %msup
+                                %mi G
+                                %mi k
+                              %msup
+                                %mi T
+                                %mi k
+                              %msup
+                                %mi G
+                                %mi l
+                              %msub
+                                %mi ϵ
+                                %mi s
+                        %mtd
+                          %msup
+                            %mi G
+                            %mi k
+                          %msup
+                            %mi T
+                            %mi k
+                          %msup
+                            %mi G
+                            %mi l
+                      %mtr
+                        %mtd
+                          %msup
+                            %mi G
+                            %mi k
+                          %mi α
+                          %msup
+                            %mi G
+                            %mi s
+                          %mo{:stretchy => "false"} ↓
+                        %mtd
+                        %mtd
+                          %mo{:stretchy => "false"} ↓
+                          %msup
+                            %mi G
+                            %mi k
+                          %mi α
+                          %msup
+                            %mi G
+                            %mi l
+                          %msup
+                            %mi T
+                            %mi l
+                          %msup
+                            %mi G
+                            %mi s
+                        %mtd
+                        %mtd
+                          %mo{:stretchy => "false"} ↓
+                          %msup
+                            %mi G
+                            %mi k
+                          %mi α
+                          %msup
+                            %mi G
+                            %mi k
+                          %msup
+                            %mi T
+                            %mi s
+                          %msup
+                            %mi G
+                            %mi s
+                        %mtd
+                        %mtd
+                          %mo{:stretchy => "false"} ↓
+                          %msup
+                            %mi G
+                            %mi k
+                          %mi α
+                          %msup
+                            %mi G
+                            %mi l
+                      %mtr
+                        %mtd
+                          %msup
+                            %mi G
+                            %mi k
+                          %msup
+                            %mi T
+                            %mi l
+                          %msup
+                            %mi G
+                            %mi s
+                        %mtd
+                          %mover
+                            %mo ⟶
+                            %mrow
+                              %msup
+                                %mi G
+                                %mi k
+                              %msup
+                                %mi T
+                                %mi l
+                              %msub
+                                %mi η
+                                %mi l
+                              %msup
+                                %mi G
+                                %mi s
+                        %mtd
+                          %msup
+                            %mi G
+                            %mi k
+                          %msup
+                            %mi T
+                            %mi l
+                          %msup
+                            %mi G
+                            %mi l
+                          %msup
+                            %mi T
+                            %mi l
+                          %msup
+                            %mi G
+                            %mi s
+                        %mtd
+                          %mover
+                            %mo ⟶
+                            %mrow
+                              %msup
+                                %mi G
+                                %mi k
+                              %msup
+                                %mi T
+                                %mi l
+                              %msup
+                                %mi G
+                                %mi l
+                              %mi β
+                              %msup
+                                %mi G
+                                %mi s
+                        %mtd
+                          %msup
+                            %mi G
+                            %mi k
+                          %msup
+                            %mi T
+                            %mi l
+                          %msup
+                            %mi G
+                            %mi l
+                          %msup
+                            %mi T
+                            %mi s
+                          %msup
+                            %mi G
+                            %mi s
+                        %mtd
+                          %mover
+                            %mo ⟶
+                            %mrow
+                              %msup
+                                %mi G
+                                %mi k
+                              %msup
+                                %mi T
+                                %mi l
+                              %msup
+                                %mi G
+                                %mi l
+                              %msub
+                                %mi ϵ
+                                %mi s
+                        %mtd
+                          %msup
+                            %mi G
+                            %mi k
+                          %msup
+                            %mi T
+                            %mi l
+                          %msup
+                            %mi G
+                            %mi l
+                      %mtr
+                        %mtd
+                          %msup
+                            %mi G
+                            %mi k
+                          %mi β
+                          %msup
+                            %mi G
+                            %mi s
+                          %mo{:stretchy => "false"} ↓
+                        %mtd
+                        %mtd
+                          %mo{:stretchy => "false"} ↓
+                          %mi ρ
+                        %mtd
+                        %mtd
+                          %mo{:stretchy => "false"} ↓
+                          %msup
+                            %mi G
+                            %mi k
+                          %msub
+                            %mi ϵ
+                            %mi l
+                          %msup
+                            %mi T
+                            %mi s
+                          %msup
+                            %mi G
+                            %mi s
+                        %mtd
+                        %mtd
+                          %mo{:stretchy => "false"} ↓
+                          %msup
+                            %mi G
+                            %mi k
+                          %msub
+                            %mi ϵ
+                            %mi l
+                      %mtr
+                        %mtd
+                          %msup
+                            %mi G
+                            %mi k
+                          %msup
+                            %mi T
+                            %mi s
+                          %msup
+                            %mi G
+                            %mi s
+                        %mtd
+                          %mo =
+                        %mtd
+                          %msup
+                            %mi G
+                            %mi k
+                          %msup
+                            %mi T
+                            %mi s
+                          %msup
+                            %mi G
+                            %mi l
+                        %mtd
+                          %mo =
+                        %mtd
+                          %msup
+                            %mi G
+                            %mi k
+                          %msup
+                            %mi T
+                            %mi s
+                          %msup
+                            %mi G
+                            %mi s
+                        %mtd
+                          %mover
+                            %mo ⟶
+                            %mrow
+                              %msup
+                                %mi G
+                                %mi k
+                              %msub
+                                %mi ϵ
+                                %mi s
+                        %mtd
+                          %msup
+                            %mi G
+                            %mi k
+                %annotation{:encoding => "application/x-tex"}
+                  \\array{
+                  G^s &amp;\stackrel{\eta_l G^s}\to &amp; G^l T^l G^s &amp;\stackrel{G^l\beta G^s}\to &amp; G^l T^s G^s&amp;\stackrel{G^l \epsilon_s}\longrightarrow&amp; G^l\\
+                  \\eta^k G^s\downarrow &amp;&amp;\downarrow \eta_k G^l T^l G^s&amp;&amp;\downarrow \eta_k G^l T^s G^s&amp;&amp; \downarrow \eta_k G^l \\
+                  G^k T^k G^s &amp;\stackrel{G^k T^k\eta_l G^s}\longrightarrow &amp;G^k T^k G^l T^l G^s &amp;\stackrel{G^k T^k G^l \beta G^s}\longrightarrow &amp; G^k T^k G^l T^s G^s &amp;\stackrel{G^k T^k G^l \epsilon_s}\longrightarrow &amp; G^k T^k G^l\\
+                  G^k \alpha G^s \downarrow &amp;&amp; \downarrow G^k \alpha G^l T^l G^s&amp;&amp;\downarrow G^k \alpha G^k T^s G^s&amp;&amp;\downarrow G^k \alpha G^l\\
+                  G^k T^l G^s &amp;\stackrel{G^k T^l\eta_l G^s}\longrightarrow &amp; G^k T^l G^l T^l G^s &amp;\stackrel{G^k T^l G^l \beta G^s}\longrightarrow &amp; G^k T^l G^l T^s G^s &amp;\stackrel{G^k T^l G^l\epsilon_s}\longrightarrow &amp; G^k T^l G^l\\
+                  G^k\beta G^s \downarrow &amp;&amp;\downarrow{\rho} &amp;&amp;\downarrow G^k \epsilon_l T^s G^s &amp;&amp;\downarrow G^k\epsilon_l \\
+                  G^k T^s G^s &amp;=&amp;G^k T^s G^l &amp;=&amp;G^k T^s G^s&amp;\stackrel{G^k \epsilon_s}\longrightarrow&amp; G^k
+                  }
+          %p
+            where
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi ρ
+                    %mo :
+                    %mo =
+                    %msup
+                      %mi G
+                      %mi k
+                    %mi β
+                    %msup
+                      %mi G
+                      %mi s
+                    %mo ∘
+                    %msup
+                      %mi G
+                      %mi k
+                    %msub
+                      %mi ϵ
+                      %mi l
+                    %msup
+                      %mi G
+                      %mi s
+                    %mo =
+                    %msup
+                      %mi G
+                      %mi k
+                    %msub
+                      %mi ϵ
+                      %mi l
+                    %msup
+                      %mi T
+                      %mi s
+                    %msup
+                      %mi G
+                      %mi s
+                    %mo ∘
+                    %msup
+                      %mi G
+                      %mi k
+                    %msup
+                      %mi T
+                      %mi l
+                    %msup
+                      %mi G
+                      %mi l
+                    %mi β
+                    %msup
+                      %mi G
+                      %mi s
+                  %annotation{:encoding => "application/x-tex"} \rho := G^k \beta G^s \circ G^k \epsilon_l G^s = G^k\epsilon_l T^s G^s\circ G^k T^l G^l \beta G^s
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msup
+                      %mi T
+                      %mi l
+                    %mo ⊣
+                    %msup
+                      %mi G
+                      %mi l
+                  %annotation{:encoding => "application/x-tex"} T^l\dashv G^l
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msup
+                    %mi G
+                    %mi k
+                  %mi β
+                  %msup
+                    %mi G
+                    %mi s
+                  %mo =
+                  %msup
+                    %mi G
+                    %mi k
+                  %mi β
+                  %msup
+                    %mi G
+                    %mi s
+                  %mo ∘
+                  %mo{:stretchy => "false"} (
+                  %msup
+                    %mi G
+                    %mi k
+                  %msub
+                    %mi ϵ
+                    %mi l
+                  %msup
+                    %mi T
+                    %mi l
+                  %msup
+                    %mi G
+                    %mi s
+                  %mo ∘
+                  %msup
+                    %mi G
+                    %mi k
+                  %msup
+                    %mi T
+                    %mi l
+                  %msub
+                    %mi η
+                    %mi l
+                  %msup
+                    %mi G
+                    %mi s
+                  %mo{:stretchy => "false"} )
+                  %mo =
+                  %mi ρ
+                  %mo ∘
+                  %msup
+                    %mi G
+                    %mi k
+                  %msup
+                    %mi T
+                    %mi l
+                  %msub
+                    %mi η
+                    %mi l
+                  %msup
+                    %mi G
+                    %mi s
+                %annotation{:encoding => "application/x-tex"}
+                  G^k \beta G^s = G^k \beta G^s \circ (G^k \epsilon_l T^l G^s\circ G^k T^l \eta_l G^s) = \rho \circ G^k T^l \eta_l G^s
+          %h2#examples_2 Examples
+          %h3#adjoint_modalities Adjoint modalities
+          %p
+            An
+            %a.existingWikiWord{:href => "/nlab/show/adjoint+modality"} adjoint modality
+            is an example of a pair of adjoint monads.
+          %h2#references References
+          %p Discussion of adjoint monads originates with
+          %ul
+            %li#EilenbergMoore65
+              %a.existingWikiWord{:href => "/nlab/show/Samuel+Eilenberg"}> Samuel Eilenberg
+              ,
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/John+Moore"} John Moore
+              = succeed "," do
+                %em Adjoint functors and triples
+              %strong 9
+              3 (1965) 381-398 &amp;lbrack;
+              %a{:href => "https://doi.org/10.1215/ijm/1256068141"}> doi:10.1215/ijm/1256068141
+              \&amp;rbrack;
+          %p
+            (there called “adjoint triples”, sticking with the old term “triple” for “monad”, a terminology that now clashes with the modern use of
+            %em
+              %a.existingWikiWord{:href => "/nlab/show/adjoint+triples"} adjoint triples
+            of
+            = succeed ")." do
+              %a.existingWikiWord{:href => "/nlab/show/adjoint+functors"} adjoint functors
+          %p Textbook account:
+          %ul
+            %li#MacLaneMoerdijk92
+              %a.existingWikiWord{:href => "/nlab/show/Saunders+Mac+Lane"}> Saunders Mac Lane
+              ,
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/Ieke+Moerdijk"} Ieke Moerdijk
+              = succeed "," do
+                %em
+                  %a.existingWikiWord{:href => "/nlab/show/Sheaves+in+Geometry+and+Logic"} Sheaves in Geometry and Logic — A First Introduction to Topos Theory
+              = succeed "&rbrack;" do
+                %a{:href => "https://dx.doi.org/10.1007/978-1-4612-0927-0"} doi:10.1007/978-1-4612-0927-0
+          %p
+            Discussion in the context of
+            %a.existingWikiWord{:href => "/nlab/show/ambidextrous+adjunctions"} ambidextrous adjunctions
+            and
+            = succeed ":" do
+              %a.existingWikiWord{:href => "/nlab/show/Frobenius+monads"} Frobenius monads
+          %ul
+            %li#Street04
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Ross+Street"}> Ross Street
+                ,
+                = succeed "," do
+                  %em Frobenius monads and pseudomonoids
+                %strong 45
+                3930 (2004) &amp;lbrack;
+                %a{:href => "https://doi.org/10.1063/1.1788852"}> doi:10.1063/1.1788852
+                \&amp;rbrack;
+            %li#Lauda05
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Aaron+Lauda"}> Aaron Lauda
+                ,
+                = succeed "," do
+                  %em Frobenius algebras and ambidextrous adjunctions
+                %strong 16
+                4 (2006) 84-122 &amp;lbrack;
+                %a{:href => "http://arxiv.org/abs/math/0502550"}> arXiv:math/0502550
+                ,
+                = succeed "&rbrack;" do
+                  %a{:href => "http://www.tac.mta.ca/tac/volumes/16/4/16-04abs.html"} tac:16-04
+        .revisedby
+          %p
+            Last revised on February  8, 2025 at 14:20:24.
+            See the
+            %a{:href => "/nlab/history/adjoint+monad", :style => "color: #005c19"} history
+            of this page for a list of all contributions to it.
+        .navigation.navfoot
+          %a#edit.navlink{:accesskey => "E", :href => "/nlab/edit/adjoint+monad", :rel => "nofollow"} Edit
+          %a{:href => "https://nforum.ncatlab.org/discussion/17008/#Item_2"} Discuss
+          %span.backintime
+            %a#to_previous_revision.navlinkbackintime{:accesskey => "B", :href => "/nlab/revision/adjoint+monad/11", :rel => "nofollow"} Previous revision
+          %a#see_changes.navlink{:accesskey => "C", :href => "/nlab/show/diff/adjoint+monad", :rel => "nofollow"} Changes from previous revision
+          %a#history.navlink{:accesskey => "S", :href => "/nlab/history/adjoint+monad", :rel => "nofollow"} History (11 revisions)
+          %a{:href => "/nlab/show/adjoint+monad/cite", :style => "color: black"} Cite
+          %a#view_print{:accesskey => "p", :href => "/nlab/print/adjoint+monad", :rel => "nofollow"} Print
+          %a#view_source{:href => "/nlab/source/adjoint+monad", :rel => "nofollow"} Source
+      / Content
+    / Container

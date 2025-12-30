@@ -1,0 +1,3592 @@
+!!! XML
+!!! 1.1
+%html{:xmlns => "http://www.w3.org/1999/xhtml"}
+  %head
+    %title
+      free coproduct completion in nLab
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:content => "index,follow", :name => "robots"}/
+    %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/
+    %link{:href => "/stylesheets/instiki.css?1676280126", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/stylesheets/mathematics.css?1660229990", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/stylesheets/syntax.css?1660229990", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/stylesheets/nlab.css?1676280126", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css", :rel => "stylesheet", :type => "text/css"}/
+    :css
+      h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+        color: #226622;
+      }
+      a:visited.existingWikiWord {
+        color: #164416;
+      }
+    :css
+      <!--/*--><![CDATA[/*><!--*/
+          .toc ul {margin: 0; padding: 0;}
+      .toc ul ul {margin: 0; padding: 0 0 0 10px;}
+      .toc li > p {margin: 0}
+      .toc ul li {list-style-type: none; position: relative;}
+      .toc div {border-top:1px dotted #ccc;}
+      .rightHandSide h2 {font-size: 1.5em;color:#008B26}
+      table.plaintable {
+          border-collapse:collapse;
+          margin-left:30px;
+          border:0;
+      }
+      .plaintable td {border:1px solid #000; padding: 3px;}
+      .plaintable th {padding: 3px;}
+      .plaintable caption {
+          font-weight: bold;
+          font-size:1.1em;
+          text-align:center;
+          margin-left:30px;
+      }
+          
+         
+      /* Query boxes for questioning and answering mechanism */
+      div.query{
+      background: #f6fff3;
+      border: solid #ce9;
+      border-width: 2px 1px;
+      padding: 0 1em;
+      margin: 0 1em;
+      max-height: 20em;
+      overflow: auto;
+      }
+      
+      /* Standout boxes for putting important text */
+      div.standout{
+      background: #fff1f1;
+      border: solid black;
+      border-width: 2px 1px;
+      padding: 0 1em;
+      margin: 0 1em;
+      overflow: auto;
+      }
+      
+      /* Icon for links to n-category arXiv documents 
+       (commented out for now i.e. disabled)
+      a[href*="http://arxiv.org/"] {
+        background-image: url(../files/arXiv_icon.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 22px;
+        } */
+          
+      /* Icon for links to n-category cafe posts (disabled) 
+      a[href*="http://golem.ph.utexas.edu/category"] {
+        background-image: url(../files/n-cafe_5.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 25px;
+        } */
+      
+      /* Icon for links to pdf files (disabled)
+      a[href$=".pdf"] {
+        background-image: url(../files/pdficon_small.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 25px;
+        } */
+      
+      /* Icon for links to pages, etc. -inside- pdf files (disabled)
+      a[href*=".pdf#"] {
+        background-image: url(../files/pdf_entry.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 25px;
+        } */
+      
+      a.existingWikiWord {
+      color: #226622;
+      }
+      
+      a.existingWikiWord:visited {
+      color: #226622;
+      }
+      
+      
+      a.existingWikiWord[title] {
+      border: 0px;
+      color: #aa0505;
+      text-decoration: none;
+      }
+          
+      a.existingWikiWord[title]:visited {
+      border: 0px;
+      color: #551111;
+      text-decoration: none;
+      }
+      
+      a[href^="http://"] {
+      border: 0px;
+      color: #003399;
+      }
+      
+      a[href^="http://"]:visited {
+      border: 0px;
+      color: #330066;
+      }
+      
+      a[href^="https://"] {
+      border: 0px;
+      color: #003399;
+      }
+      
+      a[href^="https://"]:visited {
+      border: 0px;
+      color: #330066;
+      }
+      
+      div.dropDown .hide {
+      display: none;
+      }
+      
+      div.dropDown:hover .hide {
+      display:block;
+      }
+      
+      div.clickDown .hide {
+      display: none;
+      }
+      
+      div.clickDown:focus {
+      outline:none;
+      }
+      
+      div.clickDown:focus .hide, div.clickDown:hover .hide {
+      display: block;
+      }
+      
+      div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+      display:block;
+      }
+      
+      div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+      display:none;
+      }
+      
+      div.clickDown .clickToReveal:after {
+      content: "A(Hover to reveal, click to "hold")";
+      font-size: 60%;
+      }
+      
+      div.clickDown .clickToHide:after {
+      content: "A(Click to hide)";
+      font-size: 60%;
+      }
+      div.clickDown .clickToHide, div.clickDown .clickToReveal {
+      white-space: pre-wrap;
+      }
+      
+      .un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+      margin-left: 1em;
+      }
+      
+      span.theorem_label {
+      margin-left: -1em;
+      }
+      .proof span.theorem_label {
+      margin-left: 0em;
+      }
+      :target {
+          background-color: #BBBBBB;
+          border-radius: 5pt;
+      }
+      
+        /*]]>*/-->
+    %script{:src => "/javascripts/prototype.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/effects.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/dragdrop.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/controls.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/application.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/page_helper.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/thm_numbering.js?1660229990", :type => "text/javascript"}
+    %script{:type => "text/x-mathjax-config"}
+      :cdata
+        <!--//--><![CDATA[//><!--
+        MathJax.Ajax.config.path["Contrib"] = "/MathJax";
+        MathJax.Hub.Config({
+        MathML: { useMathMLspacing: true },
+        "HTML-CSS": { scale: 90,
+        extensions: ["handle-floats.js"]
+        }
+        });
+        MathJax.Hub.Queue( function () {
+        var fos = document.getElementsByTagName('foreignObject');
+        for (var i = 0; i < fos.length; i++) {
+        MathJax.Hub.Typeset(fos[i]);
+        }
+        });
+        \//--><!]]>
+    :javascript
+      <!--//--><![CDATA[//><!--
+      window.addEventListener("DOMContentLoaded", function () {
+        var div = document.createElement('div');
+        var math = document.createElementNS('http://www.w3.org/1998/Math/MathML', 'math');
+        document.body.appendChild(div);
+        div.appendChild(math);
+      // Test for MathML support comparable to WebKit version https://trac.webkit.org/changeset/203640 or higher.
+        div.setAttribute('style', 'font-style: italic');
+        var mathml_unsupported = !(window.getComputedStyle(div.firstChild).getPropertyValue('font-style') === 'normal');
+        div.parentNode.removeChild(div);
+        if (mathml_unsupported) {
+          // MathML does not seem to be supported...
+          var s = document.createElement('script');
+          s.src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=MML_HTMLorMML-full";
+          document.querySelector('head').appendChild(s);
+        } else {
+          document.head.insertAdjacentHTML("beforeend", '<style>svg[viewBox] {max-width: 100%}</style>');
+        }
+      });
+      //--><!]]>
+    %link{:href => "https://ncatlab.org/nlab/atom_with_headlines", :rel => "alternate", :title => "Atom with headlines", :type => "application/atom+xml"}/
+    %link{:href => "https://ncatlab.org/nlab/atom_with_content", :rel => "alternate", :title => "Atom with full content", :type => "application/atom+xml"}/
+    :javascript
+      document.observe("dom:loaded", function() {
+        generateThmNumbers();
+      });
+  %body
+    #Container
+      #Content
+        %h1#pageName
+          %span{:style => "float: left; margin: 0.5em 0.25em -0.25em 0"}
+            %svg{:height => "1.8em", :viewbox => "0 0 190 181", :width => "1.872em", :xmlns => "http://www.w3.org/2000/svg"}
+              %path{:d => "M72.8 145c-1.6 17.3-15.7 10-23.6 20.2-5.6 7.3 4.8 15 11.4 15 11.5-.2 19-13.4 26.4-20.3 3.3-3 8.2-4 11.2-7.2a14 14 0 0 0 2.9-11.1c-1.4-9.6-12.4-18.6-16.9-27.2-5-9.6-10.7-27.4-24.1-27.7-17.4-.3-.4 26 4.7 30.7 2.4 2.3 5.4 4.1 7.3 6.9 1.6 2.3 2.1 5.8-1 7.2-5.9 2.6-12.4-6.3-15.5-10-8.8-10.6-15.5-23-26.2-31.8-5.2-4.3-11.8-8-18-3.7-7.3 4.9-4.2 12.9.2 18.5a81 81 0 0 0 30.7 23c3.3 1.5 12.8 5.6 10 10.7-2.5 5.2-11.7 3-15.6 1.1-8.4-3.8-24.3-21.3-34.4-13.7-3.5 2.6-2.3 7.6-1.2 11.1 2.8 9 12.2 17.2 20.9 20.5 17.3 6.7 34.3-8 50.8-12.1z", :fill => "#226622"}
+              %path{:d => "M145.9 121.3c-.2-7.5 0-19.6-4.5-26-5.4-7.5-12.9-1-14.1 5.8-1.4 7.8 2.7 14.1 4.8 21.3 3.4 12 5.8 29-.8 40.1-3.6-6.7-5.2-13-7-20.4-2.1-8.2-12.8-13.2-15.1-1.9-2 9.7 9 21.2 12 30.1 1.2 4 2 8.8 6.4 10.3 6.9 2.3 13.3-4.7 17.7-8.8 12.2-11.5 36.6-20.7 43.4-36.4 6.7-15.7-13.7-14-21.3-7.2-9.1 8-11.9 20.5-23.6 25.1 7.5-23.7 31.8-37.6 38.4-61.4 2-7.3-.8-29.6-13-19.8-14.5 11.6-6.6 37.6-23.3 49.2z", :fill => "#a41e32"}
+              %path{:d => "M86.3 47.5c0-13-10.2-27.6-5.8-40.4 2.8-8.4 14.1-10.1 17-1 3.8 11.6-.3 26.3-1.8 38 11.7-.7 10.5-16 14.8-24.3 2.1-4.2 5.7-9.1 11-6.7 6 2.7 7.4 9.2 6.6 15.1-2.2 14-12.2 18.8-22.4 27-3.4 2.7-8 6.6-5.9 11.6 2 4.4 7 4.5 10.7 2.8 7.4-3.3 13.4-16.5 21.7-16 14.6.7 12 21.9.9 26.2-5 1.9-10.2 2.3-15.2 3.9-5.8 1.8-9.4 8.7-15.7 8.9-6.1.1-9-6.9-14.3-9-14.4-6-33.3-2-44.7-14.7-3.7-4.2-9.6-12-4.9-17.4 9.3-10.7 28 7.2 35.7 12 2 1.1 11 6.9 11.4 1.1.4-5.2-10-8.2-13.5-10-11.1-5.2-30-15.3-35-27.3-2.5-6 2.8-13.8 9.4-13.6 6.9.2 13.4 7 17.5 12C70.9 34 75 43.8 86.3 47.4z", :fill => "#193c78"}
+          %span.webName nLab
+          free coproduct completion
+        .navigation
+          %span.skipNav
+            %a{:href => "#navEnd"} Skip the Navigation Links
+            |
+          %span{:style => "display:inline-block; width: 0.3em;"}
+          %a{:accesskey => "H", :href => "/nlab/show/HomePage", :title => "Home page"} Home Page
+          |
+          %a{:accesskey => "A", :href => "/nlab/all_pages", :title => "List of all pages"} All Pages
+          |
+          %a{:accesskey => "U", :href => "/nlab/latest_revisions", :title => "Latest edits and page creations"} Latest Revisions
+          |
+          %a{:href => "https://nforum.ncatlab.org/discussion/13585/#Item_23", :style => "color: black", :title => "Discuss this page in its dedicated thread on the nForum"} Discuss this page
+          |
+          %form#navigationSearchForm{"accept-charset" => "utf-8", :action => "/nlab/search", :method => "get"}
+            %fieldset.search
+              %input#searchField{:name => "query", :onblur => "this.value == '' ? this.value = 'Search' : true", :onfocus => "this.value == 'Search' ? this.value = '' : true", :style => "display:inline-block; float: left;", :type => "text", :value => "Search"}/
+          %span#navEnd
+        #revision
+          %meta{:content => "application/xhtml+xml;charset=utf-8", "http-equiv" => "Content-type"}/
+          %title Contents
+          .rightHandSide
+            .toc.clickDown{:tabindex => "0"}
+              %h3#context Context
+              %h4#category_theory Category theory
+              .hide
+                %div
+                  %p
+                    %strong
+                      %a.existingWikiWord{:href => "/nlab/show/category+theory"} category theory
+                  %h2#sidebar_concepts Concepts
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/category"} category
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/functor"} functor
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/natural+transformation"} natural transformation
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Cat"} Cat
+                  %h2#sidebar_universal_constructions Universal constructions
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/universal+construction"} universal construction
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/representable+functor"} representable functor
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/adjoint+functor"} adjoint functor
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/limit"}> limit
+                            \/
+                            %a.existingWikiWord{:href => "/nlab/show/colimit"} colimit
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/weighted+limit"} weighted limit
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/end"}> end
+                            \/
+                            %a.existingWikiWord{:href => "/nlab/show/coend"} coend
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/Kan+extension"} Kan extension
+                  %h2#sidebar_theorems Theorems
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Yoneda+lemma"} Yoneda lemma
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Isbell+duality"} Isbell duality
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Grothendieck+construction"} Grothendieck construction
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/adjoint+functor+theorem"} adjoint functor theorem
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/monadicity+theorem"} monadicity theorem
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/adjoint+lifting+theorem"} adjoint lifting theorem
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Tannaka+duality"} Tannaka duality
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Gabriel-Ulmer+duality"} Gabriel-Ulmer duality
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/small+object+argument"} small object argument
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Freyd-Mitchell+embedding+theorem"} Freyd-Mitchell embedding theorem
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/relation+between+type+theory+and+category+theory"} relation between type theory and category theory
+                  %h2#sidebar_extensions Extensions
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/sheaf+and+topos+theory"} sheaf and topos theory
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/enriched+category+theory"} enriched category theory
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/higher+category+theory"} higher category theory
+                  %h2#sidebar_applications Applications
+                  %ul
+                    %li
+                      %a.existingWikiWord{:href => "/nlab/show/applications+of+%28higher%29+category+theory"} applications of (higher) category theory
+                  %div
+                    %p
+                      %a{:href => "/nlab/edit/category+theory+-+contents"} Edit this sidebar
+          %h1#contents Contents
+          .maruku_toc
+            %ul
+              %li
+                %a{:href => "#idea"} Idea
+              %li
+                %a{:href => "#Definitions"} Definitions
+              %ul
+                %li
+                  %a{:href => "#ViaIndexedSetsOfObjects"} Via indexed sets of objects
+                %li
+                  %a{:href => "#as_a_comma_category"} As a comma category
+                %li
+                  %a{:href => "#AsAGrothendieckConstruction"} As a Grothendieck construction
+                %li
+                  %a{:href => "#ViaCoproductOfPresheaves"} Via coproducts of presheaves
+              %li
+                %a{:href => "#properties"} Properties
+              %li
+                %a{:href => "#Examples"} Examples
+              %ul
+                %li
+                  %a{:href => "#coproduct_completion_of_connected_objects"} Coproduct completion of connected objects
+                %li
+                  %a{:href => "#coproduct_compeletion_of_extensive_categories"} Coproduct compeletion of extensive categories
+              %li
+                %a{:href => "#related_concepts"} Related concepts
+              %li
+                %a{:href => "#references"} References
+          %h2#idea Idea
+          %p
+            Given a
+            %a.existingWikiWord{:href => "/nlab/show/category"} category
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi 𝒞
+                  %annotation{:encoding => "application/x-tex"} \mathcal{C}
+            %em free coproduct completion
+            (or
+            = succeed "," do
+              %em free sum completion
+            = succeed ")" do
+              %em Fam construction
+            %a.existingWikiWord{:href => "/nlab/show/generalized+the"} the
+            category
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msub
+                    %mi PSh
+                    %mo ⊔
+                  %mo{:stretchy => "false"} (
+                  %mi 𝒞
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} PSh_{\sqcup}(\mathcal{C})
+            (often denoted
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi Fam
+                    %mo{:stretchy => "false"} (
+                    %mi 𝒞
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} Fam(\mathcal{C})
+            %em
+              %a.existingWikiWord{:href => "/nlab/show/families"} families
+            in
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi 𝒞
+                  %annotation{:encoding => "application/x-tex"} \mathcal{C}
+            %a.existingWikiWord{:href => "/nlab/show/%28infinity%2Cn%29-category+of+correspondences"} category of correspondences
+            in e.g.
+            = succeed ")" do
+              %a{:href => "https://arxiv.org/abs/0905.0465"} Lurie 2009
+            %a.existingWikiWord{:href => "/nlab/show/free+construction"} freely
+            adjoining
+            %a.existingWikiWord{:href => "/nlab/show/coproducts"} coproducts
+            of all
+            %a.existingWikiWord{:href => "/nlab/show/objects"} objects
+            of
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi 𝒞
+                  %annotation{:encoding => "application/x-tex"} \mathcal{C}
+          %h2#Definitions Definitions
+          %p Here are a few concrete realizations of free coproduct completions.
+          %h3#ViaIndexedSetsOfObjects Via indexed sets of objects
+          %p
+            An early reference for the following explicit description is
+            = succeed "," do
+              %a{:href => "#Bénabou1985"} Bénabou (1985), §3
+            = succeed "." do
+              %a{:href => "#HuTholen95"} Hu &amp; Tholen (1995), p. 281, 286
+          %p
+            An explicit description of the free coproduct completion
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msub
+                    %mi PSh
+                    %mo ⊔
+                  %mo{:stretchy => "false"} (
+                  %mi 𝒞
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} PSh_{\sqcup}(\mathcal{C})
+            of a category
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi 𝒞
+                %annotation{:encoding => "application/x-tex"} \mathcal{C}
+            is:
+          %ul
+            %li
+              %p
+                Its
+                %a.existingWikiWord{:href => "/nlab/show/objects"} objects
+                are
+                %a.existingWikiWord{:href => "/nlab/show/dependent+pair"} dependent
+                %a.existingWikiWord{:href => "/nlab/show/pairs"} pairs
+                consisting of
+              %ol
+                %li
+                  %p
+                    an index
+                    %a.existingWikiWord{:href => "/nlab/show/set"} set
+                    %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                      %semantics
+                        %mrow
+                          %mi I
+                          %mo ∈
+                        %annotation{:encoding => "application/x-tex"} I \in
+                    %a.existingWikiWord{:href => "/nlab/show/Set"} Set
+                %li
+                  %p
+                    an
+                    = succeed "-" do
+                      %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                        %semantics
+                          %mrow
+                            %mi I
+                          %annotation{:encoding => "application/x-tex"} I
+                    %a.existingWikiWord{:href => "/nlab/show/indexed+set"} indexed set
+                    %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                      %semantics
+                        %mrow
+                          %mo{:maxsize => "1.2em", :minsize => "1.2em"} (
+                          %msub
+                            %mi X
+                            %mi i
+                          %mo ∈
+                          %mi 𝒞
+                          %msub
+                            %mo{:maxsize => "1.2em", :minsize => "1.2em"} )
+                            %mrow
+                              %mi i
+                              %mo ∈
+                              %mi I
+                        %annotation{:encoding => "application/x-tex"} \big( X_i  \in \mathcal{C} \big)_{i \in I}
+                    of
+                    %a.existingWikiWord{:href => "/nlab/show/objects"} objects
+                    of
+                    = succeed "." do
+                      %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                        %semantics
+                          %mrow
+                            %mi 𝒞
+                          %annotation{:encoding => "application/x-tex"} \mathcal{C}
+            %li
+              %p
+                Its
+                %a.existingWikiWord{:href => "/nlab/show/morphisms"} morphisms
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mo{:maxsize => "1.2em", :minsize => "1.2em"} (
+                      %msub
+                        %mi X
+                        %mi i
+                      %msub
+                        %mo{:maxsize => "1.2em", :minsize => "1.2em"} )
+                        %mrow
+                          %mi i
+                          %mo ∈
+                          %mi I
+                      %mover
+                        %mo →
+                        %mrow
+                          %mspace{:width => "thickmathspace"}
+                          %mo{:stretchy => "false"} (
+                          %msub
+                            %mi ϕ
+                            %mi i
+                          %msub
+                            %mo{:stretchy => "false"} )
+                            %mrow
+                              %mi i
+                              %mo ∈
+                              %mi I
+                          %mspace{:width => "thickmathspace"}
+                      %mo{:maxsize => "1.2em", :minsize => "1.2em"} (
+                      %msub
+                        %mi Y
+                        %mi j
+                      %msub
+                        %mo{:maxsize => "1.2em", :minsize => "1.2em"} )
+                        %mrow
+                          %mi j
+                          %mo ∈
+                          %mi J
+                    %annotation{:encoding => "application/x-tex"} \big( X_i \big)_{i \in I} \xrightarrow{ \; ( \phi_i )_{i \in I} \; } \big( Y_j \big)_{j \in J}
+                %a.existingWikiWord{:href => "/nlab/show/pairs"} pairs
+                consisting of
+              %ul
+                %li
+                  %p
+                    a
+                    %a.existingWikiWord{:href => "/nlab/show/function"} function
+                    of index sets
+                    = succeed "." do
+                      %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                        %semantics
+                          %mrow
+                            %mi f
+                            %mspace{:width => "thinmathspace"}
+                            %mo{:lspace => "verythinmathspace"} :
+                            %mspace{:width => "thinmathspace"}
+                            %mi I
+                            %mo →
+                            %mi J
+                          %annotation{:encoding => "application/x-tex"} f \,\colon\, I \to J
+                %li
+                  %p
+                    an
+                    = succeed "-" do
+                      %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                        %semantics
+                          %mrow
+                            %mi I
+                          %annotation{:encoding => "application/x-tex"} I
+                    %a.existingWikiWord{:href => "/nlab/show/indexed+set"} indexed set
+                    of
+                    %a.existingWikiWord{:href => "/nlab/show/morphisms"} morphisms
+                    %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                      %semantics
+                        %mrow
+                          %msub
+                            %mi ϕ
+                            %mi i
+                          %mspace{:width => "thinmathspace"}
+                          %mo{:lspace => "verythinmathspace"} :
+                          %mspace{:width => "thinmathspace"}
+                          %msub
+                            %mi X
+                            %mi i
+                          %mover
+                            %mo →
+                            %mspace{:width => "thickmathspace"}
+                          %msub
+                            %mi Y
+                            %mrow
+                              %mi f
+                              %mo{:stretchy => "false"} (
+                              %mi i
+                              %mo{:stretchy => "false"} )
+                        %annotation{:encoding => "application/x-tex"} \phi_i \,\colon\, X_i \xrightarrow{\;} Y_{f(i)}
+                    for
+                    %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                      %semantics
+                        %mrow
+                          %mi i
+                          %mo ∈
+                          %mi I
+                        %annotation{:encoding => "application/x-tex"} i \in I
+                    in
+                    = succeed "." do
+                      %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                        %semantics
+                          %mrow
+                            %mi 𝒞
+                          %annotation{:encoding => "application/x-tex"} \mathcal{C}
+            %li
+              %p
+                The
+                = succeed "-law" do
+                  %a.existingWikiWord{:href => "/nlab/show/composition"} composition
+                %a.existingWikiWord{:href => "/nlab/show/identity+morphisms"} identity morphisms
+                are the evident ones.
+          %h3#as_a_comma_category As a comma category
+          %p
+            The free coproduct completion of a category
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi 𝒞
+                %annotation{:encoding => "application/x-tex"} \mathcal{C}
+            is a sort of
+            %a.existingWikiWord{:href => "/nlab/show/comma+category"} comma category
+            of the following shape:
+          %svg{:height => "93.662pt", :version => "1.2", :viewbox => "0 0 160.248 93.662", :width => "160.248pt", :xmlns => "http://www.w3.org/2000/svg", "xmlns:xlink" => "http://www.w3.org/1999/xlink"}
+            %defs
+              %g
+                %symbol{:id => "b42B3W9Ll4D94kPXZFHnMLuJeKw=-glyph0-0", :overflow => "visible"}
+                  %path{:d => "", :style => "stroke:none;"}
+                %symbol{:id => "b42B3W9Ll4D94kPXZFHnMLuJeKw=-glyph0-1", :overflow => "visible"}
+                  %path{:d => "M 9.375 -10.125 L 0.5625 -10.125 L 0.5625 -9.484375 L 2.140625 -9.484375 L 2.140625 -0.640625 L 0.5625 -0.640625 L 0.5625 0 C 1 -0.03125 2.6875 -0.03125 3.25 -0.03125 C 4.03125 -0.03125 5.359375 -0.03125 6.078125 0 L 6.078125 -0.640625 L 4.109375 -0.640625 L 4.109375 -4.75 L 4.921875 -4.75 C 6.359375 -4.75 6.46875 -4.09375 6.46875 -3 L 7.09375 -3 L 7.09375 -7.125 L 6.46875 -7.125 C 6.46875 -6.046875 6.359375 -5.390625 4.921875 -5.390625 L 4.109375 -5.390625 L 4.109375 -9.484375 L 6.234375 -9.484375 C 8.59375 -9.484375 8.96875 -8.40625 9.171875 -6.609375 L 9.796875 -6.609375 Z M 9.375 -10.125 ", :style => "stroke:none;"}
+                %symbol{:id => "b42B3W9Ll4D94kPXZFHnMLuJeKw=-glyph0-2", :overflow => "visible"}
+                  %path{:d => "M 6.84375 -4.453125 C 6.84375 -5.8125 5.75 -6.734375 3.65625 -6.734375 C 2.828125 -6.734375 1.078125 -6.65625 1.078125 -5.421875 C 1.078125 -4.796875 1.546875 -4.515625 1.953125 -4.515625 C 2.390625 -4.515625 2.828125 -4.828125 2.828125 -5.40625 C 2.828125 -5.6875 2.71875 -5.953125 2.46875 -6.109375 C 2.953125 -6.25 3.3125 -6.25 3.59375 -6.25 C 4.609375 -6.25 5.21875 -5.6875 5.21875 -4.46875 L 5.21875 -3.875 C 2.875 -3.875 0.5 -3.21875 0.5 -1.5625 C 0.5 -0.203125 2.234375 0.09375 3.25 0.09375 C 4.40625 0.09375 5.125 -0.53125 5.421875 -1.1875 C 5.421875 -0.640625 5.421875 0 6.9375 0 L 7.6875 0 C 8 0 8.125 0 8.125 -0.328125 C 8.125 -0.640625 7.984375 -0.640625 7.78125 -0.640625 C 6.84375 -0.65625 6.84375 -0.890625 6.84375 -1.234375 Z M 5.21875 -2.0625 C 5.21875 -0.671875 3.96875 -0.40625 3.5 -0.40625 C 2.765625 -0.40625 2.15625 -0.890625 2.15625 -1.578125 C 2.15625 -2.9375 3.765625 -3.390625 5.21875 -3.46875 Z M 5.21875 -2.0625 ", :style => "stroke:none;"}
+                %symbol{:id => "b42B3W9Ll4D94kPXZFHnMLuJeKw=-glyph0-3", :overflow => "visible"}
+                  %path{:d => "M 12.546875 -4.546875 C 12.546875 -5.921875 11.96875 -6.6875 10.3125 -6.6875 C 8.8125 -6.6875 8.109375 -5.6875 7.875 -5.203125 C 7.625 -6.46875 6.625 -6.6875 5.671875 -6.6875 C 4.234375 -6.6875 3.46875 -5.765625 3.15625 -5.0625 L 3.140625 -5.0625 L 3.140625 -6.6875 L 0.625 -6.578125 L 0.625 -5.9375 C 1.546875 -5.9375 1.65625 -5.9375 1.65625 -5.359375 L 1.65625 -0.640625 L 0.625 -0.640625 L 0.625 0 C 0.96875 -0.03125 2.03125 -0.03125 2.453125 -0.03125 C 2.875 -0.03125 3.953125 -0.03125 4.296875 0 L 4.296875 -0.640625 L 3.265625 -0.640625 L 3.265625 -3.8125 C 3.265625 -5.421875 4.484375 -6.203125 5.421875 -6.203125 C 5.96875 -6.203125 6.296875 -5.875 6.296875 -4.71875 L 6.296875 -0.640625 L 5.265625 -0.640625 L 5.265625 0 C 5.609375 -0.03125 6.671875 -0.03125 7.09375 -0.03125 C 7.515625 -0.03125 8.59375 -0.03125 8.9375 0 L 8.9375 -0.640625 L 7.90625 -0.640625 L 7.90625 -3.8125 C 7.90625 -5.421875 9.125 -6.203125 10.0625 -6.203125 C 10.609375 -6.203125 10.9375 -5.875 10.9375 -4.71875 L 10.9375 -0.640625 L 9.90625 -0.640625 L 9.90625 0 C 10.25 -0.03125 11.3125 -0.03125 11.734375 -0.03125 C 12.15625 -0.03125 13.234375 -0.03125 13.578125 0 L 13.578125 -0.640625 L 12.546875 -0.640625 Z M 12.546875 -4.546875 ", :style => "stroke:none;"}
+                %symbol{:id => "b42B3W9Ll4D94kPXZFHnMLuJeKw=-glyph0-4", :overflow => "visible"}
+                  %path{:d => "M 3.78125 -6.546875 C 2.3125 -6.875 2.265625 -7.9375 2.265625 -8.15625 C 2.265625 -8.90625 2.75 -9.78125 4.1875 -9.78125 C 5.640625 -9.78125 6.9375 -9.09375 7.25 -7.140625 C 7.28125 -6.828125 7.28125 -6.8125 7.578125 -6.8125 C 7.890625 -6.8125 7.890625 -6.859375 7.890625 -7.203125 L 7.890625 -10 C 7.890625 -10.28125 7.890625 -10.375 7.65625 -10.375 C 7.5625 -10.375 7.515625 -10.375 7.375 -10.21875 L 6.734375 -9.484375 C 6.359375 -9.796875 5.625 -10.375 4.1875 -10.375 C 2.046875 -10.375 0.921875 -9.046875 0.921875 -7.421875 C 0.921875 -6.421875 1.453125 -5.734375 1.671875 -5.515625 C 2.4375 -4.75 2.859375 -4.65625 4.40625 -4.3125 C 5.890625 -3.984375 6.0625 -3.953125 6.390625 -3.640625 C 6.59375 -3.453125 7.015625 -3.03125 7.015625 -2.28125 C 7.015625 -1.640625 6.703125 -0.46875 5.046875 -0.46875 C 3.734375 -0.46875 1.671875 -0.90625 1.546875 -3.078125 C 1.53125 -3.34375 1.53125 -3.390625 1.234375 -3.390625 C 0.921875 -3.390625 0.921875 -3.34375 0.921875 -3 L 0.921875 -0.203125 C 0.921875 0.078125 0.921875 0.171875 1.140625 0.171875 C 1.25 0.171875 1.265625 0.15625 1.40625 0.03125 C 1.578125 -0.140625 1.703125 -0.328125 2.078125 -0.703125 C 2.9375 -0.015625 4.171875 0.171875 5.0625 0.171875 C 7.375 0.171875 8.359375 -1.390625 8.359375 -2.96875 C 8.359375 -4.375 7.4375 -5.71875 5.8125 -6.078125 Z M 3.78125 -6.546875 ", :style => "stroke:none;"}
+                %symbol{:id => "b42B3W9Ll4D94kPXZFHnMLuJeKw=-glyph0-5", :overflow => "visible"}
+                  %path{:d => "M 6.71875 -3.28125 C 7.0625 -3.28125 7.15625 -3.28125 7.15625 -3.65625 C 7.15625 -4.109375 7.046875 -5.21875 6.359375 -5.921875 C 5.734375 -6.546875 4.90625 -6.734375 4.046875 -6.734375 C 1.71875 -6.734375 0.46875 -5.21875 0.46875 -3.34375 C 0.46875 -1.265625 2 0.09375 4.234375 0.09375 C 6.484375 0.09375 7.15625 -1.484375 7.15625 -1.734375 C 7.15625 -1.96875 6.9375 -1.96875 6.84375 -1.96875 C 6.609375 -1.96875 6.59375 -1.921875 6.5 -1.71875 C 6.109375 -0.765625 5.125 -0.453125 4.421875 -0.453125 C 2.265625 -0.453125 2.25 -2.453125 2.25 -3.28125 Z M 2.25 -3.71875 C 2.28125 -4.328125 2.296875 -4.90625 2.609375 -5.4375 C 2.890625 -5.921875 3.40625 -6.25 4.046875 -6.25 C 5.640625 -6.25 5.765625 -4.46875 5.78125 -3.71875 Z M 2.25 -3.71875 ", :style => "stroke:none;"}
+                %symbol{:id => "b42B3W9Ll4D94kPXZFHnMLuJeKw=-glyph0-6", :overflow => "visible"}
+                  %path{:d => "M 3.140625 -5.96875 L 5.28125 -5.96875 L 5.28125 -6.609375 L 3.140625 -6.609375 L 3.140625 -9.453125 L 2.515625 -9.453125 C 2.5 -7.96875 1.78125 -6.5 0.3125 -6.453125 L 0.3125 -5.96875 L 1.515625 -5.96875 L 1.515625 -1.828125 C 1.515625 -0.25 2.734375 0.09375 3.8125 0.09375 C 4.90625 0.09375 5.5625 -0.75 5.5625 -1.84375 L 5.5625 -2.640625 L 4.9375 -2.640625 L 4.9375 -1.859375 C 4.9375 -0.875 4.5 -0.453125 4.03125 -0.453125 C 3.140625 -0.453125 3.140625 -1.4375 3.140625 -1.78125 Z M 3.140625 -5.96875 ", :style => "stroke:none;"}
+                %symbol{:id => "b42B3W9Ll4D94kPXZFHnMLuJeKw=-glyph0-7", :overflow => "visible"}
+                  %path{:d => "M 11.140625 -10 C 11.140625 -10.34375 11.140625 -10.375 10.8125 -10.375 L 9.703125 -9.3125 C 8.859375 -10.03125 7.875 -10.375 6.765625 -10.375 C 3.21875 -10.375 0.921875 -8.21875 0.921875 -5.109375 C 0.921875 -2.03125 3.140625 0.171875 6.78125 0.171875 C 9.4375 0.171875 11.140625 -1.640625 11.140625 -3.390625 C 11.140625 -3.640625 11.046875 -3.65625 10.828125 -3.65625 C 10.6875 -3.65625 10.53125 -3.65625 10.515625 -3.5 C 10.375 -1.234375 8.46875 -0.46875 7.125 -0.46875 C 6.15625 -0.46875 4.84375 -0.734375 4.015625 -1.671875 C 3.5 -2.234375 3.015625 -3.046875 3.015625 -5.109375 C 3.015625 -6.5625 3.25 -7.640625 3.9375 -8.484375 C 4.890625 -9.59375 6.375 -9.75 7.09375 -9.75 C 8.21875 -9.75 10.015625 -9.125 10.453125 -6.5 C 10.484375 -6.359375 10.625 -6.359375 10.796875 -6.359375 C 11.140625 -6.359375 11.140625 -6.390625 11.140625 -6.75 Z M 11.140625 -10 ", :style => "stroke:none;"}
+                %symbol{:id => "b42B3W9Ll4D94kPXZFHnMLuJeKw=-glyph1-0", :overflow => "visible"}
+                  %path{:d => "", :style => "stroke:none;"}
+                %symbol{:id => "b42B3W9Ll4D94kPXZFHnMLuJeKw=-glyph1-1", :overflow => "visible"}
+                  %path{:d => "M 4.828125 3.609375 C 4.828125 3.5625 4.828125 3.546875 4.578125 3.28125 C 3.09375 1.78125 2.265625 -0.671875 2.265625 -3.703125 C 2.265625 -6.59375 2.953125 -9.078125 4.6875 -10.828125 C 4.828125 -10.96875 4.828125 -11 4.828125 -11.03125 C 4.828125 -11.125 4.765625 -11.15625 4.703125 -11.15625 C 4.5 -11.15625 3.28125 -10.078125 2.5625 -8.625 C 1.796875 -7.125 1.453125 -5.53125 1.453125 -3.703125 C 1.453125 -2.375 1.671875 -0.609375 2.4375 0.984375 C 3.3125 2.765625 4.53125 3.734375 4.703125 3.734375 C 4.765625 3.734375 4.828125 3.703125 4.828125 3.609375 Z M 4.828125 3.609375 ", :style => "stroke:none;"}
+                %symbol{:id => "b42B3W9Ll4D94kPXZFHnMLuJeKw=-glyph1-2", :overflow => "visible"}
+                  %path{:d => "M 4.1875 -3.703125 C 4.1875 -4.828125 4.046875 -6.671875 3.21875 -8.40625 C 2.328125 -10.1875 1.109375 -11.15625 0.953125 -11.15625 C 0.890625 -11.15625 0.8125 -11.125 0.8125 -11.03125 C 0.8125 -11 0.8125 -10.96875 1.078125 -10.703125 C 2.5625 -9.203125 3.390625 -6.75 3.390625 -3.71875 C 3.390625 -0.828125 2.6875 1.65625 0.96875 3.40625 C 0.8125 3.546875 0.8125 3.5625 0.8125 3.609375 C 0.8125 3.703125 0.890625 3.734375 0.953125 3.734375 C 1.140625 3.734375 2.359375 2.65625 3.09375 1.203125 C 3.859375 -0.3125 4.1875 -1.921875 4.1875 -3.703125 Z M 4.1875 -3.703125 ", :style => "stroke:none;"}
+                %symbol{:id => "b42B3W9Ll4D94kPXZFHnMLuJeKw=-glyph1-3", :overflow => "visible"}
+                  %path{:d => "M 4.28125 -9.53125 C 4.28125 -9.875 4.28125 -9.890625 3.984375 -9.890625 C 3.625 -9.484375 2.890625 -8.9375 1.359375 -8.9375 L 1.359375 -8.515625 C 1.703125 -8.515625 2.4375 -8.515625 3.25 -8.890625 L 3.25 -1.140625 C 3.25 -0.609375 3.21875 -0.4375 1.90625 -0.4375 L 1.4375 -0.4375 L 1.4375 0 C 1.84375 -0.03125 3.28125 -0.03125 3.78125 -0.03125 C 4.265625 -0.03125 5.703125 -0.03125 6.09375 0 L 6.09375 -0.4375 L 5.640625 -0.4375 C 4.328125 -0.4375 4.28125 -0.609375 4.28125 -1.140625 Z M 4.28125 -9.53125 ", :style => "stroke:none;"}
+                %symbol{:id => "b42B3W9Ll4D94kPXZFHnMLuJeKw=-glyph2-0", :overflow => "visible"}
+                  %path{:d => "", :style => "stroke:none;"}
+                %symbol{:id => "b42B3W9Ll4D94kPXZFHnMLuJeKw=-glyph2-1", :overflow => "visible"}
+                  %path{:d => "M 7.375 -2.328125 C 7.375 -2.421875 7.296875 -2.4375 7.234375 -2.4375 C 6.96875 -2.4375 6.625 -2.21875 6.609375 -2.21875 C 6.3125 -2.015625 6.25 -1.921875 6.0625 -1.671875 C 5.609375 -0.96875 4.953125 -0.46875 3.984375 -0.46875 C 2.640625 -0.46875 1.4375 -1.421875 1.4375 -3.65625 C 1.4375 -5 1.984375 -6.765625 2.765625 -7.9375 C 3.421875 -8.890625 4.21875 -9.671875 5.75 -9.671875 C 6.328125 -9.671875 6.671875 -9.453125 6.671875 -8.90625 C 6.671875 -8.390625 6.125 -7.328125 5.953125 -7.03125 C 5.859375 -6.875 5.859375 -6.84375 5.859375 -6.8125 C 5.859375 -6.703125 5.9375 -6.703125 6.03125 -6.703125 C 6.328125 -6.703125 6.875 -7.03125 7.046875 -7.28125 C 7.078125 -7.328125 7.9375 -8.796875 7.9375 -9.546875 C 7.9375 -10.375 7.28125 -10.484375 6.734375 -10.484375 C 4.578125 -10.484375 2.8125 -9.078125 2.125 -8.234375 C 0.359375 -6.09375 0.171875 -3.796875 0.171875 -3.015625 C 0.171875 -0.84375 1.28125 0.359375 3 0.359375 C 5.40625 0.359375 7.375 -1.96875 7.375 -2.328125 Z M 7.375 -2.328125 ", :style => "stroke:none;"}
+                %symbol{:id => "b42B3W9Ll4D94kPXZFHnMLuJeKw=-glyph3-0", :overflow => "visible"}
+                  %path{:d => "", :style => "stroke:none;"}
+                %symbol{:id => "b42B3W9Ll4D94kPXZFHnMLuJeKw=-glyph3-1", :overflow => "visible"}
+                  %path{:d => "M 5.265625 -1.5625 C 5.265625 -1.625 5.21875 -1.640625 5.171875 -1.640625 C 5.125 -1.640625 4.703125 -1.59375 4.390625 -1.15625 C 4.078125 -0.75 3.625 -0.34375 2.890625 -0.34375 C 1.859375 -0.34375 1.046875 -1.109375 1.046875 -2.5625 C 1.046875 -3.3125 1.3125 -4.421875 1.953125 -5.3125 C 2.390625 -5.90625 2.984375 -6.40625 4.03125 -6.40625 C 4.5 -6.40625 4.703125 -6.234375 4.703125 -5.890625 C 4.703125 -5.515625 4.28125 -4.8125 4.203125 -4.65625 C 4.140625 -4.5625 4.140625 -4.546875 4.140625 -4.53125 C 4.140625 -4.515625 4.15625 -4.453125 4.25 -4.453125 C 4.453125 -4.453125 4.859375 -4.6875 4.96875 -4.859375 C 5 -4.90625 5.59375 -5.828125 5.59375 -6.3125 C 5.59375 -6.890625 5.125 -6.984375 4.734375 -6.984375 C 3.25 -6.984375 2.03125 -6.078125 1.5 -5.484375 C 0.40625 -4.265625 0.15625 -2.84375 0.15625 -2.125 C 0.15625 -0.59375 1.03125 0.234375 2.1875 0.234375 C 3.875 0.234375 5.265625 -1.34375 5.265625 -1.5625 Z M 5.265625 -1.5625 ", :style => "stroke:none;"}
+                %symbol{:id => "b42B3W9Ll4D94kPXZFHnMLuJeKw=-glyph4-0", :overflow => "visible"}
+                  %path{:d => "", :style => "stroke:none;"}
+                %symbol{:id => "b42B3W9Ll4D94kPXZFHnMLuJeKw=-glyph4-1", :overflow => "visible"}
+                  %path{:d => "M 3.828125 -6.8125 L 3.828125 -6.296875 C 4.421875 -6.296875 4.484375 -6.296875 4.484375 -5.90625 L 4.484375 -4.046875 C 3.953125 -4.421875 3.4375 -4.46875 3.0625 -4.46875 C 1.390625 -4.46875 0.40625 -3.484375 0.40625 -2.203125 C 0.40625 -0.90625 1.375 0.0625 2.953125 0.0625 C 3.671875 0.0625 4.171875 -0.21875 4.421875 -0.421875 L 4.421875 0.0625 L 6.296875 0 L 6.296875 -0.515625 C 5.703125 -0.515625 5.640625 -0.515625 5.640625 -0.90625 L 5.640625 -6.890625 Z M 4.421875 -1.09375 C 3.953125 -0.453125 3.375 -0.34375 3.03125 -0.34375 C 1.75 -0.34375 1.75 -1.578125 1.75 -2.171875 C 1.75 -2.796875 1.75 -4.0625 3.171875 -4.0625 C 3.625 -4.0625 4.09375 -3.875 4.421875 -3.4375 Z M 4.421875 -1.09375 ", :style => "stroke:none;"}
+                %symbol{:id => "b42B3W9Ll4D94kPXZFHnMLuJeKw=-glyph4-2", :overflow => "visible"}
+                  %path{:d => "M 2.484375 -6.109375 C 2.484375 -6.53125 2.140625 -6.890625 1.6875 -6.890625 C 1.265625 -6.890625 0.890625 -6.5625 0.890625 -6.109375 C 0.890625 -5.640625 1.265625 -5.3125 1.6875 -5.3125 C 2.140625 -5.3125 2.484375 -5.671875 2.484375 -6.109375 Z M 0.609375 -4.390625 L 0.609375 -3.875 C 1.171875 -3.875 1.234375 -3.875 1.234375 -3.5 L 1.234375 -0.515625 L 0.578125 -0.515625 L 0.578125 0 C 1.15625 -0.03125 1.265625 -0.03125 1.796875 -0.03125 C 2.203125 -0.03125 2.484375 -0.03125 2.96875 0 L 2.96875 -0.515625 L 2.390625 -0.515625 L 2.390625 -4.46875 Z M 0.609375 -4.390625 ", :style => "stroke:none;"}
+                %symbol{:id => "b42B3W9Ll4D94kPXZFHnMLuJeKw=-glyph4-3", :overflow => "visible"}
+                  %path{:d => "M 4.078125 -4.203125 C 4.078125 -4.390625 4.078125 -4.515625 3.859375 -4.515625 C 3.78125 -4.515625 3.75 -4.515625 3.40625 -4.34375 C 3 -4.515625 2.53125 -4.515625 2.359375 -4.515625 C 2.03125 -4.515625 0.40625 -4.515625 0.40625 -3.1875 C 0.40625 -2.734375 0.671875 -2.453125 0.90625 -2.265625 C 1.3125 -1.984375 1.734375 -1.921875 2.375 -1.8125 C 2.875 -1.71875 3.609375 -1.609375 3.609375 -1.0625 C 3.609375 -0.359375 2.734375 -0.34375 2.4375 -0.34375 C 1.421875 -0.34375 1.125 -0.90625 0.96875 -1.375 C 0.921875 -1.546875 0.90625 -1.5625 0.6875 -1.5625 C 0.40625 -1.5625 0.40625 -1.484375 0.40625 -1.265625 L 0.40625 -0.234375 C 0.40625 -0.046875 0.40625 0.0625 0.625 0.0625 C 0.71875 0.0625 0.734375 0.0625 0.9375 -0.0625 L 1.203125 -0.234375 C 1.703125 0.0625 2.21875 0.0625 2.4375 0.0625 C 2.734375 0.0625 4.375 0.0625 4.375 -1.40625 C 4.375 -1.828125 4.171875 -2.140625 3.953125 -2.34375 C 3.515625 -2.75 3 -2.828125 2.625 -2.890625 C 1.71875 -3.03125 1.171875 -3.125 1.171875 -3.5625 C 1.171875 -4.140625 2.140625 -4.140625 2.34375 -4.140625 C 3.453125 -4.140625 3.5 -3.609375 3.515625 -3.328125 C 3.546875 -3.171875 3.6875 -3.171875 3.796875 -3.171875 C 4.0625 -3.171875 4.078125 -3.25 4.078125 -3.484375 Z M 4.078125 -4.203125 ", :style => "stroke:none;"}
+                %symbol{:id => "b42B3W9Ll4D94kPXZFHnMLuJeKw=-glyph4-4", :overflow => "visible"}
+                  %path{:d => "M 5.046875 -1.140625 C 5.046875 -1.3125 4.890625 -1.3125 4.765625 -1.3125 C 4.578125 -1.3125 4.546875 -1.3125 4.484375 -1.140625 C 4.203125 -0.484375 3.546875 -0.390625 3.21875 -0.390625 C 1.75 -0.390625 1.75 -1.8125 1.75 -2.25 C 1.75 -2.84375 1.78125 -4.046875 3.109375 -4.046875 C 3.171875 -4.046875 3.734375 -4.03125 3.734375 -3.984375 C 3.734375 -3.984375 3.71875 -3.953125 3.6875 -3.921875 C 3.609375 -3.8125 3.578125 -3.65625 3.578125 -3.515625 C 3.578125 -3.125 3.875 -2.859375 4.234375 -2.859375 C 4.609375 -2.859375 4.90625 -3.109375 4.90625 -3.53125 C 4.90625 -4.515625 3.46875 -4.515625 3.0625 -4.515625 C 1.15625 -4.515625 0.40625 -3.328125 0.40625 -2.203125 C 0.40625 -0.96875 1.296875 0.0625 3.03125 0.0625 C 3.46875 0.0625 3.96875 -0.015625 4.375 -0.265625 C 4.90625 -0.578125 5.046875 -1.078125 5.046875 -1.140625 Z M 5.046875 -1.140625 ", :style => "stroke:none;"}
+              %clippath{:id => "b42B3W9Ll4D94kPXZFHnMLuJeKw=-clip1"}
+                %path{:d => "M 16 0.0507812 L 159.5 0.0507812 L 159.5 93.273438 L 16 93.273438 Z M 16 0.0507812 "}
+              %clippath{:id => "b42B3W9Ll4D94kPXZFHnMLuJeKw=-clip2"}
+                %path{:d => "M 30 0.0507812 L 148 0.0507812 L 148 91 L 30 91 Z M 30 0.0507812 "}
+            %g{:id => "b42B3W9Ll4D94kPXZFHnMLuJeKw=-surface1"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "6.403948", "xlink:href" => "#b42B3W9Ll4D94kPXZFHnMLuJeKw=-glyph0-1", :y => "16.649633"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "15.524807", "xlink:href" => "#b42B3W9Ll4D94kPXZFHnMLuJeKw=-glyph0-2", :y => "16.649633"}
+                %use{:x => "23.659507", "xlink:href" => "#b42B3W9Ll4D94kPXZFHnMLuJeKw=-glyph0-3", :y => "16.649633"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "37.607518", "xlink:href" => "#b42B3W9Ll4D94kPXZFHnMLuJeKw=-glyph1-1", :y => "16.649633"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "43.270941", "xlink:href" => "#b42B3W9Ll4D94kPXZFHnMLuJeKw=-glyph2-1", :y => "16.649633"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "51.970118", "xlink:href" => "#b42B3W9Ll4D94kPXZFHnMLuJeKw=-glyph1-2", :y => "16.649633"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "136.09136", "xlink:href" => "#b42B3W9Ll4D94kPXZFHnMLuJeKw=-glyph1-3", :y => "16.649633"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "20.299739", "xlink:href" => "#b42B3W9Ll4D94kPXZFHnMLuJeKw=-glyph0-4", :y => "83.405367"}
+                %use{:x => "29.596114", "xlink:href" => "#b42B3W9Ll4D94kPXZFHnMLuJeKw=-glyph0-5", :y => "83.405367"}
+                %use{:x => "37.23104", "xlink:href" => "#b42B3W9Ll4D94kPXZFHnMLuJeKw=-glyph0-6", :y => "83.405367"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "126.368985", "xlink:href" => "#b42B3W9Ll4D94kPXZFHnMLuJeKw=-glyph0-7", :y => "83.405367"}
+                %use{:x => "138.454272", "xlink:href" => "#b42B3W9Ll4D94kPXZFHnMLuJeKw=-glyph0-2", :y => "83.405367"}
+                %use{:x => "146.588972", "xlink:href" => "#b42B3W9Ll4D94kPXZFHnMLuJeKw=-glyph0-6", :y => "83.405367"}
+              %path{:d => "M -15.537171 31.668402 L 49.44604 31.668402 ", :style => "fill:none;stroke-width:0.47818;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;", :transform => "matrix(0.995329,0,0,-0.995329,79.749756,44.450173)"}
+              %path{:d => "M -2.486704 2.870371 C -2.031453 1.14748 -1.018911 0.335091 0.0014799 0.00150208 C -1.018911 -0.336012 -2.031453 -1.1484 -2.486704 -2.867367 ", :style => "fill:none;stroke-width:0.47818;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;", :transform => "matrix(0.995329,0,0,-0.995329,129.201652,12.931183)"}
+              %path{:d => "M -47.95421 18.477885 L -47.95421 -22.690969 ", :style => "fill:none;stroke-width:0.47818;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;", :transform => "matrix(0.995329,0,0,-0.995329,79.749756,44.450173)"}
+              %path{:d => "M -2.486223 2.869716 C -2.030928 1.1468 -1.01835 0.334416 -0.00185637 0.000840125 C -1.018336 -0.332776 -2.030882 -1.149126 -2.486108 -2.868136 ", :style => "fill:none;stroke-width:0.47818;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;", :transform => "matrix(-0.0000199066,0.995309,0.995309,0.0000199066,32.018695,67.271379)"}
+              %path{:d => "M 60.26611 22.214087 L 60.26611 -22.690969 ", :style => "fill:none;stroke-width:0.47818;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;", :transform => "matrix(0.995329,0,0,-0.995329,79.749756,44.450173)"}
+              %path{:d => "M -2.486108 2.869966 C -2.030882 1.147031 -1.018336 0.334607 -0.00185633 0.00099023 C -1.01835 -0.33651 -2.030928 -1.148894 -2.486223 -2.867886 ", :style => "fill:none;stroke-width:0.47818;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;", :transform => "matrix(0.0000199066,0.995309,0.995309,-0.0000199066,139.733389,67.271379)"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "143.231852", "xlink:href" => "#b42B3W9Ll4D94kPXZFHnMLuJeKw=-glyph3-1", :y => "48.313045"}
+              %g{"clip-path" => "url(#b42B3W9Ll4D94kPXZFHnMLuJeKw=-clip1)", "clip-rule" => "nonzero"}
+                %path{:d => "M -23.570788 -20.296974 L 41.765636 20.208626 ", :style => "fill:none;stroke-width:2.79451;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;", :transform => "matrix(0.995329,0,0,-0.995329,79.749756,44.450173)"}
+              %g{"clip-path" => "url(#b42B3W9Ll4D94kPXZFHnMLuJeKw=-clip2)", "clip-rule" => "nonzero"}
+                %path{:d => "M -23.570788 -20.296974 L 41.765636 20.208626 ", :style => "fill:none;stroke-width:1.83812;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(100%,100%,100%);stroke-opacity:1;stroke-miterlimit:10;", :transform => "matrix(0.995329,0,0,-0.995329,79.749756,44.450173)"}
+              %path{:d => "M -1.551695 3.067463 C -0.801117 1.447723 1.227055 0.0564576 2.386715 -0.00213507 C 1.225392 -0.0579538 -0.800132 -1.448184 -1.551378 -3.069653 ", :style => "fill:none;stroke-width:0.47818;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;", :transform => "matrix(0.84593,-0.524429,-0.524429,-0.84593,121.31973,24.335794)"}
+              %path{:d => "M -29.496906 -35.402687 L 39.677758 -35.402687 ", :style => "fill:none;stroke-width:0.47818;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;", :transform => "matrix(0.995329,0,0,-0.995329,79.749756,44.450173)"}
+              %path{:d => "M -2.486766 2.869132 C -2.031515 1.146241 -1.018973 0.333853 0.00141788 0.000263439 C -1.018973 -0.333326 -2.031515 -1.145714 -2.486766 -2.868605 ", :style => "fill:none;stroke-width:0.47818;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;", :transform => "matrix(0.995329,0,0,-0.995329,119.479057,79.687762)"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "74.897526", "xlink:href" => "#b42B3W9Ll4D94kPXZFHnMLuJeKw=-glyph4-1", :y => "90.073077"}
+                %use{:x => "81.646418", "xlink:href" => "#b42B3W9Ll4D94kPXZFHnMLuJeKw=-glyph4-2", :y => "90.073077"}
+                %use{:x => "85.020864", "xlink:href" => "#b42B3W9Ll4D94kPXZFHnMLuJeKw=-glyph4-3", :y => "90.073077"}
+                %use{:x => "89.81232", "xlink:href" => "#b42B3W9Ll4D94kPXZFHnMLuJeKw=-glyph4-4", :y => "90.073077"}
+          %p
+            However, this requires treating
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi Cat
+                %annotation{:encoding => "application/x-tex"} Cat
+            as a 2-category, and allowing the 2-cell to be a
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/lax+natural+transformation"} lax natural transformation
+          %h3#AsAGrothendieckConstruction As a Grothendieck construction
+          %p
+            The following is also pretty immediate and essentially discussed in
+            %a{:href => "#Bénabou1985"} Bénabou (1985), §3
+            (though without mentioning of the term “
+            %a.existingWikiWord{:href => "/nlab/show/Grothendieck+construction"}> Grothendieck construction
+            ”).
+          %p
+            The free coproduct completion of a category
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi 𝒞
+                %annotation{:encoding => "application/x-tex"} \mathcal{C}
+            is equivalently the
+            %a.existingWikiWord{:href => "/nlab/show/Grothendieck+construction"} Grothendieck construction
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msub
+                    %mi PSh
+                    %mo ⊔
+                  %mo{:stretchy => "false"} (
+                  %mi 𝒞
+                  %mo{:stretchy => "false"} )
+                  %mspace{:width => "thickmathspace"}
+                  %mspace{:width => "thickmathspace"}
+                  %mo ≃
+                  %mspace{:width => "thickmathspace"}
+                  %mspace{:width => "thickmathspace"}
+                  %munder
+                    %mstyle{:displaystyle => "false"}
+                      %mo ∫
+                    %mrow
+                      %mi S
+                      %mspace{:width => "thinmathspace"}
+                      %mo ∈
+                      %mspace{:width => "thinmathspace"}
+                      %mi Set
+                  %mspace{:width => "thickmathspace"}
+                  %munder
+                    %mstyle{:displaystyle => "false"}
+                      %mo{:lspace => "thinmathspace", :rspace => "thinmathspace"} ∏
+                    %mrow
+                      %mi s
+                      %mo ∈
+                      %mi S
+                  %mi 𝒞
+                %annotation{:encoding => "application/x-tex"}
+                  PSh_{\sqcup}(\mathcal{C})
+                  \\;\;
+                  \\simeq
+                  \\;\;
+                  \\underset
+                  { S \,\in\, Set }
+                  { \textstyle{\int} }
+                  \\;
+                  \\underset{s \in S}{\textstyle{\prod}}
+                  \\mathcal{C}
+          %p
+            on the
+            %a.existingWikiWord{:href => "/nlab/show/contravariant+functor"} contravariant
+            %a.existingWikiWord{:href => "/nlab/show/pseudofunctor"} pseudofunctor
+            on
+            %a.existingWikiWord{:href => "/nlab/show/Set"} Set
+            which sends a set
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi S
+                %annotation{:encoding => "application/x-tex"} S
+            to the
+            = succeed "-indexed" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi S
+                  %annotation{:encoding => "application/x-tex"} S
+            %a.existingWikiWord{:href => "/nlab/show/product+category"} product category
+            of
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi 𝒞
+                %annotation{:encoding => "application/x-tex"} \mathcal{C}
+            with itself (equivalently: to the
+            %a.existingWikiWord{:href => "/nlab/show/functor+category"} functor category
+            into
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi 𝒞
+                %annotation{:encoding => "application/x-tex"} \mathcal{C}
+            out of the
+            %a.existingWikiWord{:href => "/nlab/show/discrete+category"} discrete category
+            on
+            = succeed "):" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi S
+                  %annotation{:encoding => "application/x-tex"} S
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mrow
+                    %mtable
+                      %mtr
+                        %mtd
+                          %msup
+                            %mi Set
+                            %mi op
+                        %mtd
+                          %mo ⟶
+                        %mtd
+                          %mi Cat
+                      %mtr
+                        %mtd
+                          %mi S
+                        %mtd
+                          %mo ↦
+                        %mtd
+                          %mi Func
+                          %mo{:stretchy => "false"} (
+                          %mi S
+                          %mo ,
+                          %mi 𝒞
+                          %mo{:stretchy => "false"} )
+                        %mtd
+                          %mo ≃
+                          %mspace{:width => "thickmathspace"}
+                          %munder
+                            %mo{:lspace => "thinmathspace", :rspace => "thinmathspace"} ∏
+                            %mrow
+                              %mi s
+                              %mo ∈
+                              %mi S
+                          %mi 𝒞
+                      %mtr
+                        %mtd
+                          %mo{:maxsize => "1.8em", :minsize => "1.8em"} ↓
+                          %mpadded{:width => "0"}
+                            %mrow
+                              %msup
+                                %mrow
+                                %mi f
+                        %mtd
+                        %mtd
+                          %mo{:maxsize => "1.8em", :minsize => "1.8em"} ↑
+                          %mpadded{:width => "0"}
+                            %mrow
+                              %msup
+                                %mrow
+                                %mrow
+                                  %msup
+                                    %mi f
+                                    %mo *
+                      %mtr
+                        %mtd
+                          %mi T
+                        %mtd
+                          %mo ↦
+                        %mtd
+                          %mi Func
+                          %mo{:stretchy => "false"} (
+                          %mi T
+                          %mo ,
+                          %mi 𝒞
+                          %mo{:stretchy => "false"} )
+                        %mtd
+                          %mo ≃
+                          %mspace{:width => "thickmathspace"}
+                          %munder
+                            %mo{:lspace => "thinmathspace", :rspace => "thinmathspace"} ∏
+                            %mrow
+                              %mi t
+                              %mo ∈
+                              %mi T
+                          %mi 𝒞
+                          %mpadded{:width => "0"}
+                            %mrow
+                              %mspace{:width => "thinmathspace"}
+                              %mo ,
+                %annotation{:encoding => "application/x-tex"}
+                  \\array{
+                  Set^{op} &amp;\longrightarrow&amp; Cat
+                  \\\
+                  S
+                  \&amp;\mapsto&amp; Func(S,\mathcal{C})
+                  \&amp; \simeq \;\underset{s \in S}{\prod} \mathcal{C}
+                  \\\
+                  \\Big\downarrow\mathrlap{{}^{f}}
+                  \&amp;&amp;
+                  \\Big\uparrow\mathrlap{{}^{f^\ast}}
+                  \\\
+                  T
+                  \&amp;\mapsto&amp; Func(T,\mathcal{C})
+                  \&amp;
+                  \\simeq \;\underset{t \in T}{\prod} \mathcal{C}
+                  \\mathrlap{\,,}
+                  }
+          %p
+            where the
+            = succeed "-" do
+              %a.existingWikiWord{:href => "/nlab/show/base+change"} base change
+            %a.existingWikiWord{:href => "/nlab/show/functors"} functors
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msup
+                    %mi f
+                    %mo *
+                %annotation{:encoding => "application/x-tex"} f^\ast
+            are given (on
+            %a.existingWikiWord{:href => "/nlab/show/functor+categories"} functor categories
+            by
+            %a.existingWikiWord{:href => "/nlab/show/precomposition"} precomposition
+            with
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi f
+                  %annotation{:encoding => "application/x-tex"} f
+          #eq:PullbackFunctorBetweenProductCategories.maruku-equation
+            %span.maruku-eq-number (1)
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi f
+                  %mspace{:width => "thinmathspace"}
+                  %mo{:lspace => "verythinmathspace"} :
+                  %mspace{:width => "thinmathspace"}
+                  %mi S
+                  %mo ⟶
+                  %mi T
+                  %mspace{:width => "thickmathspace"}
+                  %mspace{:width => "thickmathspace"}
+                  %mspace{:width => "thickmathspace"}
+                  %mspace{:width => "thickmathspace"}
+                  %mspace{:width => "thickmathspace"}
+                  %mspace{:width => "thickmathspace"}
+                  %mspace{:width => "thickmathspace"}
+                  %mspace{:width => "thickmathspace"}
+                  %mspace{:width => "thickmathspace"}
+                  %mspace{:width => "thickmathspace"}
+                  %mspace{:width => "thickmathspace"}
+                  %mspace{:width => "thickmathspace"}
+                  %mspace{:width => "thickmathspace"}
+                  %mspace{:width => "thickmathspace"}
+                  %mspace{:width => "thickmathspace"}
+                  %mspace{:width => "thickmathspace"}
+                  %mo ⊢
+                  %mspace{:width => "thickmathspace"}
+                  %mspace{:width => "thickmathspace"}
+                  %mspace{:width => "thickmathspace"}
+                  %mspace{:width => "thickmathspace"}
+                  %mspace{:width => "thickmathspace"}
+                  %mspace{:width => "thickmathspace"}
+                  %mspace{:width => "thickmathspace"}
+                  %mspace{:width => "thickmathspace"}
+                  %mspace{:width => "thickmathspace"}
+                  %mspace{:width => "thickmathspace"}
+                  %mspace{:width => "thickmathspace"}
+                  %mspace{:width => "thickmathspace"}
+                  %mspace{:width => "thickmathspace"}
+                  %mspace{:width => "thickmathspace"}
+                  %mspace{:width => "thickmathspace"}
+                  %mspace{:width => "thickmathspace"}
+                  %mrow
+                    %mtable
+                      %mtr
+                        %mtd
+                          %munder
+                            %mo{:lspace => "thinmathspace", :rspace => "thinmathspace"} ∏
+                            %mrow
+                              %mi t
+                              %mo ∈
+                              %mi T
+                          %mi 𝒞
+                        %mtd
+                          %mover
+                            %mo →
+                            %mrow
+                              %mspace{:width => "thickmathspace"}
+                              %mspace{:width => "thickmathspace"}
+                              %mi f
+                              %mspace{:width => "thickmathspace"}
+                              %mspace{:width => "thickmathspace"}
+                        %mtd
+                          %munder
+                            %mo{:lspace => "thinmathspace", :rspace => "thinmathspace"} ∏
+                            %mrow
+                              %mi s
+                              %mo ∈
+                              %mi S
+                          %mi 𝒞
+                      %mtr
+                        %mtd
+                          %mo{:maxsize => "1.2em", :minsize => "1.2em"} (
+                          %msub
+                            %mi X
+                            %mi t
+                          %msub
+                            %mo{:maxsize => "1.2em", :minsize => "1.2em"} )
+                            %mrow
+                              %mi t
+                              %mo ∈
+                              %mi T
+                        %mtd
+                          %mo ↦
+                        %mtd
+                          %mo{:maxsize => "1.2em", :minsize => "1.2em"} (
+                          %msub
+                            %mi X
+                            %mrow
+                              %mi f
+                              %mo{:stretchy => "false"} (
+                              %mi s
+                              %mo{:stretchy => "false"} )
+                          %msub
+                            %mo{:maxsize => "1.2em", :minsize => "1.2em"} )
+                            %mrow
+                              %mi s
+                              %mo ∈
+                              %mi S
+                          %mspace{:width => "thinmathspace"}
+                          %mo .
+                %annotation{:encoding => "application/x-tex"}
+                  f \,\colon\, S \longrightarrow T
+                  \\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;
+                  \\vdash
+                  \\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;
+                  \\array{
+                  \\underset{t \in T}{\prod} \mathcal{C}
+                  \&amp;\xrightarrow{\;\; f \;\;}&amp;
+                  \\underset{s \in S}{\prod} \mathcal{C}
+                  \\\
+                  \\big(
+                  X_t
+                  \\big)_{t \in T}
+                  \&amp;\mapsto&amp;
+                  \\big(
+                  X_{f(s)}
+                  \\big)_{s \in S}
+                  \\,.
+                  }
+          %p
+            Namely, by definition of the
+            %a.existingWikiWord{:href => "/nlab/show/Grothendieck+construction"} Grothendieck construction
+          %ol
+            %li
+              %p
+                its
+                %a.existingWikiWord{:href => "/nlab/show/objects"} objects
+                are
+                %a.existingWikiWord{:href => "/nlab/show/dependent+pair"} dependent
+                %a.existingWikiWord{:href => "/nlab/show/pairs"} pairs
+                of the form
+              .maruku-equation
+                %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msub
+                        %mi X
+                        %mi S
+                      %mspace{:width => "thickmathspace"}
+                      %mo ≡
+                      %mspace{:width => "thickmathspace"}
+                      %mo{:maxsize => "1.2em", :minsize => "1.2em"} (
+                      %mi S
+                      %mo ∈
+                      %mi Set
+                      %mo ,
+                      %mspace{:width => "thinmathspace"}
+                      %mo{:stretchy => "false"} (
+                      %msub
+                        %mi X
+                        %mi s
+                      %mo ∈
+                      %mi 𝒞
+                      %msub
+                        %mo{:stretchy => "false"} )
+                        %mrow
+                          %mi s
+                          %mo ∈
+                          %mi S
+                      %mo{:maxsize => "1.2em", :minsize => "1.2em"} )
+                    %annotation{:encoding => "application/x-tex"}
+                      X_S
+                      \\;\equiv\;
+                      \\big(
+                      S \in Set
+                      ,\,
+                      (X_s \in \mathcal{C})_{s \in S}
+                      \\big)
+            %li
+              %p
+                its
+                %a.existingWikiWord{:href => "/nlab/show/morphisms"} morphisms
+              .maruku-equation
+                %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msub
+                        %mi ϕ
+                        %mi f
+                      %mspace{:width => "thickmathspace"}
+                      %mo{:lspace => "verythinmathspace"} :
+                      %mspace{:width => "thickmathspace"}
+                      %msub
+                        %mi X
+                        %mi S
+                      %mo ⟶
+                      %msub
+                        %mi Y
+                        %mi T
+                    %annotation{:encoding => "application/x-tex"}
+                      \\phi_f \;\colon\; X_S \longrightarrow Y_T
+              %p
+                are
+                %a.existingWikiWord{:href => "/nlab/show/dependent+pair"} dependent
+                %a.existingWikiWord{:href => "/nlab/show/pairs"} pairs
+                consisting of a
+                %a.existingWikiWord{:href => "/nlab/show/map"} map
+              .maruku-equation
+                %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi f
+                      %mspace{:width => "thinmathspace"}
+                      %mo{:lspace => "verythinmathspace"} :
+                      %mspace{:width => "thinmathspace"}
+                      %mi S
+                      %mo ⟶
+                      %mi T
+                    %annotation{:encoding => "application/x-tex"}
+                      f \,\colon\, S \longrightarrow T
+              %p
+                and a morphism in
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %munder
+                        %mo{:lspace => "thinmathspace", :rspace => "thinmathspace"} ∏
+                        %mrow
+                          %mi s
+                          %mo ∈
+                          %mi S
+                      %mi 𝒞
+                    %annotation{:encoding => "application/x-tex"} \underset{s \in S}{\prod} \mathcal{C}
+                of the form
+              .maruku-equation
+                %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi ϕ
+                      %mspace{:width => "thinmathspace"}
+                      %mo{:lspace => "verythinmathspace"} :
+                      %mspace{:width => "thinmathspace"}
+                      %msub
+                        %mi X
+                        %mi S
+                      %mo ⟶
+                      %msup
+                        %mi f
+                        %mo *
+                      %msub
+                        %mi Y
+                        %mi T
+                      %mspace{:width => "thinmathspace"}
+                      %mo .
+                    %annotation{:encoding => "application/x-tex"}
+                      \\phi \,\colon\, X_S \longrightarrow f^\ast Y_T
+                      \\,.
+              %p
+                where, by definition
+                %a.maruku-eqref{:href => "#eq:PullbackFunctorBetweenProductCategories"} (1)
+                of
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msup
+                        %mi f
+                        %mo *
+                    %annotation{:encoding => "application/x-tex"} f^\ast
+                and the nature of
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/product+categories"} product categories
+                = succeed "-" do
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi S
+                      %annotation{:encoding => "application/x-tex"} S
+                %a.existingWikiWord{:href => "/nlab/show/indexed+set"} indexed set
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mo{:stretchy => "false"} (
+                      %msub
+                        %mi ϕ
+                        %mi s
+                      %msub
+                        %mo{:stretchy => "false"} )
+                        %mrow
+                          %mi s
+                          %mo ∈
+                          %mi S
+                    %annotation{:encoding => "application/x-tex"} (\phi_s)_{s \in S}
+                of
+                %a.existingWikiWord{:href => "/nlab/show/morphisms"} morphisms
+                in
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi 𝒞
+                    %annotation{:encoding => "application/x-tex"} \mathcal{C}
+                of the form
+              .maruku-equation
+                %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msub
+                        %mi ϕ
+                        %mi s
+                      %mspace{:width => "thinmathspace"}
+                      %mo{:lspace => "verythinmathspace"} :
+                      %mspace{:width => "thinmathspace"}
+                      %msub
+                        %mi X
+                        %mi s
+                      %mo ⟶
+                      %msub
+                        %mi Y
+                        %mrow
+                          %mi f
+                          %mo{:stretchy => "false"} (
+                          %mi s
+                          %mo{:stretchy => "false"} )
+                      %mspace{:width => "thinmathspace"}
+                      %mo .
+                    %annotation{:encoding => "application/x-tex"}
+                      \\phi_s \,\colon\, X_s \longrightarrow Y_{f(s)}
+                      \\,.
+          %p
+            But this is manifestly the same as the explicit description of
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msub
+                    %mi PSh
+                    %mo ⊔
+                  %mo{:stretchy => "false"} (
+                  %mi 𝒞
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} PSh_{\sqcup}(\mathcal{C})
+            = succeed "." do
+              %a{:href => "#ViaIndexedSetsOfObjects"} above
+          %h3#ViaCoproductOfPresheaves Via coproducts of presheaves
+          %p
+            The free coproduct completion of
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi 𝒞
+                %annotation{:encoding => "application/x-tex"} \mathcal{C}
+            is
+            %a.existingWikiWord{:href => "/nlab/show/equivalence+of+categories"} equivalently
+            the
+            %a.existingWikiWord{:href => "/nlab/show/full+subcategory"} full subcategory
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msub
+                    %mi PSh
+                    %mo ⊔
+                  %mo{:stretchy => "false"} (
+                  %mi 𝒞
+                  %mo{:stretchy => "false"} )
+                  %mover
+                    %mo ↪
+                    %mspace{:width => "thickmathspace"}
+                  %mi PSh
+                  %mo{:stretchy => "false"} (
+                  %mi 𝒞
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"}
+                  PSh_{\sqcup}(\mathcal{C})
+                  \\xhookrightarrow{\;}
+                  PSh(\mathcal{C})
+          %p
+            of the
+            %a.existingWikiWord{:href => "/nlab/show/category+of+presheaves"} category of presheaves
+            over
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi 𝒞
+                %annotation{:encoding => "application/x-tex"} \mathcal{C}
+            on those which are
+            %a.existingWikiWord{:href => "/nlab/show/coproducts"} coproducts
+            of
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/representables"} representables
+            %a.existingWikiWord{:href => "/nlab/show/free+cocompletion"} free cocompletion
+            of
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi 𝒞
+                %annotation{:encoding => "application/x-tex"} \mathcal{C}
+            under
+            %em all
+            %a.existingWikiWord{:href => "/nlab/show/small+colimit"} small
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/colimits"} colimits
+          %p
+            The
+            %a.existingWikiWord{:href => "/nlab/show/Yoneda+embedding"} Yoneda embedding
+            hence factors through the free coproduct completion
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi y
+                  %mspace{:width => "thickmathspace"}
+                  %mo{:lspace => "verythinmathspace"} :
+                  %mspace{:width => "thickmathspace"}
+                  %mi 𝒞
+                  %mover
+                    %mo ↪
+                    %mspace{:width => "thickmathspace"}
+                  %msub
+                    %mi PSh
+                    %mo ⊔
+                  %mo{:stretchy => "false"} (
+                  %mi 𝒞
+                  %mo{:stretchy => "false"} )
+                  %mover
+                    %mo ↪
+                    %mspace{:width => "thickmathspace"}
+                  %mi PSh
+                  %mo{:stretchy => "false"} (
+                  %mi 𝒞
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"}
+                  y
+                  \\;\colon\;
+                  \\mathcal{C}
+                  \\xhookrightarrow{\;}
+                  PSh_{\sqcup}(\mathcal{C})
+                  \\xhookrightarrow{\;}
+                  PSh(\mathcal{C})
+          %p
+            Notice that the first inclusion here does
+            %em not
+            %a.existingWikiWord{:href => "/nlab/show/preserved+colimit"} preserve
+            %a.existingWikiWord{:href => "/nlab/show/coproducts"} coproducts
+            (coproducts are freely adjoined irrespective of whether
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi 𝒞
+                %annotation{:encoding => "application/x-tex"} \mathcal{C}
+            already had some coproducts), but the second does. Both inclusions
+            %a.existingWikiWord{:href => "/nlab/show/preserved+limit"} preserve
+            those
+            %a.existingWikiWord{:href => "/nlab/show/limits"} limits
+            that exist.
+          %h2#properties Properties
+          %p
+            Fairly immediate from the explicit definition
+            %a{:href => "#ViaIndexedSetsOfObjects"} above
+            is:
+          %p
+          #CategoriesOfCoproductsOfConnectedObjects.num_prop
+            %h6 Proposition
+            %p
+              A
+              %a.existingWikiWord{:href => "/nlab/show/category"} category
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi ℬ
+                  %annotation{:encoding => "application/x-tex"} \mathcal{B}
+              with small-indexed
+              %a.existingWikiWord{:href => "/nlab/show/coproducts"} coproducts
+              is
+              %a.existingWikiWord{:href => "/nlab/show/equivalence+of+categories"} equivalent
+              to a
+              %a.existingWikiWord{:href => "/nlab/show/free+coproduct+completion"} free coproduct completion
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi PSh
+                      %mo ⊔
+                    %mo{:stretchy => "false"} (
+                    %mi 𝒞
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} PSh_{\sqcup}(\mathcal{C})
+              for a
+              %a.existingWikiWord{:href => "/nlab/show/small+category"} small category
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi 𝒞
+                  %annotation{:encoding => "application/x-tex"} \mathcal{C}
+              if
+            %ol
+              %li
+                %p
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi 𝒞
+                        %mover
+                          %mo ↪
+                          %mspace{:width => "thickmathspace"}
+                        %mi ℬ
+                      %annotation{:encoding => "application/x-tex"} \mathcal{C} \xhookrightarrow{\;} \mathcal{B}
+                  is a
+                  %a.existingWikiWord{:href => "/nlab/show/full+subcategory"} full subcategory
+                  of
+                  = succeed "," do
+                    %a.existingWikiWord{:href => "/nlab/show/connected+objects"} connected objects
+                %p
+                  i.e.
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi X
+                        %mspace{:width => "thinmathspace"}
+                        %mo ∈
+                        %mspace{:width => "thinmathspace"}
+                        %mi 𝒞
+                        %mo ↪
+                        %mi ℬ
+                      %annotation{:encoding => "application/x-tex"} X \,\in\, \mathcal{C} \hookrightarrow \mathcal{B}
+                  means that the
+                  %a.existingWikiWord{:href => "/nlab/show/hom-functor"} hom-functor
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi ℬ
+                        %mo{:stretchy => "false"} (
+                        %mi X
+                        %mo ,
+                        %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                        %mo{:stretchy => "false"} )
+                        %mspace{:width => "thinmathspace"}
+                        %mo{:lspace => "verythinmathspace"} :
+                        %mspace{:width => "thinmathspace"}
+                        %mi ℬ
+                        %mo →
+                        %mi Set
+                      %annotation{:encoding => "application/x-tex"} \mathcal{B}(X,-) \,\colon\, \mathcal{B} \to Set
+                  %a.existingWikiWord{:href => "/nlab/show/preserved+colimit"} preserves
+                  %a.existingWikiWord{:href => "/nlab/show/coproducts"} coproducts
+                %p
+                  (which when
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi 𝒞
+                      %annotation{:encoding => "application/x-tex"} \mathcal{C}
+                  is
+                  %a.existingWikiWord{:href => "/nlab/show/extensive+category"} extensive
+                  means equivalently that if
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi X
+                      %annotation{:encoding => "application/x-tex"} X
+                  is a coproduct, then one of the summands is
+                  = succeed "," do
+                    %a.existingWikiWord{:href => "/nlab/show/initial+object"} initial
+                  = succeed ");" do
+                    %a{:href => "InExtensiveCategoryCOnnectedObjectsArePrimitiveUnderCoproduct"} this Prop.
+              %li
+                %p
+                  each object of
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi ℬ
+                      %annotation{:encoding => "application/x-tex"} \mathcal{B}
+                  is a
+                  %a.existingWikiWord{:href => "/nlab/show/coproduct"} coproduct
+                  of objects in
+                  = succeed "." do
+                    %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                      %semantics
+                        %mrow
+                          %mi 𝒞
+                          %mo ↪
+                          %mi ℬ
+                        %annotation{:encoding => "application/x-tex"} \mathcal{C} \hookrightarrow \mathcal{B}
+            %p
+          (
+          %a{:href => "#CarboniVitale98"}> Carboni &amp; Vitale 1998, Lem. 42
+          )
+          .proof
+            %h6 Proof
+            %p
+              Since, by assumption, the objects of
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi ℬ
+                  %annotation{:encoding => "application/x-tex"} \mathcal{B}
+              are already presented by
+              %a.existingWikiWord{:href => "/nlab/show/indexed+sets"} indexed sets
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo{:maxsize => "1.2em", :minsize => "1.2em"} (
+                    %msub
+                      %mi X
+                      %mi s
+                    %msub
+                      %mo{:maxsize => "1.2em", :minsize => "1.2em"} )
+                      %mrow
+                        %mi s
+                        %mo ∈
+                        %mi S
+                  %annotation{:encoding => "application/x-tex"} \big(X_s\big)_{s \in S}
+              of objects in
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi 𝒞
+                    %annotation{:encoding => "application/x-tex"} \mathcal{C}
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi ϕ
+                    %mspace{:width => "thinmathspace"}
+                    %mo{:lspace => "verythinmathspace"} :
+                    %mspace{:width => "thinmathspace"}
+                    %mo{:maxsize => "1.2em", :minsize => "1.2em"} (
+                    %munder
+                      %mo{:lspace => "thinmathspace", :rspace => "thinmathspace"} ∐
+                      %mrow
+                        %mi s
+                        %mo ∈
+                        %mi S
+                    %msub
+                      %mi X
+                      %mi s
+                    %mo{:maxsize => "1.2em", :minsize => "1.2em"} )
+                    %mo ⟶
+                    %mo{:maxsize => "1.2em", :minsize => "1.2em"} (
+                    %munder
+                      %mo{:lspace => "thinmathspace", :rspace => "thinmathspace"} ∐
+                      %mrow
+                        %mi t
+                        %mo ∈
+                        %mi T
+                    %msub
+                      %mi Y
+                      %mi t
+                    %mo{:maxsize => "1.2em", :minsize => "1.2em"} )
+                  %annotation{:encoding => "application/x-tex"}
+                    \\phi
+                    \\,\colon\,
+                    \\big(\underset{s \in S}{\coprod} X_s\big)
+                    \\longrightarrow
+                    \\big(\underset{t \in T}{\coprod} Y_t\big)
+            %p
+              in
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi ℬ
+                  %annotation{:encoding => "application/x-tex"} \mathcal{B}
+              correspond bijectively to indexed sets of morphisms in
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi 𝒞
+                  %annotation{:encoding => "application/x-tex"} \mathcal{C}
+              according to the explicit description of the free coproduct completion
+              = succeed "." do
+                %a{:href => "#ViaIndexedSetsOfObjects"} above
+            %ol
+              %li
+                %p
+                  the
+                  %a.existingWikiWord{:href => "/nlab/show/hom-functors+preserve+limits"} general fact
+                  that
+                  %a.existingWikiWord{:href => "/nlab/show/hom-functors"} hom-functors
+                  take
+                  %a.existingWikiWord{:href => "/nlab/show/coproducts"} coproducts
+                  in the first argument to
+                  %a.existingWikiWord{:href => "/nlab/show/products"} products
+              %li
+                %p the defining property that the resulting hom-functors out of connected objects take coproducts in the second argument to coproducts,
+            %p
+              we obtain the following sequence of
+              %a.existingWikiWord{:href => "/nlab/show/natural+bijections"} natural bijections
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mtable{:columnalign => "left left", :displaystyle => "false", :rowspacing => "0.5ex"}
+                      %mtr
+                        %mtd
+                          %msub
+                            %mi Hom
+                            %mi 𝒞
+                          %mo{:maxsize => "1.2em", :minsize => "1.2em"} (
+                          %munder
+                            %mo{:lspace => "thinmathspace", :rspace => "thinmathspace"} ∐
+                            %mi s
+                          %msub
+                            %mi X
+                            %mi s
+                          %mo ,
+                          %mspace{:width => "thinmathspace"}
+                          %munder
+                            %mo{:lspace => "thinmathspace", :rspace => "thinmathspace"} ∐
+                            %mi t
+                          %msub
+                            %mi Y
+                            %mi t
+                          %mo{:maxsize => "1.2em", :minsize => "1.2em"} )
+                      %mtr
+                        %mtd
+                          %mspace{:width => "thickmathspace"}
+                          %mo ≃
+                          %mspace{:width => "thickmathspace"}
+                          %munder
+                            %mo{:lspace => "thinmathspace", :rspace => "thinmathspace"} ∏
+                            %mi s
+                          %msub
+                            %mi Hom
+                            %mi 𝒞
+                          %mo{:maxsize => "1.2em", :minsize => "1.2em"} (
+                          %msub
+                            %mi X
+                            %mi s
+                          %mo ,
+                          %mspace{:width => "thinmathspace"}
+                          %munder
+                            %mo{:lspace => "thinmathspace", :rspace => "thinmathspace"} ∐
+                            %mi t
+                          %msub
+                            %mi Y
+                            %mi t
+                          %mo{:maxsize => "1.2em", :minsize => "1.2em"} )
+                      %mtr
+                        %mtd
+                          %mspace{:width => "thickmathspace"}
+                          %mo ≃
+                          %mspace{:width => "thickmathspace"}
+                          %munder
+                            %mo{:lspace => "thinmathspace", :rspace => "thinmathspace"} ∏
+                            %mrow
+                              %mi s
+                              %mo ∈
+                              %mi S
+                          %munder
+                            %mo{:lspace => "thinmathspace", :rspace => "thinmathspace"} ∐
+                            %mrow
+                              %msub
+                                %mi t
+                                %mi s
+                              %mo ∈
+                              %mi T
+                          %msub
+                            %mi Hom
+                            %mi 𝒞
+                          %mo{:maxsize => "1.2em", :minsize => "1.2em"} (
+                          %msub
+                            %mi X
+                            %mi s
+                          %mo ,
+                          %mspace{:width => "thinmathspace"}
+                          %msub
+                            %mi Y
+                            %mrow
+                              %msub
+                                %mi t
+                                %mi s
+                          %mo{:maxsize => "1.2em", :minsize => "1.2em"} )
+                      %mtr
+                        %mtd
+                          %mspace{:width => "thickmathspace"}
+                          %mo ≃
+                          %mspace{:width => "thickmathspace"}
+                          %munder
+                            %mo{:lspace => "thinmathspace", :rspace => "thinmathspace"} ∐
+                            %mrow
+                              %mi f
+                              %mo{:lspace => "verythinmathspace"} :
+                              %mi S
+                              %mo →
+                              %mi T
+                          %munder
+                            %mo{:lspace => "thinmathspace", :rspace => "thinmathspace"} ∏
+                            %mrow
+                              %mi s
+                              %mo ∈
+                              %mi S
+                          %msub
+                            %mi Hom
+                            %mi 𝒞
+                          %mo{:maxsize => "1.2em", :minsize => "1.2em"} (
+                          %msub
+                            %mi X
+                            %mi s
+                          %mo ,
+                          %mspace{:width => "thinmathspace"}
+                          %msub
+                            %mi Y
+                            %mrow
+                              %mi f
+                              %mo{:stretchy => "false"} (
+                              %mi s
+                              %mo{:stretchy => "false"} )
+                          %mo{:maxsize => "1.2em", :minsize => "1.2em"} )
+                          %mspace{:width => "thinmathspace"}
+                          %mo .
+                  %annotation{:encoding => "application/x-tex"}
+                    \\begin{array}{ll}
+                    Hom_{\mathcal{C}}\big(
+                    \\coprod_s X_s
+                    ,\,
+                    \\coprod_t Y_t
+                    \\big)
+                    \\\
+                    \\;\simeq\;
+                    \\prod_s
+                    Hom_{\mathcal{C}}\big(
+                    X_s
+                    ,\,
+                    \\coprod_t Y_t
+                    \\big)
+                    \\\
+                    \\;\simeq\;
+                    \\underset{s \in S}{\prod}
+                    \\underset{t_s \in T}{\coprod}
+                    Hom_{\mathcal{C}}\big(
+                    X_s
+                    ,\,
+                    Y_{t_s}
+                    \\big)
+                    \\\
+                    \\;\simeq\;
+                    \\underset{f \colon S \to T}{\coprod}
+                    \\underset{s \in S}{\prod}
+                    Hom_{\mathcal{C}}\big(
+                    X_s
+                    ,\,
+                    Y_{f(s)}
+                    \\big)
+                    \\,.
+                    \\end{array}
+            %p
+          %p
+          #FCCOfAccessibleCatIsAccesible.num_prop
+            %h6 Proposition
+            %p
+              The free coproduct completion of an
+              %a.existingWikiWord{:href => "/nlab/show/accessible+category"} accessible category
+              is itself accessible.
+          (
+          %a{:href => "#MakkaiParé1989"}> Makkai &amp; Paré (1989), Cor. 5.3.6
+          )
+          %p
+          #FreeCoproductCompletionIsExtensive.num_prop
+            %h6 Proposition
+            %p
+              Any free coproduct completion is an
+              = succeed "." do
+                %a.existingWikiWord{:href => "/nlab/show/extensive+category"} extensive category
+          (e.g.
+          = succeed ")" do
+            %a{:href => "#CarboniLackWalters93"} Carboni, Lack &amp; Walters 1993
+          %p
+          #CoproductCompletionOfCategoryWithProducts.num_prop
+            %h6 Proposition
+            %p
+              For
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi 𝒞
+                  %annotation{:encoding => "application/x-tex"} \mathcal{C}
+              a category with all
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/Cartesian+products"} Cartesian products
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi PSh
+                      %mo ⊔
+                    %mo{:stretchy => "false"} (
+                    %mi 𝒞
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} PSh_{\sqcup}(\mathcal{C})
+              also has
+              %a.existingWikiWord{:href => "/nlab/show/products"} products
+              and they
+              %a.existingWikiWord{:href => "/nlab/show/distributive+category"} distribute
+              over the
+              = succeed "." do
+                %a.existingWikiWord{:href => "/nlab/show/coproducts"} coproducts
+          .proof
+            %h6 Proof
+            %p This is readily seen by component inspection, but it may be instructive to see it from more abstract reasoning:
+            %p
+              Namely, with the free cocompletion understood as a
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/Grothendieck+construction"} Grothendieck construction
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi PSh
+                      %mo ⊔
+                    %mo{:stretchy => "false"} (
+                    %mi 𝒞
+                    %mo{:stretchy => "false"} )
+                    %mspace{:width => "thinmathspace"}
+                    %mo ≃
+                    %mspace{:width => "thinmathspace"}
+                    %msub
+                      %mo ∫
+                      %mrow
+                        %mi S
+                        %mo ∈
+                        %mi Set
+                    %msup
+                      %mi 𝒞
+                      %mi S
+                  %annotation{:encoding => "application/x-tex"} PSh_{\sqcup}(\mathcal{C}) \,\simeq\, \int_{S \in Set} \mathcal{C}^S
+              discussed
+              = succeed "," do
+                %a{:href => "#AsAGrothendieckConstruction"} above
+              = succeed ")" do
+                %a{:href => "Grothendieck+construction#CoLimitsInAGrothendieckConstruction"} here
+              %a.existingWikiWord{:href => "/nlab/show/external+tensor+product"} external
+              = succeed "\u201D" do
+                %a.existingWikiWord{:href => "/nlab/show/cartesian+product"} cartesian product
+              = succeed "," do
+                %a{:href => "Grothendieck+construction#CartesianProductInGrothendieckConstruction"} here
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi X
+                      %mi S
+                    %mo ,
+                    %mspace{:width => "thinmathspace"}
+                    %msub
+                      %mi Y
+                      %mi T
+                    %mspace{:width => "thinmathspace"}
+                    %mo ∈
+                    %mspace{:width => "thinmathspace"}
+                    %mstyle{:displaystyle => "false"}
+                      %msub
+                        %mo ∫
+                        %mrow
+                          %mi S
+                          %mo ∈
+                          %mi Set
+                      %mi 𝒞
+                      %mspace{:width => "thickmathspace"}
+                      %mspace{:width => "thickmathspace"}
+                      %mspace{:width => "thickmathspace"}
+                      %mspace{:width => "thickmathspace"}
+                      %mspace{:width => "thickmathspace"}
+                      %mspace{:width => "thickmathspace"}
+                      %mspace{:width => "thickmathspace"}
+                      %mspace{:width => "thickmathspace"}
+                      %mspace{:width => "thickmathspace"}
+                      %mo ⊢
+                      %mspace{:width => "thickmathspace"}
+                      %mspace{:width => "thickmathspace"}
+                      %mspace{:width => "thickmathspace"}
+                      %mspace{:width => "thickmathspace"}
+                      %mspace{:width => "thickmathspace"}
+                      %mspace{:width => "thickmathspace"}
+                      %mspace{:width => "thickmathspace"}
+                      %mspace{:width => "thickmathspace"}
+                      %mspace{:width => "thickmathspace"}
+                      %msub
+                        %mi X
+                        %mi S
+                      %mo ×
+                      %msub
+                        %mi Y
+                        %mi T
+                      %mspace{:width => "thickmathspace"}
+                      %mo ≃
+                      %mspace{:width => "thickmathspace"}
+                      %mo{:maxsize => "1.8em", :minsize => "1.8em"} (
+                      %mo{:maxsize => "1.2em", :minsize => "1.2em"} (
+                      %mo{:stretchy => "false"} (
+                      %msub
+                        %mi pr
+                        %mi S
+                      %msup
+                        %mo{:stretchy => "false"} )
+                        %mo *
+                      %mi X
+                      %mo{:maxsize => "1.2em", :minsize => "1.2em"} )
+                      %msub
+                        %mo ×
+                        %mrow
+                          %mi S
+                          %mo ×
+                          %mi T
+                      %mo{:maxsize => "1.2em", :minsize => "1.2em"} (
+                      %mo{:stretchy => "false"} (
+                      %msub
+                        %mi pr
+                        %mi T
+                      %msup
+                        %mo{:stretchy => "false"} )
+                        %mo *
+                      %mi Y
+                      %mo{:maxsize => "1.2em", :minsize => "1.2em"} )
+                      %msub
+                        %mo{:maxsize => "1.8em", :minsize => "1.8em"} )
+                        %mrow
+                          %mi S
+                          %mo ×
+                          %mi T
+                      %mspace{:width => "thinmathspace"}
+                      %mo .
+                  %annotation{:encoding => "application/x-tex"}
+                    X_S,\, Y_T \,\in\, \textstyle{\int}_{S \in Set} \mathcal{C}
+                    \\;\;\;\;\;\;\;\;\;
+                    \\vdash
+                    \\;\;\;\;\;\;\;\;\;
+                    X_S \times Y_T
+                    \\;\simeq\;
+                    \\Big(
+                    \\big(
+                    (pr_S)^\ast X
+                    \\big)
+                    \\times_{S \times T}
+                    \\big(
+                    (pr_T)^\ast Y
+                    \\big)
+                    \\Big)_{S \times T}
+                    \\,.
+            %p Of course this comes down to the expected component formula
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mtable{:columnalign => "left left", :displaystyle => "false", :rowspacing => "0.5ex"}
+                      %mtr
+                        %mtd
+                          %mo{:maxsize => "1.2em", :minsize => "1.2em"} (
+                          %msub
+                            %mi X
+                            %mi S
+                          %mo ×
+                          %msub
+                            %mi Y
+                            %mi T
+                          %msub
+                            %mo{:maxsize => "1.2em", :minsize => "1.2em"} )
+                            %mrow
+                              %mi s
+                              %mo ,
+                              %mi t
+                      %mtr
+                        %mtd
+                          %mspace{:width => "thickmathspace"}
+                          %mo ≃
+                          %mspace{:width => "thickmathspace"}
+                          %mo{:maxsize => "1.8em", :minsize => "1.8em"} (
+                          %mo{:maxsize => "1.2em", :minsize => "1.2em"} (
+                          %mo{:stretchy => "false"} (
+                          %msub
+                            %mi pr
+                            %mi S
+                          %msup
+                            %mo{:stretchy => "false"} )
+                            %mo *
+                          %mi X
+                          %mo{:maxsize => "1.2em", :minsize => "1.2em"} )
+                          %msub
+                            %mo ×
+                            %mrow
+                              %mi S
+                              %mo ×
+                              %mi T
+                          %mo{:maxsize => "1.2em", :minsize => "1.2em"} (
+                          %mo{:stretchy => "false"} (
+                          %msub
+                            %mi pr
+                            %mi T
+                          %msup
+                            %mo{:stretchy => "false"} )
+                            %mo *
+                          %mi Y
+                          %mo{:maxsize => "1.2em", :minsize => "1.2em"} )
+                          %msub
+                            %mo{:maxsize => "1.8em", :minsize => "1.8em"} )
+                            %mrow
+                              %mi s
+                              %mo ,
+                              %mi t
+                        %mtd
+                          %mtext by the above
+                      %mtr
+                        %mtd
+                          %mspace{:width => "thickmathspace"}
+                          %mo ≃
+                          %mspace{:width => "thickmathspace"}
+                          %mo{:stretchy => "false"} {
+                          %mo{:stretchy => "false"} (
+                          %mi s
+                          %mo ,
+                          %mi t
+                          %mo{:stretchy => "false"} )
+                          %msup
+                            %mo{:stretchy => "false"} }
+                            %mo *
+                          %mo{:maxsize => "1.8em", :minsize => "1.8em"} (
+                          %mo{:maxsize => "1.2em", :minsize => "1.2em"} (
+                          %mo{:stretchy => "false"} (
+                          %msub
+                            %mi pr
+                            %mi S
+                          %msup
+                            %mo{:stretchy => "false"} )
+                            %mo *
+                          %mi X
+                          %mo{:maxsize => "1.2em", :minsize => "1.2em"} )
+                          %msub
+                            %mo ×
+                            %mrow
+                              %mi S
+                              %mo ×
+                              %mi T
+                          %mo{:maxsize => "1.2em", :minsize => "1.2em"} (
+                          %mo{:stretchy => "false"} (
+                          %msub
+                            %mi pr
+                            %mi T
+                          %msup
+                            %mo{:stretchy => "false"} )
+                            %mo *
+                          %mi Y
+                          %mo{:maxsize => "1.2em", :minsize => "1.2em"} )
+                          %mo{:maxsize => "1.8em", :minsize => "1.8em"} )
+                        %mtd
+                          %mtext by definition
+                      %mtr
+                        %mtd
+                          %mspace{:width => "thickmathspace"}
+                          %mo ≃
+                          %mspace{:width => "thickmathspace"}
+                          %mo{:maxsize => "1.8em", :minsize => "1.8em"} (
+                          %mo{:maxsize => "1.2em", :minsize => "1.2em"} (
+                          %mo{:stretchy => "false"} {
+                          %mo{:stretchy => "false"} (
+                          %mi s
+                          %mo ,
+                          %mi t
+                          %mo{:stretchy => "false"} )
+                          %msup
+                            %mo{:stretchy => "false"} }
+                            %mo *
+                          %mo{:stretchy => "false"} (
+                          %msub
+                            %mi pr
+                            %mi S
+                          %msup
+                            %mo{:stretchy => "false"} )
+                            %mo *
+                          %mi X
+                          %mo{:maxsize => "1.2em", :minsize => "1.2em"} )
+                          %msub
+                            %mo ×
+                            %mrow
+                              %mo{:stretchy => "false"} {
+                              %mo{:stretchy => "false"} (
+                              %mi s
+                              %mo ,
+                              %mi t
+                              %mo{:stretchy => "false"} )
+                              %mo{:stretchy => "false"} }
+                          %mo{:maxsize => "1.2em", :minsize => "1.2em"} (
+                          %mo{:stretchy => "false"} {
+                          %mo{:stretchy => "false"} (
+                          %mi s
+                          %mo ,
+                          %mi t
+                          %mo{:stretchy => "false"} )
+                          %msup
+                            %mo{:stretchy => "false"} }
+                            %mo *
+                          %mo{:stretchy => "false"} (
+                          %msub
+                            %mi pr
+                            %mi T
+                          %msup
+                            %mo{:stretchy => "false"} )
+                            %mo *
+                          %mi Y
+                          %mo{:maxsize => "1.2em", :minsize => "1.2em"} )
+                          %mo{:maxsize => "1.8em", :minsize => "1.8em"} )
+                        %mtd
+                          %mtext pullback is right adjoint
+                      %mtr
+                        %mtd
+                          %mspace{:width => "thickmathspace"}
+                          %mo ≃
+                          %mspace{:width => "thickmathspace"}
+                          %mo{:maxsize => "1.2em", :minsize => "1.2em"} (
+                          %mo{:stretchy => "false"} {
+                          %mi s
+                          %msup
+                            %mo{:stretchy => "false"} }
+                            %mo *
+                          %mi X
+                          %mo{:maxsize => "1.2em", :minsize => "1.2em"} )
+                          %msub
+                            %mo ×
+                            %mrow
+                              %mo{:stretchy => "false"} {
+                              %mo{:stretchy => "false"} (
+                              %mi s
+                              %mo ,
+                              %mi t
+                              %mo{:stretchy => "false"} )
+                              %mo{:stretchy => "false"} }
+                          %mo{:maxsize => "1.2em", :minsize => "1.2em"} (
+                          %mo{:stretchy => "false"} {
+                          %mi t
+                          %msup
+                            %mo{:stretchy => "false"} }
+                            %mo *
+                          %mi Y
+                          %mo{:maxsize => "1.2em", :minsize => "1.2em"} )
+                        %mtd
+                          %mtext by commuting diagram below
+                      %mtr
+                        %mtd
+                          %mspace{:width => "thickmathspace"}
+                          %mo ≃
+                          %mspace{:width => "thickmathspace"}
+                          %msub
+                            %mi X
+                            %mi s
+                          %mo ×
+                          %msub
+                            %mi Y
+                            %mi t
+                        %mtd
+                          %mtext by definition
+                  %annotation{:encoding => "application/x-tex"}
+                    \\begin{array}{ll}
+                    \\big(
+                    X_S \times Y_T
+                    \\big)_{s,t}
+                    \\\
+                    \\;\simeq\;
+                    \\Big(
+                    \\big(
+                    (pr_S)^\ast X
+                    \\big)
+                    \\times_{S \times T}
+                    \\big(
+                    (pr_T)^\ast Y
+                    \\big)
+                    \\Big)_{s,t}
+                    \&amp;
+                    \\text{by the above}
+                    \\\
+                    \\;\simeq\;
+                    \\{(s,t)\}^\ast
+                    \\Big(
+                    \\big(
+                    (pr_S)^\ast X
+                    \\big)
+                    \\times_{S \times T}
+                    \\big(
+                    (pr_T)^\ast Y
+                    \\big)
+                    \\Big)
+                    \&amp;
+                    \\text{by definition}
+                    \\\
+                    \\;\simeq\;
+                    \\Big(
+                    \\big(
+                    \\{(s,t)\}^\ast
+                    (pr_S)^\ast X
+                    \\big)
+                    \\times_{\{(s,t)\}}
+                    \\big(
+                    \\{(s,t)\}^\ast
+                    (pr_T)^\ast Y
+                    \\big)
+                    \\Big)
+                    \&amp;
+                    \\text{pullback is right adjoint}
+                    \\\
+                    \\;\simeq\;
+                    \\big(
+                    \\{s\}^\ast
+                    X
+                    \\big)
+                    \\times_{\{(s,t)\}}
+                    \\big(
+                    \\{t\}^\ast
+                    Y
+                    \\big)
+                    \&amp;
+                    \\text{by commuting diagram below}
+                    \\\
+                    \\;\simeq\;
+                    X_s \times Y_t
+                    \&amp;
+                    \\text{by definition}
+                    \\end{array}
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mrow
+                      %mtable
+                        %mtr
+                          %mtd
+                            %mo{:stretchy => "false"} {
+                            %mi s
+                            %mo{:stretchy => "false"} }
+                          %mtd
+                            %mo ≃
+                          %mtd
+                            %mo{:stretchy => "false"} {
+                            %mo{:stretchy => "false"} (
+                            %mi s
+                            %mo ,
+                            %mi t
+                            %mo{:stretchy => "false"} )
+                            %mo{:stretchy => "false"} }
+                          %mtd
+                            %mo ≃
+                          %mtd
+                            %mo{:stretchy => "false"} {
+                            %mi t
+                            %mo{:stretchy => "false"} }
+                        %mtr
+                          %mtd
+                            %mo{:maxsize => "1.8em", :minsize => "1.8em"} ↓
+                          %mtd
+                          %mtd
+                            %mo{:maxsize => "1.8em", :minsize => "1.8em"} ↓
+                          %mtd
+                          %mtd
+                            %mo{:maxsize => "1.8em", :minsize => "1.8em"} ↓
+                        %mtr
+                          %mtd
+                            %mi S
+                          %mtd
+                            %munder
+                              %mo ⟵
+                              %mrow
+                                %msub
+                                  %mi pr
+                                  %mi S
+                          %mtd
+                            %mi S
+                            %mo ×
+                            %mi T
+                          %mtd
+                            %munder
+                              %mo ⟶
+                              %mrow
+                                %msub
+                                  %mi pr
+                                  %mi T
+                          %mtd
+                            %mi T
+                  %annotation{:encoding => "application/x-tex"}
+                    \\array{
+                    \\{s\} &amp;\simeq&amp; \{(s,t)\} &amp;\simeq&amp; \{t\}
+                    \\\
+                    \\Big\downarrow &amp;&amp; \Big\downarrow &amp;&amp; \Big\downarrow
+                    \\\
+                    S &amp;\underset{pr_S}{\longleftarrow}&amp; S \times T &amp;\underset{pr_T}{\longrightarrow}&amp; T
+                    }
+            %p Similarly, the component formula for the free coproduct is
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo{:maxsize => "1.2em", :minsize => "1.2em"} (
+                    %msub
+                      %mi Y
+                      %mi T
+                    %mo ⨿
+                    %mi Y
+                    %msub
+                      %mo ′
+                      %mrow
+                        %mi T
+                        %mo ′
+                    %msub
+                      %mo{:maxsize => "1.2em", :minsize => "1.2em"} )
+                      %mi τ
+                    %mspace{:width => "thickmathspace"}
+                    %mo ≃
+                    %mspace{:width => "thickmathspace"}
+                    %mrow
+                      %mo {
+                      %mtable{:columnalign => "left left left", :displaystyle => "false", :rowspacing => "0.5ex"}
+                        %mtr
+                          %mtd
+                            %msub
+                              %mi Y
+                              %mi τ
+                          %mtd
+                            %mo{:stretchy => "false"} |
+                          %mtd
+                            %mi τ
+                            %mo ∈
+                            %mi T
+                        %mtr
+                          %mtd
+                            %mi Y
+                            %msub
+                              %mo ′
+                              %mi τ
+                          %mtd
+                            %mo{:stretchy => "false"} |
+                          %mtd
+                            %mi τ
+                            %mo ∈
+                            %mi T
+                            %mo ′
+                    %mspace{:width => "thinmathspace"}
+                    %mo .
+                  %annotation{:encoding => "application/x-tex"}
+                    \\big(
+                    Y_T \amalg Y'_{T'}
+                    \\big)_{\tau}
+                    \\;\simeq\;
+                    \\left\{
+                    \\begin{array}{lll}
+                    Y_\tau &amp;\vert&amp; \tau \in T
+                    \\\
+                    Y'_{\tau} &amp;\vert&amp; \tau \in T'
+                    \\end{array}
+                    \\right.
+                    \\,.
+            %p Using all this, distributivity is verified as follows:
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mtable{:columnalign => "left left", :displaystyle => "false", :rowspacing => "0.5ex"}
+                      %mtr
+                        %mtd
+                          %mo{:maxsize => "1.8em", :minsize => "1.8em"} (
+                          %msub
+                            %mi X
+                            %mi S
+                          %mo ×
+                          %mo{:maxsize => "1.2em", :minsize => "1.2em"} (
+                          %msub
+                            %mi Y
+                            %mi T
+                          %mo ⊔
+                          %msub
+                            %mi Y
+                            %mrow
+                              %mi T
+                              %mo ′
+                          %mo{:maxsize => "1.2em", :minsize => "1.2em"} )
+                          %msub
+                            %mo{:maxsize => "1.8em", :minsize => "1.8em"} )
+                            %mrow
+                              %mi s
+                              %mo ,
+                              %mi τ
+                      %mtr
+                        %mtd
+                          %mspace{:width => "thickmathspace"}
+                          %mo ≃
+                          %mspace{:width => "thickmathspace"}
+                          %msub
+                            %mi X
+                            %mi s
+                          %mo ×
+                          %mo{:maxsize => "1.2em", :minsize => "1.2em"} (
+                          %msub
+                            %mi Y
+                            %mi T
+                          %mo ⊔
+                          %msub
+                            %mi Y
+                            %mrow
+                              %mi T
+                              %mo ′
+                          %msub
+                            %mo{:maxsize => "1.2em", :minsize => "1.2em"} )
+                            %mi τ
+                      %mtr
+                        %mtd
+                          %mspace{:width => "thickmathspace"}
+                          %mo ≃
+                          %mspace{:width => "thickmathspace"}
+                          %mrow
+                            %mo {
+                            %mtable{:columnalign => "left left left", :displaystyle => "false", :rowspacing => "0.5ex"}
+                              %mtr
+                                %mtd
+                                  %msub
+                                    %mi X
+                                    %mi s
+                                  %mo ×
+                                  %msub
+                                    %mi Y
+                                    %mi τ
+                                %mtd
+                                  %mo{:stretchy => "false"} |
+                                %mtd
+                                  %mi τ
+                                  %mo ∈
+                                  %mi T
+                              %mtr
+                                %mtd
+                                  %msub
+                                    %mi X
+                                    %mi s
+                                  %mo ×
+                                  %mi Y
+                                  %msub
+                                    %mo ′
+                                    %mi τ
+                                %mtd
+                                  %mo{:stretchy => "false"} |
+                                %mtd
+                                  %mi τ
+                                  %mo ∈
+                                  %mi T
+                                  %mo ′
+                      %mtr
+                        %mtd
+                          %mspace{:width => "thickmathspace"}
+                          %mo ≃
+                          %mspace{:width => "thickmathspace"}
+                          %mrow
+                            %mo {
+                            %mtable{:columnalign => "left left left", :displaystyle => "false", :rowspacing => "0.5ex"}
+                              %mtr
+                                %mtd
+                                  %mo{:stretchy => "false"} (
+                                  %msub
+                                    %mi X
+                                    %mi S
+                                  %mo ×
+                                  %msub
+                                    %mi Y
+                                    %mi T
+                                  %msub
+                                    %mo{:stretchy => "false"} )
+                                    %mrow
+                                      %mi s
+                                      %mo ,
+                                      %mi τ
+                                %mtd
+                                  %mo{:stretchy => "false"} |
+                                %mtd
+                                  %mi τ
+                                  %mo ∈
+                                  %mi T
+                              %mtr
+                                %mtd
+                                  %mo{:stretchy => "false"} (
+                                  %msub
+                                    %mi X
+                                    %mi S
+                                  %mo ×
+                                  %mi Y
+                                  %msub
+                                    %mo ′
+                                    %mrow
+                                      %mi T
+                                      %mo ′
+                                  %msub
+                                    %mo{:stretchy => "false"} )
+                                    %mrow
+                                      %mi s
+                                      %mo ,
+                                      %mi τ
+                                %mtd
+                                  %mo{:stretchy => "false"} |
+                                %mtd
+                                  %mi τ
+                                  %mo ∈
+                                  %mi T
+                                  %mo ′
+                      %mtr
+                        %mtd
+                          %mspace{:width => "thickmathspace"}
+                          %mo ≃
+                          %mspace{:width => "thickmathspace"}
+                          %mo{:maxsize => "1.8em", :minsize => "1.8em"} (
+                          %mo{:maxsize => "1.2em", :minsize => "1.2em"} (
+                          %msub
+                            %mi X
+                            %mi S
+                          %mo ×
+                          %msub
+                            %mi Y
+                            %mi T
+                          %mo{:maxsize => "1.2em", :minsize => "1.2em"} )
+                          %mo ⊔
+                          %mo{:maxsize => "1.2em", :minsize => "1.2em"} (
+                          %msub
+                            %mi X
+                            %mi S
+                          %mo ×
+                          %mi Y
+                          %msub
+                            %mo ′
+                            %mrow
+                              %mi T
+                              %mo ′
+                          %mo{:maxsize => "1.2em", :minsize => "1.2em"} )
+                          %msub
+                            %mo{:maxsize => "1.8em", :minsize => "1.8em"} )
+                            %mrow
+                              %mi s
+                              %mo ,
+                              %mi τ
+                          %mspace{:width => "thinmathspace"}
+                          %mo .
+                  %annotation{:encoding => "application/x-tex"}
+                    \\begin{array}{ll}
+                    \\Big(
+                    X_S
+                    \\times
+                    \\big(
+                    Y_T \sqcup Y_{T'}
+                    \\big)
+                    \\Big)_{s, \tau}
+                    \\\
+                    \\;\simeq\;
+                    X_s
+                    \\times
+                    \\big(
+                    Y_T \sqcup Y_{T'}
+                    \\big)_\tau
+                    \\\
+                    \\;\simeq\;
+                    \\left\{
+                    \\begin{array}{lll}
+                    X_s  \times Y_\tau &amp;\vert&amp; \tau \in T
+                    \\\
+                    X_s \times Y'_{\tau} &amp;\vert&amp; \tau \in T'
+                    \\end{array}
+                    \\right.
+                    \\\
+                    \\;\simeq\;
+                    \\left\{
+                    \\begin{array}{lll}
+                    (X_S \times Y_T)_{s, \tau} &amp;\vert&amp; \tau \in T
+                    \\\
+                    (X_S \times Y'_{T'})_{s, \tau} &amp;\vert&amp; \tau \in T'
+                    \\end{array}
+                    \\right.
+                    \\\
+                    \\;\simeq\;
+                    \\Big(
+                    \\big(
+                    X_S \times Y_T
+                    \\big)
+                    \\sqcup
+                    \\big(
+                    X_S \times Y'_{T'}
+                    \\big)
+                    \\Big)_{s,\tau}
+                    \\,.
+                    \\end{array}
+            %p
+          %p
+          #FreeDistributiveCategoryMonad.num_remark
+            %h6 Remark
+            %p
+              It seems plausible, that, more abstractly, Prop.
+              %a.maruku-ref{:href => "#CoproductCompletionOfCategoryWithProducts"}
+              follows because the
+              %a.existingWikiWord{:href => "/nlab/show/2-monad"} 2-monad
+              for
+              %a.existingWikiWord{:href => "/nlab/show/free+product+completion"} free product completion
+              would
+              %a.existingWikiWord{:href => "/nlab/show/distributive+law"} distribute
+              over the 2-monad for free coproduct cocompletion; the composite 2-monad would exhibit the
+              %a.existingWikiWord{:href => "/nlab/show/free+construction"} free
+              = succeed "-construction." do
+                %a.existingWikiWord{:href => "/nlab/show/distributive+category"} distributive category
+          %h2#Examples Examples
+          %h3#coproduct_completion_of_connected_objects Coproduct completion of connected objects
+          %p
+            The following examples follow as special cases of Prop.
+            = succeed ":" do
+              %a.maruku-ref{:href => "#CategoriesOfCoproductsOfConnectedObjects"}
+          %p
+          .num_remark
+            %h6 Example
+            %p
+              The category
+              %a.existingWikiWord{:href => "/nlab/show/Set"} Set
+              is the
+              %a.existingWikiWord{:href => "/nlab/show/free+coproduct+completion"} free coproduct completion
+              of the
+              = succeed "." do
+                %a.existingWikiWord{:href => "/nlab/show/terminal+category"} terminal category
+          %p
+          #SkeletalGroupoids.num_remark
+            %h6 Example
+            %p
+              %strong
+                (
+                %a.existingWikiWord{:href => "/nlab/show/skeletal+groupoids"} skeletal groupoids
+                form the free coproduct completion of
+                = succeed ")" do
+                  %a.existingWikiWord{:href => "/nlab/show/groups"} groups
+              %br/
+              The
+              %a.existingWikiWord{:href => "/nlab/show/1-category"} 1-category
+              of
+              %a.existingWikiWord{:href => "/nlab/show/skeletal+groupoids"} skeletal groupoids
+              among that of all
+              %a.existingWikiWord{:href => "/nlab/show/strict+groupoids"} strict groupoids
+              is the free coproduct completion of the category of 1-object
+              %a.existingWikiWord{:href => "/nlab/show/delooping+groupoids"} delooping groupoids
+              which (
+              %em>
+                as
+                %a.existingWikiWord{:href => "/nlab/show/1-categories"} 1-categories
+              ) is equivalently the category of
+              = succeed ":" do
+                %a.existingWikiWord{:href => "/nlab/show/groups"} groups
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi PSh
+                      %mo ⊔
+                    %mo{:maxsize => "1.2em", :minsize => "1.2em"} (
+                    %mi Grp
+                    %mo{:maxsize => "1.2em", :minsize => "1.2em"} )
+                    %mspace{:width => "thickmathspace"}
+                    %mspace{:width => "thickmathspace"}
+                    %mo ≃
+                    %mspace{:width => "thickmathspace"}
+                    %mspace{:width => "thickmathspace"}
+                    %msub
+                      %mi PSh
+                      %mo ⊔
+                    %mo{:maxsize => "1.2em", :minsize => "1.2em"} (
+                    %msub
+                      %mi Grpd
+                      %mrow
+                        %mo{:stretchy => "false"} (
+                        %mi Obj
+                        %mo =
+                        %mo *
+                        %mo{:stretchy => "false"} )
+                    %mo{:maxsize => "1.2em", :minsize => "1.2em"} )
+                    %mspace{:width => "thickmathspace"}
+                    %mspace{:width => "thickmathspace"}
+                    %mo ≃
+                    %mspace{:width => "thickmathspace"}
+                    %mspace{:width => "thickmathspace"}
+                    %msub
+                      %mi Grpd
+                      %mi skl
+                    %mspace{:width => "thinmathspace"}
+                    %mo .
+                  %annotation{:encoding => "application/x-tex"}
+                    PSh_{\sqcup}\big(
+                    Grp
+                    \\big)
+                    \\;\;
+                    \\simeq
+                    \\;\;
+                    PSh_{\sqcup}\big(
+                    Grpd_{(Obj = \ast)}
+                    \\big)
+                    \\;\;
+                    \\simeq
+                    \\;\;
+                    Grpd_{skl}
+                    \\,.
+            %p
+          %p
+          #GActionsAndGOrbits.num_remark
+            %h6 Example
+            %p
+              %strong
+                (
+                %a.existingWikiWord{:href => "/nlab/show/G-set"}
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}>
+                    %semantics
+                      %mrow
+                        %mi G
+                      %annotation{:encoding => "application/x-tex"} G
+                  \-sets
+                are the
+                %a.existingWikiWord{:href => "/nlab/show/free+coproduct+completion"} free coproduct completion
+                of
+                = succeed ")" do
+                  %a.existingWikiWord{:href => "/nlab/show/orbit+category"}
+                    %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}>
+                      %semantics
+                        %mrow
+                          %mi G
+                        %annotation{:encoding => "application/x-tex"} G
+                    \-orbits
+              %br/
+              Let
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi G
+                    %mspace{:width => "thinmathspace"}
+                    %mo ∈
+                    %mspace{:width => "thinmathspace"}
+                    %mi Grp
+                    %mo{:stretchy => "false"} (
+                    %mi Set
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} G \,\in\, Grp(Set)
+              be a
+              = succeed "." do
+                %a.existingWikiWord{:href => "/nlab/show/discrete+group"} discrete group
+            %ul
+              %li
+                %p
+                  %a.existingWikiWord{:href => "/nlab/show/G-set"}
+                    %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                      %semantics
+                        %mrow
+                          %mi G
+                          %mi Set
+                        %annotation{:encoding => "application/x-tex"} G Set
+                  for its category of
+                  %a.existingWikiWord{:href => "/nlab/show/group+actions"} group actions
+                  on
+                  = succeed "," do
+                    %a.existingWikiWord{:href => "/nlab/show/sets"} sets
+              %li
+                %p
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi G
+                        %mi Orbt
+                        %mover
+                          %mo ↪
+                          %mspace{:width => "thickmathspace"}
+                        %mi G
+                        %mi Set
+                      %annotation{:encoding => "application/x-tex"} G Orbt \xhookrightarrow{\;} G Set
+                  for its
+                  = succeed "," do
+                    %a.existingWikiWord{:href => "/nlab/show/orbit+category"} orbit category
+                  %a.existingWikiWord{:href => "/nlab/show/full+subcategory"} full subcategory
+                  on the
+                  = succeed "," do
+                    %a.existingWikiWord{:href => "/nlab/show/transitive+actions"} transitive actions
+                  %a.existingWikiWord{:href => "/nlab/show/coset+space"} sets of cosets
+                  = succeed "," do
+                    %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                      %semantics
+                        %mrow
+                          %mi G
+                          %mo{:stretchy => "false"} /
+                          %mi H
+                        %annotation{:encoding => "application/x-tex"} G/H
+                  %a.existingWikiWord{:href => "/nlab/show/subgroups"} subgroups
+                  = succeed "." do
+                    %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                      %semantics
+                        %mrow
+                          %mi H
+                          %mo ⊂
+                          %mi G
+                        %annotation{:encoding => "application/x-tex"} H \subset G
+            %p
+              Since every
+              %a.existingWikiWord{:href => "/nlab/show/G-set"} G-set
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi X
+                  %annotation{:encoding => "application/x-tex"} X
+              decomposes as a
+              %a.existingWikiWord{:href => "/nlab/show/disjoint+union"} disjoint union
+              of
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/transitive+actions"} transitive actions
+              %a.existingWikiWord{:href => "/nlab/show/orbits"} orbits
+              of
+              %a.existingWikiWord{:href => "/nlab/show/elements"} elements
+              of
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi X
+                    %annotation{:encoding => "application/x-tex"} X
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi G
+                    %mi Set
+                  %annotation{:encoding => "application/x-tex"} G Set
+              as the
+              %a.existingWikiWord{:href => "/nlab/show/free+coproduct+completion"} free coproduct completion
+              of
+              = succeed "." do
+                %a.existingWikiWord{:href => "/nlab/show/orbit+category"} G Orbt
+          %h3#coproduct_compeletion_of_extensive_categories Coproduct compeletion of extensive categories
+          %p
+          #CoproductCompletionOfExtensiveCategories.num_remark
+            %h6 Example
+            %p
+              %strong (coproduct completion of extensive categories)
+              %br/
+              While Prop.
+              %a.maruku-ref{:href => "#FreeCoproductCompletionIsExtensive"}
+              says that every free coproduct completion is extensive, if a category
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi 𝒞
+                  %annotation{:encoding => "application/x-tex"} \mathcal{C}
+              is already extensive to start with then its free coproduct completion may equivalently be described as the category of
+              = succeed "-" do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi 𝒞
+                    %annotation{:encoding => "application/x-tex"} \mathcal{C}
+              %a.existingWikiWord{:href => "/nlab/show/bundles"} bundles
+              over
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/sets"} sets
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi 𝒞
+                  %annotation{:encoding => "application/x-tex"} \mathcal{C}
+              via the unique
+              = succeed "-" do
+                %a.existingWikiWord{:href => "/nlab/show/coproduct"} coproduct
+              %a.existingWikiWord{:href => "/nlab/show/preserved+colimit"} preserving
+              %a.existingWikiWord{:href => "/nlab/show/functor"} functor
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msub
+                        %mi ι
+                        %mi Set
+                      %mspace{:width => "thinmathspace"}
+                      %mo{:lspace => "verythinmathspace"} :
+                      %mspace{:width => "thinmathspace"}
+                      %mi Set
+                      %mo ⟶
+                      %mi 𝒞
+                    %annotation{:encoding => "application/x-tex"} \iota_{Set} \,\colon\, Set \longrightarrow \mathcal{C}
+              %a.existingWikiWord{:href => "/nlab/show/comma+category"} comma category
+              = succeed ":" do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msub
+                        %mi 𝒞
+                        %mi Set
+                      %mspace{:width => "thinmathspace"}
+                      %mo ≔
+                      %mspace{:width => "thinmathspace"}
+                      %mo{:maxsize => "1.2em", :minsize => "1.2em"} (
+                      %msub
+                        %mi id
+                        %mi 𝒞
+                      %mo ,
+                      %msub
+                        %mi ι
+                        %mi Set
+                      %mo{:maxsize => "1.2em", :minsize => "1.2em"} )
+                    %annotation{:encoding => "application/x-tex"} \mathcal{C}_{Set} \,\coloneqq\, \big(id_{\mathcal{C}}, \iota_{Set}\big)
+            #eq:AsACategoryOfBundles.maruku-equation
+              %span.maruku-eq-number (2)
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi 𝒳
+                    %mspace{:width => "thickmathspace"}
+                    %mtext extensive
+                    %mspace{:width => "thickmathspace"}
+                    %mspace{:width => "thickmathspace"}
+                    %mspace{:width => "thickmathspace"}
+                    %mspace{:width => "thickmathspace"}
+                    %mspace{:width => "thickmathspace"}
+                    %mspace{:width => "thickmathspace"}
+                    %mspace{:width => "thickmathspace"}
+                    %mspace{:width => "thickmathspace"}
+                    %mspace{:width => "thickmathspace"}
+                    %mspace{:width => "thickmathspace"}
+                    %mo ⊢
+                    %mspace{:width => "thickmathspace"}
+                    %mspace{:width => "thickmathspace"}
+                    %mspace{:width => "thickmathspace"}
+                    %mspace{:width => "thickmathspace"}
+                    %mspace{:width => "thickmathspace"}
+                    %mspace{:width => "thickmathspace"}
+                    %mspace{:width => "thickmathspace"}
+                    %mspace{:width => "thickmathspace"}
+                    %mspace{:width => "thickmathspace"}
+                    %mspace{:width => "thickmathspace"}
+                    %msub
+                      %mi PSh
+                      %mo ⊔
+                    %mo{:stretchy => "false"} (
+                    %mi 𝒞
+                    %mo{:stretchy => "false"} )
+                    %mspace{:width => "thickmathspace"}
+                    %mspace{:width => "thickmathspace"}
+                    %mo ≃
+                    %mspace{:width => "thickmathspace"}
+                    %mspace{:width => "thickmathspace"}
+                    %msub
+                      %mi 𝒞
+                      %mi Set
+                    %mspace{:width => "thickmathspace"}
+                    %mspace{:width => "thickmathspace"}
+                    %mo =
+                    %mspace{:width => "thickmathspace"}
+                    %mspace{:width => "thickmathspace"}
+                    %mrow
+                      %mo {
+                      %mrow
+                        %mtable
+                          %mtr
+                            %mtd
+                              %munder
+                                %mo{:lspace => "thinmathspace", :rspace => "thinmathspace"} ∐
+                                %mrow
+                                  %mi s
+                                  %mo ∈
+                                  %mi S
+                              %msub
+                                %mi X
+                                %mi s
+                            %mtd
+                              %mover
+                                %mo ⟶
+                                %mi ϕ
+                            %mtd
+                              %munder
+                                %mo{:lspace => "thinmathspace", :rspace => "thinmathspace"} ∐
+                                %mrow
+                                  %mi t
+                                  %mo ∈
+                                  %mi T
+                              %msub
+                                %mi Y
+                                %mi t
+                          %mtr
+                            %mtd
+                              %mo{:maxsize => "1.8em", :minsize => "1.8em"} ↓
+                            %mtd
+                            %mtd
+                              %mo{:maxsize => "1.8em", :minsize => "1.8em"} ↓
+                          %mtr
+                            %mtd
+                              %mi S
+                            %mtd
+                              %munder
+                                %mo ⟶
+                                %mi f
+                            %mtd
+                              %mi T
+                              %mspace{:width => "thinmathspace"}
+                              %mo ,
+                      %mo }
+                  %annotation{:encoding => "application/x-tex"}
+                    \\mathcal{X}\;\text{extensive}
+                    \\;\;\;\;\;\;\;\;\;\;
+                    \\vdash
+                    \\;\;\;\;\;\;\;\;\;\;
+                    PSh_{\sqcup}(\mathcal{C})
+                    \\;\;
+                    \\simeq
+                    \\;\;
+                    \\mathcal{C}_{Set}
+                    \\;\;
+                    \=
+                    \\;\;
+                    \\left\{
+                    \\array{
+                    \\underset{s \in S}{\coprod} X_s
+                    \&amp;\overset{\phi}{\longrightarrow}&amp;
+                    \\underset{t \in T}{\coprod} Y_t
+                    \\\
+                    \\Big\downarrow
+                    \&amp;&amp;
+                    \\Big\downarrow
+                    \\\
+                    S &amp;\underset{f}{\longrightarrow}&amp; T
+                    \\,,
+                    }
+                    \\right\}
+            %p
+              where on the right we are indicating a generic
+              %a.existingWikiWord{:href => "/nlab/show/morphism"} morphism
+              of such
+              = succeed "." do
+                %a.existingWikiWord{:href => "/nlab/show/bundles"} bundles
+            %p
+              Namely, since every
+              %a.existingWikiWord{:href => "/nlab/show/set"} set
+              is the
+              %a.existingWikiWord{:href => "/nlab/show/coproduct"} coproduct
+              of
+              %a.existingWikiWord{:href => "/nlab/show/singleton+sets"} singleton sets
+              indexed by its
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/elements"} elements
+              %a.existingWikiWord{:href => "/nlab/show/extensive+category"} extensive category
+              that the coproduct functors are
+              %a.existingWikiWord{:href => "/nlab/show/equivalence+of+categories"} equivalences
+              between (
+              %a.existingWikiWord{:href => "/nlab/show/product+category"} products
+              of)
+              %a.existingWikiWord{:href => "/nlab/show/slice+categories"} slice categories
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi 𝒞
+                      %mrow
+                        %mo{:stretchy => "false"} /
+                        %mi ι
+                        %mo{:stretchy => "false"} (
+                        %mi S
+                        %mo{:stretchy => "false"} )
+                    %mspace{:width => "thickmathspace"}
+                    %mspace{:width => "thickmathspace"}
+                    %mo ≃
+                    %mspace{:width => "thickmathspace"}
+                    %mspace{:width => "thickmathspace"}
+                    %munder
+                      %mo{:lspace => "thinmathspace", :rspace => "thinmathspace"} ∏
+                      %mrow
+                        %mi s
+                        %mo ∈
+                        %mi S
+                    %msub
+                      %mi 𝒞
+                      %mrow
+                        %mo{:stretchy => "false"} /
+                        %mi ι
+                        %mo{:stretchy => "false"} (
+                        %mi s
+                        %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"}
+                    \\mathcal{C}_{/ \iota(S)}
+                    \\;\;
+                    \\simeq
+                    \\;\;
+                    \\underset{s \in S}{\prod}
+                    \\mathcal{C}_{/\iota(s)}
+            %p it follows that:
+            %ol
+              %li
+                %p
+                  every object
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %msub
+                          %mi X
+                          %mi S
+                      %annotation{:encoding => "application/x-tex"} X_S
+                  of
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %msub
+                          %mi 𝒞
+                          %mrow
+                            %mi ι
+                            %mo{:stretchy => "false"} (
+                            %mi S
+                            %mo{:stretchy => "false"} )
+                      %annotation{:encoding => "application/x-tex"} \mathcal{C}_{\iota(S)}
+                  is of the form shown in
+                  %a.maruku-eqref{:href => "#eq:AsACategoryOfBundles"} (2)
+                  hence determined by a family
+                  = succeed "," do
+                    %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                      %semantics
+                        %mrow
+                          %mo{:stretchy => "false"} (
+                          %msub
+                            %mi X
+                            %mi s
+                          %msub
+                            %mo{:stretchy => "false"} )
+                            %mrow
+                              %mi s
+                              %mo ∈
+                              %mi S
+                        %annotation{:encoding => "application/x-tex"} (X_s)_{s \in S}
+              %li
+                %p
+                  morphisms as shown in
+                  %a.maruku-eqref{:href => "#eq:AsACategoryOfBundles"} (2)
+                  are equivalently (by the
+                  %a.existingWikiWord{:href => "/nlab/show/universal+property"} universal property
+                  of the
+                  = succeed ")" do
+                    %a.existingWikiWord{:href => "/nlab/show/pullback"} pullback
+                .maruku-equation
+                  %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mrow
+                          %mtable
+                            %mtr
+                              %mtd
+                                %munder
+                                  %mo{:lspace => "thinmathspace", :rspace => "thinmathspace"} ∐
+                                  %mrow
+                                    %mi s
+                                    %mo ∈
+                                    %mi S
+                                %msub
+                                  %mi X
+                                  %mi s
+                              %mtd
+                                %mover
+                                  %mo ⟶
+                                  %mi ϕ
+                              %mtd
+                                %munder
+                                  %mo{:lspace => "thinmathspace", :rspace => "thinmathspace"} ∐
+                                  %mrow
+                                    %mi s
+                                    %mo ∈
+                                    %mi S
+                                %msub
+                                  %mi Y
+                                  %mrow
+                                    %mi f
+                                    %mo{:stretchy => "false"} (
+                                    %mi s
+                                    %mo{:stretchy => "false"} )
+                            %mtr
+                              %mtd
+                                %mo{:maxsize => "1.8em", :minsize => "1.8em"} ↓
+                              %mtd
+                              %mtd
+                                %mo{:maxsize => "1.8em", :minsize => "1.8em"} ↓
+                            %mtr
+                              %mtd
+                                %mi S
+                              %mtd
+                                %munder
+                                  %mo ⟶
+                                  %mrow
+                                    %mspace{:width => "thickmathspace"}
+                                    %mspace{:width => "thickmathspace"}
+                                    %mspace{:width => "thickmathspace"}
+                                    %msub
+                                      %mi id
+                                      %mi S
+                                    %mspace{:width => "thickmathspace"}
+                                    %mspace{:width => "thickmathspace"}
+                                    %mspace{:width => "thickmathspace"}
+                              %mtd
+                                %mi S
+                                %mspace{:width => "thinmathspace"}
+                                %mo ,
+                      %annotation{:encoding => "application/x-tex"}
+                        \\array{
+                        \\underset{s \in S}{\coprod}
+                        X_s
+                        \&amp;\overset{\phi}{\longrightarrow}&amp;
+                        \\underset{s \in S}{\coprod} Y_{f(s)}
+                        \\\
+                        \\Big\downarrow
+                        \&amp;&amp;
+                        \\Big\downarrow
+                        \\\
+                        S &amp;\underset{\;\;\; id_S \;\;\;}{\longrightarrow}&amp; S
+                        \\,,
+                        }
+                %p
+                  (where we used
+                  %a.existingWikiWord{:href => "/nlab/show/universal+colimit"} pullback stability of coproducts
+                  in an extensive category, see
+                  = succeed "," do
+                    %a{:href => "extensive+category#DisjointAndPullbackStableCoproducts"} there
+                  = succeed ")" do
+                    %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                      %semantics
+                        %mrow
+                          %msup
+                            %mi f
+                            %mo *
+                          %msub
+                            %mi Y
+                            %mi S
+                          %mspace{:width => "thinmathspace"}
+                          %mo ≃
+                          %mspace{:width => "thinmathspace"}
+                          %munder
+                            %mo{:lspace => "thinmathspace", :rspace => "thinmathspace"} ∐
+                            %mrow
+                              %mi s
+                              %mo ∈
+                              %mi S
+                          %msup
+                            %mi f
+                            %mo *
+                          %mo{:stretchy => "false"} (
+                          %msub
+                            %mi Y
+                            %mi S
+                          %msub
+                            %mo{:stretchy => "false"} )
+                            %mi s
+                          %mspace{:width => "thinmathspace"}
+                          %mo ≃
+                          %mspace{:width => "thinmathspace"}
+                          %munder
+                            %mo{:lspace => "thinmathspace", :rspace => "thinmathspace"} ∐
+                            %mrow
+                              %mi s
+                              %mo ∈
+                              %mi S
+                          %msub
+                            %mi Y
+                            %mrow
+                              %mi f
+                              %mo{:stretchy => "false"} (
+                              %mi s
+                              %mo{:stretchy => "false"} )
+                        %annotation{:encoding => "application/x-tex"} f^\ast Y_S \,\simeq\, \underset{s \in S}{\coprod} f^\ast(Y_S)_s \,\simeq\, \underset{s \in S}{\coprod} Y_{f(s)}
+                %p
+                  which by extensitivity are equivalently
+                  = succeed "-indexed" do
+                    %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                      %semantics
+                        %mrow
+                          %mi S
+                        %annotation{:encoding => "application/x-tex"} S
+                  = succeed "." do
+                    %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                      %semantics
+                        %mrow
+                          %msub
+                            %mi ϕ
+                            %mi s
+                          %mspace{:width => "thinmathspace"}
+                          %mo{:lspace => "verythinmathspace"} :
+                          %mspace{:width => "thinmathspace"}
+                          %msub
+                            %mi X
+                            %mi s
+                          %mo ⟶
+                          %msub
+                            %mi Y
+                            %mrow
+                              %mi f
+                              %mo{:stretchy => "false"} (
+                              %mi s
+                              %mo{:stretchy => "false"} )
+                        %annotation{:encoding => "application/x-tex"} \phi_s\,\colon\, X_s \longrightarrow Y_{f(s)}
+            %p
+              This is again manifestly the explicit description of the free coproduct completion from
+              = succeed "." do
+                %a{:href => "#ViaIndexedSetsOfObjects"} above
+            %p
+              Conversely this gives a sense that if a category
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi 𝒞
+                  %annotation{:encoding => "application/x-tex"} \mathcal{C}
+              is
+              %em not
+              extensive, so that the notion of
+              %a.existingWikiWord{:href => "/nlab/show/bundles"} bundles
+              with total spaces and fibers in
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi 𝒞
+                  %annotation{:encoding => "application/x-tex"} \mathcal{C}
+              does not make sense, its free coproduct completion may be understood as the closest stand-in for that category of
+              = succeed "-bundles" do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi 𝒞
+                    %annotation{:encoding => "application/x-tex"} \mathcal{C}
+          %h2#related_concepts Related concepts
+          %ul
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/free+cocompletion"}> free cocompletion
+                ,
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/idempotent+completion"} idempotent completion
+                %a.existingWikiWord{:href => "/nlab/show/Cauchy+completion"} Cauchy completion
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/free+cartesian+category"} free cartesian category
+          %h2#references References
+          %p Early discussion of the concept:
+          %ul
+            %li{:id => "Bénabou1985"}
+              %a.existingWikiWord{:href => "/nlab/show/Jean+B%C3%A9nabou"}> Jean Bénabou
+              , §3.3 in:
+              = succeed "," do
+                %em Fibered Categories and the Foundations of Naive Category Theory
+              %strong 50
+              1 (1985) 10-37 &amp;lbrack;
+              %a{:href => "http://dx.doi.org/10.2307/2273784"}> doi:10.2307/2273784
+              \&amp;rbrack;
+          %p
+            On
+            %a.existingWikiWord{:href => "/nlab/show/accessible+category"} accessibility
+            of free coproduct completions:
+          %ul
+            %li{:id => "MakkaiParé1989"}
+              %a.existingWikiWord{:href => "/nlab/show/Michael+Makkai"}> Michael Makkai
+              ,
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/Robert+Par%C3%A9"} Robert Paré
+              = succeed "," do
+                %em Accessible categories: The foundations of categorical model theory
+              = succeed "," do
+                %strong 104
+              = succeed "&rbrack;" do
+                %a{:href => "https://bookstore.ams.org/conm-104"} ISBN:978-0-8218-7692-3
+          %p
+            On
+            %a.existingWikiWord{:href => "/nlab/show/limits"} limits
+            in free coproduct completions:
+          %ul
+            %li#HuTholen95
+              %a.existingWikiWord{:href => "/nlab/show/Hongde+Hu"}> Hongde Hu
+              ,
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/Walter+Tholen"} Walter Tholen
+              = succeed "," do
+                %em Limits in free coproduct completions
+              = succeed "," do
+                %a{:href => "https://doi.org/10.1016/0022-4049(94)00153-7"} doi:10.1016/0022-4049(94)00153-7
+              = succeed ")" do
+                %a{:href => "https://core.ac.uk/download/pdf/82604415.pdf"} pdf
+          %p
+            In the context of
+            = succeed ":" do
+              %a.existingWikiWord{:href => "/nlab/show/regular+and+exact+completions"} regular and exact completions
+          %ul
+            %li#CarboniVitale98
+              %a.existingWikiWord{:href => "/nlab/show/Aurelio+Carboni"}> Aurelio Carboni
+              ,
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/Enrico+Vitale"} Enrico Vitale
+              = succeed "," do
+                %em Regular and exact completions
+              %strong 125
+              1–3 (1998) 79-116 (
+              %a{:href => "https://doi.org/10.1016/S0022-4049(96)00115-6"}> doi:10.1016/S0022-4049(96)00115-6
+              )
+          %p
+            In the general context of
+            = succeed ":" do
+              %a.existingWikiWord{:href => "/nlab/show/extensive+categories"} extensive categories
+          %ul
+            %li#CarboniLackWalters93
+              %a.existingWikiWord{:href => "/nlab/show/Aurelio+Carboni"}> Aurelio Carboni
+              ,
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/Stephen+Lack"} Stephen Lack
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/Bob+Walters"} R. F. C. Walters
+              = succeed "," do
+                %em Introduction to extensive and distributive categories
+              %strong 84
+              (1993) pp. 145-158 &amp;lbrack;
+              %a{:href => "https://doi.org/10.1016/0022-4049(93)90035-R"}> doi:10.1016/0022-4049(93)90035-R
+              \&amp;rbrack;
+          %p
+            As
+            %a.existingWikiWord{:href => "/nlab/show/categorical+semantics"} categorical semantics
+            for
+            %a.existingWikiWord{:href => "/nlab/show/dependent+linear+type+theories"} dependent linear type theories
+            (in the context of
+            %a.existingWikiWord{:href => "/nlab/show/quantum+programming+languages"} quantum programming languages
+            with “
+            %a.existingWikiWord{:href => "/nlab/show/dynamic+lifting"}> dynamic lifting
+            ”, such as proto-
+            %a.existingWikiWord{:href => "/nlab/show/Quipper"}> Quipper
+            ), the free coproduct completion of
+            %a.existingWikiWord{:href => "/nlab/show/symmetric+monoidal+category"} symmetric
+            %a.existingWikiWord{:href => "/nlab/show/closed+monoidal+categories"} closed monoidal categories
+            is considered in
+          %ul
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Francisco+Rios"}> Francisco Rios
+                ,
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/Peter+Selinger"} Peter Selinger
+                = succeed "," do
+                  %em A Categorical Model for a Quantum Circuit Description Language
+                %strong 266
+                (2018) 164-178 &amp;lbrack;
+                %a{:href => "https://arxiv.org/abs/1706.02630"}> arXiv:1706.02630
+                ,
+                = succeed "&rbrack;" do
+                  %a{:href => "https://doi.org/10.4204/EPTCS.266.11"} doi:10.4204/EPTCS.266.11
+            %li#FuKishidaSelinger20
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Peng+Fu"}> Peng Fu
+                ,
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/Kohei+Kishida"} Kohei Kishida
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/Peter+Selinger"} Peter Selinger
+                = succeed "," do
+                  %em Linear Dependent Type Theory for Quantum Programming Languages
+                = succeed "," do
+                  %a{:href => "https://arxiv.org/abs/2004.13472"} arXiv:2004.13472
+                = succeed "," do
+                  %a{:href => "https://dl.acm.org/doi/10.1145/3373718.3394765"} doi:10.1145/3373718.3394765
+                = succeed "," do
+                  %a{:href => "https://depend.cs.uni-saarland.de/lics-icalp/papers/B5.F"} pdf
+                = succeed ")" do
+                  %a{:href => "https://www.youtube.com/watch?v=GUT8j4V6Nzg"} video
+          %p
+            and its
+            = succeed "." do
+              %a{:href => "Quipper#ReferencesDependentLinearTypesAndCategoricalSemantics"} followups
+          %p Algebras in the free coproduct completion are considered in:
+          %ul
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/Michael+Johnson"}> Michael Johnson
+              ,
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/R.+F.+C.+Walters"} R. F. C. Walters
+              = succeed "," do
+                %em Algebra objects and algebra families for finite limit theories
+              %strong 83
+              3 (1992) 283-293 &amp;lbrack;
+              %a{:href => "https://doi.org/10.1016/0022-4049(92)90047-J"}> doi:10.1016/0022-4049(92)90047-J
+              \&amp;rbrack;
+        .revisedby
+          %p
+            Last revised on December 17, 2025 at 08:51:26.
+            See the
+            %a{:href => "/nlab/history/free+coproduct+completion", :style => "color: #005c19"} history
+            of this page for a list of all contributions to it.
+        .navigation.navfoot
+          %a#edit.navlink{:accesskey => "E", :href => "/nlab/edit/free+coproduct+completion", :rel => "nofollow"} Edit
+          %a{:href => "https://nforum.ncatlab.org/discussion/13585/#Item_23"} Discuss
+          %span.backintime
+            %a#to_previous_revision.navlinkbackintime{:accesskey => "B", :href => "/nlab/revision/free+coproduct+completion/24", :rel => "nofollow"} Previous revision
+          %a#see_changes.navlink{:accesskey => "C", :href => "/nlab/show/diff/free+coproduct+completion", :rel => "nofollow"} Changes from previous revision
+          %a#history.navlink{:accesskey => "S", :href => "/nlab/history/free+coproduct+completion", :rel => "nofollow"} History (24 revisions)
+          %a{:href => "/nlab/show/free+coproduct+completion/cite", :style => "color: black"} Cite
+          %a#view_print{:accesskey => "p", :href => "/nlab/print/free+coproduct+completion", :rel => "nofollow"} Print
+          %a#view_source{:href => "/nlab/source/free+coproduct+completion", :rel => "nofollow"} Source
+      / Content
+    / Container

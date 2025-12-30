@@ -1,0 +1,2664 @@
+!!! XML
+!!! 1.1
+%html{:xmlns => "http://www.w3.org/1999/xhtml"}
+  %head
+    %title
+      core of a ring in nLab
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:content => "index,follow", :name => "robots"}/
+    %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/
+    %link{:href => "/stylesheets/instiki.css?1676280126", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/stylesheets/mathematics.css?1660229990", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/stylesheets/syntax.css?1660229990", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/stylesheets/nlab.css?1676280126", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css", :rel => "stylesheet", :type => "text/css"}/
+    :css
+      h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+        color: #226622;
+      }
+      a:visited.existingWikiWord {
+        color: #164416;
+      }
+    :css
+      <!--/*--><![CDATA[/*><!--*/
+          .toc ul {margin: 0; padding: 0;}
+      .toc ul ul {margin: 0; padding: 0 0 0 10px;}
+      .toc li > p {margin: 0}
+      .toc ul li {list-style-type: none; position: relative;}
+      .toc div {border-top:1px dotted #ccc;}
+      .rightHandSide h2 {font-size: 1.5em;color:#008B26}
+      table.plaintable {
+          border-collapse:collapse;
+          margin-left:30px;
+          border:0;
+      }
+      .plaintable td {border:1px solid #000; padding: 3px;}
+      .plaintable th {padding: 3px;}
+      .plaintable caption {
+          font-weight: bold;
+          font-size:1.1em;
+          text-align:center;
+          margin-left:30px;
+      }
+          
+         
+      /* Query boxes for questioning and answering mechanism */
+      div.query{
+      background: #f6fff3;
+      border: solid #ce9;
+      border-width: 2px 1px;
+      padding: 0 1em;
+      margin: 0 1em;
+      max-height: 20em;
+      overflow: auto;
+      }
+      
+      /* Standout boxes for putting important text */
+      div.standout{
+      background: #fff1f1;
+      border: solid black;
+      border-width: 2px 1px;
+      padding: 0 1em;
+      margin: 0 1em;
+      overflow: auto;
+      }
+      
+      /* Icon for links to n-category arXiv documents 
+       (commented out for now i.e. disabled)
+      a[href*="http://arxiv.org/"] {
+        background-image: url(../files/arXiv_icon.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 22px;
+        } */
+          
+      /* Icon for links to n-category cafe posts (disabled) 
+      a[href*="http://golem.ph.utexas.edu/category"] {
+        background-image: url(../files/n-cafe_5.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 25px;
+        } */
+      
+      /* Icon for links to pdf files (disabled)
+      a[href$=".pdf"] {
+        background-image: url(../files/pdficon_small.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 25px;
+        } */
+      
+      /* Icon for links to pages, etc. -inside- pdf files (disabled)
+      a[href*=".pdf#"] {
+        background-image: url(../files/pdf_entry.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 25px;
+        } */
+      
+      a.existingWikiWord {
+      color: #226622;
+      }
+      
+      a.existingWikiWord:visited {
+      color: #226622;
+      }
+      
+      
+      a.existingWikiWord[title] {
+      border: 0px;
+      color: #aa0505;
+      text-decoration: none;
+      }
+          
+      a.existingWikiWord[title]:visited {
+      border: 0px;
+      color: #551111;
+      text-decoration: none;
+      }
+      
+      a[href^="http://"] {
+      border: 0px;
+      color: #003399;
+      }
+      
+      a[href^="http://"]:visited {
+      border: 0px;
+      color: #330066;
+      }
+      
+      a[href^="https://"] {
+      border: 0px;
+      color: #003399;
+      }
+      
+      a[href^="https://"]:visited {
+      border: 0px;
+      color: #330066;
+      }
+      
+      div.dropDown .hide {
+      display: none;
+      }
+      
+      div.dropDown:hover .hide {
+      display:block;
+      }
+      
+      div.clickDown .hide {
+      display: none;
+      }
+      
+      div.clickDown:focus {
+      outline:none;
+      }
+      
+      div.clickDown:focus .hide, div.clickDown:hover .hide {
+      display: block;
+      }
+      
+      div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+      display:block;
+      }
+      
+      div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+      display:none;
+      }
+      
+      div.clickDown .clickToReveal:after {
+      content: "A(Hover to reveal, click to "hold")";
+      font-size: 60%;
+      }
+      
+      div.clickDown .clickToHide:after {
+      content: "A(Click to hide)";
+      font-size: 60%;
+      }
+      div.clickDown .clickToHide, div.clickDown .clickToReveal {
+      white-space: pre-wrap;
+      }
+      
+      .un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+      margin-left: 1em;
+      }
+      
+      span.theorem_label {
+      margin-left: -1em;
+      }
+      .proof span.theorem_label {
+      margin-left: 0em;
+      }
+      :target {
+          background-color: #BBBBBB;
+          border-radius: 5pt;
+      }
+      
+        /*]]>*/-->
+    %script{:src => "/javascripts/prototype.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/effects.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/dragdrop.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/controls.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/application.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/page_helper.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/thm_numbering.js?1660229990", :type => "text/javascript"}
+    %script{:type => "text/x-mathjax-config"}
+      :cdata
+        <!--//--><![CDATA[//><!--
+        MathJax.Ajax.config.path["Contrib"] = "/MathJax";
+        MathJax.Hub.Config({
+        MathML: { useMathMLspacing: true },
+        "HTML-CSS": { scale: 90,
+        extensions: ["handle-floats.js"]
+        }
+        });
+        MathJax.Hub.Queue( function () {
+        var fos = document.getElementsByTagName('foreignObject');
+        for (var i = 0; i < fos.length; i++) {
+        MathJax.Hub.Typeset(fos[i]);
+        }
+        });
+        \//--><!]]>
+    :javascript
+      <!--//--><![CDATA[//><!--
+      window.addEventListener("DOMContentLoaded", function () {
+        var div = document.createElement('div');
+        var math = document.createElementNS('http://www.w3.org/1998/Math/MathML', 'math');
+        document.body.appendChild(div);
+        div.appendChild(math);
+      // Test for MathML support comparable to WebKit version https://trac.webkit.org/changeset/203640 or higher.
+        div.setAttribute('style', 'font-style: italic');
+        var mathml_unsupported = !(window.getComputedStyle(div.firstChild).getPropertyValue('font-style') === 'normal');
+        div.parentNode.removeChild(div);
+        if (mathml_unsupported) {
+          // MathML does not seem to be supported...
+          var s = document.createElement('script');
+          s.src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=MML_HTMLorMML-full";
+          document.querySelector('head').appendChild(s);
+        } else {
+          document.head.insertAdjacentHTML("beforeend", '<style>svg[viewBox] {max-width: 100%}</style>');
+        }
+      });
+      //--><!]]>
+    %link{:href => "https://ncatlab.org/nlab/atom_with_headlines", :rel => "alternate", :title => "Atom with headlines", :type => "application/atom+xml"}/
+    %link{:href => "https://ncatlab.org/nlab/atom_with_content", :rel => "alternate", :title => "Atom with full content", :type => "application/atom+xml"}/
+    :javascript
+      document.observe("dom:loaded", function() {
+        generateThmNumbers();
+      });
+  %body
+    #Container
+      #Content
+        %h1#pageName
+          %span{:style => "float: left; margin: 0.5em 0.25em -0.25em 0"}
+            %svg{:height => "1.8em", :viewbox => "0 0 190 181", :width => "1.872em", :xmlns => "http://www.w3.org/2000/svg"}
+              %path{:d => "M72.8 145c-1.6 17.3-15.7 10-23.6 20.2-5.6 7.3 4.8 15 11.4 15 11.5-.2 19-13.4 26.4-20.3 3.3-3 8.2-4 11.2-7.2a14 14 0 0 0 2.9-11.1c-1.4-9.6-12.4-18.6-16.9-27.2-5-9.6-10.7-27.4-24.1-27.7-17.4-.3-.4 26 4.7 30.7 2.4 2.3 5.4 4.1 7.3 6.9 1.6 2.3 2.1 5.8-1 7.2-5.9 2.6-12.4-6.3-15.5-10-8.8-10.6-15.5-23-26.2-31.8-5.2-4.3-11.8-8-18-3.7-7.3 4.9-4.2 12.9.2 18.5a81 81 0 0 0 30.7 23c3.3 1.5 12.8 5.6 10 10.7-2.5 5.2-11.7 3-15.6 1.1-8.4-3.8-24.3-21.3-34.4-13.7-3.5 2.6-2.3 7.6-1.2 11.1 2.8 9 12.2 17.2 20.9 20.5 17.3 6.7 34.3-8 50.8-12.1z", :fill => "#226622"}
+              %path{:d => "M145.9 121.3c-.2-7.5 0-19.6-4.5-26-5.4-7.5-12.9-1-14.1 5.8-1.4 7.8 2.7 14.1 4.8 21.3 3.4 12 5.8 29-.8 40.1-3.6-6.7-5.2-13-7-20.4-2.1-8.2-12.8-13.2-15.1-1.9-2 9.7 9 21.2 12 30.1 1.2 4 2 8.8 6.4 10.3 6.9 2.3 13.3-4.7 17.7-8.8 12.2-11.5 36.6-20.7 43.4-36.4 6.7-15.7-13.7-14-21.3-7.2-9.1 8-11.9 20.5-23.6 25.1 7.5-23.7 31.8-37.6 38.4-61.4 2-7.3-.8-29.6-13-19.8-14.5 11.6-6.6 37.6-23.3 49.2z", :fill => "#a41e32"}
+              %path{:d => "M86.3 47.5c0-13-10.2-27.6-5.8-40.4 2.8-8.4 14.1-10.1 17-1 3.8 11.6-.3 26.3-1.8 38 11.7-.7 10.5-16 14.8-24.3 2.1-4.2 5.7-9.1 11-6.7 6 2.7 7.4 9.2 6.6 15.1-2.2 14-12.2 18.8-22.4 27-3.4 2.7-8 6.6-5.9 11.6 2 4.4 7 4.5 10.7 2.8 7.4-3.3 13.4-16.5 21.7-16 14.6.7 12 21.9.9 26.2-5 1.9-10.2 2.3-15.2 3.9-5.8 1.8-9.4 8.7-15.7 8.9-6.1.1-9-6.9-14.3-9-14.4-6-33.3-2-44.7-14.7-3.7-4.2-9.6-12-4.9-17.4 9.3-10.7 28 7.2 35.7 12 2 1.1 11 6.9 11.4 1.1.4-5.2-10-8.2-13.5-10-11.1-5.2-30-15.3-35-27.3-2.5-6 2.8-13.8 9.4-13.6 6.9.2 13.4 7 17.5 12C70.9 34 75 43.8 86.3 47.4z", :fill => "#193c78"}
+          %span.webName nLab
+          core of a ring
+        .navigation
+          %span.skipNav
+            %a{:href => "#navEnd"} Skip the Navigation Links
+            |
+          %span{:style => "display:inline-block; width: 0.3em;"}
+          %a{:accesskey => "H", :href => "/nlab/show/HomePage", :title => "Home page"} Home Page
+          |
+          %a{:accesskey => "A", :href => "/nlab/all_pages", :title => "List of all pages"} All Pages
+          |
+          %a{:accesskey => "U", :href => "/nlab/latest_revisions", :title => "Latest edits and page creations"} Latest Revisions
+          |
+          %a{:href => "https://nforum.ncatlab.org/discussion/7192/#Item_17", :style => "color: black", :title => "Discuss this page in its dedicated thread on the nForum"} Discuss this page
+          |
+          %form#navigationSearchForm{"accept-charset" => "utf-8", :action => "/nlab/search", :method => "get"}
+            %fieldset.search
+              %input#searchField{:name => "query", :onblur => "this.value == '' ? this.value = 'Search' : true", :onfocus => "this.value == 'Search' ? this.value = '' : true", :style => "display:inline-block; float: left;", :type => "text", :value => "Search"}/
+          %span#navEnd
+        #revision
+          %meta{:content => "application/xhtml+xml;charset=utf-8", "http-equiv" => "Content-type"}/
+          %title Contents
+          .rightHandSide
+            .toc.clickDown{:tabindex => "0"}
+              %h3#context Context
+              %h4#algebra Algebra
+              .hide
+                %div
+                  %p
+                    %strong
+                      %a.existingWikiWord{:href => "/nlab/show/higher+algebra"} higher algebra
+                  %p
+                    %a.existingWikiWord{:href => "/nlab/show/universal+algebra"} universal algebra
+                  %h2#algebraic_theories Algebraic theories
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/algebraic+theory"} algebraic theory
+                        \/
+                        %a.existingWikiWord{:href => "/nlab/show/2-algebraic+theory"} 2-algebraic theory
+                        \/
+                        %a.existingWikiWord{:href => "/nlab/show/%28%E2%88%9E%2C1%29-algebraic+theory"} (∞,1)-algebraic theory
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/monad"} monad
+                        \/
+                        %a.existingWikiWord{:href => "/nlab/show/%28%E2%88%9E%2C1%29-monad"} (∞,1)-monad
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/operad"} operad
+                        \/
+                        %a.existingWikiWord{:href => "/nlab/show/%28%E2%88%9E%2C1%29-operad"} (∞,1)-operad
+                  %h2#algebras_and_modules Algebras and modules
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/algebra+over+a+monad"} algebra over a monad
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/%E2%88%9E-algebra+over+an+%28%E2%88%9E%2C1%29-monad"} ∞-algebra over an (∞,1)-monad
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/algebra+over+an+algebraic+theory"} algebra over an algebraic theory
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/%E2%88%9E-algebra+over+an+%28%E2%88%9E%2C1%29-algebraic+theory"} ∞-algebra over an (∞,1)-algebraic theory
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/algebra+over+an+operad"} algebra over an operad
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/%E2%88%9E-algebra+over+an+%28%E2%88%9E%2C1%29-operad"} ∞-algebra over an (∞,1)-operad
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/action"}> action
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/%E2%88%9E-action"} ∞-action
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/representation"}> representation
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/%E2%88%9E-representation"} ∞-representation
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/module"}> module
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/%E2%88%9E-module"} ∞-module
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/associated+bundle"}> associated bundle
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/associated+%E2%88%9E-bundle"} associated ∞-bundle
+                  %h2#higher_algebras Higher algebras
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/monoidal+%28%E2%88%9E%2C1%29-category"} monoidal (∞,1)-category
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/symmetric+monoidal+%28%E2%88%9E%2C1%29-category"} symmetric monoidal (∞,1)-category
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/monoid+in+an+%28%E2%88%9E%2C1%29-category"} monoid in an (∞,1)-category
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/commutative+monoid+in+an+%28%E2%88%9E%2C1%29-category"} commutative monoid in an (∞,1)-category
+                    %li
+                      %p symmetric monoidal (∞,1)-category of spectra
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/smash+product+of+spectra"} smash product of spectra
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/symmetric+monoidal+smash+product+of+spectra"} symmetric monoidal smash product of spectra
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/ring+spectrum"}> ring spectrum
+                            ,
+                            = succeed "," do
+                              %a.existingWikiWord{:href => "/nlab/show/module+spectrum"} module spectrum
+                            %a.existingWikiWord{:href => "/nlab/show/algebra+spectrum"} algebra spectrum
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/A-%E2%88%9E+algebra"} A-∞ algebra
+                      %ul
+                        %li
+                          %a.existingWikiWord{:href => "/nlab/show/A-%E2%88%9E+ring"}> A-∞ ring
+                          ,
+                          %a.existingWikiWord{:href => "/nlab/show/A-%E2%88%9E+space"} A-∞ space
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/C-%E2%88%9E+algebra"} C-∞ algebra
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/E-%E2%88%9E+ring"}> E-∞ ring
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/E-%E2%88%9E+algebra"} E-∞ algebra
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/%E2%88%9E-module"}> ∞-module
+                            ,
+                            %a.existingWikiWord{:href => "/nlab/show/%28%E2%88%9E%2C1%29-module+bundle"} (∞,1)-module bundle
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/multiplicative+cohomology+theory"} multiplicative cohomology theory
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/L-%E2%88%9E+algebra"} L-∞ algebra
+                      %ul
+                        %li
+                          %a.existingWikiWord{:href => "/nlab/show/deformation+theory"} deformation theory
+                  %h2#model_category_presentations Model category presentations
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/model+structure+on+simplicial+T-algebras"} model structure on simplicial T-algebras
+                        \/
+                        %a.existingWikiWord{:href => "/nlab/show/homotopy+T-algebra"} homotopy T-algebra
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/model+structure+on+operads"} model structure on operads
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/model+structure+on+algebras+over+an+operad"} model structure on algebras over an operad
+                  %h2#geometry_on_formal_duals_of_algebras Geometry on formal duals of algebras
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Isbell+duality"} Isbell duality
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/derived+geometry"} derived geometry
+                  %h2#theorems Theorems
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Deligne+conjecture"} Deligne conjecture
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/delooping+hypothesis"} delooping hypothesis
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/monoidal+Dold-Kan+correspondence"} monoidal Dold-Kan correspondence
+                  %div
+                    %p
+                      %a{:href => "/nlab/edit/higher+algebra+-+contents"} Edit this sidebar
+          %h1#contents Contents
+          .maruku_toc
+            %ul
+              %li
+                %a{:href => "#idea"} Idea
+              %li
+                %a{:href => "#definition"} Definition
+              %ul
+                %li
+                  %a{:href => "#core_of_a_ring"} Core of a ring
+                %li
+                  %a{:href => "#solid_rings"} Solid rings
+              %li
+                %a{:href => "#properties"} Properties
+              %li
+                %a{:href => "#examples"} Examples
+              %li
+                %a{:href => "#related_concepts"} Related concepts
+              %li
+                %a{:href => "#references"} References
+          %h2#idea Idea
+          %p
+            The
+            %strong core
+            of a
+            %a.existingWikiWord{:href => "/nlab/show/commutative+ring"} commutative ring
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi R
+                %annotation{:encoding => "application/x-tex"} R
+            consists of those
+            %a.existingWikiWord{:href => "/nlab/show/elements"} elements
+            for which
+            %a.existingWikiWord{:href => "/nlab/show/homomorphisms"} homomorphisms
+            out of that ring have no choice as to how to act: that is, those
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi r
+                  %mo ∈
+                  %mi R
+                %annotation{:encoding => "application/x-tex"} r \in R
+            such that for any
+            %a.existingWikiWord{:href => "/nlab/show/pair"} pair
+            of
+            %a.existingWikiWord{:href => "/nlab/show/homomorphisms"} homomorphisms
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi f
+                  %mo ,
+                  %mi g
+                  %mo{:lspace => "verythinmathspace"} :
+                  %mi R
+                  %mo →
+                  %mi S
+                %annotation{:encoding => "application/x-tex"} f,g \colon R \to S
+            we must have
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi f
+                    %mo{:stretchy => "false"} (
+                    %mi r
+                    %mo{:stretchy => "false"} )
+                    %mo =
+                    %mi g
+                    %mo{:stretchy => "false"} (
+                    %mi r
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} f(r) = g(r)
+            %a.existingWikiWord{:href => "/nlab/show/universal+property"} universal property
+            of the
+            %a.existingWikiWord{:href => "/nlab/show/coproduct"} coproduct
+            these are precisely the elements on which the
+            %a.existingWikiWord{:href => "/nlab/show/coprojections"} coprojections
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msub
+                    %mi i
+                    %mn 1
+                  %mo ,
+                  %msub
+                    %mi i
+                    %mn 2
+                  %mo{:lspace => "verythinmathspace"} :
+                  %mi R
+                  %mo →
+                  %mi R
+                  %mo ⊔
+                  %mi R
+                %annotation{:encoding => "application/x-tex"} i_1, i_2 \colon R \to R \sqcup R
+            are equal. Since the
+            %a.existingWikiWord{:href => "/nlab/show/coproduct"} coproduct
+            of commutative rings is their
+            %a.existingWikiWord{:href => "/nlab/show/tensor+product"} tensor product
+            (see
+            = succeed ")," do
+              %a{:href => "category+of+monoids#PushoutOfCommutativeMonoids"} here
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi r
+                  %mo ⊗
+                  %mn 1
+                  %mspace{:width => "thickmathspace"}
+                  %mo =
+                  %mspace{:width => "thickmathspace"}
+                  %mn 1
+                  %mo ⊗
+                  %mi r
+                  %mspace{:width => "thickmathspace"}
+                  %mspace{:width => "thickmathspace"}
+                  %mo ∈
+                  %mspace{:width => "thickmathspace"}
+                  %mi R
+                  %msub
+                    %mo ⊗
+                    %mi ℤ
+                  %mi R
+                  %mspace{:width => "thinmathspace"}
+                  %mo .
+                %annotation{:encoding => "application/x-tex"}
+                  r \otimes 1
+                  \\;=\;
+                  1 \otimes r
+                  \\;\; \in \; R \otimes_{\mathbb{Z}} R
+                  \\,.
+          %h2#definition Definition
+          %h3#core_of_a_ring Core of a ring
+          %p
+          #CoreOfARing.num_defn
+            %h6 Definition
+            %p
+              %strong (core of a ring)
+              %br/
+              For
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi R
+                  %annotation{:encoding => "application/x-tex"} R
+              a
+              %a.existingWikiWord{:href => "/nlab/show/unital+ring"} unital
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/commutative+ring"} commutative ring
+              %strong
+                %a.existingWikiWord{:href => "/nlab/show/core+of+a+ring"} core
+              is the following
+              %a.existingWikiWord{:href => "/nlab/show/subobject"} sub-ring
+              of the
+              %a.existingWikiWord{:href => "/nlab/show/tensor+product+of+abelian+groups"} tensor product of abelian groups
+              = succeed ":" do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi R
+                      %msub
+                        %mo ⊗
+                        %mrow
+                          %msub
+                            %mrow
+                            %mi ℤ
+                      %mi R
+                    %annotation{:encoding => "application/x-tex"} R \otimes_{{}_{\mathbb{Z}}} R
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi c
+                    %mi R
+                    %mspace{:width => "thickmathspace"}
+                    %mo ≔
+                    %mspace{:width => "thickmathspace"}
+                    %mo{:maxsize => "1.8em", :minsize => "1.8em"} {
+                    %mspace{:width => "thinmathspace"}
+                    %mi r
+                    %mo ∈
+                    %mi R
+                    %mspace{:width => "thinmathspace"}
+                    %mrow
+                      %mo |
+                      %mspace{:width => "thinmathspace"}
+                      %mn 1
+                      %mo ⊗
+                      %mi r
+                      %mspace{:width => "thinmathspace"}
+                      %mo =
+                      %mspace{:width => "thinmathspace"}
+                      %mi r
+                      %mo ⊗
+                      %mn 1
+                      %mspace{:width => "thickmathspace"}
+                      %mo ∈
+                      %mspace{:width => "thickmathspace"}
+                      %mi R
+                      %msub
+                        %mo ⊗
+                        %mrow
+                          %msub
+                            %mrow
+                            %mi ℤ
+                      %mi R
+                    %mspace{:width => "thinmathspace"}
+                    %mo{:maxsize => "1.8em", :minsize => "1.8em"} }
+                  %annotation{:encoding => "application/x-tex"}
+                    c R
+                    \\;\coloneqq\;
+                    \\Big\{
+                    \\,
+                    r \in R
+                    \\,\left\vert\,
+                    1 \otimes r \,=\, r \otimes 1
+                    \\;\in\; R \otimes_{{}_{\mathbb{Z}}} R
+                    \\right.
+                    \\,
+                    \\Big\}
+            %p
+          %p
+            (
+            %a{:href => "#BousfieldKan72"}> Bousfield &amp; Kan 1972, Sec. 1
+            )
+          %p
+          #CoreAsEqualizerAndAsRegularImage.num_remark
+            %h6 Remark
+            %p
+              %strong
+                (core as
+                %a.existingWikiWord{:href => "/nlab/show/equalizer"} equalizer
+                and as
+                = succeed ")" do
+                  %a.existingWikiWord{:href => "/nlab/show/regular+image"} regular image
+              %br/
+              In
+              %a.existingWikiWord{:href => "/nlab/show/category+theory"} category-theoretic
+              terminology, Def.
+              %a.maruku-ref{:href => "#CoreOfARing"}
+              describes the
+              %a.existingWikiWord{:href => "/nlab/show/equalizer"} equalizer
+              (
+              %a{:href => "#Bousfield79"}> Bousfield 1979, 6.4
+              )
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi c
+                    %mi R
+                    %mover
+                      %mo →
+                      %mrow
+                        %mspace{:width => "thickmathspace"}
+                        %mi equ
+                        %mspace{:width => "thickmathspace"}
+                    %mi R
+                    %mover
+                      %mo ⇉
+                      %mphantom
+                        %mi AAAAAA
+                    %mi R
+                    %msub
+                      %mo ⊗
+                      %mrow
+                        %msub
+                          %mrow
+                          %mi ℤ
+                    %mi R
+                    %mspace{:width => "thinmathspace"}
+                    %mo ,
+                  %annotation{:encoding => "application/x-tex"}
+                    c R
+                    \\xrightarrow{\;equ\;}
+                    R
+                    \\overset{\phantom{AAAAAA}}\rightrightarrows
+                    R \otimes_{{}_{\mathbb{Z}}} R
+                    \\,,
+            %p
+              where the top
+              %a.existingWikiWord{:href => "/nlab/show/morphism"} morphism
+              is
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi R
+                    %mspace{:width => "thickmathspace"}
+                    %mo ≃
+                    %mspace{:width => "thickmathspace"}
+                    %mi ℤ
+                    %mo ⊗
+                    %mi R
+                    %mover
+                      %mo →
+                      %mrow
+                        %mi e
+                        %mo ⊗
+                        %mi id
+                    %mi R
+                    %mo ⊗
+                    %mi R
+                  %annotation{:encoding => "application/x-tex"}
+                    R
+                    \\;\simeq\;
+                    \\mathbb{Z} \otimes R
+                    \\xrightarrow{e \otimes id}
+                    R \otimes R
+            %p and the bottom one is
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi R
+                    %mspace{:width => "thickmathspace"}
+                    %mo ≃
+                    %mspace{:width => "thickmathspace"}
+                    %mi R
+                    %mo ⊗
+                    %mi ℤ
+                    %mover
+                      %mo →
+                      %mrow
+                        %mspace{:width => "thickmathspace"}
+                        %mi id
+                        %mo ⊗
+                        %mi e
+                        %mspace{:width => "thickmathspace"}
+                    %mi R
+                    %mo ⊗
+                    %mi R
+                    %mspace{:width => "thinmathspace"}
+                    %mo ,
+                  %annotation{:encoding => "application/x-tex"}
+                    R
+                    \\;\simeq\;
+                    R \otimes \mathbb{Z}
+                    \\xrightarrow{\;id \otimes e\;}
+                    R \otimes R
+                    \\,,
+            %p with
+            #eq:UniqueRingHomomorphismFromTheIntegers.maruku-equation
+              %span.maruku-eq-number (1)
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mrow
+                      %mtable
+                        %mtr
+                          %mtd
+                            %mi ℤ
+                          %mtd
+                            %mover
+                              %mo →
+                              %mrow
+                                %mspace{:width => "thickmathspace"}
+                                %mi e
+                                %mspace{:width => "thickmathspace"}
+                          %mtd
+                            %mi R
+                        %mtr
+                          %mtd
+                            %mn 1
+                          %mtd
+                            %mo ↦
+                          %mtd
+                            %mn 1
+                  %annotation{:encoding => "application/x-tex"}
+                    \\array{
+                    \\mathbb{Z}
+                    \&amp;\xrightarrow{ \;e\; } &amp;
+                    R
+                    \\\
+                    1 &amp;\mapsto&amp; 1
+                    }
+            %p
+              denoting the unique
+              %a.existingWikiWord{:href => "/nlab/show/ring+homomorphism"} ring homomorphism
+              form the
+              %a.existingWikiWord{:href => "/nlab/show/commutative+ring"} commutative ring
+              of
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/integers"} integers
+              %a.existingWikiWord{:href => "/nlab/show/initial+object"} initial object
+              in
+              = succeed "." do
+                %a.existingWikiWord{:href => "/nlab/show/CommutativeRings"} CommutativeRings
+            %p
+              Observing (by
+              = succeed ")" do
+                %a{:href => "CRing#CoproductIsTensorProduct"} this Prop.
+              %a.existingWikiWord{:href => "/nlab/show/tensor+product+of+abelian+groups"} tensor product of abelian groups
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi R
+                    %msub
+                      %mo ⊗
+                      %mrow
+                        %msub
+                          %mrow
+                          %mi ℤ
+                    %mi R
+                  %annotation{:encoding => "application/x-tex"} R \otimes_{{}_{\mathbb{Z}}} R
+              equipped with its canonically induced
+              %a.existingWikiWord{:href => "/nlab/show/commutative+ring"} commutative ring
+              %a.existingWikiWord{:href => "/nlab/show/mathematical+structure"} structure
+              is the
+              %a.existingWikiWord{:href => "/nlab/show/coproduct"} coproduct
+              in
+              %a.existingWikiWord{:href => "/nlab/show/CommutativeRings"} CommutativeRings
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi R
+                    %msub
+                      %mo ⊗
+                      %mrow
+                        %msub
+                          %mrow
+                          %mi ℤ
+                    %mi R
+                    %mspace{:width => "thickmathspace"}
+                    %mo ≃
+                    %mspace{:width => "thickmathspace"}
+                    %mi R
+                    %mo ⊔
+                    %mi R
+                  %annotation{:encoding => "application/x-tex"}
+                    R \otimes_{{}_{\mathbb{Z}}} R
+                    \\;\simeq\;
+                    R \sqcup R
+            %p
+              this means equivalently that the core is the
+              %a.existingWikiWord{:href => "/nlab/show/equalizer"} equalizer
+              of the two
+              %a.existingWikiWord{:href => "/nlab/show/coprojections"} coprojections
+              into the
+              = succeed ":" do
+                %a.existingWikiWord{:href => "/nlab/show/coproduct"} coproduct
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi c
+                    %mi R
+                    %mover
+                      %mo →
+                      %mrow
+                        %mspace{:width => "thickmathspace"}
+                        %mi equ
+                        %mspace{:width => "thickmathspace"}
+                    %mi R
+                    %mover
+                      %mo ⇉
+                      %mphantom
+                        %mi AAAAAA
+                    %mi R
+                    %mo ⊔
+                    %mi R
+                    %mspace{:width => "thickmathspace"}
+                    %mo ≃
+                    %mspace{:width => "thickmathspace"}
+                    %mi R
+                    %munder
+                      %mo{:lspace => "thinmathspace", :rspace => "thinmathspace"} ∐
+                      %mi ℤ
+                    %mi R
+                    %mspace{:width => "thinmathspace"}
+                    %mo ,
+                  %annotation{:encoding => "application/x-tex"}
+                    c R
+                    \\xrightarrow{\;equ\;}
+                    R
+                    \\overset{\phantom{AAAAAA}}\rightrightarrows
+                    R \sqcup R
+                    \\;\simeq\;
+                    R \underset{\mathbb{Z}}{\coprod} R
+                    \\,,
+            %p
+              hence – since
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi ℤ
+                  %annotation{:encoding => "application/x-tex"} \mathbb{Z}
+              is the
+              %a.existingWikiWord{:href => "/nlab/show/initial+object"} initial object
+              in
+              %a.existingWikiWord{:href => "/nlab/show/CommutativeRings"} CommutativeRings
+              – into the
+              %a.existingWikiWord{:href => "/nlab/show/cofiber+coproduct"} cofiber coproduct
+              of
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi ℤ
+                    %mover
+                      %mo →
+                      %mi e
+                    %mi R
+                  %annotation{:encoding => "application/x-tex"} \mathbb{Z} \xrightarrow{e} R
+              %a.maruku-eqref{:href => "#eq:UniqueRingHomomorphismFromTheIntegers"} (1)
+              with itself.
+            %p
+              In this form, the core is manifestly (
+              %a{:href => "image#AsEqualizer"}> here
+              ) the
+              %em
+                %a.existingWikiWord{:href => "/nlab/show/regular+image"} regular image
+              of the initial morphism
+              = succeed ":" do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi ℤ
+                      %mover
+                        %mo →
+                        %mi e
+                      %mi R
+                    %annotation{:encoding => "application/x-tex"} \mathbb{Z} \xrightarrow{e} R
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi c
+                    %mi R
+                    %mspace{:width => "thickmathspace"}
+                    %mo ≃
+                    %mspace{:width => "thickmathspace"}
+                    %msub
+                      %mi Im
+                      %mi reg
+                    %mrow
+                      %mo (
+                      %mi ℤ
+                      %mover
+                        %mo →
+                        %mi e
+                      %mi R
+                      %mo )
+                    %mover
+                      %mo ↪
+                      %mphantom
+                        %mi AA
+                    %mi R
+                    %mspace{:width => "thinmathspace"}
+                    %mo ,
+                  %annotation{:encoding => "application/x-tex"}
+                    c R
+                    \\;\simeq\;
+                    Im_{reg}
+                    \\left(
+                    \\mathbb{Z} \xrightarrow{e} R
+                    \\right)
+                    \\xhookrightarrow{\phantom{AA}}
+                    R
+                    \\,,
+            %p
+              hence the smallest
+              %a.existingWikiWord{:href => "/nlab/show/regular+monomorphism"} regular monomorphism
+              into
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi R
+                  %annotation{:encoding => "application/x-tex"} R
+              in the
+              %a.existingWikiWord{:href => "/nlab/show/category"} category
+              of
+              = succeed "." do
+                %a.existingWikiWord{:href => "/nlab/show/CommutativeRings"} CommutativeRings
+          %p
+          #DualInterpretation.num_remark
+            %h6 Remark
+            %p
+              %strong (geometric interpretation)
+              %br/
+              By
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/duality+between+algebra+and+geometry"} duality between algebra and geometry
+              %a.existingWikiWord{:href => "/nlab/show/opposite+category"} opposite category
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msup
+                      %mi CommutativeRings
+                      %mi op
+                  %annotation{:encoding => "application/x-tex"} CommutativeRings^{op}
+              as that of
+              %a.existingWikiWord{:href => "/nlab/show/affine+scheme"} affine
+              = succeed "." do
+                %a.existingWikiWord{:href => "/nlab/show/arithmetic+schemes"} arithmetic schemes
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi R
+                    %mo ∈
+                    %mi CRing
+                  %annotation{:encoding => "application/x-tex"} R \in CRing
+              we write
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi Spec
+                    %mo{:stretchy => "false"} (
+                    %mi R
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} Spec(R)
+              for the same object, but regarded in
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msup
+                        %mi CRing
+                        %mi op
+                    %annotation{:encoding => "application/x-tex"} CRing^{op}
+            %p
+              So the
+              %a.existingWikiWord{:href => "/nlab/show/initial+object"} initial object
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi ℤ
+                  %annotation{:encoding => "application/x-tex"} \mathbb{Z}
+              in
+              %a.existingWikiWord{:href => "/nlab/show/CRing"} CRing
+              becomes the
+              %a.existingWikiWord{:href => "/nlab/show/terminal+object"} terminal object
+              %a.existingWikiWord{:href => "/nlab/show/Spec%28Z%29"} Spec(Z)
+              in
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msup
+                        %mi CRing
+                        %mi op
+                    %annotation{:encoding => "application/x-tex"} CRing^{op}
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi R
+                  %annotation{:encoding => "application/x-tex"} R
+              there is a unique morphism
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi Spec
+                    %mo{:stretchy => "false"} (
+                    %mi R
+                    %mo{:stretchy => "false"} )
+                    %mo ⟶
+                    %mi Spec
+                    %mo{:stretchy => "false"} (
+                    %mi ℤ
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"}
+                    Spec(R) \longrightarrow Spec(\mathbb{Z})
+            %p
+              in
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msup
+                        %mi CRing
+                        %mi op
+                    %annotation{:encoding => "application/x-tex"} CRing^{op}
+              %a.existingWikiWord{:href => "/nlab/show/arithmetic+scheme"} arithmetic scheme
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi Spec
+                    %mo{:stretchy => "false"} (
+                    %mi R
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} Spec(R)
+              as equipped with a map to the base scheme
+              = succeed "." do
+                %a.existingWikiWord{:href => "/nlab/show/Spec%28Z%29"} Spec(Z)
+            %p
+              Since the
+              %a.existingWikiWord{:href => "/nlab/show/coproduct"} coproduct
+              in
+              %a.existingWikiWord{:href => "/nlab/show/CRing"} CRing
+              is the
+              %a.existingWikiWord{:href => "/nlab/show/tensor+product"} tensor product
+              of rings (
+              %a{:href => "CRing#CoproductIsTensorProduct"}> prop.
+              ), this is the dually the
+              %a.existingWikiWord{:href => "/nlab/show/Cartesian+product"} Cartesian product
+              in
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msup
+                      %mi CRing
+                      %mi op
+                  %annotation{:encoding => "application/x-tex"} CRing^{op}
+              and hence
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi Spec
+                    %mo{:stretchy => "false"} (
+                    %mi R
+                    %mo ⊗
+                    %mi R
+                    %mo{:stretchy => "false"} )
+                    %mo ≃
+                    %mi Spec
+                    %mo{:stretchy => "false"} (
+                    %mi R
+                    %mo{:stretchy => "false"} )
+                    %mo ×
+                    %mi Spec
+                    %mo{:stretchy => "false"} (
+                    %mi R
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"}
+                    Spec(R \otimes R) \simeq Spec(R) \times Spec(R)
+            %p
+              exhibits
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi R
+                    %mo ⊗
+                    %mi R
+                  %annotation{:encoding => "application/x-tex"} R \otimes R
+              as the ring of functions on
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi Spec
+                      %mo{:stretchy => "false"} (
+                      %mi R
+                      %mo{:stretchy => "false"} )
+                      %mo ×
+                      %mi Spec
+                      %mo{:stretchy => "false"} (
+                      %mi R
+                      %mo{:stretchy => "false"} )
+                    %annotation{:encoding => "application/x-tex"} Spec(R) \times Spec(R)
+            %p
+              Hence the terminal morphism
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi Spec
+                    %mo{:stretchy => "false"} (
+                    %mi R
+                    %mo{:stretchy => "false"} )
+                    %mo →
+                    %mi Spec
+                    %mo{:stretchy => "false"} (
+                    %mi ℤ
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} Spec(R) \to Spec(\mathbb{Z})
+              induces the corresponding
+              %a.existingWikiWord{:href => "/nlab/show/%C4%8Cech+groupoid"} Čech groupoid
+              %a.existingWikiWord{:href => "/nlab/show/internal+groupoid"} internal
+              to
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msup
+                      %mi CRing
+                      %mi op
+                  %annotation{:encoding => "application/x-tex"} CRing^{op}
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mrow
+                      %mtable
+                        %mtr
+                          %mtd
+                            %mi Spec
+                            %mo{:stretchy => "false"} (
+                            %mi R
+                            %mo{:stretchy => "false"} )
+                            %mo ×
+                            %mi Spec
+                            %mo{:stretchy => "false"} (
+                            %mi R
+                            %mo{:stretchy => "false"} )
+                            %mo ×
+                            %mi Spec
+                            %mo{:stretchy => "false"} (
+                            %mi R
+                            %mo{:stretchy => "false"} )
+                        %mtr
+                          %mtd
+                            %mo{:stretchy => "false"} ↓
+                        %mtr
+                          %mtd
+                            %mi Spec
+                            %mo{:stretchy => "false"} (
+                            %mi R
+                            %mo{:stretchy => "false"} )
+                            %mo ×
+                            %mi Spec
+                            %mo{:stretchy => "false"} (
+                            %mi R
+                            %mo{:stretchy => "false"} )
+                        %mtr
+                          %mtd
+                            %msup
+                              %mrow
+                              %mpadded{:lspace => "-100%width", :width => "0"}
+                                %mi s
+                            %mo{:stretchy => "false"} ↓
+                            %mo{:stretchy => "false"} ↑
+                            %msup
+                              %mo{:stretchy => "false"} ↓
+                              %mpadded{:width => "0"}
+                                %mi t
+                        %mtr
+                          %mtd
+                            %mi Spec
+                            %mo{:stretchy => "false"} (
+                            %mi R
+                            %mo{:stretchy => "false"} )
+                    %mspace{:width => "thinmathspace"}
+                    %mo .
+                  %annotation{:encoding => "application/x-tex"}
+                    \\array{
+                    Spec(R) \times Spec(R) \times Spec(R)
+                    \\\
+                    \\downarrow
+                    \\\
+                    Spec(R) \times Spec(R)
+                    \\\
+                    {}^{\mathllap{s}}\downarrow \uparrow \downarrow^{\mathrlap{t}}
+                    \\\
+                    Spec(R)
+                    }
+                    \\,.
+            %p
+              This exhibits
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi R
+                    %mo ⊗
+                    %mi R
+                  %annotation{:encoding => "application/x-tex"} R \otimes R
+              (the ring of functions on the scheme of morphisms of the
+              = succeed ")" do
+                %a.existingWikiWord{:href => "/nlab/show/%C4%8Cech+groupoid"} Čech groupoid
+              %a.existingWikiWord{:href => "/nlab/show/commutative+Hopf+algebroid"} commutative Hopf algebroid
+              over
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi R
+                    %annotation{:encoding => "application/x-tex"} R
+            %p
+              Moreover, the arithmetic scheme of
+              %a.existingWikiWord{:href => "/nlab/show/isomorphism+classes"} isomorphism classes
+              of this groupoid is the
+              %a.existingWikiWord{:href => "/nlab/show/coequalizer"} coequalizer
+              of the
+              %a.existingWikiWord{:href => "/nlab/show/source"} source
+              and
+              %a.existingWikiWord{:href => "/nlab/show/target"} target
+              morphisms
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi Spec
+                    %mo{:stretchy => "false"} (
+                    %mi R
+                    %mo{:stretchy => "false"} )
+                    %mo ×
+                    %mi Spec
+                    %mo{:stretchy => "false"} (
+                    %mi R
+                    %mo{:stretchy => "false"} )
+                    %munderover
+                      %mphantom
+                        %mi AA
+                      %munder
+                        %mo ⟶
+                        %mi s
+                      %mover
+                        %mo ⟶
+                        %mi t
+                    %mi Spec
+                    %mo{:stretchy => "false"} (
+                    %mi R
+                    %mo{:stretchy => "false"} )
+                    %mover
+                      %mo ⟶
+                      %mi coeq
+                    %mi Spec
+                    %mo{:stretchy => "false"} (
+                    %mi c
+                    %mi R
+                    %mo{:stretchy => "false"} )
+                    %mspace{:width => "thinmathspace"}
+                    %mo ,
+                  %annotation{:encoding => "application/x-tex"}
+                    Spec(R) \times Spec(R)
+                    \\underoverset
+                    {\underset{s}{\longrightarrow}}
+                    {\overset{t}{\longrightarrow}}
+                    {\phantom{AA}}
+                    Spec(R)
+                    \\overset{coeq}{\longrightarrow}
+                    Spec(c R)
+                    \\,,
+            %p
+              also called the
+              %em
+                %a.existingWikiWord{:href => "/nlab/show/coimage"} coimage
+              of
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi Spec
+                      %mo{:stretchy => "false"} (
+                      %mi R
+                      %mo{:stretchy => "false"} )
+                      %mo →
+                      %mi Spec
+                      %mo{:stretchy => "false"} (
+                      %mi ℤ
+                      %mo{:stretchy => "false"} )
+                    %annotation{:encoding => "application/x-tex"} Spec(R) \to Spec(\mathbb{Z})
+              %a.existingWikiWord{:href => "/nlab/show/limits"} limits
+              in the
+              %a.existingWikiWord{:href => "/nlab/show/opposite+category"} opposite category
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msup
+                      %mi CRing
+                      %mi op
+                  %annotation{:encoding => "application/x-tex"} CRing^{op}
+              are equivaletly colimits in
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi CRing
+                    %annotation{:encoding => "application/x-tex"} CRing
+              %a.existingWikiWord{:href => "/nlab/show/isomorphism+classes"} isomorphism classes
+              of the
+              %a.existingWikiWord{:href => "/nlab/show/%C4%8Cech+groupoid"} Čech groupoid
+              is precisely the core
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi c
+                    %mi R
+                  %annotation{:encoding => "application/x-tex"} c R
+              or
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi R
+                  %annotation{:encoding => "application/x-tex"} R
+              according to def.
+              = succeed "." do
+                %a.maruku-ref{:href => "#CoreOfARing"}
+            %p
+              This is morally the reason why for
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi E
+                  %annotation{:encoding => "application/x-tex"} E
+              a
+              %a.existingWikiWord{:href => "/nlab/show/homotopy+commutative+ring+spectrum"} homotopy commutative ring spectrum
+              the core
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi c
+                    %msub
+                      %mi π
+                      %mn 0
+                    %mo{:stretchy => "false"} (
+                    %mi E
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} c \pi_0(E)
+              of its underlying ordinary ring in degree 0 controls what the
+              = succeed "-" do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi E
+                    %annotation{:encoding => "application/x-tex"} E
+              %a.existingWikiWord{:href => "/nlab/show/Adams+spectral+sequence"} Adams spectral sequence
+              converges to (
+              %a{:href => "#Bousfield79"}> Bousfield 79, theorems 6.5, 6.6
+              , see
+              = succeed ")," do
+                %a{:href => "Adams+spectral+sequence#ConvergenceStatements"} here
+              = succeed "-Adams" do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi E
+                    %annotation{:encoding => "application/x-tex"} E
+              %a.existingWikiWord{:href => "/nlab/show/E-nilpotent+completion"} E-nilpotent completion
+              which is essentially the analog in
+              %a.existingWikiWord{:href => "/nlab/show/higher+algebra"} higher algebra
+              of the above story: namely the coimage (
+              %a{:href => "infinity-image#ViaColimitOfCechNerve"}> (infinity,1)-image
+              ) of
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi Spec
+                    %mo{:stretchy => "false"} (
+                    %mi E
+                    %mo{:stretchy => "false"} )
+                    %mo →
+                  %annotation{:encoding => "application/x-tex"} Spec(E) \to
+              %a.existingWikiWord{:href => "/nlab/show/Spec%28S%29"} Spec(S)
+              (see
+              = succeed ")." do
+                %a{:href => "Adams+spectral+sequence#DefinitionInHigherAlgebra"} here
+            %p
+          %h3#solid_rings Solid rings
+          %p
+          #SolidRing.num_defn
+            %h6 Definition
+            %p
+              %strong (solid rings)
+              %br/
+              A
+              %a.existingWikiWord{:href => "/nlab/show/commutative+ring"} commutative ring
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi R
+                  %annotation{:encoding => "application/x-tex"} R
+              which is
+              %a.existingWikiWord{:href => "/nlab/show/isomorphism"} isomorphic
+              to its
+              %a.existingWikiWord{:href => "/nlab/show/core+of+a+ring"} core
+              (Def.
+              = succeed ")," do
+                %a.maruku-ref{:href => "#CoreOfARing"}
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi R
+                    %mspace{:width => "thinmathspace"}
+                    %mo ≃
+                    %mspace{:width => "thinmathspace"}
+                    %mi c
+                    %mi R
+                  %annotation{:encoding => "application/x-tex"} R \,\simeq\, c R
+              is called a
+              = succeed "." do
+                %strong solid ring
+          (
+          %a{:href => "#BousfieldKan72"}> Bousfield-Kan 72, §1, def. 2.1
+          ,
+          = succeed ")" do
+            %a{:href => "#Bousfield79"} Bousfield 79, 6.4
+          %p
+          #SolidityMeansThatMultiplicationIsAnIsomorphism.num_prop
+            %h6 Proposition
+            %p
+              %strong
+                (
+                %a.existingWikiWord{:href => "/nlab/show/solid+ring"} solidity
+                means that
+                %a.existingWikiWord{:href => "/nlab/show/multiplication"} multiplication
+                is
+                = succeed ")" do
+                  %a.existingWikiWord{:href => "/nlab/show/isomorphism"} isomorphism
+              %br/
+              A
+              %a.existingWikiWord{:href => "/nlab/show/commutative+ring"} commutative ring
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi R
+                  %annotation{:encoding => "application/x-tex"} R
+              is solid (Def.
+              = succeed ")" do
+                %a.maruku-ref{:href => "#SolidRing"}
+              %a.existingWikiWord{:href => "/nlab/show/multiplication"} multiplication
+              morphism is an
+              = succeed ":" do
+                %a.existingWikiWord{:href => "/nlab/show/isomorphism"} isomorphism
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi R
+                    %mspace{:width => "thickmathspace"}
+                    %mtext is solid
+                    %mspace{:width => "thickmathspace"}
+                    %mspace{:width => "thickmathspace"}
+                    %mspace{:width => "thickmathspace"}
+                    %mspace{:width => "thickmathspace"}
+                    %mspace{:width => "thickmathspace"}
+                    %mspace{:width => "thickmathspace"}
+                    %mspace{:width => "thickmathspace"}
+                    %mspace{:width => "thickmathspace"}
+                    %mspace{:width => "thickmathspace"}
+                    %mo ⇔
+                    %mspace{:width => "thickmathspace"}
+                    %mspace{:width => "thickmathspace"}
+                    %mspace{:width => "thickmathspace"}
+                    %mspace{:width => "thickmathspace"}
+                    %mspace{:width => "thickmathspace"}
+                    %mspace{:width => "thickmathspace"}
+                    %mspace{:width => "thickmathspace"}
+                    %mspace{:width => "thickmathspace"}
+                    %mspace{:width => "thickmathspace"}
+                    %mi R
+                    %msub
+                      %mo ⊗
+                      %mrow
+                        %msub
+                          %mrow
+                          %mi ℤ
+                    %mi R
+                    %munderover
+                      %mo ⟶
+                      %mo ≃
+                      %mrow
+                        %mspace{:width => "thickmathspace"}
+                        %mo{:stretchy => "false"} (
+                        %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                        %mo{:stretchy => "false"} )
+                        %mo ⋅
+                        %mo{:stretchy => "false"} (
+                        %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                        %mo{:stretchy => "false"} )
+                        %mspace{:width => "thickmathspace"}
+                    %mi R
+                    %mspace{:width => "thinmathspace"}
+                    %mo .
+                  %annotation{:encoding => "application/x-tex"}
+                    R\; \text{is solid}
+                    \\;\;\;\;\;\;\;\;\;
+                    \\Leftrightarrow
+                    \\;\;\;\;\;\;\;\;\;
+                    R \otimes_{{}_{\mathbb{Z}}} R
+                    \\underoverset
+                    {\simeq}
+                    {\;(-) \cdot (-)\;}
+                    {\longrightarrow}
+                    R
+                    \\,.
+            %p
+          (
+          %a{:href => "#BousfieldKan72"} Bousfield &amp; Kan 1972, 2.4
+          – this is called a
+          %em T-ring
+          in
+          = succeed ")" do
+            %a{:href => "#BowshellSchultz77"} Bowshell &amp; Schultz 1977, Def. 1.6
+          .proof
+            %h6 Proof
+            %p
+              In one direction, assume that multiplication is an isomorphism. Since both
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi r
+                    %mo ↦
+                    %mn 1
+                    %mo ⊗
+                    %mi r
+                  %annotation{:encoding => "application/x-tex"} r \mapsto 1 \otimes r
+              and
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi r
+                    %mo ↦
+                    %mi r
+                    %mo ⊗
+                    %mn 1
+                  %annotation{:encoding => "application/x-tex"} r \mapsto r \otimes 1
+              are
+              %a.existingWikiWord{:href => "/nlab/show/right+inverses"} right inverses
+            %svg{:height => "55.367", :viewbox => "0 0 332.894 55.367", :width => "332.894", :xmlns => "http://www.w3.org/2000/svg", "xmlns:xlink" => "http://www.w3.org/1999/xlink"}
+              %defs
+                %g
+                  %g{:id => "pYNncBR5naRD7RtBPTFo0ph1Ep4=-glyph-0-0"}
+                  %g{:id => "pYNncBR5naRD7RtBPTFo0ph1Ep4=-glyph-0-1"}
+                    %path{:d => "M 5.5 -9.1875 C 5.625 -9.734375 5.6875 -9.765625 6.28125 -9.765625 L 7.34375 -9.765625 C 8.640625 -9.765625 9.59375 -9.375 9.59375 -8.21875 C 9.59375 -7.453125 9.203125 -5.265625 6.203125 -5.265625 L 4.515625 -5.265625 Z M 7.578125 -5.078125 C 9.421875 -5.484375 10.875 -6.671875 10.875 -7.96875 C 10.875 -9.125 9.6875 -10.203125 7.625 -10.203125 L 3.5625 -10.203125 C 3.265625 -10.203125 3.140625 -10.203125 3.140625 -9.921875 C 3.140625 -9.765625 3.234375 -9.765625 3.53125 -9.765625 C 4.421875 -9.765625 4.421875 -9.65625 4.421875 -9.484375 C 4.421875 -9.453125 4.421875 -9.359375 4.359375 -9.140625 L 2.34375 -1.109375 C 2.203125 -0.578125 2.1875 -0.4375 1.15625 -0.4375 C 0.8125 -0.4375 0.703125 -0.4375 0.703125 -0.15625 C 0.703125 0 0.859375 0 0.90625 0 C 1.1875 0 1.5 -0.03125 1.78125 -0.03125 L 3.546875 -0.03125 C 3.8125 -0.03125 4.125 0 4.390625 0 C 4.515625 0 4.671875 0 4.671875 -0.28125 C 4.671875 -0.4375 4.546875 -0.4375 4.3125 -0.4375 C 3.40625 -0.4375 3.40625 -0.546875 3.40625 -0.703125 C 3.40625 -0.71875 3.40625 -0.828125 3.4375 -0.9375 L 4.4375 -4.953125 L 6.234375 -4.953125 C 7.640625 -4.953125 7.921875 -4.0625 7.921875 -3.5625 C 7.921875 -3.34375 7.765625 -2.765625 7.65625 -2.375 C 7.5 -1.6875 7.453125 -1.53125 7.453125 -1.234375 C 7.453125 -0.171875 8.3125 0.3125 9.328125 0.3125 C 10.53125 0.3125 11.046875 -1.171875 11.046875 -1.375 C 11.046875 -1.484375 10.984375 -1.53125 10.890625 -1.53125 C 10.765625 -1.53125 10.734375 -1.4375 10.703125 -1.3125 C 10.359375 -0.25 9.734375 0.015625 9.359375 0.015625 C 9 0.015625 8.75 -0.15625 8.75 -0.828125 C 8.75 -1.1875 8.9375 -2.546875 8.953125 -2.609375 C 9.015625 -3.171875 9.015625 -3.21875 9.015625 -3.34375 C 9.015625 -4.4375 8.140625 -4.90625 7.578125 -5.078125 Z M 7.578125 -5.078125 "}
+                  %g{:id => "pYNncBR5naRD7RtBPTFo0ph1Ep4=-glyph-0-2"}
+                    %path{:d => "M 2.90625 0.0625 C 2.90625 -0.8125 2.625 -1.453125 2.015625 -1.453125 C 1.53125 -1.453125 1.296875 -1.0625 1.296875 -0.734375 C 1.296875 -0.40625 1.53125 0 2.03125 0 C 2.21875 0 2.390625 -0.0625 2.53125 -0.1875 C 2.546875 -0.21875 2.5625 -0.21875 2.578125 -0.21875 C 2.609375 -0.21875 2.609375 -0.015625 2.609375 0.0625 C 2.609375 0.546875 2.53125 1.53125 1.65625 2.5 C 1.5 2.671875 1.5 2.703125 1.5 2.734375 C 1.5 2.8125 1.5625 2.890625 1.640625 2.890625 C 1.765625 2.890625 2.90625 1.78125 2.90625 0.0625 Z M 2.90625 0.0625 "}
+                  %g{:id => "pYNncBR5naRD7RtBPTFo0ph1Ep4=-glyph-1-0"}
+                  %g{:id => "pYNncBR5naRD7RtBPTFo0ph1Ep4=-glyph-1-1"}
+                    %path{:d => "M 10.78125 -3.734375 C 10.78125 -6.484375 8.546875 -8.703125 5.8125 -8.703125 C 3.03125 -8.703125 0.828125 -6.453125 0.828125 -3.734375 C 0.828125 -0.984375 3.0625 1.234375 5.796875 1.234375 C 8.578125 1.234375 10.78125 -1.015625 10.78125 -3.734375 Z M 2.84375 -6.953125 C 2.8125 -6.96875 2.703125 -7.078125 2.703125 -7.109375 C 2.703125 -7.171875 3.90625 -8.328125 5.796875 -8.328125 C 6.3125 -8.328125 7.6875 -8.265625 8.921875 -7.109375 L 5.8125 -3.984375 Z M 2.40625 -0.609375 C 1.5 -1.625 1.1875 -2.78125 1.1875 -3.734375 C 1.1875 -4.890625 1.625 -5.96875 2.40625 -6.859375 L 5.53125 -3.734375 Z M 9.1875 -6.859375 C 9.90625 -6.09375 10.40625 -4.953125 10.40625 -3.734375 C 10.40625 -2.578125 9.984375 -1.5 9.203125 -0.609375 L 6.078125 -3.734375 Z M 8.765625 -0.515625 C 8.796875 -0.5 8.90625 -0.390625 8.90625 -0.359375 C 8.90625 -0.296875 7.6875 0.859375 5.8125 0.859375 C 5.28125 0.859375 3.90625 0.796875 2.6875 -0.359375 L 5.796875 -3.484375 Z M 8.765625 -0.515625 "}
+                  %g{:id => "pYNncBR5naRD7RtBPTFo0ph1Ep4=-glyph-2-0"}
+                  %g{:id => "pYNncBR5naRD7RtBPTFo0ph1Ep4=-glyph-2-1"}
+                    %path{:d => "M 4.453125 -4.84375 C 4.515625 -4.9375 4.515625 -4.953125 4.515625 -4.984375 C 4.515625 -5.109375 4.40625 -5.109375 4.265625 -5.109375 L 0.84375 -5.109375 C 0.609375 -5.109375 0.609375 -5.09375 0.59375 -4.90625 L 0.484375 -3.890625 L 0.46875 -3.796875 C 0.46875 -3.6875 0.546875 -3.65625 0.59375 -3.65625 C 0.671875 -3.65625 0.703125 -3.703125 0.71875 -3.765625 C 0.75 -3.9375 0.828125 -4.265625 1.28125 -4.5625 C 1.703125 -4.828125 2.21875 -4.859375 2.484375 -4.859375 L 3.078125 -4.859375 L 0.28125 -0.265625 C 0.203125 -0.171875 0.203125 -0.15625 0.203125 -0.140625 C 0.203125 0 0.328125 0 0.46875 0 L 4.296875 0 C 4.515625 0 4.515625 -0.015625 4.546875 -0.203125 L 4.75 -1.6875 C 4.75 -1.765625 4.6875 -1.8125 4.625 -1.8125 C 4.515625 -1.8125 4.5 -1.734375 4.46875 -1.59375 C 4.34375 -0.984375 3.765625 -0.265625 2.703125 -0.265625 L 1.640625 -0.265625 Z M 0.84375 -4.859375 L 1.234375 -4.859375 L 1.234375 -4.84375 C 1.03125 -4.734375 0.890625 -4.59375 0.8125 -4.515625 Z M 3.390625 -4.859375 L 4.15625 -4.859375 L 1.34375 -0.265625 L 0.578125 -0.265625 Z M 3.78125 -0.265625 C 4 -0.390625 4.1875 -0.546875 4.359375 -0.765625 C 4.34375 -0.609375 4.328125 -0.53125 4.296875 -0.265625 Z M 3.78125 -0.265625 "}
+                  %g{:id => "pYNncBR5naRD7RtBPTFo0ph1Ep4=-glyph-3-0"}
+                  %g{:id => "pYNncBR5naRD7RtBPTFo0ph1Ep4=-glyph-3-1"}
+                    %path{:d => "M 1.921875 -1.375 C 2.03125 -1.796875 2.140625 -2.234375 2.25 -2.671875 C 2.25 -2.6875 2.328125 -2.984375 2.328125 -3.03125 C 2.359375 -3.125 2.609375 -3.53125 2.875 -3.78125 C 3.1875 -4.0625 3.53125 -4.109375 3.703125 -4.109375 C 3.8125 -4.109375 4 -4.109375 4.140625 -3.984375 C 3.703125 -3.890625 3.65625 -3.53125 3.65625 -3.4375 C 3.65625 -3.21875 3.8125 -3.078125 4.03125 -3.078125 C 4.3125 -3.078125 4.609375 -3.296875 4.609375 -3.6875 C 4.609375 -4.046875 4.296875 -4.390625 3.734375 -4.390625 C 3.046875 -4.390625 2.59375 -3.953125 2.375 -3.671875 C 2.1875 -4.390625 1.5 -4.390625 1.40625 -4.390625 C 1.046875 -4.390625 0.796875 -4.171875 0.640625 -3.859375 C 0.40625 -3.40625 0.296875 -2.90625 0.296875 -2.875 C 0.296875 -2.78125 0.375 -2.734375 0.453125 -2.734375 C 0.578125 -2.734375 0.59375 -2.78125 0.65625 -3.046875 C 0.78125 -3.53125 0.953125 -4.109375 1.375 -4.109375 C 1.640625 -4.109375 1.6875 -3.875 1.6875 -3.65625 C 1.6875 -3.46875 1.640625 -3.28125 1.5625 -2.953125 C 1.546875 -2.875 1.390625 -2.28125 1.359375 -2.140625 L 0.984375 -0.640625 C 0.953125 -0.5 0.890625 -0.25 0.890625 -0.203125 C 0.890625 0.015625 1.078125 0.09375 1.203125 0.09375 C 1.5625 0.09375 1.625 -0.171875 1.703125 -0.515625 Z M 1.921875 -1.375 "}
+                  %g{:id => "pYNncBR5naRD7RtBPTFo0ph1Ep4=-glyph-4-0"}
+                  %g{:id => "pYNncBR5naRD7RtBPTFo0ph1Ep4=-glyph-4-1"}
+                    %path{:d => "M 1.046875 -2.265625 C 1.15625 -2.265625 1.328125 -2.296875 1.328125 -2.5 C 1.328125 -2.6875 1.171875 -2.71875 1.046875 -2.71875 L 1.046875 -4 C 1.046875 -4.15625 1.046875 -4.375 0.8125 -4.375 C 0.59375 -4.375 0.59375 -4.15625 0.59375 -4 L 0.59375 -0.984375 C 0.59375 -0.828125 0.59375 -0.609375 0.8125 -0.609375 C 1.046875 -0.609375 1.046875 -0.828125 1.046875 -0.984375 Z M 1.046875 -2.265625 "}
+                  %g{:id => "pYNncBR5naRD7RtBPTFo0ph1Ep4=-glyph-4-2"}
+                    %path{:d => "M 8.703125 -2.265625 C 8.359375 -2.015625 8.0625 -1.6875 7.8125 -1.328125 C 7.390625 -0.6875 7.28125 -0.046875 7.28125 -0.015625 C 7.28125 0.140625 7.421875 0.140625 7.5 0.140625 C 7.609375 0.140625 7.703125 0.140625 7.734375 0.015625 C 8 -1.09375 8.640625 -1.9375 9.84375 -2.34375 C 9.921875 -2.359375 10 -2.390625 10 -2.5 C 10 -2.59375 9.90625 -2.625 9.875 -2.625 C 8.546875 -3.078125 7.96875 -4.015625 7.75 -4.890625 C 7.703125 -5.09375 7.703125 -5.125 7.5 -5.125 C 7.421875 -5.125 7.28125 -5.125 7.28125 -4.96875 C 7.28125 -4.953125 7.375 -4.296875 7.8125 -3.640625 C 8.109375 -3.21875 8.453125 -2.90625 8.703125 -2.71875 L 0.96875 -2.71875 C 0.8125 -2.71875 0.59375 -2.71875 0.59375 -2.5 C 0.59375 -2.265625 0.8125 -2.265625 0.96875 -2.265625 Z M 8.703125 -2.265625 "}
+                  %g{:id => "pYNncBR5naRD7RtBPTFo0ph1Ep4=-glyph-4-3"}
+                    %path{:d => "M 7.640625 -2.5 C 7.640625 -4.453125 6.046875 -6.015625 4.109375 -6.015625 C 2.15625 -6.015625 0.59375 -4.421875 0.59375 -2.5 C 0.59375 -0.53125 2.1875 1.03125 4.109375 1.03125 C 6.078125 1.03125 7.640625 -0.5625 7.640625 -2.5 Z M 1.953125 -4.875 C 2.734375 -5.59375 3.625 -5.71875 4.109375 -5.71875 C 4.71875 -5.71875 5.5625 -5.53125 6.265625 -4.875 L 4.109375 -2.71875 Z M 1.734375 -0.328125 C 1.171875 -0.921875 0.890625 -1.71875 0.890625 -2.5 C 0.890625 -3.25 1.171875 -4.0625 1.734375 -4.65625 L 3.890625 -2.5 Z M 6.484375 -4.65625 C 7.046875 -4.0625 7.328125 -3.265625 7.328125 -2.5 C 7.328125 -1.734375 7.0625 -0.921875 6.484375 -0.328125 L 4.328125 -2.5 Z M 6.265625 -0.109375 C 5.5 0.609375 4.59375 0.734375 4.109375 0.734375 C 3.515625 0.734375 2.65625 0.546875 1.953125 -0.109375 L 4.109375 -2.265625 Z M 6.265625 -0.109375 "}
+                  %g{:id => "pYNncBR5naRD7RtBPTFo0ph1Ep4=-glyph-4-4"}
+                    %path{:d => "M 6.96875 -2.265625 C 7.125 -2.265625 7.34375 -2.265625 7.34375 -2.5 C 7.34375 -2.71875 7.125 -2.71875 6.96875 -2.71875 L 1.25 -2.71875 C 1.09375 -2.71875 0.875 -2.71875 0.875 -2.5 C 0.875 -2.265625 1.09375 -2.265625 1.25 -2.265625 Z M 6.96875 -2.265625 "}
+                  %g{:id => "pYNncBR5naRD7RtBPTFo0ph1Ep4=-glyph-4-5"}
+                    %path{:d => "M 2.03125 -2.5 C 2.03125 -2.828125 1.75 -3.046875 1.46875 -3.046875 C 1.15625 -3.046875 0.921875 -2.796875 0.921875 -2.5 C 0.921875 -2.15625 1.203125 -1.9375 1.46875 -1.9375 C 1.78125 -1.9375 2.03125 -2.203125 2.03125 -2.5 Z M 2.03125 -2.5 "}
+                  %g{:id => "pYNncBR5naRD7RtBPTFo0ph1Ep4=-glyph-4-6"}
+                    %path{:d => "M 7.640625 -3.40625 C 7.640625 -3.71875 7.53125 -3.765625 7.484375 -3.765625 C 7.34375 -3.765625 7.3125 -3.515625 7.3125 -3.359375 C 7.28125 -2.640625 6.734375 -1.859375 5.875 -1.859375 C 5.28125 -1.859375 4.796875 -2.21875 4.203125 -2.75 C 3.5625 -3.34375 3.046875 -3.765625 2.359375 -3.765625 C 1.203125 -3.765625 0.59375 -2.578125 0.59375 -1.59375 C 0.59375 -1.25 0.703125 -1.21875 0.75 -1.21875 C 0.8125 -1.21875 0.890625 -1.296875 0.90625 -1.546875 C 0.953125 -2.515625 1.609375 -3.125 2.359375 -3.125 C 2.953125 -3.125 3.421875 -2.765625 4.015625 -2.234375 C 4.65625 -1.640625 5.1875 -1.21875 5.875 -1.21875 C 7 -1.21875 7.640625 -2.375 7.640625 -3.40625 Z M 7.640625 -3.40625 "}
+                  %g{:id => "pYNncBR5naRD7RtBPTFo0ph1Ep4=-glyph-5-0"}
+                  %g{:id => "pYNncBR5naRD7RtBPTFo0ph1Ep4=-glyph-5-1"}
+                    %path{:d => "M 3.125 -6.34375 C 3.125 -6.625 3.109375 -6.625 2.84375 -6.625 C 2.4375 -6.234375 1.90625 -5.984375 0.953125 -5.984375 L 0.953125 -5.65625 C 1.21875 -5.65625 1.765625 -5.65625 2.34375 -5.9375 L 2.34375 -0.8125 C 2.34375 -0.453125 2.3125 -0.328125 1.359375 -0.328125 L 1.015625 -0.328125 L 1.015625 0 C 1.421875 -0.03125 2.28125 -0.03125 2.734375 -0.03125 C 3.1875 -0.03125 4.046875 -0.03125 4.453125 0 L 4.453125 -0.328125 L 4.109375 -0.328125 C 3.15625 -0.328125 3.125 -0.453125 3.125 -0.8125 Z M 3.125 -6.34375 "}
+                  %g{:id => "pYNncBR5naRD7RtBPTFo0ph1Ep4=-glyph-5-2"}
+                    %path{:d => "M 3.3125 2.5 C 3.40625 2.5 3.515625 2.5 3.515625 2.375 C 3.515625 2.328125 3.515625 2.328125 3.375 2.1875 C 2.015625 0.90625 1.671875 -0.953125 1.671875 -2.5 C 1.671875 -5.359375 2.859375 -6.703125 3.375 -7.171875 C 3.515625 -7.296875 3.515625 -7.3125 3.515625 -7.359375 C 3.515625 -7.40625 3.484375 -7.484375 3.375 -7.484375 C 3.21875 -7.484375 2.71875 -6.96875 2.640625 -6.875 C 1.3125 -5.484375 1.03125 -3.6875 1.03125 -2.5 C 1.03125 -0.265625 1.96875 1.53125 3.3125 2.5 Z M 3.3125 2.5 "}
+                  %g{:id => "pYNncBR5naRD7RtBPTFo0ph1Ep4=-glyph-5-3"}
+                    %path{:d => "M 3.078125 -2.5 C 3.078125 -3.4375 2.921875 -4.578125 2.296875 -5.75 C 1.8125 -6.671875 0.90625 -7.484375 0.734375 -7.484375 C 0.625 -7.484375 0.59375 -7.40625 0.59375 -7.359375 C 0.59375 -7.3125 0.59375 -7.296875 0.71875 -7.171875 C 2.109375 -5.859375 2.4375 -4.03125 2.4375 -2.5 C 2.4375 0.375 1.25 1.71875 0.734375 2.1875 C 0.609375 2.3125 0.59375 2.328125 0.59375 2.375 C 0.59375 2.421875 0.625 2.5 0.734375 2.5 C 0.890625 2.5 1.390625 1.984375 1.46875 1.890625 C 2.796875 0.5 3.078125 -1.296875 3.078125 -2.5 Z M 3.078125 -2.5 "}
+                  %g{:id => "pYNncBR5naRD7RtBPTFo0ph1Ep4=-glyph-6-0"}
+                  %g{:id => "pYNncBR5naRD7RtBPTFo0ph1Ep4=-glyph-6-1"}
+                    %path{:d => "M 2.265625 -6.34375 C 2.265625 -6.734375 2.296875 -6.84375 3.078125 -6.84375 L 3.3125 -6.84375 L 3.3125 -7.140625 C 3.0625 -7.125 2.15625 -7.125 1.84375 -7.125 C 1.53125 -7.125 0.625 -7.125 0.375 -7.140625 L 0.375 -6.84375 L 0.609375 -6.84375 C 1.390625 -6.84375 1.421875 -6.734375 1.421875 -6.34375 L 1.421875 -0.796875 C 1.421875 -0.40625 1.390625 -0.296875 0.609375 -0.296875 L 0.375 -0.296875 L 0.375 0 C 0.625 -0.015625 1.53125 -0.015625 1.84375 -0.015625 C 2.15625 -0.015625 3.0625 -0.015625 3.3125 0 L 3.3125 -0.296875 L 3.078125 -0.296875 C 2.296875 -0.296875 2.265625 -0.40625 2.265625 -0.796875 Z M 2.265625 -6.34375 "}
+                  %g{:id => "pYNncBR5naRD7RtBPTFo0ph1Ep4=-glyph-6-2"}
+                    %path{:d => "M 3.140625 -7.140625 L 3.140625 -6.84375 C 3.84375 -6.84375 3.9375 -6.765625 3.9375 -6.25 L 3.9375 -3.9375 C 3.703125 -4.25 3.265625 -4.609375 2.625 -4.609375 C 1.40625 -4.609375 0.359375 -3.578125 0.359375 -2.25 C 0.359375 -0.921875 1.359375 0.109375 2.515625 0.109375 C 3.296875 0.109375 3.765625 -0.421875 3.90625 -0.609375 L 3.90625 0.109375 L 5.390625 0 L 5.390625 -0.296875 C 4.671875 -0.296875 4.59375 -0.375 4.59375 -0.890625 L 4.59375 -7.25 Z M 3.90625 -1.21875 C 3.90625 -1.03125 3.90625 -1 3.765625 -0.78125 C 3.515625 -0.40625 3.078125 -0.109375 2.5625 -0.109375 C 2.296875 -0.109375 1.15625 -0.203125 1.15625 -2.234375 C 1.15625 -2.984375 1.28125 -3.40625 1.515625 -3.75 C 1.71875 -4.078125 2.140625 -4.40625 2.671875 -4.40625 C 3.3125 -4.40625 3.671875 -3.9375 3.78125 -3.765625 C 3.90625 -3.578125 3.90625 -3.5625 3.90625 -3.375 Z M 3.90625 -1.21875 "}
+              %g{:fill => "rgb(0%, 0%, 0%)", "fill-opacity" => "1"}
+                %use{:x => "6.434", "xlink:href" => "#pYNncBR5naRD7RtBPTFo0ph1Ep4=-glyph-0-1", :y => "20.916"}
+              %g{:fill => "rgb(0%, 0%, 0%)", "fill-opacity" => "1"}
+                %use{:x => "142.941", "xlink:href" => "#pYNncBR5naRD7RtBPTFo0ph1Ep4=-glyph-0-1", :y => "20.916"}
+              %g{:fill => "rgb(0%, 0%, 0%)", "fill-opacity" => "1"}
+                %use{:x => "157.52225", "xlink:href" => "#pYNncBR5naRD7RtBPTFo0ph1Ep4=-glyph-1-1", :y => "20.916"}
+              %g{:fill => "rgb(0%, 0%, 0%)", "fill-opacity" => "1"}
+                %use{:x => "169.14475", "xlink:href" => "#pYNncBR5naRD7RtBPTFo0ph1Ep4=-glyph-2-1", :y => "24.8735"}
+              %g{:fill => "rgb(0%, 0%, 0%)", "fill-opacity" => "1"}
+                %use{:x => "178.69225", "xlink:href" => "#pYNncBR5naRD7RtBPTFo0ph1Ep4=-glyph-0-1", :y => "20.916"}
+              %g{:fill => "rgb(0%, 0%, 0%)", "fill-opacity" => "1"}
+                %use{:x => "315.199", "xlink:href" => "#pYNncBR5naRD7RtBPTFo0ph1Ep4=-glyph-0-1", :y => "20.916"}
+              %g{:fill => "rgb(0%, 0%, 0%)", "fill-opacity" => "1"}
+                %use{:x => "328.951963", "xlink:href" => "#pYNncBR5naRD7RtBPTFo0ph1Ep4=-glyph-0-2", :y => "20.916"}
+              %path{:d => "M -142.072 3.597594 L -30.669656 3.597594 ", :fill => "none", :stroke => "rgb(0%, 0%, 0%)", "stroke-linecap" => "butt", "stroke-linejoin" => "miter", "stroke-miterlimit" => "10", "stroke-opacity" => "1", "stroke-width" => "0.47818", :transform => "matrix(1, 0, 0, -1, 166.447, 17.789)"}
+              %path{:d => "M -2.48669 2.871027 C -2.033565 1.148371 -1.021846 0.335871 0.00159125 -0.00006625 C -1.021846 -0.336004 -2.033565 -1.148504 -2.48669 -2.867254 ", :fill => "none", :stroke => "rgb(0%, 0%, 0%)", "stroke-linecap" => "round", "stroke-linejoin" => "round", "stroke-miterlimit" => "10", "stroke-opacity" => "1", "stroke-width" => "0.47818", :transform => "matrix(1, 0, 0, -1, 136.01794, 14.19134)"}
+              %g{:fill => "rgb(0%, 0%, 0%)", "fill-opacity" => "1"}
+                %use{:x => "61.427", "xlink:href" => "#pYNncBR5naRD7RtBPTFo0ph1Ep4=-glyph-3-1", :y => "9.638"}
+              %g{:fill => "rgb(0%, 0%, 0%)", "fill-opacity" => "1"}
+                %use{:x => "68.262", "xlink:href" => "#pYNncBR5naRD7RtBPTFo0ph1Ep4=-glyph-4-1", :y => "9.638"}
+                %use{:x => "68.262", "xlink:href" => "#pYNncBR5naRD7RtBPTFo0ph1Ep4=-glyph-4-2", :y => "9.638"}
+              %g{:fill => "rgb(0%, 0%, 0%)", "fill-opacity" => "1"}
+                %use{:x => "80.612", "xlink:href" => "#pYNncBR5naRD7RtBPTFo0ph1Ep4=-glyph-5-1", :y => "9.638"}
+              %g{:fill => "rgb(0%, 0%, 0%)", "fill-opacity" => "1"}
+                %use{:x => "85.9045", "xlink:href" => "#pYNncBR5naRD7RtBPTFo0ph1Ep4=-glyph-4-3", :y => "9.638"}
+              %g{:fill => "rgb(0%, 0%, 0%)", "fill-opacity" => "1"}
+                %use{:x => "94.13825", "xlink:href" => "#pYNncBR5naRD7RtBPTFo0ph1Ep4=-glyph-3-1", :y => "9.638"}
+              %path{:d => "M -142.072 -2.378969 L -30.669656 -2.378969 ", :fill => "none", :stroke => "rgb(0%, 0%, 0%)", "stroke-linecap" => "butt", "stroke-linejoin" => "miter", "stroke-miterlimit" => "10", "stroke-opacity" => "1", "stroke-width" => "0.47818", :transform => "matrix(1, 0, 0, -1, 166.447, 17.789)"}
+              %path{:d => "M -2.48669 2.868209 C -2.033565 1.149459 -1.021846 0.333052 0.00159125 0.00102125 C -1.021846 -0.334916 -2.033565 -1.147416 -2.48669 -2.870073 ", :fill => "none", :stroke => "rgb(0%, 0%, 0%)", "stroke-linecap" => "round", "stroke-linejoin" => "round", "stroke-miterlimit" => "10", "stroke-opacity" => "1", "stroke-width" => "0.47818", :transform => "matrix(1, 0, 0, -1, 136.01794, 20.16899)"}
+              %g{:fill => "rgb(0%, 0%, 0%)", "fill-opacity" => "1"}
+                %use{:x => "61.427", "xlink:href" => "#pYNncBR5naRD7RtBPTFo0ph1Ep4=-glyph-3-1", :y => "30.105"}
+              %g{:fill => "rgb(0%, 0%, 0%)", "fill-opacity" => "1"}
+                %use{:x => "68.262", "xlink:href" => "#pYNncBR5naRD7RtBPTFo0ph1Ep4=-glyph-4-1", :y => "30.105"}
+                %use{:x => "68.262", "xlink:href" => "#pYNncBR5naRD7RtBPTFo0ph1Ep4=-glyph-4-2", :y => "30.105"}
+              %g{:fill => "rgb(0%, 0%, 0%)", "fill-opacity" => "1"}
+                %use{:x => "80.612", "xlink:href" => "#pYNncBR5naRD7RtBPTFo0ph1Ep4=-glyph-3-1", :y => "30.105"}
+              %g{:fill => "rgb(0%, 0%, 0%)", "fill-opacity" => "1"}
+                %use{:x => "85.682", "xlink:href" => "#pYNncBR5naRD7RtBPTFo0ph1Ep4=-glyph-4-3", :y => "30.105"}
+              %g{:fill => "rgb(0%, 0%, 0%)", "fill-opacity" => "1"}
+                %use{:x => "93.91575", "xlink:href" => "#pYNncBR5naRD7RtBPTFo0ph1Ep4=-glyph-5-1", :y => "30.105"}
+              %path{:d => "M -154.3845 -8.843813 L -154.3845 -15.820375 C -154.3845 -18.019594 -152.599344 -19.808656 -150.400125 -19.816469 L 150.400656 -20.707094 C 152.599875 -20.711 154.385031 -18.933656 154.385031 -16.734438 L 154.385031 -12.230531 ", :fill => "none", :stroke => "rgb(0%, 0%, 0%)", "stroke-linecap" => "butt", "stroke-linejoin" => "miter", "stroke-miterlimit" => "10", "stroke-opacity" => "1", "stroke-width" => "0.47818", :transform => "matrix(1, 0, 0, -1, 166.447, 17.789)"}
+              %path{:d => "M -2.486315 2.870563 C -2.03319 1.147906 -1.021471 0.335406 -0.00194 -0.00053125 C -1.021471 -0.336469 -2.03319 -1.148969 -2.486315 -2.867719 ", :fill => "none", :stroke => "rgb(0%, 0%, 0%)", "stroke-linecap" => "round", "stroke-linejoin" => "round", "stroke-miterlimit" => "10", "stroke-opacity" => "1", "stroke-width" => "0.47818", :transform => "matrix(0, -1, -1, 0, 320.8315, 29.77931)"}
+              %g{:fill => "rgb(0%, 0%, 0%)", "fill-opacity" => "1"}
+                %use{:x => "161.754", "xlink:href" => "#pYNncBR5naRD7RtBPTFo0ph1Ep4=-glyph-6-1", :y => "50.49"}
+                %use{:x => "165.448755", "xlink:href" => "#pYNncBR5naRD7RtBPTFo0ph1Ep4=-glyph-6-2", :y => "50.49"}
+              %path{:d => "M 30.189719 0.609312 L 141.592062 0.609312 ", :fill => "none", :stroke => "rgb(0%, 0%, 0%)", "stroke-linecap" => "butt", "stroke-linejoin" => "miter", "stroke-miterlimit" => "10", "stroke-opacity" => "1", "stroke-width" => "0.47818", :transform => "matrix(1, 0, 0, -1, 166.447, 17.789)"}
+              %path{:d => "M -2.485701 2.86767 C -2.032576 1.14892 -1.020858 0.33642 -0.00132625 0.0004825 C -1.020858 -0.335455 -2.032576 -1.147955 -2.485701 -2.870611 ", :fill => "none", :stroke => "rgb(0%, 0%, 0%)", "stroke-linecap" => "round", "stroke-linejoin" => "round", "stroke-miterlimit" => "10", "stroke-opacity" => "1", "stroke-width" => "0.47818", :transform => "matrix(1, 0, 0, -1, 308.27867, 17.18017)"}
+              %g{:fill => "rgb(0%, 0%, 0%)", "fill-opacity" => "1"}
+                %use{:x => "234.64", "xlink:href" => "#pYNncBR5naRD7RtBPTFo0ph1Ep4=-glyph-5-2", :y => "11.174"}
+              %g{:fill => "rgb(0%, 0%, 0%)", "fill-opacity" => "1"}
+                %use{:x => "238.75625", "xlink:href" => "#pYNncBR5naRD7RtBPTFo0ph1Ep4=-glyph-4-4", :y => "11.174"}
+              %g{:fill => "rgb(0%, 0%, 0%)", "fill-opacity" => "1"}
+                %use{:x => "246.99", "xlink:href" => "#pYNncBR5naRD7RtBPTFo0ph1Ep4=-glyph-5-3", :y => "11.174"}
+              %g{:fill => "rgb(0%, 0%, 0%)", "fill-opacity" => "1"}
+                %use{:x => "251.10625", "xlink:href" => "#pYNncBR5naRD7RtBPTFo0ph1Ep4=-glyph-4-5", :y => "11.174"}
+              %g{:fill => "rgb(0%, 0%, 0%)", "fill-opacity" => "1"}
+                %use{:x => "254.04625", "xlink:href" => "#pYNncBR5naRD7RtBPTFo0ph1Ep4=-glyph-5-2", :y => "11.174"}
+              %g{:fill => "rgb(0%, 0%, 0%)", "fill-opacity" => "1"}
+                %use{:x => "258.1625", "xlink:href" => "#pYNncBR5naRD7RtBPTFo0ph1Ep4=-glyph-4-4", :y => "11.174"}
+              %g{:fill => "rgb(0%, 0%, 0%)", "fill-opacity" => "1"}
+                %use{:x => "266.39625", "xlink:href" => "#pYNncBR5naRD7RtBPTFo0ph1Ep4=-glyph-5-3", :y => "11.174"}
+              %g{:fill => "rgb(0%, 0%, 0%)", "fill-opacity" => "1"}
+                %use{:x => "248.46", "xlink:href" => "#pYNncBR5naRD7RtBPTFo0ph1Ep4=-glyph-4-6", :y => "23.217"}
+            %p
+              and since right inverses of isomorphisms are unique (
+              %a{:href => "inverse#InversesAreUnique"}> this Prop.
+              ), it follows that these two morphisms on the left are in fact equal, and therefore that their equalizer, hence the core of
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi R
+                  %annotation{:encoding => "application/x-tex"} R
+              (by Rem.
+              = succeed ")," do
+                %a.maruku-ref{:href => "#CoreAsEqualizerAndAsRegularImage"}
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi R
+                    %annotation{:encoding => "application/x-tex"} R
+            %p
+              In the other direction, assume that
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mn 1
+                    %mo ⊗
+                    %mi r
+                    %mspace{:width => "thinmathspace"}
+                    %mo =
+                    %mspace{:width => "thinmathspace"}
+                    %mi r
+                    %mo ⊗
+                    %mn 1
+                  %annotation{:encoding => "application/x-tex"} 1 \otimes r \,=\, r \otimes 1
+              for all
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi r
+                      %mo ∈
+                      %mi R
+                    %annotation{:encoding => "application/x-tex"} r \in R
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mrow
+                      %mtable{:columnalign => "right left right left right left right left right left", :columnspacing => "0em", :displaystyle => "true"}
+                        %mtr
+                          %mtd
+                            %msub
+                              %mi r
+                              %mn 1
+                            %mspace{:width => "thinmathspace"}
+                            %mo ⊗
+                            %mspace{:width => "thinmathspace"}
+                            %msub
+                              %mi r
+                              %mn 2
+                          %mtd
+                            %mspace{:width => "thickmathspace"}
+                            %mo =
+                            %mspace{:width => "thickmathspace"}
+                            %mo{:maxsize => "1.2em", :minsize => "1.2em"} (
+                            %msub
+                              %mi r
+                              %mn 1
+                            %mspace{:width => "thinmathspace"}
+                            %mo ⊗
+                            %mspace{:width => "thinmathspace"}
+                            %mn 1
+                            %mo{:maxsize => "1.2em", :minsize => "1.2em"} )
+                            %mo ⋅
+                            %mo{:maxsize => "1.2em", :minsize => "1.2em"} (
+                            %mn 1
+                            %mo ⊗
+                            %msub
+                              %mi r
+                              %mn 2
+                            %mo{:maxsize => "1.2em", :minsize => "1.2em"} )
+                        %mtr
+                          %mtd
+                          %mtd
+                            %mspace{:width => "thickmathspace"}
+                            %mo =
+                            %mspace{:width => "thickmathspace"}
+                            %mo{:maxsize => "1.2em", :minsize => "1.2em"} (
+                            %mn 1
+                            %mspace{:width => "thinmathspace"}
+                            %mo ⊗
+                            %mspace{:width => "thinmathspace"}
+                            %msub
+                              %mi r
+                              %mn 1
+                            %mo{:maxsize => "1.2em", :minsize => "1.2em"} )
+                            %mo ⋅
+                            %mo{:maxsize => "1.2em", :minsize => "1.2em"} (
+                            %mn 1
+                            %mo ⊗
+                            %msub
+                              %mi r
+                              %mn 2
+                            %mo{:maxsize => "1.2em", :minsize => "1.2em"} )
+                        %mtr
+                          %mtd
+                          %mtd
+                            %mspace{:width => "thickmathspace"}
+                            %mo =
+                            %mspace{:width => "thickmathspace"}
+                            %mn 1
+                            %mspace{:width => "thinmathspace"}
+                            %mo ⊗
+                            %mspace{:width => "thinmathspace"}
+                            %mo{:maxsize => "1.2em", :minsize => "1.2em"} (
+                            %msub
+                              %mi r
+                              %mn 1
+                            %mo ⋅
+                            %msub
+                              %mi r
+                              %mn 2
+                            %mo{:maxsize => "1.2em", :minsize => "1.2em"} )
+                            %mspace{:width => "thinmathspace"}
+                            %mo ,
+                  %annotation{:encoding => "application/x-tex"}
+                    \\begin{aligned}
+                    r_1 \,\otimes\, r_2
+                    \&amp; \;=\;
+                    \\big( r_1 \,\otimes\, 1 \big)
+                    \\cdot
+                    \\big( 1 \otimes r_2 \big)
+                    \\\
+                    \&amp; \;=\;
+                    \\big( 1 \,\otimes\, r_1 \big)
+                    \\cdot
+                    \\big( 1 \otimes r_2 \big)
+                    \\\
+                    \&amp; \;=\;
+                    1
+                    \\,\otimes\,
+                    \\big(
+                    r_1 \cdot r_2
+                    \\big)
+                    \\,,
+                    \\end{aligned}
+            %p
+              and therefore
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo{:stretchy => "false"} (
+                    %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                    %mo{:stretchy => "false"} )
+                    %mo ⋅
+                    %mo{:stretchy => "false"} (
+                    %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} (-)\cdot(-)
+              is a
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/bijection"} bijection
+              %a.existingWikiWord{:href => "/nlab/show/isomorphism"} isomorphism
+              of rings.
+          %h2#properties Properties
+          %p
+          #CoresAreSolid.num_prop
+            %h6 Proposition
+            %p
+              %strong (cores are solid)
+              %br/
+              The core (Def.
+              = succeed ")" do
+                %a.maruku-ref{:href => "#CoreOfARing"}
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi R
+                  %annotation{:encoding => "application/x-tex"} R
+              is solid (Def.
+              = succeed "):" do
+                %a.maruku-ref{:href => "#SolidRing"}
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi c
+                    %mi c
+                    %mi R
+                    %mspace{:width => "thickmathspace"}
+                    %mo ≃
+                    %mspace{:width => "thickmathspace"}
+                    %mi c
+                    %mi R
+                    %mspace{:width => "thinmathspace"}
+                    %mo .
+                  %annotation{:encoding => "application/x-tex"}
+                    c c R
+                    \\;\simeq\;
+                    c R
+                    \\,.
+            %p
+          (
+          %a{:href => "#BousfieldKan72"}> Bousfield-Kan 72, prop. 2.2
+          )
+          %h2#examples Examples
+          .num_theorem
+            %h6#theorem Theorem
+            %p
+              The following is the complete list of solid rings (Def.
+              = succeed ")" do
+                %a.maruku-ref{:href => "#SolidRing"}
+              = succeed ":" do
+                %a.existingWikiWord{:href => "/nlab/show/isomorphism"} isomorphism
+            %ol
+              %li
+                %p
+                  The
+                  %a.existingWikiWord{:href => "/nlab/show/localization+of+a+ring"} localization
+                  of the ring of
+                  %a.existingWikiWord{:href => "/nlab/show/integers"} integers
+                  at a
+                  %a.existingWikiWord{:href => "/nlab/show/subset"} subset
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi Pr
+                      %annotation{:encoding => "application/x-tex"} Pr
+                  of
+                  %a.existingWikiWord{:href => "/nlab/show/prime+numbers"} prime numbers
+                .maruku-equation
+                  %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi ℤ
+                        %mo{:maxsize => "1.2em", :minsize => "1.2em"} [
+                        %msup
+                          %mi Pr
+                          %mrow
+                            %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                            %mn 1
+                        %mo{:maxsize => "1.2em", :minsize => "1.2em"} ]
+                        %mspace{:width => "thinmathspace"}
+                        %mo ;
+                      %annotation{:encoding => "application/x-tex"}
+                        \\mathbb{Z}\big[Pr^{-1}\big]
+                        \\,;
+              %li
+                %p
+                  the
+                  %a.existingWikiWord{:href => "/nlab/show/integers+modulo+n"} integers modulo n
+                .maruku-equation
+                  %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi ℤ
+                        %mo{:stretchy => "false"} /
+                        %mi n
+                        %mi ℤ
+                      %annotation{:encoding => "application/x-tex"}
+                        \\mathbb{Z}/n\mathbb{Z}
+                %p
+                  for
+                  = succeed "," do
+                    %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                      %semantics
+                        %mrow
+                          %mi n
+                          %mo ∈
+                          %mi ℕ
+                        %annotation{:encoding => "application/x-tex"} n \in \mathbb{N}
+                  = succeed ";" do
+                    %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                      %semantics
+                        %mrow
+                          %mi n
+                          %mo ≥
+                          %mn 2
+                        %annotation{:encoding => "application/x-tex"} n \geq 2
+              %li
+                %p
+                  the
+                  %a.existingWikiWord{:href => "/nlab/show/Cartesian+product"} product
+                  rings
+                .maruku-equation
+                  %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi ℤ
+                        %mo{:stretchy => "false"} [
+                        %msup
+                          %mi J
+                          %mrow
+                            %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                            %mn 1
+                        %mo{:stretchy => "false"} ]
+                        %mo ×
+                        %mi ℤ
+                        %mo{:stretchy => "false"} /
+                        %mi n
+                        %mi ℤ
+                        %mspace{:width => "thinmathspace"}
+                        %mo ,
+                      %annotation{:encoding => "application/x-tex"}
+                        \\mathbb{Z}[J^{-1}]
+                        \\times
+                        \\mathbb{Z}/n\mathbb{Z}
+                        \\,,
+                %p
+                  for
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi n
+                        %mo ≥
+                        %mn 2
+                      %annotation{:encoding => "application/x-tex"} n \geq 2
+                  such that each
+                  %a.existingWikiWord{:href => "/nlab/show/prime+factor"} prime factor
+                  of
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi n
+                      %annotation{:encoding => "application/x-tex"} n
+                  is contained in the set of primes
+                  = succeed ";" do
+                    %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                      %semantics
+                        %mrow
+                          %mi J
+                        %annotation{:encoding => "application/x-tex"} J
+              %li
+                %p the ring cores of product rings
+                .maruku-equation
+                  %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi c
+                        %mo{:stretchy => "false"} (
+                        %mi ℤ
+                        %mo{:stretchy => "false"} [
+                        %msup
+                          %mi J
+                          %mrow
+                            %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                            %mn 1
+                        %mo{:stretchy => "false"} ]
+                        %mo ×
+                        %munder
+                          %mo{:lspace => "thinmathspace", :rspace => "thinmathspace"} ∏
+                          %mrow
+                            %mi p
+                            %mo ∈
+                            %mi K
+                        %mi ℤ
+                        %mo{:stretchy => "false"} /
+                        %msup
+                          %mi p
+                          %mrow
+                            %mi e
+                            %mo{:stretchy => "false"} (
+                            %mi p
+                            %mo{:stretchy => "false"} )
+                        %mo{:stretchy => "false"} )
+                        %mspace{:width => "thinmathspace"}
+                        %mo ,
+                      %annotation{:encoding => "application/x-tex"}
+                        c(\mathbb{Z}[J^{-1}] \times \underset{p \in K}{\prod} \mathbb{Z}/p^{e(p)})
+                        \\,,
+                %p
+                  where
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi K
+                        %mo ⊂
+                        %mi J
+                      %annotation{:encoding => "application/x-tex"} K \subset J
+                  are infinite sets of primes and
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi e
+                        %mo{:stretchy => "false"} (
+                        %mi p
+                        %mo{:stretchy => "false"} )
+                      %annotation{:encoding => "application/x-tex"} e(p)
+                  are positive natural numbers.
+          %p
+            (
+            %a{:href => "#BousfieldKan72"}> Bousfield-Kan 72, prop. 3.5
+            ,
+            = succeed ")" do
+              %a{:href => "#Bousfield79"} Bousfield 79, p. 276
+          %p In particular:
+          %p
+          #RationalNumbersFormASolidRing.num_remark
+            %h6 Example
+            %p
+              %strong
+                (
+                %a.existingWikiWord{:href => "/nlab/show/rational+numbers"} rational numbers
+                form a
+                = succeed ")" do
+                  %a.existingWikiWord{:href => "/nlab/show/solid+ring"} solid ring
+              %br/
+              The ring
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi ℚ
+                  %annotation{:encoding => "application/x-tex"} \mathbb{Q}
+              of
+              %a.existingWikiWord{:href => "/nlab/show/rational+numbers"} rational numbers
+              is a
+              = succeed "." do
+                %a.existingWikiWord{:href => "/nlab/show/solid+ring"} solid ring
+          .proof
+            %h6 Proof
+            %p
+              Since every
+              %a.existingWikiWord{:href => "/nlab/show/rational+number"} rational number
+              may be written as
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi r
+                    %mspace{:width => "thinmathspace"}
+                    %mo =
+                    %mspace{:width => "thinmathspace"}
+                    %mi q
+                    %mo{:stretchy => "false"} /
+                    %mi p
+                    %mspace{:width => "thinmathspace"}
+                    %mo =
+                    %mspace{:width => "thinmathspace"}
+                    %mstyle{:displaystyle => "false"}
+                      %mfrac
+                        %mn 1
+                        %mi p
+                    %mo ⋅
+                    %mi q
+                    %mspace{:width => "thinmathspace"}
+                    %mo ∈
+                    %mspace{:width => "thinmathspace"}
+                    %mi ℚ
+                  %annotation{:encoding => "application/x-tex"}
+                    r \,=\,q / p \,=\, \tfrac{1}{p} \cdot q \,\in\, \mathbb{Q}
+            %p
+              for some
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi p
+                      %mo ,
+                      %mi q
+                      %mspace{:width => "thinmathspace"}
+                      %mo ∈
+                      %mspace{:width => "thinmathspace"}
+                      %mi ℤ
+                    %annotation{:encoding => "application/x-tex"} p, q \,\in\, \mathbb{Z}
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mrow
+                      %mtable{:columnalign => "right left right left right left right left right left", :columnspacing => "0em", :displaystyle => "true"}
+                        %mtr
+                          %mtd
+                            %mn 1
+                            %mo ⊗
+                            %mi r
+                          %mtd
+                            %mspace{:width => "thickmathspace"}
+                            %mo =
+                            %mspace{:width => "thickmathspace"}
+                            %mn 1
+                            %mspace{:width => "thinmathspace"}
+                            %mo ⊗
+                            %mspace{:width => "thinmathspace"}
+                            %mo{:maxsize => "1.2em", :minsize => "1.2em"} (
+                            %mstyle{:displaystyle => "false"}
+                              %mfrac
+                                %mn 1
+                                %mi p
+                            %mo ⋅
+                            %mi q
+                            %mo{:maxsize => "1.2em", :minsize => "1.2em"} )
+                        %mtr
+                          %mtd
+                          %mtd
+                            %mspace{:width => "thickmathspace"}
+                            %mo =
+                            %mspace{:width => "thickmathspace"}
+                            %mo{:maxsize => "1.2em", :minsize => "1.2em"} (
+                            %mstyle{:displaystyle => "false"}
+                              %mfrac
+                                %mn 1
+                                %mi p
+                            %mo ⋅
+                            %mi p
+                            %mo{:maxsize => "1.2em", :minsize => "1.2em"} )
+                            %mspace{:width => "thinmathspace"}
+                            %mo ⊗
+                            %mspace{:width => "thinmathspace"}
+                            %mo{:maxsize => "1.2em", :minsize => "1.2em"} (
+                            %mstyle{:displaystyle => "false"}
+                              %mfrac
+                                %mn 1
+                                %mi p
+                            %mo ⋅
+                            %mi q
+                            %mo{:maxsize => "1.2em", :minsize => "1.2em"} )
+                        %mtr
+                          %mtd
+                          %mtd
+                            %mspace{:width => "thickmathspace"}
+                            %mo =
+                            %mspace{:width => "thickmathspace"}
+                            %mstyle{:displaystyle => "false"}
+                              %mfrac
+                                %mn 1
+                                %mi p
+                            %mspace{:width => "thinmathspace"}
+                            %mo ⊗
+                            %mspace{:width => "thinmathspace"}
+                            %mo{:maxsize => "1.2em", :minsize => "1.2em"} (
+                            %mi p
+                            %mo ⋅
+                            %mstyle{:displaystyle => "false"}
+                              %mfrac
+                                %mn 1
+                                %mi p
+                            %mo ⋅
+                            %mi q
+                            %mo{:maxsize => "1.2em", :minsize => "1.2em"} )
+                        %mtr
+                          %mtd
+                          %mtd
+                            %mspace{:width => "thickmathspace"}
+                            %mo =
+                            %mspace{:width => "thickmathspace"}
+                            %mstyle{:displaystyle => "false"}
+                              %mfrac
+                                %mn 1
+                                %mi p
+                            %mspace{:width => "thinmathspace"}
+                            %mo ⊗
+                            %mspace{:width => "thinmathspace"}
+                            %mo{:maxsize => "1.2em", :minsize => "1.2em"} (
+                            %mi q
+                            %mo ⋅
+                            %mn 1
+                            %mo{:maxsize => "1.2em", :minsize => "1.2em"} )
+                        %mtr
+                          %mtd
+                          %mtd
+                            %mspace{:width => "thickmathspace"}
+                            %mo =
+                            %mspace{:width => "thickmathspace"}
+                            %mo{:maxsize => "1.2em", :minsize => "1.2em"} (
+                            %mstyle{:displaystyle => "false"}
+                              %mfrac
+                                %mn 1
+                                %mi p
+                            %mo ⋅
+                            %mi q
+                            %mo{:maxsize => "1.2em", :minsize => "1.2em"} )
+                            %mspace{:width => "thinmathspace"}
+                            %mo ⊗
+                            %mspace{:width => "thinmathspace"}
+                            %mn 1
+                        %mtr
+                          %mtd
+                          %mtd
+                            %mspace{:width => "thickmathspace"}
+                            %mo =
+                            %mspace{:width => "thickmathspace"}
+                            %mi r
+                            %mspace{:width => "thinmathspace"}
+                            %mo ⊗
+                            %mspace{:width => "thinmathspace"}
+                            %mn 1
+                            %mspace{:width => "thickmathspace"}
+                            %mspace{:width => "thickmathspace"}
+                            %mspace{:width => "thickmathspace"}
+                            %mspace{:width => "thickmathspace"}
+                            %mspace{:width => "thickmathspace"}
+                            %mspace{:width => "thickmathspace"}
+                            %mo ∈
+                            %mspace{:width => "thickmathspace"}
+                            %mi ℚ
+                            %msub
+                              %mo ⊗
+                              %mrow
+                                %msub
+                                  %mrow
+                                  %mi ℤ
+                            %mi ℚ
+                            %mspace{:width => "thinmathspace"}
+                            %mo .
+                  %annotation{:encoding => "application/x-tex"}
+                    \\begin{aligned}
+                    1 \otimes r
+                    \&amp;
+                    \\;=\;
+                    1
+                    \\,\otimes\,
+                    \\big( \tfrac{1}{p} \cdot q \big)
+                    \\\
+                    \&amp; \;=\;
+                    \\big( \tfrac{1}{p} \cdot p \big)
+                    \\,\otimes\,
+                    \\big( \tfrac{1}{p} \cdot q \big)
+                    \\\
+                    \&amp; \;=\;
+                    \\tfrac{1}{p}
+                    \\,\otimes\,
+                    \\big(
+                    p \cdot \tfrac{1}{p} \cdot q
+                    \\big)
+                    \\\
+                    \&amp; \;=\;
+                    \\tfrac{1}{p}
+                    \\,\otimes\,
+                    \\big(
+                    q \cdot 1
+                    \\big)
+                    \\\
+                    \&amp; \;=\;
+                    \\big(
+                    \\tfrac{1}{p} \cdot q
+                    \\big)
+                    \\,\otimes\,
+                    1
+                    \\\
+                    \&amp; \;=\;
+                    r \,\otimes\, 1
+                    \\;\;\;\;\;\;
+                    \\in
+                    \\;
+                    \\mathbb{Q} \otimes_{{}_{\mathbb{Z}}} \mathbb{Q}
+                    \\,.
+                    \\end{aligned}
+            %p
+              Here the third and the fifth line use the
+              %a.existingWikiWord{:href => "/nlab/show/equivalence+relation"} equivalence relation
+              defining the
+              %a.existingWikiWord{:href => "/nlab/show/tensor+product+of+abelian+groups"} tensor product of abelian groups
+              for the case of rings:
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi r
+                      %mn 1
+                    %mspace{:width => "thinmathspace"}
+                    %mo ⊗
+                    %mspace{:width => "thinmathspace"}
+                    %mo{:maxsize => "1.2em", :minsize => "1.2em"} (
+                    %mi n
+                    %mo ⋅
+                    %msub
+                      %mi r
+                      %mn 2
+                    %mo{:maxsize => "1.2em", :minsize => "1.2em"} )
+                    %mspace{:width => "thinmathspace"}
+                    %mo =
+                    %mspace{:width => "thinmathspace"}
+                    %mo{:maxsize => "1.2em", :minsize => "1.2em"} (
+                    %msub
+                      %mi r
+                      %mn 1
+                    %mspace{:width => "thinmathspace"}
+                    %mo ⋅
+                    %mspace{:width => "thinmathspace"}
+                    %mi n
+                    %mo{:maxsize => "1.2em", :minsize => "1.2em"} )
+                    %mspace{:width => "thinmathspace"}
+                    %mo ⊗
+                    %mspace{:width => "thinmathspace"}
+                    %msub
+                      %mi r
+                      %mn 2
+                    %mspace{:width => "thickmathspace"}
+                    %mspace{:width => "thickmathspace"}
+                    %mspace{:width => "thickmathspace"}
+                    %mo ∈
+                    %mspace{:width => "thickmathspace"}
+                    %mi ℚ
+                    %msub
+                      %mo ⊗
+                      %mrow
+                        %msub
+                          %mrow
+                          %mi ℤ
+                    %mi ℚ
+                    %mspace{:width => "thinmathspace"}
+                    %mo ,
+                    %mspace{:width => "thickmathspace"}
+                    %mspace{:width => "thickmathspace"}
+                    %mspace{:width => "thickmathspace"}
+                    %mspace{:width => "thickmathspace"}
+                    %mtext for
+                    %mspace{:width => "thickmathspace"}
+                    %mi n
+                    %mspace{:width => "thinmathspace"}
+                    %mo ∈
+                    %mspace{:width => "thinmathspace"}
+                    %mi ℤ
+                    %mspace{:width => "thinmathspace"}
+                    %mo .
+                  %annotation{:encoding => "application/x-tex"}
+                    r_1
+                    \\,\otimes\,
+                    \\big( n \cdot r_2 \big)
+                    \\,=\,
+                    \\big(
+                    r_1
+                    \\,\cdot\,
+                    n
+                    \\big)
+                    \\,\otimes\,
+                    r_2
+                    \\;\;\;
+                    \\in
+                    \\;
+                    \\mathbb{Q} \otimes_{{}_{\mathbb{Z}}} \mathbb{Q}
+                    \\,,
+                    \\;\;\;\;
+                    \\text{for}\; n \,\in\, \mathbb{Z}
+                    \\,.
+            %p
+          %p
+          #NoOtherCharZeroFieldIsSolid.num_remark
+            %h6 Remark
+            %p
+              %strong
+                (no other
+                %a.existingWikiWord{:href => "/nlab/show/field"} field
+                of
+                %a.existingWikiWord{:href => "/nlab/show/characteristic+zero"} characteristic zero
+                is a
+                = succeed ")" do
+                  %a.existingWikiWord{:href => "/nlab/show/solid+ring"} solid ring
+              %br/
+              The same argument shows that no other
+              %a.existingWikiWord{:href => "/nlab/show/field"} field
+              of
+              %a.existingWikiWord{:href => "/nlab/show/characteristic+zero"} characteristic zero
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi k
+                  %annotation{:encoding => "application/x-tex"} k
+              is a solid ring, since, being a proper
+              %a.existingWikiWord{:href => "/nlab/show/superset"} superset
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi 𝕂
+                      %mo ⊃
+                      %mi ℚ
+                    %annotation{:encoding => "application/x-tex"} \mathbb{K} \supset \mathbb{Q}
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi k
+                    %mo ∈
+                    %mi 𝕂
+                  %annotation{:encoding => "application/x-tex"} k \in \mathbb{K}
+              for which there are
+              %em no
+              pairs of
+              %a.existingWikiWord{:href => "/nlab/show/integers"} integers
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi q
+                    %annotation{:encoding => "application/x-tex"} q
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi p
+                  %annotation{:encoding => "application/x-tex"} p
+              such that
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi p
+                      %mo ⋅
+                      %mi k
+                      %mspace{:width => "thinmathspace"}
+                      %mo =
+                      %mspace{:width => "thinmathspace"}
+                      %mi q
+                    %annotation{:encoding => "application/x-tex"} p \cdot k \,=\, q
+              %a.existingWikiWord{:href => "/nlab/show/real+numbers"} real numbers
+              are not a
+              = succeed "." do
+                %a.existingWikiWord{:href => "/nlab/show/solid+ring"} solid ring
+            %p
+              This is, ultimately, the reason why the
+              %a.existingWikiWord{:href => "/nlab/show/derived+adjunction"} derived
+              = succeed "-" do
+                %a.existingWikiWord{:href => "/nlab/show/PL+de+Rham+complex"} PL de Rham
+              %a.existingWikiWord{:href => "/nlab/show/Quillen+adjunction+between+simplicial+sets+and+connective+dgc-algebras"} Quillen adjunction between simplicial sets and connective dgc-algebras
+              is
+              %a.existingWikiWord{:href => "/nlab/show/idempotent+adjunction"} idempotent
+              only over
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi k
+                    %mo =
+                    %mi ℚ
+                  %annotation{:encoding => "application/x-tex"} k = \mathbb{Q}
+              (where it models
+              %a.existingWikiWord{:href => "/nlab/show/rationalization"} rationalization
+              of
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/homotopy+types"} homotopy types
+              = succeed ");" do
+                %em
+                  %a.existingWikiWord{:href => "/nlab/show/fundamental+theorem+of+dg-algebraic+rational+homotopy+theory"} fundamental theorem of dg-algebraic rational homotopy theory
+              = succeed "." do
+                %em
+                  %a.existingWikiWord{:href => "/nlab/show/real+homotopy+theory"} real homotopy theory
+          %h2#related_concepts Related concepts
+          %ul
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/nilpotent+completion+of+spectra"} nilpotent completion of spectra
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Adams+spectral+sequence"} Adams spectral sequence
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/idempotent+monoid+in+a+monoidal+category"} idempotent monoid in a monoidal category
+          %h2#references References
+          %p The original articles:
+          %ul
+            %li#BousfieldKan72
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Aldridge+Bousfield"}> Aldridge Bousfield
+                ,
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/Daniel+Kan"} Daniel Kan
+                = succeed "," do
+                  %em The core of a ring
+                = succeed ")" do
+                  %a{:href => "https://doi.org/10.1016/0022-4049(72)90023-0"} doi:10.1016/0022-4049(72)90023-0
+            %li#Bousfield79
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Aldridge+Bousfield"}> Aldridge Bousfield
+                ,
+                = succeed "," do
+                  %em The localization of spectra with respect to homology
+                = succeed ")" do
+                  %a{:href => "http://www.uio.no/studier/emner/matnat/math/MAT9580/v12/undervisningsmateriale/bousfield-topology-1979.pdf"} pdf
+          %p The concept re-appears under the name “T-rings” in
+          %ul
+            %li#BowshellSchultz77
+              R. A. Bowshell and P. Schultz,
+              = succeed "," do
+                %em Unital rings whose additive endomorphisms commute
+              = succeed ")" do
+                %a{:href => "https://doi.org/10.1007/BF01420290"} doi10.1007/BF01420290
+          %p
+            and under the name “
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}>
+              %semantics
+                %mrow
+                  %mi ℤ
+                %annotation{:encoding => "application/x-tex"} \mathbb{Z}
+            \-epimorphs” in:
+          %ul
+            %li#DicksStephenson84
+              Warren Dicks, W. Stephenson,
+              = succeed "," do
+                %em Epimorphs and Dominions of Dedekind Domains
+              = succeed ")" do
+                %a{:href => "https://doi.org/10.1112/jlms/s2-29.2.224"} doi:10.1112/jlms/s2-29.2.224
+          %p
+            Generalization to
+            = succeed ":" do
+              %a.existingWikiWord{:href => "/nlab/show/monoids+in+monoidal+categories"} monoids in monoidal categories
+          %ul
+            %li#Gutierrez13
+              %a.existingWikiWord{:href => "/nlab/show/Javier+J.+Guti%C3%A9rrez"}> Javier J. Gutiérrez
+              ,
+              = succeed "," do
+                %em On solid and rigid monoids in monoidal categories
+              = succeed ")" do
+                %a{:href => "https://arxiv.org/abs/1303.5265"} arXiv:1303.5265
+        .revisedby
+          %p
+            Last revised on December 12, 2023 at 10:47:41.
+            See the
+            %a{:href => "/nlab/history/core+of+a+ring", :style => "color: #005c19"} history
+            of this page for a list of all contributions to it.
+        .navigation.navfoot
+          %a#edit.navlink{:accesskey => "E", :href => "/nlab/edit/core+of+a+ring", :rel => "nofollow"} Edit
+          %a{:href => "https://nforum.ncatlab.org/discussion/7192/#Item_17"} Discuss
+          %span.backintime
+            %a#to_previous_revision.navlinkbackintime{:accesskey => "B", :href => "/nlab/revision/core+of+a+ring/18", :rel => "nofollow"} Previous revision
+          %a#see_changes.navlink{:accesskey => "C", :href => "/nlab/show/diff/core+of+a+ring", :rel => "nofollow"} Changes from previous revision
+          %a#history.navlink{:accesskey => "S", :href => "/nlab/history/core+of+a+ring", :rel => "nofollow"} History (18 revisions)
+          %a{:href => "/nlab/show/core+of+a+ring/cite", :style => "color: black"} Cite
+          %a#view_print{:accesskey => "p", :href => "/nlab/print/core+of+a+ring", :rel => "nofollow"} Print
+          %a#view_source{:href => "/nlab/source/core+of+a+ring", :rel => "nofollow"} Source
+      / Content
+    / Container

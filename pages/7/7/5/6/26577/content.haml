@@ -1,0 +1,1954 @@
+!!! XML
+!!! 1.1
+%html{:xmlns => "http://www.w3.org/1999/xhtml"}
+  %head
+    %title
+      Bayesian inversion in nLab
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:content => "index,follow", :name => "robots"}/
+    %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/
+    %link{:href => "/stylesheets/instiki.css?1676280126", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/stylesheets/mathematics.css?1660229990", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/stylesheets/syntax.css?1660229990", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/stylesheets/nlab.css?1676280126", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css", :rel => "stylesheet", :type => "text/css"}/
+    :css
+      h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+        color: #226622;
+      }
+      a:visited.existingWikiWord {
+        color: #164416;
+      }
+    :css
+      <!--/*--><![CDATA[/*><!--*/
+          .toc ul {margin: 0; padding: 0;}
+      .toc ul ul {margin: 0; padding: 0 0 0 10px;}
+      .toc li > p {margin: 0}
+      .toc ul li {list-style-type: none; position: relative;}
+      .toc div {border-top:1px dotted #ccc;}
+      .rightHandSide h2 {font-size: 1.5em;color:#008B26}
+      table.plaintable {
+          border-collapse:collapse;
+          margin-left:30px;
+          border:0;
+      }
+      .plaintable td {border:1px solid #000; padding: 3px;}
+      .plaintable th {padding: 3px;}
+      .plaintable caption {
+          font-weight: bold;
+          font-size:1.1em;
+          text-align:center;
+          margin-left:30px;
+      }
+          
+         
+      /* Query boxes for questioning and answering mechanism */
+      div.query{
+      background: #f6fff3;
+      border: solid #ce9;
+      border-width: 2px 1px;
+      padding: 0 1em;
+      margin: 0 1em;
+      max-height: 20em;
+      overflow: auto;
+      }
+      
+      /* Standout boxes for putting important text */
+      div.standout{
+      background: #fff1f1;
+      border: solid black;
+      border-width: 2px 1px;
+      padding: 0 1em;
+      margin: 0 1em;
+      overflow: auto;
+      }
+      
+      /* Icon for links to n-category arXiv documents 
+       (commented out for now i.e. disabled)
+      a[href*="http://arxiv.org/"] {
+        background-image: url(../files/arXiv_icon.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 22px;
+        } */
+          
+      /* Icon for links to n-category cafe posts (disabled) 
+      a[href*="http://golem.ph.utexas.edu/category"] {
+        background-image: url(../files/n-cafe_5.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 25px;
+        } */
+      
+      /* Icon for links to pdf files (disabled)
+      a[href$=".pdf"] {
+        background-image: url(../files/pdficon_small.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 25px;
+        } */
+      
+      /* Icon for links to pages, etc. -inside- pdf files (disabled)
+      a[href*=".pdf#"] {
+        background-image: url(../files/pdf_entry.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 25px;
+        } */
+      
+      a.existingWikiWord {
+      color: #226622;
+      }
+      
+      a.existingWikiWord:visited {
+      color: #226622;
+      }
+      
+      
+      a.existingWikiWord[title] {
+      border: 0px;
+      color: #aa0505;
+      text-decoration: none;
+      }
+          
+      a.existingWikiWord[title]:visited {
+      border: 0px;
+      color: #551111;
+      text-decoration: none;
+      }
+      
+      a[href^="http://"] {
+      border: 0px;
+      color: #003399;
+      }
+      
+      a[href^="http://"]:visited {
+      border: 0px;
+      color: #330066;
+      }
+      
+      a[href^="https://"] {
+      border: 0px;
+      color: #003399;
+      }
+      
+      a[href^="https://"]:visited {
+      border: 0px;
+      color: #330066;
+      }
+      
+      div.dropDown .hide {
+      display: none;
+      }
+      
+      div.dropDown:hover .hide {
+      display:block;
+      }
+      
+      div.clickDown .hide {
+      display: none;
+      }
+      
+      div.clickDown:focus {
+      outline:none;
+      }
+      
+      div.clickDown:focus .hide, div.clickDown:hover .hide {
+      display: block;
+      }
+      
+      div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+      display:block;
+      }
+      
+      div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+      display:none;
+      }
+      
+      div.clickDown .clickToReveal:after {
+      content: "A(Hover to reveal, click to "hold")";
+      font-size: 60%;
+      }
+      
+      div.clickDown .clickToHide:after {
+      content: "A(Click to hide)";
+      font-size: 60%;
+      }
+      div.clickDown .clickToHide, div.clickDown .clickToReveal {
+      white-space: pre-wrap;
+      }
+      
+      .un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+      margin-left: 1em;
+      }
+      
+      span.theorem_label {
+      margin-left: -1em;
+      }
+      .proof span.theorem_label {
+      margin-left: 0em;
+      }
+      :target {
+          background-color: #BBBBBB;
+          border-radius: 5pt;
+      }
+      
+        /*]]>*/-->
+    %script{:src => "/javascripts/prototype.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/effects.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/dragdrop.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/controls.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/application.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/page_helper.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/thm_numbering.js?1660229990", :type => "text/javascript"}
+    %script{:type => "text/x-mathjax-config"}
+      :cdata
+        <!--//--><![CDATA[//><!--
+        MathJax.Ajax.config.path["Contrib"] = "/MathJax";
+        MathJax.Hub.Config({
+        MathML: { useMathMLspacing: true },
+        "HTML-CSS": { scale: 90,
+        extensions: ["handle-floats.js"]
+        }
+        });
+        MathJax.Hub.Queue( function () {
+        var fos = document.getElementsByTagName('foreignObject');
+        for (var i = 0; i < fos.length; i++) {
+        MathJax.Hub.Typeset(fos[i]);
+        }
+        });
+        \//--><!]]>
+    :javascript
+      <!--//--><![CDATA[//><!--
+      window.addEventListener("DOMContentLoaded", function () {
+        var div = document.createElement('div');
+        var math = document.createElementNS('http://www.w3.org/1998/Math/MathML', 'math');
+        document.body.appendChild(div);
+        div.appendChild(math);
+      // Test for MathML support comparable to WebKit version https://trac.webkit.org/changeset/203640 or higher.
+        div.setAttribute('style', 'font-style: italic');
+        var mathml_unsupported = !(window.getComputedStyle(div.firstChild).getPropertyValue('font-style') === 'normal');
+        div.parentNode.removeChild(div);
+        if (mathml_unsupported) {
+          // MathML does not seem to be supported...
+          var s = document.createElement('script');
+          s.src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=MML_HTMLorMML-full";
+          document.querySelector('head').appendChild(s);
+        } else {
+          document.head.insertAdjacentHTML("beforeend", '<style>svg[viewBox] {max-width: 100%}</style>');
+        }
+      });
+      //--><!]]>
+    %link{:href => "https://ncatlab.org/nlab/atom_with_headlines", :rel => "alternate", :title => "Atom with headlines", :type => "application/atom+xml"}/
+    %link{:href => "https://ncatlab.org/nlab/atom_with_content", :rel => "alternate", :title => "Atom with full content", :type => "application/atom+xml"}/
+    :javascript
+      document.observe("dom:loaded", function() {
+        generateThmNumbers();
+      });
+  %body
+    #Container
+      #Content
+        %h1#pageName
+          %span{:style => "float: left; margin: 0.5em 0.25em -0.25em 0"}
+            %svg{:height => "1.8em", :viewbox => "0 0 190 181", :width => "1.872em", :xmlns => "http://www.w3.org/2000/svg"}
+              %path{:d => "M72.8 145c-1.6 17.3-15.7 10-23.6 20.2-5.6 7.3 4.8 15 11.4 15 11.5-.2 19-13.4 26.4-20.3 3.3-3 8.2-4 11.2-7.2a14 14 0 0 0 2.9-11.1c-1.4-9.6-12.4-18.6-16.9-27.2-5-9.6-10.7-27.4-24.1-27.7-17.4-.3-.4 26 4.7 30.7 2.4 2.3 5.4 4.1 7.3 6.9 1.6 2.3 2.1 5.8-1 7.2-5.9 2.6-12.4-6.3-15.5-10-8.8-10.6-15.5-23-26.2-31.8-5.2-4.3-11.8-8-18-3.7-7.3 4.9-4.2 12.9.2 18.5a81 81 0 0 0 30.7 23c3.3 1.5 12.8 5.6 10 10.7-2.5 5.2-11.7 3-15.6 1.1-8.4-3.8-24.3-21.3-34.4-13.7-3.5 2.6-2.3 7.6-1.2 11.1 2.8 9 12.2 17.2 20.9 20.5 17.3 6.7 34.3-8 50.8-12.1z", :fill => "#226622"}
+              %path{:d => "M145.9 121.3c-.2-7.5 0-19.6-4.5-26-5.4-7.5-12.9-1-14.1 5.8-1.4 7.8 2.7 14.1 4.8 21.3 3.4 12 5.8 29-.8 40.1-3.6-6.7-5.2-13-7-20.4-2.1-8.2-12.8-13.2-15.1-1.9-2 9.7 9 21.2 12 30.1 1.2 4 2 8.8 6.4 10.3 6.9 2.3 13.3-4.7 17.7-8.8 12.2-11.5 36.6-20.7 43.4-36.4 6.7-15.7-13.7-14-21.3-7.2-9.1 8-11.9 20.5-23.6 25.1 7.5-23.7 31.8-37.6 38.4-61.4 2-7.3-.8-29.6-13-19.8-14.5 11.6-6.6 37.6-23.3 49.2z", :fill => "#a41e32"}
+              %path{:d => "M86.3 47.5c0-13-10.2-27.6-5.8-40.4 2.8-8.4 14.1-10.1 17-1 3.8 11.6-.3 26.3-1.8 38 11.7-.7 10.5-16 14.8-24.3 2.1-4.2 5.7-9.1 11-6.7 6 2.7 7.4 9.2 6.6 15.1-2.2 14-12.2 18.8-22.4 27-3.4 2.7-8 6.6-5.9 11.6 2 4.4 7 4.5 10.7 2.8 7.4-3.3 13.4-16.5 21.7-16 14.6.7 12 21.9.9 26.2-5 1.9-10.2 2.3-15.2 3.9-5.8 1.8-9.4 8.7-15.7 8.9-6.1.1-9-6.9-14.3-9-14.4-6-33.3-2-44.7-14.7-3.7-4.2-9.6-12-4.9-17.4 9.3-10.7 28 7.2 35.7 12 2 1.1 11 6.9 11.4 1.1.4-5.2-10-8.2-13.5-10-11.1-5.2-30-15.3-35-27.3-2.5-6 2.8-13.8 9.4-13.6 6.9.2 13.4 7 17.5 12C70.9 34 75 43.8 86.3 47.4z", :fill => "#193c78"}
+          %span.webName nLab
+          Bayesian inversion
+        .navigation
+          %span.skipNav
+            %a{:href => "#navEnd"} Skip the Navigation Links
+            |
+          %span{:style => "display:inline-block; width: 0.3em;"}
+          %a{:accesskey => "H", :href => "/nlab/show/HomePage", :title => "Home page"} Home Page
+          |
+          %a{:accesskey => "A", :href => "/nlab/all_pages", :title => "List of all pages"} All Pages
+          |
+          %a{:accesskey => "U", :href => "/nlab/latest_revisions", :title => "Latest edits and page creations"} Latest Revisions
+          |
+          %a{:href => "https://nforum.ncatlab.org/discussion/17722/#Item_6", :style => "color: black", :title => "Discuss this page in its dedicated thread on the nForum"} Discuss this page
+          |
+          %form#navigationSearchForm{"accept-charset" => "utf-8", :action => "/nlab/search", :method => "get"}
+            %fieldset.search
+              %input#searchField{:name => "query", :onblur => "this.value == '' ? this.value = 'Search' : true", :onfocus => "this.value == 'Search' ? this.value = '' : true", :style => "display:inline-block; float: left;", :type => "text", :value => "Search"}/
+          %span#navEnd
+        #revision
+          %meta{:content => "application/xhtml+xml;charset=utf-8", "http-equiv" => "Content-type"}/
+          %title Contents
+          .rightHandSide
+            .toc.clickDown{:tabindex => "0"}
+              %h3#context Context
+              %h4#measure_and_probability_theory Measure and probability theory
+              .hide
+                %div
+                  %p
+                    %strong
+                      %a.existingWikiWord{:href => "/nlab/show/measure+theory"} measure theory
+                  %p
+                    %strong
+                      %a.existingWikiWord{:href => "/nlab/show/probability+theory"} probability theory
+                  %p
+                    (
+                    %a.existingWikiWord{:href => "/nlab/show/quantum+probability"}> quantum probability
+                    )
+                  %h2#measure_theory Measure theory
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/measurable+space"}> measurable space
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/measurable+locale"} measurable locale
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/measure"}> measure
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/measure+space"} measure space
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/von+Neumann+algebra"} von Neumann algebra
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/geometric+measure+theory"} geometric measure theory
+                  %h2#probability_theory Probability theory
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/probability+space"} probability space
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/probability+distribution"} probability distribution
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/state"} state
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/states+in+AQFT+and+operator+algebra"} in AQFT and operator algebra
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/GNS+construction"} GNS construction
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/Fell%27s+theorem"} Fell's theorem
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/entropy"}> entropy
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/relative+entropy"} relative entropy
+                  %h2#information_geometry Information geometry
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/information+geometry"} information geometry
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/information+metric"} information metric
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Wasserstein+metric"} Wasserstein metric
+                  %h2#thermodynamics Thermodynamics
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/thermodynamics"} thermodynamics
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/second+law+of+thermodynamics"}> second law of thermodynamics
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/generalized+second+law+of+theormodynamics"} generalized second law
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/ergodic+theory"} ergodic theory
+                  %h2#theorems Theorems
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Riesz+representation+theorem"} Riesz representation theorem
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/de+Finetti%27s+theorem"} de Finetti's theorem
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/law+of+large+numbers"} law of large numbers
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Kolmogorov+extension+theorem"} Kolmogorov extension theorem
+                  %h2#applications Applications
+                  %ul
+                    %li
+                      %a.existingWikiWord{:href => "/nlab/show/machine+learning"}> machine learning
+                      ,
+                      %a.existingWikiWord{:href => "/nlab/show/neural+networks"} neural networks
+          %h1#contents Contents
+          .maruku_toc
+            %ul
+              %li
+                %a{:href => "#idea"} Idea
+              %li
+                %a{:href => "#intuition"} Intuition
+              %li
+                %a{:href => "#in_traditional_probability_theory"} In traditional probability theory
+              %ul
+                %li
+                  %a{:href => "#discrete_case"} Discrete case
+                %li
+                  %a{:href => "#measuretheoretic_case"} Measure-theoretic case
+              %li
+                %a{:href => "#in_categorical_probability"} In categorical probability
+              %ul
+                %li
+                  %a{:href => "#in_markov_categories"} In Markov categories
+                %li
+                  %a{:href => "#in_dagger_categories"} In dagger categories
+              %li
+                %a{:href => "#quantum_versions"} Quantum versions
+              %li
+                %a{:href => "#see_also"} See also
+              %li
+                %a{:href => "#references"} References
+          %h2#idea Idea
+          %p
+            In elementary
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/probability+theory"} probability theory
+            %a.existingWikiWord{:href => "/nlab/show/Bayes%27+formula"} Bayes' formula
+            refers to a version of the formula
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi P
+                  %mo{:stretchy => "false"} (
+                  %mi A
+                  %mo{:stretchy => "false"} )
+                  %mspace{:width => "thinmathspace"}
+                  %mi P
+                  %mo{:stretchy => "false"} (
+                  %mi B
+                  %mo{:stretchy => "false"} |
+                  %mi A
+                  %mo{:stretchy => "false"} )
+                  %mspace{:width => "thinmathspace"}
+                  %mo =
+                  %mspace{:width => "thinmathspace"}
+                  %mi P
+                  %mo{:stretchy => "false"} (
+                  %mi B
+                  %mo{:stretchy => "false"} )
+                  %mspace{:width => "thinmathspace"}
+                  %mi P
+                  %mo{:stretchy => "false"} (
+                  %mi A
+                  %mo{:stretchy => "false"} |
+                  %mi B
+                  %mo{:stretchy => "false"} )
+                  %mspace{:width => "thinmathspace"}
+                  %mo ,
+                %annotation{:encoding => "application/x-tex"}
+                  P(A)\,P(B|A) \,=\, P(B)\,P(A|B)
+                  \\,,
+          %p
+            and relates the
+            %a.existingWikiWord{:href => "/nlab/show/conditional+probability"} conditional probability
+            of
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi B
+                %annotation{:encoding => "application/x-tex"} B
+            given
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi A
+                %annotation{:encoding => "application/x-tex"} A
+            to the one of
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi A
+                %annotation{:encoding => "application/x-tex"} A
+            given
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi B
+                  %annotation{:encoding => "application/x-tex"} B
+          %p
+            From the
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/category-theoretic+probability"} category-theoretic point of view
+            = succeed "," do
+              %strong Bayesian inversion
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/dagger+category"} dagger structure
+          %h2#intuition Intuition
+          %p
+            In logical reasoning, implications in general cannot be reversed:
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi A
+                    %mo →
+                    %mi B
+                  %annotation{:encoding => "application/x-tex"} A \to B
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi B
+                    %mo →
+                    %mi A
+                  %annotation{:encoding => "application/x-tex"} B\to A
+          %p
+            In
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/probability+theory"} probability theory
+            %a.existingWikiWord{:href => "/nlab/show/duality"} duality
+            which is absent in pure logical reasoning.
+          %p
+            Consider for example a city in which
+            = succeed "." do
+              %em all taxis are yellow
+            = succeed ".)" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi taxi
+                    %mo →
+                    %mi yellow
+                  %annotation{:encoding => "application/x-tex"} taxi\to yellow
+            %em more likely
+            that it’s a taxi compared to a randomly colored car. This increase in likelihood is larger if the fraction of yellow cars is small. Indeed,
+            %a.existingWikiWord{:href => "/nlab/show/Bayes%27+rule"} Bayes' rule
+            says that
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi P
+                  %mo{:stretchy => "false"} (
+                  %mi taxi
+                  %mo{:stretchy => "false"} |
+                  %mi yellow
+                  %mo{:stretchy => "false"} )
+                  %mo =
+                  %mfrac
+                    %mrow
+                      %mi P
+                      %mo{:stretchy => "false"} (
+                      %mi yellow
+                      %mspace{:width => "thinmathspace"}
+                      %mi taxi
+                      %mo{:stretchy => "false"} )
+                    %mrow
+                      %mi P
+                      %mo{:stretchy => "false"} (
+                      %mi yellow
+                      %mo{:stretchy => "false"} )
+                  %mo =
+                  %mfrac
+                    %mrow
+                      %mi P
+                      %mo{:stretchy => "false"} (
+                      %mi taxi
+                      %mo{:stretchy => "false"} )
+                    %mrow
+                      %mi P
+                      %mo{:stretchy => "false"} (
+                      %mi yellow
+                      %mo{:stretchy => "false"} )
+                  %mo .
+                %annotation{:encoding => "application/x-tex"}
+                  P(taxi|yellow) = \frac{P(yellow\,taxi)}{P(yellow)} = \frac{P(taxi)}{P(yellow)} .
+          %p
+            More generally, in a city where
+            %em most
+            taxis are yellow, there is a high conditional probability that a given taxi is yellow,
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi P
+                  %mo{:stretchy => "false"} (
+                  %mi yellow
+                  %mo{:stretchy => "false"} |
+                  %mi taxi
+                  %mo{:stretchy => "false"} )
+                  %mo .
+                %annotation{:encoding => "application/x-tex"}
+                  P(yellow|taxi) .
+          %p
+            The higher this probability is, the higher is the probability that a given yellow car is a taxi, again according to
+            = succeed ":" do
+              %a.existingWikiWord{:href => "/nlab/show/Bayes%27+rule"} Bayes' rule
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi P
+                  %mo{:stretchy => "false"} (
+                  %mi taxi
+                  %mo{:stretchy => "false"} |
+                  %mi yellow
+                  %mo{:stretchy => "false"} )
+                  %mo =
+                  %mfrac
+                    %mrow
+                      %mi P
+                      %mo{:stretchy => "false"} (
+                      %mi yellow
+                      %mspace{:width => "thinmathspace"}
+                      %mi taxi
+                      %mo{:stretchy => "false"} )
+                    %mrow
+                      %mi P
+                      %mo{:stretchy => "false"} (
+                      %mi yellow
+                      %mo{:stretchy => "false"} )
+                  %mo =
+                  %mfrac
+                    %mrow
+                      %mi P
+                      %mo{:stretchy => "false"} (
+                      %mi taxi
+                      %mo{:stretchy => "false"} )
+                      %mspace{:width => "thinmathspace"}
+                      %mi P
+                      %mo{:stretchy => "false"} (
+                      %mi yellow
+                      %mo{:stretchy => "false"} |
+                      %mi taxi
+                      %mo{:stretchy => "false"} )
+                    %mrow
+                      %mi P
+                      %mo{:stretchy => "false"} (
+                      %mi yellow
+                      %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"}
+                  P(taxi|yellow) = \frac{P(yellow\,taxi)}{P(yellow)} = \frac{P(taxi)\,P(yellow|taxi)}{P(yellow)}
+          %p
+            In
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/categorical+probability"} categorical probability
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mo{:stretchy => "false"} {
+                  %mi taxi
+                  %mo ,
+                  %mi not
+                  %mspace{:width => "thinmathspace"}
+                  %mi taxi
+                  %mo{:stretchy => "false"} }
+                  %mo →
+                  %mo{:stretchy => "false"} {
+                  %mi colors
+                  %mspace{:width => "thinmathspace"}
+                  %mi of
+                  %mspace{:width => "thinmathspace"}
+                  %mi cars
+                  %mo{:stretchy => "false"} }
+                %annotation{:encoding => "application/x-tex"} \{taxi, not\,taxi\}\to\{colors\,of\,cars\}
+            there corresponds a canonical morphism
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo{:stretchy => "false"} {
+                    %mi colors
+                    %mspace{:width => "thinmathspace"}
+                    %mi of
+                    %mspace{:width => "thinmathspace"}
+                    %mi cars
+                    %mo{:stretchy => "false"} }
+                    %mo →
+                    %mo{:stretchy => "false"} {
+                    %mi taxi
+                    %mo ,
+                    %mi not
+                    %mspace{:width => "thinmathspace"}
+                    %mi taxi
+                    %mo{:stretchy => "false"} }
+                  %annotation{:encoding => "application/x-tex"} \{colors\,of\,cars\}\to\{taxi, not\,taxi\}
+            = succeed "." do
+              %em Bayesian inverse
+            %a.existingWikiWord{:href => "/nlab/show/inverse+morphism"} inverse morphism
+            in the sense of category theory, but simply a reversal of the arrow.
+          %p
+            In some cases, this symmetry gives rise to a
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/dagger+category"} dagger category
+          %h2#in_traditional_probability_theory In traditional probability theory
+          %p
+            In traditional
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/probability+theory"} probability theory
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/conditional+probability"} conditional probability
+          %h3#discrete_case Discrete case
+          %p
+            In the discrete case, a
+            %a.existingWikiWord{:href => "/nlab/show/probability+distribution"} probability distribution
+            on a
+            %a.existingWikiWord{:href => "/nlab/show/set"} set
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi X
+                %annotation{:encoding => "application/x-tex"} X
+            is simply a function
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi p
+                  %mo :
+                  %mi X
+                  %mo →
+                  %mo{:stretchy => "false"} [
+                  %mn 0
+                  %mo ,
+                  %mn 1
+                  %mo{:stretchy => "false"} ]
+                %annotation{:encoding => "application/x-tex"} p:X\to[0,1]
+            such that
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %munder
+                    %mo{:lspace => "thinmathspace", :rspace => "thinmathspace"} ∑
+                    %mrow
+                      %mi x
+                      %mo ∈
+                      %mi X
+                  %mi p
+                  %mo{:stretchy => "false"} (
+                  %mi x
+                  %mo{:stretchy => "false"} )
+                  %mo =
+                  %mn 1
+                  %mo .
+                %annotation{:encoding => "application/x-tex"}
+                  \\sum_{x\in X} p(x) = 1 .
+          %p
+            A
+            %a.existingWikiWord{:href => "/nlab/show/stochastic+map"} stochastic map
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi k
+                  %mo :
+                  %mi X
+                  %mo →
+                  %mi Y
+                %annotation{:encoding => "application/x-tex"} k:X\to Y
+            is a function
+            %svg{:height => "51.764pt", :version => "1.2", :viewbox => "0 0 136.786 51.764", :width => "136.786pt", :xmlns => "http://www.w3.org/2000/svg", "xmlns:xlink" => "http://www.w3.org/1999/xlink"}
+              %defs
+                %g
+                  %symbol{:id => "yRtGkAlop6_vSqQJypV3-XiW9v4=-glyph0-0", :overflow => "visible"}
+                    %path{:d => "", :style => "stroke:none;"}
+                  %symbol{:id => "yRtGkAlop6_vSqQJypV3-XiW9v4=-glyph0-1", :overflow => "visible"}
+                    %path{:d => "M 7.0625 -6.046875 L 5.671875 -9.296875 C 5.859375 -9.65625 6.3125 -9.71875 6.484375 -9.734375 C 6.578125 -9.734375 6.734375 -9.75 6.734375 -10 C 6.734375 -10.15625 6.609375 -10.15625 6.515625 -10.15625 C 6.265625 -10.15625 5.96875 -10.125 5.71875 -10.125 L 4.84375 -10.125 C 3.9375 -10.125 3.28125 -10.15625 3.265625 -10.15625 C 3.15625 -10.15625 3 -10.15625 3 -9.875 C 3 -9.734375 3.140625 -9.734375 3.328125 -9.734375 C 4.1875 -9.734375 4.25 -9.578125 4.40625 -9.21875 L 6.171875 -5.09375 L 2.9375 -1.640625 C 2.40625 -1.0625 1.765625 -0.484375 0.671875 -0.4375 C 0.484375 -0.421875 0.375 -0.421875 0.375 -0.15625 C 0.375 -0.109375 0.390625 0 0.546875 0 C 0.765625 0 0.984375 -0.03125 1.1875 -0.03125 L 1.890625 -0.03125 C 2.359375 -0.03125 2.890625 0 3.34375 0 C 3.453125 0 3.625 0 3.625 -0.265625 C 3.625 -0.421875 3.53125 -0.4375 3.4375 -0.4375 C 3.140625 -0.46875 2.9375 -0.625 2.9375 -0.859375 C 2.9375 -1.109375 3.125 -1.296875 3.5625 -1.734375 L 4.875 -3.1875 C 5.203125 -3.53125 6 -4.390625 6.328125 -4.71875 L 7.890625 -1.0625 C 7.90625 -1.03125 7.953125 -0.875 7.953125 -0.859375 C 7.953125 -0.734375 7.625 -0.46875 7.15625 -0.4375 C 7.0625 -0.4375 6.90625 -0.421875 6.90625 -0.15625 C 6.90625 0 7.046875 0 7.125 0 C 7.375 0 7.671875 -0.03125 7.921875 -0.03125 L 9.5625 -0.03125 C 9.828125 -0.03125 10.109375 0 10.375 0 C 10.46875 0 10.640625 0 10.640625 -0.28125 C 10.640625 -0.4375 10.484375 -0.4375 10.359375 -0.4375 C 9.453125 -0.453125 9.4375 -0.515625 9.171875 -1.078125 L 7.21875 -5.6875 L 9.109375 -7.703125 C 9.25 -7.859375 9.59375 -8.21875 9.734375 -8.375 C 10.375 -9.046875 10.96875 -9.65625 12.171875 -9.734375 C 12.3125 -9.75 12.46875 -9.75 12.46875 -10 C 12.46875 -10.15625 12.328125 -10.15625 12.265625 -10.15625 C 12.0625 -10.15625 11.84375 -10.125 11.625 -10.125 L 10.953125 -10.125 C 10.46875 -10.125 9.953125 -10.15625 9.484375 -10.15625 C 9.390625 -10.15625 9.203125 -10.15625 9.203125 -9.890625 C 9.203125 -9.75 9.3125 -9.734375 9.40625 -9.734375 C 9.640625 -9.703125 9.890625 -9.578125 9.890625 -9.296875 L 9.875 -9.265625 C 9.859375 -9.15625 9.828125 -9.015625 9.671875 -8.828125 Z M 7.0625 -6.046875 ", :style => "stroke:none;"}
+                  %symbol{:id => "yRtGkAlop6_vSqQJypV3-XiW9v4=-glyph0-2", :overflow => "visible"}
+                    %path{:d => "M 8.75 -8.515625 L 9.09375 -8.84375 C 9.75 -9.515625 10.296875 -9.6875 10.8125 -9.734375 C 10.984375 -9.75 11.109375 -9.765625 11.109375 -10.015625 C 11.109375 -10.15625 10.96875 -10.15625 10.9375 -10.15625 C 10.75 -10.15625 10.5625 -10.125 10.375 -10.125 L 9.765625 -10.125 C 9.34375 -10.125 8.875 -10.15625 8.46875 -10.15625 C 8.359375 -10.15625 8.203125 -10.15625 8.203125 -9.875 C 8.203125 -9.75 8.34375 -9.734375 8.390625 -9.734375 C 8.828125 -9.703125 8.828125 -9.46875 8.828125 -9.390625 C 8.828125 -9.21875 8.71875 -9 8.421875 -8.65625 L 4.875 -4.59375 L 3.203125 -9.125 C 3.109375 -9.328125 3.109375 -9.359375 3.109375 -9.390625 C 3.109375 -9.703125 3.71875 -9.734375 3.890625 -9.734375 C 4.078125 -9.734375 4.234375 -9.734375 4.234375 -10 C 4.234375 -10.15625 4.109375 -10.15625 4.015625 -10.15625 C 3.765625 -10.15625 3.46875 -10.125 3.21875 -10.125 L 1.5625 -10.125 C 1.296875 -10.125 1.015625 -10.15625 0.765625 -10.15625 C 0.65625 -10.15625 0.484375 -10.15625 0.484375 -9.875 C 0.484375 -9.734375 0.625 -9.734375 0.84375 -9.734375 C 1.578125 -9.734375 1.703125 -9.59375 1.84375 -9.25 L 3.6875 -4.296875 C 3.703125 -4.25 3.75 -4.09375 3.75 -4.046875 C 3.75 -4 3.015625 -1.078125 2.96875 -0.921875 C 2.859375 -0.515625 2.703125 -0.453125 1.75 -0.4375 C 1.5 -0.4375 1.390625 -0.4375 1.390625 -0.15625 C 1.390625 0 1.546875 0 1.59375 0 C 1.859375 0 2.171875 -0.03125 2.453125 -0.03125 L 4.203125 -0.03125 C 4.484375 -0.03125 4.796875 0 5.0625 0 C 5.15625 0 5.34375 0 5.34375 -0.265625 C 5.34375 -0.4375 5.234375 -0.4375 4.984375 -0.4375 C 4.0625 -0.4375 4.0625 -0.53125 4.0625 -0.703125 C 4.0625 -0.796875 4.1875 -1.28125 4.25 -1.578125 L 4.796875 -3.71875 C 4.875 -4.03125 4.875 -4.0625 5.015625 -4.203125 Z M 8.75 -8.515625 ", :style => "stroke:none;"}
+                  %symbol{:id => "yRtGkAlop6_vSqQJypV3-XiW9v4=-glyph0-3", :overflow => "visible"}
+                    %path{:d => "M 2.90625 0.0625 C 2.90625 -0.796875 2.625 -1.4375 2.015625 -1.4375 C 1.53125 -1.4375 1.296875 -1.0625 1.296875 -0.734375 C 1.296875 -0.40625 1.515625 0 2.015625 0 C 2.21875 0 2.375 -0.0625 2.515625 -0.1875 C 2.546875 -0.21875 2.5625 -0.21875 2.578125 -0.21875 C 2.609375 -0.21875 2.609375 -0.015625 2.609375 0.0625 C 2.609375 0.546875 2.515625 1.515625 1.65625 2.484375 C 1.484375 2.65625 1.484375 2.6875 1.484375 2.71875 C 1.484375 2.796875 1.5625 2.875 1.640625 2.875 C 1.75 2.875 2.90625 1.765625 2.90625 0.0625 Z M 2.90625 0.0625 ", :style => "stroke:none;"}
+                  %symbol{:id => "yRtGkAlop6_vSqQJypV3-XiW9v4=-glyph0-4", :overflow => "visible"}
+                    %path{:d => "M 7.046875 -6.0625 C 6.578125 -5.984375 6.390625 -5.625 6.390625 -5.34375 C 6.390625 -4.984375 6.671875 -4.859375 6.890625 -4.859375 C 7.328125 -4.859375 7.640625 -5.25 7.640625 -5.65625 C 7.640625 -6.28125 6.9375 -6.5625 6.3125 -6.5625 C 5.40625 -6.5625 4.890625 -5.671875 4.765625 -5.390625 C 4.421875 -6.5 3.5 -6.5625 3.234375 -6.5625 C 1.703125 -6.5625 0.90625 -4.609375 0.90625 -4.28125 C 0.90625 -4.21875 0.96875 -4.15625 1.078125 -4.15625 C 1.1875 -4.15625 1.21875 -4.234375 1.25 -4.296875 C 1.75 -5.953125 2.75 -6.265625 3.1875 -6.265625 C 3.859375 -6.265625 3.984375 -5.640625 3.984375 -5.28125 C 3.984375 -4.953125 3.890625 -4.609375 3.71875 -3.890625 L 3.21875 -1.859375 C 2.984375 -0.96875 2.5625 -0.15625 1.765625 -0.15625 C 1.703125 -0.15625 1.328125 -0.15625 1.015625 -0.34375 C 1.546875 -0.453125 1.671875 -0.890625 1.671875 -1.078125 C 1.671875 -1.375 1.4375 -1.546875 1.15625 -1.546875 C 0.796875 -1.546875 0.421875 -1.234375 0.421875 -0.765625 C 0.421875 -0.140625 1.109375 0.15625 1.75 0.15625 C 2.46875 0.15625 2.96875 -0.421875 3.28125 -1.03125 C 3.53125 -0.15625 4.265625 0.15625 4.8125 0.15625 C 6.34375 0.15625 7.140625 -1.796875 7.140625 -2.125 C 7.140625 -2.203125 7.078125 -2.265625 6.984375 -2.265625 C 6.859375 -2.265625 6.84375 -2.1875 6.796875 -2.0625 C 6.390625 -0.765625 5.53125 -0.15625 4.859375 -0.15625 C 4.34375 -0.15625 4.0625 -0.53125 4.0625 -1.140625 C 4.0625 -1.46875 4.125 -1.703125 4.359375 -2.6875 L 4.875 -4.71875 C 5.109375 -5.609375 5.609375 -6.265625 6.296875 -6.265625 C 6.328125 -6.265625 6.734375 -6.265625 7.046875 -6.0625 Z M 7.046875 -6.0625 ", :style => "stroke:none;"}
+                  %symbol{:id => "yRtGkAlop6_vSqQJypV3-XiW9v4=-glyph0-5", :overflow => "visible"}
+                    %path{:d => "M 3.90625 1.671875 C 3.515625 2.234375 2.9375 2.734375 2.203125 2.734375 C 2.015625 2.734375 1.3125 2.703125 1.078125 2.015625 C 1.125 2.03125 1.203125 2.03125 1.234375 2.03125 C 1.6875 2.03125 1.984375 1.65625 1.984375 1.3125 C 1.984375 0.96875 1.703125 0.84375 1.46875 0.84375 C 1.234375 0.84375 0.71875 1.03125 0.71875 1.75 C 0.71875 2.515625 1.359375 3.03125 2.203125 3.03125 C 3.6875 3.03125 5.1875 1.671875 5.609375 0.015625 L 7.0625 -5.78125 C 7.078125 -5.859375 7.109375 -5.953125 7.109375 -6.046875 C 7.109375 -6.265625 6.9375 -6.40625 6.703125 -6.40625 C 6.578125 -6.40625 6.265625 -6.359375 6.140625 -5.90625 L 5.046875 -1.53125 C 4.96875 -1.265625 4.96875 -1.234375 4.84375 -1.078125 C 4.546875 -0.65625 4.0625 -0.15625 3.34375 -0.15625 C 2.515625 -0.15625 2.4375 -0.96875 2.4375 -1.375 C 2.4375 -2.21875 2.84375 -3.359375 3.25 -4.4375 C 3.40625 -4.859375 3.5 -5.078125 3.5 -5.375 C 3.5 -6 3.046875 -6.5625 2.328125 -6.5625 C 0.953125 -6.5625 0.40625 -4.40625 0.40625 -4.28125 C 0.40625 -4.21875 0.46875 -4.15625 0.5625 -4.15625 C 0.703125 -4.15625 0.71875 -4.203125 0.78125 -4.421875 C 1.125 -5.671875 1.703125 -6.265625 2.28125 -6.265625 C 2.40625 -6.265625 2.65625 -6.265625 2.65625 -5.765625 C 2.65625 -5.390625 2.5 -4.953125 2.28125 -4.390625 C 1.546875 -2.4375 1.546875 -1.953125 1.546875 -1.59375 C 1.546875 -0.171875 2.5625 0.15625 3.296875 0.15625 C 3.734375 0.15625 4.265625 0.015625 4.796875 -0.53125 L 4.796875 -0.515625 C 4.578125 0.359375 4.4375 0.9375 3.90625 1.671875 Z M 3.90625 1.671875 ", :style => "stroke:none;"}
+                  %symbol{:id => "yRtGkAlop6_vSqQJypV3-XiW9v4=-glyph0-6", :overflow => "visible"}
+                    %path{:d => "M 4.1875 -9.953125 C 4.1875 -10.015625 4.21875 -10.09375 4.21875 -10.171875 C 4.21875 -10.328125 4.078125 -10.328125 4.046875 -10.328125 C 4.03125 -10.328125 3.5 -10.28125 3.234375 -10.25 C 2.96875 -10.234375 2.75 -10.203125 2.484375 -10.1875 C 2.125 -10.15625 2.015625 -10.140625 2.015625 -9.875 C 2.015625 -9.734375 2.171875 -9.734375 2.328125 -9.734375 C 3.078125 -9.734375 3.078125 -9.59375 3.078125 -9.453125 C 3.078125 -9.390625 3.078125 -9.359375 3 -9.09375 L 0.875 -0.578125 C 0.8125 -0.359375 0.8125 -0.328125 0.8125 -0.234375 C 0.8125 0.09375 1.078125 0.15625 1.21875 0.15625 C 1.640625 0.15625 1.71875 -0.171875 1.84375 -0.640625 L 2.546875 -3.421875 C 3.609375 -3.296875 4.25 -2.859375 4.25 -2.140625 C 4.25 -2.046875 4.25 -2 4.203125 -1.765625 C 4.15625 -1.546875 4.15625 -1.375 4.15625 -1.296875 C 4.15625 -0.4375 4.71875 0.15625 5.46875 0.15625 C 6.15625 0.15625 6.515625 -0.46875 6.640625 -0.6875 C 6.953125 -1.234375 7.140625 -2.0625 7.140625 -2.125 C 7.140625 -2.203125 7.078125 -2.265625 6.984375 -2.265625 C 6.859375 -2.265625 6.84375 -2.203125 6.78125 -1.96875 C 6.578125 -1.1875 6.265625 -0.15625 5.5 -0.15625 C 5.203125 -0.15625 5.015625 -0.296875 5.015625 -0.859375 C 5.015625 -1.140625 5.078125 -1.46875 5.125 -1.703125 C 5.1875 -1.96875 5.1875 -1.984375 5.1875 -2.15625 C 5.1875 -3.03125 4.40625 -3.53125 3.03125 -3.703125 C 3.5625 -4.03125 4.109375 -4.609375 4.3125 -4.828125 C 5.15625 -5.78125 5.734375 -6.265625 6.421875 -6.265625 C 6.765625 -6.265625 6.859375 -6.171875 6.96875 -6.078125 C 6.40625 -6.03125 6.203125 -5.640625 6.203125 -5.34375 C 6.203125 -4.984375 6.484375 -4.859375 6.6875 -4.859375 C 7.09375 -4.859375 7.453125 -5.203125 7.453125 -5.6875 C 7.453125 -6.109375 7.109375 -6.5625 6.4375 -6.5625 C 5.625 -6.5625 4.953125 -5.984375 3.890625 -4.796875 C 3.75 -4.609375 3.203125 -4.046875 2.640625 -3.84375 Z M 4.1875 -9.953125 ", :style => "stroke:none;"}
+                  %symbol{:id => "yRtGkAlop6_vSqQJypV3-XiW9v4=-glyph1-0", :overflow => "visible"}
+                    %path{:d => "", :style => "stroke:none;"}
+                  %symbol{:id => "yRtGkAlop6_vSqQJypV3-XiW9v4=-glyph1-1", :overflow => "visible"}
+                    %path{:d => "M 5.78125 -4.140625 L 2.8125 -7.09375 C 2.640625 -7.28125 2.609375 -7.296875 2.484375 -7.296875 C 2.328125 -7.296875 2.1875 -7.171875 2.1875 -7 C 2.1875 -6.90625 2.21875 -6.875 2.375 -6.703125 L 5.359375 -3.71875 L 2.375 -0.734375 C 2.21875 -0.5625 2.1875 -0.53125 2.1875 -0.4375 C 2.1875 -0.265625 2.328125 -0.140625 2.484375 -0.140625 C 2.609375 -0.140625 2.640625 -0.15625 2.8125 -0.34375 L 5.765625 -3.296875 L 8.84375 -0.21875 C 8.875 -0.203125 8.984375 -0.140625 9.078125 -0.140625 C 9.25 -0.140625 9.375 -0.265625 9.375 -0.4375 C 9.375 -0.46875 9.375 -0.515625 9.328125 -0.59375 C 9.3125 -0.625 6.953125 -2.953125 6.203125 -3.71875 L 8.921875 -6.4375 C 9 -6.53125 9.21875 -6.71875 9.296875 -6.8125 C 9.3125 -6.84375 9.375 -6.90625 9.375 -7 C 9.375 -7.171875 9.25 -7.296875 9.078125 -7.296875 C 8.953125 -7.296875 8.890625 -7.25 8.734375 -7.078125 Z M 5.78125 -4.140625 ", :style => "stroke:none;"}
+                  %symbol{:id => "yRtGkAlop6_vSqQJypV3-XiW9v4=-glyph1-2", :overflow => "visible"}
+                    %path{:d => "M 2.359375 -10.625 C 2.359375 -10.890625 2.359375 -11.15625 2.0625 -11.15625 C 1.765625 -11.15625 1.765625 -10.890625 1.765625 -10.625 L 1.765625 3.1875 C 1.765625 3.453125 1.765625 3.71875 2.0625 3.71875 C 2.359375 3.71875 2.359375 3.453125 2.359375 3.1875 Z M 2.359375 -10.625 ", :style => "stroke:none;"}
+                  %symbol{:id => "yRtGkAlop6_vSqQJypV3-XiW9v4=-glyph2-0", :overflow => "visible"}
+                    %path{:d => "", :style => "stroke:none;"}
+                  %symbol{:id => "yRtGkAlop6_vSqQJypV3-XiW9v4=-glyph2-1", :overflow => "visible"}
+                    %path{:d => "M 3.71875 3.71875 L 3.71875 3.171875 L 2.28125 3.171875 L 2.28125 -10.609375 L 3.71875 -10.609375 L 3.71875 -11.15625 L 1.71875 -11.15625 L 1.71875 3.71875 Z M 3.71875 3.71875 ", :style => "stroke:none;"}
+                  %symbol{:id => "yRtGkAlop6_vSqQJypV3-XiW9v4=-glyph2-2", :overflow => "visible"}
+                    %path{:d => "M 6.65625 -4.765625 C 6.65625 -6 6.59375 -7.203125 6.046875 -8.328125 C 5.4375 -9.5625 4.375 -9.890625 3.640625 -9.890625 C 2.78125 -9.890625 1.71875 -9.453125 1.171875 -8.21875 C 0.765625 -7.28125 0.609375 -6.359375 0.609375 -4.765625 C 0.609375 -3.3125 0.71875 -2.234375 1.25 -1.171875 C 1.828125 -0.046875 2.859375 0.3125 3.625 0.3125 C 4.921875 0.3125 5.671875 -0.46875 6.09375 -1.328125 C 6.640625 -2.4375 6.65625 -3.890625 6.65625 -4.765625 Z M 3.625 0.015625 C 3.15625 0.015625 2.1875 -0.25 1.90625 -1.875 C 1.734375 -2.765625 1.734375 -3.890625 1.734375 -4.9375 C 1.734375 -6.15625 1.734375 -7.265625 1.984375 -8.140625 C 2.234375 -9.140625 2.984375 -9.59375 3.625 -9.59375 C 4.1875 -9.59375 5.0625 -9.25 5.34375 -7.96875 C 5.53125 -7.125 5.53125 -5.953125 5.53125 -4.9375 C 5.53125 -3.9375 5.53125 -2.8125 5.375 -1.90625 C 5.09375 -0.265625 4.15625 0.015625 3.625 0.015625 Z M 3.625 0.015625 ", :style => "stroke:none;"}
+                  %symbol{:id => "yRtGkAlop6_vSqQJypV3-XiW9v4=-glyph2-3", :overflow => "visible"}
+                    %path{:d => "M 4.28125 -9.53125 C 4.28125 -9.875 4.28125 -9.890625 3.984375 -9.890625 C 3.625 -9.484375 2.890625 -8.9375 1.359375 -8.9375 L 1.359375 -8.515625 C 1.703125 -8.515625 2.4375 -8.515625 3.25 -8.890625 L 3.25 -1.140625 C 3.25 -0.609375 3.21875 -0.4375 1.90625 -0.4375 L 1.4375 -0.4375 L 1.4375 0 C 1.84375 -0.03125 3.28125 -0.03125 3.78125 -0.03125 C 4.265625 -0.03125 5.703125 -0.03125 6.09375 0 L 6.09375 -0.4375 L 5.640625 -0.4375 C 4.328125 -0.4375 4.28125 -0.609375 4.28125 -1.140625 Z M 4.28125 -9.53125 ", :style => "stroke:none;"}
+                  %symbol{:id => "yRtGkAlop6_vSqQJypV3-XiW9v4=-glyph2-4", :overflow => "visible"}
+                    %path{:d => "M 2.3125 -11.15625 L 0.3125 -11.15625 L 0.3125 -10.609375 L 1.75 -10.609375 L 1.75 3.171875 L 0.3125 3.171875 L 0.3125 3.71875 L 2.3125 3.71875 Z M 2.3125 -11.15625 ", :style => "stroke:none;"}
+                  %symbol{:id => "yRtGkAlop6_vSqQJypV3-XiW9v4=-glyph2-5", :overflow => "visible"}
+                    %path{:d => "M 4.828125 3.609375 C 4.828125 3.5625 4.828125 3.546875 4.578125 3.28125 C 3.09375 1.78125 2.265625 -0.671875 2.265625 -3.703125 C 2.265625 -6.59375 2.953125 -9.078125 4.6875 -10.828125 C 4.828125 -10.96875 4.828125 -11 4.828125 -11.03125 C 4.828125 -11.125 4.765625 -11.15625 4.703125 -11.15625 C 4.5 -11.15625 3.28125 -10.078125 2.5625 -8.625 C 1.796875 -7.125 1.453125 -5.53125 1.453125 -3.703125 C 1.453125 -2.375 1.671875 -0.609375 2.4375 0.984375 C 3.3125 2.765625 4.53125 3.734375 4.703125 3.734375 C 4.765625 3.734375 4.828125 3.703125 4.828125 3.609375 Z M 4.828125 3.609375 ", :style => "stroke:none;"}
+                  %symbol{:id => "yRtGkAlop6_vSqQJypV3-XiW9v4=-glyph2-6", :overflow => "visible"}
+                    %path{:d => "M 4.1875 -3.703125 C 4.1875 -4.828125 4.046875 -6.671875 3.21875 -8.40625 C 2.328125 -10.1875 1.109375 -11.15625 0.953125 -11.15625 C 0.890625 -11.15625 0.8125 -11.125 0.8125 -11.03125 C 0.8125 -11 0.8125 -10.96875 1.078125 -10.703125 C 2.5625 -9.203125 3.390625 -6.75 3.390625 -3.71875 C 3.390625 -0.828125 2.6875 1.65625 0.96875 3.40625 C 0.8125 3.546875 0.8125 3.5625 0.8125 3.609375 C 0.8125 3.703125 0.890625 3.734375 0.953125 3.734375 C 1.140625 3.734375 2.359375 2.65625 3.09375 1.203125 C 3.859375 -0.3125 4.1875 -1.921875 4.1875 -3.703125 Z M 4.1875 -3.703125 ", :style => "stroke:none;"}
+              %g{:id => "yRtGkAlop6_vSqQJypV3-XiW9v4=-surface1"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "6.608684", "xlink:href" => "#yRtGkAlop6_vSqQJypV3-XiW9v4=-glyph0-1", :y => "16.601312"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "23.173164", "xlink:href" => "#yRtGkAlop6_vSqQJypV3-XiW9v4=-glyph1-1", :y => "16.601312"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "38.049093", "xlink:href" => "#yRtGkAlop6_vSqQJypV3-XiW9v4=-glyph0-2", :y => "16.601312"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "95.646746", "xlink:href" => "#yRtGkAlop6_vSqQJypV3-XiW9v4=-glyph2-1", :y => "16.601312"}
+                  %use{:x => "99.693066", "xlink:href" => "#yRtGkAlop6_vSqQJypV3-XiW9v4=-glyph2-2", :y => "16.601312"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "106.976343", "xlink:href" => "#yRtGkAlop6_vSqQJypV3-XiW9v4=-glyph0-3", :y => "16.601312"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "113.501593", "xlink:href" => "#yRtGkAlop6_vSqQJypV3-XiW9v4=-glyph2-3", :y => "16.601312"}
+                  %use{:x => "120.784969", "xlink:href" => "#yRtGkAlop6_vSqQJypV3-XiW9v4=-glyph2-4", :y => "16.601312"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "11.289344", "xlink:href" => "#yRtGkAlop6_vSqQJypV3-XiW9v4=-glyph2-5", :y => "42.365848"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "16.95352", "xlink:href" => "#yRtGkAlop6_vSqQJypV3-XiW9v4=-glyph0-4", :y => "42.365848"}
+                  %use{:x => "25.230625", "xlink:href" => "#yRtGkAlop6_vSqQJypV3-XiW9v4=-glyph0-3", :y => "42.365848"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "31.761267", "xlink:href" => "#yRtGkAlop6_vSqQJypV3-XiW9v4=-glyph0-5", :y => "42.365848"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "39.392468", "xlink:href" => "#yRtGkAlop6_vSqQJypV3-XiW9v4=-glyph2-6", :y => "42.365848"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "90.514146", "xlink:href" => "#yRtGkAlop6_vSqQJypV3-XiW9v4=-glyph0-6", :y => "42.365848"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "98.588584", "xlink:href" => "#yRtGkAlop6_vSqQJypV3-XiW9v4=-glyph2-5", :y => "42.365848"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "104.254004", "xlink:href" => "#yRtGkAlop6_vSqQJypV3-XiW9v4=-glyph0-5", :y => "42.365848"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "111.889194", "xlink:href" => "#yRtGkAlop6_vSqQJypV3-XiW9v4=-glyph1-2", :y => "42.365848"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "116.021604", "xlink:href" => "#yRtGkAlop6_vSqQJypV3-XiW9v4=-glyph0-4", :y => "42.365848"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "124.298867", "xlink:href" => "#yRtGkAlop6_vSqQJypV3-XiW9v4=-glyph2-6", :y => "42.365848"}
+                %path{:d => "M -11.950096 12.940453 L 20.003518 12.940453 ", :style => "fill:none;stroke-width:0.79701;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;", :transform => "matrix(0.995462,0,0,-0.995462,68.286486,25.764536)"}
+                %path{:d => "M -4.143984 4.782641 C -3.386641 1.914154 -1.699295 0.556429 -0.000177629 -0.000787214 C -1.699295 -0.558004 -3.386641 -1.911804 -4.143984 -4.780291 ", :style => "fill:none;stroke-width:0.79701;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;", :transform => "matrix(0.995462,0,0,-0.995462,88.597833,12.882029)"}
+                %path{:d => "M -16.054662 -12.942642 L 14.847305 -12.942642 ", :style => "fill:none;stroke-width:0.79701;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;", :transform => "matrix(0.995462,0,0,-0.995462,68.286486,25.764536)"}
+                %path{:d => "M 0.0011086 3.266559 L 0.0011086 -3.267 ", :style => "fill:none;stroke-width:0.79701;stroke-linecap:round;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;", :transform => "matrix(-0.995462,0,0,0.995462,52.106572,38.646704)"}
+                %path{:d => "M -4.143688 4.782027 C -3.386344 1.913539 -1.698999 0.559739 0.000118593 -0.00140164 C -1.698999 -0.558618 -3.386344 -1.912418 -4.143688 -4.780906 ", :style => "fill:none;stroke-width:0.79701;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;", :transform => "matrix(0.995462,0,0,-0.995462,83.464726,38.647042)"}
+            such that for all
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi x
+                    %mo ∈
+                    %mi X
+                  %annotation{:encoding => "application/x-tex"} x\in X
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %munder
+                    %mo{:lspace => "thinmathspace", :rspace => "thinmathspace"} ∑
+                    %mrow
+                      %mi y
+                      %mo ∈
+                      %mi Y
+                  %mi k
+                  %mo{:stretchy => "false"} (
+                  %mi y
+                  %mo{:stretchy => "false"} |
+                  %mi x
+                  %mo{:stretchy => "false"} )
+                  %mo =
+                  %mn 1
+                  %mo .
+                %annotation{:encoding => "application/x-tex"}
+                  \\sum_{y\in Y} k(y|x) = 1 .
+          %p
+            If we now equip
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi X
+                %annotation{:encoding => "application/x-tex"} X
+            and
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi Y
+                %annotation{:encoding => "application/x-tex"} Y
+            with discrete probability distributions
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi p
+                %annotation{:encoding => "application/x-tex"} p
+            and
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi q
+                  %annotation{:encoding => "application/x-tex"} q
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/probability+spaces"} probability spaces
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi k
+                %annotation{:encoding => "application/x-tex"} k
+            is a
+            %a.existingWikiWord{:href => "/nlab/show/stochastic+map#measurepreserving_stochastic_maps"} measure-preserving stochastic map
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mo{:stretchy => "false"} (
+                  %mi X
+                  %mo ,
+                  %mi p
+                  %mo{:stretchy => "false"} )
+                  %mo →
+                  %mo{:stretchy => "false"} (
+                  %mi Y
+                  %mo ,
+                  %mi q
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} (X,p)\to(Y,q)
+            if for every
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi y
+                    %mo ∈
+                    %mi Y
+                  %annotation{:encoding => "application/x-tex"} y\in Y
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %munder
+                    %mo{:lspace => "thinmathspace", :rspace => "thinmathspace"} ∑
+                    %mi x
+                  %mi k
+                  %mo{:stretchy => "false"} (
+                  %mi y
+                  %mo{:stretchy => "false"} |
+                  %mi x
+                  %mo{:stretchy => "false"} )
+                  %mspace{:width => "thinmathspace"}
+                  %mi p
+                  %mo{:stretchy => "false"} (
+                  %mi x
+                  %mo{:stretchy => "false"} )
+                  %mo =
+                  %mi q
+                  %mo{:stretchy => "false"} (
+                  %mi y
+                  %mo{:stretchy => "false"} )
+                  %mo .
+                %annotation{:encoding => "application/x-tex"}
+                  \\sum_{x} k(y|x) \, p(x) = q(y) .
+          %p
+            A
+            %strong Bayesian inverse
+            of
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi k
+                  %mo :
+                  %mo{:stretchy => "false"} (
+                  %mi X
+                  %mo ,
+                  %mi p
+                  %mo{:stretchy => "false"} )
+                  %mo →
+                  %mo{:stretchy => "false"} (
+                  %mi Y
+                  %mo ,
+                  %mi q
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} k:(X,p)\to(Y,q)
+            is then defined to be a measure-preserving stochastic map
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msup
+                    %mi k
+                    %mo †
+                  %mo :
+                  %mo{:stretchy => "false"} (
+                  %mi Y
+                  %mo ,
+                  %mi q
+                  %mo{:stretchy => "false"} )
+                  %mo →
+                  %mo{:stretchy => "false"} (
+                  %mi X
+                  %mo ,
+                  %mi p
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} k^\dagger:(Y,q)\to(X,p)
+            such that for every
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi x
+                  %mo ∈
+                  %mi X
+                %annotation{:encoding => "application/x-tex"} x\in X
+            and
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi y
+                    %mo ∈
+                    %mi Y
+                  %annotation{:encoding => "application/x-tex"} y\in Y
+            %a.existingWikiWord{:href => "/nlab/show/Bayes+formula"} Bayes formula
+            holds.
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi p
+                  %mo{:stretchy => "false"} (
+                  %mi x
+                  %mo{:stretchy => "false"} )
+                  %mspace{:width => "thinmathspace"}
+                  %mi k
+                  %mo{:stretchy => "false"} (
+                  %mi y
+                  %mo{:stretchy => "false"} |
+                  %mi x
+                  %mo{:stretchy => "false"} )
+                  %mo =
+                  %mi q
+                  %mo{:stretchy => "false"} (
+                  %mi y
+                  %mo{:stretchy => "false"} )
+                  %mspace{:width => "thinmathspace"}
+                  %msup
+                    %mi k
+                    %mo †
+                  %mo{:stretchy => "false"} (
+                  %mi x
+                  %mo{:stretchy => "false"} |
+                  %mi y
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"}
+                  p(x) \,k(y|x) = q(y)\,k^\dagger(x|y)
+          %p In the discrete case, Bayesian inverses always exist, and can be obtained by taking
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msup
+                    %mi k
+                    %mo †
+                  %mo{:stretchy => "false"} (
+                  %mi x
+                  %mo{:stretchy => "false"} |
+                  %mi y
+                  %mo{:stretchy => "false"} )
+                  %mo ≔
+                  %mfrac
+                    %mrow
+                      %mi p
+                      %mo{:stretchy => "false"} (
+                      %mi x
+                      %mo{:stretchy => "false"} )
+                      %mspace{:width => "thinmathspace"}
+                      %mi k
+                      %mo{:stretchy => "false"} (
+                      %mi y
+                      %mo{:stretchy => "false"} |
+                      %mi x
+                      %mo{:stretchy => "false"} )
+                    %mrow
+                      %mi q
+                      %mo{:stretchy => "false"} (
+                      %mi y
+                      %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"}
+                  k^\dagger(x|y) \coloneqq \frac{p(x)\,k(y|x)}{q(y)}
+          %p
+            for those
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi y
+                  %mo ∈
+                  %mi Y
+                %annotation{:encoding => "application/x-tex"} y\in Y
+            with
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi q
+                    %mo{:stretchy => "false"} (
+                    %mi y
+                    %mo{:stretchy => "false"} )
+                    %mo ≠
+                    %mn 0
+                  %annotation{:encoding => "application/x-tex"} q(y)\ne 0
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi y
+                  %mo ∈
+                  %mi Y
+                %annotation{:encoding => "application/x-tex"} y\in Y
+            with
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi q
+                    %mo{:stretchy => "false"} (
+                    %mi y
+                    %mo{:stretchy => "false"} )
+                    %mo =
+                    %mn 0
+                  %annotation{:encoding => "application/x-tex"} q(y)=0
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi y
+                %annotation{:encoding => "application/x-tex"} y
+            one can for example take
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msup
+                      %mi k
+                      %mo †
+                    %mo{:stretchy => "false"} (
+                    %mi x
+                    %mo{:stretchy => "false"} |
+                    %mi y
+                    %mo{:stretchy => "false"} )
+                    %mo =
+                    %msub
+                      %mi δ
+                      %mrow
+                        %msub
+                          %mi x
+                          %mn 0
+                        %mo ,
+                        %mi x
+                  %annotation{:encoding => "application/x-tex"} k^\dagger(x|y)=\delta_{x_0,x}
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msub
+                    %mi x
+                    %mn 0
+                %annotation{:encoding => "application/x-tex"} x_0
+            is a fixed element of
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi X
+                  %annotation{:encoding => "application/x-tex"} X
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi X
+                %annotation{:encoding => "application/x-tex"} X
+            is nonempty since it admits a probability measure.)
+          %p
+            Bayesian inverses are not unique, but they are uniquely defined on the support of
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi q
+                  %annotation{:encoding => "application/x-tex"} q
+            %a.existingWikiWord{:href => "/nlab/show/almost+surely"} almost sure
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/equality"} equality
+          %h3#measuretheoretic_case Measure-theoretic case
+          %p
+            The situation is more delicate outside the discrete case. Given
+            %a.existingWikiWord{:href => "/nlab/show/probability+spaces"} probability spaces
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mo{:stretchy => "false"} (
+                  %mi X
+                  %mo ,
+                  %mi 𝒜
+                  %mo ,
+                  %mi p
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} (X,\mathcal{A},p)
+            and
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo{:stretchy => "false"} (
+                    %mi Y
+                    %mo ,
+                    %mi ℬ
+                    %mo ,
+                    %mi q
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} (Y,\mathcal{B},q)
+            %a.existingWikiWord{:href => "/nlab/show/Markov+kernel#measurepreserving_kernels"} measure-preserving Markov kernel
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi k
+                    %mo :
+                    %mo{:stretchy => "false"} (
+                    %mi X
+                    %mo ,
+                    %mi 𝒜
+                    %mo ,
+                    %mi p
+                    %mo{:stretchy => "false"} )
+                    %mo →
+                    %mo{:stretchy => "false"} (
+                    %mi Y
+                    %mo ,
+                    %mi ℬ
+                    %mo ,
+                    %mi q
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} k:(X,\mathcal{A},p)\to(Y,\mathcal{B},q)
+            %strong
+              %a.existingWikiWord{:href => "/nlab/show/Markov+kernel#bayesian_inversion"} Bayesian inverse
+            of
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi k
+                %annotation{:encoding => "application/x-tex"} k
+            is a Markov kernel
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msup
+                    %mi k
+                    %mo †
+                  %mo :
+                  %mo{:stretchy => "false"} (
+                  %mi Y
+                  %mo ,
+                  %mi ℬ
+                  %mo ,
+                  %mi q
+                  %mo{:stretchy => "false"} )
+                  %mo →
+                  %mo{:stretchy => "false"} (
+                  %mi X
+                  %mo ,
+                  %mi 𝒜
+                  %mo ,
+                  %mi p
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} k^\dagger:(Y,\mathcal{B},q)\to(X,\mathcal{A},p)
+            such that for all
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi A
+                  %mo ∈
+                  %mi 𝒜
+                %annotation{:encoding => "application/x-tex"} A\in\mathcal{A}
+            and
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi B
+                    %mo ∈
+                    %mi ℬ
+                  %annotation{:encoding => "application/x-tex"} B\in\mathcal{B}
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msub
+                    %mo ∫
+                    %mi A
+                  %mi k
+                  %mo{:stretchy => "false"} (
+                  %mi B
+                  %mo{:stretchy => "false"} |
+                  %mi x
+                  %mo{:stretchy => "false"} )
+                  %mspace{:width => "thinmathspace"}
+                  %mi p
+                  %mo{:stretchy => "false"} (
+                  %mi dx
+                  %mo{:stretchy => "false"} )
+                  %mo =
+                  %msub
+                    %mo ∫
+                    %mi B
+                  %msup
+                    %mi k
+                    %mo †
+                  %mo{:stretchy => "false"} (
+                  %mi A
+                  %mo{:stretchy => "false"} |
+                  %mi y
+                  %mo{:stretchy => "false"} )
+                  %mspace{:width => "thinmathspace"}
+                  %mi q
+                  %mo{:stretchy => "false"} (
+                  %mi dy
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"}
+                  \\int_A k(B|x)\,p(dx) = \int_B k^\dagger(A|y)\,q(dy)
+          %p
+            As one can see from
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/Markov+kernel#almost_sure_equality"} Markov kernel - Almost sure equality
+            %a.existingWikiWord{:href => "/nlab/show/almost+surely"} almost sure
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/equality"} equality
+          %p
+            Existence, on the other hand, is more tricky. In general, a kernel
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msup
+                    %mi k
+                    %mo †
+                %annotation{:encoding => "application/x-tex"} k^\dagger
+            as above may fail to exist. The problem is that in order for
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msup
+                    %mi k
+                    %mo †
+                %annotation{:encoding => "application/x-tex"} k^\dagger
+            to be a well-defined
+            %a.existingWikiWord{:href => "/nlab/show/Markov+kernel"} Markov kernel
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo{:stretchy => "false"} (
+                    %mi Y
+                    %mo ,
+                    %mi ℬ
+                    %mo{:stretchy => "false"} )
+                    %mo →
+                    %mo{:stretchy => "false"} (
+                    %mi X
+                    %mo ,
+                    %mi 𝒜
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} (Y,\mathcal{B})\to(X,\mathcal{A})
+          %ul
+            %li
+              the map
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi y
+                    %mo ↦
+                    %msup
+                      %mi k
+                      %mo †
+                    %mo{:stretchy => "false"} (
+                    %mi A
+                    %mo{:stretchy => "false"} |
+                    %mi y
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} y\mapsto k^\dagger(A|y)
+              is
+              %a.existingWikiWord{:href => "/nlab/show/measurable+function"} measurable
+              in
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi y
+                  %annotation{:encoding => "application/x-tex"} y
+              for all
+              = succeed ";" do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi A
+                      %mo ∈
+                      %mi 𝒜
+                    %annotation{:encoding => "application/x-tex"} A\in\mathcal{A}
+            %li
+              the assignment
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi A
+                    %mo ↦
+                    %msup
+                      %mi k
+                      %mo †
+                    %mo{:stretchy => "false"} (
+                    %mi A
+                    %mo{:stretchy => "false"} |
+                    %mi y
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} A\mapsto k^\dagger(A|y)
+              is a
+              %a.existingWikiWord{:href => "/nlab/show/probability+measure"} probability measure
+              in
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi A
+                  %annotation{:encoding => "application/x-tex"} A
+              for all
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi y
+                      %mo ∈
+                      %mi Y
+                    %annotation{:encoding => "application/x-tex"} y\in Y
+          %p
+            The first condition can be taken care of using
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/conditional+expectation"} conditional expectation
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mo{:stretchy => "false"} (
+                  %mi X
+                  %mo ,
+                  %mi 𝒜
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} (X,\mathcal{A})
+            is
+            %a.existingWikiWord{:href => "/nlab/show/standard+Borel"} standard Borel
+            and either
+          %ul
+            %li
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo{:stretchy => "false"} (
+                    %mi Y
+                    %mo ,
+                    %mi ℬ
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} (Y,\mathcal{B})
+              is standard Borel too
+          %p or
+          %ul
+            %li
+              the kernel
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi k
+                    %mo :
+                    %mi X
+                    %mo →
+                    %mi Y
+                  %annotation{:encoding => "application/x-tex"} k:X\to Y
+              is in the form
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi δ
+                      %mi f
+                  %annotation{:encoding => "application/x-tex"} \delta_f
+              for a measurable
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi f
+                      %mo :
+                      %mi X
+                      %mo →
+                      %mi Y
+                    %annotation{:encoding => "application/x-tex"} f:X\to Y
+          %p then a Bayesian inverse always exists.
+          %p
+            (See also
+            %a.existingWikiWord{:href => "/nlab/show/Markov+kernel#bayesian_inversion"} Markov kernel - Bayesian inversion
+            and
+            = succeed ".)" do
+              %a.existingWikiWord{:href => "/nlab/show/Markov+kernel#conditionals"} Markov kernel - Conditionals
+          %h2#in_categorical_probability In categorical probability
+          %p
+            In
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/categorical+probability"} categorical probability
+          %h3#in_markov_categories In Markov categories
+          %p
+            In
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/Markov+categories"} Markov categories
+          %p
+            The abstraction of a
+            %a.existingWikiWord{:href => "/nlab/show/probability+space"} probability space
+            is given by an
+            %a.existingWikiWord{:href => "/nlab/show/object"} object
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi X
+                %annotation{:encoding => "application/x-tex"} X
+            in a
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/Markov+category"} Markov category
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi p
+                    %mo :
+                    %mi I
+                    %mo →
+                    %mi X
+                  %annotation{:encoding => "application/x-tex"} p:I\to X
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi f
+                    %mo :
+                    %mi X
+                    %mo →
+                    %mi Y
+                  %annotation{:encoding => "application/x-tex"} f:X\to Y
+            = succeed "A" do
+              %br/
+            %strong Bayesian inverse
+            of
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi f
+                %annotation{:encoding => "application/x-tex"} f
+            with respect to
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi p
+                %annotation{:encoding => "application/x-tex"} p
+            is a morphism
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msup
+                    %mi f
+                    %mo †
+                  %mo :
+                  %mi Y
+                  %mo →
+                  %mi X
+                %annotation{:encoding => "application/x-tex"} f^\dagger:Y\to X
+            such that the following equation holds, where
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi q
+                    %mo =
+                    %mi f
+                    %mo ∘
+                    %mi p
+                  %annotation{:encoding => "application/x-tex"} q=f\circ p
+          %svg{:height => "110.637pt", :version => "1.2", :viewbox => "0 0 204.509 110.637", :width => "204.509pt", :xmlns => "http://www.w3.org/2000/svg", "xmlns:xlink" => "http://www.w3.org/1999/xlink"}
+            %defs
+              %g
+                %symbol{:id => "m67meiyGdlFtEEOOE6hM_764Ku0=-glyph0-0", :overflow => "visible"}
+                  %path{:d => "", :style => "stroke:none;"}
+                %symbol{:id => "m67meiyGdlFtEEOOE6hM_764Ku0=-glyph0-1", :overflow => "visible"}
+                  %path{:d => "M 7.078125 -6.046875 L 5.671875 -9.3125 C 5.859375 -9.65625 6.3125 -9.71875 6.5 -9.734375 C 6.578125 -9.734375 6.75 -9.75 6.75 -10 C 6.75 -10.171875 6.609375 -10.171875 6.515625 -10.171875 C 6.265625 -10.171875 5.96875 -10.140625 5.71875 -10.140625 L 4.859375 -10.140625 C 3.953125 -10.140625 3.296875 -10.171875 3.28125 -10.171875 C 3.15625 -10.171875 3.015625 -10.171875 3.015625 -9.890625 C 3.015625 -9.734375 3.140625 -9.734375 3.328125 -9.734375 C 4.203125 -9.734375 4.265625 -9.59375 4.40625 -9.234375 L 6.171875 -5.09375 L 2.953125 -1.640625 C 2.40625 -1.0625 1.765625 -0.484375 0.671875 -0.4375 C 0.484375 -0.421875 0.375 -0.421875 0.375 -0.15625 C 0.375 -0.109375 0.390625 0 0.546875 0 C 0.765625 0 0.984375 -0.03125 1.1875 -0.03125 L 1.890625 -0.03125 C 2.375 -0.03125 2.890625 0 3.34375 0 C 3.453125 0 3.640625 0 3.640625 -0.265625 C 3.640625 -0.421875 3.53125 -0.4375 3.4375 -0.4375 C 3.140625 -0.46875 2.953125 -0.625 2.953125 -0.859375 C 2.953125 -1.109375 3.125 -1.296875 3.5625 -1.75 L 4.890625 -3.1875 C 5.21875 -3.53125 6 -4.390625 6.328125 -4.71875 L 7.890625 -1.0625 C 7.90625 -1.03125 7.96875 -0.875 7.96875 -0.859375 C 7.96875 -0.734375 7.640625 -0.46875 7.15625 -0.4375 C 7.078125 -0.4375 6.90625 -0.421875 6.90625 -0.15625 C 6.90625 0 7.0625 0 7.125 0 C 7.390625 0 7.6875 -0.03125 7.9375 -0.03125 L 9.578125 -0.03125 C 9.84375 -0.03125 10.125 0 10.375 0 C 10.484375 0 10.640625 0 10.640625 -0.28125 C 10.640625 -0.4375 10.5 -0.4375 10.359375 -0.4375 C 9.46875 -0.453125 9.4375 -0.515625 9.1875 -1.078125 L 7.21875 -5.6875 L 9.109375 -7.71875 C 9.265625 -7.859375 9.609375 -8.234375 9.734375 -8.390625 C 10.375 -9.046875 10.96875 -9.65625 12.1875 -9.734375 C 12.328125 -9.75 12.484375 -9.75 12.484375 -10 C 12.484375 -10.171875 12.34375 -10.171875 12.28125 -10.171875 C 12.078125 -10.171875 11.859375 -10.140625 11.640625 -10.140625 L 10.953125 -10.140625 C 10.484375 -10.140625 9.96875 -10.171875 9.5 -10.171875 C 9.390625 -10.171875 9.21875 -10.171875 9.21875 -9.90625 C 9.21875 -9.75 9.328125 -9.734375 9.40625 -9.734375 C 9.65625 -9.703125 9.90625 -9.59375 9.90625 -9.3125 L 9.890625 -9.28125 C 9.875 -9.171875 9.84375 -9.03125 9.671875 -8.84375 Z M 7.078125 -6.046875 ", :style => "stroke:none;"}
+                %symbol{:id => "m67meiyGdlFtEEOOE6hM_764Ku0=-glyph0-2", :overflow => "visible"}
+                  %path{:d => "M 8.75 -8.515625 L 9.09375 -8.859375 C 9.75 -9.53125 10.296875 -9.6875 10.828125 -9.734375 C 10.984375 -9.75 11.125 -9.765625 11.125 -10.015625 C 11.125 -10.171875 10.96875 -10.171875 10.9375 -10.171875 C 10.765625 -10.171875 10.578125 -10.140625 10.390625 -10.140625 L 9.78125 -10.140625 C 9.34375 -10.140625 8.890625 -10.171875 8.46875 -10.171875 C 8.375 -10.171875 8.203125 -10.171875 8.203125 -9.890625 C 8.203125 -9.75 8.359375 -9.734375 8.390625 -9.734375 C 8.84375 -9.703125 8.84375 -9.484375 8.84375 -9.390625 C 8.84375 -9.234375 8.71875 -9.015625 8.421875 -8.671875 L 4.890625 -4.59375 L 3.203125 -9.125 C 3.109375 -9.34375 3.109375 -9.359375 3.109375 -9.390625 C 3.109375 -9.703125 3.71875 -9.734375 3.90625 -9.734375 C 4.078125 -9.734375 4.25 -9.734375 4.25 -10 C 4.25 -10.171875 4.109375 -10.171875 4.015625 -10.171875 C 3.765625 -10.171875 3.46875 -10.140625 3.21875 -10.140625 L 1.5625 -10.140625 C 1.296875 -10.140625 1.015625 -10.171875 0.765625 -10.171875 C 0.65625 -10.171875 0.484375 -10.171875 0.484375 -9.890625 C 0.484375 -9.734375 0.625 -9.734375 0.84375 -9.734375 C 1.578125 -9.734375 1.71875 -9.609375 1.84375 -9.265625 L 3.6875 -4.296875 C 3.703125 -4.265625 3.75 -4.09375 3.75 -4.046875 C 3.75 -4 3.015625 -1.078125 2.984375 -0.921875 C 2.859375 -0.515625 2.703125 -0.453125 1.75 -0.4375 C 1.5 -0.4375 1.390625 -0.4375 1.390625 -0.15625 C 1.390625 0 1.546875 0 1.59375 0 C 1.859375 0 2.171875 -0.03125 2.453125 -0.03125 L 4.21875 -0.03125 C 4.484375 -0.03125 4.796875 0 5.0625 0 C 5.171875 0 5.34375 0 5.34375 -0.265625 C 5.34375 -0.4375 5.234375 -0.4375 4.984375 -0.4375 C 4.0625 -0.4375 4.0625 -0.53125 4.0625 -0.703125 C 4.0625 -0.796875 4.1875 -1.28125 4.265625 -1.578125 L 4.796875 -3.71875 C 4.890625 -4.03125 4.890625 -4.0625 5.015625 -4.21875 Z M 8.75 -8.515625 ", :style => "stroke:none;"}
+                %symbol{:id => "m67meiyGdlFtEEOOE6hM_764Ku0=-glyph0-3", :overflow => "visible"}
+                  %path{:d => "M 6.640625 -5.984375 C 6.9375 -5.984375 7.0625 -5.984375 7.0625 -6.265625 C 7.0625 -6.421875 6.9375 -6.421875 6.671875 -6.421875 L 5.46875 -6.421875 C 5.75 -7.953125 5.953125 -9.015625 6.078125 -9.484375 C 6.171875 -9.84375 6.484375 -10.1875 6.859375 -10.1875 C 7.171875 -10.1875 7.484375 -10.046875 7.640625 -9.921875 C 7.0625 -9.859375 6.875 -9.421875 6.875 -9.171875 C 6.875 -8.875 7.109375 -8.703125 7.390625 -8.703125 C 7.6875 -8.703125 8.125 -8.953125 8.125 -9.515625 C 8.125 -10.140625 7.5 -10.484375 6.84375 -10.484375 C 6.203125 -10.484375 5.578125 -10 5.28125 -9.421875 C 5.015625 -8.90625 4.875 -8.375 4.53125 -6.421875 L 3.53125 -6.421875 C 3.25 -6.421875 3.09375 -6.421875 3.09375 -6.15625 C 3.09375 -5.984375 3.1875 -5.984375 3.484375 -5.984375 L 4.4375 -5.984375 C 4.171875 -4.59375 3.5625 -1.234375 3.21875 0.359375 C 2.96875 1.65625 2.734375 2.734375 2 2.734375 C 1.953125 2.734375 1.515625 2.734375 1.25 2.453125 C 2.015625 2.390625 2.015625 1.75 2.015625 1.734375 C 2.015625 1.421875 1.78125 1.25 1.5 1.25 C 1.203125 1.25 0.765625 1.5 0.765625 2.0625 C 0.765625 2.703125 1.421875 3.03125 2 3.03125 C 3.515625 3.03125 4.140625 0.3125 4.296875 -0.4375 C 4.578125 -1.578125 5.296875 -5.546875 5.375 -5.984375 Z M 6.640625 -5.984375 ", :style => "stroke:none;"}
+                %symbol{:id => "m67meiyGdlFtEEOOE6hM_764Ku0=-glyph0-4", :overflow => "visible"}
+                  %path{:d => "M 6.5625 -6.421875 C 6.5625 -6.5 6.5 -6.546875 6.4375 -6.546875 C 6.3125 -6.546875 5.734375 -6.015625 5.453125 -5.5 C 5.1875 -6.171875 4.71875 -6.5625 4.078125 -6.5625 C 2.390625 -6.5625 0.578125 -4.390625 0.578125 -2.1875 C 0.578125 -0.71875 1.4375 0.15625 2.453125 0.15625 C 3.25 0.15625 3.90625 -0.453125 4.21875 -0.796875 L 4.234375 -0.78125 L 3.65625 1.453125 L 3.53125 2 C 3.390625 2.4375 3.171875 2.4375 2.46875 2.453125 C 2.3125 2.453125 2.15625 2.453125 2.15625 2.734375 C 2.15625 2.84375 2.25 2.890625 2.359375 2.890625 C 2.5625 2.890625 2.828125 2.859375 3.03125 2.859375 L 4.5625 2.859375 C 4.78125 2.859375 5.03125 2.890625 5.25 2.890625 C 5.34375 2.890625 5.53125 2.890625 5.53125 2.609375 C 5.53125 2.453125 5.40625 2.453125 5.1875 2.453125 C 4.484375 2.453125 4.4375 2.359375 4.4375 2.234375 C 4.4375 2.15625 4.453125 2.140625 4.5 1.953125 Z M 4.46875 -1.765625 C 4.390625 -1.515625 4.390625 -1.484375 4.1875 -1.203125 C 3.859375 -0.796875 3.203125 -0.15625 2.5 -0.15625 C 1.890625 -0.15625 1.546875 -0.703125 1.546875 -1.578125 C 1.546875 -2.390625 2.015625 -4.0625 2.296875 -4.6875 C 2.796875 -5.734375 3.5 -6.265625 4.078125 -6.265625 C 5.0625 -6.265625 5.25 -5.046875 5.25 -4.921875 C 5.25 -4.90625 5.21875 -4.71875 5.203125 -4.6875 Z M 4.46875 -1.765625 ", :style => "stroke:none;"}
+                %symbol{:id => "m67meiyGdlFtEEOOE6hM_764Ku0=-glyph0-5", :overflow => "visible"}
+                  %path{:d => "M 0.640625 1.890625 C 0.53125 2.34375 0.46875 2.453125 -0.140625 2.453125 C -0.3125 2.453125 -0.46875 2.453125 -0.46875 2.734375 C -0.46875 2.765625 -0.453125 2.890625 -0.28125 2.890625 C -0.09375 2.890625 0.125 2.859375 0.3125 2.859375 L 0.953125 2.859375 C 1.265625 2.859375 2.03125 2.890625 2.34375 2.890625 C 2.421875 2.890625 2.609375 2.890625 2.609375 2.625 C 2.609375 2.453125 2.5 2.453125 2.25 2.453125 C 1.5625 2.453125 1.515625 2.359375 1.515625 2.234375 C 1.515625 2.0625 2.1875 -0.5 2.28125 -0.84375 C 2.4375 -0.4375 2.84375 0.15625 3.625 0.15625 C 5.296875 0.15625 7.125 -2.046875 7.125 -4.234375 C 7.125 -5.59375 6.34375 -6.5625 5.234375 -6.5625 C 4.28125 -6.5625 3.46875 -5.640625 3.3125 -5.4375 C 3.1875 -6.171875 2.609375 -6.5625 2.015625 -6.5625 C 1.578125 -6.5625 1.234375 -6.359375 0.953125 -5.796875 C 0.6875 -5.25 0.46875 -4.34375 0.46875 -4.28125 C 0.46875 -4.234375 0.53125 -4.15625 0.640625 -4.15625 C 0.765625 -4.15625 0.78125 -4.171875 0.859375 -4.515625 C 1.09375 -5.390625 1.375 -6.265625 1.96875 -6.265625 C 2.3125 -6.265625 2.421875 -6.03125 2.421875 -5.578125 C 2.421875 -5.234375 2.375 -5.078125 2.328125 -4.8125 Z M 3.21875 -4.640625 C 3.328125 -5.0625 3.734375 -5.5 3.96875 -5.703125 C 4.140625 -5.859375 4.625 -6.265625 5.203125 -6.265625 C 5.859375 -6.265625 6.15625 -5.609375 6.15625 -4.84375 C 6.15625 -4.125 5.734375 -2.4375 5.359375 -1.671875 C 4.984375 -0.859375 4.296875 -0.15625 3.625 -0.15625 C 2.609375 -0.15625 2.4375 -1.421875 2.4375 -1.484375 C 2.4375 -1.53125 2.46875 -1.65625 2.484375 -1.734375 Z M 3.21875 -4.640625 ", :style => "stroke:none;"}
+                %symbol{:id => "m67meiyGdlFtEEOOE6hM_764Ku0=-glyph1-0", :overflow => "visible"}
+                  %path{:d => "", :style => "stroke:none;"}
+                %symbol{:id => "m67meiyGdlFtEEOOE6hM_764Ku0=-glyph1-1", :overflow => "visible"}
+                  %path{:d => "M 10.046875 -4.828125 C 10.265625 -4.828125 10.53125 -4.828125 10.53125 -5.09375 C 10.53125 -5.375 10.28125 -5.375 10.046875 -5.375 L 1.28125 -5.375 C 1.078125 -5.375 0.796875 -5.375 0.796875 -5.109375 C 0.796875 -4.828125 1.0625 -4.828125 1.28125 -4.828125 Z M 10.046875 -2.0625 C 10.265625 -2.0625 10.53125 -2.0625 10.53125 -2.328125 C 10.53125 -2.609375 10.28125 -2.609375 10.046875 -2.609375 L 1.28125 -2.609375 C 1.078125 -2.609375 0.796875 -2.609375 0.796875 -2.34375 C 0.796875 -2.0625 1.0625 -2.0625 1.28125 -2.0625 Z M 10.046875 -2.0625 ", :style => "stroke:none;"}
+                %symbol{:id => "m67meiyGdlFtEEOOE6hM_764Ku0=-glyph2-0", :overflow => "visible"}
+                  %path{:d => "", :style => "stroke:none;"}
+                %symbol{:id => "m67meiyGdlFtEEOOE6hM_764Ku0=-glyph2-1", :overflow => "visible"}
+                  %path{:d => "M 2.46875 -4.140625 C 2.703125 -4.109375 2.71875 -4.109375 3.15625 -4 C 3.3125 -3.953125 3.53125 -3.90625 3.6875 -3.90625 C 4.078125 -3.90625 4.09375 -4.234375 4.09375 -4.265625 C 4.09375 -4.375 4.046875 -4.65625 3.6875 -4.65625 C 3.453125 -4.65625 3.15625 -4.578125 2.984375 -4.515625 C 2.71875 -4.4375 2.65625 -4.4375 2.46875 -4.40625 C 2.484375 -4.703125 2.515625 -5 2.609375 -5.625 C 2.671875 -5.9375 2.71875 -6.234375 2.71875 -6.546875 C 2.71875 -6.703125 2.671875 -7 2.34375 -7 C 1.96875 -7 1.96875 -6.640625 1.96875 -6.546875 C 1.96875 -6.515625 1.96875 -6.171875 2.0625 -5.625 C 2.140625 -5.109375 2.203125 -4.765625 2.21875 -4.40625 C 1.984375 -4.4375 1.953125 -4.4375 1.515625 -4.5625 C 1.375 -4.59375 1.15625 -4.65625 1 -4.65625 C 0.609375 -4.65625 0.59375 -4.328125 0.59375 -4.28125 C 0.59375 -4.171875 0.640625 -3.90625 1 -3.90625 C 1.21875 -3.90625 1.515625 -3.984375 1.703125 -4.046875 C 1.953125 -4.109375 2.015625 -4.125 2.21875 -4.140625 C 2.203125 -3.875 2.15625 -3.671875 2.09375 -3.421875 C 1.96875 -2.78125 1.96875 -2.6875 1.96875 -2.171875 C 1.96875 -0.3125 2.140625 1.65625 2.171875 1.921875 C 2.203125 2.0625 2.203125 2.140625 2.328125 2.140625 C 2.46875 2.140625 2.484375 2.0625 2.5 1.953125 C 2.546875 1.53125 2.59375 0.890625 2.625 0.453125 C 2.65625 0.046875 2.71875 -1.21875 2.71875 -2.171875 C 2.71875 -2.625 2.71875 -2.796875 2.59375 -3.328125 C 2.59375 -3.359375 2.484375 -3.859375 2.46875 -4.140625 Z M 2.46875 -4.140625 ", :style => "stroke:none;"}
+                %symbol{:id => "m67meiyGdlFtEEOOE6hM_764Ku0=-glyph3-0", :overflow => "visible"}
+                  %path{:d => "", :style => "stroke:none;"}
+                %symbol{:id => "m67meiyGdlFtEEOOE6hM_764Ku0=-glyph3-1", :overflow => "visible"}
+                  %path{:d => "M 0.515625 1.203125 C 0.4375 1.515625 0.421875 1.59375 0.015625 1.59375 C -0.125 1.59375 -0.234375 1.59375 -0.234375 1.78125 C -0.234375 1.875 -0.15625 1.921875 -0.09375 1.921875 C 0 1.921875 0.046875 1.890625 0.78125 1.890625 C 1.484375 1.890625 1.703125 1.921875 1.765625 1.921875 C 1.8125 1.921875 1.953125 1.921875 1.953125 1.734375 C 1.953125 1.59375 1.8125 1.59375 1.703125 1.59375 C 1.21875 1.59375 1.21875 1.546875 1.21875 1.453125 C 1.21875 1.375 1.40625 0.671875 1.703125 -0.484375 C 1.828125 -0.265625 2.140625 0.09375 2.671875 0.09375 C 3.890625 0.09375 5.171875 -1.3125 5.171875 -2.75 C 5.171875 -3.734375 4.53125 -4.375 3.734375 -4.375 C 3.140625 -4.375 2.65625 -3.96875 2.375 -3.671875 C 2.171875 -4.375 1.5 -4.375 1.40625 -4.375 C 1.046875 -4.375 0.796875 -4.15625 0.640625 -3.84375 C 0.40625 -3.40625 0.296875 -2.890625 0.296875 -2.859375 C 0.296875 -2.765625 0.375 -2.734375 0.453125 -2.734375 C 0.578125 -2.734375 0.59375 -2.765625 0.65625 -3.03125 C 0.78125 -3.53125 0.96875 -4.109375 1.375 -4.109375 C 1.625 -4.109375 1.6875 -3.875 1.6875 -3.640625 C 1.6875 -3.53125 1.65625 -3.296875 1.625 -3.21875 Z M 2.34375 -3.0625 C 2.390625 -3.234375 2.390625 -3.25 2.546875 -3.421875 C 2.921875 -3.875 3.34375 -4.109375 3.703125 -4.109375 C 4.203125 -4.109375 4.390625 -3.625 4.390625 -3.171875 C 4.390625 -2.796875 4.171875 -1.734375 3.875 -1.15625 C 3.625 -0.609375 3.140625 -0.171875 2.671875 -0.171875 C 2 -0.171875 1.84375 -0.953125 1.84375 -1.03125 C 1.84375 -1.046875 1.859375 -1.15625 1.875 -1.1875 Z M 2.34375 -3.0625 ", :style => "stroke:none;"}
+              %clippath{:id => "m67meiyGdlFtEEOOE6hM_764Ku0=-clip1"}
+                %path{:d => "M 162 43 L 203.929688 43 L 203.929688 89 L 162 89 Z M 162 43 "}
+              %clippath{:id => "m67meiyGdlFtEEOOE6hM_764Ku0=-clip2"}
+                %path{:d => "M 0.0898438 35 L 25 35 L 25 64 L 0.0898438 64 Z M 0.0898438 35 "}
+              %clippath{:id => "m67meiyGdlFtEEOOE6hM_764Ku0=-clip3"}
+                %path{:d => "M 26 90 L 44 90 L 44 110.273438 L 26 110.273438 Z M 26 90 "}
+              %clippath{:id => "m67meiyGdlFtEEOOE6hM_764Ku0=-clip4"}
+                %path{:d => "M 161 90 L 180 90 L 180 110.273438 L 161 110.273438 Z M 161 90 "}
+            %g{:id => "m67meiyGdlFtEEOOE6hM_764Ku0=-surface1"}
+              %path{:d => "M -64.860556 -22.675936 C -64.860556 -20.928032 -66.283177 -19.505411 -68.031081 -19.505411 C -69.782904 -19.505411 -71.201606 -20.928032 -71.201606 -22.675936 C -71.201606 -24.427759 -69.782904 -25.846461 -68.031081 -25.846461 C -66.283177 -25.846461 -64.860556 -24.427759 -64.860556 -22.675936 Z M -64.860556 -22.675936 ", :style => "fill-rule:nonzero;fill:rgb(0%,0%,0%);fill-opacity:1;stroke-width:0.79701;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;", :transform => "matrix(0.99673,0,0,-0.99673,102.804695,55.156033)"}
+              %path{:d => "M 71.201591 -22.675936 C 71.201591 -20.928032 69.782889 -19.505411 68.031066 -19.505411 C 66.283163 -19.505411 64.860542 -20.928032 64.860542 -22.675936 C 64.860542 -24.427759 66.283163 -25.846461 68.031066 -25.846461 C 69.782889 -25.846461 71.201591 -24.427759 71.201591 -22.675936 Z M 71.201591 -22.675936 ", :style => "fill-rule:nonzero;fill:rgb(0%,0%,0%);fill-opacity:1;stroke-width:0.79701;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;", :transform => "matrix(0.99673,0,0,-0.99673,102.804695,55.156033)"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "5.755114", "xlink:href" => "#m67meiyGdlFtEEOOE6hM_764Ku0=-glyph0-1", :y => "15.038658"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "51.747214", "xlink:href" => "#m67meiyGdlFtEEOOE6hM_764Ku0=-glyph0-2", :y => "15.038658"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "141.373152", "xlink:href" => "#m67meiyGdlFtEEOOE6hM_764Ku0=-glyph0-1", :y => "15.038658"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "187.365252", "xlink:href" => "#m67meiyGdlFtEEOOE6hM_764Ku0=-glyph0-2", :y => "15.038658"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "97.133303", "xlink:href" => "#m67meiyGdlFtEEOOE6hM_764Ku0=-glyph1-1", :y => "63.494674"}
+              %path{:d => "M -90.714637 -0.000217658 C -90.714637 -11.341996 -82.535546 -18.792141 -71.577836 -21.731441 ", :style => "fill:none;stroke-width:0.79701;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;", :transform => "matrix(0.99673,0,0,-0.99673,102.804695,55.156033)"}
+              %path{:d => "M -45.359282 -0.000217658 C -45.359282 -11.341996 -53.538374 -18.792141 -64.492164 -21.727522 ", :style => "fill:none;stroke-width:0.79701;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;", :transform => "matrix(0.99673,0,0,-0.99673,102.804695,55.156033)"}
+              %path{:d => "M -68.035 -26.348101 L -68.035 -45.355573 ", :style => "fill:none;stroke-width:0.79701;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;", :transform => "matrix(0.99673,0,0,-0.99673,102.804695,55.156033)"}
+              %path{:d => "M 45.359267 -0.000217658 C 45.359267 -11.341996 53.538359 -18.792141 64.492149 -21.727522 ", :style => "fill:none;stroke-width:0.79701;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;", :transform => "matrix(0.99673,0,0,-0.99673,102.804695,55.156033)"}
+              %g{"clip-path" => "url(#m67meiyGdlFtEEOOE6hM_764Ku0=-clip1)", "clip-rule" => "nonzero"}
+                %path{:d => "M 90.714623 -0.000217658 C 90.714623 -11.341996 82.535531 -18.792141 71.577822 -21.731441 ", :style => "fill:none;stroke-width:0.79701;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;", :transform => "matrix(0.99673,0,0,-0.99673,102.804695,55.156033)"}
+              %path{:d => "M 68.034985 -26.348101 L 68.034985 -45.355573 ", :style => "fill:none;stroke-width:0.79701;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;", :transform => "matrix(0.99673,0,0,-0.99673,102.804695,55.156033)"}
+              %path{:d => "M -90.714637 34.017279 L -90.714637 -0.000217658 ", :style => "fill:none;stroke-width:0.79701;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;", :transform => "matrix(0.99673,0,0,-0.99673,102.804695,55.156033)"}
+              %path{:d => "M -45.359282 34.017279 L -45.359282 -0.000217658 ", :style => "fill:none;stroke-width:0.79701;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;", :transform => "matrix(0.99673,0,0,-0.99673,102.804695,55.156033)"}
+              %path{:d => "M 45.359267 34.017279 L 45.359267 -0.000217658 ", :style => "fill:none;stroke-width:0.79701;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;", :transform => "matrix(0.99673,0,0,-0.99673,102.804695,55.156033)"}
+              %path{:d => "M 90.714623 34.017279 L 90.714623 -0.000217658 ", :style => "fill:none;stroke-width:0.79701;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;", :transform => "matrix(0.99673,0,0,-0.99673,102.804695,55.156033)"}
+              %g{"clip-path" => "url(#m67meiyGdlFtEEOOE6hM_764Ku0=-clip2)", "clip-rule" => "nonzero"}
+                %path{:d => "M -78.765404 19.532409 L -102.656033 19.532409 L -102.656033 -8.194986 L -78.765404 -8.194986 Z M -78.765404 19.532409 ", :style => "fill-rule:nonzero;fill:rgb(100%,100%,100%);fill-opacity:1;stroke-width:0.79701;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;", :transform => "matrix(0.99673,0,0,-0.99673,102.804695,55.156033)"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "5.347452", "xlink:href" => "#m67meiyGdlFtEEOOE6hM_764Ku0=-glyph0-3", :y => "52.8496"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "14.127395", "xlink:href" => "#m67meiyGdlFtEEOOE6hM_764Ku0=-glyph2-1", :y => "47.443588"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "12.536365", "xlink:href" => "#m67meiyGdlFtEEOOE6hM_764Ku0=-glyph3-1", :y => "56.531271"}
+              %path{:d => "M 99.991053 17.188808 L 81.430354 17.188808 L 81.430354 -5.851384 L 99.991053 -5.851384 Z M 99.991053 17.188808 ", :style => "fill-rule:nonzero;fill:rgb(100%,100%,100%);fill-opacity:1;stroke-width:0.79701;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;", :transform => "matrix(0.99673,0,0,-0.99673,102.804695,55.156033)"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "188.827454", "xlink:href" => "#m67meiyGdlFtEEOOE6hM_764Ku0=-glyph0-3", :y => "53.229354"}
+              %path{:d => "M 43.355469 90.847656 L 26.632812 90.847656 L 26.632812 109.878906 L 43.355469 109.878906 Z M 43.355469 90.847656 ", :style => " stroke:none;fill-rule:nonzero;fill:rgb(100%,100%,100%);fill-opacity:1;"}
+              %g{"clip-path" => "url(#m67meiyGdlFtEEOOE6hM_764Ku0=-clip3)", "clip-rule" => "nonzero"}
+                %path{:d => "M -59.644279 -35.808727 L -76.421802 -35.808727 L -76.421802 -54.902419 L -59.644279 -54.902419 Z M -59.644279 -35.808727 ", :style => "fill:none;stroke-width:0.79701;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;", :transform => "matrix(0.99673,0,0,-0.99673,102.804695,55.156033)"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "31.494663", "xlink:href" => "#m67meiyGdlFtEEOOE6hM_764Ku0=-glyph0-4", :y => "102.120941"}
+              %path{:d => "M 179.136719 90.847656 L 162.09375 90.847656 L 162.09375 109.878906 L 179.136719 109.878906 Z M 179.136719 90.847656 ", :style => " stroke:none;fill-rule:nonzero;fill:rgb(100%,100%,100%);fill-opacity:1;"}
+              %g{"clip-path" => "url(#m67meiyGdlFtEEOOE6hM_764Ku0=-clip4)", "clip-rule" => "nonzero"}
+                %path{:d => "M 76.582469 -35.808727 L 59.483583 -35.808727 L 59.483583 -54.902419 L 76.582469 -54.902419 Z M 76.582469 -35.808727 ", :style => "fill:none;stroke-width:0.79701;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;", :transform => "matrix(0.99673,0,0,-0.99673,102.804695,55.156033)"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "166.95422", "xlink:href" => "#m67meiyGdlFtEEOOE6hM_764Ku0=-glyph0-5", :y => "102.120941"}
+          %p
+            This recovers the classical probability definitions when instantiated in
+            %a.existingWikiWord{:href => "/nlab/show/Stoch"} Stoch
+            and its subcategories.
+          %p
+            Just as in traditional probability, Bayesian inverses are unique only up to
+            = succeed "." do
+              %span.newWikiWord
+                almost sure equality
+                %a{:href => "/nlab/new/almost+sure+equality"} ?
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/Markov+category#conditionals"} conditionals
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/BorelStoch"} BorelStoch
+          %p
+            (See also
+            = succeed ".)" do
+              %a.existingWikiWord{:href => "/nlab/show/Markov+category#conditionals"} Markov category - conditionals
+          %h3#in_dagger_categories In dagger categories
+          %p
+            In the
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/category+of+couplings"} category of couplings
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/dagger+category"} dagger structure
+            %a.existingWikiWord{:href => "/nlab/show/probability+spaces"} probability spaces
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mo{:stretchy => "false"} (
+                  %mi X
+                  %mo ,
+                  %mi 𝒜
+                  %mo ,
+                  %mi p
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} (X,\mathcal{A},p)
+            and
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo{:stretchy => "false"} (
+                    %mi Y
+                    %mo ,
+                    %mi ℬ
+                    %mo ,
+                    %mi q
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} (Y,\mathcal{B},q)
+            %a.existingWikiWord{:href => "/nlab/show/coupling+%28probability+theory%29"} coupling
+            between them can be seen equivalently as going from
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi X
+                %annotation{:encoding => "application/x-tex"} X
+            to
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi Y
+                %annotation{:encoding => "application/x-tex"} Y
+            or from
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi Y
+                %annotation{:encoding => "application/x-tex"} Y
+            to
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi X
+                  %annotation{:encoding => "application/x-tex"} X
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/Markov+kernels"} Markov kernels
+          %p
+            Categorical abstractions of the category of coupling via
+            %a.existingWikiWord{:href => "/nlab/show/dagger+categories"} dagger categories
+            have therefore the concept of Bayesian inversion already built in.
+          %h2#quantum_versions Quantum versions
+          %p (For now, see the references.)
+          %h2#see_also See also
+          %ul
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/categorical+probability"}> categorical probability
+                ,
+                %a.existingWikiWord{:href => "/nlab/show/Markov+category"} Markov category
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/transport+plan"}> transport plan
+                ,
+                %a.existingWikiWord{:href => "/nlab/show/category+of+couplings"} category of couplings
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Markov+kernel"}> Markov kernel
+                ,
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/stochastic+map"} stochastic map
+                %a.existingWikiWord{:href => "/nlab/show/Stoch"} Stoch
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/conditional+probability"}> conditional probability
+                ,
+                %a.existingWikiWord{:href => "/nlab/show/conditional+expectation"} conditional expectation
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/probability+theory"}> probability theory
+                ,
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/statistics"} statistics
+                %a.existingWikiWord{:href => "/nlab/show/Bayesian+statistics"} Bayesian statistics
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/dagger+category"} dagger category
+          %h2#references References
+          %p
+            For
+            = succeed ":" do
+              %a.existingWikiWord{:href => "/nlab/show/categorical+probability"} categorical probability
+          %ul
+            %li#fritzmarkov
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Tobias+Fritz"}> Tobias Fritz
+                ,
+                = succeed "," do
+                  %em A synthetic approach to Markov kernels, conditional independence and theorems on sufficient statistics
+                = succeed ")" do
+                  %a{:href => "http://arxiv.org/abs/1908.07021"} arXiv:1908.07021
+            %li#cd_categories
+              %p
+                Kenta Cho and
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/Bart+Jacobs"} Bart Jacobs
+                = succeed "," do
+                  %em Disintegration and Bayesian Inversion via String Diagrams
+                = succeed ")" do
+                  %a{:href => "https://arxiv.org/abs/1709.00322"} arXiv:1709.00322
+            %li
+              %p
+                Dario Stein and
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/Sam+Staton"} Sam Staton
+                = succeed "," do
+                  %em Probabilistic Programming with Exact Conditions
+                = succeed ")" do
+                  %a{:href => "https://arxiv.org/abs/2312.17141"} arXiv
+            %li
+              %p
+                Noé Ensarguet and
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/Paolo+Perrone"} Paolo Perrone
+                = succeed "," do
+                  %em Categorical probability spaces, ergodic decompositions
+                = succeed ")" do
+                  %a{:href => "https://arxiv.org/abs/2310.04267"} arXiv:2310.04267
+          %p For the quantum case:
+          %ul
+            %li#coecke_spekkens12
+              %a.existingWikiWord{:href => "/nlab/show/Bob+Coecke"}> Bob Coecke
+              ,
+              = succeed ":" do
+                %a.existingWikiWord{:href => "/nlab/show/Robert+W.+Spekkens"} Robert W. Spekkens
+              = succeed "," do
+                %em Picturing classical and quantum Bayesian inference
+              %strong 186
+              3 (2012) &amp;lbrack;
+              %a{:href => "https://arxiv.org/abs/1102.2368"}> arXiv:1102.2368
+              ,
+              = succeed "&rbrack;" do
+                %a{:href => "https://doi.org/10.1007/s11229-011-9917-5"} doi:10.1007/s11229-011-9917-5
+          %p
+            and using
+            = succeed ":" do
+              %a.existingWikiWord{:href => "/nlab/show/Markov+categories"} Markov categories
+          %ul
+            %li#quantum_markov
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Arthur+J.+Parzygnat"}> Arthur J. Parzygnat
+                ,
+                = succeed "," do
+                  %em Inverses, disintegrations, and Bayesian inversion in quantum Markov categories
+                = succeed ")" do
+                  %a{:href => "https://arxiv.org/abs/2001.08375"} arXiv
+            %li#noncommutative_bayes
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Arthur+J.+Parzygnat"}> Arthur J. Parzygnat
+                ,
+                = succeed ":" do
+                  %a.existingWikiWord{:href => "/nlab/show/Benjamin+P.+Russo"} Benjamin P. Russo
+                = succeed "," do
+                  %em A noncommutative Bayes theorem
+                %strong 644
+                (2022) &amp;lbrack;
+                %a{:href => "https://doi.org/10.1016/j.laa.2022.02.030"}> doi:10.1016/j.laa.2022.02.030
+                ,
+                = succeed "&rbrack;" do
+                  %a{:href => "https://arxiv.org/abs/2005.03886"} arXiv:2005.03886
+            %li#conditional_quantum
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Arthur+J.+Parzygnat"}> Arthur J. Parzygnat
+                \:
+                = succeed "," do
+                  %em Conditional distributions for quantum systems
+                %strong 343
+                (2021) 1-13 &amp;lbrack;
+                %a{:href => "https://arxiv.org/abs/2102.01529"}> arXiv:2102.01529
+                ,
+                = succeed "&rbrack;" do
+                  %a{:href => "https://doi.org/10.4204/EPTCS.343.1"} doi:10.4204/EPTCS.343.1
+            %li#retrodiction
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Arthur+J.+Parzygnat"}> Arthur J. Parzygnat
+                , Francesco Buscemi,
+                = succeed "," do
+                  %em Axioms for retrodiction: achieving time-reversal symmetry with a prior
+                %strong 7
+                (2023) 1013 &amp;lbrack;
+                %a{:href => "https://arxiv.org/abs/2210.13531"}> arXiv:2210.13531
+                ,
+                = succeed "&rbrack;" do
+                  %a{:href => "https://doi.org/10.22331/q-2023-05-23-1013"} doi:10.22331/q-2023-05-23-1013
+            %li#quantum_states_time
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/James+Fullwood"}> James Fullwood
+                ,
+                = succeed ":" do
+                  %a.existingWikiWord{:href => "/nlab/show/Arthur+J.+Parzygnat"} Arthur J. Parzygnat
+                = succeed "," do
+                  %em On quantum states over time
+                %strong 478
+                (2022) &amp;lbrack;
+                %a{:href => "https://arxiv.org/abs/2202.03607"}> arXiv:2202.03607
+                ,
+                = succeed "&rbrack;" do
+                  %a{:href => "https://doi.org/10.1098/rspa.2022.0104"} doi:10.1098/rspa.2022.0104
+            %li#quantum_bayes
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/James+Fullwood"}> James Fullwood
+                ,
+                = succeed ":" do
+                  %a.existingWikiWord{:href => "/nlab/show/Arthur+J.+Parzygnat"} Arthur J. Parzygnat
+                = succeed "," do
+                  %em From time-reversal symmetry to quantum Bayes rules
+                %strong 4
+                020334 (2023) &amp;lbrack;
+                %a{:href => "https://arxiv.org/abs/2212.08088"}> arXiv:2212.08088
+                ,
+                = succeed "&rbrack;" do
+                  %a{:href => "https://doi.org/10.1103/PRXQuantum.4.020334"} doi:10.1103/PRXQuantum.4.020334
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/James+Fullwood"}> James Fullwood
+                ,
+                = succeed ":" do
+                  %a.existingWikiWord{:href => "/nlab/show/Arthur+J.+Parzygnat"} Arthur J. Parzygnat
+                %em Operator representation of spatiotemporal quantum correlations
+                \&amp;lbrack;
+                %a{:href => "https://arxiv.org/abs/2405.17555"}> arXiv:2405.17555
+                \&amp;rbrack;
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Arthur+J.+Parzygnat"}> Arthur J. Parzygnat
+                ,
+                = succeed ":" do
+                  %a.existingWikiWord{:href => "/nlab/show/James+Fullwood"} James Fullwood
+                %em Time-symmetric correlations for open quantum systems
+                \&amp;lbrack;
+                %a{:href => "https://arxiv.org/abs/2407.11123"}> arXiv:2407.11123
+                \&amp;rbrack;
+            %li#noncomm_disintegrations
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Arthur+J.+Parzygnat"}> Arthur J. Parzygnat
+                , Benjamin P. Russo,
+                = succeed "," do
+                  %em Non-commutative disintegrations: existence and uniqueness in finite dimensions
+                = succeed ")" do
+                  %a{:href => "https://arxiv.org/abs/1907.09689"} arXiv
+          %p Review:
+          %ul
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/Arthur+Parzygnat"}> Arthur Parzygnat
+              \:
+              = succeed "," do
+                %em A Spatiotemporal Extension of Density Matrices and Time-Reversal Symmetry for Measurements
+              %a{:href => "Center+for+Quantum+and+Topological+Systems#ParzygnatNov2024"} talk at
+              %a.existingWikiWord{:href => "/nlab/show/CQTS"} CQTS
+              (Nov 2024) &amp;lbrack;slides:
+              %a.existingWikiWord{:href => "/nlab/files/Parzygnat-CQTS-Nov2024.pdf", :title => "pdf"}> pdf
+              \&amp;rbrack;
+          .property
+            category:
+            %a.category_link{:href => "/nlab/all_pages/probability"} probability
+        .revisedby
+          %p
+            Last revised on February  8, 2025 at 14:44:56.
+            See the
+            %a{:href => "/nlab/history/Bayesian+inversion", :style => "color: #005c19"} history
+            of this page for a list of all contributions to it.
+        .navigation.navfoot
+          %a#edit.navlink{:accesskey => "E", :href => "/nlab/edit/Bayesian+inversion", :rel => "nofollow"} Edit
+          %a{:href => "https://nforum.ncatlab.org/discussion/17722/#Item_6"} Discuss
+          %span.backintime
+            %a#to_previous_revision.navlinkbackintime{:accesskey => "B", :href => "/nlab/revision/Bayesian+inversion/11", :rel => "nofollow"} Previous revision
+          %a#see_changes.navlink{:accesskey => "C", :href => "/nlab/show/diff/Bayesian+inversion", :rel => "nofollow"} Changes from previous revision
+          %a#history.navlink{:accesskey => "S", :href => "/nlab/history/Bayesian+inversion", :rel => "nofollow"} History (11 revisions)
+          %a{:href => "/nlab/show/Bayesian+inversion/cite", :style => "color: black"} Cite
+          %a#view_print{:accesskey => "p", :href => "/nlab/print/Bayesian+inversion", :rel => "nofollow"} Print
+          %a#view_source{:href => "/nlab/source/Bayesian+inversion", :rel => "nofollow"} Source
+      / Content
+    / Container

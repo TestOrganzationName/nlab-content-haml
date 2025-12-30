@@ -1,0 +1,998 @@
+!!! XML
+!!! 1.1
+%html{:xmlns => "http://www.w3.org/1999/xhtml"}
+  %head
+    %title
+      Moonshine in nLab
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:content => "index,follow", :name => "robots"}/
+    %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/
+    %link{:href => "/stylesheets/instiki.css?1676280126", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/stylesheets/mathematics.css?1660229990", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/stylesheets/syntax.css?1660229990", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/stylesheets/nlab.css?1676280126", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css", :rel => "stylesheet", :type => "text/css"}/
+    :css
+      h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+        color: #226622;
+      }
+      a:visited.existingWikiWord {
+        color: #164416;
+      }
+    :css
+      <!--/*--><![CDATA[/*><!--*/
+          .toc ul {margin: 0; padding: 0;}
+      .toc ul ul {margin: 0; padding: 0 0 0 10px;}
+      .toc li > p {margin: 0}
+      .toc ul li {list-style-type: none; position: relative;}
+      .toc div {border-top:1px dotted #ccc;}
+      .rightHandSide h2 {font-size: 1.5em;color:#008B26}
+      table.plaintable {
+          border-collapse:collapse;
+          margin-left:30px;
+          border:0;
+      }
+      .plaintable td {border:1px solid #000; padding: 3px;}
+      .plaintable th {padding: 3px;}
+      .plaintable caption {
+          font-weight: bold;
+          font-size:1.1em;
+          text-align:center;
+          margin-left:30px;
+      }
+          
+         
+      /* Query boxes for questioning and answering mechanism */
+      div.query{
+      background: #f6fff3;
+      border: solid #ce9;
+      border-width: 2px 1px;
+      padding: 0 1em;
+      margin: 0 1em;
+      max-height: 20em;
+      overflow: auto;
+      }
+      
+      /* Standout boxes for putting important text */
+      div.standout{
+      background: #fff1f1;
+      border: solid black;
+      border-width: 2px 1px;
+      padding: 0 1em;
+      margin: 0 1em;
+      overflow: auto;
+      }
+      
+      /* Icon for links to n-category arXiv documents 
+       (commented out for now i.e. disabled)
+      a[href*="http://arxiv.org/"] {
+        background-image: url(../files/arXiv_icon.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 22px;
+        } */
+          
+      /* Icon for links to n-category cafe posts (disabled) 
+      a[href*="http://golem.ph.utexas.edu/category"] {
+        background-image: url(../files/n-cafe_5.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 25px;
+        } */
+      
+      /* Icon for links to pdf files (disabled)
+      a[href$=".pdf"] {
+        background-image: url(../files/pdficon_small.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 25px;
+        } */
+      
+      /* Icon for links to pages, etc. -inside- pdf files (disabled)
+      a[href*=".pdf#"] {
+        background-image: url(../files/pdf_entry.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 25px;
+        } */
+      
+      a.existingWikiWord {
+      color: #226622;
+      }
+      
+      a.existingWikiWord:visited {
+      color: #226622;
+      }
+      
+      
+      a.existingWikiWord[title] {
+      border: 0px;
+      color: #aa0505;
+      text-decoration: none;
+      }
+          
+      a.existingWikiWord[title]:visited {
+      border: 0px;
+      color: #551111;
+      text-decoration: none;
+      }
+      
+      a[href^="http://"] {
+      border: 0px;
+      color: #003399;
+      }
+      
+      a[href^="http://"]:visited {
+      border: 0px;
+      color: #330066;
+      }
+      
+      a[href^="https://"] {
+      border: 0px;
+      color: #003399;
+      }
+      
+      a[href^="https://"]:visited {
+      border: 0px;
+      color: #330066;
+      }
+      
+      div.dropDown .hide {
+      display: none;
+      }
+      
+      div.dropDown:hover .hide {
+      display:block;
+      }
+      
+      div.clickDown .hide {
+      display: none;
+      }
+      
+      div.clickDown:focus {
+      outline:none;
+      }
+      
+      div.clickDown:focus .hide, div.clickDown:hover .hide {
+      display: block;
+      }
+      
+      div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+      display:block;
+      }
+      
+      div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+      display:none;
+      }
+      
+      div.clickDown .clickToReveal:after {
+      content: "A(Hover to reveal, click to "hold")";
+      font-size: 60%;
+      }
+      
+      div.clickDown .clickToHide:after {
+      content: "A(Click to hide)";
+      font-size: 60%;
+      }
+      div.clickDown .clickToHide, div.clickDown .clickToReveal {
+      white-space: pre-wrap;
+      }
+      
+      .un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+      margin-left: 1em;
+      }
+      
+      span.theorem_label {
+      margin-left: -1em;
+      }
+      .proof span.theorem_label {
+      margin-left: 0em;
+      }
+      :target {
+          background-color: #BBBBBB;
+          border-radius: 5pt;
+      }
+      
+        /*]]>*/-->
+    %script{:src => "/javascripts/prototype.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/effects.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/dragdrop.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/controls.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/application.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/page_helper.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/thm_numbering.js?1660229990", :type => "text/javascript"}
+    %script{:type => "text/x-mathjax-config"}
+      :cdata
+        <!--//--><![CDATA[//><!--
+        MathJax.Ajax.config.path["Contrib"] = "/MathJax";
+        MathJax.Hub.Config({
+        MathML: { useMathMLspacing: true },
+        "HTML-CSS": { scale: 90,
+        extensions: ["handle-floats.js"]
+        }
+        });
+        MathJax.Hub.Queue( function () {
+        var fos = document.getElementsByTagName('foreignObject');
+        for (var i = 0; i < fos.length; i++) {
+        MathJax.Hub.Typeset(fos[i]);
+        }
+        });
+        \//--><!]]>
+    :javascript
+      <!--//--><![CDATA[//><!--
+      window.addEventListener("DOMContentLoaded", function () {
+        var div = document.createElement('div');
+        var math = document.createElementNS('http://www.w3.org/1998/Math/MathML', 'math');
+        document.body.appendChild(div);
+        div.appendChild(math);
+      // Test for MathML support comparable to WebKit version https://trac.webkit.org/changeset/203640 or higher.
+        div.setAttribute('style', 'font-style: italic');
+        var mathml_unsupported = !(window.getComputedStyle(div.firstChild).getPropertyValue('font-style') === 'normal');
+        div.parentNode.removeChild(div);
+        if (mathml_unsupported) {
+          // MathML does not seem to be supported...
+          var s = document.createElement('script');
+          s.src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=MML_HTMLorMML-full";
+          document.querySelector('head').appendChild(s);
+        } else {
+          document.head.insertAdjacentHTML("beforeend", '<style>svg[viewBox] {max-width: 100%}</style>');
+        }
+      });
+      //--><!]]>
+    %link{:href => "https://ncatlab.org/nlab/atom_with_headlines", :rel => "alternate", :title => "Atom with headlines", :type => "application/atom+xml"}/
+    %link{:href => "https://ncatlab.org/nlab/atom_with_content", :rel => "alternate", :title => "Atom with full content", :type => "application/atom+xml"}/
+    :javascript
+      document.observe("dom:loaded", function() {
+        generateThmNumbers();
+      });
+  %body
+    #Container
+      #Content
+        %h1#pageName
+          %span{:style => "float: left; margin: 0.5em 0.25em -0.25em 0"}
+            %svg{:height => "1.8em", :viewbox => "0 0 190 181", :width => "1.872em", :xmlns => "http://www.w3.org/2000/svg"}
+              %path{:d => "M72.8 145c-1.6 17.3-15.7 10-23.6 20.2-5.6 7.3 4.8 15 11.4 15 11.5-.2 19-13.4 26.4-20.3 3.3-3 8.2-4 11.2-7.2a14 14 0 0 0 2.9-11.1c-1.4-9.6-12.4-18.6-16.9-27.2-5-9.6-10.7-27.4-24.1-27.7-17.4-.3-.4 26 4.7 30.7 2.4 2.3 5.4 4.1 7.3 6.9 1.6 2.3 2.1 5.8-1 7.2-5.9 2.6-12.4-6.3-15.5-10-8.8-10.6-15.5-23-26.2-31.8-5.2-4.3-11.8-8-18-3.7-7.3 4.9-4.2 12.9.2 18.5a81 81 0 0 0 30.7 23c3.3 1.5 12.8 5.6 10 10.7-2.5 5.2-11.7 3-15.6 1.1-8.4-3.8-24.3-21.3-34.4-13.7-3.5 2.6-2.3 7.6-1.2 11.1 2.8 9 12.2 17.2 20.9 20.5 17.3 6.7 34.3-8 50.8-12.1z", :fill => "#226622"}
+              %path{:d => "M145.9 121.3c-.2-7.5 0-19.6-4.5-26-5.4-7.5-12.9-1-14.1 5.8-1.4 7.8 2.7 14.1 4.8 21.3 3.4 12 5.8 29-.8 40.1-3.6-6.7-5.2-13-7-20.4-2.1-8.2-12.8-13.2-15.1-1.9-2 9.7 9 21.2 12 30.1 1.2 4 2 8.8 6.4 10.3 6.9 2.3 13.3-4.7 17.7-8.8 12.2-11.5 36.6-20.7 43.4-36.4 6.7-15.7-13.7-14-21.3-7.2-9.1 8-11.9 20.5-23.6 25.1 7.5-23.7 31.8-37.6 38.4-61.4 2-7.3-.8-29.6-13-19.8-14.5 11.6-6.6 37.6-23.3 49.2z", :fill => "#a41e32"}
+              %path{:d => "M86.3 47.5c0-13-10.2-27.6-5.8-40.4 2.8-8.4 14.1-10.1 17-1 3.8 11.6-.3 26.3-1.8 38 11.7-.7 10.5-16 14.8-24.3 2.1-4.2 5.7-9.1 11-6.7 6 2.7 7.4 9.2 6.6 15.1-2.2 14-12.2 18.8-22.4 27-3.4 2.7-8 6.6-5.9 11.6 2 4.4 7 4.5 10.7 2.8 7.4-3.3 13.4-16.5 21.7-16 14.6.7 12 21.9.9 26.2-5 1.9-10.2 2.3-15.2 3.9-5.8 1.8-9.4 8.7-15.7 8.9-6.1.1-9-6.9-14.3-9-14.4-6-33.3-2-44.7-14.7-3.7-4.2-9.6-12-4.9-17.4 9.3-10.7 28 7.2 35.7 12 2 1.1 11 6.9 11.4 1.1.4-5.2-10-8.2-13.5-10-11.1-5.2-30-15.3-35-27.3-2.5-6 2.8-13.8 9.4-13.6 6.9.2 13.4 7 17.5 12C70.9 34 75 43.8 86.3 47.4z", :fill => "#193c78"}
+          %span.webName nLab
+          Moonshine
+        .navigation
+          %span.skipNav
+            %a{:href => "#navEnd"} Skip the Navigation Links
+            |
+          %span{:style => "display:inline-block; width: 0.3em;"}
+          %a{:accesskey => "H", :href => "/nlab/show/HomePage", :title => "Home page"} Home Page
+          |
+          %a{:accesskey => "A", :href => "/nlab/all_pages", :title => "List of all pages"} All Pages
+          |
+          %a{:accesskey => "U", :href => "/nlab/latest_revisions", :title => "Latest edits and page creations"} Latest Revisions
+          |
+          %a{:href => "https://nforum.ncatlab.org/discussion/2706/#Item_8", :style => "color: black", :title => "Discuss this page in its dedicated thread on the nForum"} Discuss this page
+          |
+          %form#navigationSearchForm{"accept-charset" => "utf-8", :action => "/nlab/search", :method => "get"}
+            %fieldset.search
+              %input#searchField{:name => "query", :onblur => "this.value == '' ? this.value = 'Search' : true", :onfocus => "this.value == 'Search' ? this.value = '' : true", :style => "display:inline-block; float: left;", :type => "text", :value => "Search"}/
+          %span#navEnd
+        #revision
+          %meta{:content => "application/xhtml+xml;charset=utf-8", "http-equiv" => "Content-type"}/
+          %title Contents
+          .rightHandSide
+            .toc.clickDown{:tabindex => "0"}
+              %h3#context Context
+              %h4#exceptional_structures Exceptional structures
+              .hide
+                %div
+                  %p
+                    %strong>
+                      %a.existingWikiWord{:href => "/nlab/show/exceptional+structures"} exceptional structures
+                    ,
+                    %a.existingWikiWord{:href => "/nlab/show/exceptional+isomorphisms"} exceptional isomorphisms
+                  %h2#examples Examples
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/exceptional+finite+groups"} exceptional finite groups
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/monster+group"} monster group
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/Mathieu+group"}> Mathieu group
+                            ,
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/Conway+group"} Conway group
+                    %li
+                      %p
+                        exceptional
+                        = succeed ":" do
+                          %a.existingWikiWord{:href => "/nlab/show/finite+rotation+groups"} finite rotation groups
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/tetrahedral+group"} tetrahedral group
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/octahedral+group"} octahedral group
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/icosahedral+group"} icosahedral group
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/exceptional+Lie+groups"} exceptional Lie groups
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/G%E2%82%82"} G₂
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/F%E2%82%84"} F₄
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/E%E2%82%86"}> E₆
+                            ,
+                            = succeed "," do
+                              %a.existingWikiWord{:href => "/nlab/show/E%E2%82%87"} E₇
+                            %a.existingWikiWord{:href => "/nlab/show/E%E2%82%88"} E₈
+                      %p
+                        and
+                        = succeed ":" do
+                          %a.existingWikiWord{:href => "/nlab/show/Kac-Moody+groups"} Kac-Moody groups
+                      %ul
+                        %li
+                          %a.existingWikiWord{:href => "/nlab/show/E%E2%82%89"}> E₉
+                          ,
+                          = succeed "," do
+                            %a.existingWikiWord{:href => "/nlab/show/E%E2%82%81%E2%82%80"} E₁₀
+                          = succeed "," do
+                            %a.existingWikiWord{:href => "/nlab/show/E%E2%82%81%E2%82%81"} E₁₁
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Dwyer-Wilkerson+H-space"} Dwyer-Wilkerson H-space
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/exceptional+Lie+algebras"} exceptional Lie algebras
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/exceptional+Jordan+algebra"} exceptional Jordan algebra
+                      %ul
+                        %li
+                          %a.existingWikiWord{:href => "/nlab/show/Albert+algebra"} Albert algebra
+                    %li
+                      %p
+                        exceptional
+                        = succeed "," do
+                          %a.existingWikiWord{:href => "/nlab/show/Jordan+superalgebra"} Jordan superalgebra
+                        %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                          %semantics
+                            %mrow
+                              %msub
+                                %mi K
+                                %mn 10
+                            %annotation{:encoding => "application/x-tex"} K_10
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/E%E2%82%88+lattice"}> E₈ lattice
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/Leech+lattice"} Leech lattice
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Cayley+plane"} Cayley plane
+                  %h2#interrelations Interrelations
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/supersymmetry+and+division+algebras"} supersymmetry and division algebras
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Freudenthal+magic+square"} Freudenthal magic square
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/moonshine"} moonshine
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/Mathieu+moonshine"} Mathieu moonshine
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/umbral+moonshine"} umbral moonshine
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/O%27Nan+moonshine"} O'Nan moonshine
+                  %h2#applications Applications
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/exceptional+geometry"}> exceptional geometry
+                        ,
+                        = succeed "," do
+                          %a.existingWikiWord{:href => "/nlab/show/exceptional+generalized+geometry"} exceptional generalized geometry
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/exceptional+field+theory"} exceptional field theory
+                  %h2#philosophy Philosophy
+                  %ul
+                    %li
+                      %a.existingWikiWord{:href => "/nlab/show/universal+exceptionalism"} universal exceptionalism
+          %h1#contents Contents
+          .maruku_toc
+            %ul
+              %li
+                %a{:href => "#idea"} Idea
+              %li
+                %a{:href => "#AutomorphismGroupsOfVertexOperatorAlgebras"} Automorphism groups of vertex operator algebras
+              %li
+                %a{:href => "#related_concepts"} Related concepts
+              %li
+                %a{:href => "#references"} References
+              %ul
+                %li
+                  %a{:href => "#general"} General
+                %li
+                  %a{:href => "#historical_references"} Historical References
+                %li
+                  %a{:href => "#FurtherDevelomentsReferences"} Further developments
+                %li
+                  %a{:href => "#realization_in_superstring_theory"} Realization in superstring theory
+          %h2#idea Idea
+          %p
+            In
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/mathematics"} mathematics
+            %em Moonshine
+            refers to mysterious connections between the
+            %a.existingWikiWord{:href => "/nlab/show/Monster+simple+group"} Monster simple group
+            and the
+            %a.existingWikiWord{:href => "/nlab/show/modular+function"} modular function
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi j
+                  %annotation{:encoding => "application/x-tex"} j
+            = succeed "." do
+              %em
+                %a.existingWikiWord{:href => "/nlab/show/j-invariant"} j-invariant
+          %p
+            There were a bunch of
+            %a.existingWikiWord{:href => "/nlab/show/conjectures"} conjectures
+            about this connection that were proved by
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/Richard+Borcherds"} Richard Borcherds
+            %a.existingWikiWord{:href => "/nlab/show/Moonshine+vertex+algebra"} Moonshine vertex algebra
+            (constructed then later in
+            = succeed ")." do
+              %a{:href => "#FrenkelLepowskiMeurman89"} FLM 89
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/simple+groups"} simple groups
+          %p
+            The whole idea of moonshine began with
+            = succeed "\u2018s" do
+              %a.existingWikiWord{:href => "/nlab/show/John+McKay"} John McKay
+            = succeed "\u2019s" do
+              %a.existingWikiWord{:href => "/nlab/show/Monster+group"} Monster group
+            %a.existingWikiWord{:href => "/nlab/show/irreducible+representation"} irreducible representation
+            has
+            %a.existingWikiWord{:href => "/nlab/show/dimension"} dimension
+            196883, and the
+            %a.existingWikiWord{:href => "/nlab/show/j-invariant"} j-invariant
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi j
+                  %mo{:stretchy => "false"} (
+                  %mi τ
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} j(\tau)
+            has the
+            %a.existingWikiWord{:href => "/nlab/show/Fourier+series"} Fourier series
+            expansion
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi j
+                  %mo{:stretchy => "false"} (
+                  %mi τ
+                  %mo{:stretchy => "false"} )
+                  %mo =
+                  %msup
+                    %mi q
+                    %mrow
+                      %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                      %mn 1
+                  %mo +
+                  %mn 744
+                  %mo +
+                  %mn 196884
+                  %mi q
+                  %mo +
+                  %mn 21493760
+                  %msup
+                    %mi q
+                    %mn 2
+                  %mo +
+                  %mi …
+                %annotation{:encoding => "application/x-tex"}
+                  j(\tau) = q^{-1} + 744 + 196884q + 21493760q^{2} + \dots
+          %p
+            where
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi q
+                    %mo =
+                    %mi exp
+                    %mo{:stretchy => "false"} (
+                    %mi i
+                    %mn 2
+                    %mi π
+                    %mi τ
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} q=\exp(i2\pi\tau)
+          %p
+            But the
+            %a.existingWikiWord{:href => "/nlab/show/Monster+group"} Monster group
+            was merely
+            %em conjectured
+            to exist until Griess (1982) explicitly constructed it. The construction is horribly complicated (take the sum of three irreducible representations for the
+            %a.existingWikiWord{:href => "/nlab/show/centralizer"} centralizer
+            of an
+            %a.existingWikiWord{:href => "/nlab/show/involution"} involution
+            of…).
+          %p
+            %a{:href => "#FrenkelLepowskiMeurman89"} Frenkel-Lepowski-Meurman 89
+            constructed an infinite-dimensional
+            %a.existingWikiWord{:href => "/nlab/show/module"} module
+            for the
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/Monster+vertex+algebra"} Monster vertex algebra
+            %a.existingWikiWord{:href => "/nlab/show/Kac-Moody+algebra"} Kac-Moody algebra
+            via
+            %a.existingWikiWord{:href => "/nlab/show/bosonic+string+theory"} bosonic string theory
+            and the
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/Goddard-Thorn+theorem"} Goddard-Thorn "No Ghost" theorem
+            %a.existingWikiWord{:href => "/nlab/show/Monster+group"} Monster group
+            %a.existingWikiWord{:href => "/nlab/show/group+action"} acts
+            naturally on this “Moonshine Module” (denoted by
+            = succeed ")." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi V
+                    %mo ♮
+                  %annotation{:encoding => "application/x-tex"} V\natural
+          %p
+            To cut the story short, we end up getting from the Monster group to a module it acts on which is related to “modular stuff” (namely, the modular
+            = succeed ")." do
+              %a.existingWikiWord{:href => "/nlab/show/j-invariant"} j-invariant
+            %a.existingWikiWord{:href => "/nlab/show/Terry+Gannon"} Terry Gannon
+            pitches is that Moonshine is a generalization of this association, it’s a sort of “mapping” from “Algebraic gadgets” to “Modular stuff”.
+          %h2#AutomorphismGroupsOfVertexOperatorAlgebras Automorphism groups of vertex operator algebras
+          %p
+            Realizations of
+            %a.existingWikiWord{:href => "/nlab/show/sporadic+finite+simple+groups"} sporadic finite simple groups
+            as
+            %a.existingWikiWord{:href => "/nlab/show/automorphism+of+a+vertex+operator+algebra"} automorphism groups of vertex operator algebras
+            in
+            %a.existingWikiWord{:href => "/nlab/show/heterotic+string+theory"} heterotic string theory
+            and
+            %a.existingWikiWord{:href => "/nlab/show/type+II+string+theory"} type II string theory
+            (mostly on
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/K3-surfaces"} K3-surfaces
+            = succeed "):" do
+              %a.existingWikiWord{:href => "/nlab/show/HET+-+II+duality"} HET - II duality
+          %ul
+            %li
+              %p
+                The
+                %a.existingWikiWord{:href => "/nlab/show/Conway+group"} Conway group
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msub
+                        %mi Co
+                        %mn 0
+                    %annotation{:encoding => "application/x-tex"} Co_{0}
+                is the
+                %a.existingWikiWord{:href => "/nlab/show/automorphism+group"} group of
+                %a.existingWikiWord{:href => "/nlab/show/automorphisms+of+a+super+VOA"} automorphisms of a super VOA
+                of the unique chiral
+                %a.existingWikiWord{:href => "/nlab/show/number+of+supersymmetries"} N=1
+                %a.existingWikiWord{:href => "/nlab/show/super+vertex+operator+algebra"} super vertex operator algebra
+                of
+                %a.existingWikiWord{:href => "/nlab/show/central+charge"} central charge
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi c
+                      %mo =
+                      %mn 12
+                    %annotation{:encoding => "application/x-tex"} c = 12
+                without fields of
+                %a.existingWikiWord{:href => "/nlab/show/conformal+weight"} conformal weight
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mn 1
+                      %mo{:stretchy => "false"} /
+                      %mn 2
+                    %annotation{:encoding => "application/x-tex"} 1/2
+              %p
+                (
+                %a{:href => "#Duncan05"}> Duncan 05
+                , see also
+                = succeed ")" do
+                  %a{:href => "#PaquettePerssonVolpato17"} Paquette-Persson-Volpato 17, p. 9
+            %li
+              %p
+                similarly, there is a super VOA, the
+                = succeed "," do
+                  %em
+                    %a.existingWikiWord{:href => "/nlab/show/Monster+vertex+operator+algebra"} Monster vertex operator algebra
+                %a.existingWikiWord{:href => "/nlab/show/automorphism+group"} group of
+                of
+                %a.existingWikiWord{:href => "/nlab/show/automorphisms+of+a+VOA"} automorphisms of a VOA
+                is the
+                %a.existingWikiWord{:href => "/nlab/show/monster+group"} monster group
+              %p
+                (
+                %a{:href => "#FrenkelLepowskiMeurman89"}> Frenkel-Lepowski-Meurman 89
+                ,
+                = succeed ")" do
+                  %a{:href => "#GriessLam11"} Griess-Lam 11
+          %h2#related_concepts Related concepts
+          %ul
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Monster"} Monster
+            %li
+              %p moonshine
+              %ul
+                %li
+                  %p
+                    %a.existingWikiWord{:href => "/nlab/show/Mathieu+moonshine"} Mathieu moonshine
+                %li
+                  %p
+                    %a.existingWikiWord{:href => "/nlab/show/umbral+moonshine"} umbral moonshine
+                %li
+                  %p
+                    %a.existingWikiWord{:href => "/nlab/show/O%27Nan+moonshine"} O'Nan moonshine
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/automorphism+of+a+vertex+operator+algebra"} automorphism of a vertex operator algebra
+          %h2#references References
+          %h3#general General
+          %ul
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Richard+Borcherds"}> Richard Borcherds
+                ,
+                %em What is Moonshine?,
+              %p
+                Proceedings of the International Congress of Mathematicians, Vol. I (Berlin, 1998).
+                %em Doc. Math.
+                1998, Extra Vol. I, 607–615 (electronic).
+                %a{:href => "http://www.ams.org/mathscinet-getitem?mr=1660657"} MR1660657
+                %a{:href => "http://arxiv.org/abs/math/9809110"} arXiv:math/9809110v1
+                [math.QA]
+            %li
+              %p
+                John F. R. Duncan, Michael J. Griffin, Ken Ono,
+                %em Moonshine
+                (
+                %a{:href => "http://arxiv.org/abs/1411.6571"}> arXiv:1411.6571
+                )
+            %li#GriessLam11
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Robert+Griess"} Robert Griess
+                Jr., Ching Hung Lam,
+                %em A new existence proof of the Monster by VOA theory
+                (
+                %a{:href => "https://arxiv.org/abs/1103.1414"}> arXiv:1103.1414
+                )
+            %li#FrenkelLepowskiMeurman89
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Igor+Frenkel"}> Igor Frenkel
+                ,
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/James+Lepowsky"} James Lepowsky
+                = succeed "," do
+                  %em Vertex operator algebras and the monster
+                = succeed "," do
+                  %strong 134
+                %a{:href => "http://www.ams.org/mathscinet-getitem?mr=996026"} MR0996026
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Terry+Gannon"}> Terry Gannon
+                ,
+                = succeed "," do
+                  %em Monstrous moonshine: the first twenty-five years
+                %em Bull. London Math. Soc.
+                %strong 38
+                (2006), no. 1, 1–33.
+                %a{:href => "http://www.ams.org/mathscinet-getitem?mr=2201600"} MR2201600
+                %a{:href => "http://arxiv.org/abs/math/0402345"} arXiv:math/0402345
+                [math.QA]
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Terry+Gannon"}> Terry Gannon
+                ,
+                = succeed "," do
+                  %em Moonshine beyond the Monster: The Bridge Connecting Algebra, Modular Forms and Physics
+                %a{:href => "http://www.ams.org/mathscinet-getitem?mr=2257727"} MR2257727
+            %li
+              %p
+                Koichiro Harada,
+                = succeed "." do
+                  %em “Moonshine” of finite groups
+                %a{:href => "http://www.ams.org/mathscinet-getitem?mr=2722318"} MR2722318
+            %li
+              %p
+                Griess, Robert L., Jr.; Lam, Ching Hung
+                = succeed "," do
+                  %em A moonshine path from E8 to the Monster
+                %a{:href => "http://www.ams.org/mathscinet-getitem?mr=2747229"} MR2747229
+                %a{:href => "http://arxiv.org/abs/0910.2057v2"} arXiv:0910.2057v2
+                [math.GR]
+            %li
+              %p
+                Jae-Hyun Yang “Kac-Moody algebras, the Monstrous Moonshine, Jacobi forms and infinite products.”
+                %em Number theory, geometry and related topics
+                (Iksan City, 1995), 13–82, Pyungsan Inst. Math. Sci., Seoul, 1996.
+                %a{:href => "http://www.ams.org/mathscinet-getitem?mr=1404967"} MR1404967
+                %a{:href => "http://arxiv.org/abs/math/0612474"} arXiv:math/0612474v2
+                [math.NT]
+            %li
+              %p
+                Vassilis Anagiannis,
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/Miranda+Cheng"} Miranda Cheng
+                %em TASI Lectures on Moonshine
+                (
+                %a{:href => "https://arxiv.org/abs/1807.00723"}> arXiv:1807.00723
+                )
+          %h3#historical_references Historical References
+          %ul
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/John+Conway"} John Conway
+                and Simon Norton, “Monstrous moonshine.”
+                %em Bull. London Math. Soc.
+                %strong 11
+                (1979), no. 3, 308–339;
+                %a{:href => "http://www.ams.org/mathscinet-getitem?mr=554399"} MR0554399
+                (81j:20028)
+            %li#FrenkelLepowskiMeurman89
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Igor+Frenkel"}> Igor Frenkel
+                ,
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/James+Lepowsky"} James Lepowsky
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi J
+                    %annotation{:encoding => "application/x-tex"} J
+                as character.”
+                %em Proc. Nat. Acad. Sci. U.S.A.
+                %strong 81
+                (1984), no. 10, Phys. Sci., 3256–3260.
+                %a{:href => "http://www.ams.org/mathscinet-getitem?mr=747596"} MR0747596
+                (85e:20018)
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Robert+Griess"}> Robert Griess
+                , “The friendly giant.”
+                %em Invent. Math.
+                %strong 69
+                (1982), no. 1, 1–102.
+                %a{:href => "http://www.ams.org/mathscinet-getitem?mr=671653"} MR671653
+                (84m:20024)
+            %li
+              %p
+                John G. Thompson, “Some numerology between the Fischer-Griess Monster and the elliptic modular function.”
+                %em Bull. London Math. Soc.
+                %strong 11
+                (1979), no. 3, 352–353.
+                %a{:href => "http://www.ams.org/mathscinet-getitem?mr=554402"} MR0554402
+                (81j:20030)
+          %h3#FurtherDevelomentsReferences Further developments
+          %ul
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Miranda+Cheng"}> Miranda Cheng
+                , John F. R. Duncan, Jeffrey A. Harvey,
+                %em Umbral Moonshine
+                (
+                %a{:href => "http://arxiv.org/abs/1204.2779"}> arXiv:1204.2779
+                )
+            %li
+              %p
+                John F. R. Duncan, Michael J. Griffin and Ken Ono,
+                %em Proof of the Umbral Moonshine Conjecture
+                (
+                %a{:href => "http://arxiv.org/abs/1503.01472"}> arXiv:1503.01472
+                )
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Scott+Carnahan"}> Scott Carnahan
+                ,
+                %em Monstrous Moonshine over Z?
+                (
+                %a{:href => "https://arxiv.org/abs/1804.04161"}> arXiv:1804.04161
+                )
+          %p
+            Possible relation to
+            %a.existingWikiWord{:href => "/nlab/show/elliptic+cohomology"} elliptic cohomology
+            (
+            %a.existingWikiWord{:href => "/nlab/show/topological+modular+forms"}> topological modular forms
+            ):
+          %ul
+            %li
+              Jan Albert,
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/Justin+Kaidi"} Justin Kaidi
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/Ying-Hsuan+Lin"} Ying-Hsuan Lin
+              = succeed "," do
+                %em Topological modularity of Supermoonshine
+              %strong 2023
+              3 (2023) 033B06 [
+              %a{:href => "https://arxiv.org/abs/2210.14923"}> arXiv:2210.14923
+              ,
+              = succeed "]" do
+                %a{:href => "https://doi.org/10.1093/ptep/ptad034"} doi:10.1093/ptep/ptad034
+          %h3#realization_in_superstring_theory Realization in superstring theory
+          %p
+            Discussion of possible realizations in
+            %a.existingWikiWord{:href => "/nlab/show/superstring+theory"} superstring theory
+            (specifically
+            %a.existingWikiWord{:href => "/nlab/show/heterotic+string+theory"} heterotic string theory
+            and
+            %a.existingWikiWord{:href => "/nlab/show/type+II+string+theory"} type II string theory
+            in
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/K3-surfaces"} K3-surfaces
+            = succeed ")" do
+              %a.existingWikiWord{:href => "/nlab/show/HET+-+II"} HET - II
+            = succeed ":" do
+              %a.existingWikiWord{:href => "/nlab/show/automorphisms+of+super+vertex+operator+algebras"} automorphisms of super vertex operator algebras
+          %ul
+            %li
+              %p
+                S. Chaudhuri, D.A. Lowe,
+                = succeed "," do
+                  %em Monstrous String-String Duality
+                = succeed ")" do
+                  %a{:href => "https://arxiv.org/abs/hep-th/9512226"} arXiv:hep-th/9512226
+            %li#Duncan05
+              %p
+                John F. Duncan,
+                %em Super-moonshine for Conway’s largest sporadic group
+                (
+                %a{:href => "https://arxiv.org/abs/math/0502267"}> arXiv:math/0502267
+                )
+            %li#PaquettePerssonVolpato16
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Natalie+Paquette"}> Natalie Paquette
+                , Daniel Persson, Roberto Volpato,
+                %em Monstrous BPS-Algebras and the Superstring Origin of Moonshine
+                (
+                %a{:href => "http://arxiv.org/abs/1601.05412"}> arXiv:1601.05412
+                )
+            %li#KachruPaquetteVolpato16
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Shamit+Kachru"}> Shamit Kachru
+                ,
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/Natalie+Paquette"} Natalie Paquette
+                %em 3D String Theory and Umbral Moonshine
+                (
+                %a{:href => "http://arxiv.org/abs/1603.07330"}> arXiv:1603.07330
+                )
+            %li#PaquettePerssonVolpato17
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Natalie+Paquette"}> Natalie Paquette
+                , Daniel Persson, Roberto Volpato,
+                %em BPS Algebras, Genus Zero, and the Heterotic Monster
+                (
+                %a{:href => "https://arxiv.org/abs/1701.05169"}> arXiv:1701.05169
+                )
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Shamit+Kachru"}> Shamit Kachru
+                , Arnav Tripathy,
+                %em The hidden symmetry of the heterotic string
+                (
+                %a{:href => "https://arxiv.org/abs/1702.02572"}> arXiv:1702.02572
+                )
+          %p
+            Specifically in relation to
+            %a.existingWikiWord{:href => "/nlab/show/KK-compactifications"} KK-compactifications
+            of
+            %a.existingWikiWord{:href => "/nlab/show/string+theory"} string theory
+            on
+            %a.existingWikiWord{:href => "/nlab/show/K3-surfaces"} K3-surfaces
+            (
+            %a.existingWikiWord{:href => "/nlab/show/duality+between+heterotic+and+type+II+string+theory"}> duality between heterotic and type II string theory
+            )
+          %ul
+            %li#ChengHarrisonVolpatoZimet16
+              %a.existingWikiWord{:href => "/nlab/show/Miranda+Cheng"}> Miranda Cheng
+              , Sarah M. Harrison, Roberto Volpato, Max Zimet,
+              %em K3 String Theory, Lattices and Moonshine
+              (
+              %a{:href => "https://arxiv.org/abs/1612.04404"}> arXiv:1612.04404
+              ,
+              = succeed ")" do
+                %a{:href => "https://doi.org/10.1007/s40687-018-0150-4"} doi:10.1007/s40687-018-0150-4
+          %p
+            Possible relation to
+            = succeed ":" do
+              %a.existingWikiWord{:href => "/nlab/show/bosonic+M-theory"} bosonic M-theory
+          %ul
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/Alessio+Marrani"}> Alessio Marrani
+              ,
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/Michael+Rios"} Michael Rios
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/David+Chester"} David Chester
+              = succeed "," do
+                %em Monstrous M-theory
+              %strong 15
+              2 (2023) 490; &amp;lbrack;
+              %a{:href => "https://doi.org/10.3390/sym15020490"}> doi:10.3390/sym15020490
+              ,
+              = succeed "&rbrack;" do
+                %a{:href => "https://arxiv.org/abs/2008.06742"} arXiv:2008.06742
+          %p
+            Relation to
+            = succeed ":" do
+              %a.existingWikiWord{:href => "/nlab/show/Seiberg-Witten+theory"} Seiberg-Witten theory
+          %ul
+            %li
+              %p
+                Shun’ya Mizoguchi,
+                %em Seiberg-Witten Theory and Monstrous Moonshine
+                \&amp;lbrack;
+                %a{:href => "https://arxiv.org/abs/2208.10301"}> arXiv:2208.10301
+                \&amp;rbrack;
+            %li
+              %p
+                Shun’ya Mizoguchi, Takumi Oikawa, Hitomi Tashiro, Shotaro Yata,
+                %em More on Seiberg-Witten Theory and Monstrous Moonshine
+                \&amp;lbrack;
+                %a{:href => "https://arxiv.org/abs/2211.07251"}> arXiv:2211.07251
+                \&amp;rbrack;
+          %p See also:
+          %ul
+            %li
+              Roberta Angius, Stefano Giaccari, Sarah M. Harrison, Roberto Volpato:
+              %em Non-invertible defects from the Conway SCFT to K3 sigma models I: general results
+              \&amp;lbrack;
+              %a{:href => "https://arxiv.org/abs/2504.18619"}> arXiv:2504.18619
+              \&amp;rbrack;
+        .revisedby
+          %p
+            Last revised on October 27, 2025 at 05:22:01.
+            See the
+            %a{:href => "/nlab/history/Moonshine", :style => "color: #005c19"} history
+            of this page for a list of all contributions to it.
+        .navigation.navfoot
+          %a#edit.navlink{:accesskey => "E", :href => "/nlab/edit/Moonshine", :rel => "nofollow"} Edit
+          %a{:href => "https://nforum.ncatlab.org/discussion/2706/#Item_8"} Discuss
+          %span.backintime
+            %a#to_previous_revision.navlinkbackintime{:accesskey => "B", :href => "/nlab/revision/Moonshine/40", :rel => "nofollow"} Previous revision
+          %a#see_changes.navlink{:accesskey => "C", :href => "/nlab/show/diff/Moonshine", :rel => "nofollow"} Changes from previous revision
+          %a#history.navlink{:accesskey => "S", :href => "/nlab/history/Moonshine", :rel => "nofollow"} History (40 revisions)
+          %a{:href => "/nlab/show/Moonshine/cite", :style => "color: black"} Cite
+          %a#view_print{:accesskey => "p", :href => "/nlab/print/Moonshine", :rel => "nofollow"} Print
+          %a#view_source{:href => "/nlab/source/Moonshine", :rel => "nofollow"} Source
+      / Content
+    / Container

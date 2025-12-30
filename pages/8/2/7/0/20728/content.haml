@@ -1,0 +1,1865 @@
+!!! XML
+!!! 1.1
+%html{:xmlns => "http://www.w3.org/1999/xhtml"}
+  %head
+    %title
+      monads of probability, measures, and valuations in nLab
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:content => "index,follow", :name => "robots"}/
+    %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/
+    %link{:href => "/stylesheets/instiki.css?1676280126", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/stylesheets/mathematics.css?1660229990", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/stylesheets/syntax.css?1660229990", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/stylesheets/nlab.css?1676280126", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css", :rel => "stylesheet", :type => "text/css"}/
+    :css
+      h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+        color: #226622;
+      }
+      a:visited.existingWikiWord {
+        color: #164416;
+      }
+    :css
+      <!--/*--><![CDATA[/*><!--*/
+          .toc ul {margin: 0; padding: 0;}
+      .toc ul ul {margin: 0; padding: 0 0 0 10px;}
+      .toc li > p {margin: 0}
+      .toc ul li {list-style-type: none; position: relative;}
+      .toc div {border-top:1px dotted #ccc;}
+      .rightHandSide h2 {font-size: 1.5em;color:#008B26}
+      table.plaintable {
+          border-collapse:collapse;
+          margin-left:30px;
+          border:0;
+      }
+      .plaintable td {border:1px solid #000; padding: 3px;}
+      .plaintable th {padding: 3px;}
+      .plaintable caption {
+          font-weight: bold;
+          font-size:1.1em;
+          text-align:center;
+          margin-left:30px;
+      }
+          
+         
+      /* Query boxes for questioning and answering mechanism */
+      div.query{
+      background: #f6fff3;
+      border: solid #ce9;
+      border-width: 2px 1px;
+      padding: 0 1em;
+      margin: 0 1em;
+      max-height: 20em;
+      overflow: auto;
+      }
+      
+      /* Standout boxes for putting important text */
+      div.standout{
+      background: #fff1f1;
+      border: solid black;
+      border-width: 2px 1px;
+      padding: 0 1em;
+      margin: 0 1em;
+      overflow: auto;
+      }
+      
+      /* Icon for links to n-category arXiv documents 
+       (commented out for now i.e. disabled)
+      a[href*="http://arxiv.org/"] {
+        background-image: url(../files/arXiv_icon.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 22px;
+        } */
+          
+      /* Icon for links to n-category cafe posts (disabled) 
+      a[href*="http://golem.ph.utexas.edu/category"] {
+        background-image: url(../files/n-cafe_5.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 25px;
+        } */
+      
+      /* Icon for links to pdf files (disabled)
+      a[href$=".pdf"] {
+        background-image: url(../files/pdficon_small.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 25px;
+        } */
+      
+      /* Icon for links to pages, etc. -inside- pdf files (disabled)
+      a[href*=".pdf#"] {
+        background-image: url(../files/pdf_entry.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 25px;
+        } */
+      
+      a.existingWikiWord {
+      color: #226622;
+      }
+      
+      a.existingWikiWord:visited {
+      color: #226622;
+      }
+      
+      
+      a.existingWikiWord[title] {
+      border: 0px;
+      color: #aa0505;
+      text-decoration: none;
+      }
+          
+      a.existingWikiWord[title]:visited {
+      border: 0px;
+      color: #551111;
+      text-decoration: none;
+      }
+      
+      a[href^="http://"] {
+      border: 0px;
+      color: #003399;
+      }
+      
+      a[href^="http://"]:visited {
+      border: 0px;
+      color: #330066;
+      }
+      
+      a[href^="https://"] {
+      border: 0px;
+      color: #003399;
+      }
+      
+      a[href^="https://"]:visited {
+      border: 0px;
+      color: #330066;
+      }
+      
+      div.dropDown .hide {
+      display: none;
+      }
+      
+      div.dropDown:hover .hide {
+      display:block;
+      }
+      
+      div.clickDown .hide {
+      display: none;
+      }
+      
+      div.clickDown:focus {
+      outline:none;
+      }
+      
+      div.clickDown:focus .hide, div.clickDown:hover .hide {
+      display: block;
+      }
+      
+      div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+      display:block;
+      }
+      
+      div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+      display:none;
+      }
+      
+      div.clickDown .clickToReveal:after {
+      content: "A(Hover to reveal, click to "hold")";
+      font-size: 60%;
+      }
+      
+      div.clickDown .clickToHide:after {
+      content: "A(Click to hide)";
+      font-size: 60%;
+      }
+      div.clickDown .clickToHide, div.clickDown .clickToReveal {
+      white-space: pre-wrap;
+      }
+      
+      .un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+      margin-left: 1em;
+      }
+      
+      span.theorem_label {
+      margin-left: -1em;
+      }
+      .proof span.theorem_label {
+      margin-left: 0em;
+      }
+      :target {
+          background-color: #BBBBBB;
+          border-radius: 5pt;
+      }
+      
+        /*]]>*/-->
+    %script{:src => "/javascripts/prototype.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/effects.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/dragdrop.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/controls.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/application.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/page_helper.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/thm_numbering.js?1660229990", :type => "text/javascript"}
+    %script{:type => "text/x-mathjax-config"}
+      :cdata
+        <!--//--><![CDATA[//><!--
+        MathJax.Ajax.config.path["Contrib"] = "/MathJax";
+        MathJax.Hub.Config({
+        MathML: { useMathMLspacing: true },
+        "HTML-CSS": { scale: 90,
+        extensions: ["handle-floats.js"]
+        }
+        });
+        MathJax.Hub.Queue( function () {
+        var fos = document.getElementsByTagName('foreignObject');
+        for (var i = 0; i < fos.length; i++) {
+        MathJax.Hub.Typeset(fos[i]);
+        }
+        });
+        \//--><!]]>
+    :javascript
+      <!--//--><![CDATA[//><!--
+      window.addEventListener("DOMContentLoaded", function () {
+        var div = document.createElement('div');
+        var math = document.createElementNS('http://www.w3.org/1998/Math/MathML', 'math');
+        document.body.appendChild(div);
+        div.appendChild(math);
+      // Test for MathML support comparable to WebKit version https://trac.webkit.org/changeset/203640 or higher.
+        div.setAttribute('style', 'font-style: italic');
+        var mathml_unsupported = !(window.getComputedStyle(div.firstChild).getPropertyValue('font-style') === 'normal');
+        div.parentNode.removeChild(div);
+        if (mathml_unsupported) {
+          // MathML does not seem to be supported...
+          var s = document.createElement('script');
+          s.src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=MML_HTMLorMML-full";
+          document.querySelector('head').appendChild(s);
+        } else {
+          document.head.insertAdjacentHTML("beforeend", '<style>svg[viewBox] {max-width: 100%}</style>');
+        }
+      });
+      //--><!]]>
+    %link{:href => "https://ncatlab.org/nlab/atom_with_headlines", :rel => "alternate", :title => "Atom with headlines", :type => "application/atom+xml"}/
+    %link{:href => "https://ncatlab.org/nlab/atom_with_content", :rel => "alternate", :title => "Atom with full content", :type => "application/atom+xml"}/
+    :javascript
+      document.observe("dom:loaded", function() {
+        generateThmNumbers();
+      });
+  %body
+    #Container
+      #Content
+        %h1#pageName
+          %span{:style => "float: left; margin: 0.5em 0.25em -0.25em 0"}
+            %svg{:height => "1.8em", :viewbox => "0 0 190 181", :width => "1.872em", :xmlns => "http://www.w3.org/2000/svg"}
+              %path{:d => "M72.8 145c-1.6 17.3-15.7 10-23.6 20.2-5.6 7.3 4.8 15 11.4 15 11.5-.2 19-13.4 26.4-20.3 3.3-3 8.2-4 11.2-7.2a14 14 0 0 0 2.9-11.1c-1.4-9.6-12.4-18.6-16.9-27.2-5-9.6-10.7-27.4-24.1-27.7-17.4-.3-.4 26 4.7 30.7 2.4 2.3 5.4 4.1 7.3 6.9 1.6 2.3 2.1 5.8-1 7.2-5.9 2.6-12.4-6.3-15.5-10-8.8-10.6-15.5-23-26.2-31.8-5.2-4.3-11.8-8-18-3.7-7.3 4.9-4.2 12.9.2 18.5a81 81 0 0 0 30.7 23c3.3 1.5 12.8 5.6 10 10.7-2.5 5.2-11.7 3-15.6 1.1-8.4-3.8-24.3-21.3-34.4-13.7-3.5 2.6-2.3 7.6-1.2 11.1 2.8 9 12.2 17.2 20.9 20.5 17.3 6.7 34.3-8 50.8-12.1z", :fill => "#226622"}
+              %path{:d => "M145.9 121.3c-.2-7.5 0-19.6-4.5-26-5.4-7.5-12.9-1-14.1 5.8-1.4 7.8 2.7 14.1 4.8 21.3 3.4 12 5.8 29-.8 40.1-3.6-6.7-5.2-13-7-20.4-2.1-8.2-12.8-13.2-15.1-1.9-2 9.7 9 21.2 12 30.1 1.2 4 2 8.8 6.4 10.3 6.9 2.3 13.3-4.7 17.7-8.8 12.2-11.5 36.6-20.7 43.4-36.4 6.7-15.7-13.7-14-21.3-7.2-9.1 8-11.9 20.5-23.6 25.1 7.5-23.7 31.8-37.6 38.4-61.4 2-7.3-.8-29.6-13-19.8-14.5 11.6-6.6 37.6-23.3 49.2z", :fill => "#a41e32"}
+              %path{:d => "M86.3 47.5c0-13-10.2-27.6-5.8-40.4 2.8-8.4 14.1-10.1 17-1 3.8 11.6-.3 26.3-1.8 38 11.7-.7 10.5-16 14.8-24.3 2.1-4.2 5.7-9.1 11-6.7 6 2.7 7.4 9.2 6.6 15.1-2.2 14-12.2 18.8-22.4 27-3.4 2.7-8 6.6-5.9 11.6 2 4.4 7 4.5 10.7 2.8 7.4-3.3 13.4-16.5 21.7-16 14.6.7 12 21.9.9 26.2-5 1.9-10.2 2.3-15.2 3.9-5.8 1.8-9.4 8.7-15.7 8.9-6.1.1-9-6.9-14.3-9-14.4-6-33.3-2-44.7-14.7-3.7-4.2-9.6-12-4.9-17.4 9.3-10.7 28 7.2 35.7 12 2 1.1 11 6.9 11.4 1.1.4-5.2-10-8.2-13.5-10-11.1-5.2-30-15.3-35-27.3-2.5-6 2.8-13.8 9.4-13.6 6.9.2 13.4 7 17.5 12C70.9 34 75 43.8 86.3 47.4z", :fill => "#193c78"}
+          %span.webName nLab
+          monads of probability, measures, and valuations
+        .navigation
+          %span.skipNav
+            %a{:href => "#navEnd"} Skip the Navigation Links
+            |
+          %span{:style => "display:inline-block; width: 0.3em;"}
+          %a{:accesskey => "H", :href => "/nlab/show/HomePage", :title => "Home page"} Home Page
+          |
+          %a{:accesskey => "A", :href => "/nlab/all_pages", :title => "List of all pages"} All Pages
+          |
+          %a{:accesskey => "U", :href => "/nlab/latest_revisions", :title => "Latest edits and page creations"} Latest Revisions
+          |
+          %a{:href => "https://nforum.ncatlab.org/discussion/10385/#Item_10", :style => "color: black", :title => "Discuss this page in its dedicated thread on the nForum"} Discuss this page
+          |
+          %form#navigationSearchForm{"accept-charset" => "utf-8", :action => "/nlab/search", :method => "get"}
+            %fieldset.search
+              %input#searchField{:name => "query", :onblur => "this.value == '' ? this.value = 'Search' : true", :onfocus => "this.value == 'Search' ? this.value = '' : true", :style => "display:inline-block; float: left;", :type => "text", :value => "Search"}/
+          %span#navEnd
+        #revision
+          %meta{:content => "application/xhtml+xml;charset=utf-8", "http-equiv" => "Content-type"}/
+          %title Contents
+          .rightHandSide
+            .toc.clickDown{:tabindex => "0"}
+              %h3#context Context
+              %h4#measure_and_probability_theory Measure and probability theory
+              .hide
+                %div
+                  %p
+                    %strong
+                      %a.existingWikiWord{:href => "/nlab/show/measure+theory"} measure theory
+                  %p
+                    %strong
+                      %a.existingWikiWord{:href => "/nlab/show/probability+theory"} probability theory
+                  %p
+                    (
+                    %a.existingWikiWord{:href => "/nlab/show/quantum+probability"}> quantum probability
+                    )
+                  %h2#measure_theory Measure theory
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/measurable+space"}> measurable space
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/measurable+locale"} measurable locale
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/measure"}> measure
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/measure+space"} measure space
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/von+Neumann+algebra"} von Neumann algebra
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/geometric+measure+theory"} geometric measure theory
+                  %h2#probability_theory Probability theory
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/probability+space"} probability space
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/probability+distribution"} probability distribution
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/state"} state
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/states+in+AQFT+and+operator+algebra"} in AQFT and operator algebra
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/GNS+construction"} GNS construction
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/Fell%27s+theorem"} Fell's theorem
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/entropy"}> entropy
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/relative+entropy"} relative entropy
+                  %h2#information_geometry Information geometry
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/information+geometry"} information geometry
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/information+metric"} information metric
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Wasserstein+metric"} Wasserstein metric
+                  %h2#thermodynamics Thermodynamics
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/thermodynamics"} thermodynamics
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/second+law+of+thermodynamics"}> second law of thermodynamics
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/generalized+second+law+of+theormodynamics"} generalized second law
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/ergodic+theory"} ergodic theory
+                  %h2#theorems Theorems
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Riesz+representation+theorem"} Riesz representation theorem
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/de+Finetti%27s+theorem"} de Finetti's theorem
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/law+of+large+numbers"} law of large numbers
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Kolmogorov+extension+theorem"} Kolmogorov extension theorem
+                  %h2#applications Applications
+                  %ul
+                    %li
+                      %a.existingWikiWord{:href => "/nlab/show/machine+learning"}> machine learning
+                      ,
+                      %a.existingWikiWord{:href => "/nlab/show/neural+networks"} neural networks
+          %h1#contents Contents
+          .maruku_toc
+            %ul
+              %li
+                %a{:href => "#idea"} Idea
+              %li
+                %a{:href => "#functor_unit_and_multiplication"} Functor, unit and multiplication
+              %ul
+                %li
+                  %a{:href => "#the_functor_random_outcomes"} The functor: random outcomes
+                %li
+                  %a{:href => "#the_unit_deterministic_random_variables"} The unit: deterministic random variables
+                %li
+                  %a{:href => "#the_multiplication_mixing_probability_measures"} The multiplication: mixing probability measures.
+              %li
+                %a{:href => "#algebras_expectation_values"} Algebras: expectation values
+              %li
+                %a{:href => "#kleisli_morphisms_random_maps"} Kleisli morphisms: random maps
+              %li
+                %a{:href => "#monoidal_structure_products_and_marginals"} Monoidal structure: products and marginals
+              %li
+                %a{:href => "#duality"} Duality
+              %li
+                %a{:href => "#detailed_list"} Detailed list
+              %li
+                %a{:href => "#see_also"} See also
+              %li
+                %a{:href => "#references"} References
+          %h2#idea Idea
+          %p
+            In many
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/categorical+approaches+to+probability+theory"} categorical approaches to probability theory
+            %a.existingWikiWord{:href => "/nlab/show/category"} category
+            of
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/spaces"} spaces
+            %a.existingWikiWord{:href => "/nlab/show/measurable+spaces"} measurable spaces
+            or
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/topological+spaces"} topological spaces
+            %a.existingWikiWord{:href => "/nlab/show/monad"} monad
+            whose
+            %a.existingWikiWord{:href => "/nlab/show/functor"} functor
+            part assigns to each space
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi X
+                %annotation{:encoding => "application/x-tex"} X
+            a space
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi P
+                  %mi X
+                %annotation{:encoding => "application/x-tex"} P X
+            of
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/measures"} measures
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/probability+measures"} probability measures
+            %a.existingWikiWord{:href => "/nlab/show/valuation+%28measure+theory%29"} valuations
+            on
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi X
+                  %annotation{:encoding => "application/x-tex"} X
+          %p
+            For probability theory, this can be interpreted as adding to the
+            %a.existingWikiWord{:href => "/nlab/show/points"} points
+            of a space
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi X
+                %annotation{:encoding => "application/x-tex"} X
+            new “random points”, modelled as probability measures or valuations. The old points, which we can think of as deterministic, are embedded in
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi P
+                  %mi X
+                %annotation{:encoding => "application/x-tex"} P X
+            via the unit of the monad
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi X
+                    %mo →
+                    %mi P
+                    %mi X
+                  %annotation{:encoding => "application/x-tex"} X\to P X
+            %a.existingWikiWord{:href => "/nlab/show/Kleisli+morphisms"} Kleisli morphisms
+            of
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi P
+                %annotation{:encoding => "application/x-tex"} P
+            can be seen as
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/stochastic+maps"} stochastic maps
+            %em
+              %a.existingWikiWord{:href => "/nlab/show/extension+system"} extension system
+            and
+            = succeed ".)" do
+              %em
+                %a.existingWikiWord{:href => "/nlab/show/monad+in+computer+science"} monad in computer science
+            = succeed ":" do
+              %a.existingWikiWord{:href => "/nlab/show/random+elements"} random elements
+            %a.existingWikiWord{:href => "/nlab/show/law+of+a+random+variable"} laws
+            of the random elements.
+          %p
+            %a.existingWikiWord{:href => "/nlab/show/algebra+over+a+monad"} Algebras
+            of probability and measure monads can be interpreted as generalized
+            %a.existingWikiWord{:href => "/nlab/show/convex+spaces"} convex spaces
+            or
+            %a.existingWikiWord{:href => "/nlab/show/conical+spaces"} conical spaces
+            of a certain kind. For
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/probability+theory"} probability theory
+            %a.existingWikiWord{:href => "/nlab/show/expectation+value"} expectation value
+            of a
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/random+variable"} random variable
+          %p The details vary depending on the monad and on the category under consideration.
+          %p
+            Many choices of categories and of monads are possible, depending on which aspects of measure theory or probability one wants to study. See
+            %a{:href => "#detailed_list"} the table below
+            for more details.
+          %p
+            Note that “probability monad” and “measure monad” are not used here as technical terms with a definition. Here we just explain what most monads of this kind look like. (There are ongoing works which may give a general, precise definition of probability monad.) The term “probability monad” was coined by Giry (see
+            = succeed ")," do
+              %a{:href => "#giry80"} here
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/Giry+monad"} Giry monad
+          %h2#functor_unit_and_multiplication Functor, unit and multiplication
+          %h3#the_functor_random_outcomes The functor: random outcomes
+          %p
+            The basic idea, that holds for all monads of this sort, is that of forming spaces of
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/random+elements"} random elements
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/law+of+a+random+variable"} laws
+          %p
+            Consider a category
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi C
+                  %annotation{:encoding => "application/x-tex"} C
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/measurable+spaces"} measurable spaces
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/topological+spaces"} topological spaces
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/sets"} sets
+            %em probability monad
+            assigns to each space
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi X
+                %annotation{:encoding => "application/x-tex"} X
+            a space
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi P
+                  %mi X
+                %annotation{:encoding => "application/x-tex"} P X
+            which we can think of as a space of “laws of random outcomes on
+            = succeed "\u201D" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi X
+                  %annotation{:encoding => "application/x-tex"} X
+          %ul
+            %li
+              The
+              %a.existingWikiWord{:href => "/nlab/show/distribution+monad"} distribution monad
+              assigns to each
+              %a.existingWikiWord{:href => "/nlab/show/set"} set
+              the
+              %a.existingWikiWord{:href => "/nlab/show/distribution+monad#finite_distributions"} space of finite distributions
+              on it.
+            %li
+              The
+              %a.existingWikiWord{:href => "/nlab/show/Giry+monad"} Giry monad
+              assigns to each
+              %a.existingWikiWord{:href => "/nlab/show/measurable+space"} measurable space
+              the
+              %a.existingWikiWord{:href => "/nlab/show/Giry+monad#definition"} space of probability measures
+              over it.
+            %li
+              The
+              %a.existingWikiWord{:href => "/nlab/show/extended+probabilistic+powerdomain"} extended probabilistic powerdomain
+              assigns to each
+              %a.existingWikiWord{:href => "/nlab/show/topological+space"} topological space
+              the
+              %a.existingWikiWord{:href => "/nlab/show/extended+probabilistic+powerdomain#spaces_of_valuations"} space of continuous valuations
+              on it.
+            %li
+              The
+              %a.existingWikiWord{:href => "/nlab/show/Kantorovich+monad"} Kantorovich monad
+              assigns to each
+              %a.existingWikiWord{:href => "/nlab/show/metric+space"} metric space
+              the
+              %a.existingWikiWord{:href => "/nlab/show/Kantorovich+monad#wasserstein_spaces"} Wasserstein space
+              over it.
+          %p
+            (See also the table
+            = succeed ".)" do
+              %a{:href => "#detailed_list"} below
+          %p
+            A possible interpretation of probability monads, which uses the interpretation of
+            %a.existingWikiWord{:href => "/nlab/show/monads"} monads
+            as encoding generalized
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/theories"} theories
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi P
+                  %mi X
+                %annotation{:encoding => "application/x-tex"} P X
+            is a space of “formal generalized convex combinations” (in the sense of
+            = succeed ")" do
+              %a.existingWikiWord{:href => "/nlab/show/convex+space"} convex space
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi X
+                  %annotation{:encoding => "application/x-tex"} X
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/distribution+monad"} distribution monad
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mo{:stretchy => "false"} {
+                  %mi heads
+                  %mo ,
+                  %mi tails
+                  %mo{:stretchy => "false"} }
+                %annotation{:encoding => "application/x-tex"} \{heads,tails\}
+            of possible outcomes of a coin flip, the set
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi P
+                  %mi X
+                %annotation{:encoding => "application/x-tex"} P X
+            contains for example the distribution that assigns probability
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mn 1
+                  %mo{:stretchy => "false"} /
+                  %mn 2
+                %annotation{:encoding => "application/x-tex"} 1/2
+            to both outcomes. This can be thought of as the formal convex combination
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mfrac
+                    %mn 1
+                    %mn 2
+                  %mspace{:width => "thinmathspace"}
+                  %mi heads
+                  %mo +
+                  %mfrac
+                    %mn 1
+                    %mn 2
+                  %mspace{:width => "thinmathspace"}
+                  %mi tails
+                  %mo .
+                %annotation{:encoding => "application/x-tex"}
+                  \\frac{1}{2}\, heads + \frac{1}{2}\,tails.
+          %p
+            On the morphisms, the functor gives for example the
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/pushforward+of+measures"} pushforward of measures
+          %h3#the_unit_deterministic_random_variables The unit: deterministic random variables
+          %p
+            The
+            %a.existingWikiWord{:href => "/nlab/show/unit"} unit
+            of the
+            %a.existingWikiWord{:href => "/nlab/show/monad"} monad
+            gives, for each space of outcomes, a map
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi X
+                    %mo →
+                    %mi P
+                    %mi X
+                  %annotation{:encoding => "application/x-tex"} X\to P X
+            %a.existingWikiWord{:href => "/nlab/show/Dirac+measure"} Dirac measure
+            and
+            = succeed ")." do
+              %a.existingWikiWord{:href => "/nlab/show/valuation+%28measure+theory%29#dirac_valuation"} Dirac valuation
+          %p
+            These can be seen as the laws of a
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/deterministic+random+variable"} deterministic random variable
+          %h3#the_multiplication_mixing_probability_measures The multiplication: mixing probability measures.
+          %p
+            The multiplication of the monad is a map
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi P
+                  %mi P
+                  %mi X
+                  %mo →
+                  %mi P
+                  %mi X
+                %annotation{:encoding => "application/x-tex"} P P X\to P X
+            for all objects
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi X
+                  %annotation{:encoding => "application/x-tex"} X
+            %a.existingWikiWord{:href => "/nlab/show/convex+mixture"} mixing
+            or
+            %a.existingWikiWord{:href => "/nlab/show/average"} averaging
+            probability measures.
+          %p
+            The following example is taken from
+            = succeed "." do
+              %a{:href => "#notesperrone"} Perrone ‘19, Example 5.1.2
+            %svg{:height => "105.63pt", :version => "1.2", :viewbox => "0 0 462.709 105.63", :width => "462.709pt", :xmlns => "http://www.w3.org/2000/svg", "xmlns:xlink" => "http://www.w3.org/1999/xlink"}
+              %defs
+                %g
+                  %symbol{:id => "ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph0-0", :overflow => "visible"}
+                    %path{:d => "", :style => "stroke:none;"}
+                  %symbol{:id => "ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph0-1", :overflow => "visible"}
+                    %path{:d => "M 3.390625 -3.609375 C 3.390625 -4.484375 3.75 -5.796875 5.25 -6.90625 C 5.671875 -7.21875 6.0625 -7.6875 6.0625 -8.453125 C 6.0625 -9.359375 5.4375 -10.484375 3.296875 -10.484375 C 1.6875 -10.484375 0.796875 -9.4375 0.796875 -8.484375 C 0.796875 -7.953125 1.203125 -7.828125 1.421875 -7.828125 C 1.6875 -7.828125 2.046875 -8.015625 2.046875 -8.453125 C 2.046875 -8.796875 1.78125 -9.0625 1.421875 -9.0625 C 1.328125 -9.0625 1.296875 -9.0625 1.265625 -9.046875 C 1.59375 -9.828125 2.453125 -10.1875 3.25 -10.1875 C 4.921875 -10.1875 4.921875 -9.09375 4.921875 -8.53125 C 4.921875 -7.65625 4.65625 -7.375 4.40625 -7.109375 C 3.390625 -6.015625 3.0625 -4.625 3.0625 -3.71875 L 3.0625 -3.015625 C 3.0625 -2.734375 3.0625 -2.6875 3.234375 -2.6875 C 3.390625 -2.6875 3.390625 -2.78125 3.390625 -3.046875 Z M 3.953125 -0.734375 C 3.953125 -1.109375 3.625 -1.4375 3.234375 -1.4375 C 2.78125 -1.4375 2.5 -1.09375 2.5 -0.734375 C 2.5 -0.28125 2.859375 0 3.21875 0 C 3.640625 0 3.953125 -0.328125 3.953125 -0.734375 Z M 3.953125 -0.734375 ", :style => "stroke:none;"}
+                  %symbol{:id => "ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph0-2", :overflow => "visible"}
+                    %path{:d => "M 5.390625 -5.515625 C 5.21875 -5.515625 4.65625 -5.515625 4.65625 -4.90625 C 4.65625 -4.546875 4.90625 -4.28125 5.265625 -4.28125 C 5.609375 -4.28125 5.890625 -4.5 5.890625 -4.921875 C 5.890625 -5.921875 4.859375 -6.640625 3.640625 -6.640625 C 1.90625 -6.640625 0.515625 -5.09375 0.515625 -3.21875 C 0.515625 -1.3125 1.953125 0.15625 3.640625 0.15625 C 5.59375 0.15625 6.046875 -1.640625 6.046875 -1.765625 C 6.046875 -1.90625 5.9375 -1.90625 5.890625 -1.90625 C 5.765625 -1.90625 5.75 -1.859375 5.703125 -1.6875 C 5.375 -0.625 4.578125 -0.171875 3.765625 -0.171875 C 2.859375 -0.171875 1.65625 -0.96875 1.65625 -3.234375 C 1.65625 -5.703125 2.921875 -6.3125 3.65625 -6.3125 C 4.234375 -6.3125 5.046875 -6.09375 5.390625 -5.515625 Z M 5.390625 -5.515625 ", :style => "stroke:none;"}
+                  %symbol{:id => "ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph0-3", :overflow => "visible"}
+                    %path{:d => "M 6.828125 -3.1875 C 6.828125 -5.109375 5.375 -6.640625 3.640625 -6.640625 C 1.859375 -6.640625 0.453125 -5.0625 0.453125 -3.1875 C 0.453125 -1.28125 1.9375 0.15625 3.640625 0.15625 C 5.390625 0.15625 6.828125 -1.3125 6.828125 -3.1875 Z M 3.640625 -0.171875 C 3.09375 -0.171875 2.421875 -0.421875 2 -1.140625 C 1.59375 -1.8125 1.578125 -2.6875 1.578125 -3.328125 C 1.578125 -3.890625 1.578125 -4.796875 2.046875 -5.46875 C 2.453125 -6.109375 3.109375 -6.34375 3.640625 -6.34375 C 4.21875 -6.34375 4.84375 -6.078125 5.234375 -5.5 C 5.703125 -4.8125 5.703125 -3.875 5.703125 -3.328125 C 5.703125 -2.796875 5.703125 -1.875 5.3125 -1.171875 C 4.90625 -0.46875 4.21875 -0.171875 3.640625 -0.171875 Z M 3.640625 -0.171875 ", :style => "stroke:none;"}
+                  %symbol{:id => "ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph0-4", :overflow => "visible"}
+                    %path{:d => "M 2.59375 -9.171875 C 2.59375 -9.5625 2.28125 -9.90625 1.859375 -9.90625 C 1.46875 -9.90625 1.140625 -9.59375 1.140625 -9.1875 C 1.140625 -8.734375 1.5 -8.453125 1.859375 -8.453125 C 2.328125 -8.453125 2.59375 -8.84375 2.59375 -9.171875 Z M 0.53125 -6.40625 L 0.53125 -5.96875 C 1.484375 -5.96875 1.625 -5.875 1.625 -5.15625 L 1.625 -1.109375 C 1.625 -0.4375 1.453125 -0.4375 0.484375 -0.4375 L 0.484375 0 C 0.90625 -0.03125 1.625 -0.03125 2.0625 -0.03125 C 2.21875 -0.03125 3.078125 -0.03125 3.59375 0 L 3.59375 -0.4375 C 2.625 -0.4375 2.5625 -0.5 2.5625 -1.09375 L 2.5625 -6.5625 Z M 0.53125 -6.40625 ", :style => "stroke:none;"}
+                  %symbol{:id => "ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph0-5", :overflow => "visible"}
+                    %path{:d => "M 6.625 -3.625 C 6.625 -5 6.625 -5.421875 6.28125 -5.890625 C 5.859375 -6.484375 5.15625 -6.5625 4.640625 -6.5625 C 3.203125 -6.5625 2.640625 -5.328125 2.515625 -5.03125 L 2.5 -5.03125 L 2.5 -6.5625 L 0.46875 -6.40625 L 0.46875 -5.96875 C 1.484375 -5.96875 1.609375 -5.859375 1.609375 -5.140625 L 1.609375 -1.109375 C 1.609375 -0.4375 1.4375 -0.4375 0.46875 -0.4375 L 0.46875 0 C 0.859375 -0.03125 1.671875 -0.03125 2.078125 -0.03125 C 2.515625 -0.03125 3.328125 -0.03125 3.703125 0 L 3.703125 -0.4375 C 2.75 -0.4375 2.578125 -0.4375 2.578125 -1.109375 L 2.578125 -3.875 C 2.578125 -5.4375 3.609375 -6.265625 4.53125 -6.265625 C 5.453125 -6.265625 5.65625 -5.515625 5.65625 -4.59375 L 5.65625 -1.109375 C 5.65625 -0.4375 5.5 -0.4375 4.53125 -0.4375 L 4.53125 0 C 4.90625 -0.03125 5.71875 -0.03125 6.140625 -0.03125 C 6.5625 -0.03125 7.375 -0.03125 7.765625 0 L 7.765625 -0.4375 C 7.015625 -0.4375 6.640625 -0.4375 6.625 -0.875 Z M 6.625 -3.625 ", :style => "stroke:none;"}
+                  %symbol{:id => "ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph0-6", :overflow => "visible"}
+                    %path{:d => "M 4.28125 -9.546875 C 4.28125 -9.890625 4.28125 -9.90625 3.984375 -9.90625 C 3.640625 -9.5 2.890625 -8.953125 1.359375 -8.953125 L 1.359375 -8.515625 C 1.703125 -8.515625 2.4375 -8.515625 3.265625 -8.90625 L 3.265625 -1.140625 C 3.265625 -0.609375 3.21875 -0.4375 1.90625 -0.4375 L 1.4375 -0.4375 L 1.4375 0 C 1.84375 -0.03125 3.296875 -0.03125 3.78125 -0.03125 C 4.28125 -0.03125 5.703125 -0.03125 6.109375 0 L 6.109375 -0.4375 L 5.640625 -0.4375 C 4.328125 -0.4375 4.28125 -0.609375 4.28125 -1.140625 Z M 4.28125 -9.546875 ", :style => "stroke:none;"}
+                  %symbol{:id => "ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph0-7", :overflow => "visible"}
+                    %path{:d => "M 6.546875 -2.5 L 6.21875 -2.5 C 6.171875 -2.25 6.0625 -1.421875 5.90625 -1.1875 C 5.8125 -1.0625 4.953125 -1.0625 4.515625 -1.0625 L 1.75 -1.0625 C 2.15625 -1.40625 3.0625 -2.359375 3.453125 -2.703125 C 5.71875 -4.796875 6.546875 -5.5625 6.546875 -7.046875 C 6.546875 -8.75 5.203125 -9.90625 3.46875 -9.90625 C 1.75 -9.90625 0.734375 -8.421875 0.734375 -7.140625 C 0.734375 -6.390625 1.390625 -6.390625 1.421875 -6.390625 C 1.75 -6.390625 2.125 -6.609375 2.125 -7.09375 C 2.125 -7.5 1.84375 -7.78125 1.421875 -7.78125 C 1.296875 -7.78125 1.265625 -7.78125 1.21875 -7.765625 C 1.5 -8.78125 2.3125 -9.46875 3.28125 -9.46875 C 4.546875 -9.46875 5.3125 -8.40625 5.3125 -7.046875 C 5.3125 -5.78125 4.59375 -4.671875 3.734375 -3.71875 L 0.734375 -0.359375 L 0.734375 0 L 6.171875 0 Z M 6.546875 -2.5 ", :style => "stroke:none;"}
+                  %symbol{:id => "ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph0-8", :overflow => "visible"}
+                    %path{:d => "M 6.625 -3.625 C 6.625 -5 6.625 -5.421875 6.28125 -5.890625 C 5.859375 -6.484375 5.15625 -6.5625 4.640625 -6.5625 C 3.359375 -6.5625 2.765625 -5.59375 2.5625 -5.140625 L 2.546875 -5.140625 L 2.546875 -10.328125 L 0.46875 -10.171875 L 0.46875 -9.734375 C 1.484375 -9.734375 1.609375 -9.640625 1.609375 -8.90625 L 1.609375 -1.109375 C 1.609375 -0.4375 1.4375 -0.4375 0.46875 -0.4375 L 0.46875 0 C 0.859375 -0.03125 1.671875 -0.03125 2.078125 -0.03125 C 2.515625 -0.03125 3.328125 -0.03125 3.703125 0 L 3.703125 -0.4375 C 2.75 -0.4375 2.578125 -0.4375 2.578125 -1.109375 L 2.578125 -3.875 C 2.578125 -5.4375 3.609375 -6.265625 4.53125 -6.265625 C 5.453125 -6.265625 5.65625 -5.515625 5.65625 -4.59375 L 5.65625 -1.109375 C 5.65625 -0.4375 5.5 -0.4375 4.53125 -0.4375 L 4.53125 0 C 4.90625 -0.03125 5.71875 -0.03125 6.140625 -0.03125 C 6.5625 -0.03125 7.375 -0.03125 7.765625 0 L 7.765625 -0.4375 C 7.015625 -0.4375 6.640625 -0.4375 6.625 -0.875 Z M 6.625 -3.625 ", :style => "stroke:none;"}
+                  %symbol{:id => "ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph0-9", :overflow => "visible"}
+                    %path{:d => "M 5.703125 -3.453125 C 6.03125 -3.453125 6.0625 -3.453125 6.0625 -3.734375 C 6.0625 -5.234375 5.25 -6.640625 3.453125 -6.640625 C 1.75 -6.640625 0.453125 -5.109375 0.453125 -3.265625 C 0.453125 -1.296875 1.96875 0.15625 3.625 0.15625 C 5.390625 0.15625 6.0625 -1.453125 6.0625 -1.765625 C 6.0625 -1.859375 5.984375 -1.921875 5.890625 -1.921875 C 5.78125 -1.921875 5.75 -1.84375 5.71875 -1.765625 C 5.328125 -0.515625 4.328125 -0.171875 3.703125 -0.171875 C 3.078125 -0.171875 1.578125 -0.59375 1.578125 -3.171875 L 1.578125 -3.453125 Z M 1.59375 -3.734375 C 1.71875 -6.078125 3.015625 -6.34375 3.4375 -6.34375 C 5.03125 -6.34375 5.125 -4.25 5.140625 -3.734375 Z M 1.59375 -3.734375 ", :style => "stroke:none;"}
+                  %symbol{:id => "ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph0-10", :overflow => "visible"}
+                    %path{:d => "M 5.75 -3.96875 C 5.75 -4.78125 5.75 -5.375 5.09375 -5.953125 C 4.578125 -6.4375 3.90625 -6.640625 3.25 -6.640625 C 2.03125 -6.640625 1.09375 -5.84375 1.09375 -4.875 C 1.09375 -4.4375 1.375 -4.234375 1.71875 -4.234375 C 2.0625 -4.234375 2.328125 -4.484375 2.328125 -4.84375 C 2.328125 -5.453125 1.78125 -5.453125 1.5625 -5.453125 C 1.90625 -6.078125 2.625 -6.34375 3.21875 -6.34375 C 3.90625 -6.34375 4.78125 -5.78125 4.78125 -4.4375 L 4.78125 -3.84375 C 1.78125 -3.796875 0.65625 -2.546875 0.65625 -1.40625 C 0.65625 -0.21875 2.03125 0.15625 2.9375 0.15625 C 3.921875 0.15625 4.59375 -0.453125 4.875 -1.15625 C 4.921875 -0.46875 5.390625 0.078125 6.03125 0.078125 C 6.34375 0.078125 7.203125 -0.140625 7.203125 -1.328125 L 7.203125 -2.15625 L 6.875 -2.15625 L 6.875 -1.328125 C 6.875 -0.46875 6.515625 -0.359375 6.3125 -0.359375 C 5.75 -0.359375 5.75 -1.140625 5.75 -1.375 Z M 4.78125 -2.09375 C 4.78125 -0.640625 3.6875 -0.15625 3.046875 -0.15625 C 2.328125 -0.15625 1.71875 -0.6875 1.71875 -1.40625 C 1.71875 -3.359375 4.25 -3.546875 4.78125 -3.578125 Z M 4.78125 -2.09375 ", :style => "stroke:none;"}
+                  %symbol{:id => "ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph0-11", :overflow => "visible"}
+                    %path{:d => "M 4.46875 -10.171875 L 4.46875 -9.734375 C 5.484375 -9.734375 5.59375 -9.640625 5.59375 -8.90625 L 5.59375 -5.609375 C 5.28125 -6.046875 4.640625 -6.5625 3.734375 -6.5625 C 2.015625 -6.5625 0.515625 -5.109375 0.515625 -3.203125 C 0.515625 -1.3125 1.9375 0.15625 3.578125 0.15625 C 4.703125 0.15625 5.359375 -0.59375 5.5625 -0.875 L 5.5625 0.15625 L 7.671875 0 L 7.671875 -0.4375 C 6.65625 -0.4375 6.53125 -0.53125 6.53125 -1.265625 L 6.53125 -10.328125 Z M 5.5625 -1.75 C 5.5625 -1.46875 5.5625 -1.421875 5.359375 -1.109375 C 5 -0.578125 4.390625 -0.15625 3.640625 -0.15625 C 3.265625 -0.15625 1.65625 -0.296875 1.65625 -3.1875 C 1.65625 -4.265625 1.828125 -4.859375 2.15625 -5.34375 C 2.453125 -5.8125 3.046875 -6.265625 3.796875 -6.265625 C 4.71875 -6.265625 5.234375 -5.59375 5.390625 -5.359375 C 5.5625 -5.109375 5.5625 -5.078125 5.5625 -4.8125 Z M 5.5625 -1.75 ", :style => "stroke:none;"}
+                  %symbol{:id => "ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph0-12", :overflow => "visible"}
+                    %path{:d => "M 4.890625 -6.296875 C 4.890625 -6.5625 4.890625 -6.640625 4.734375 -6.640625 C 4.609375 -6.640625 4.328125 -6.3125 4.234375 -6.171875 C 3.765625 -6.546875 3.3125 -6.640625 2.828125 -6.640625 C 1.03125 -6.640625 0.484375 -5.65625 0.484375 -4.84375 C 0.484375 -4.671875 0.484375 -4.15625 1.0625 -3.640625 C 1.53125 -3.21875 2.046875 -3.109375 2.71875 -2.984375 C 3.546875 -2.8125 3.734375 -2.765625 4.109375 -2.46875 C 4.375 -2.25 4.578125 -1.921875 4.578125 -1.5 C 4.578125 -0.859375 4.203125 -0.15625 2.890625 -0.15625 C 1.90625 -0.15625 1.1875 -0.71875 0.859375 -2.203125 C 0.796875 -2.46875 0.796875 -2.484375 0.796875 -2.5 C 0.765625 -2.5625 0.703125 -2.5625 0.65625 -2.5625 C 0.484375 -2.5625 0.484375 -2.484375 0.484375 -2.21875 L 0.484375 -0.1875 C 0.484375 0.078125 0.484375 0.15625 0.640625 0.15625 C 0.71875 0.15625 0.734375 0.140625 0.984375 -0.171875 C 1.0625 -0.28125 1.0625 -0.3125 1.28125 -0.546875 C 1.84375 0.15625 2.65625 0.15625 2.90625 0.15625 C 4.46875 0.15625 5.234375 -0.71875 5.234375 -1.890625 C 5.234375 -2.6875 4.75 -3.171875 4.609375 -3.3125 C 4.078125 -3.765625 3.671875 -3.859375 2.6875 -4.03125 C 2.25 -4.125 1.15625 -4.328125 1.15625 -5.234375 C 1.15625 -5.6875 1.46875 -6.375 2.8125 -6.375 C 4.4375 -6.375 4.53125 -4.984375 4.5625 -4.53125 C 4.578125 -4.40625 4.671875 -4.40625 4.71875 -4.40625 C 4.890625 -4.40625 4.890625 -4.484375 4.890625 -4.75 Z M 4.890625 -6.296875 ", :style => "stroke:none;"}
+                  %symbol{:id => "ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph0-13", :overflow => "visible"}
+                    %path{:d => "M 2.5 -5.984375 L 4.59375 -5.984375 L 4.59375 -6.421875 L 2.5 -6.421875 L 2.5 -9.15625 L 2.171875 -9.15625 C 2.15625 -7.765625 1.625 -6.328125 0.265625 -6.28125 L 0.265625 -5.984375 L 1.53125 -5.984375 L 1.53125 -1.84375 C 1.53125 -0.1875 2.640625 0.15625 3.421875 0.15625 C 4.359375 0.15625 4.859375 -0.78125 4.859375 -1.84375 L 4.859375 -2.6875 L 4.53125 -2.6875 L 4.53125 -1.875 C 4.53125 -0.796875 4.09375 -0.171875 3.515625 -0.171875 C 2.5 -0.171875 2.5 -1.5625 2.5 -1.8125 Z M 2.5 -5.984375 ", :style => "stroke:none;"}
+                  %symbol{:id => "ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph0-14", :overflow => "visible"}
+                    %path{:d => "M 2.5625 -10.328125 L 0.484375 -10.171875 L 0.484375 -9.734375 C 1.5 -9.734375 1.625 -9.640625 1.625 -8.90625 L 1.625 -1.109375 C 1.625 -0.4375 1.453125 -0.4375 0.484375 -0.4375 L 0.484375 0 C 0.90625 -0.03125 1.640625 -0.03125 2.078125 -0.03125 C 2.53125 -0.03125 3.28125 -0.03125 3.6875 0 L 3.6875 -0.4375 C 2.734375 -0.4375 2.5625 -0.4375 2.5625 -1.109375 Z M 2.5625 -10.328125 ", :style => "stroke:none;"}
+                  %symbol{:id => "ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph1-0", :overflow => "visible"}
+                    %path{:d => "", :style => "stroke:none;"}
+                  %symbol{:id => "ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph1-1", :overflow => "visible"}
+                    %path{:d => "M 3.109375 -6.3125 C 3.109375 -6.59375 3.09375 -6.59375 2.828125 -6.59375 C 2.421875 -6.203125 1.890625 -5.96875 0.953125 -5.96875 L 0.953125 -5.640625 C 1.21875 -5.640625 1.75 -5.640625 2.328125 -5.90625 L 2.328125 -0.8125 C 2.328125 -0.453125 2.296875 -0.328125 1.359375 -0.328125 L 1.015625 -0.328125 L 1.015625 0 C 1.421875 -0.03125 2.265625 -0.03125 2.71875 -0.03125 C 3.171875 -0.03125 4.03125 -0.03125 4.4375 0 L 4.4375 -0.328125 L 4.09375 -0.328125 C 3.140625 -0.328125 3.109375 -0.453125 3.109375 -0.8125 Z M 3.109375 -6.3125 ", :style => "stroke:none;"}
+                  %symbol{:id => "ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph1-2", :overflow => "visible"}
+                    %path{:d => "M 2.796875 -2.03125 C 2.953125 -2.171875 3.375 -2.5 3.53125 -2.640625 C 4.140625 -3.203125 4.734375 -3.75 4.734375 -4.65625 C 4.734375 -5.828125 3.734375 -6.59375 2.5 -6.59375 C 1.3125 -6.59375 0.53125 -5.6875 0.53125 -4.8125 C 0.53125 -4.328125 0.90625 -4.25 1.046875 -4.25 C 1.265625 -4.25 1.5625 -4.40625 1.5625 -4.78125 C 1.5625 -5.296875 1.078125 -5.296875 0.953125 -5.296875 C 1.234375 -6.015625 1.90625 -6.265625 2.390625 -6.265625 C 3.3125 -6.265625 3.796875 -5.484375 3.796875 -4.65625 C 3.796875 -3.625 3.0625 -2.875 1.890625 -1.671875 L 0.640625 -0.375 C 0.53125 -0.265625 0.53125 -0.25 0.53125 0 L 4.4375 0 L 4.734375 -1.78125 L 4.421875 -1.78125 C 4.390625 -1.578125 4.3125 -1.078125 4.203125 -0.890625 C 4.140625 -0.8125 3.390625 -0.8125 3.21875 -0.8125 L 1.453125 -0.8125 Z M 2.796875 -2.03125 ", :style => "stroke:none;"}
+                  %symbol{:id => "ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph1-3", :overflow => "visible"}
+                    %path{:d => "M 4.859375 -3.171875 C 4.859375 -4.234375 4.75 -4.875 4.421875 -5.5 C 3.984375 -6.375 3.171875 -6.59375 2.625 -6.59375 C 1.375 -6.59375 0.921875 -5.671875 0.78125 -5.390625 C 0.421875 -4.65625 0.40625 -3.6875 0.40625 -3.171875 C 0.40625 -2.515625 0.4375 -1.515625 0.90625 -0.71875 C 1.375 0.015625 2.109375 0.203125 2.625 0.203125 C 3.109375 0.203125 3.953125 0.0625 4.453125 -0.921875 C 4.828125 -1.640625 4.859375 -2.515625 4.859375 -3.171875 Z M 2.625 -0.0625 C 2.296875 -0.0625 1.609375 -0.234375 1.40625 -1.265625 C 1.296875 -1.828125 1.296875 -2.765625 1.296875 -3.28125 C 1.296875 -3.96875 1.296875 -4.65625 1.40625 -5.203125 C 1.609375 -6.21875 2.375 -6.3125 2.625 -6.3125 C 2.96875 -6.3125 3.65625 -6.15625 3.84375 -5.25 C 3.96875 -4.703125 3.96875 -3.953125 3.96875 -3.28125 C 3.96875 -2.703125 3.96875 -1.8125 3.84375 -1.25 C 3.640625 -0.203125 2.953125 -0.0625 2.625 -0.0625 Z M 2.625 -0.0625 ", :style => "stroke:none;"}
+                  %symbol{:id => "ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph2-0", :overflow => "visible"}
+                    %path{:d => "", :style => "stroke:none;"}
+                  %symbol{:id => "ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph2-1", :overflow => "visible"}
+                    %path{:d => "M 4.609375 -7.03125 C 4.671875 -7.15625 4.671875 -7.1875 4.671875 -7.21875 C 4.671875 -7.34375 4.578125 -7.4375 4.4375 -7.4375 C 4.28125 -7.4375 4.25 -7.328125 4.203125 -7.21875 L 0.640625 2.0625 C 0.578125 2.203125 0.578125 2.21875 0.578125 2.25 C 0.578125 2.375 0.6875 2.484375 0.8125 2.484375 C 0.96875 2.484375 1.015625 2.359375 1.046875 2.265625 Z M 4.609375 -7.03125 ", :style => "stroke:none;"}
+              %g{:id => "ElYsG_bksPVe7b3DxOJPtFIslPI=-surface1"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "227.76607", "xlink:href" => "#ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph0-1", :y => "15.791685"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "83.61799", "xlink:href" => "#ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph0-2", :y => "57.572336"}
+                  %use{:x => "90.098918", "xlink:href" => "#ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph0-3", :y => "57.572336"}
+                  %use{:x => "97.389961", "xlink:href" => "#ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph0-4", :y => "57.572336"}
+                  %use{:x => "101.440541", "xlink:href" => "#ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph0-5", :y => "57.572336"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "112.028637", "xlink:href" => "#ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph0-6", :y => "57.572336"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "352.016845", "xlink:href" => "#ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph0-2", :y => "57.572336"}
+                  %use{:x => "358.497772", "xlink:href" => "#ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph0-3", :y => "57.572336"}
+                  %use{:x => "365.788816", "xlink:href" => "#ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph0-4", :y => "57.572336"}
+                  %use{:x => "369.839395", "xlink:href" => "#ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph0-5", :y => "57.572336"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "380.427491", "xlink:href" => "#ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph0-7", :y => "57.572336"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "7.075104", "xlink:href" => "#ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph0-8", :y => "99.811381"}
+                  %use{:x => "15.176264", "xlink:href" => "#ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph0-9", :y => "99.811381"}
+                  %use{:x => "21.657191", "xlink:href" => "#ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph0-10", :y => "99.811381"}
+                  %use{:x => "28.948234", "xlink:href" => "#ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph0-11", :y => "99.811381"}
+                  %use{:x => "37.049394", "xlink:href" => "#ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph0-12", :y => "99.811381"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "160.133971", "xlink:href" => "#ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph0-13", :y => "99.811381"}
+                  %use{:x => "165.804782", "xlink:href" => "#ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph0-10", :y => "99.811381"}
+                  %use{:x => "173.095826", "xlink:href" => "#ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph0-4", :y => "99.811381"}
+                  %use{:x => "177.146405", "xlink:href" => "#ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph0-14", :y => "99.811381"}
+                  %use{:x => "181.196985", "xlink:href" => "#ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph0-12", :y => "99.811381"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "275.472962", "xlink:href" => "#ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph0-8", :y => "99.811381"}
+                  %use{:x => "283.574121", "xlink:href" => "#ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph0-9", :y => "99.811381"}
+                  %use{:x => "290.055049", "xlink:href" => "#ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph0-10", :y => "99.811381"}
+                  %use{:x => "297.346092", "xlink:href" => "#ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph0-11", :y => "99.811381"}
+                  %use{:x => "305.447252", "xlink:href" => "#ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph0-12", :y => "99.811381"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "428.531829", "xlink:href" => "#ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph0-13", :y => "99.811381"}
+                  %use{:x => "434.20264", "xlink:href" => "#ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph0-10", :y => "99.811381"}
+                  %use{:x => "441.493684", "xlink:href" => "#ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph0-4", :y => "99.811381"}
+                  %use{:x => "445.544263", "xlink:href" => "#ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph0-14", :y => "99.811381"}
+                  %use{:x => "449.594843", "xlink:href" => "#ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph0-12", :y => "99.811381"}
+                %path{:d => "M -10.138931 37.441024 L -104.848427 6.932187 ", :style => "fill:none;stroke-width:0.79701;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;", :transform => "matrix(0.996509,0,0,-0.996509,231.20901,52.630646)"}
+                %path{:d => "M -4.144911 4.781738 C -3.388218 1.914562 -1.699697 0.559308 -0.00187113 0.0000261221 C -1.70081 -0.556419 -3.385465 -1.912317 -4.144889 -4.78119 ", :style => "fill:none;stroke-width:0.79701;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;", :transform => "matrix(-0.948488,0.30554,0.30554,0.948488,126.34978,45.844297)"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "154.015403", "xlink:href" => "#ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph1-1", :y => "24.459324"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "159.289429", "xlink:href" => "#ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph2-1", :y => "24.459324"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "164.563455", "xlink:href" => "#ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph1-2", :y => "24.459324"}
+                %path{:d => "M 10.138881 37.64878 L 113.785824 6.410836 ", :style => "fill:none;stroke-width:0.79701;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;", :transform => "matrix(0.996509,0,0,-0.996509,231.20901,52.630646)"}
+                %path{:d => "M -4.143824 4.781796 C -3.386238 1.914816 -1.699358 0.556196 -0.000348435 -0.000379031 C -1.699455 -0.557486 -3.38704 -1.913605 -4.143773 -4.782495 ", :style => "fill:none;stroke-width:0.79701;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;", :transform => "matrix(0.954068,0.287533,0.287533,-0.954068,344.977004,46.355207)"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "297.03643", "xlink:href" => "#ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph1-1", :y => "24.606807"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "302.310456", "xlink:href" => "#ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph2-1", :y => "24.606807"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "307.584482", "xlink:href" => "#ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph1-2", :y => "24.606807"}
+                %path{:d => "M -147.328739 -10.676151 L -183.917392 -30.863805 ", :style => "fill:none;stroke-width:0.79701;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;", :transform => "matrix(0.996509,0,0,-0.996509,231.20901,52.630646)"}
+                %path{:d => "M -4.143193 4.782115 C -3.389377 1.912728 -1.70028 0.559891 -0.000151194 -0.00210737 C -1.700081 -0.559496 -3.386663 -1.91222 -4.145168 -4.7799 ", :style => "fill:none;stroke-width:0.79701;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;", :transform => "matrix(-0.872494,0.481414,0.481414,0.872494,47.58682,83.580036)"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "46.294726", "xlink:href" => "#ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph1-1", :y => "67.337132"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "51.568752", "xlink:href" => "#ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph2-1", :y => "67.337132"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "56.842778", "xlink:href" => "#ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph1-2", :y => "67.337132"}
+                %path{:d => "M -114.072029 -10.676151 L -78.698556 -31.408676 ", :style => "fill:none;stroke-width:0.79701;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;", :transform => "matrix(0.996509,0,0,-0.996509,231.20901,52.630646)"}
+                %path{:d => "M -4.143903 4.782973 C -3.388952 1.913047 -1.699933 0.558318 -0.00066374 0.00019943 C -1.69938 -0.559105 -3.387472 -1.911874 -4.145277 -4.782301 ", :style => "fill:none;stroke-width:0.79701;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;", :transform => "matrix(0.859709,0.503815,0.503815,-0.859709,153.129376,84.129412)"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "139.208269", "xlink:href" => "#ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph1-1", :y => "67.616155"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "144.482295", "xlink:href" => "#ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph2-1", :y => "67.616155"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "149.756322", "xlink:href" => "#ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph1-2", :y => "67.616155"}
+                %path{:d => "M 122.013762 -10.676151 L 85.42511 -30.863805 ", :style => "fill:none;stroke-width:0.79701;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;", :transform => "matrix(0.996509,0,0,-0.996509,231.20901,52.630646)"}
+                %path{:d => "M -4.14435 4.782754 C -3.387101 1.911473 -1.698005 0.558636 -0.0013083 -0.00146892 C -1.701238 -0.558857 -3.38782 -1.911582 -4.142892 -4.781156 ", :style => "fill:none;stroke-width:0.79701;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;", :transform => "matrix(-0.872494,0.481414,0.481414,0.872494,315.987847,83.580036)"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "325.240636", "xlink:href" => "#ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph1-1", :y => "69.81844"}
+                %path{:d => "M 155.270472 -10.676151 L 190.643946 -31.408676 ", :style => "fill:none;stroke-width:0.79701;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;", :transform => "matrix(0.996509,0,0,-0.996509,231.20901,52.630646)"}
+                %path{:d => "M -4.146144 4.781659 C -3.387812 1.913715 -1.698793 0.558987 0.000476495 0.000867642 C -1.69824 -0.558437 -3.386332 -1.911205 -4.144137 -4.781633 ", :style => "fill:none;stroke-width:0.79701;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;", :transform => "matrix(0.859709,0.503815,0.503815,-0.859709,421.530403,84.129412)"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "407.606127", "xlink:href" => "#ElYsG_bksPVe7b3DxOJPtFIslPI=-glyph1-3", :y => "70.09846"}
+            Let
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi X
+                %annotation{:encoding => "application/x-tex"} X
+            be the set
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo{:stretchy => "false"} {
+                    %mi heads
+                    %mo ,
+                    %mi tails
+                    %mo{:stretchy => "false"} }
+                  %annotation{:encoding => "application/x-tex"} \{heads,tails\}
+            %em law
+            according to which we will obtain “heads” or “tails” so it determines an element of
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi P
+                    %mi X
+                  %annotation{:encoding => "application/x-tex"} P X
+            = succeed ")," do
+              %em law on the coins
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi P
+                    %mi P
+                    %mi X
+                  %annotation{:encoding => "application/x-tex"} P P X
+          %svg{:height => "63.703pt", :version => "1.2", :viewbox => "0 0 164.461 63.703", :width => "164.461pt", :xmlns => "http://www.w3.org/2000/svg", "xmlns:xlink" => "http://www.w3.org/1999/xlink"}
+            %defs
+              %g
+                %symbol{:id => "Szwa3OKKttBHKuSu2_Wfw7ZgBdM=-glyph0-0", :overflow => "visible"}
+                  %path{:d => "", :style => "stroke:none;"}
+                %symbol{:id => "Szwa3OKKttBHKuSu2_Wfw7ZgBdM=-glyph0-1", :overflow => "visible"}
+                  %path{:d => "M 3.390625 -3.59375 C 3.390625 -4.484375 3.75 -5.78125 5.25 -6.90625 C 5.671875 -7.21875 6.046875 -7.671875 6.046875 -8.453125 C 6.046875 -9.359375 5.421875 -10.46875 3.28125 -10.46875 C 1.6875 -10.46875 0.796875 -9.4375 0.796875 -8.484375 C 0.796875 -7.9375 1.203125 -7.828125 1.421875 -7.828125 C 1.6875 -7.828125 2.03125 -8 2.03125 -8.453125 C 2.03125 -8.796875 1.78125 -9.0625 1.40625 -9.0625 C 1.328125 -9.0625 1.296875 -9.0625 1.265625 -9.046875 C 1.59375 -9.8125 2.453125 -10.171875 3.25 -10.171875 C 4.921875 -10.171875 4.921875 -9.09375 4.921875 -8.515625 C 4.921875 -7.640625 4.65625 -7.359375 4.40625 -7.09375 C 3.390625 -6.015625 3.0625 -4.625 3.0625 -3.71875 L 3.0625 -3 C 3.0625 -2.734375 3.0625 -2.671875 3.234375 -2.671875 C 3.390625 -2.671875 3.390625 -2.78125 3.390625 -3.046875 Z M 3.9375 -0.734375 C 3.9375 -1.109375 3.609375 -1.4375 3.234375 -1.4375 C 2.78125 -1.4375 2.5 -1.078125 2.5 -0.734375 C 2.5 -0.28125 2.859375 0 3.21875 0 C 3.625 0 3.9375 -0.328125 3.9375 -0.734375 Z M 3.9375 -0.734375 ", :style => "stroke:none;"}
+                %symbol{:id => "Szwa3OKKttBHKuSu2_Wfw7ZgBdM=-glyph0-2", :overflow => "visible"}
+                  %path{:d => "M 6.625 -3.609375 C 6.625 -5 6.625 -5.421875 6.28125 -5.890625 C 5.84375 -6.46875 5.140625 -6.5625 4.640625 -6.5625 C 3.359375 -6.5625 2.765625 -5.59375 2.5625 -5.125 L 2.546875 -5.125 L 2.546875 -10.328125 L 0.46875 -10.15625 L 0.46875 -9.734375 C 1.484375 -9.734375 1.609375 -9.625 1.609375 -8.890625 L 1.609375 -1.09375 C 1.609375 -0.4375 1.4375 -0.4375 0.46875 -0.4375 L 0.46875 0 C 0.859375 -0.03125 1.671875 -0.03125 2.078125 -0.03125 C 2.515625 -0.03125 3.3125 -0.03125 3.703125 0 L 3.703125 -0.4375 C 2.75 -0.4375 2.578125 -0.4375 2.578125 -1.09375 L 2.578125 -3.875 C 2.578125 -5.421875 3.59375 -6.265625 4.515625 -6.265625 C 5.4375 -6.265625 5.65625 -5.5 5.65625 -4.59375 L 5.65625 -1.09375 C 5.65625 -0.4375 5.484375 -0.4375 4.515625 -0.4375 L 4.515625 0 C 4.90625 -0.03125 5.71875 -0.03125 6.125 -0.03125 C 6.5625 -0.03125 7.359375 -0.03125 7.75 0 L 7.75 -0.4375 C 7 -0.4375 6.640625 -0.4375 6.625 -0.875 Z M 6.625 -3.609375 ", :style => "stroke:none;"}
+                %symbol{:id => "Szwa3OKKttBHKuSu2_Wfw7ZgBdM=-glyph0-3", :overflow => "visible"}
+                  %path{:d => "M 5.703125 -3.453125 C 6.03125 -3.453125 6.046875 -3.453125 6.046875 -3.734375 C 6.046875 -5.234375 5.25 -6.640625 3.453125 -6.640625 C 1.75 -6.640625 0.453125 -5.109375 0.453125 -3.25 C 0.453125 -1.296875 1.96875 0.15625 3.609375 0.15625 C 5.390625 0.15625 6.046875 -1.453125 6.046875 -1.765625 C 6.046875 -1.859375 5.984375 -1.921875 5.890625 -1.921875 C 5.765625 -1.921875 5.734375 -1.84375 5.71875 -1.765625 C 5.328125 -0.515625 4.328125 -0.171875 3.703125 -0.171875 C 3.078125 -0.171875 1.578125 -0.59375 1.578125 -3.171875 L 1.578125 -3.453125 Z M 1.59375 -3.734375 C 1.703125 -6.0625 3.015625 -6.34375 3.4375 -6.34375 C 5.03125 -6.34375 5.109375 -4.234375 5.125 -3.734375 Z M 1.59375 -3.734375 ", :style => "stroke:none;"}
+                %symbol{:id => "Szwa3OKKttBHKuSu2_Wfw7ZgBdM=-glyph0-4", :overflow => "visible"}
+                  %path{:d => "M 5.734375 -3.96875 C 5.734375 -4.78125 5.734375 -5.375 5.09375 -5.953125 C 4.5625 -6.421875 3.890625 -6.640625 3.25 -6.640625 C 2.015625 -6.640625 1.078125 -5.828125 1.078125 -4.859375 C 1.078125 -4.4375 1.375 -4.21875 1.703125 -4.21875 C 2.0625 -4.21875 2.328125 -4.484375 2.328125 -4.828125 C 2.328125 -5.4375 1.78125 -5.4375 1.5625 -5.4375 C 1.90625 -6.0625 2.625 -6.34375 3.21875 -6.34375 C 3.890625 -6.34375 4.78125 -5.765625 4.78125 -4.4375 L 4.78125 -3.84375 C 1.78125 -3.796875 0.65625 -2.546875 0.65625 -1.390625 C 0.65625 -0.21875 2.015625 0.15625 2.9375 0.15625 C 3.90625 0.15625 4.578125 -0.453125 4.859375 -1.15625 C 4.921875 -0.46875 5.390625 0.078125 6.03125 0.078125 C 6.34375 0.078125 7.203125 -0.140625 7.203125 -1.328125 L 7.203125 -2.15625 L 6.875 -2.15625 L 6.875 -1.328125 C 6.875 -0.46875 6.515625 -0.359375 6.3125 -0.359375 C 5.734375 -0.359375 5.734375 -1.140625 5.734375 -1.375 Z M 4.78125 -2.09375 C 4.78125 -0.640625 3.6875 -0.15625 3.046875 -0.15625 C 2.328125 -0.15625 1.703125 -0.6875 1.703125 -1.390625 C 1.703125 -3.359375 4.234375 -3.546875 4.78125 -3.5625 Z M 4.78125 -2.09375 ", :style => "stroke:none;"}
+                %symbol{:id => "Szwa3OKKttBHKuSu2_Wfw7ZgBdM=-glyph0-5", :overflow => "visible"}
+                  %path{:d => "M 4.46875 -10.15625 L 4.46875 -9.734375 C 5.46875 -9.734375 5.59375 -9.625 5.59375 -8.890625 L 5.59375 -5.609375 C 5.28125 -6.046875 4.640625 -6.5625 3.734375 -6.5625 C 2.015625 -6.5625 0.515625 -5.109375 0.515625 -3.203125 C 0.515625 -1.3125 1.9375 0.15625 3.5625 0.15625 C 4.703125 0.15625 5.359375 -0.59375 5.5625 -0.875 L 5.5625 0.15625 L 7.65625 0 L 7.65625 -0.4375 C 6.65625 -0.4375 6.53125 -0.53125 6.53125 -1.265625 L 6.53125 -10.328125 Z M 5.5625 -1.734375 C 5.5625 -1.46875 5.5625 -1.421875 5.359375 -1.09375 C 5 -0.578125 4.390625 -0.15625 3.640625 -0.15625 C 3.25 -0.15625 1.65625 -0.296875 1.65625 -3.1875 C 1.65625 -4.25 1.828125 -4.84375 2.15625 -5.34375 C 2.453125 -5.796875 3.046875 -6.265625 3.796875 -6.265625 C 4.71875 -6.265625 5.234375 -5.59375 5.390625 -5.359375 C 5.5625 -5.109375 5.5625 -5.078125 5.5625 -4.796875 Z M 5.5625 -1.734375 ", :style => "stroke:none;"}
+                %symbol{:id => "Szwa3OKKttBHKuSu2_Wfw7ZgBdM=-glyph0-6", :overflow => "visible"}
+                  %path{:d => "M 4.875 -6.296875 C 4.875 -6.5625 4.875 -6.640625 4.734375 -6.640625 C 4.609375 -6.640625 4.328125 -6.3125 4.21875 -6.171875 C 3.765625 -6.546875 3.296875 -6.640625 2.828125 -6.640625 C 1.03125 -6.640625 0.484375 -5.65625 0.484375 -4.828125 C 0.484375 -4.671875 0.484375 -4.15625 1.0625 -3.625 C 1.53125 -3.21875 2.03125 -3.109375 2.71875 -2.96875 C 3.546875 -2.8125 3.734375 -2.765625 4.109375 -2.46875 C 4.375 -2.25 4.5625 -1.921875 4.5625 -1.5 C 4.5625 -0.859375 4.1875 -0.15625 2.890625 -0.15625 C 1.90625 -0.15625 1.1875 -0.71875 0.859375 -2.203125 C 0.796875 -2.46875 0.796875 -2.484375 0.78125 -2.5 C 0.765625 -2.5625 0.703125 -2.5625 0.65625 -2.5625 C 0.484375 -2.5625 0.484375 -2.484375 0.484375 -2.21875 L 0.484375 -0.1875 C 0.484375 0.078125 0.484375 0.15625 0.640625 0.15625 C 0.71875 0.15625 0.734375 0.140625 0.984375 -0.171875 C 1.0625 -0.28125 1.0625 -0.3125 1.28125 -0.546875 C 1.84375 0.15625 2.640625 0.15625 2.90625 0.15625 C 4.46875 0.15625 5.234375 -0.71875 5.234375 -1.890625 C 5.234375 -2.6875 4.75 -3.171875 4.609375 -3.296875 C 4.078125 -3.765625 3.671875 -3.859375 2.6875 -4.03125 C 2.25 -4.125 1.15625 -4.328125 1.15625 -5.21875 C 1.15625 -5.6875 1.46875 -6.359375 2.8125 -6.359375 C 4.4375 -6.359375 4.515625 -4.984375 4.546875 -4.515625 C 4.5625 -4.40625 4.671875 -4.40625 4.71875 -4.40625 C 4.875 -4.40625 4.875 -4.484375 4.875 -4.75 Z M 4.875 -6.296875 ", :style => "stroke:none;"}
+                %symbol{:id => "Szwa3OKKttBHKuSu2_Wfw7ZgBdM=-glyph0-7", :overflow => "visible"}
+                  %path{:d => "M 2.5 -5.984375 L 4.59375 -5.984375 L 4.59375 -6.40625 L 2.5 -6.40625 L 2.5 -9.140625 L 2.171875 -9.140625 C 2.15625 -7.75 1.625 -6.328125 0.265625 -6.28125 L 0.265625 -5.984375 L 1.53125 -5.984375 L 1.53125 -1.84375 C 1.53125 -0.1875 2.640625 0.15625 3.421875 0.15625 C 4.359375 0.15625 4.84375 -0.78125 4.84375 -1.84375 L 4.84375 -2.6875 L 4.515625 -2.6875 L 4.515625 -1.875 C 4.515625 -0.796875 4.09375 -0.171875 3.515625 -0.171875 C 2.5 -0.171875 2.5 -1.5625 2.5 -1.8125 Z M 2.5 -5.984375 ", :style => "stroke:none;"}
+                %symbol{:id => "Szwa3OKKttBHKuSu2_Wfw7ZgBdM=-glyph0-8", :overflow => "visible"}
+                  %path{:d => "M 2.59375 -9.15625 C 2.59375 -9.546875 2.28125 -9.890625 1.859375 -9.890625 C 1.46875 -9.890625 1.140625 -9.578125 1.140625 -9.171875 C 1.140625 -8.734375 1.5 -8.453125 1.859375 -8.453125 C 2.328125 -8.453125 2.59375 -8.828125 2.59375 -9.15625 Z M 0.53125 -6.390625 L 0.53125 -5.96875 C 1.484375 -5.96875 1.625 -5.875 1.625 -5.140625 L 1.625 -1.09375 C 1.625 -0.4375 1.453125 -0.4375 0.484375 -0.4375 L 0.484375 0 C 0.90625 -0.03125 1.625 -0.03125 2.046875 -0.03125 C 2.21875 -0.03125 3.078125 -0.03125 3.578125 0 L 3.578125 -0.4375 C 2.625 -0.4375 2.5625 -0.5 2.5625 -1.078125 L 2.5625 -6.5625 Z M 0.53125 -6.390625 ", :style => "stroke:none;"}
+                %symbol{:id => "Szwa3OKKttBHKuSu2_Wfw7ZgBdM=-glyph0-9", :overflow => "visible"}
+                  %path{:d => "M 2.5625 -10.328125 L 0.484375 -10.15625 L 0.484375 -9.734375 C 1.5 -9.734375 1.625 -9.625 1.625 -8.890625 L 1.625 -1.09375 C 1.625 -0.4375 1.453125 -0.4375 0.484375 -0.4375 L 0.484375 0 C 0.90625 -0.03125 1.640625 -0.03125 2.078125 -0.03125 C 2.53125 -0.03125 3.265625 -0.03125 3.6875 0 L 3.6875 -0.4375 C 2.734375 -0.4375 2.5625 -0.4375 2.5625 -1.09375 Z M 2.5625 -10.328125 ", :style => "stroke:none;"}
+                %symbol{:id => "Szwa3OKKttBHKuSu2_Wfw7ZgBdM=-glyph1-0", :overflow => "visible"}
+                  %path{:d => "", :style => "stroke:none;"}
+                %symbol{:id => "Szwa3OKKttBHKuSu2_Wfw7ZgBdM=-glyph1-1", :overflow => "visible"}
+                  %path{:d => "M 2.515625 -3.3125 C 3.296875 -3.3125 3.796875 -2.734375 3.796875 -1.703125 C 3.796875 -0.453125 3.078125 -0.09375 2.5625 -0.09375 C 2.015625 -0.09375 1.265625 -0.28125 0.921875 -0.8125 C 1.28125 -0.8125 1.53125 -1.046875 1.53125 -1.375 C 1.53125 -1.6875 1.296875 -1.921875 0.984375 -1.921875 C 0.71875 -1.921875 0.4375 -1.75 0.4375 -1.34375 C 0.4375 -0.40625 1.453125 0.203125 2.578125 0.203125 C 3.90625 0.203125 4.828125 -0.703125 4.828125 -1.703125 C 4.828125 -2.515625 4.171875 -3.28125 3.15625 -3.5 C 3.9375 -3.765625 4.53125 -4.4375 4.53125 -5.234375 C 4.53125 -6.03125 3.625 -6.59375 2.59375 -6.59375 C 1.53125 -6.59375 0.734375 -6.015625 0.734375 -5.265625 C 0.734375 -4.90625 0.984375 -4.75 1.234375 -4.75 C 1.546875 -4.75 1.75 -4.953125 1.75 -5.25 C 1.75 -5.609375 1.421875 -5.75 1.203125 -5.765625 C 1.625 -6.3125 2.390625 -6.34375 2.5625 -6.34375 C 2.828125 -6.34375 3.578125 -6.265625 3.578125 -5.234375 C 3.578125 -4.546875 3.296875 -4.125 3.15625 -3.96875 C 2.859375 -3.65625 2.625 -3.640625 2.03125 -3.609375 C 1.828125 -3.59375 1.75 -3.578125 1.75 -3.453125 C 1.75 -3.3125 1.84375 -3.3125 2.015625 -3.3125 Z M 2.515625 -3.3125 ", :style => "stroke:none;"}
+                %symbol{:id => "Szwa3OKKttBHKuSu2_Wfw7ZgBdM=-glyph1-2", :overflow => "visible"}
+                  %path{:d => "M 3.90625 -6.421875 C 3.90625 -6.625 3.90625 -6.703125 3.703125 -6.703125 C 3.578125 -6.703125 3.5625 -6.6875 3.46875 -6.546875 L 0.296875 -1.953125 L 0.296875 -1.625 L 3.09375 -1.625 L 3.09375 -0.796875 C 3.09375 -0.4375 3.0625 -0.328125 2.296875 -0.328125 L 2.078125 -0.328125 L 2.078125 0 C 2.921875 -0.03125 2.9375 -0.03125 3.5 -0.03125 C 4.0625 -0.03125 4.09375 -0.03125 4.9375 0 L 4.9375 -0.328125 L 4.703125 -0.328125 C 3.9375 -0.328125 3.90625 -0.4375 3.90625 -0.796875 L 3.90625 -1.625 L 4.953125 -1.625 L 4.953125 -1.953125 L 3.90625 -1.953125 Z M 3.171875 -5.609375 L 3.171875 -1.953125 L 0.640625 -1.953125 Z M 3.171875 -5.609375 ", :style => "stroke:none;"}
+                %symbol{:id => "Szwa3OKKttBHKuSu2_Wfw7ZgBdM=-glyph1-3", :overflow => "visible"}
+                  %path{:d => "M 3.109375 -6.3125 C 3.109375 -6.59375 3.09375 -6.59375 2.828125 -6.59375 C 2.421875 -6.203125 1.890625 -5.96875 0.953125 -5.96875 L 0.953125 -5.640625 C 1.21875 -5.640625 1.75 -5.640625 2.328125 -5.90625 L 2.328125 -0.8125 C 2.328125 -0.453125 2.296875 -0.328125 1.359375 -0.328125 L 1.015625 -0.328125 L 1.015625 0 C 1.421875 -0.03125 2.265625 -0.03125 2.71875 -0.03125 C 3.171875 -0.03125 4.03125 -0.03125 4.4375 0 L 4.4375 -0.328125 L 4.09375 -0.328125 C 3.140625 -0.328125 3.109375 -0.453125 3.109375 -0.8125 Z M 3.109375 -6.3125 ", :style => "stroke:none;"}
+                %symbol{:id => "Szwa3OKKttBHKuSu2_Wfw7ZgBdM=-glyph2-0", :overflow => "visible"}
+                  %path{:d => "", :style => "stroke:none;"}
+                %symbol{:id => "Szwa3OKKttBHKuSu2_Wfw7ZgBdM=-glyph2-1", :overflow => "visible"}
+                  %path{:d => "M 4.609375 -7.03125 C 4.671875 -7.15625 4.671875 -7.1875 4.671875 -7.21875 C 4.671875 -7.34375 4.578125 -7.4375 4.4375 -7.4375 C 4.28125 -7.4375 4.25 -7.328125 4.203125 -7.21875 L 0.640625 2.0625 C 0.578125 2.203125 0.578125 2.21875 0.578125 2.25 C 0.578125 2.375 0.6875 2.484375 0.8125 2.484375 C 0.96875 2.484375 1.015625 2.359375 1.046875 2.265625 Z M 4.609375 -7.03125 ", :style => "stroke:none;"}
+            %g{:id => "Szwa3OKKttBHKuSu2_Wfw7ZgBdM=-surface1"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "82.973038", "xlink:href" => "#Szwa3OKKttBHKuSu2_Wfw7ZgBdM=-glyph0-1", :y => "15.77346"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "6.517494", "xlink:href" => "#Szwa3OKKttBHKuSu2_Wfw7ZgBdM=-glyph0-2", :y => "57.963758"}
+                %use{:x => "14.609304", "xlink:href" => "#Szwa3OKKttBHKuSu2_Wfw7ZgBdM=-glyph0-3", :y => "57.963758"}
+                %use{:x => "21.082752", "xlink:href" => "#Szwa3OKKttBHKuSu2_Wfw7ZgBdM=-glyph0-4", :y => "57.963758"}
+                %use{:x => "28.36538", "xlink:href" => "#Szwa3OKKttBHKuSu2_Wfw7ZgBdM=-glyph0-5", :y => "57.963758"}
+                %use{:x => "36.45719", "xlink:href" => "#Szwa3OKKttBHKuSu2_Wfw7ZgBdM=-glyph0-6", :y => "57.963758"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "130.623877", "xlink:href" => "#Szwa3OKKttBHKuSu2_Wfw7ZgBdM=-glyph0-7", :y => "57.963758"}
+                %use{:x => "136.288144", "xlink:href" => "#Szwa3OKKttBHKuSu2_Wfw7ZgBdM=-glyph0-4", :y => "57.963758"}
+                %use{:x => "143.570773", "xlink:href" => "#Szwa3OKKttBHKuSu2_Wfw7ZgBdM=-glyph0-8", :y => "57.963758"}
+                %use{:x => "147.616678", "xlink:href" => "#Szwa3OKKttBHKuSu2_Wfw7ZgBdM=-glyph0-9", :y => "57.963758"}
+                %use{:x => "151.662583", "xlink:href" => "#Szwa3OKKttBHKuSu2_Wfw7ZgBdM=-glyph0-6", :y => "57.963758"}
+              %path{:d => "M -5.667742 12.849755 L -39.041367 -9.837559 ", :style => "fill:none;stroke-width:0.79701;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;", :transform => "matrix(0.995359,0,0,-0.995359,81.961753,31.704187)"}
+              %path{:d => "M -4.144779 4.780814 C -3.389084 1.913292 -1.701015 0.556966 -0.00138218 -0.000470754 C -1.700201 -0.558802 -3.388775 -1.911865 -4.144008 -4.782077 ", :style => "fill:none;stroke-width:0.79701;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;", :transform => "matrix(-0.823132,0.559551,0.559551,0.823132,42.772563,41.719911)"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "39.880945", "xlink:href" => "#Szwa3OKKttBHKuSu2_Wfw7ZgBdM=-glyph1-1", :y => "24.250936"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "45.148884", "xlink:href" => "#Szwa3OKKttBHKuSu2_Wfw7ZgBdM=-glyph2-1", :y => "24.250936"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "50.416824", "xlink:href" => "#Szwa3OKKttBHKuSu2_Wfw7ZgBdM=-glyph1-2", :y => "24.250936"}
+              %path{:d => "M 14.609953 12.319953 L 44.836159 -9.814013 ", :style => "fill:none;stroke-width:0.79701;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;", :transform => "matrix(0.995359,0,0,-0.995359,81.961753,31.704187)"}
+              %path{:d => "M -4.146975 4.782206 C -3.388412 1.913105 -1.699679 0.557045 0.000540205 0.00231653 C -1.700606 -0.557612 -3.387284 -1.914457 -4.142148 -4.782796 ", :style => "fill:none;stroke-width:0.79701;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;", :transform => "matrix(0.803006,0.588078,0.588078,-0.803006,126.90836,41.708574)"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "115.56409", "xlink:href" => "#Szwa3OKKttBHKuSu2_Wfw7ZgBdM=-glyph1-3", :y => "24.514706"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "120.83203", "xlink:href" => "#Szwa3OKKttBHKuSu2_Wfw7ZgBdM=-glyph2-1", :y => "24.514706"}
+              %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                %use{:x => "126.099969", "xlink:href" => "#Szwa3OKKttBHKuSu2_Wfw7ZgBdM=-glyph1-2", :y => "24.514706"}
+          %p
+            In other words, the “average” or “mixture” can be thought of as an assignment
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi E
+                    %mo :
+                    %mi P
+                    %mi P
+                    %mi X
+                    %mo →
+                    %mi P
+                    %mi X
+                  %annotation{:encoding => "application/x-tex"} E:P P X\to P X
+          %h2#algebras_expectation_values Algebras: expectation values
+          %p
+            According to the interpretation of probability monads in terms of “formal generalized convex combinations”, the
+            %a.existingWikiWord{:href => "/nlab/show/algebra+over+a+monad"} algebras
+            of a probability monad are then spaces equipped with a way of evaluating these expressions to a result, which we can see as a generalized “
+            %a.existingWikiWord{:href => "/nlab/show/mixture"}> mixture
+            ”, “
+            %a.existingWikiWord{:href => "/nlab/show/average"}> average
+            ”, or “
+            %a.existingWikiWord{:href => "/nlab/show/expectation+value"}> expectation value
+            ”. (Expectation values play a very important role in probability: probability monads can encode them via their algebras.)
+          %p
+            In other words, algebras of probability monads can be thought of as generalizations of
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/convex+sets"} convex sets
+          %ul
+            %li
+              The
+              %a.existingWikiWord{:href => "/nlab/show/algebra+over+a+monad"} algebras
+              of the
+              %a.existingWikiWord{:href => "/nlab/show/distribution+monad"} distribution monad
+              are
+              = succeed "." do
+                %a.existingWikiWord{:href => "/nlab/show/convex+spaces"} convex spaces
+            %li
+              The
+              %a.existingWikiWord{:href => "/nlab/show/algebra+over+a+monad"} algebras
+              of the
+              %a.existingWikiWord{:href => "/nlab/show/Radon+monad"} Radon monad
+              are
+              %a.existingWikiWord{:href => "/nlab/show/compact+space"} compact
+              convex subsets of
+              = succeed "." do
+                %a.existingWikiWord{:href => "/nlab/show/locally+convex+topological+vector+spaces"} locally convex topological vector spaces
+            %li
+              The
+              %a.existingWikiWord{:href => "/nlab/show/algebra+over+a+monad"} algebras
+              of the
+              %a.existingWikiWord{:href => "/nlab/show/Kantorovich+monad"} Kantorovich monad
+              are closed convex subsets of
+              = succeed "." do
+                %a.existingWikiWord{:href => "/nlab/show/Banach+spaces"} Banach spaces
+          %p
+            (See also the table
+            = succeed ".)" do
+              %a{:href => "#detailed_list"} below
+          %p
+            If the measure are not required to be normalized, instead of (generalized) convex combinations one should think of linear combinations with non-negative coefficients, and so as algebras one gets a generalization of
+            %a.existingWikiWord{:href => "/nlab/show/conical+spaces"} conical spaces
+            instead.
+          %h2#kleisli_morphisms_random_maps Kleisli morphisms: random maps
+          %p
+            The basic interpretation of a Kleisli morphism, i.e. a map
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi X
+                    %mo →
+                    %mi P
+                    %mi Y
+                  %annotation{:encoding => "application/x-tex"} X\to P Y
+            = succeed "." do
+              %em map with a random outcome
+          %ul
+            %li
+              For the
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/distribution+monad"} distribution monad
+              %a.existingWikiWord{:href => "/nlab/show/stochastic+maps"} stochastic maps
+              (or
+              = succeed ")." do
+                %a.existingWikiWord{:href => "/nlab/show/stochastic+matrices"} stochastic matrices
+            %li
+              For the
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/Giry+monad"} Giry monad
+              = succeed "." do
+                %a.existingWikiWord{:href => "/nlab/show/Markov+kernels"} Markov kernels
+            %li …and so on.
+          %p
+            The
+            %a.existingWikiWord{:href => "/nlab/show/Kleisli+category"} Kleisli composition
+            recovers exactly the
+            %span.newWikiWord
+              Chapman-Kolmogorov formula
+              %a{:href => "/nlab/new/Chapman-Kolmogorov+formula"} ?
+            for the composition of stochastic maps. In the language of
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/conditional+probability"} conditional probability
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi p
+                  %mo{:stretchy => "false"} (
+                  %mi z
+                  %mo{:stretchy => "false"} |
+                  %mi x
+                  %mo{:stretchy => "false"} )
+                  %mo =
+                  %munder
+                    %mo{:lspace => "thinmathspace", :rspace => "thinmathspace"} ∑
+                    %mi y
+                  %mi p
+                  %mo{:stretchy => "false"} (
+                  %mi z
+                  %mo{:stretchy => "false"} |
+                  %mi y
+                  %mo{:stretchy => "false"} )
+                  %mspace{:width => "thinmathspace"}
+                  %mi p
+                  %mo{:stretchy => "false"} (
+                  %mi y
+                  %mo{:stretchy => "false"} |
+                  %mi x
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"}
+                  p(z|x) = \sum_y p(z|y) \, p (y|x)
+          %p for the discrete case, and as
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi p
+                  %mo{:stretchy => "false"} (
+                  %mi A
+                  %mo{:stretchy => "false"} |
+                  %mi x
+                  %mo{:stretchy => "false"} )
+                  %mo =
+                  %msub
+                    %mo ∫
+                    %mi Y
+                  %mi p
+                  %mo{:stretchy => "false"} (
+                  %mi A
+                  %mo{:stretchy => "false"} |
+                  %mi y
+                  %mo{:stretchy => "false"} )
+                  %mspace{:width => "thinmathspace"}
+                  %mi d
+                  %mi p
+                  %mo{:stretchy => "false"} (
+                  %mi y
+                  %mo{:stretchy => "false"} |
+                  %mi x
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"}
+                  p(A|x) = \int_Y p(A|y) \, d p(y|x)
+          %p for the continuous case.
+          %p
+            (See
+            %a{:href => "#giry80"} Giry’s original article
+            for the details, as well as the introductions given in
+            %a{:href => "#thesisperrone"} Perrone ‘18, Section 1.1
+            and
+            = succeed ")." do
+              %a{:href => "#notesperrone"} Perrone ‘19, Example 5.1.13
+          %p
+            %a.existingWikiWord{:href => "/nlab/show/Kleisli+category"} Kleisli categories
+            of probability monads are often instances of
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/Markov+categories"} Markov categories
+          %h2#monoidal_structure_products_and_marginals Monoidal structure: products and marginals
+          %p
+            Probability monads are usually defined on
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/monoidal+categories"} monoidal categories
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/cartesian+monoidal+categories"} cartesian monoidal categories
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi X
+                    %mo ×
+                    %mi Y
+                  %annotation{:encoding => "application/x-tex"} X\times Y
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi P
+                  %mo{:stretchy => "false"} (
+                  %mi X
+                  %mo ×
+                  %mi Y
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} P(X\times Y)
+            has the interpretation of containing
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/joint+distributions"} joint distributions
+            %a.existingWikiWord{:href => "/nlab/show/joint+and+marginal+probability"} marginals
+            by pushing forward along the
+            %a.existingWikiWord{:href => "/nlab/show/product"} product
+            projections
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi X
+                  %mo ×
+                  %mi Y
+                  %mo →
+                  %mi X
+                %annotation{:encoding => "application/x-tex"} X\times Y\to X
+            and
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi X
+                    %mo ×
+                    %mi Y
+                    %mo →
+                    %mi Y
+                  %annotation{:encoding => "application/x-tex"} X\times Y\to Y
+            %a.existingWikiWord{:href => "/nlab/show/stochastic+dependence"} stochastic dependence
+            may be discarded.
+          %p
+            Given
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/marginal+distributions"} marginal distributions
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/product+distribution"} product distribution
+            %a.existingWikiWord{:href => "/nlab/show/monoidal+monad"} monoidal structure
+            on the probability monad (or equivalently, a
+            = succeed ")," do
+              %a.existingWikiWord{:href => "/nlab/show/commutative+monad"} commutative strength
+            %svg{:height => "26.681pt", :version => "1.2", :viewbox => "0 0 186.254 26.681", :width => "186.254pt", :xmlns => "http://www.w3.org/2000/svg", "xmlns:xlink" => "http://www.w3.org/1999/xlink"}
+              %defs
+                %g
+                  %symbol{:id => "FQme8ul8Df_GAE1ODmhtmfkt_3Q=-glyph0-0", :overflow => "visible"}
+                    %path{:d => "", :style => "stroke:none;"}
+                  %symbol{:id => "FQme8ul8Df_GAE1ODmhtmfkt_3Q=-glyph0-1", :overflow => "visible"}
+                    %path{:d => "M 4.375 -4.703125 L 6.84375 -4.703125 C 8.890625 -4.703125 10.921875 -6.203125 10.921875 -7.890625 C 10.921875 -9.03125 9.953125 -10.078125 8.09375 -10.078125 L 3.53125 -10.078125 C 3.25 -10.078125 3.109375 -10.078125 3.109375 -9.796875 C 3.109375 -9.65625 3.25 -9.65625 3.46875 -9.65625 C 4.375 -9.65625 4.375 -9.53125 4.375 -9.375 C 4.375 -9.34375 4.375 -9.265625 4.3125 -9.03125 L 2.3125 -1.09375 C 2.1875 -0.578125 2.15625 -0.421875 1.125 -0.421875 C 0.84375 -0.421875 0.6875 -0.421875 0.6875 -0.15625 C 0.6875 0 0.828125 0 0.921875 0 C 1.203125 0 1.484375 -0.03125 1.765625 -0.03125 L 3.5 -0.03125 C 3.78125 -0.03125 4.09375 0 4.375 0 C 4.484375 0 4.65625 0 4.65625 -0.28125 C 4.65625 -0.421875 4.515625 -0.421875 4.296875 -0.421875 C 3.40625 -0.421875 3.390625 -0.53125 3.390625 -0.671875 C 3.390625 -0.75 3.40625 -0.859375 3.421875 -0.9375 Z M 5.4375 -9.078125 C 5.5625 -9.625 5.625 -9.65625 6.203125 -9.65625 L 7.65625 -9.65625 C 8.765625 -9.65625 9.6875 -9.296875 9.6875 -8.1875 C 9.6875 -7.8125 9.5 -6.5625 8.8125 -5.875 C 8.5625 -5.609375 7.859375 -5.046875 6.515625 -5.046875 L 4.4375 -5.046875 Z M 5.4375 -9.078125 ", :style => "stroke:none;"}
+                  %symbol{:id => "FQme8ul8Df_GAE1ODmhtmfkt_3Q=-glyph0-2", :overflow => "visible"}
+                    %path{:d => "M 7.015625 -6 L 5.625 -9.234375 C 5.8125 -9.578125 6.265625 -9.640625 6.4375 -9.65625 C 6.53125 -9.65625 6.6875 -9.671875 6.6875 -9.921875 C 6.6875 -10.078125 6.5625 -10.078125 6.46875 -10.078125 C 6.21875 -10.078125 5.921875 -10.0625 5.671875 -10.0625 L 4.8125 -10.0625 C 3.90625 -10.0625 3.265625 -10.078125 3.25 -10.078125 C 3.125 -10.078125 2.984375 -10.078125 2.984375 -9.796875 C 2.984375 -9.65625 3.109375 -9.65625 3.3125 -9.65625 C 4.15625 -9.65625 4.21875 -9.515625 4.375 -9.15625 L 6.125 -5.046875 L 2.921875 -1.625 C 2.390625 -1.046875 1.75 -0.484375 0.671875 -0.421875 C 0.484375 -0.40625 0.375 -0.40625 0.375 -0.140625 C 0.375 -0.109375 0.390625 0 0.546875 0 C 0.75 0 0.96875 -0.03125 1.1875 -0.03125 L 1.875 -0.03125 C 2.34375 -0.03125 2.859375 0 3.328125 0 C 3.421875 0 3.609375 0 3.609375 -0.265625 C 3.609375 -0.40625 3.5 -0.421875 3.40625 -0.421875 C 3.109375 -0.453125 2.921875 -0.625 2.921875 -0.859375 C 2.921875 -1.109375 3.09375 -1.28125 3.53125 -1.734375 L 4.84375 -3.15625 C 5.171875 -3.5 5.953125 -4.359375 6.28125 -4.6875 L 7.828125 -1.046875 C 7.84375 -1.015625 7.90625 -0.875 7.90625 -0.859375 C 7.90625 -0.71875 7.578125 -0.453125 7.109375 -0.421875 C 7.015625 -0.421875 6.84375 -0.40625 6.84375 -0.140625 C 6.84375 0 7 0 7.078125 0 C 7.328125 0 7.625 -0.03125 7.875 -0.03125 L 9.5 -0.03125 C 9.765625 -0.03125 10.046875 0 10.296875 0 C 10.390625 0 10.5625 0 10.5625 -0.28125 C 10.5625 -0.421875 10.40625 -0.421875 10.28125 -0.421875 C 9.390625 -0.4375 9.359375 -0.515625 9.109375 -1.0625 L 7.15625 -5.640625 L 9.03125 -7.65625 C 9.1875 -7.796875 9.53125 -8.171875 9.65625 -8.3125 C 10.296875 -8.984375 10.875 -9.578125 12.078125 -9.65625 C 12.21875 -9.671875 12.375 -9.671875 12.375 -9.921875 C 12.375 -10.078125 12.234375 -10.078125 12.1875 -10.078125 C 11.96875 -10.078125 11.75 -10.0625 11.546875 -10.0625 L 10.875 -10.0625 C 10.390625 -10.0625 9.875 -10.078125 9.421875 -10.078125 C 9.3125 -10.078125 9.140625 -10.078125 9.140625 -9.8125 C 9.140625 -9.671875 9.25 -9.65625 9.328125 -9.65625 C 9.5625 -9.625 9.8125 -9.515625 9.8125 -9.234375 L 9.796875 -9.203125 C 9.796875 -9.09375 9.765625 -8.953125 9.59375 -8.765625 Z M 7.015625 -6 ", :style => "stroke:none;"}
+                  %symbol{:id => "FQme8ul8Df_GAE1ODmhtmfkt_3Q=-glyph0-3", :overflow => "visible"}
+                    %path{:d => "M 8.6875 -8.453125 L 9.015625 -8.78125 C 9.671875 -9.453125 10.21875 -9.609375 10.734375 -9.65625 C 10.890625 -9.671875 11.03125 -9.6875 11.03125 -9.9375 C 11.03125 -10.078125 10.875 -10.078125 10.859375 -10.078125 C 10.671875 -10.078125 10.484375 -10.0625 10.3125 -10.0625 L 9.703125 -10.0625 C 9.265625 -10.0625 8.8125 -10.078125 8.40625 -10.078125 C 8.296875 -10.078125 8.140625 -10.078125 8.140625 -9.796875 C 8.140625 -9.671875 8.28125 -9.65625 8.328125 -9.65625 C 8.765625 -9.625 8.765625 -9.40625 8.765625 -9.3125 C 8.765625 -9.15625 8.65625 -8.9375 8.359375 -8.59375 L 4.84375 -4.5625 L 3.171875 -9.046875 C 3.09375 -9.265625 3.09375 -9.28125 3.09375 -9.3125 C 3.09375 -9.625 3.6875 -9.65625 3.875 -9.65625 C 4.046875 -9.65625 4.203125 -9.65625 4.203125 -9.921875 C 4.203125 -10.078125 4.078125 -10.078125 3.984375 -10.078125 C 3.734375 -10.078125 3.4375 -10.0625 3.1875 -10.0625 L 1.546875 -10.0625 C 1.28125 -10.0625 1 -10.078125 0.75 -10.078125 C 0.65625 -10.078125 0.484375 -10.078125 0.484375 -9.796875 C 0.484375 -9.65625 0.625 -9.65625 0.84375 -9.65625 C 1.5625 -9.65625 1.703125 -9.53125 1.828125 -9.1875 L 3.65625 -4.265625 C 3.671875 -4.21875 3.71875 -4.0625 3.71875 -4.015625 C 3.71875 -3.96875 3 -1.0625 2.953125 -0.921875 C 2.828125 -0.515625 2.6875 -0.4375 1.75 -0.421875 C 1.484375 -0.421875 1.375 -0.421875 1.375 -0.140625 C 1.375 0 1.53125 0 1.578125 0 C 1.84375 0 2.15625 -0.03125 2.4375 -0.03125 L 4.171875 -0.03125 C 4.4375 -0.03125 4.75 0 5.015625 0 C 5.125 0 5.296875 0 5.296875 -0.265625 C 5.296875 -0.421875 5.203125 -0.421875 4.953125 -0.421875 C 4.03125 -0.421875 4.03125 -0.53125 4.03125 -0.6875 C 4.03125 -0.796875 4.15625 -1.265625 4.21875 -1.5625 L 4.75 -3.6875 C 4.84375 -4 4.84375 -4.03125 4.96875 -4.171875 Z M 8.6875 -8.453125 ", :style => "stroke:none;"}
+                  %symbol{:id => "FQme8ul8Df_GAE1ODmhtmfkt_3Q=-glyph1-0", :overflow => "visible"}
+                    %path{:d => "", :style => "stroke:none;"}
+                  %symbol{:id => "FQme8ul8Df_GAE1ODmhtmfkt_3Q=-glyph1-1", :overflow => "visible"}
+                    %path{:d => "M 5.75 -4.109375 L 2.796875 -7.046875 C 2.609375 -7.21875 2.578125 -7.25 2.46875 -7.25 C 2.3125 -7.25 2.171875 -7.109375 2.171875 -6.953125 C 2.171875 -6.84375 2.203125 -6.828125 2.359375 -6.65625 L 5.3125 -3.6875 L 2.359375 -0.71875 C 2.203125 -0.5625 2.171875 -0.53125 2.171875 -0.421875 C 2.171875 -0.265625 2.3125 -0.140625 2.46875 -0.140625 C 2.578125 -0.140625 2.609375 -0.15625 2.796875 -0.34375 L 5.734375 -3.28125 L 8.78125 -0.21875 C 8.8125 -0.203125 8.921875 -0.140625 9 -0.140625 C 9.1875 -0.140625 9.296875 -0.265625 9.296875 -0.421875 C 9.296875 -0.453125 9.296875 -0.515625 9.265625 -0.59375 C 9.25 -0.625 6.890625 -2.9375 6.15625 -3.6875 L 8.859375 -6.390625 C 8.9375 -6.484375 9.15625 -6.671875 9.234375 -6.765625 C 9.25 -6.796875 9.296875 -6.84375 9.296875 -6.953125 C 9.296875 -7.109375 9.1875 -7.25 9 -7.25 C 8.890625 -7.25 8.828125 -7.1875 8.671875 -7.03125 Z M 5.75 -4.109375 ", :style => "stroke:none;"}
+                  %symbol{:id => "FQme8ul8Df_GAE1ODmhtmfkt_3Q=-glyph2-0", :overflow => "visible"}
+                    %path{:d => "", :style => "stroke:none;"}
+                  %symbol{:id => "FQme8ul8Df_GAE1ODmhtmfkt_3Q=-glyph2-1", :overflow => "visible"}
+                    %path{:d => "M 4.796875 3.59375 C 4.796875 3.546875 4.796875 3.515625 4.546875 3.265625 C 3.078125 1.765625 2.25 -0.671875 2.25 -3.671875 C 2.25 -6.546875 2.9375 -9 4.65625 -10.75 C 4.796875 -10.875 4.796875 -10.90625 4.796875 -10.953125 C 4.796875 -11.046875 4.71875 -11.078125 4.671875 -11.078125 C 4.46875 -11.078125 3.265625 -10.015625 2.546875 -8.5625 C 1.78125 -7.078125 1.453125 -5.5 1.453125 -3.671875 C 1.453125 -2.359375 1.65625 -0.609375 2.421875 0.96875 C 3.296875 2.75 4.5 3.703125 4.671875 3.703125 C 4.71875 3.703125 4.796875 3.671875 4.796875 3.59375 Z M 4.796875 3.59375 ", :style => "stroke:none;"}
+                  %symbol{:id => "FQme8ul8Df_GAE1ODmhtmfkt_3Q=-glyph2-2", :overflow => "visible"}
+                    %path{:d => "M 4.15625 -3.671875 C 4.15625 -4.796875 4.015625 -6.625 3.1875 -8.34375 C 2.3125 -10.109375 1.109375 -11.078125 0.9375 -11.078125 C 0.890625 -11.078125 0.8125 -11.046875 0.8125 -10.953125 C 0.8125 -10.90625 0.8125 -10.875 1.0625 -10.625 C 2.546875 -9.140625 3.359375 -6.703125 3.359375 -3.6875 C 3.359375 -0.828125 2.671875 1.640625 0.953125 3.375 C 0.8125 3.515625 0.8125 3.546875 0.8125 3.59375 C 0.8125 3.671875 0.890625 3.703125 0.9375 3.703125 C 1.140625 3.703125 2.34375 2.640625 3.078125 1.203125 C 3.828125 -0.3125 4.15625 -1.90625 4.15625 -3.671875 Z M 4.15625 -3.671875 ", :style => "stroke:none;"}
+                  %symbol{:id => "FQme8ul8Df_GAE1ODmhtmfkt_3Q=-glyph3-0", :overflow => "visible"}
+                    %path{:d => "", :style => "stroke:none;"}
+                  %symbol{:id => "FQme8ul8Df_GAE1ODmhtmfkt_3Q=-glyph3-1", :overflow => "visible"}
+                    %path{:d => "M 8.125 -6.453125 C 8.203125 -6.578125 8.203125 -6.609375 8.203125 -6.625 C 8.203125 -6.71875 8.125 -6.71875 7.9375 -6.71875 L 0.765625 -6.71875 C 0.578125 -6.71875 0.5 -6.71875 0.5 -6.625 C 0.5 -6.609375 0.5 -6.578125 0.578125 -6.453125 L 4.0625 0.09375 C 4.140625 0.21875 4.171875 0.3125 4.34375 0.3125 C 4.53125 0.3125 4.5625 0.21875 4.640625 0.09375 Z M 1.828125 -5.96875 L 7.5 -5.96875 L 4.671875 -0.625 Z M 1.828125 -5.96875 ", :style => "stroke:none;"}
+              %g{:id => "FQme8ul8Df_GAE1ODmhtmfkt_3Q=-surface1"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "7.089669", "xlink:href" => "#FQme8ul8Df_GAE1ODmhtmfkt_3Q=-glyph0-1", :y => "17.269524"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "18.417771", "xlink:href" => "#FQme8ul8Df_GAE1ODmhtmfkt_3Q=-glyph0-2", :y => "17.269524"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "34.861378", "xlink:href" => "#FQme8ul8Df_GAE1ODmhtmfkt_3Q=-glyph1-1", :y => "17.269524"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "49.62857", "xlink:href" => "#FQme8ul8Df_GAE1ODmhtmfkt_3Q=-glyph0-1", :y => "17.269524"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "60.956673", "xlink:href" => "#FQme8ul8Df_GAE1ODmhtmfkt_3Q=-glyph0-3", :y => "17.269524"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "113.038931", "xlink:href" => "#FQme8ul8Df_GAE1ODmhtmfkt_3Q=-glyph0-1", :y => "17.269524"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "124.367239", "xlink:href" => "#FQme8ul8Df_GAE1ODmhtmfkt_3Q=-glyph2-1", :y => "17.269524"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "129.990013", "xlink:href" => "#FQme8ul8Df_GAE1ODmhtmfkt_3Q=-glyph0-2", :y => "17.269524"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "146.433415", "xlink:href" => "#FQme8ul8Df_GAE1ODmhtmfkt_3Q=-glyph1-1", :y => "17.269524"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "161.200607", "xlink:href" => "#FQme8ul8Df_GAE1ODmhtmfkt_3Q=-glyph0-3", :y => "17.269524"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "172.803136", "xlink:href" => "#FQme8ul8Df_GAE1ODmhtmfkt_3Q=-glyph2-2", :y => "17.269524"}
+                %path{:d => "M -13.756879 -0.000466062 L 13.044145 -0.000466062 ", :style => "fill:none;stroke-width:0.79701;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;", :transform => "matrix(0.988185,0,0,-0.988185,92.758407,13.577664)"}
+                %path{:d => "M -4.144535 4.782608 C -3.385568 1.912763 -1.70161 0.5569 -0.00183993 -0.000466062 C -1.70161 -0.557832 -3.385568 -1.913696 -4.144535 -4.78354 ", :style => "fill:none;stroke-width:0.79701;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;", :transform => "matrix(0.988185,0,0,-0.988185,106.040881,13.577664)"}
+                %g{:style => "fill:rgb(0%,0%,0%);fill-opacity:1;"}
+                  %use{:x => "88.441026", "xlink:href" => "#FQme8ul8Df_GAE1ODmhtmfkt_3Q=-glyph3-1", :y => "9.906556"}
+            which satisfies particular compatibility conditions. The Giry monad is monoidal on the category
+            %a.existingWikiWord{:href => "/nlab/show/Meas"} Meas
+            with the
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/cartesian+product"} cartesian product
+          %p
+            When the monad is
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/affine+monad"} affine
+            = succeed "." do
+              %em a product probability is necessarily the product of its marginals
+          %p
+            More on this at
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/joint+and+marginal+probability"} joint and marginal probability
+          %h2#duality Duality
+          %p (…work in progress…)
+          %h2#detailed_list Detailed list
+          %div
+            %table
+              %tr
+                %th
+                  %a.existingWikiWord{:href => "/nlab/show/probability+monad"} Probability monad
+                  (
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}>
+                    %semantics
+                      %mrow
+                        %mi P
+                      %annotation{:encoding => "application/x-tex"} P
+                  )
+                %th Category
+                %th
+                  Elements/points of
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi P
+                        %mi X
+                      %annotation{:encoding => "application/x-tex"} P X
+                %th
+                  Extra structure of
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi P
+                        %mi X
+                      %annotation{:encoding => "application/x-tex"} P X
+                %th
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}>
+                    %semantics
+                      %mrow
+                        %mi P
+                      %annotation{:encoding => "application/x-tex"} P
+                  \-Algebras
+                %th References
+              %tr
+                %th
+                  %a.existingWikiWord{:href => "/nlab/show/distribution+monad"} distribution monad
+                  (a.k.a. finitary Giry monad, convex combination monad)
+                %td
+                  %a.existingWikiWord{:href => "/nlab/show/Set"} Set
+                %td
+                  %a.existingWikiWord{:href => "/nlab/show/convex+combinations"} convex combinations
+                  or finitely-
+                  %a.existingWikiWord{:href => "/nlab/show/support#in_measure_theory"} supported
+                  %a.existingWikiWord{:href => "/nlab/show/probability+measures"} probability measures
+                %td (just a set)
+                %td
+                  %a.existingWikiWord{:href => "/nlab/show/convex+spaces"} convex spaces
+                %td
+                  %a.existingWikiWord{:href => "/nlab/show/monads+of+probability%2C+measures%2C+and+valuations#fritzconvex"}> Fritz '09
+                  ,
+                  %a.existingWikiWord{:href => "/nlab/show/monads+of+probability%2C+measures%2C+and+valuations#jacobs"} Jacobs '18
+              %tr
+                %th
+                  %a.existingWikiWord{:href => "/nlab/show/Giry+monad"} Giry monad
+                %td
+                  %a.existingWikiWord{:href => "/nlab/show/Meas"} Meas
+                %td
+                  %a.existingWikiWord{:href => "/nlab/show/probability+measures"} probability measures
+                %td
+                  initial
+                  %a.existingWikiWord{:href => "/nlab/show/%CF%83-algebra"} σ-algebra
+                  of evaluation maps
+                %td
+                  Full characterization unknown.
+                  = succeed "." do
+                    %a.existingWikiWord{:href => "/nlab/show/Giry+monad#algebras_over_the_giry_monad"} See also here
+                %td
+                  %a.existingWikiWord{:href => "/nlab/show/monads+of+probability%2C+measures%2C+and+valuations#Lawvere62"}> Lawvere '62
+                  ,
+                  %a.existingWikiWord{:href => "/nlab/show/monads+of+probability%2C+measures%2C+and+valuations#Giry80"} Giry '80
+              %tr
+                %th
+                  %a.existingWikiWord{:href => "/nlab/show/Giry+monad"} Giry monad
+                %td
+                  %a.existingWikiWord{:href => "/nlab/show/Polish+space"} Pol
+                %td
+                  %a.existingWikiWord{:href => "/nlab/show/Borel+measure"} Borel probability measures
+                %td
+                  %a.existingWikiWord{:href => "/nlab/show/initial+topology"} initial topology
+                  of integration maps
+                %td
+                  Full characterization unknown.
+                  = succeed "." do
+                    %a.existingWikiWord{:href => "/nlab/show/Giry+monad#algebras_over_the_giry_monad"} See also here
+                %td
+                  %a.existingWikiWord{:href => "/nlab/show/monads+of+probability%2C+measures%2C+and+valuations#giry80"} Giry '80
+              %tr
+                %th
+                  %span.newWikiWord
+                    Probability monad on QBS
+                    %a{:href => "/nlab/new/Probability+monad+on+QBS"} ?
+                %td
+                  %a.existingWikiWord{:href => "/nlab/show/quasi-Borel+spaces"} quasi-Borel spaces
+                %td
+                  Equivalence classes of
+                  %a.existingWikiWord{:href => "/nlab/show/random+variables"} random variables
+                %td
+                  %a.existingWikiWord{:href => "/nlab/show/quasi-Borel+structure"} quasi-Borel structure
+                  inherited by the
+                  %a.existingWikiWord{:href => "/nlab/show/cartesian+closed+category"} cartesian closed structure
+                %td Full characterization unknown.
+                %td
+                  %a.existingWikiWord{:href => "/nlab/show/monads+of+probability%2C+measures%2C+and+valuations#QBS"} HKSY '17
+              %tr
+                %th
+                  %a.existingWikiWord{:href => "/nlab/show/Radon+monad"} Radon monad
+                %td
+                  %a.existingWikiWord{:href => "/nlab/show/compactum#category_of_compacta"} Comp
+                %td
+                  %a.existingWikiWord{:href => "/nlab/show/Radon+measure"} Radon probability measures
+                  (or
+                  = succeed ")" do
+                    %a.existingWikiWord{:href => "/nlab/show/continuous+valuations"} continuous valuations
+                %td
+                %td
+                  %a.existingWikiWord{:href => "/nlab/show/compact"} compact
+                  %a.existingWikiWord{:href => "/nlab/show/convex+subsets"} convex subsets
+                  of
+                  %a.existingWikiWord{:href => "/nlab/show/locally+convex+topological+vector+spaces"} locally convex topological vector spaces
+                %td
+                  %a.existingWikiWord{:href => "/nlab/show/monads+of+probability%2C+measures%2C+and+valuations#swirszcz"}> Swirszcz '74
+                  ,
+                  %a.existingWikiWord{:href => "/nlab/show/monads+of+probability%2C+measures%2C+and+valuations#radonkeimel"} Keimel '08
+              %tr
+                %th
+                  %a.existingWikiWord{:href => "/nlab/show/Radon+monad#the_ordered_case"} ordered Radon monad
+                %td
+                  %a.existingWikiWord{:href => "/nlab/show/compact+ordered+spaces#categories_of_compact_ordered_spaces"} CompOrd
+                %td
+                  %a.existingWikiWord{:href => "/nlab/show/Radon+measure"} Radon probability measures
+                  (or
+                  = succeed ")" do
+                    %a.existingWikiWord{:href => "/nlab/show/continuous+valuations"} continuous valuations
+                %td
+                  %a.existingWikiWord{:href => "/nlab/show/weak+topology"} weak topology
+                  w.r.t.
+                  = succeed "," do
+                    %a.existingWikiWord{:href => "/nlab/show/continuous+functions"} continuous functions
+                  %a.existingWikiWord{:href => "/nlab/show/stochastic+order"} stochastic order
+                %td
+                  %a.existingWikiWord{:href => "/nlab/show/compact"} compact
+                  %a.existingWikiWord{:href => "/nlab/show/convex+subsets"} convex subsets
+                  of
+                  %span.newWikiWord
+                    ordered
+                    %a{:href => "/nlab/new/ordered+vector+space"} ?
+                  %a.existingWikiWord{:href => "/nlab/show/locally+convex+topological+vector+spaces"} locally convex topological vector spaces
+                %td
+                  %a.existingWikiWord{:href => "/nlab/show/monads+of+probability%2C+measures%2C+and+valuations#swirszcz"}> Swirszcz '74
+                  ,
+                  %a.existingWikiWord{:href => "/nlab/show/monads+of+probability%2C+measures%2C+and+valuations#radonkeimel"} Keimel '08
+              %tr
+                %th
+                  %a.existingWikiWord{:href => "/nlab/show/extended+probabilistic+powerdomain#the_measure_monad_on_top"} measure monad on Top
+                %td
+                  %a.existingWikiWord{:href => "/nlab/show/Top"} Top
+                %td
+                  %a.existingWikiWord{:href => "/nlab/show/%CF%84-additive+measures"} τ-additive measures
+                %td
+                  %a.existingWikiWord{:href => "/nlab/show/extended+probabilistic+powerdomain#the_measure_monad_on_top"}> A-topology
+                  ,
+                  %a.existingWikiWord{:href => "/nlab/show/stochastic+order"} stochastic order
+                %td
+                  Full characterization unknown.
+                  = succeed "." do
+                    %a.existingWikiWord{:href => "/nlab/show/extended+probabilistic+powerdomain#algebras"} See also here
+                %td
+                  %a.existingWikiWord{:href => "/nlab/show/monads+of+probability%2C+measures%2C+and+valuations#support"} F-P-R '19
+              %tr
+                %th
+                  %a.existingWikiWord{:href => "/nlab/show/probabilistic+powerdomain"} probabilistic powerdomain
+                %td
+                  %a.existingWikiWord{:href => "/nlab/show/dcpo"}> dcpo
+                  ,
+                  %span.newWikiWord
+                    continuous domains
+                    %a{:href => "/nlab/new/continuous+domains"} ?
+                %td
+                  %a.existingWikiWord{:href => "/nlab/show/continuous+valuations"} continuous valuations
+                %td
+                  %a.existingWikiWord{:href => "/nlab/show/stochastic+order"} stochastic order
+                %td
+                  %span.newWikiWord
+                    abstract probabilistic domains
+                    %a{:href => "/nlab/new/abstract+probabilistic+domains"} ?
+                  (continuous case)
+                %td
+                  %a.existingWikiWord{:href => "/nlab/show/monads+of+probability%2C+measures%2C+and+valuations#jonesplotkin"} J-P '89
+              %tr
+                %th
+                  %a.existingWikiWord{:href => "/nlab/show/extended+probabilistic+powerdomain"} extended probabilistic powerdomain
+                %td
+                  %a.existingWikiWord{:href => "/nlab/show/Top"}> Top
+                  ,
+                  %a.existingWikiWord{:href => "/nlab/show/stably+compact+spaces"} stably compact spaces
+                %td
+                  %a.existingWikiWord{:href => "/nlab/show/continuous+valuations"} continuous valuations
+                %td
+                  %a.existingWikiWord{:href => "/nlab/show/extended+probabilistic+powerdomain#spaces_of_valuations"}> initial topology of evaluation maps
+                  ,
+                  %a.existingWikiWord{:href => "/nlab/show/stochastic+order"} stochastic order
+                %td
+                  Full characterization unknown.
+                  %a.existingWikiWord{:href => "/nlab/show/extended+probabilistic+powerdomain#algebras"} Dedicated section here
+                %td
+                  %a.existingWikiWord{:href => "/nlab/show/monads+of+probability%2C+measures%2C+and+valuations#heckmann96"}> Heckmann '96
+                  ,
+                  = succeed "," do
+                    %a.existingWikiWord{:href => "/nlab/show/monads+of+probability%2C+measures%2C+and+valuations#jung"} A-J-K '04
+                  = succeed "," do
+                    %a.existingWikiWord{:href => "/nlab/show/monads+of+probability%2C+measures%2C+and+valuations#algebras"} GL-J '19
+                  %a.existingWikiWord{:href => "/nlab/show/monads+of+probability%2C+measures%2C+and+valuations#support"} F-P-R '19
+              %tr
+                %th
+                  %a.existingWikiWord{:href => "/nlab/show/valuation+monad+on+locales"} valuation monad on locales
+                %td
+                  %a.existingWikiWord{:href => "/nlab/show/Loc"} Loc
+                %td
+                  %a.existingWikiWord{:href => "/nlab/show/continuous+valuations"} continuous valuations
+                %td
+                  %a.existingWikiWord{:href => "/nlab/show/initial+topology"} initial topology
+                  of evaluation maps
+                %td …
+                %td
+                  %a.existingWikiWord{:href => "/nlab/show/monads+of+probability%2C+measures%2C+and+valuations#vmonad"} Vickers '11
+              %tr
+                %th
+                  %a.existingWikiWord{:href => "/nlab/show/Kantorovich+monad"} Kantorovich monad
+                %td
+                  %a.existingWikiWord{:href => "/nlab/show/Cauchy-complete"} complete
+                  %a.existingWikiWord{:href => "/nlab/show/metric+spaces"} metric spaces
+                %td
+                  %a.existingWikiWord{:href => "/nlab/show/Radon+measure"} Radon probability measures
+                  of finite first moment
+                %td
+                  %a.existingWikiWord{:href => "/nlab/show/Kantorovich-Wasserstein+metric"} Kantorovich-Wasserstein metric
+                %td
+                  closed
+                  %a.existingWikiWord{:href => "/nlab/show/convex+subsets"} convex subsets
+                  of
+                  %a.existingWikiWord{:href => "/nlab/show/Banach+spaces"} Banach spaces
+                %td
+                  %a.existingWikiWord{:href => "/nlab/show/monads+of+probability%2C+measures%2C+and+valuations#vanbreugel"}> van Breugel '05
+                  ,
+                  %a.existingWikiWord{:href => "/nlab/show/monads+of+probability%2C+measures%2C+and+valuations#kantorovich19"} F-P '19
+              %tr
+                %th
+                  %a.existingWikiWord{:href => "/nlab/show/Kantorovich+monad#the_ordered_case"} ordered Kantorovich monad
+                %td
+                  %a.existingWikiWord{:href => "/nlab/show/Cauchy-complete"} complete
+                  %span.newWikiWord
+                    L-ordered
+                    %a{:href => "/nlab/new/L-ordered"} ?
+                  %a.existingWikiWord{:href => "/nlab/show/metric+spaces"} metric spaces
+                %td
+                  %a.existingWikiWord{:href => "/nlab/show/Radon+measure"} Radon probability measures
+                  of finite first moment
+                %td
+                  %a.existingWikiWord{:href => "/nlab/show/Kantorovich-Wasserstein+metric"}> Kantorovich-Wasserstein metric
+                  ,
+                  %a.existingWikiWord{:href => "/nlab/show/stochastic+order"} stochastic order
+                %td
+                  closed
+                  %a.existingWikiWord{:href => "/nlab/show/convex+subsets"} convex subsets
+                  of
+                  %span.newWikiWord
+                    ordered Banach spaces
+                    %a{:href => "/nlab/new/ordered+Banach+spaces"} ?
+                %td
+                  %a.existingWikiWord{:href => "/nlab/show/monads+of+probability%2C+measures%2C+and+valuations#orderedkantorovich"} F-P '20
+              %tr
+                %th Baire monad
+                %td
+                  %a.existingWikiWord{:href => "/nlab/show/weakly+Hausdorff+topological+space"} Weakly Hausdorff
+                  quotients of countably-based
+                  %a.existingWikiWord{:href => "/nlab/show/topological+spaces"} topological spaces
+                %td
+                  %a.existingWikiWord{:href => "/nlab/show/Baire+subset"} Baire measures
+                %td topology induced by cartesian closedness
+                %td Full characterization unknown
+                %td
+                  %a.existingWikiWord{:href => "/nlab/show/monads+of+probability%2C+measures%2C+and+valuations#KP24"} K-P '24
+              %tr
+                %th Riesz monad
+                %td
+                  %a.existingWikiWord{:href => "/nlab/show/compactly+generated+topological+space"} compactly generated
+                  %a.existingWikiWord{:href => "/nlab/show/weakly+Hausdorff+topological+spaces"} weakly Hausdorff topological spaces
+                %td
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}>
+                    %semantics
+                      %mrow
+                        %mi k
+                      %annotation{:encoding => "application/x-tex"} k
+                  \-regular probability measures
+                %td topology induced by cartesian closedness
+                %td Full characterization unknown
+                %td
+                  %a.existingWikiWord{:href => "/nlab/show/monads+of+probability%2C+measures%2C+and+valuations#KP24"} K-P '24
+            %p (…to be expanded…)
+          %h2#see_also See also
+          %ul
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/monad"}> monad
+              ,
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/algebra+over+a+monad"} algebra over a monad
+              %a.existingWikiWord{:href => "/nlab/show/Kleisli+category"} Kleisli category
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/commutative+monad"}> commutative monad
+              ,
+              %a.existingWikiWord{:href => "/nlab/show/affine+monad"} affine monad
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/monad+%28in+computer+science%29"} monad (in computer science)
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/Giry+monad"}> Giry monad
+              ,
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/Markov+kernel"} Markov kernel
+              %a.existingWikiWord{:href => "/nlab/show/Stoch"} Stoch
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/categorical+probability"}> categorical probability
+              ,
+              %a.existingWikiWord{:href => "/nlab/show/Markov+category"} Markov category
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/joint+and+marginal+distributions"} joint and marginal distributions
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/probability+theory"}> probability theory
+              ,
+              %a.existingWikiWord{:href => "/nlab/show/measure+theory"} measure theory
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/valuation+%28measure+theory%29"} valuation (measure theory)
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/expectation+value"} expectation value
+          %h2#references References
+          %ul
+            %li#Lawvere62
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/William+Lawvere"}> William Lawvere
+                \:
+                = succeed "," do
+                  %em The category of probabilistic mappings
+                %a.existingWikiWord{:href => "/nlab/show/Gian-Carlo+Rota"} Gian-Carlo Rota
+                (1962) &amp;lbrack;
+                %a.existingWikiWord{:href => "/nlab/files/Lawvere-ProbMappings.pdf", :title => "pdf"}> pdf
+                \&amp;rbrack;
+              %p posthumously retyped as:
+              %p#Lawvere62b
+                %a.existingWikiWord{:href => "/nlab/show/Tobias+Fritz"} Tobias Fritz
+                (ed.):
+                = succeed "," do
+                  %em The Category of Probabilistic Mappings With Applications to Stochastic Processes, Statistics, and Pattern Recognition
+                %a{:href => "https://lawverearchives.com"} Lawvere Archive
+                (2025) &amp;lbrack;
+                %a{:href => "https://lawverearchives.com/wp-content/uploads/2025/07/1962.probmap.pdf"}> pdf
+                \&amp;rbrack;
+            %li#Giry80
+              %p
+                Michèle Giry,
+                = succeed "," do
+                  %em A categorical approach to probability theory
+                %strong 915
+                Springer 1982.
+            %li#swirszcz
+              %p
+                T. Swirszcz,
+                = succeed "," do
+                  %em Monadic functors and convexity
+                = succeed ")" do
+                  %a{:href => "https://www.fuw.edu.pl/~kostecki/scans/swirszcz1974.pdf"} pdf
+            %li#radonkeimel
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Klaus+Keimel"}> Klaus Keimel
+                ,
+                = succeed "," do
+                  %em The monad of probability measures over compact ordered spaces and its Eilenberg-Moore algebras
+                = succeed ")" do
+                  %a{:href => "https://doi.org/10.1016/j.topol.2008.07.002"} doi:10.1016/j.topol.2008.07.002
+            %li#Heckmann96
+              %p
+                Reinhold Heckmann,
+                = succeed "," do
+                  %em Spaces of valuations
+                = succeed "," do
+                  %a{:href => "https://doi.org/10.1111/j.1749-6632.1996.tb49168.x"} doi:10.1111/j.1749-6632.1996.tb49168.x
+                = succeed ")" do
+                  %a{:href => "http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.45.5845&rep=rep1&type=pdf"} pdf
+            %li#jung
+              %p
+                Mauricio Alvarez-Manilla, Achim Jung,
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/Klaus+Keimel"} Klaus Keimel
+                = succeed "," do
+                  %em The probabilistic powerdomain for stably compact spaces
+                = succeed "." do
+                  %a{:href => "https://www.sciencedirect.com/science/article/pii/S0304397504004074"} Link here
+            %li#jonesplotkin
+              %p
+                C. Jones and
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/Gordon+D.+Plotkin"} Gordon D. Plotkin
+                = succeed "," do
+                  %em A probabilistic powerdomain of evaluations
+                = succeed ")" do
+                  %a{:href => "https://doi.org/10.1109/LICS.1989.39173"} doi:10.1109/LICS.1989.39173
+            %li#algebras
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Jean+Goubault-Larrecq"} Jean Goubault-Larrecq
+                and Xiaodong Jia,
+                = succeed "," do
+                  %em Algebras of the extended probabilistic powerdomain monad
+              %p
+                (
+                %a{:href => "https://doi.org/10.1016/j.entcs.2019.07.015"}> doi:10.1016/j.entcs.2019.07.015
+                )
+            %li#support
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Tobias+Fritz"}> Tobias Fritz
+                ,
+                %a.existingWikiWord{:href => "/nlab/show/Paolo+Perrone"} Paolo Perrone
+                and Sharwin Rezagholi,
+                = succeed "," do
+                  %em Probability, valuations, hyperspace: Three monads on Top and the support as a morphism
+                = succeed "." do
+                  %a{:href => "https://arxiv.org/abs/1910.03752"} arXiv
+            %li#vmonad
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Steve+Vickers"}> Steve Vickers
+                ,
+                = succeed "," do
+                  %em A monad of valuation locales
+                = succeed "." do
+                  %a{:href => "https://www.cs.bham.ac.uk/~sjv/Riesz.pdf"} PDF
+            %li#vanbreugel
+              %p
+                Franck van Breugel,
+                = succeed "," do
+                  %em The metric monad for probabilistic nondeterminism
+                = succeed ")" do
+                  %a{:href => "http://www.cse.yorku.ca/~franck/research/drafts/monad.pdf"} pdf
+            %li#kantorovich19
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Tobias+Fritz"} Tobias Fritz
+                and
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/Paolo+Perrone"} Paolo Perrone
+                = succeed "," do
+                  %em A probability monad as the colimit of spaces of finite samples
+                = succeed ")" do
+                  %a{:href => "http://www.tac.mta.ca/tac/volumes/34/7/34-07.pdf"} pdf
+            %li#orderedkantorovich
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Tobias+Fritz"} Tobias Fritz
+                and
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/Paolo+Perrone"} Paolo Perrone
+                = succeed "," do
+                  %em Stochastic order on metric spaces and the ordered Kantorovich monad
+                = succeed ")" do
+                  %a{:href => "https://arxiv.org/abs/1808.09898"} arXiv:1808.09898
+            %li#jacobs
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Bart+Jacobs"}> Bart Jacobs
+                ,
+                = succeed "," do
+                  %em From probability monads to commutative effectuses
+              %p
+                (
+                %a{:href => "https://doi.org/10.1016/j.jlamp.2016.11.006"}> doi:10.1016/j.jlamp.2016.11.006
+                )
+            %li#fritzconvex
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Tobias+Fritz"}> Tobias Fritz
+                ,
+                = succeed "," do
+                  %em Convex spaces I: definitions and examples
+                = succeed ")" do
+                  %a{:href => "https://arxiv.org/abs/0903.5522"} arXiv:0903.5522
+            %li#QBS
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Chris+Heunen"}> Chris Heunen
+                ,
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/Ohad+Kammar"} Ohad Kammar
+                %a.existingWikiWord{:href => "/nlab/show/Sam+Staton"} Sam Staton
+                and Hongseok Yang,
+                = succeed "," do
+                  %em A convenient category for higher-order probability theory
+                = succeed ")" do
+                  %a{:href => "https://arxiv.org/abs/1701.02547"} arXiv
+            %li
+              %p
+                %span.newWikiWord>
+                  Sean Moss
+                  %a{:href => "/nlab/new/Sean+Moss"} ?
+                ,
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/Paolo+Perrone"} Paolo Perrone
+                = succeed "," do
+                  %em Probability monads with submonads of deterministic states
+                = succeed ")" do
+                  %a{:href => "https://arxiv.org/abs/2204.07003"} arXiv:2204.07003
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Tobias+Fritz"}> Tobias Fritz
+                , Tomáš Gonda,
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/Paolo+Perrone"} Paolo Perrone
+                = succeed "," do
+                  %em Representable Markov categories and comparison of statistical experiments in categorical probability
+                = succeed ")" do
+                  %a{:href => "https://arxiv.org/abs/2010.07416"} arXiv:2010.07416
+            %li#KP24
+              %p
+                Peter Kristel, Benedikt Peterseim,
+                = succeed "." do
+                  %em A topologically enriched probability monad on the cartesian closed category of CGWH spaces
+                = succeed ")" do
+                  %a{:href => "https://arxiv.org/abs/2404.08430"} arXiv
+          %p
+            An account in terms of
+            %a.existingWikiWord{:href => "/nlab/show/codensity+monads"} codensity monads
+            in:
+          %ul
+            %li
+              Ruben Van Belle,
+              = succeed "." do
+                %em Probability monads as codensity monads
+              = succeed ")" do
+                %a{:href => "http://tac.mta.ca/tac/volumes/38/21/38-21abs.html"} tac
+          %p An introduction to some of the concepts can be also found in:
+          %ul
+            %li#notesperrone
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Paolo+Perrone"}> Paolo Perrone
+                ,
+                = succeed "," do
+                  %em Notes on Category Theory with examples from basic mathematics
+                = succeed ")" do
+                  %a{:href => "http://arxiv.org/abs/1912.10642"} arXiv
+            %li#thesisperrone
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Paolo+Perrone"}> Paolo Perrone
+                ,
+                = succeed "," do
+                  %em Categorical probability and stochastic dominance in metric spaces
+                = succeed ")" do
+                  %a{:href => "http://www.paoloperrone.org/phdthesis.pdf"} pdf
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Tobias+Fritz"} Tobias Fritz
+                and
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/Paolo+Perrone"} Paolo Perrone
+                = succeed "," do
+                  %em Monads, partial evaluations, and rewriting
+                = succeed ")" do
+                  %a{:href => "https://arxiv.org/abs/1810.06037"} arXiv
+          %p and in the following video lectures:
+          %ul
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Arthur+Parzygnat"}> Arthur Parzygnat
+                ,
+                = succeed "," do
+                  %em Categorical probability
+                = succeed ")" do
+                  %a{:href => "https://www.youtube.com/playlist?list=PLSx1kJDjrLRSKKHj4zetTZ45pVnGCRN80"} YouTube
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Paolo+Perrone"}> Paolo Perrone
+                ,
+                = succeed "," do
+                  %em What is a probability monad?
+                = succeed ")" do
+                  %a{:href => "https://youtu.be/3Da88Tgw_rM"} YouTube
+          .property
+            category:
+            %a.category_link{:href => "/nlab/all_pages/probability"} probability
+        .revisedby
+          %p
+            Last revised on July 23, 2025 at 10:21:08.
+            See the
+            %a{:href => "/nlab/history/monads+of+probability%2C+measures%2C+and+valuations", :style => "color: #005c19"} history
+            of this page for a list of all contributions to it.
+        .navigation.navfoot
+          %a#edit.navlink{:accesskey => "E", :href => "/nlab/edit/monads+of+probability%2C+measures%2C+and+valuations", :rel => "nofollow"} Edit
+          %a{:href => "https://nforum.ncatlab.org/discussion/10385/#Item_10"} Discuss
+          %span.backintime
+            %a#to_previous_revision.navlinkbackintime{:accesskey => "B", :href => "/nlab/revision/monads+of+probability%2C+measures%2C+and+valuations/51", :rel => "nofollow"} Previous revision
+          %a#see_changes.navlink{:accesskey => "C", :href => "/nlab/show/diff/monads+of+probability%2C+measures%2C+and+valuations", :rel => "nofollow"} Changes from previous revision
+          %a#history.navlink{:accesskey => "S", :href => "/nlab/history/monads+of+probability%2C+measures%2C+and+valuations", :rel => "nofollow"} History (51 revisions)
+          %a{:href => "/nlab/show/monads+of+probability%2C+measures%2C+and+valuations/cite", :style => "color: black"} Cite
+          %a#view_print{:accesskey => "p", :href => "/nlab/print/monads+of+probability%2C+measures%2C+and+valuations", :rel => "nofollow"} Print
+          %a#view_source{:href => "/nlab/source/monads+of+probability%2C+measures%2C+and+valuations", :rel => "nofollow"} Source
+      / Content
+    / Container

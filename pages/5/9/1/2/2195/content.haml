@@ -1,0 +1,4268 @@
+!!! XML
+!!! 1.1
+%html{:xmlns => "http://www.w3.org/1999/xhtml"}
+  %head
+    %title
+      Fourier transform in nLab
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:content => "index,follow", :name => "robots"}/
+    %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/
+    %link{:href => "/stylesheets/instiki.css?1676280126", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/stylesheets/mathematics.css?1660229990", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/stylesheets/syntax.css?1660229990", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/stylesheets/nlab.css?1676280126", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css", :rel => "stylesheet", :type => "text/css"}/
+    :css
+      h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+        color: #226622;
+      }
+      a:visited.existingWikiWord {
+        color: #164416;
+      }
+    :css
+      <!--/*--><![CDATA[/*><!--*/
+          .toc ul {margin: 0; padding: 0;}
+      .toc ul ul {margin: 0; padding: 0 0 0 10px;}
+      .toc li > p {margin: 0}
+      .toc ul li {list-style-type: none; position: relative;}
+      .toc div {border-top:1px dotted #ccc;}
+      .rightHandSide h2 {font-size: 1.5em;color:#008B26}
+      table.plaintable {
+          border-collapse:collapse;
+          margin-left:30px;
+          border:0;
+      }
+      .plaintable td {border:1px solid #000; padding: 3px;}
+      .plaintable th {padding: 3px;}
+      .plaintable caption {
+          font-weight: bold;
+          font-size:1.1em;
+          text-align:center;
+          margin-left:30px;
+      }
+          
+         
+      /* Query boxes for questioning and answering mechanism */
+      div.query{
+      background: #f6fff3;
+      border: solid #ce9;
+      border-width: 2px 1px;
+      padding: 0 1em;
+      margin: 0 1em;
+      max-height: 20em;
+      overflow: auto;
+      }
+      
+      /* Standout boxes for putting important text */
+      div.standout{
+      background: #fff1f1;
+      border: solid black;
+      border-width: 2px 1px;
+      padding: 0 1em;
+      margin: 0 1em;
+      overflow: auto;
+      }
+      
+      /* Icon for links to n-category arXiv documents 
+       (commented out for now i.e. disabled)
+      a[href*="http://arxiv.org/"] {
+        background-image: url(../files/arXiv_icon.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 22px;
+        } */
+          
+      /* Icon for links to n-category cafe posts (disabled) 
+      a[href*="http://golem.ph.utexas.edu/category"] {
+        background-image: url(../files/n-cafe_5.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 25px;
+        } */
+      
+      /* Icon for links to pdf files (disabled)
+      a[href$=".pdf"] {
+        background-image: url(../files/pdficon_small.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 25px;
+        } */
+      
+      /* Icon for links to pages, etc. -inside- pdf files (disabled)
+      a[href*=".pdf#"] {
+        background-image: url(../files/pdf_entry.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 25px;
+        } */
+      
+      a.existingWikiWord {
+      color: #226622;
+      }
+      
+      a.existingWikiWord:visited {
+      color: #226622;
+      }
+      
+      
+      a.existingWikiWord[title] {
+      border: 0px;
+      color: #aa0505;
+      text-decoration: none;
+      }
+          
+      a.existingWikiWord[title]:visited {
+      border: 0px;
+      color: #551111;
+      text-decoration: none;
+      }
+      
+      a[href^="http://"] {
+      border: 0px;
+      color: #003399;
+      }
+      
+      a[href^="http://"]:visited {
+      border: 0px;
+      color: #330066;
+      }
+      
+      a[href^="https://"] {
+      border: 0px;
+      color: #003399;
+      }
+      
+      a[href^="https://"]:visited {
+      border: 0px;
+      color: #330066;
+      }
+      
+      div.dropDown .hide {
+      display: none;
+      }
+      
+      div.dropDown:hover .hide {
+      display:block;
+      }
+      
+      div.clickDown .hide {
+      display: none;
+      }
+      
+      div.clickDown:focus {
+      outline:none;
+      }
+      
+      div.clickDown:focus .hide, div.clickDown:hover .hide {
+      display: block;
+      }
+      
+      div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+      display:block;
+      }
+      
+      div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+      display:none;
+      }
+      
+      div.clickDown .clickToReveal:after {
+      content: "A(Hover to reveal, click to "hold")";
+      font-size: 60%;
+      }
+      
+      div.clickDown .clickToHide:after {
+      content: "A(Click to hide)";
+      font-size: 60%;
+      }
+      div.clickDown .clickToHide, div.clickDown .clickToReveal {
+      white-space: pre-wrap;
+      }
+      
+      .un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+      margin-left: 1em;
+      }
+      
+      span.theorem_label {
+      margin-left: -1em;
+      }
+      .proof span.theorem_label {
+      margin-left: 0em;
+      }
+      :target {
+          background-color: #BBBBBB;
+          border-radius: 5pt;
+      }
+      
+        /*]]>*/-->
+    %script{:src => "/javascripts/prototype.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/effects.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/dragdrop.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/controls.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/application.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/page_helper.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/thm_numbering.js?1660229990", :type => "text/javascript"}
+    %script{:type => "text/x-mathjax-config"}
+      :cdata
+        <!--//--><![CDATA[//><!--
+        MathJax.Ajax.config.path["Contrib"] = "/MathJax";
+        MathJax.Hub.Config({
+        MathML: { useMathMLspacing: true },
+        "HTML-CSS": { scale: 90,
+        extensions: ["handle-floats.js"]
+        }
+        });
+        MathJax.Hub.Queue( function () {
+        var fos = document.getElementsByTagName('foreignObject');
+        for (var i = 0; i < fos.length; i++) {
+        MathJax.Hub.Typeset(fos[i]);
+        }
+        });
+        \//--><!]]>
+    :javascript
+      <!--//--><![CDATA[//><!--
+      window.addEventListener("DOMContentLoaded", function () {
+        var div = document.createElement('div');
+        var math = document.createElementNS('http://www.w3.org/1998/Math/MathML', 'math');
+        document.body.appendChild(div);
+        div.appendChild(math);
+      // Test for MathML support comparable to WebKit version https://trac.webkit.org/changeset/203640 or higher.
+        div.setAttribute('style', 'font-style: italic');
+        var mathml_unsupported = !(window.getComputedStyle(div.firstChild).getPropertyValue('font-style') === 'normal');
+        div.parentNode.removeChild(div);
+        if (mathml_unsupported) {
+          // MathML does not seem to be supported...
+          var s = document.createElement('script');
+          s.src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=MML_HTMLorMML-full";
+          document.querySelector('head').appendChild(s);
+        } else {
+          document.head.insertAdjacentHTML("beforeend", '<style>svg[viewBox] {max-width: 100%}</style>');
+        }
+      });
+      //--><!]]>
+    %link{:href => "https://ncatlab.org/nlab/atom_with_headlines", :rel => "alternate", :title => "Atom with headlines", :type => "application/atom+xml"}/
+    %link{:href => "https://ncatlab.org/nlab/atom_with_content", :rel => "alternate", :title => "Atom with full content", :type => "application/atom+xml"}/
+    :javascript
+      document.observe("dom:loaded", function() {
+        generateThmNumbers();
+      });
+  %body
+    #Container
+      #Content
+        %h1#pageName
+          %span{:style => "float: left; margin: 0.5em 0.25em -0.25em 0"}
+            %svg{:height => "1.8em", :viewbox => "0 0 190 181", :width => "1.872em", :xmlns => "http://www.w3.org/2000/svg"}
+              %path{:d => "M72.8 145c-1.6 17.3-15.7 10-23.6 20.2-5.6 7.3 4.8 15 11.4 15 11.5-.2 19-13.4 26.4-20.3 3.3-3 8.2-4 11.2-7.2a14 14 0 0 0 2.9-11.1c-1.4-9.6-12.4-18.6-16.9-27.2-5-9.6-10.7-27.4-24.1-27.7-17.4-.3-.4 26 4.7 30.7 2.4 2.3 5.4 4.1 7.3 6.9 1.6 2.3 2.1 5.8-1 7.2-5.9 2.6-12.4-6.3-15.5-10-8.8-10.6-15.5-23-26.2-31.8-5.2-4.3-11.8-8-18-3.7-7.3 4.9-4.2 12.9.2 18.5a81 81 0 0 0 30.7 23c3.3 1.5 12.8 5.6 10 10.7-2.5 5.2-11.7 3-15.6 1.1-8.4-3.8-24.3-21.3-34.4-13.7-3.5 2.6-2.3 7.6-1.2 11.1 2.8 9 12.2 17.2 20.9 20.5 17.3 6.7 34.3-8 50.8-12.1z", :fill => "#226622"}
+              %path{:d => "M145.9 121.3c-.2-7.5 0-19.6-4.5-26-5.4-7.5-12.9-1-14.1 5.8-1.4 7.8 2.7 14.1 4.8 21.3 3.4 12 5.8 29-.8 40.1-3.6-6.7-5.2-13-7-20.4-2.1-8.2-12.8-13.2-15.1-1.9-2 9.7 9 21.2 12 30.1 1.2 4 2 8.8 6.4 10.3 6.9 2.3 13.3-4.7 17.7-8.8 12.2-11.5 36.6-20.7 43.4-36.4 6.7-15.7-13.7-14-21.3-7.2-9.1 8-11.9 20.5-23.6 25.1 7.5-23.7 31.8-37.6 38.4-61.4 2-7.3-.8-29.6-13-19.8-14.5 11.6-6.6 37.6-23.3 49.2z", :fill => "#a41e32"}
+              %path{:d => "M86.3 47.5c0-13-10.2-27.6-5.8-40.4 2.8-8.4 14.1-10.1 17-1 3.8 11.6-.3 26.3-1.8 38 11.7-.7 10.5-16 14.8-24.3 2.1-4.2 5.7-9.1 11-6.7 6 2.7 7.4 9.2 6.6 15.1-2.2 14-12.2 18.8-22.4 27-3.4 2.7-8 6.6-5.9 11.6 2 4.4 7 4.5 10.7 2.8 7.4-3.3 13.4-16.5 21.7-16 14.6.7 12 21.9.9 26.2-5 1.9-10.2 2.3-15.2 3.9-5.8 1.8-9.4 8.7-15.7 8.9-6.1.1-9-6.9-14.3-9-14.4-6-33.3-2-44.7-14.7-3.7-4.2-9.6-12-4.9-17.4 9.3-10.7 28 7.2 35.7 12 2 1.1 11 6.9 11.4 1.1.4-5.2-10-8.2-13.5-10-11.1-5.2-30-15.3-35-27.3-2.5-6 2.8-13.8 9.4-13.6 6.9.2 13.4 7 17.5 12C70.9 34 75 43.8 86.3 47.4z", :fill => "#193c78"}
+          %span.webName nLab
+          Fourier transform
+        .navigation
+          %span.skipNav
+            %a{:href => "#navEnd"} Skip the Navigation Links
+            |
+          %span{:style => "display:inline-block; width: 0.3em;"}
+          %a{:accesskey => "H", :href => "/nlab/show/HomePage", :title => "Home page"} Home Page
+          |
+          %a{:accesskey => "A", :href => "/nlab/all_pages", :title => "List of all pages"} All Pages
+          |
+          %a{:accesskey => "U", :href => "/nlab/latest_revisions", :title => "Latest edits and page creations"} Latest Revisions
+          |
+          %a{:href => "https://nforum.ncatlab.org/discussion/8122/#Item_3", :style => "color: black", :title => "Discuss this page in its dedicated thread on the nForum"} Discuss this page
+          |
+          %form#navigationSearchForm{"accept-charset" => "utf-8", :action => "/nlab/search", :method => "get"}
+            %fieldset.search
+              %input#searchField{:name => "query", :onblur => "this.value == '' ? this.value = 'Search' : true", :onfocus => "this.value == 'Search' ? this.value = '' : true", :style => "display:inline-block; float: left;", :type => "text", :value => "Search"}/
+          %span#navEnd
+        #revision
+          %meta{:content => "application/xhtml+xml;charset=utf-8", "http-equiv" => "Content-type"}/
+          %title Contents
+          .rightHandSide
+            .toc.clickDown{:tabindex => "0"}
+              %h3#context Context
+              %h4#harmonic_analysis Harmonic analysis
+              .hide
+                %div
+                  %p
+                    %strong
+                      %a.existingWikiWord{:href => "/nlab/show/harmonic+analysis"} harmonic analysis
+                  %p
+                    %strong
+                      %a.existingWikiWord{:href => "/nlab/show/waves"} waves
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/plane+wave"} plane wave
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/wave+vector"}> wave vector
+                        ,
+                        = succeed "," do
+                          %a.existingWikiWord{:href => "/nlab/show/wavelength"} wavelength
+                        %a.existingWikiWord{:href => "/nlab/show/wave+number"} wave number
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/frequency"} frequency
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/amplitude"} amplitude
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/dispersion+relation"} dispersion relation
+                  %p
+                    %a.existingWikiWord{:href => "/nlab/show/Fourier+analysis"} Fourier analysis
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Schwartz+space"} Schwartz space
+                        of
+                        %a.existingWikiWord{:href => "/nlab/show/functions+with+rapidly+decreasing+partial+derivatives"} functions with rapidly decreasing partial derivatives
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Fourier+transform"}> Fourier transform
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/Fourier-Laplace+transform"} Fourier-Laplace transform
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Fourier+transform+of+a+distribution"} Fourier transform of a distribution
+                  %p
+                    %strong Theorems
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Fourier+inversion+theorem"} Fourier inversion theorem
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Parseval%27s+theorem"} Parseval's theorem
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Paley-Wiener-Schwartz+theorem"} Paley-Wiener-Schwartz theorem
+                  %p
+                    %strong
+                      %a.existingWikiWord{:href => "/nlab/show/sampling+theory"} sampling theory
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/wavelet"}> wavelet
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/curvelet"} curvelet
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/coherent+state"} coherent state
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/signal+processing"} signal processing
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/time+series"} time series
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/information+geometry"} information geometry
+          %h1#contents Contents
+          .maruku_toc
+            %ul
+              %li
+                %a{:href => "#Idea"} Idea
+              %ul
+                %li
+                  %a{:href => "#basic_idea"} Basic idea
+                %li
+                  %a{:href => "#generalizations"} Generalizations
+              %li
+                %a{:href => "#general_definition"} General definition
+              %li
+                %a{:href => "#over_the_circle_and_the_integers"} Over the circle and the integers
+              %li
+                %a{:href => "#over_compact_abelian_groups_and_discrete_groups"} Over compact abelian groups and discrete groups
+              %li
+                %a{:href => "#over_cyclic_groups_the_discretized_circle"} Over cyclic groups (the discretized circle)
+              %li
+                %a{:href => "#FourierTransformOnCartesianSpaces"} Over Cartesian spaces
+              %ul
+                %li
+                  %a{:href => "#on_functions_with_rapidly_decreasing_partial_derivatives"} On functions with rapidly decreasing partial derivatives
+                %li
+                  %a{:href => "#FourierTransformOnTemperedDistributionsOverCartesianSpace"} On tempered distributions
+              %li
+                %a{:href => "#related_concepts"} Related concepts
+              %li
+                %a{:href => "#references"} References
+          %h2#Idea Idea
+          %h3#basic_idea Basic idea
+          %p
+            Generally, a
+            %em Fourier transform
+            is an
+            %a.existingWikiWord{:href => "/nlab/show/isomorphism"} isomorphism
+            between the algebra of
+            = succeed "-valued" do
+              %a.existingWikiWord{:href => "/nlab/show/complex+numbers"} complex
+            %a.existingWikiWord{:href => "/nlab/show/functions"} functions
+            on a suitable
+            %a.existingWikiWord{:href => "/nlab/show/topological+group"} topological group
+            and a
+            = succeed "-algebra" do
+              %a.existingWikiWord{:href => "/nlab/show/convolution+product"} convolution product
+            %a.existingWikiWord{:href => "/nlab/show/Pontrjagin+dual"} Pontrjagin dual
+            group. The study of Fourier transforms is also called
+            = succeed "." do
+              %em Fourier analysis
+          %p
+            Typically, such as in the case over
+            %a.existingWikiWord{:href => "/nlab/show/Cartesian+space"} Cartesian space
+            (def.
+            %a.maruku-ref{:href => "#FourierTransformSmoothFunctionsWithRapidlyDecayingDerivativesOnCartesianSpace"}
+            below) this means to decompose any suitable
+            %a.existingWikiWord{:href => "/nlab/show/function"} function
+            as a
+            %a.existingWikiWord{:href => "/nlab/show/superposition"} superposition
+            of
+            = succeed "," do
+              %em
+                %a.existingWikiWord{:href => "/nlab/show/complex+number"} complex
+                %a.existingWikiWord{:href => "/nlab/show/plane+waves"} plane waves
+            = succeed "." do
+              %em
+                %a.existingWikiWord{:href => "/nlab/show/harmonic+analysis"} harmonic analysis
+          %h3#generalizations Generalizations
+          %p
+            The concept of Fourier transforms of functions generalizes in a variety of ways. Core part of the subject of Fourier analysis is the generalization to
+            %em
+              %a.existingWikiWord{:href => "/nlab/show/Fourier+transform+of+distributions"} Fourier transform of distributions
+            (def.
+            %a.maruku-ref{:href => "#FourierTransformOnTemperedDistributions"}
+            below). The asymptotic growth of the
+            %a.existingWikiWord{:href => "/nlab/show/Fourier+transform+of+distributions"} Fourier transform of distributions
+            reflects the singularity structure of the distributions, in dependence of the
+            %a.existingWikiWord{:href => "/nlab/show/direction+of+a+vector"} direction
+            of the
+            %a.existingWikiWord{:href => "/nlab/show/wave+vector"} wave vector
+            (the “
+            %a.existingWikiWord{:href => "/nlab/show/wave+front+set"}> wave front set
+            ”). The study of this behaviour is called
+            = succeed "." do
+              %em
+                %a.existingWikiWord{:href => "/nlab/show/microlocal+analysis"} microlocal analysis
+          %p
+            If the role of complex
+            %a.existingWikiWord{:href => "/nlab/show/plane+waves"} plane waves
+            in the Fourier transform are replaced by
+            = succeed "," do
+              %span.newWikiWord
+                wavelets
+                %a{:href => "/nlab/new/wavelets"} ?
+            = succeed "." do
+              %em
+                %span.newWikiWord
+                  wavelet transform
+                  %a{:href => "/nlab/new/wavelet+transform"} ?
+          %p
+            For
+            %a.existingWikiWord{:href => "/nlab/show/noncommutative+topology"} noncommutative topological
+            groups, instead of continuous characters one should consider
+            %a.existingWikiWord{:href => "/nlab/show/irreducible+representation"} irreducible
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/unitary+representations"} unitary representations
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/noncommutative+geometry"} noncommutative geometry
+            = succeed "." do
+              %em
+                %a.existingWikiWord{:href => "/nlab/show/quantum+group+Fourier+transform"} quantum group Fourier transform
+          %h2#general_definition General definition
+          %p
+            Let
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi G
+                %annotation{:encoding => "application/x-tex"} G
+            be a
+            %a.existingWikiWord{:href => "/nlab/show/locally+compact+space"} locally compact
+            %a.existingWikiWord{:href => "/nlab/show/Hausdorff+topological+space"} Hausdorff
+            %a.existingWikiWord{:href => "/nlab/show/abelian+group"} abelian
+            %a.existingWikiWord{:href => "/nlab/show/topological+group"} topological group
+            with
+            %a.existingWikiWord{:href => "/nlab/show/Haar+measure"} invariant (= Haar) measure
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi μ
+                  %annotation{:encoding => "application/x-tex"} \mu
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi f
+                    %mo ∈
+                    %msub
+                      %mi L
+                      %mn 1
+                    %mo{:stretchy => "false"} (
+                    %mi G
+                    %mo ,
+                    %mi μ
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} f\in L_1(G,\mu)
+            %strong Fourier transform
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mover
+                    %mi f
+                    %mo{:stretchy => "false"} ^
+                %annotation{:encoding => "application/x-tex"} \hat{f}
+            as a function on its
+            %a.existingWikiWord{:href => "/nlab/show/Pontrjagin+dual"} Pontrjagin dual
+            group
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mover
+                    %mi G
+                    %mo{:stretchy => "false"} ^
+                %annotation{:encoding => "application/x-tex"} \hat{G}
+            given by
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mover
+                    %mi f
+                    %mo{:stretchy => "false"} ^
+                  %mo{:stretchy => "false"} (
+                  %mi χ
+                  %mo{:stretchy => "false"} )
+                  %mo =
+                  %msub
+                    %mo ∫
+                    %mi G
+                  %mi f
+                  %mo{:stretchy => "false"} (
+                  %mi x
+                  %mo{:stretchy => "false"} )
+                  %mover
+                    %mrow
+                      %mi χ
+                      %mo{:stretchy => "false"} (
+                      %mi x
+                      %mo{:stretchy => "false"} )
+                    %mo ¯
+                  %mi d
+                  %mi μ
+                  %mo{:stretchy => "false"} (
+                  %mi x
+                  %mo{:stretchy => "false"} )
+                  %mo ,
+                  %mspace{:width => "thinmathspace"}
+                  %mspace{:width => "thinmathspace"}
+                  %mspace{:width => "thinmathspace"}
+                  %mi χ
+                  %mo ∈
+                  %mover
+                    %mi G
+                    %mo{:stretchy => "false"} ^
+                  %mo .
+                %annotation{:encoding => "application/x-tex"}
+                  \\hat{f}(\chi) = \int_G f(x) \widebar{\chi(x)} d\mu(x),\,\,\,\chi\in\hat{G}.
+          %p
+            The Fourier transform of
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi f
+                  %mo ∈
+                  %msub
+                    %mi L
+                    %mn 1
+                  %mo{:stretchy => "false"} (
+                  %mi G
+                  %mo ,
+                  %mi μ
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} f\in L_1(G,\mu)
+            is always continuous and bounded on
+            = succeed ";" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mover
+                      %mi G
+                      %mo{:stretchy => "false"} ^
+                  %annotation{:encoding => "application/x-tex"} \hat{G}
+            %a.existingWikiWord{:href => "/nlab/show/convolution"} convolution
+            of two functions is the product of the transforms of each of the functions separately.
+          %h2#over_the_circle_and_the_integers Over the circle and the integers
+          %p
+            In the classical case of
+            = succeed "," do
+              %strong Fourier series
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi G
+                  %mo =
+                  %mi ℤ
+                %annotation{:encoding => "application/x-tex"} G=\mathbb{Z}
+            (the additive group of
+            = succeed ")" do
+              %a.existingWikiWord{:href => "/nlab/show/integers"} integers
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mover
+                    %mi G
+                    %mo{:stretchy => "false"} ^
+                  %mo =
+                  %msup
+                    %mi S
+                    %mn 1
+                %annotation{:encoding => "application/x-tex"} \hat{G}=S^1
+            (the
+            = succeed ")," do
+              %a.existingWikiWord{:href => "/nlab/show/circle+group"} circle group
+            %a.existingWikiWord{:href => "/nlab/show/Hilbert+spaces"} Hilbert spaces
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msub
+                    %mi L
+                    %mn 2
+                  %mo{:stretchy => "false"} (
+                  %msup
+                    %mi S
+                    %mn 1
+                  %mo ,
+                  %mi d
+                  %mi t
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} L_2(S^1,d t)
+            and
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msub
+                    %mi l
+                    %mn 2
+                  %mo{:stretchy => "false"} (
+                  %mi ℤ
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} l_2(\mathbb{Z})
+            and the Fourier coefficients are the numbers
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msub
+                    %mi c
+                    %mi n
+                  %mspace{:width => "thickmathspace"}
+                  %mo ≔
+                  %mspace{:width => "thickmathspace"}
+                  %mover
+                    %mi f
+                    %mo{:stretchy => "false"} ^
+                  %mo{:stretchy => "false"} (
+                  %msub
+                    %mi χ
+                    %mi n
+                  %mo{:stretchy => "false"} )
+                  %mspace{:width => "thickmathspace"}
+                  %mo =
+                  %mspace{:width => "thickmathspace"}
+                  %msubsup
+                    %mo ∫
+                    %mn 0
+                    %mn 1
+                  %mi f
+                  %mo{:stretchy => "false"} (
+                  %mi t
+                  %mo{:stretchy => "false"} )
+                  %msup
+                    %mi e
+                    %mrow
+                      %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                      %mn 2
+                      %mi π
+                      %mi{:mathvariant => "normal"} i
+                      %mi n
+                      %mi t
+                  %mi{:mathvariant => "normal"} d
+                  %mi t
+                  %mspace{:width => "thinmathspace"}
+                  %mo ,
+                %annotation{:encoding => "application/x-tex"}
+                  c_n
+                  \\;\coloneqq\;
+                  \\hat{f}(\chi_n)
+                  \\;=\;
+                  \\int_0^1 f(t) e^{-2\pi \mathrm{i} n t} \mathrm{d} t
+                  \\,,
+          %p
+            for
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi n
+                    %mo ∈
+                    %mi ℤ
+                  %annotation{:encoding => "application/x-tex"} n\in\mathbb{Z}
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msub
+                    %mi χ
+                    %mi n
+                  %mo{:stretchy => "false"} (
+                  %mi t
+                  %mo{:stretchy => "false"} )
+                  %mo =
+                  %msup
+                    %mi e
+                    %mrow
+                      %mn 2
+                      %mi π
+                      %mi i
+                      %mi n
+                      %mi t
+                %annotation{:encoding => "application/x-tex"} \chi_n(t)= e^{2\pi i n t}
+            form an orthonormal basis of
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi L
+                      %mn 2
+                    %mo{:stretchy => "false"} (
+                    %msup
+                      %mi S
+                      %mn 1
+                    %mo ,
+                    %mi d
+                    %mi t
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} L_2(S^1,d t)
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mover
+                    %mrow
+                      %msub
+                        %mi χ
+                        %mi n
+                    %mo{:stretchy => "false"} ^
+                %annotation{:encoding => "application/x-tex"} \hat{\chi_n}
+            is then viewed as the
+            = succeed "-series" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi ℤ
+                  %annotation{:encoding => "application/x-tex"} \mathbb{Z}
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msub
+                    %mi δ
+                    %mi n
+                %annotation{:encoding => "application/x-tex"} \delta_n
+            which in the
+            = succeed "-th" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi n
+                  %annotation{:encoding => "application/x-tex"} n
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mn 1
+                %annotation{:encoding => "application/x-tex"} 1
+            and elsewhere
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mn 0
+                  %annotation{:encoding => "application/x-tex"} 0
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi d
+                  %mo{:stretchy => "false"} /
+                  %mi d
+                  %mi t
+                %annotation{:encoding => "application/x-tex"} d/d t
+            by the operator of multiplication by the series
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo{:stretchy => "false"} {
+                    %mn 2
+                    %mi π
+                    %mi i
+                    %mi n
+                    %msub
+                      %mo{:stretchy => "false"} }
+                      %mrow
+                        %mi n
+                        %mo ∈
+                        %mi ℤ
+                  %annotation{:encoding => "application/x-tex"} \{2\pi i n\}_{n\in\mathbb{Z}}
+          %h2#over_compact_abelian_groups_and_discrete_groups Over compact abelian groups and discrete groups
+          %p
+            In general, if
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi G
+                %annotation{:encoding => "application/x-tex"} G
+            is a
+            %a.existingWikiWord{:href => "/nlab/show/compact+space"} compact
+            abelian group (whose
+            %a.existingWikiWord{:href => "/nlab/show/Pontrjagin+dual"} Pontrjagin dual
+            is
+            = succeed ")," do
+              %a.existingWikiWord{:href => "/nlab/show/discrete+group"} discrete
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi μ
+                  %mo{:stretchy => "false"} (
+                  %mi G
+                  %mo{:stretchy => "false"} )
+                  %mo =
+                  %mn 1
+                %annotation{:encoding => "application/x-tex"} \mu(G)=1
+            and
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mover
+                    %mi μ
+                    %mo{:stretchy => "false"} ^
+                  %mo{:stretchy => "false"} (
+                  %mi X
+                  %mo{:stretchy => "false"} )
+                  %mo =
+                  %mi card
+                  %mo{:stretchy => "false"} (
+                  %mi X
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} \hat{\mu}(X)=card(X)
+            for
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi X
+                    %mo ⊂
+                    %mover
+                      %mi G
+                      %mo{:stretchy => "false"} ^
+                  %annotation{:encoding => "application/x-tex"} X\subset\hat{G}
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msub
+                    %mi L
+                    %mn 2
+                  %mo{:stretchy => "false"} (
+                  %mi X
+                  %mo ,
+                  %mi μ
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} L_2(X,\mu)
+            to
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi L
+                      %mn 2
+                    %mo{:stretchy => "false"} (
+                    %mover
+                      %mi G
+                      %mo{:stretchy => "false"} ^
+                    %mo ,
+                    %mover
+                      %mi μ
+                      %mo{:stretchy => "false"} ^
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} L_2(\hat{G},\hat{\mu})
+          %h2#over_cyclic_groups_the_discretized_circle Over cyclic groups (the discretized circle)
+          %ul
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/discrete+Fourier+transform"} discrete Fourier transform
+          %h2#FourierTransformOnCartesianSpaces Over Cartesian spaces
+          %p
+            Throughout, let
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi n
+                  %mo ∈
+                  %mi ℕ
+                %annotation{:encoding => "application/x-tex"} n \in \mathbb{N}
+            and write
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msup
+                    %mi ℝ
+                    %mi n
+                %annotation{:encoding => "application/x-tex"} \mathbb{R}^n
+            for the
+            %a.existingWikiWord{:href => "/nlab/show/Cartesian+space"} Cartesian space
+            of
+            %a.existingWikiWord{:href => "/nlab/show/dimension"} dimension
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi n
+                %annotation{:encoding => "application/x-tex"} n
+            and write
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mo{:stretchy => "false"} (
+                  %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                  %mo{:stretchy => "false"} )
+                  %mo ⋅
+                  %mo{:stretchy => "false"} (
+                  %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} (-) \cdot (-)
+            for the canonical
+            %a.existingWikiWord{:href => "/nlab/show/inner+product"} inner product
+            on
+            = succeed ":" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msup
+                      %mi ℝ
+                      %mi n
+                  %annotation{:encoding => "application/x-tex"} \mathbb{R}^n
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi k
+                  %mo ⋅
+                  %mi x
+                  %mspace{:width => "thickmathspace"}
+                  %mo ≔
+                  %mspace{:width => "thickmathspace"}
+                  %munderover
+                    %mo{:lspace => "thinmathspace", :rspace => "thinmathspace"} ∑
+                    %mrow
+                      %mi a
+                      %mo =
+                      %mn 1
+                    %mi n
+                  %msub
+                    %mi k
+                    %mi n
+                  %msup
+                    %mi x
+                    %mi n
+                  %mspace{:width => "thinmathspace"}
+                  %mo .
+                %annotation{:encoding => "application/x-tex"}
+                  k \cdot x \;\coloneqq\; \underoverset{a = 1}{n}{\sum} k_n x^n
+                  \\,.
+          %p
+            In the following by a
+            %a.existingWikiWord{:href => "/nlab/show/smooth+function"} smooth function
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi f
+                  %mo ∈
+                  %msup
+                    %mi C
+                    %mn ∞
+                  %mo{:stretchy => "false"} (
+                  %msup
+                    %mi ℝ
+                    %mi n
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} f \in C^\infty(\mathbb{R}^n)
+            on
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msup
+                    %mi ℝ
+                    %mi n
+                %annotation{:encoding => "application/x-tex"} \mathbb{R}^n
+            we mean a smooth function with values in the
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/complex+numbers"} complex numbers
+          %p
+            For
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi f
+                    %mo ∈
+                    %msup
+                      %mi C
+                      %mn ∞
+                    %mo{:stretchy => "false"} (
+                    %msup
+                      %mi ℝ
+                      %mi n
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} f \in C^\infty(\mathbb{R}^n)
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msup
+                    %mi f
+                    %mo *
+                  %mo ∈
+                  %msup
+                    %mi C
+                    %mn ∞
+                  %mo{:stretchy => "false"} (
+                  %msup
+                    %mi ℝ
+                    %mi n
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} f^\ast \in C^\infty(\mathbb{R}^n)
+            for its pointwise
+            = succeed ":" do
+              %a.existingWikiWord{:href => "/nlab/show/complex+conjugate"} complex conjugate
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msup
+                    %mi f
+                    %mo *
+                  %mo{:stretchy => "false"} (
+                  %mi x
+                  %mo{:stretchy => "false"} )
+                  %mo ≔
+                  %mo{:stretchy => "false"} (
+                  %mi f
+                  %mo{:stretchy => "false"} (
+                  %mi x
+                  %mo{:stretchy => "false"} )
+                  %msup
+                    %mo{:stretchy => "false"} )
+                    %mo *
+                  %mspace{:width => "thinmathspace"}
+                  %mo .
+                %annotation{:encoding => "application/x-tex"}
+                  f^\ast(x) \coloneqq (f(x))^\ast
+                  \\,.
+          %h4#on_functions_with_rapidly_decreasing_partial_derivatives On functions with rapidly decreasing partial derivatives
+          #SchwartzSpace.num_defn
+            %h6#definition Definition
+            %p
+              %strong
+                (
+                %a.existingWikiWord{:href => "/nlab/show/Schwartz+space"} Schwartz space
+                of
+                = succeed ")" do
+                  %a.existingWikiWord{:href => "/nlab/show/functions+with+rapidly+decreasing+partial+derivatives"} functions with rapidly decreasing partial derivatives
+            %p
+              A
+              = succeed "-valued" do
+                %a.existingWikiWord{:href => "/nlab/show/complex+number"} complex
+              %a.existingWikiWord{:href => "/nlab/show/smooth+function"} smooth function
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi f
+                    %mo ∈
+                    %msup
+                      %mi C
+                      %mn ∞
+                    %mo{:stretchy => "false"} (
+                    %msup
+                      %mi ℝ
+                      %mi n
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} f \in C^\infty(\mathbb{R}^n)
+              is said to have
+              %em
+                %a.existingWikiWord{:href => "/nlab/show/rapidly+decreasing+function"} rapidly decreasing
+                %a.existingWikiWord{:href => "/nlab/show/partial+derivatives"} partial derivatives
+              if for all
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi α
+                    %mo ,
+                    %mi β
+                    %mo ∈
+                    %msup
+                      %mi ℕ
+                      %mi n
+                  %annotation{:encoding => "application/x-tex"} \alpha,\beta \in \mathbb{N}^{n}
+              we have
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %munder
+                      %mi sup
+                      %mrow
+                        %mi x
+                        %mo ∈
+                        %msup
+                          %mi ℝ
+                          %mi n
+                    %mrow
+                      %mo{:stretchy => "false"} |
+                      %msup
+                        %mi x
+                        %mi β
+                      %msup
+                        %mo ∂
+                        %mi α
+                      %mi f
+                      %mo{:stretchy => "false"} (
+                      %mi x
+                      %mo{:stretchy => "false"} )
+                      %mo{:stretchy => "false"} |
+                    %mspace{:width => "thickmathspace"}
+                    %mo &lt;
+                    %mspace{:width => "thickmathspace"}
+                    %mn ∞
+                    %mspace{:width => "thinmathspace"}
+                    %mo .
+                  %annotation{:encoding => "application/x-tex"}
+                    \\underset{x \in \mathbb{R}^n}{sup} {\vert  x^\beta \partial^\alpha f(x) \vert}
+                    \\;\lt\; \infty
+                    \\,.
+            %p Write
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi 𝒮
+                    %mo{:stretchy => "false"} (
+                    %msup
+                      %mi ℝ
+                      %mi n
+                    %mo{:stretchy => "false"} )
+                    %mo ↪
+                    %msup
+                      %mi C
+                      %mn ∞
+                    %mo{:stretchy => "false"} (
+                    %msup
+                      %mi ℝ
+                      %mi n
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"}
+                    \\mathcal{S}(\mathbb{R}^n) \hookrightarrow C^\infty(\mathbb{R}^n)
+            %p
+              for the sub-
+              %a.existingWikiWord{:href => "/nlab/show/vector+space"} vector space
+              on the functions with rapidly decreasing partial derivatives regarded as a
+              %a.existingWikiWord{:href => "/nlab/show/topological+vector+space"} topological vector space
+              for the
+              %a.existingWikiWord{:href => "/nlab/show/Frechet+space"} Frechet space
+              struzcture induced by the
+              %a.existingWikiWord{:href => "/nlab/show/seminorms"} seminorms
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi p
+                      %mrow
+                        %mi α
+                        %mo ,
+                        %mi β
+                    %mo{:stretchy => "false"} (
+                    %mi f
+                    %mo{:stretchy => "false"} )
+                    %mo ≔
+                    %munder
+                      %mi sup
+                      %mrow
+                        %mi x
+                        %mo ∈
+                        %msup
+                          %mi ℝ
+                          %mi n
+                    %mrow
+                      %mo{:stretchy => "false"} |
+                      %msup
+                        %mi x
+                        %mi β
+                      %msup
+                        %mo ∂
+                        %mi α
+                      %mi f
+                      %mo{:stretchy => "false"} (
+                      %mi x
+                      %mo{:stretchy => "false"} )
+                      %mo{:stretchy => "false"} |
+                    %mspace{:width => "thinmathspace"}
+                    %mo .
+                  %annotation{:encoding => "application/x-tex"}
+                    p_{\alpha, \beta}(f) \coloneqq \underset{x \in \mathbb{R}^n}{sup} {\vert  x^\beta \partial^\alpha f(x) \vert}
+                    \\,.
+            %p
+              This is also called the
+              = succeed "." do
+                %em
+                  %a.existingWikiWord{:href => "/nlab/show/Schwartz+space"} Schwartz space
+          %p
+            (e.g.
+            = succeed ")" do
+              %a{:href => "#Hoermander90"} Hörmander 90, def. 7.1.2
+          #CompactlySupportedSmoothFunctionsAreFunctionsWithRapidlyDecreasingDerivatives.num_example
+            %h6#example Example
+            %p
+              %strong
+                (
+                %a.existingWikiWord{:href => "/nlab/show/compactly+supported+function"} compactly supported
+                %a.existingWikiWord{:href => "/nlab/show/smooth+function"} smooth function
+                are
+                = succeed ")" do
+                  %a.existingWikiWord{:href => "/nlab/show/functions+with+rapidly+decreasing+partial+derivatives"} functions with rapidly decreasing partial derivatives
+            %p
+              Every
+              %a.existingWikiWord{:href => "/nlab/show/compactly+supported+function"} compactly supported
+              %a.existingWikiWord{:href => "/nlab/show/smooth+function"} smooth function
+              (
+              %a.existingWikiWord{:href => "/nlab/show/bump+function"}> bump function
+              )
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi b
+                    %mo ∈
+                    %msubsup
+                      %mi C
+                      %mi cp
+                      %mn ∞
+                    %mo{:stretchy => "false"} (
+                    %msup
+                      %mi ℝ
+                      %mi n
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} b \in C^\infty_{cp}(\mathbb{R}^n)
+              has rapidly decreasing partial derivatives (def.
+              = succeed "):" do
+                %a.maruku-ref{:href => "#SchwartzSpace"}
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msubsup
+                      %mi C
+                      %mi cp
+                      %mn ∞
+                    %mo{:stretchy => "false"} (
+                    %msup
+                      %mi ℝ
+                      %mi n
+                    %mo{:stretchy => "false"} )
+                    %mo ↪
+                    %mi 𝒮
+                    %mo{:stretchy => "false"} (
+                    %msup
+                      %mi ℝ
+                      %mi n
+                    %mo{:stretchy => "false"} )
+                    %mspace{:width => "thinmathspace"}
+                    %mo .
+                  %annotation{:encoding => "application/x-tex"}
+                    C^\infty_{cp}(\mathbb{R}^n)
+                    \\hookrightarrow
+                    \\mathcal{S}(\mathbb{R}^n)
+                    \\,.
+          #ConvolutionProductOnSchwartzSpace.num_prop
+            %h6#proposition Proposition
+            %p
+              %strong
+                (pointwise product and
+                %a.existingWikiWord{:href => "/nlab/show/convolution+product"} convolution product
+                on
+                = succeed ")" do
+                  %a.existingWikiWord{:href => "/nlab/show/Schwartz+space"} Schwartz space
+            %p
+              The
+              %a.existingWikiWord{:href => "/nlab/show/Schwartz+space"} Schwartz space
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi 𝒮
+                    %mo{:stretchy => "false"} (
+                    %msup
+                      %mi ℝ
+                      %mi n
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} \mathcal{S}(\mathbb{R}^n)
+              (def.
+              = succeed ")" do
+                %a.maruku-ref{:href => "#SchwartzSpace"}
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi f
+                    %mo ,
+                    %mi g
+                    %mo ∈
+                    %mi 𝒮
+                    %mo{:stretchy => "false"} (
+                    %msup
+                      %mi ℝ
+                      %mi n
+                    %mo{:stretchy => "false"} )
+                    %mo ↪
+                    %msup
+                      %mi C
+                      %mn ∞
+                    %mo{:stretchy => "false"} (
+                    %msup
+                      %mi ℝ
+                      %mi n
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} f,g \in \mathcal{S}(\mathbb{R}^n) \hookrightarrow C^\infty(\mathbb{R}^n)
+            %ol
+              %li
+                %p pointwise product:
+                .maruku-equation
+                  %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mo{:stretchy => "false"} (
+                        %mi f
+                        %mo ⋅
+                        %mi g
+                        %mo{:stretchy => "false"} )
+                        %mo{:stretchy => "false"} (
+                        %mi x
+                        %mo{:stretchy => "false"} )
+                        %mo ≔
+                        %mi f
+                        %mo{:stretchy => "false"} (
+                        %mi x
+                        %mo{:stretchy => "false"} )
+                        %mo ⋅
+                        %mi g
+                        %mo{:stretchy => "false"} (
+                        %mi x
+                        %mo{:stretchy => "false"} )
+                      %annotation{:encoding => "application/x-tex"}
+                        (f \cdot g)(x) \coloneqq f(x) \cdot g(x)
+              %li
+                %p
+                  %a.existingWikiWord{:href => "/nlab/show/convolution+product"}> convolution product
+                  \:
+                .maruku-equation
+                  %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mo{:stretchy => "false"} (
+                        %mi f
+                        %mo ⋆
+                        %mi g
+                        %mo{:stretchy => "false"} )
+                        %mo{:stretchy => "false"} (
+                        %mi x
+                        %mo{:stretchy => "false"} )
+                        %mo ≔
+                        %munder
+                          %mo ∫
+                          %mrow
+                            %mi y
+                            %mo ∈
+                            %msup
+                              %mi ℝ
+                              %mi n
+                        %mi f
+                        %mo{:stretchy => "false"} (
+                        %mi y
+                        %mo{:stretchy => "false"} )
+                        %mo ⋅
+                        %mi g
+                        %mo{:stretchy => "false"} (
+                        %mi x
+                        %mo −
+                        %mi y
+                        %mo{:stretchy => "false"} )
+                        %mspace{:width => "thinmathspace"}
+                        %mi dvol
+                        %mo{:stretchy => "false"} (
+                        %mi y
+                        %mo{:stretchy => "false"} )
+                        %mspace{:width => "thinmathspace"}
+                        %mo .
+                      %annotation{:encoding => "application/x-tex"}
+                        (f \star g)(x) \coloneqq \underset{y \in \mathbb{R}^n}{\int} f(y)\cdot g(x-y) \, dvol(y)
+                        \\,.
+          .proof
+            %h6#proof Proof
+            %p
+              By the
+              %a.existingWikiWord{:href => "/nlab/show/product+law"} product law
+              of
+              = succeed "." do
+                %a.existingWikiWord{:href => "/nlab/show/differentiation"} differentiation
+          #RapidlyDecreasingFunctionsAreIntegrable.num_prop
+            %h6#proposition_2 Proposition
+            %p
+              %strong
+                (
+                %a.existingWikiWord{:href => "/nlab/show/rapidly+decreasing+functions"} rapidly decreasing functions
+                are
+                = succeed ")" do
+                  %a.existingWikiWord{:href => "/nlab/show/integrable+functions"} integrable
+            %p
+              Every
+              %a.existingWikiWord{:href => "/nlab/show/rapidly+decreasing+function"} rapidly decreasing function
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi f
+                    %mo{:lspace => "verythinmathspace"} :
+                    %msup
+                      %mi ℝ
+                      %mi n
+                    %mo →
+                    %mi ℝ
+                  %annotation{:encoding => "application/x-tex"} f \colon \mathbb{R}^n \to \mathbb{R}
+              (def.
+              = succeed ")" do
+                %a.maruku-ref{:href => "#SchwartzSpace"}
+              %a.existingWikiWord{:href => "/nlab/show/integrable+function"} integrable function
+              in that its
+              %a.existingWikiWord{:href => "/nlab/show/integral"} integral
+              exists:
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %munder
+                      %mo ∫
+                      %mrow
+                        %mi x
+                        %mo ∈
+                        %msup
+                          %mi ℝ
+                          %mi n
+                    %mi f
+                    %mo{:stretchy => "false"} (
+                    %mi x
+                    %mo{:stretchy => "false"} )
+                    %mspace{:width => "thinmathspace"}
+                    %msup
+                      %mi d
+                      %mi n
+                    %mi x
+                    %mspace{:width => "thickmathspace"}
+                    %mo &lt;
+                    %mspace{:width => "thickmathspace"}
+                    %mn ∞
+                  %annotation{:encoding => "application/x-tex"}
+                    \\underset{x \in \mathbb{R}^n}{\int} f(x) \, d^n x
+                    \\;\lt\;
+                    \\infty
+            %p
+              In fact for each
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi α
+                    %mo ∈
+                    %msup
+                      %mi ℕ
+                      %mi n
+                  %annotation{:encoding => "application/x-tex"} \alpha \in \mathbb{N}^n
+              the product of
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi f
+                  %annotation{:encoding => "application/x-tex"} f
+              with the
+              = succeed "-power" do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi α
+                    %annotation{:encoding => "application/x-tex"} \alpha
+              %a.existingWikiWord{:href => "/nlab/show/coordinate+functions"} coordinate functions
+              exists:
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %munder
+                      %mo ∫
+                      %mrow
+                        %mi x
+                        %mo ∈
+                        %msup
+                          %mi ℝ
+                          %mi n
+                    %msup
+                      %mi x
+                      %mi α
+                    %mi f
+                    %mo{:stretchy => "false"} (
+                    %mi x
+                    %mo{:stretchy => "false"} )
+                    %mspace{:width => "thinmathspace"}
+                    %msup
+                      %mi d
+                      %mi n
+                    %mi x
+                    %mspace{:width => "thickmathspace"}
+                    %mo &lt;
+                    %mspace{:width => "thickmathspace"}
+                    %mn ∞
+                    %mspace{:width => "thinmathspace"}
+                    %mo .
+                  %annotation{:encoding => "application/x-tex"}
+                    \\underset{x \in \mathbb{R}^n}{\int}
+                    x^\alpha f(x)\, d^n x
+                    \\;\lt\;
+                    \\infty
+                    \\,.
+          #FourierTransformSmoothFunctionsWithRapidlyDecayingDerivativesOnCartesianSpace.num_defn
+            %h6#definition_2 Definition
+            %p
+              %strong
+                (
+                %a.existingWikiWord{:href => "/nlab/show/Fourier+transform"} Fourier transform
+                of
+                = succeed ")" do
+                  %a.existingWikiWord{:href => "/nlab/show/functions+with+rapidly+decreasing+partial+derivatives"} functions with rapidly decreasing partial derivatives
+            %p
+              The
+              %em
+                %a.existingWikiWord{:href => "/nlab/show/Fourier+transform"} Fourier transform
+              is the
+              %a.existingWikiWord{:href => "/nlab/show/continuous+linear+functional"} continuous linear functional
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mover
+                      %mrow
+                        %mo{:stretchy => "false"} (
+                        %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                        %mo{:stretchy => "false"} )
+                      %mo ^
+                    %mspace{:width => "thickmathspace"}
+                    %mo{:lspace => "verythinmathspace"} :
+                    %mspace{:width => "thickmathspace"}
+                    %mi 𝒮
+                    %mo{:stretchy => "false"} (
+                    %msup
+                      %mi ℝ
+                      %mi n
+                    %mo{:stretchy => "false"} )
+                    %mo ⟶
+                    %mi 𝒮
+                    %mo{:stretchy => "false"} (
+                    %msup
+                      %mi ℝ
+                      %mi n
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"}
+                    \\widehat{(-)}
+                    \\;\colon\;
+                    \\mathcal{S}(\mathbb{R}^n)
+                    \\longrightarrow
+                    \\mathcal{S}(\mathbb{R}^n)
+            %p
+              on the
+              %a.existingWikiWord{:href => "/nlab/show/Schwartz+space"} Schwartz space
+              of
+              %a.existingWikiWord{:href => "/nlab/show/functions+with+rapidly+decreasing+partial+derivatives"} functions with rapidly decreasing partial derivatives
+              (def.
+              = succeed ")," do
+                %a.maruku-ref{:href => "#SchwartzSpace"}
+              %a.existingWikiWord{:href => "/nlab/show/integration"} integration
+              against the
+              %a.existingWikiWord{:href => "/nlab/show/exponential+function"} exponential
+              %a.existingWikiWord{:href => "/nlab/show/plane+wave"} plane wave
+              functions
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi x
+                    %mo ↦
+                    %msup
+                      %mi e
+                      %mrow
+                        %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                        %mi i
+                        %mi k
+                        %mo ⋅
+                        %mi x
+                  %annotation{:encoding => "application/x-tex"}
+                    x \mapsto e^{- i k \cdot x}
+            %p
+              times the standard
+              %a.existingWikiWord{:href => "/nlab/show/volume+form"} volume form
+              = succeed ":" do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msup
+                        %mi d
+                        %mi n
+                      %mi x
+                    %annotation{:encoding => "application/x-tex"} d^n x
+            #eq:IntegralExpressionForFourierTransform.maruku-equation
+              %span.maruku-eq-number (1)
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mover
+                      %mi f
+                      %mo{:stretchy => "false"} ^
+                    %mo{:stretchy => "false"} (
+                    %mi k
+                    %mo{:stretchy => "false"} )
+                    %mspace{:width => "thickmathspace"}
+                    %mo ≔
+                    %mspace{:width => "thickmathspace"}
+                    %msub
+                      %mo ∫
+                      %mrow
+                        %mi x
+                        %mo ∈
+                        %msup
+                          %mi ℝ
+                          %mi n
+                    %msup
+                      %mi e
+                      %mrow
+                        %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                        %mi i
+                        %mspace{:width => "thinmathspace"}
+                        %mi k
+                        %mo ⋅
+                        %mi x
+                    %mi f
+                    %mo{:stretchy => "false"} (
+                    %mi x
+                    %mo{:stretchy => "false"} )
+                    %mspace{:width => "thinmathspace"}
+                    %msup
+                      %mi d
+                      %mi n
+                    %mi x
+                    %mspace{:width => "thinmathspace"}
+                    %mo .
+                  %annotation{:encoding => "application/x-tex"}
+                    \\hat f(k)
+                    \\;\coloneqq\;
+                    \\int_{x \in \mathbb{R}^n}
+                    e^{- i \, k \cdot x} f(x) \, d^n x
+                    \\,.
+            %p
+              Here the argument
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi k
+                    %mo ∈
+                    %msup
+                      %mi ℝ
+                      %mi n
+                  %annotation{:encoding => "application/x-tex"} k \in \mathbb{R}^n
+              of the Fourier transform is also called the
+              = succeed "." do
+                %em
+                  %a.existingWikiWord{:href => "/nlab/show/wave+vector"} wave vector
+          %p
+            (e.g.
+            = succeed ")" do
+              %a{:href => "#Hoermander90"} Hörmander, lemma 7.1.3
+          #FourierInversion.num_defn
+            %h6#proposition_3 Proposition
+            %p
+              %strong
+                (
+                %a.existingWikiWord{:href => "/nlab/show/Fourier+inversion+theorem"}> Fourier inversion theorem
+                )
+            %p
+              The
+              %a.existingWikiWord{:href => "/nlab/show/Fourier+transform"} Fourier transform
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mover
+                      %mrow
+                        %mo{:stretchy => "false"} (
+                        %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                        %mo{:stretchy => "false"} )
+                      %mo ^
+                  %annotation{:encoding => "application/x-tex"} \widehat{(-)}
+              (def.
+              = succeed ")" do
+                %a.maruku-ref{:href => "#FourierTransformSmoothFunctionsWithRapidlyDecayingDerivativesOnCartesianSpace"}
+              %a.existingWikiWord{:href => "/nlab/show/Schwartz+space"} Schwartz space
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi 𝒮
+                    %mo{:stretchy => "false"} (
+                    %msup
+                      %mi ℝ
+                      %mi n
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} \mathcal{S}(\mathbb{R}^n)
+              (def.
+              = succeed ")" do
+                %a.maruku-ref{:href => "#SchwartzSpace"}
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/isomorphism"} isomorphism
+              %a.existingWikiWord{:href => "/nlab/show/inverse+function"} inverse function
+              the
+              %em
+                %a.existingWikiWord{:href => "/nlab/show/inverse+Fourier+transform"} inverse Fourier transform
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mover
+                      %mrow
+                        %mo{:stretchy => "false"} (
+                        %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                        %mo{:stretchy => "false"} )
+                      %mo ˇ
+                    %mspace{:width => "thickmathspace"}
+                    %mo{:lspace => "verythinmathspace"} :
+                    %mspace{:width => "thickmathspace"}
+                    %mi 𝒮
+                    %mo{:stretchy => "false"} (
+                    %msup
+                      %mi ℝ
+                      %mi n
+                    %mo{:stretchy => "false"} )
+                    %mo ⟶
+                    %mi 𝒮
+                    %mo{:stretchy => "false"} (
+                    %msup
+                      %mi ℛ
+                      %mi n
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"}
+                    \\widecheck {(-)}
+                    \\;\colon\;
+                    \\mathcal{S}(\mathbb{R}^n) \longrightarrow \mathcal{S}(\mathcal{R}^n)
+            %p given by
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mover
+                      %mi g
+                      %mo ˇ
+                    %mo{:stretchy => "false"} (
+                    %mi x
+                    %mo{:stretchy => "false"} )
+                    %mspace{:width => "thickmathspace"}
+                    %mo ≔
+                    %mspace{:width => "thickmathspace"}
+                    %munder
+                      %mo ∫
+                      %mrow
+                        %mi k
+                        %mo ∈
+                        %msup
+                          %mi ℝ
+                          %mi n
+                    %mi g
+                    %mo{:stretchy => "false"} (
+                    %mi k
+                    %mo{:stretchy => "false"} )
+                    %msup
+                      %mi e
+                      %mrow
+                        %mi i
+                        %mi k
+                        %mo ⋅
+                        %mi x
+                    %mspace{:width => "thinmathspace"}
+                    %mfrac
+                      %mrow
+                        %msup
+                          %mi d
+                          %mi n
+                        %mi k
+                      %mrow
+                        %mo{:stretchy => "false"} (
+                        %mn 2
+                        %mi π
+                        %msup
+                          %mo{:stretchy => "false"} )
+                          %mi n
+                    %mspace{:width => "thinmathspace"}
+                    %mo .
+                  %annotation{:encoding => "application/x-tex"}
+                    \\widecheck g (x)
+                    \\;\coloneqq\;
+                    \\underset{k \in \mathbb{R}^n}{\int}
+                    g(k) e^{i k \cdot x}
+                    \\, \frac{d^n k}{(2\pi)^n}
+                    \\,.
+            %p
+              Hence in the language of
+              %a.existingWikiWord{:href => "/nlab/show/harmonic+analysis"} harmonic analysis
+              the function
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mover
+                      %mi g
+                      %mo ˇ
+                    %mo{:lspace => "verythinmathspace"} :
+                    %msup
+                      %mi ℝ
+                      %mi n
+                    %mo →
+                    %mi ℂ
+                  %annotation{:encoding => "application/x-tex"} \widecheck g \colon \mathbb{R}^n \to \mathbb{C}
+              is the
+              %a.existingWikiWord{:href => "/nlab/show/superposition"} superposition
+              of
+              %a.existingWikiWord{:href => "/nlab/show/plane+waves"} plane waves
+              in which the plane wave with
+              %a.existingWikiWord{:href => "/nlab/show/wave+vector"} wave vector
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi k
+                    %mo ∈
+                    %msup
+                      %mi ℝ
+                      %mi n
+                  %annotation{:encoding => "application/x-tex"} k\in \mathbb{R}^n
+              appears with
+              %a.existingWikiWord{:href => "/nlab/show/amplitude"} amplitude
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi g
+                      %mo{:stretchy => "false"} (
+                      %mi k
+                      %mo{:stretchy => "false"} )
+                    %annotation{:encoding => "application/x-tex"} g(k)
+          %p
+            (e.g.
+            = succeed ")" do
+              %a{:href => "#Hoermander90"} Hörmander, theorem 7.1.5
+          #BasicPropertiesOfFourierTransformOverCartesianSpaces.num_prop
+            %h6#proposition_4 Proposition
+            %p
+              %strong
+                (basic properties of the
+                = succeed ")" do
+                  %a.existingWikiWord{:href => "/nlab/show/Fourier+transform"} Fourier transform
+            %p
+              The
+              %a.existingWikiWord{:href => "/nlab/show/Fourier+transform"} Fourier transform
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mover
+                      %mrow
+                        %mo{:stretchy => "false"} (
+                        %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                        %mo{:stretchy => "false"} )
+                      %mo ^
+                  %annotation{:encoding => "application/x-tex"} \widehat{(-)}
+              (def.
+              = succeed ")" do
+                %a.maruku-ref{:href => "#FourierTransformSmoothFunctionsWithRapidlyDecayingDerivativesOnCartesianSpace"}
+              %a.existingWikiWord{:href => "/nlab/show/Schwartz+space"} Schwartz space
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi 𝒮
+                    %mo{:stretchy => "false"} (
+                    %msup
+                      %mi ℝ
+                      %mi n
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} \mathcal{S}(\mathbb{R}^n)
+              (def.
+              = succeed ")" do
+                %a.maruku-ref{:href => "#SchwartzSpace"}
+              = succeed ":" do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi f
+                      %mo ,
+                      %mi g
+                      %mo ∈
+                      %mi 𝒮
+                      %mo{:stretchy => "false"} (
+                      %msup
+                        %mi ℝ
+                        %mi n
+                      %mo{:stretchy => "false"} )
+                    %annotation{:encoding => "application/x-tex"} f,g \in \mathcal{S}(\mathbb{R}^n)
+            %ol
+              %li
+                %p
+                  (interchanging
+                  %a.existingWikiWord{:href => "/nlab/show/coordinate"} coordinate
+                  %a.existingWikiWord{:href => "/nlab/show/multiplication"} multiplication
+                  with
+                  = succeed ")" do
+                    %a.existingWikiWord{:href => "/nlab/show/partial+derivatives"} partial derivatives
+                #eq:FourierTransformInterchangesCoordinateProductWithDerivative.maruku-equation
+                  %span.maruku-eq-number (2)
+                  %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mover
+                          %mrow
+                            %msup
+                              %mi x
+                              %mi a
+                            %mi f
+                          %mo ^
+                        %mo =
+                        %mo{:lspace => "verythinmathspace", :rspace => "0em"} +
+                        %mi i
+                        %msub
+                          %mo ∂
+                          %mi a
+                        %mover
+                          %mi f
+                          %mo ^
+                        %mphantom
+                          %mi AAAAA
+                        %mover
+                          %mrow
+                            %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                            %mi i
+                            %msub
+                              %mo ∂
+                              %mi a
+                            %mi f
+                          %mo ^
+                        %mo =
+                        %msub
+                          %mi k
+                          %mi a
+                        %mover
+                          %mi f
+                          %mo ^
+                      %annotation{:encoding => "application/x-tex"}
+                        \\widehat{ x^a f } =  + i \partial_a \widehat f
+                        \\phantom{AAAAA}
+                        \\widehat{ - i\partial_a f} = k_a \widehat f
+              %li
+                %p
+                  (interchanging pointwise multiplication with
+                  = succeed "," do
+                    %a.existingWikiWord{:href => "/nlab/show/convolution+product"} convolution product
+                  = succeed "):" do
+                    %a.maruku-ref{:href => "#ConvolutionProductOnSchwartzSpace"}
+                #eq:FourierTransformInterchangesPointwiseProductWithConvolution.maruku-equation
+                  %span.maruku-eq-number (3)
+                  %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mover
+                          %mrow
+                            %mo{:stretchy => "false"} (
+                            %mi f
+                            %mo ⋆
+                            %mi g
+                            %mo{:stretchy => "false"} )
+                          %mo ^
+                        %mo =
+                        %mover
+                          %mi f
+                          %mo ^
+                        %mo ⋅
+                        %mover
+                          %mi g
+                          %mo ^
+                        %mphantom
+                          %mi AAAA
+                        %mover
+                          %mrow
+                            %mi f
+                            %mo ⋅
+                            %mi g
+                          %mo ^
+                        %mo =
+                        %mo{:stretchy => "false"} (
+                        %mn 2
+                        %mi π
+                        %msup
+                          %mo{:stretchy => "false"} )
+                          %mrow
+                            %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                            %mi n
+                        %mover
+                          %mi f
+                          %mo ^
+                        %mo ⋆
+                        %mover
+                          %mi g
+                          %mo ^
+                      %annotation{:encoding => "application/x-tex"}
+                        \\widehat {(f \star g)} = \widehat{f} \cdot \widehat{g}
+                        \\phantom{AAAA}
+                        \\widehat{ f \cdot g } = (2\pi)^{-n} \widehat{f} \star \widehat{g}
+              %li
+                %p
+                  (
+                  %a.existingWikiWord{:href => "/nlab/show/unitary+operator"}> unitarity
+                  ,
+                  = succeed ")" do
+                    %a.existingWikiWord{:href => "/nlab/show/Parseval%27s+theorem"} Parseval's theorem
+                .maruku-equation
+                  %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %munder
+                          %mo ∫
+                          %mrow
+                            %mi x
+                            %mo ∈
+                            %msup
+                              %mi ℝ
+                              %mi n
+                        %mi f
+                        %mo{:stretchy => "false"} (
+                        %mi x
+                        %mo{:stretchy => "false"} )
+                        %msup
+                          %mi g
+                          %mo *
+                        %mo{:stretchy => "false"} (
+                        %mi x
+                        %mo{:stretchy => "false"} )
+                        %mspace{:width => "thinmathspace"}
+                        %msup
+                          %mi d
+                          %mi n
+                        %mi x
+                        %mspace{:width => "thickmathspace"}
+                        %mo =
+                        %mspace{:width => "thickmathspace"}
+                        %munder
+                          %mo ∫
+                          %mrow
+                            %mi k
+                            %mo ∈
+                            %msup
+                              %mi ℝ
+                              %mi n
+                        %mover
+                          %mi f
+                          %mo ^
+                        %mo{:stretchy => "false"} (
+                        %mi k
+                        %mo{:stretchy => "false"} )
+                        %msup
+                          %mover
+                            %mi g
+                            %mo ^
+                          %mo *
+                        %mo{:stretchy => "false"} (
+                        %mi k
+                        %mo{:stretchy => "false"} )
+                        %mspace{:width => "thinmathspace"}
+                        %msup
+                          %mi d
+                          %mi n
+                        %mi k
+                      %annotation{:encoding => "application/x-tex"}
+                        \\underset{x \in \mathbb{R}^n}{\int} f(x) g^\ast(x)\, d^n x
+                        \\;=\;
+                        \\underset{k \in \mathbb{R}^n}{\int} \widehat{f}(k) \widehat{g}^\ast(k) \, d^n k
+              %li
+                #eq:FourierTransformInIntegralOfProductMayBeShiftedToOtherFactor.maruku-equation
+                  %span.maruku-eq-number (4)
+                  %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %munder
+                          %mo ∫
+                          %mrow
+                            %mi k
+                            %mo ∈
+                            %msup
+                              %mi ℝ
+                              %mi n
+                        %mover
+                          %mi f
+                          %mo ^
+                        %mo{:stretchy => "false"} (
+                        %mi k
+                        %mo{:stretchy => "false"} )
+                        %mo ⋅
+                        %mi g
+                        %mo{:stretchy => "false"} (
+                        %mi k
+                        %mo{:stretchy => "false"} )
+                        %mspace{:width => "thinmathspace"}
+                        %msup
+                          %mi d
+                          %mi n
+                        %mi k
+                        %mspace{:width => "thickmathspace"}
+                        %mo =
+                        %mspace{:width => "thickmathspace"}
+                        %munder
+                          %mo ∫
+                          %mrow
+                            %mi x
+                            %mo ∈
+                            %msup
+                              %mi ℝ
+                              %mi n
+                        %mi f
+                        %mo{:stretchy => "false"} (
+                        %mi x
+                        %mo{:stretchy => "false"} )
+                        %mo ⋅
+                        %mover
+                          %mi g
+                          %mo ^
+                        %mo{:stretchy => "false"} (
+                        %mi x
+                        %mo{:stretchy => "false"} )
+                        %mspace{:width => "thinmathspace"}
+                        %msup
+                          %mi d
+                          %mi n
+                        %mi x
+                      %annotation{:encoding => "application/x-tex"}
+                        \\underset{k \in \mathbb{R}^n}{\int} \widehat{f}(k) \cdot g(k) \, d^n k
+                        \\;=\;
+                        \\underset{x \in \mathbb{R}^n}{\int} f(x) \cdot \widehat{g}(x) \, d^n x
+          %p
+            (e.g
+            = succeed ")" do
+              %a{:href => "#Hoermander90"} Hörmander 90, lemma 7.1.3, theorem 7.1.6
+          %h4#FourierTransformOnTemperedDistributionsOverCartesianSpace On tempered distributions
+          %p
+            The
+            %a.existingWikiWord{:href => "/nlab/show/Schwartz+space"} Schwartz space
+            of
+            %a.existingWikiWord{:href => "/nlab/show/functions+with+rapidly+decreasing+partial+derivatives"} functions with rapidly decreasing partial derivatives
+            (def.
+            = succeed ")" do
+              %a.maruku-ref{:href => "#SchwartzSpace"}
+            %a.existingWikiWord{:href => "/nlab/show/Fourier+transform"} Fourier transform
+            (def.
+            = succeed ")" do
+              %a.maruku-ref{:href => "#FourierTransformSmoothFunctionsWithRapidlyDecayingDerivativesOnCartesianSpace"}
+            = succeed ")," do
+              %a.maruku-ref{:href => "#FourierInversion"}
+            %em
+              %a.existingWikiWord{:href => "/nlab/show/generalized+functions"} generalized functions
+            in the sense of
+            %a.existingWikiWord{:href => "/nlab/show/distributions"} distributions
+            (via
+            = succeed ")." do
+              %a{:href => "non-singular+distribution#NonSingularDistributionsAreDenseInAllDistributions"} this prop.
+            %a.existingWikiWord{:href => "/nlab/show/Schwartz+space"} Schwartz space
+            in hand, this generalization is readily obtained by
+            = succeed ":" do
+              %a.existingWikiWord{:href => "/nlab/show/formal+duality"} formal duality
+          #TemperedDistribution.num_defn
+            %h6#definition_3 Definition
+            %p
+              %strong
+                (
+                %a.existingWikiWord{:href => "/nlab/show/tempered+distribution"}> tempered distribution
+                )
+            %p
+              A
+              %em
+                %a.existingWikiWord{:href => "/nlab/show/tempered+distribution"} tempered distribution
+              is a
+              %a.existingWikiWord{:href => "/nlab/show/continuous+linear+functional"} continuous linear functional
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi u
+                    %mspace{:width => "thickmathspace"}
+                    %mo{:lspace => "verythinmathspace"} :
+                    %mspace{:width => "thickmathspace"}
+                    %mi 𝒮
+                    %mo{:stretchy => "false"} (
+                    %msup
+                      %mi ℝ
+                      %mi n
+                    %mo{:stretchy => "false"} )
+                    %mo ⟶
+                    %mi ℂ
+                  %annotation{:encoding => "application/x-tex"}
+                    u \;\colon\; \mathcal{S}(\mathbb{R}^n) \longrightarrow \mathbb{C}
+            %p
+              on the
+              %a.existingWikiWord{:href => "/nlab/show/Schwartz+space"} Schwartz space
+              (def.
+              = succeed ")" do
+                %a.maruku-ref{:href => "#SchwartzSpace"}
+              = succeed "." do
+                %a.existingWikiWord{:href => "/nlab/show/functions+with+rapidly+decaying+partial+derivatives"} functions with rapidly decaying partial derivatives
+              %a.existingWikiWord{:href => "/nlab/show/vector+space"} vector space
+              of all tempered distributions is canonically a
+              %a.existingWikiWord{:href => "/nlab/show/topological+vector+space"} topological vector space
+              as the
+              %a.existingWikiWord{:href => "/nlab/show/dual+space"} dual space
+              to the
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/Schwartz+space"} Schwartz space
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi 𝒮
+                    %mo ′
+                    %mo{:stretchy => "false"} (
+                    %msup
+                      %mi ℝ
+                      %mi n
+                    %mo{:stretchy => "false"} )
+                    %mspace{:width => "thickmathspace"}
+                    %mo ≔
+                    %mspace{:width => "thickmathspace"}
+                    %msup
+                      %mrow
+                        %mo (
+                        %mi 𝒮
+                        %mo{:stretchy => "false"} (
+                        %msup
+                          %mi ℝ
+                          %mi n
+                        %mo{:stretchy => "false"} )
+                        %mo )
+                      %mo *
+                    %mspace{:width => "thinmathspace"}
+                    %mo .
+                  %annotation{:encoding => "application/x-tex"}
+                    \\mathcal{S}'(\mathbb{R}^n)
+                    \\;\coloneqq\;
+                    \\left(
+                    \\mathcal{S}(\mathbb{R}^n)
+                    \\right)^\ast
+                    \\,.
+          %p
+            e.g. (
+            %a{:href => "#Hoermander90"}> Hörmander 90, def. 7.1.7
+            )
+          #SomeNonSingularTemperedDistributions.num_example
+            %h6#example_2 Example
+            %p
+              %strong
+                (some
+                %a.existingWikiWord{:href => "/nlab/show/non-singular+distribution"} non-singular
+                = succeed ")" do
+                  %a.existingWikiWord{:href => "/nlab/show/tempered+distributions"} tempered distributions
+            %p
+              Every
+              %a.existingWikiWord{:href => "/nlab/show/function+with+rapidly+decreasing+partial+derivatives"} function with rapidly decreasing partial derivatives
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi f
+                    %mo ∈
+                    %mi 𝒮
+                    %mo{:stretchy => "false"} (
+                    %msup
+                      %mi ℝ
+                      %mi n
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} f \in \mathcal{S}(\mathbb{R}^n)
+              (def.
+              = succeed ")" do
+                %a.maruku-ref{:href => "#SchwartzSpace"}
+              %a.existingWikiWord{:href => "/nlab/show/tempered+distribution"} tempered distribution
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi u
+                      %mi f
+                    %mo ∈
+                    %mi 𝒮
+                    %mo ′
+                    %mo{:stretchy => "false"} (
+                    %msup
+                      %mi ℝ
+                      %mi n
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} u_f \in \mathcal{S}'(\mathbb{R}^n)
+              (def.
+              = succeed ")" do
+                %a.maruku-ref{:href => "#TemperedDistribution"}
+              %a.existingWikiWord{:href => "/nlab/show/integration"} integrating
+              against it:
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi u
+                      %mi f
+                    %mspace{:width => "thickmathspace"}
+                    %mo{:lspace => "verythinmathspace"} :
+                    %mspace{:width => "thickmathspace"}
+                    %mi g
+                    %mo ↦
+                    %munder
+                      %mo ∫
+                      %mrow
+                        %mi x
+                        %mo ∈
+                        %msup
+                          %mi ℝ
+                          %mi n
+                    %mi g
+                    %mo{:stretchy => "false"} (
+                    %mi x
+                    %mo{:stretchy => "false"} )
+                    %mi f
+                    %mo{:stretchy => "false"} (
+                    %mi x
+                    %mo{:stretchy => "false"} )
+                    %mspace{:width => "thinmathspace"}
+                    %msup
+                      %mi d
+                      %mi n
+                    %mi x
+                    %mspace{:width => "thinmathspace"}
+                    %mo .
+                  %annotation{:encoding => "application/x-tex"}
+                    u_f \;\colon\; g \mapsto \underset{x \in \mathbb{R}^n}{\int} g(x) f(x)\, d^n x
+                    \\,.
+            %p This construction is a linear inclusion
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi 𝒮
+                    %mo{:stretchy => "false"} (
+                    %msup
+                      %mi ℝ
+                      %mi n
+                    %mo{:stretchy => "false"} )
+                    %mover
+                      %mo ↪
+                      %mtext dense
+                    %mi 𝒮
+                    %mo ′
+                    %mo{:stretchy => "false"} (
+                    %msup
+                      %mi ℝ
+                      %mi n
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"}
+                    \\mathcal{S}(\mathbb{R}^n) \overset{\text{dense}}{\hookrightarrow} \mathcal{S}'(\mathbb{R}^n)
+            %p
+              of the
+              %a.existingWikiWord{:href => "/nlab/show/Schwartz+space"} Schwartz space
+              into its
+              %a.existingWikiWord{:href => "/nlab/show/dual+space"} dual space
+              of
+              = succeed "." do
+                %a.existingWikiWord{:href => "/nlab/show/tempered+distributions"} tempered distributions
+              %a.existingWikiWord{:href => "/nlab/show/dense+subspace"} dense subspace
+              inclusion.
+            %p
+              In fact already the restriction of this inclusion to the
+              %a.existingWikiWord{:href => "/nlab/show/compactly+supported+function"} compactly supported
+              %a.existingWikiWord{:href => "/nlab/show/smooth+functions"} smooth functions
+              (example
+              = succeed ")" do
+                %a.maruku-ref{:href => "#CompactlySupportedSmoothFunctionsAreFunctionsWithRapidlyDecreasingDerivatives"}
+              %a.existingWikiWord{:href => "/nlab/show/dense+subspace"} dense subspace
+              inclusion:
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msubsup
+                      %mi C
+                      %mi cp
+                      %mn ∞
+                    %mo{:stretchy => "false"} (
+                    %msup
+                      %mi ℝ
+                      %mi n
+                    %mo{:stretchy => "false"} )
+                    %mover
+                      %mo ↪
+                      %mi dense
+                    %mi 𝒮
+                    %mo ′
+                    %mo{:stretchy => "false"} (
+                    %msup
+                      %mi ℝ
+                      %mi n
+                    %mo{:stretchy => "false"} )
+                    %mspace{:width => "thinmathspace"}
+                    %mo .
+                  %annotation{:encoding => "application/x-tex"}
+                    C^\infty_{cp}(\mathbb{R}^n)
+                    \\overset{dense}{\hookrightarrow}
+                    \\mathcal{S}'(\mathbb{R}^n)
+                    \\,.
+            %p
+              This means that every
+              %a.existingWikiWord{:href => "/nlab/show/tempered+distribution"} tempered distribution
+              is a
+              %a.existingWikiWord{:href => "/nlab/show/limit+of+a+sequence"} limit
+              of a
+              %a.existingWikiWord{:href => "/nlab/show/sequence"} sequence
+              of ordinary
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/functions+with+rapidly+decreasing+partial+derivatives"} functions with rapidly decreasing partial derivatives
+              %a.existingWikiWord{:href => "/nlab/show/limit+of+a+sequence"} limit
+              of a
+              %a.existingWikiWord{:href => "/nlab/show/sequence"} sequence
+              of
+              %a.existingWikiWord{:href => "/nlab/show/compactly+supported+function"} compactly supported
+              %a.existingWikiWord{:href => "/nlab/show/smooth+functions"} smooth functions
+              (
+              %a.existingWikiWord{:href => "/nlab/show/bump+functions"}> bump functions
+              ).
+            %p
+              It is in this sense that
+              %a.existingWikiWord{:href => "/nlab/show/tempered+distributions"} tempered distributions
+              are “generalized functions”.
+          %p
+            (e.g.
+            = succeed ")" do
+              %a{:href => "#Hoermander90"} Hörmander 90, lemma 7.1.8
+          #CompactlySupportedDistibutionsAreTemperedDistributions.num_example
+            %h6#example_3 Example
+            %p
+              %strong
+                (
+                %a.existingWikiWord{:href => "/nlab/show/compactly+supported+distributions"} compactly supported distributions
+                are
+                = succeed ")" do
+                  %a.existingWikiWord{:href => "/nlab/show/tempered+distributions"} tempered distributions
+            %p
+              Every
+              %a.existingWikiWord{:href => "/nlab/show/compactly+supported+distribution"} compactly supported distribution
+              is a
+              %a.existingWikiWord{:href => "/nlab/show/tempered+distribution"} tempered distribution
+              (def.
+              = succeed ")," do
+                %a.maruku-ref{:href => "#TemperedDistribution"}
+              %a.existingWikiWord{:href => "/nlab/show/linear+map"} linear
+              %a.existingWikiWord{:href => "/nlab/show/injection"} inclusion
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi ℰ
+                    %mo ′
+                    %mo{:stretchy => "false"} (
+                    %msup
+                      %mi ℝ
+                      %mi n
+                    %mo{:stretchy => "false"} )
+                    %mo ↪
+                    %mi 𝒮
+                    %mo ′
+                    %mo{:stretchy => "false"} (
+                    %msup
+                      %mi ℝ
+                      %mi n
+                    %mo{:stretchy => "false"} )
+                    %mspace{:width => "thinmathspace"}
+                    %mo .
+                  %annotation{:encoding => "application/x-tex"}
+                    \\mathcal{E}'(\mathbb{R}^n)
+                    \\hookrightarrow
+                    \\mathcal{S}'(\mathbb{R}^n)
+                    \\,.
+          #DiracDeltaDistribution.num_example
+            %h6#example_4 Example
+            %p
+              %strong
+                (
+                %a.existingWikiWord{:href => "/nlab/show/delta+distribution"}> delta distribution
+                )
+            %p Write
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi δ
+                      %mn 0
+                    %mo{:stretchy => "false"} (
+                    %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                    %mo{:stretchy => "false"} )
+                    %mspace{:width => "thickmathspace"}
+                    %mo ∈
+                    %mspace{:width => "thickmathspace"}
+                    %mi ℰ
+                    %mo ′
+                    %mo{:stretchy => "false"} (
+                    %msup
+                      %mi ℝ
+                      %mi n
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"}
+                    \\delta_0(-) \;\in\; \mathcal{E}'(\mathbb{R}^n)
+            %p
+              for the
+              %a.existingWikiWord{:href => "/nlab/show/distribution"} distribution
+              given by point evaluation of functions at the origin of
+              = succeed ":" do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msup
+                        %mi ℝ
+                        %mi n
+                    %annotation{:encoding => "application/x-tex"} \mathbb{R}^n
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi δ
+                      %mn 0
+                    %mo{:stretchy => "false"} (
+                    %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                    %mo{:stretchy => "false"} )
+                    %mspace{:width => "thickmathspace"}
+                    %mo{:lspace => "verythinmathspace"} :
+                    %mspace{:width => "thickmathspace"}
+                    %mi f
+                    %mo ↦
+                    %mi f
+                    %mo{:stretchy => "false"} (
+                    %mn 0
+                    %mo{:stretchy => "false"} )
+                    %mspace{:width => "thinmathspace"}
+                    %mo .
+                  %annotation{:encoding => "application/x-tex"}
+                    \\delta_0(-) \;\colon\; f \mapsto f(0)
+                    \\,.
+            %p
+              This is clearly a
+              = succeed ";" do
+                %a.existingWikiWord{:href => "/nlab/show/compactly+supported+distribution"} compactly supported distribution
+              %a.existingWikiWord{:href => "/nlab/show/tempered+distribution"} tempered distribution
+              by example
+              = succeed "." do
+                %a.maruku-ref{:href => "#CompactlySupportedDistibutionsAreTemperedDistributions"}
+            %p
+              We write just “
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}>
+                %semantics
+                  %mrow
+                    %mi δ
+                    %mo{:stretchy => "false"} (
+                    %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} \delta(-)
+              ” (without the subscript) for the corresponding
+              %a.existingWikiWord{:href => "/nlab/show/generalized+function"} generalized function
+              (example
+              = succeed ")," do
+                %a.maruku-ref{:href => "#SomeNonSingularTemperedDistributions"}
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %munder
+                      %mo ∫
+                      %mrow
+                        %mi x
+                        %mo ∈
+                        %msup
+                          %mi ℝ
+                          %mi n
+                    %mi δ
+                    %mo{:stretchy => "false"} (
+                    %mi x
+                    %mo{:stretchy => "false"} )
+                    %mi f
+                    %mo{:stretchy => "false"} (
+                    %mi x
+                    %mo{:stretchy => "false"} )
+                    %mspace{:width => "thinmathspace"}
+                    %msup
+                      %mi d
+                      %mi n
+                    %mi x
+                    %mspace{:width => "thickmathspace"}
+                    %mo ≔
+                    %mspace{:width => "thickmathspace"}
+                    %mi f
+                    %mo{:stretchy => "false"} (
+                    %mn 0
+                    %mo{:stretchy => "false"} )
+                    %mspace{:width => "thinmathspace"}
+                    %mo .
+                  %annotation{:encoding => "application/x-tex"}
+                    \\underset{x \in \mathbb{R}^n}{\int} \delta(x) f(x) \, d^n x
+                    \\;\coloneqq\;
+                    f(0)
+                    \\,.
+          #SquareIntegrableFunctionsInduceTemperedDistributions.num_example
+            %h6#example_5 Example
+            %p
+              %strong
+                (
+                %a.existingWikiWord{:href => "/nlab/show/square+integrable+functions"} square integrable functions
+                induce
+                = succeed ")" do
+                  %a.existingWikiWord{:href => "/nlab/show/tempered+distributions"} tempered distributions
+            %p
+              Let
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi f
+                    %mo ∈
+                    %msup
+                      %mi L
+                      %mi p
+                    %mo{:stretchy => "false"} (
+                    %msup
+                      %mi ℝ
+                      %mi n
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} f \in L^p(\mathbb{R}^n)
+              be a function in the
+              = succeed "th" do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi p
+                    %annotation{:encoding => "application/x-tex"} p
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/Lebesgue+space"} Lebesgue space
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi p
+                    %mo =
+                    %mn 2
+                  %annotation{:encoding => "application/x-tex"} p = 2
+              this means that
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi f
+                  %annotation{:encoding => "application/x-tex"} f
+              is a
+              = succeed "." do
+                %a.existingWikiWord{:href => "/nlab/show/square+integrable+function"} square integrable function
+              %a.existingWikiWord{:href => "/nlab/show/integration"} integration
+              against the
+              %a.existingWikiWord{:href => "/nlab/show/measure"} measure
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi f
+                    %mi dvol
+                  %annotation{:encoding => "application/x-tex"} f dvol
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi g
+                    %mo ↦
+                    %munder
+                      %mo ∫
+                      %mrow
+                        %mi x
+                        %mo ∈
+                        %msup
+                          %mi ℝ
+                          %mi n
+                    %mi g
+                    %mo{:stretchy => "false"} (
+                    %mi x
+                    %mo{:stretchy => "false"} )
+                    %mi f
+                    %mo{:stretchy => "false"} (
+                    %mi x
+                    %mo{:stretchy => "false"} )
+                    %mspace{:width => "thinmathspace"}
+                    %msup
+                      %mi d
+                      %mi n
+                    %mi x
+                  %annotation{:encoding => "application/x-tex"}
+                    g \mapsto \underset{x \in \mathbb{R}^n}{\int} g(x) f(x) \, d^n x
+            %p
+              is a
+              %a.existingWikiWord{:href => "/nlab/show/tempered+distribution"} tempered distribution
+              (def.
+              = succeed ")." do
+                %a.maruku-ref{:href => "#TemperedDistribution"}
+          %p
+            (e.g.
+            = succeed ")" do
+              %a{:href => "#Hoermander90"} Hörmander 90, below lemma 7.1.8
+          %p
+            Property
+            %a.maruku-eqref{:href => "#eq:FourierTransformInIntegralOfProductMayBeShiftedToOtherFactor"} (4)
+            of the ordinary
+            %a.existingWikiWord{:href => "/nlab/show/Fourier+transform"} Fourier transform
+            on
+            %a.existingWikiWord{:href => "/nlab/show/functions+with+rapidly+decreasing+partial+derivatives"} functions with rapidly decreasing partial derivatives
+            motivates and justifies the fullowing generalization:
+          #FourierTransformOnTemperedDistributions.num_defn
+            %h6#definition_4 Definition
+            %p
+              %strong
+                (
+                %a.existingWikiWord{:href => "/nlab/show/Fourier+transform+of+distributions"} Fourier transform of distributions
+                on
+                = succeed ")" do
+                  %a.existingWikiWord{:href => "/nlab/show/tempered+distributions"} tempered distributions
+            %p
+              The
+              %em
+                %a.existingWikiWord{:href => "/nlab/show/Fourier+transform+of+distributions"} Fourier transform of distributions
+              of a
+              %a.existingWikiWord{:href => "/nlab/show/tempered+distribution"} tempered distribution
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi u
+                    %mo ∈
+                    %mi 𝒮
+                    %mo ′
+                    %mo{:stretchy => "false"} (
+                    %msup
+                      %mi ℝ
+                      %mi n
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} u \in \mathcal{S}'(\mathbb{R}^n)
+              (def.
+              = succeed ")" do
+                %a.maruku-ref{:href => "#TemperedDistribution"}
+              %a.existingWikiWord{:href => "/nlab/show/tempered+distribution"} tempered distribution
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mover
+                      %mi u
+                      %mo ^
+                  %annotation{:encoding => "application/x-tex"} \widehat u
+              defined on a smooth function
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi f
+                    %mo ∈
+                    %mi 𝒮
+                    %mo{:stretchy => "false"} (
+                    %msup
+                      %mi ℝ
+                      %mi n
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} f \in \mathcal{S}(\mathbb{R}^n)
+              in the
+              %a.existingWikiWord{:href => "/nlab/show/Schwartz+space"} Schwartz space
+              (def.
+              = succeed ")" do
+                %a.maruku-ref{:href => "#SchwartzSpace"}
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mover
+                      %mi u
+                      %mo ^
+                    %mo{:stretchy => "false"} (
+                    %mi f
+                    %mo{:stretchy => "false"} )
+                    %mspace{:width => "thickmathspace"}
+                    %mo ≔
+                    %mspace{:width => "thickmathspace"}
+                    %mi u
+                    %mrow
+                      %mo (
+                      %mover
+                        %mi f
+                        %mo ^
+                      %mo )
+                    %mspace{:width => "thinmathspace"}
+                    %mo ,
+                  %annotation{:encoding => "application/x-tex"}
+                    \\widehat{u}(f) \;\coloneqq\; u\left( \widehat f\right)
+                    \\,,
+            %p
+              where on the right
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mover
+                      %mi f
+                      %mo ^
+                    %mo ∈
+                    %mi 𝒮
+                    %mo{:stretchy => "false"} (
+                    %msup
+                      %mi ℝ
+                      %mi n
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} \widehat f \in \mathcal{S}(\mathbb{R}^n)
+              is the
+              %a.existingWikiWord{:href => "/nlab/show/Fourier+transform"} Fourier transform
+              of functions from def.
+              = succeed "." do
+                %a.maruku-ref{:href => "#FourierTransformSmoothFunctionsWithRapidlyDecayingDerivativesOnCartesianSpace"}
+          %p
+            (e.g.
+            = succeed ")" do
+              %a{:href => "#Hoermander90"} Hörmander 90, def. 1.7.9
+          #FourierTransformOfDistributionsIndeedGeneralizedOrdinaryFourierTransform.num_example
+            %h6#example_6 Example
+            %p
+              %strong
+                (
+                %a.existingWikiWord{:href => "/nlab/show/Fourier+transform+of+distributions"} Fourier transform of distributions
+                indeed generalizes
+                %a.existingWikiWord{:href => "/nlab/show/Fourier+transform"} Fourier transform
+                of
+                = succeed ")" do
+                  %a.existingWikiWord{:href => "/nlab/show/functions+with+rapidly+decreasing+partial+derivatives"} functions with rapidly decreasing partial derivatives
+            %p
+              Let
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi u
+                      %mi f
+                    %mo ∈
+                    %mi 𝒮
+                    %mo ′
+                    %mo{:stretchy => "false"} (
+                    %msup
+                      %mi ℝ
+                      %mi n
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} u_f \in \mathcal{S}'(\mathbb{R}^n)
+              be a
+              %a.existingWikiWord{:href => "/nlab/show/non-singular+distribution"} non-singular
+              %a.existingWikiWord{:href => "/nlab/show/tempered+distribution"} tempered distribution
+              induced, via example
+              = succeed "," do
+                %a.maruku-ref{:href => "#SomeNonSingularTemperedDistributions"}
+              %a.existingWikiWord{:href => "/nlab/show/function+with+rapidly+decreasing+partial+derivatives"} function with rapidly decreasing partial derivatives
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi f
+                      %mo ∈
+                      %mi 𝒮
+                      %mo{:stretchy => "false"} (
+                      %msup
+                        %mi ℝ
+                        %mi n
+                      %mo{:stretchy => "false"} )
+                    %annotation{:encoding => "application/x-tex"} f \in \mathcal{S}(\mathbb{R}^n)
+            %p
+              Then its
+              %a.existingWikiWord{:href => "/nlab/show/Fourier+transform+of+distributions"} Fourier transform of distributions
+              (def.
+              = succeed ")" do
+                %a.maruku-ref{:href => "#FourierTransformOnTemperedDistributions"}
+              %a.existingWikiWord{:href => "/nlab/show/non-singular+distribution"} non-singular distribution
+              induced from the
+              %a.existingWikiWord{:href => "/nlab/show/Fourier+transform"} Fourier transform
+              of
+              = succeed ":" do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi f
+                    %annotation{:encoding => "application/x-tex"} f
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mover
+                      %mrow
+                        %msub
+                          %mi u
+                          %mi f
+                      %mo ^
+                    %mspace{:width => "thickmathspace"}
+                    %mo =
+                    %mspace{:width => "thickmathspace"}
+                    %msub
+                      %mi u
+                      %mover
+                        %mi f
+                        %mo{:stretchy => "false"} ^
+                    %mspace{:width => "thinmathspace"}
+                    %mo .
+                  %annotation{:encoding => "application/x-tex"}
+                    \\widehat{u_f} \;=\; u_{\hat f}
+                    \\,.
+          .proof
+            %h6#proof_2 Proof
+            %p
+              Let
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi g
+                      %mo ∈
+                      %mi 𝒮
+                      %mo{:stretchy => "false"} (
+                      %msup
+                        %mi ℝ
+                        %mi n
+                      %mo{:stretchy => "false"} )
+                    %annotation{:encoding => "application/x-tex"} g \in \mathcal{S}(\mathbb{R}^n)
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mrow
+                      %mtable{:columnalign => "right left right left right left right left right left", :columnspacing => "0em", :displaystyle => "true"}
+                        %mtr
+                          %mtd
+                            %mover
+                              %mrow
+                                %msub
+                                  %mi u
+                                  %mi f
+                              %mo ^
+                            %mo{:stretchy => "false"} (
+                            %mi g
+                            %mo{:stretchy => "false"} )
+                          %mtd
+                            %mo ≔
+                            %msub
+                              %mi u
+                              %mi f
+                            %mrow
+                              %mo (
+                              %mover
+                                %mi g
+                                %mo ^
+                              %mo )
+                        %mtr
+                          %mtd
+                          %mtd
+                            %mo =
+                            %munder
+                              %mo ∫
+                              %mrow
+                                %mi x
+                                %mo ∈
+                                %msup
+                                  %mi ℝ
+                                  %mi n
+                            %mi f
+                            %mo{:stretchy => "false"} (
+                            %mi x
+                            %mo{:stretchy => "false"} )
+                            %mover
+                              %mi g
+                              %mo{:stretchy => "false"} ^
+                            %mo{:stretchy => "false"} (
+                            %mi x
+                            %mo{:stretchy => "false"} )
+                            %mspace{:width => "thinmathspace"}
+                            %msup
+                              %mi d
+                              %mi n
+                            %mi x
+                        %mtr
+                          %mtd
+                          %mtd
+                            %mo =
+                            %munder
+                              %mo ∫
+                              %mrow
+                                %mi x
+                                %mo ∈
+                                %msup
+                                  %mi ℝ
+                                  %mi n
+                            %mover
+                              %mi f
+                              %mo{:stretchy => "false"} ^
+                            %mo{:stretchy => "false"} (
+                            %mi x
+                            %mo{:stretchy => "false"} )
+                            %mi g
+                            %mo{:stretchy => "false"} (
+                            %mi x
+                            %mo{:stretchy => "false"} )
+                            %mspace{:width => "thinmathspace"}
+                            %msup
+                              %mi d
+                              %mi n
+                            %mi x
+                        %mtr
+                          %mtd
+                          %mtd
+                            %mo =
+                            %msub
+                              %mi u
+                              %mover
+                                %mi f
+                                %mo{:stretchy => "false"} ^
+                            %mo{:stretchy => "false"} (
+                            %mi g
+                            %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"}
+                    \\begin{aligned}
+                    \\widehat{u_f}(g)
+                    \&amp; \coloneqq
+                    u_f\left( \widehat{g}\right)
+                    \\\
+                    \&amp; =
+                    \\underset{x \in \mathbb{R}^n}{\int} f(x) \hat g(x)\, d^n x
+                    \\\
+                    \&amp; =
+                    \\underset{x \in \mathbb{R}^n}{\int} \hat f(x) g(x) \, d^n x
+                    \\\
+                    \&amp; =
+                    u_{\hat f}(g)
+                    \\end{aligned}
+            %p
+              Here all equalities hold by definition, except for the third: this is property
+              %a.maruku-eqref{:href => "#eq:FourierTransformInIntegralOfProductMayBeShiftedToOtherFactor"} (4)
+              from prop.
+              = succeed "." do
+                %a.maruku-ref{:href => "#BasicPropertiesOfFourierTransformOverCartesianSpaces"}
+          #CompactlySupportedDistributionFourierTransform.num_example
+            %h6#example_7 Example
+            %p
+              %strong
+                (
+                %a.existingWikiWord{:href => "/nlab/show/Fourier+transform+of+distributions"} Fourier transform
+                of
+                = succeed ")" do
+                  %a.existingWikiWord{:href => "/nlab/show/compactly+supported+distributions"} compactly supported distributions
+            %p
+              Under the identification of
+              %a.existingWikiWord{:href => "/nlab/show/smooth+functions"} smooth functions
+              of bounded growth with
+              %a.existingWikiWord{:href => "/nlab/show/non-singular+distributions"} non-singular
+              %a.existingWikiWord{:href => "/nlab/show/tempered+distributions"} tempered distributions
+              (example
+              = succeed ")," do
+                %a.maruku-ref{:href => "#SomeNonSingularTemperedDistributions"}
+              %a.existingWikiWord{:href => "/nlab/show/Fourier+transform+of+distributions"} Fourier transform of distributions
+              (def.
+              = succeed ")" do
+                %a.maruku-ref{:href => "#FourierTransformOnTemperedDistributions"}
+              %a.existingWikiWord{:href => "/nlab/show/tempered+distribution"} tempered distribution
+              that happens to be
+              %a.existingWikiWord{:href => "/nlab/show/compactly+supported+distribution"} compactly supported
+              (example
+              = succeed ")" do
+                %a.maruku-ref{:href => "#CompactlySupportedDistibutionsAreTemperedDistributions"}
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi u
+                    %mo ∈
+                    %mi ℰ
+                    %mo ′
+                    %mo{:stretchy => "false"} (
+                    %msup
+                      %mi ℝ
+                      %mi n
+                    %mo{:stretchy => "false"} )
+                    %mo ↪
+                    %mi 𝒮
+                    %mo ′
+                    %mo{:stretchy => "false"} (
+                    %msup
+                      %mi ℝ
+                      %mi n
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"}
+                    u \in \mathcal{E}'(\mathbb{R}^n) \hookrightarrow \mathcal{S}'(\mathbb{R}^n)
+            %p is simply
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mover
+                      %mi u
+                      %mo ^
+                    %mo{:stretchy => "false"} (
+                    %mi k
+                    %mo{:stretchy => "false"} )
+                    %mo =
+                    %mi u
+                    %mrow
+                      %mo (
+                      %msup
+                        %mi e
+                        %mrow
+                          %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                          %mi i
+                          %mi k
+                          %mo ⋅
+                          %mo{:stretchy => "false"} (
+                          %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                          %mo{:stretchy => "false"} )
+                      %mo )
+                    %mspace{:width => "thinmathspace"}
+                    %mo .
+                  %annotation{:encoding => "application/x-tex"}
+                    \\widehat{u}(k) = u\left( e^{-  i k \cdot (-)}\right)
+                    \\,.
+          %p
+            (
+            %a{:href => "#Hoermander90"}> Hörmander 90, theorem 7.1.14
+            )
+          #FourierTransformOfDeltaDistribution.num_defn
+            %h6#example_8 Example
+            %p
+              %strong
+                (
+                %a.existingWikiWord{:href => "/nlab/show/Fourier+transform+of+distributions"} Fourier transform
+                of the
+                = succeed ")" do
+                  %a.existingWikiWord{:href => "/nlab/show/delta-distribution"} delta-distribution
+            %p
+              The
+              %a.existingWikiWord{:href => "/nlab/show/Fourier+transform+of+distributions"} Fourier transform
+              (def.
+              = succeed ")" do
+                %a.maruku-ref{:href => "#FourierTransformOnTemperedDistributions"}
+              %a.existingWikiWord{:href => "/nlab/show/delta+distribution"} delta distribution
+              (def.
+              = succeed ")," do
+                %a.maruku-ref{:href => "#DiracDeltaDistribution"}
+              = succeed "," do
+                %a.maruku-ref{:href => "#CompactlySupportedDistributionFourierTransform"}
+              %a.existingWikiWord{:href => "/nlab/show/constant+function"} constant function
+              on 1:
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mrow
+                      %mtable{:columnalign => "right left right left right left right left right left", :columnspacing => "0em", :displaystyle => "true"}
+                        %mtr
+                          %mtd
+                            %mover
+                              %mi δ
+                              %mo ^
+                            %mo{:stretchy => "false"} (
+                            %mi k
+                            %mo{:stretchy => "false"} )
+                          %mtd
+                            %mo =
+                            %munder
+                              %mo ∫
+                              %mrow
+                                %mi x
+                                %mo ∈
+                                %msup
+                                  %mi ℝ
+                                  %mi n
+                            %mi δ
+                            %mo{:stretchy => "false"} (
+                            %mi x
+                            %mo{:stretchy => "false"} )
+                            %msup
+                              %mi e
+                              %mrow
+                                %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                                %mi i
+                                %mi k
+                                %mi x
+                            %mspace{:width => "thinmathspace"}
+                            %mi d
+                            %mi x
+                        %mtr
+                          %mtd
+                          %mtd
+                            %mo =
+                            %mn 1
+                  %annotation{:encoding => "application/x-tex"}
+                    \\begin{aligned}
+                    \\widehat {\delta}(k)
+                    \&amp; =
+                    \\underset{x \in \mathbb{R}^n}{\int} \delta(x) e^{- i k x} \, d x
+                    \\\
+                    \&amp; =
+                    1
+                    \\end{aligned}
+            %p
+              This implies by the
+              %a.existingWikiWord{:href => "/nlab/show/Fourier+inversion+theorem"} Fourier inversion theorem
+              (prop.
+              = succeed ")" do
+                %a.maruku-ref{:href => "#FourierInversionTheoremForDistributions"}
+              %a.existingWikiWord{:href => "/nlab/show/delta+distribution"} delta distribution
+              itself has equivalently the following expression as a
+              %a.existingWikiWord{:href => "/nlab/show/generalized+function"} generalized function
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mrow
+                      %mtable{:columnalign => "right left right left right left right left right left", :columnspacing => "0em", :displaystyle => "true"}
+                        %mtr
+                          %mtd
+                            %mi δ
+                            %mo{:stretchy => "false"} (
+                            %mi x
+                            %mo{:stretchy => "false"} )
+                          %mtd
+                            %mo =
+                            %mover
+                              %mover
+                                %mrow
+                                  %msub
+                                    %mi δ
+                                    %mn 0
+                                %mo ^
+                              %mo ˇ
+                            %mo{:stretchy => "false"} (
+                            %mi x
+                            %mo{:stretchy => "false"} )
+                        %mtr
+                          %mtd
+                          %mtd
+                            %mo =
+                            %munder
+                              %mo ∫
+                              %mrow
+                                %mi k
+                                %mo ∈
+                                %msup
+                                  %mi ℝ
+                                  %mi n
+                            %msup
+                              %mi e
+                              %mrow
+                                %mi i
+                                %mi k
+                                %mo ⋅
+                                %mi x
+                            %mspace{:width => "thinmathspace"}
+                            %mfrac
+                              %mrow
+                                %msup
+                                  %mi d
+                                  %mi n
+                                %mi k
+                              %mrow
+                                %mo{:stretchy => "false"} (
+                                %mn 2
+                                %mi π
+                                %msup
+                                  %mo{:stretchy => "false"} )
+                                  %mi n
+                  %annotation{:encoding => "application/x-tex"}
+                    \\begin{aligned}
+                    \\delta(x)
+                    \&amp; =
+                    \\widecheck{\widehat {\delta_0}}(x)
+                    \\\
+                    \&amp; =
+                    \\underset{k \in \mathbb{R}^n}{\int} e^{i k \cdot x} \, \frac{d^n k}{ (2\pi)^n }
+                    \\end{aligned}
+            %p
+              in the sense that for every
+              %a.existingWikiWord{:href => "/nlab/show/function+with+rapidly+decreasing+partial+derivatives"} function with rapidly decreasing partial derivatives
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi f
+                    %mo ∈
+                    %mi 𝒮
+                    %mo{:stretchy => "false"} (
+                    %msup
+                      %mi ℝ
+                      %mi n
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} f \in \mathcal{S}(\mathbb{R}^n)
+              (def.
+              = succeed ")" do
+                %a.maruku-ref{:href => "#SchwartzSpace"}
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mrow
+                      %mtable{:columnalign => "right left right left right left right left right left", :columnspacing => "0em", :displaystyle => "true"}
+                        %mtr
+                          %mtd
+                            %mi f
+                            %mo{:stretchy => "false"} (
+                            %mi x
+                            %mo{:stretchy => "false"} )
+                          %mtd
+                            %mo =
+                            %munder
+                              %mo ∫
+                              %mrow
+                                %mi y
+                                %mo ∈
+                                %msup
+                                  %mi ℝ
+                                  %mi n
+                            %mi f
+                            %mo{:stretchy => "false"} (
+                            %mi y
+                            %mo{:stretchy => "false"} )
+                            %mi δ
+                            %mo{:stretchy => "false"} (
+                            %mi y
+                            %mo −
+                            %mi x
+                            %mo{:stretchy => "false"} )
+                            %mspace{:width => "thinmathspace"}
+                            %msup
+                              %mi d
+                              %mi n
+                            %mi y
+                        %mtr
+                          %mtd
+                          %mtd
+                            %mo =
+                            %munder
+                              %mo ∫
+                              %mrow
+                                %mi y
+                                %mo ∈
+                                %msup
+                                  %mi ℝ
+                                  %mi n
+                            %munder
+                              %mo ∫
+                              %mrow
+                                %mi k
+                                %mo ∈
+                                %msup
+                                  %mi ℝ
+                                  %mi n
+                            %mi f
+                            %mo{:stretchy => "false"} (
+                            %mi y
+                            %mo{:stretchy => "false"} )
+                            %msup
+                              %mi e
+                              %mrow
+                                %mi i
+                                %mi k
+                                %mo ⋅
+                                %mo{:stretchy => "false"} (
+                                %mi y
+                                %mo −
+                                %mi x
+                                %mo{:stretchy => "false"} )
+                            %mspace{:width => "thinmathspace"}
+                            %mfrac
+                              %mrow
+                                %msup
+                                  %mi d
+                                  %mi n
+                                %mi k
+                              %mrow
+                                %mo{:stretchy => "false"} (
+                                %mn 2
+                                %mi π
+                                %msup
+                                  %mo{:stretchy => "false"} )
+                                  %mi n
+                            %mspace{:width => "thinmathspace"}
+                            %msup
+                              %mi d
+                              %mi n
+                            %mi y
+                        %mtr
+                          %mtd
+                          %mtd
+                            %mo =
+                            %munder
+                              %mo ∫
+                              %mrow
+                                %mi k
+                                %mo ∈
+                                %msup
+                                  %mi ℝ
+                                  %mi n
+                            %msup
+                              %mi e
+                              %mrow
+                                %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                                %mi i
+                                %mi k
+                                %mo ⋅
+                                %mi x
+                            %munder
+                              %munder
+                                %mrow
+                                  %munder
+                                    %mo ∫
+                                    %mrow
+                                      %mi y
+                                      %mo ∈
+                                      %msup
+                                        %mi ℝ
+                                        %mi n
+                                  %mi f
+                                  %mo{:stretchy => "false"} (
+                                  %mi y
+                                  %mo{:stretchy => "false"} )
+                                  %msup
+                                    %mi e
+                                    %mrow
+                                      %mi i
+                                      %mi k
+                                      %mo ⋅
+                                      %mi y
+                                  %mspace{:width => "thinmathspace"}
+                                  %msup
+                                    %mi d
+                                    %mi n
+                                  %mi y
+                                %mo ⏟
+                              %mrow
+                                %mo =
+                                %mover
+                                  %mi f
+                                  %mo ^
+                                %mo{:stretchy => "false"} (
+                                %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                                %mi k
+                                %mo{:stretchy => "false"} )
+                            %mspace{:width => "thinmathspace"}
+                            %mspace{:width => "thinmathspace"}
+                            %mfrac
+                              %mrow
+                                %msup
+                                  %mi d
+                                  %mi n
+                                %mi k
+                              %mrow
+                                %mo{:stretchy => "false"} (
+                                %mn 2
+                                %mi π
+                                %msup
+                                  %mo{:stretchy => "false"} )
+                                  %mi n
+                        %mtr
+                          %mtd
+                          %mtd
+                            %mo =
+                            %mo{:lspace => "verythinmathspace", :rspace => "0em"} +
+                            %munder
+                              %mo ∫
+                              %mrow
+                                %mi k
+                                %mo ∈
+                                %msup
+                                  %mi ℝ
+                                  %mi n
+                            %msup
+                              %mi e
+                              %mrow
+                                %mi i
+                                %mi k
+                                %mo ⋅
+                                %mi x
+                            %munder
+                              %munder
+                                %mrow
+                                  %munder
+                                    %mo ∫
+                                    %mrow
+                                      %mi y
+                                      %mo ∈
+                                      %msup
+                                        %mi ℝ
+                                        %mi n
+                                  %mi f
+                                  %mo{:stretchy => "false"} (
+                                  %mi y
+                                  %mo{:stretchy => "false"} )
+                                  %msup
+                                    %mi e
+                                    %mrow
+                                      %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                                      %mi i
+                                      %mi k
+                                      %mo ⋅
+                                      %mi y
+                                  %mspace{:width => "thinmathspace"}
+                                  %msup
+                                    %mi d
+                                    %mi n
+                                  %mi y
+                                %mo ⏟
+                              %mrow
+                                %mo =
+                                %mover
+                                  %mi f
+                                  %mo ^
+                                %mo{:stretchy => "false"} (
+                                %mi k
+                                %mo{:stretchy => "false"} )
+                            %mspace{:width => "thinmathspace"}
+                            %mspace{:width => "thinmathspace"}
+                            %mfrac
+                              %mrow
+                                %msup
+                                  %mi d
+                                  %mi n
+                                %mi k
+                              %mrow
+                                %mo{:stretchy => "false"} (
+                                %mn 2
+                                %mi π
+                                %msup
+                                  %mo{:stretchy => "false"} )
+                                  %mi n
+                        %mtr
+                          %mtd
+                          %mtd
+                            %mo =
+                            %mover
+                              %mover
+                                %mi f
+                                %mo ^
+                              %mo ˇ
+                            %mo{:stretchy => "false"} (
+                            %mi x
+                            %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"}
+                    \\begin{aligned}
+                    f(x)
+                    \&amp; =
+                    \\underset{y \in \mathbb{R}^n}{\int}
+                    f(y) \delta(y-x)  \, d^n y
+                    \\\
+                    \&amp; =
+                    \\underset{y \in \mathbb{R}^n}{\int}
+                    \\underset{k \in \mathbb{R}^n}{\int}
+                    f(y) e^{i k \cdot (y-x)}
+                    \\, \frac{d^n k}{(2\pi)^n} \, d^n y
+                    \\\
+                    \&amp; =
+                    \\underset{k \in \mathbb{R}^n}{\int}
+                    e^{- i k \cdot x}
+                    \\underset{= \widehat{f}(-k) }{
+                    \\underbrace{
+                    \\underset{y \in \mathbb{R}^n}{\int}
+                    f(y) e^{i k \cdot y}
+                    \\, d^n y
+                    }
+                    }
+                    \\,\, \frac{d^n k}{(2\pi)^n}
+                    \\\
+                    \&amp; =
+                    +
+                    \\underset{k \in \mathbb{R}^n}{\int}
+                    e^{i k \cdot x}
+                    \\underset{= \widehat{f}(k) }{
+                    \\underbrace{
+                    \\underset{y \in \mathbb{R}^n}{\int}
+                    f(y) e^{- i k \cdot y}
+                    \\, d^n y
+                    }
+                    }
+                    \\,\, \frac{d^n k}{(2\pi)^n}
+                    \\\
+                    \&amp; =
+                    \\widecheck{\widehat{f}}(x)
+                    \\end{aligned}
+            %p
+              which is the statement of the
+              %a.existingWikiWord{:href => "/nlab/show/Fourier+inversion+theorem"} Fourier inversion theorem
+              for smooth functions (prop.
+              = succeed ")." do
+                %a.maruku-ref{:href => "#FourierInversion"}
+            %p
+              (Here in the last step we used
+              %a.existingWikiWord{:href => "/nlab/show/change+of+integration+variables"} change of integration variables
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi k
+                    %mo ↦
+                    %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                    %mi k
+                  %annotation{:encoding => "application/x-tex"} k \mapsto -k
+              which introduces one sign
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo{:stretchy => "false"} (
+                    %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                    %mn 1
+                    %msup
+                      %mo{:stretchy => "false"} )
+                      %mi n
+                  %annotation{:encoding => "application/x-tex"} (-1)^{n}
+              for the new volume form, but another sign
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo{:stretchy => "false"} (
+                    %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                    %mn 1
+                    %msup
+                      %mo{:stretchy => "false"} )
+                      %mi n
+                  %annotation{:encoding => "application/x-tex"} (-1)^n
+              from the re-
+              %a.existingWikiWord{:href => "/nlab/show/orientation"} orientation
+              of the integration domain. )
+            %p
+              Equivalently, the above computation shows that the
+              %a.existingWikiWord{:href => "/nlab/show/delta+distribution"} delta distribution
+              is the
+              %a.existingWikiWord{:href => "/nlab/show/neutral+element"} neutral element
+              for the
+              = succeed "." do
+                %a.existingWikiWord{:href => "/nlab/show/convolution+product+of+distributions"} convolution product of distributions
+          #PaleyWienerSchwartzTheorem.num_prop
+            %h6#proposition_5 Proposition
+            %p
+              %strong
+                (
+                %a.existingWikiWord{:href => "/nlab/show/Paley-Wiener-Schwartz+theorem"}> Paley-Wiener-Schwartz theorem
+                )
+            %p
+              Let
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi u
+                    %mo ∈
+                    %mi ℰ
+                    %mo ′
+                    %mo{:stretchy => "false"} (
+                    %msup
+                      %mi ℝ
+                      %mi n
+                    %mo{:stretchy => "false"} )
+                    %mo ↪
+                    %mi 𝒮
+                    %mo ′
+                    %mo{:stretchy => "false"} (
+                    %msup
+                      %mi ℝ
+                      %mi n
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} u \in \mathcal{E}'(\mathbb{R}^n) \hookrightarrow \mathcal{S}'(\mathbb{R}^n)
+              be a
+              %a.existingWikiWord{:href => "/nlab/show/compactly+supported+distribution"} compactly supported distribution
+              regarded as a
+              %a.existingWikiWord{:href => "/nlab/show/tempered+distribution"} tempered distribution
+              by example
+              = succeed "." do
+                %a.maruku-ref{:href => "#CompactlySupportedDistibutionsAreTemperedDistributions"}
+              %a.existingWikiWord{:href => "/nlab/show/Fourier+transform+of+distributions"} Fourier transform of distributions
+              (def.
+              = succeed ")" do
+                %a.maruku-ref{:href => "#FourierTransformOnTemperedDistributions"}
+              %a.existingWikiWord{:href => "/nlab/show/non-singular+distribution"} non-singular distribution
+              induced from a
+              %a.existingWikiWord{:href => "/nlab/show/smooth+function"} smooth function
+              that grows at most exponentially.
+          #FourierInversionTheoremForDistributions.num_prop
+            %h6#proposition_6 Proposition
+            %p
+              %strong
+                (
+                %a.existingWikiWord{:href => "/nlab/show/Fourier+inversion+theorem"} Fourier inversion theorem
+                for
+                = succeed ")" do
+                  %a.existingWikiWord{:href => "/nlab/show/Fourier+transform+of+distributions"} Fourier transform of distributions
+            %p
+              The operation of forming the
+              %a.existingWikiWord{:href => "/nlab/show/Fourier+transform+of+distributions"} Fourier transform of distributions
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mover
+                      %mi u
+                      %mo ^
+                  %annotation{:encoding => "application/x-tex"} \widehat{u}
+              (def.
+              = succeed ")" do
+                %a.maruku-ref{:href => "#FourierTransformOnTemperedDistributions"}
+              %a.existingWikiWord{:href => "/nlab/show/tempered+distributions"} tempered distributions
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi u
+                    %mo ∈
+                    %mi 𝒮
+                    %mo ′
+                    %mo{:stretchy => "false"} (
+                    %msup
+                      %mi ℝ
+                      %mi n
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} u \in \mathcal{S}'(\mathbb{R}^n)
+              (def.
+              = succeed ")" do
+                %a.maruku-ref{:href => "#TemperedDistribution"}
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/isomorphism"} isomorphism
+              %a.existingWikiWord{:href => "/nlab/show/inverse"} inverse
+              given by
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mover
+                      %mi u
+                      %mo ˇ
+                    %mspace{:width => "thickmathspace"}
+                    %mo{:lspace => "verythinmathspace"} :
+                    %mspace{:width => "thickmathspace"}
+                    %mi g
+                    %mo ↦
+                    %mi u
+                    %mrow
+                      %mo (
+                      %mover
+                        %mi g
+                        %mo ˇ
+                      %mo )
+                    %mspace{:width => "thinmathspace"}
+                    %mo ,
+                  %annotation{:encoding => "application/x-tex"}
+                    \\widecheck{ u } \;\colon\; g \mapsto u\left( \widecheck{g}\right)
+                    \\,,
+            %p
+              where on the right
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mover
+                      %mi g
+                      %mo ˇ
+                  %annotation{:encoding => "application/x-tex"} \widecheck{g}
+              is the ordinary
+              %a.existingWikiWord{:href => "/nlab/show/inverse+Fourier+transform"} inverse Fourier transform
+              of
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi g
+                  %annotation{:encoding => "application/x-tex"} g
+              according to prop.
+              = succeed "." do
+                %a.maruku-ref{:href => "#FourierInversion"}
+          .proof
+            %h6#proof_3 Proof
+            %p
+              By def.
+              %a.maruku-ref{:href => "#FourierTransformOnTemperedDistributions"}
+              this follows immediately from the
+              %a.existingWikiWord{:href => "/nlab/show/Fourier+inversion+theorem"} Fourier inversion theorem
+              for smooth functions (prop.
+              = succeed ")." do
+                %a.maruku-ref{:href => "#FourierInversion"}
+          %p
+            We have the following distributional generalization of the basic property
+            %a.maruku-eqref{:href => "#eq:FourierTransformInterchangesPointwiseProductWithConvolution"} (3)
+            from prop.
+            = succeed ":" do
+              %a.maruku-ref{:href => "#BasicPropertiesOfFourierTransformOverCartesianSpaces"}
+          #FourierTransformOfDistributionsInterchangesConvolutionOfDistributionsWithPointwiseProduct.num_prop
+            %h6#proposition_7 Proposition
+            %p
+              %strong
+                (
+                %a.existingWikiWord{:href => "/nlab/show/Fourier+transform+of+distributions"} Fourier transform of distributions
+                interchanges
+                %a.existingWikiWord{:href => "/nlab/show/convolution+of+distributions"} convolution of distributions
+                with pointwise product)
+            %p Let
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi u
+                      %mn 1
+                    %mo ∈
+                    %mi 𝒮
+                    %mo ′
+                    %mo{:stretchy => "false"} (
+                    %msup
+                      %mi ℝ
+                      %mi n
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"}
+                    u_1 \in \mathcal{S}'(\mathbb{R}^n)
+            %p
+              be a
+              %a.existingWikiWord{:href => "/nlab/show/tempered+distribution"} tempered distribution
+              (def.
+              = succeed ")" do
+                %a.maruku-ref{:href => "#TemperedDistribution"}
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi u
+                      %mn 2
+                    %mo ∈
+                    %mi ℰ
+                    %mo ′
+                    %mo{:stretchy => "false"} (
+                    %msup
+                      %mi ℝ
+                      %mi n
+                    %mo{:stretchy => "false"} )
+                    %mo ↪
+                    %mi 𝒮
+                    %mo ′
+                    %mo{:stretchy => "false"} (
+                    %msup
+                      %mi ℝ
+                      %mi n
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"}
+                    u_2 \in \mathcal{E}'(\mathbb{R}^n) \hookrightarrow \mathcal{S}'(\mathbb{R}^n)
+            %p
+              be a
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/compactly+supported+distribution"} compactly supported distribution
+              %a.existingWikiWord{:href => "/nlab/show/tempered+distribution"} tempered distribution
+              via example
+              = succeed "." do
+                %a.maruku-ref{:href => "#CompactlySupportedDistibutionsAreTemperedDistributions"}
+            %p
+              Observe here that the
+              %a.existingWikiWord{:href => "/nlab/show/Paley-Wiener-Schwartz+theorem"} Paley-Wiener-Schwartz theorem
+              (prop.
+              = succeed ")" do
+                %a.maruku-ref{:href => "#PaleyWienerSchwartzTheorem"}
+              %a.existingWikiWord{:href => "/nlab/show/Fourier+transform+of+distributions"} Fourier transform of distributions
+              of
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi u
+                      %mn 1
+                  %annotation{:encoding => "application/x-tex"} u_1
+              is a
+              %a.existingWikiWord{:href => "/nlab/show/non-singular+distribution"} non-singular distribution
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mover
+                      %mrow
+                        %msub
+                          %mi u
+                          %mn 1
+                      %mo ^
+                    %mo ∈
+                    %msup
+                      %mi C
+                      %mn ∞
+                    %mo{:stretchy => "false"} (
+                    %msup
+                      %mi ℝ
+                      %mi n
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} \widehat{u_1} \in C^\infty(\mathbb{R}^n)
+              so that the product
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mover
+                      %mrow
+                        %msub
+                          %mi u
+                          %mn 1
+                      %mo ^
+                    %mo ⋅
+                    %mover
+                      %mrow
+                        %msub
+                          %mi u
+                          %mn 2
+                      %mo ^
+                  %annotation{:encoding => "application/x-tex"} \widehat{u_1} \cdot \widehat{u_2}
+              is always defined.
+            %p
+              Then the
+              %a.existingWikiWord{:href => "/nlab/show/Fourier+transform+of+distributions"} Fourier transform of distributions
+              of the
+              %a.existingWikiWord{:href => "/nlab/show/convolution+product+of+distributions"} convolution product of distributions
+              is the product of the
+              = succeed ":" do
+                %a.existingWikiWord{:href => "/nlab/show/Fourier+transform+of+distributions"} Fourier transform of distributions
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mover
+                      %mrow
+                        %msub
+                          %mi u
+                          %mn 1
+                        %mo ⋆
+                        %msub
+                          %mi u
+                          %mn 2
+                      %mo ^
+                    %mspace{:width => "thickmathspace"}
+                    %mo =
+                    %mspace{:width => "thickmathspace"}
+                    %mover
+                      %mrow
+                        %msub
+                          %mi u
+                          %mn 1
+                      %mo ^
+                    %mo ⋅
+                    %mover
+                      %mrow
+                        %msub
+                          %mi u
+                          %mn 2
+                      %mo ^
+                    %mspace{:width => "thinmathspace"}
+                    %mo .
+                  %annotation{:encoding => "application/x-tex"}
+                    \\widehat{u_1 \star u_2}
+                    \\;=\;
+                    \\widehat{u_1} \cdot \widehat{u_2}
+                    \\,.
+          %p
+            (e.g.
+            = succeed ")" do
+              %a{:href => "#Hoermander90"} Hörmander 90, theorem 7.1.15
+          #ProductOfDistributionsViaFourierTransformOfConvolution.num_remark
+            %h6#remark Remark
+            %p
+              %strong
+                (
+                %a.existingWikiWord{:href => "/nlab/show/product+of+distributions"} product of distributions
+                via
+                = succeed ")" do
+                  %a.existingWikiWord{:href => "/nlab/show/Fourier+transform+of+distributions"} Fourier transform of distributions
+            %p
+              Prop.
+              %a.maruku-ref{:href => "#FourierTransformOfDistributionsInterchangesConvolutionOfDistributionsWithPointwiseProduct"}
+              together with the
+              %a.existingWikiWord{:href => "/nlab/show/Fourier+inversion+theorem"} Fourier inversion theorem
+              (prop.
+              = succeed ")" do
+                %a.maruku-ref{:href => "#FourierInversionTheoremForDistributions"}
+              %em define
+              the
+              %a.existingWikiWord{:href => "/nlab/show/product+of+distributions"} product of distributions
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi u
+                      %mn 1
+                    %mo ⋅
+                    %msub
+                      %mi u
+                      %mn 2
+                  %annotation{:encoding => "application/x-tex"} u_1 \cdot u_2
+              for
+              %a.existingWikiWord{:href => "/nlab/show/compactly+supported+distributions"} compactly supported distributions
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi u
+                      %mn 1
+                    %mo ,
+                    %msub
+                      %mi u
+                      %mn 2
+                    %mo ∈
+                    %mi ℰ
+                    %mo ′
+                    %mo{:stretchy => "false"} (
+                    %msup
+                      %mi ℝ
+                      %mi n
+                    %mo{:stretchy => "false"} )
+                    %mo ↪
+                    %mi 𝒮
+                    %mo ′
+                    %mo{:stretchy => "false"} (
+                    %msup
+                      %mi ℝ
+                      %mi n
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} u_1, u_2 \in \mathcal{E}'(\mathbb{R}^n) \hookrightarrow \mathcal{S}'(\mathbb{R}^n)
+              by the formula
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mover
+                      %mrow
+                        %msub
+                          %mi u
+                          %mn 1
+                        %mo ⋅
+                        %msub
+                          %mi u
+                          %mn 2
+                      %mo ^
+                    %mspace{:width => "thickmathspace"}
+                    %mo ≔
+                    %mspace{:width => "thickmathspace"}
+                    %mo{:stretchy => "false"} (
+                    %mn 2
+                    %mi π
+                    %msup
+                      %mo{:stretchy => "false"} )
+                      %mi n
+                    %mover
+                      %mrow
+                        %msub
+                          %mi u
+                          %mn 1
+                      %mo ^
+                    %mo ⋆
+                    %mover
+                      %mrow
+                        %msub
+                          %mi u
+                          %mn 2
+                      %mo ^
+                  %annotation{:encoding => "application/x-tex"}
+                    \\widehat{ u_1 \cdot u_2 }
+                    \\;\coloneqq\;
+                    (2\pi)^n \widehat{u_1} \star \widehat{u_2}
+            %p
+              which would complete the generalization of of property
+              %a.maruku-eqref{:href => "#eq:FourierTransformInterchangesPointwiseProductWithConvolution"} (3)
+              from prop.
+              = succeed "." do
+                %a.maruku-ref{:href => "#BasicPropertiesOfFourierTransformOverCartesianSpaces"}
+            %p
+              For this to make sense, the
+              %a.existingWikiWord{:href => "/nlab/show/convolution+product"} convolution product
+              of the
+              %a.existingWikiWord{:href => "/nlab/show/smooth+functions"} smooth functions
+              on the right needs to exist, which is not guaranteed (prop.
+              %a.maruku-ref{:href => "#ConvolutionProductOnSchwartzSpace"}
+              does not apply here!). The condition that this exists is the
+              = succeed "-condition" do
+                %a.existingWikiWord{:href => "/nlab/show/Lars+H%C3%B6rmander"} Hörmander
+              %em
+                %a.existingWikiWord{:href => "/nlab/show/wave+front+set"} wave front set
+              of
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi u
+                      %mn 1
+                  %annotation{:encoding => "application/x-tex"} u_1
+              and
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msub
+                        %mi u
+                        %mn 2
+                    %annotation{:encoding => "application/x-tex"} u_2
+              %em
+                %a.existingWikiWord{:href => "/nlab/show/product+of+distributions"} product of distributions
+              for more.
+          %h2#related_concepts Related concepts
+          %ul
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/signal+processing"} signal processing
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/harmonic"}> harmonic
+                ,
+                %a.existingWikiWord{:href => "/nlab/show/fundamental+frequency"} fundamental frequency
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/superposition"} superposition
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Fourier+integral+operator"} Fourier integral operator
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Fourier+transform+of+distributions"} Fourier transform of distributions
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/discrete+Fourier+transforms"}> discrete Fourier transforms
+                ,
+                %a.existingWikiWord{:href => "/nlab/show/quantum+Fourier+transform"} quantum Fourier transform
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/pseudodifferential+operator"} pseudodifferential operator
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Poisson+summation+formula"} Poisson summation formula
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Laplace+transform"}> Laplace transform
+                ,
+                %a.existingWikiWord{:href => "/nlab/show/Fourier-Laplace+transforms"} Fourier-Laplace transforms
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Mellin+transform"} Mellin transform
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/wavefront+set"} wavefront set
+            %li
+              %p
+                %span.newWikiWord
+                  wavelet transform
+                  %a{:href => "/nlab/new/wavelet+transform"} ?
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Bochner%27s+theorem"} Bochner's theorem
+          %h2#references References
+          %p
+            Textbook account in
+            = succeed ":" do
+              %a.existingWikiWord{:href => "/nlab/show/mathematical+physics"} mathematical physics
+          %ul
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/Michael+Reed"}> Michael Reed
+              ,
+              = succeed ":" do
+                %a.existingWikiWord{:href => "/nlab/show/Barry+Simon"} Barry Simon
+              = succeed "," do
+                %em
+                  %a.existingWikiWord{:href => "/nlab/show/Methods+of+Modern+Mathematical+Physics"} Methods of Modern Mathematical Physics
+              %em Fourier Analysis, Self-Adjointness
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo{:stretchy => "false"} [
+                  %annotation{:encoding => "application/x-tex"} [
+              %a{:href => "https://www.elsevier.com/books/ii-fourier-analysis-self-adjointness/reed/978-0-08-092537-0"} ISBN:9780125850025
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo{:stretchy => "false"} ]
+                  %annotation{:encoding => "application/x-tex"} ]
+          %p Lecture notes:
+          %ul
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Howard+Georgi"}> Howard Georgi
+                ,
+                = succeed "," do
+                  %em The Physics of Waves
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mo{:stretchy => "false"} [
+                    %annotation{:encoding => "application/x-tex"} [
+                = succeed "," do
+                  %a{:href => "https://www.people.fas.harvard.edu/~hgeorgi/new.htm"} web
+                %a{:href => "https://www.people.fas.harvard.edu/~hgeorgi/onenew.pdf"} pdf
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mo{:stretchy => "false"} ]
+                    %annotation{:encoding => "application/x-tex"} ]
+            %li#Peacock13
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/John+Peacock"}> John Peacock
+                ,
+                %em Fourier analysis
+                2013 (
+                %a{:href => "http://www.roe.ac.uk/japwww/teaching/fourier/fourier_lectures_part1.pdf"}> part 1 pdf
+                ,
+                = succeed "," do
+                  %a{:href => "http://www.roe.ac.uk/japwww/teaching/fourier/fourier_lectures_part2.pdf"} part 2 pdf
+                = succeed "," do
+                  %a{:href => "http://www.roe.ac.uk/japwww/teaching/fourier/fourier_lectures_part3.pdf"} part 3 pdf
+                = succeed "," do
+                  %a{:href => "http://www.roe.ac.uk/japwww/teaching/fourier/fourier_lectures_part4.pdf"} part 4 pdf
+                = succeed ")" do
+                  %a{:href => "http://www.roe.ac.uk/japwww/teaching/fourier/fourier_lectures_part5.pdf"} part 5 pdf
+            %li
+              %p
+                Gerald B. Folland,
+                = succeed "," do
+                  %em A course in abstract harmonic analysis
+                %a{:href => "http://books.google.com/books?hl=en&lr=&id=0VwYZI1DypUC"} gBooks
+          %p
+            Discussion in the broader context of
+            %a.existingWikiWord{:href => "/nlab/show/functional+analysis"} functional analysis
+            and
+            %a.existingWikiWord{:href => "/nlab/show/distribution"} distribution
+            theory:
+          %ul
+            %li#Hoermander90
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Lars+H%C3%B6rmander"}> Lars Hörmander
+                , chapter 7 of
+                = succeed "," do
+                  %em The analysis of linear partial differential operators
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Sergiu+Klainerman"}> Sergiu Klainerman
+                , chapter 5 of of
+                = succeed "," do
+                  %em Lecture notes in analysis
+                = succeed ")" do
+                  %a{:href => "https://web.math.princeton.edu/~seri/homepage/courses/Analysis2011.pdf"} pdf
+          .property
+            category:
+            %a.category_link{:href => "/nlab/all_pages/analysis"} analysis
+        .revisedby
+          %p
+            Last revised on October 18, 2025 at 03:06:19.
+            See the
+            %a{:href => "/nlab/history/Fourier+transform", :style => "color: #005c19"} history
+            of this page for a list of all contributions to it.
+        .navigation.navfoot
+          %a#edit.navlink{:accesskey => "E", :href => "/nlab/edit/Fourier+transform", :rel => "nofollow"} Edit
+          %a{:href => "https://nforum.ncatlab.org/discussion/8122/#Item_3"} Discuss
+          %span.backintime
+            %a#to_previous_revision.navlinkbackintime{:accesskey => "B", :href => "/nlab/revision/Fourier+transform/41", :rel => "nofollow"} Previous revision
+          %a#see_changes.navlink{:accesskey => "C", :href => "/nlab/show/diff/Fourier+transform", :rel => "nofollow"} Changes from previous revision
+          %a#history.navlink{:accesskey => "S", :href => "/nlab/history/Fourier+transform", :rel => "nofollow"} History (41 revisions)
+          %a{:href => "/nlab/show/Fourier+transform/cite", :style => "color: black"} Cite
+          %a#view_print{:accesskey => "p", :href => "/nlab/print/Fourier+transform", :rel => "nofollow"} Print
+          %a#view_source{:href => "/nlab/source/Fourier+transform", :rel => "nofollow"} Source
+      / Content
+    / Container

@@ -1,0 +1,3823 @@
+!!! XML
+!!! 1.1
+%html{:xmlns => "http://www.w3.org/1999/xhtml"}
+  %head
+    %title
+      walking equivalence in nLab
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:content => "index,follow", :name => "robots"}/
+    %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/
+    %link{:href => "/stylesheets/instiki.css?1676280126", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/stylesheets/mathematics.css?1660229990", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/stylesheets/syntax.css?1660229990", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/stylesheets/nlab.css?1676280126", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css", :rel => "stylesheet", :type => "text/css"}/
+    :css
+      h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+        color: #226622;
+      }
+      a:visited.existingWikiWord {
+        color: #164416;
+      }
+    :css
+      <!--/*--><![CDATA[/*><!--*/
+          .toc ul {margin: 0; padding: 0;}
+      .toc ul ul {margin: 0; padding: 0 0 0 10px;}
+      .toc li > p {margin: 0}
+      .toc ul li {list-style-type: none; position: relative;}
+      .toc div {border-top:1px dotted #ccc;}
+      .rightHandSide h2 {font-size: 1.5em;color:#008B26}
+      table.plaintable {
+          border-collapse:collapse;
+          margin-left:30px;
+          border:0;
+      }
+      .plaintable td {border:1px solid #000; padding: 3px;}
+      .plaintable th {padding: 3px;}
+      .plaintable caption {
+          font-weight: bold;
+          font-size:1.1em;
+          text-align:center;
+          margin-left:30px;
+      }
+          
+         
+      /* Query boxes for questioning and answering mechanism */
+      div.query{
+      background: #f6fff3;
+      border: solid #ce9;
+      border-width: 2px 1px;
+      padding: 0 1em;
+      margin: 0 1em;
+      max-height: 20em;
+      overflow: auto;
+      }
+      
+      /* Standout boxes for putting important text */
+      div.standout{
+      background: #fff1f1;
+      border: solid black;
+      border-width: 2px 1px;
+      padding: 0 1em;
+      margin: 0 1em;
+      overflow: auto;
+      }
+      
+      /* Icon for links to n-category arXiv documents 
+       (commented out for now i.e. disabled)
+      a[href*="http://arxiv.org/"] {
+        background-image: url(../files/arXiv_icon.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 22px;
+        } */
+          
+      /* Icon for links to n-category cafe posts (disabled) 
+      a[href*="http://golem.ph.utexas.edu/category"] {
+        background-image: url(../files/n-cafe_5.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 25px;
+        } */
+      
+      /* Icon for links to pdf files (disabled)
+      a[href$=".pdf"] {
+        background-image: url(../files/pdficon_small.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 25px;
+        } */
+      
+      /* Icon for links to pages, etc. -inside- pdf files (disabled)
+      a[href*=".pdf#"] {
+        background-image: url(../files/pdf_entry.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 25px;
+        } */
+      
+      a.existingWikiWord {
+      color: #226622;
+      }
+      
+      a.existingWikiWord:visited {
+      color: #226622;
+      }
+      
+      
+      a.existingWikiWord[title] {
+      border: 0px;
+      color: #aa0505;
+      text-decoration: none;
+      }
+          
+      a.existingWikiWord[title]:visited {
+      border: 0px;
+      color: #551111;
+      text-decoration: none;
+      }
+      
+      a[href^="http://"] {
+      border: 0px;
+      color: #003399;
+      }
+      
+      a[href^="http://"]:visited {
+      border: 0px;
+      color: #330066;
+      }
+      
+      a[href^="https://"] {
+      border: 0px;
+      color: #003399;
+      }
+      
+      a[href^="https://"]:visited {
+      border: 0px;
+      color: #330066;
+      }
+      
+      div.dropDown .hide {
+      display: none;
+      }
+      
+      div.dropDown:hover .hide {
+      display:block;
+      }
+      
+      div.clickDown .hide {
+      display: none;
+      }
+      
+      div.clickDown:focus {
+      outline:none;
+      }
+      
+      div.clickDown:focus .hide, div.clickDown:hover .hide {
+      display: block;
+      }
+      
+      div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+      display:block;
+      }
+      
+      div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+      display:none;
+      }
+      
+      div.clickDown .clickToReveal:after {
+      content: "A(Hover to reveal, click to "hold")";
+      font-size: 60%;
+      }
+      
+      div.clickDown .clickToHide:after {
+      content: "A(Click to hide)";
+      font-size: 60%;
+      }
+      div.clickDown .clickToHide, div.clickDown .clickToReveal {
+      white-space: pre-wrap;
+      }
+      
+      .un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+      margin-left: 1em;
+      }
+      
+      span.theorem_label {
+      margin-left: -1em;
+      }
+      .proof span.theorem_label {
+      margin-left: 0em;
+      }
+      :target {
+          background-color: #BBBBBB;
+          border-radius: 5pt;
+      }
+      
+        /*]]>*/-->
+    %script{:src => "/javascripts/prototype.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/effects.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/dragdrop.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/controls.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/application.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/page_helper.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/thm_numbering.js?1660229990", :type => "text/javascript"}
+    %script{:type => "text/x-mathjax-config"}
+      :cdata
+        <!--//--><![CDATA[//><!--
+        MathJax.Ajax.config.path["Contrib"] = "/MathJax";
+        MathJax.Hub.Config({
+        MathML: { useMathMLspacing: true },
+        "HTML-CSS": { scale: 90,
+        extensions: ["handle-floats.js"]
+        }
+        });
+        MathJax.Hub.Queue( function () {
+        var fos = document.getElementsByTagName('foreignObject');
+        for (var i = 0; i < fos.length; i++) {
+        MathJax.Hub.Typeset(fos[i]);
+        }
+        });
+        \//--><!]]>
+    :javascript
+      <!--//--><![CDATA[//><!--
+      window.addEventListener("DOMContentLoaded", function () {
+        var div = document.createElement('div');
+        var math = document.createElementNS('http://www.w3.org/1998/Math/MathML', 'math');
+        document.body.appendChild(div);
+        div.appendChild(math);
+      // Test for MathML support comparable to WebKit version https://trac.webkit.org/changeset/203640 or higher.
+        div.setAttribute('style', 'font-style: italic');
+        var mathml_unsupported = !(window.getComputedStyle(div.firstChild).getPropertyValue('font-style') === 'normal');
+        div.parentNode.removeChild(div);
+        if (mathml_unsupported) {
+          // MathML does not seem to be supported...
+          var s = document.createElement('script');
+          s.src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=MML_HTMLorMML-full";
+          document.querySelector('head').appendChild(s);
+        } else {
+          document.head.insertAdjacentHTML("beforeend", '<style>svg[viewBox] {max-width: 100%}</style>');
+        }
+      });
+      //--><!]]>
+    %link{:href => "https://ncatlab.org/nlab/atom_with_headlines", :rel => "alternate", :title => "Atom with headlines", :type => "application/atom+xml"}/
+    %link{:href => "https://ncatlab.org/nlab/atom_with_content", :rel => "alternate", :title => "Atom with full content", :type => "application/atom+xml"}/
+    :javascript
+      document.observe("dom:loaded", function() {
+        generateThmNumbers();
+      });
+  %body
+    #Container
+      #Content
+        %h1#pageName
+          %span{:style => "float: left; margin: 0.5em 0.25em -0.25em 0"}
+            %svg{:height => "1.8em", :viewbox => "0 0 190 181", :width => "1.872em", :xmlns => "http://www.w3.org/2000/svg"}
+              %path{:d => "M72.8 145c-1.6 17.3-15.7 10-23.6 20.2-5.6 7.3 4.8 15 11.4 15 11.5-.2 19-13.4 26.4-20.3 3.3-3 8.2-4 11.2-7.2a14 14 0 0 0 2.9-11.1c-1.4-9.6-12.4-18.6-16.9-27.2-5-9.6-10.7-27.4-24.1-27.7-17.4-.3-.4 26 4.7 30.7 2.4 2.3 5.4 4.1 7.3 6.9 1.6 2.3 2.1 5.8-1 7.2-5.9 2.6-12.4-6.3-15.5-10-8.8-10.6-15.5-23-26.2-31.8-5.2-4.3-11.8-8-18-3.7-7.3 4.9-4.2 12.9.2 18.5a81 81 0 0 0 30.7 23c3.3 1.5 12.8 5.6 10 10.7-2.5 5.2-11.7 3-15.6 1.1-8.4-3.8-24.3-21.3-34.4-13.7-3.5 2.6-2.3 7.6-1.2 11.1 2.8 9 12.2 17.2 20.9 20.5 17.3 6.7 34.3-8 50.8-12.1z", :fill => "#226622"}
+              %path{:d => "M145.9 121.3c-.2-7.5 0-19.6-4.5-26-5.4-7.5-12.9-1-14.1 5.8-1.4 7.8 2.7 14.1 4.8 21.3 3.4 12 5.8 29-.8 40.1-3.6-6.7-5.2-13-7-20.4-2.1-8.2-12.8-13.2-15.1-1.9-2 9.7 9 21.2 12 30.1 1.2 4 2 8.8 6.4 10.3 6.9 2.3 13.3-4.7 17.7-8.8 12.2-11.5 36.6-20.7 43.4-36.4 6.7-15.7-13.7-14-21.3-7.2-9.1 8-11.9 20.5-23.6 25.1 7.5-23.7 31.8-37.6 38.4-61.4 2-7.3-.8-29.6-13-19.8-14.5 11.6-6.6 37.6-23.3 49.2z", :fill => "#a41e32"}
+              %path{:d => "M86.3 47.5c0-13-10.2-27.6-5.8-40.4 2.8-8.4 14.1-10.1 17-1 3.8 11.6-.3 26.3-1.8 38 11.7-.7 10.5-16 14.8-24.3 2.1-4.2 5.7-9.1 11-6.7 6 2.7 7.4 9.2 6.6 15.1-2.2 14-12.2 18.8-22.4 27-3.4 2.7-8 6.6-5.9 11.6 2 4.4 7 4.5 10.7 2.8 7.4-3.3 13.4-16.5 21.7-16 14.6.7 12 21.9.9 26.2-5 1.9-10.2 2.3-15.2 3.9-5.8 1.8-9.4 8.7-15.7 8.9-6.1.1-9-6.9-14.3-9-14.4-6-33.3-2-44.7-14.7-3.7-4.2-9.6-12-4.9-17.4 9.3-10.7 28 7.2 35.7 12 2 1.1 11 6.9 11.4 1.1.4-5.2-10-8.2-13.5-10-11.1-5.2-30-15.3-35-27.3-2.5-6 2.8-13.8 9.4-13.6 6.9.2 13.4 7 17.5 12C70.9 34 75 43.8 86.3 47.4z", :fill => "#193c78"}
+          %span.webName nLab
+          walking equivalence
+        .navigation
+          %span.skipNav
+            %a{:href => "#navEnd"} Skip the Navigation Links
+            |
+          %span{:style => "display:inline-block; width: 0.3em;"}
+          %a{:accesskey => "H", :href => "/nlab/show/HomePage", :title => "Home page"} Home Page
+          |
+          %a{:accesskey => "A", :href => "/nlab/all_pages", :title => "List of all pages"} All Pages
+          |
+          %a{:accesskey => "U", :href => "/nlab/latest_revisions", :title => "Latest edits and page creations"} Latest Revisions
+          |
+          %a{:href => "https://nforum.ncatlab.org/discussion/11496/#Item_18", :style => "color: black", :title => "Discuss this page in its dedicated thread on the nForum"} Discuss this page
+          |
+          %form#navigationSearchForm{"accept-charset" => "utf-8", :action => "/nlab/search", :method => "get"}
+            %fieldset.search
+              %input#searchField{:name => "query", :onblur => "this.value == '' ? this.value = 'Search' : true", :onfocus => "this.value == 'Search' ? this.value = '' : true", :style => "display:inline-block; float: left;", :type => "text", :value => "Search"}/
+          %span#navEnd
+        #revision
+          %meta{:content => "application/xhtml+xml;charset=utf-8", "http-equiv" => "Content-type"}/
+          %title Related concepts
+          %h1#section_table_of_contents Contents
+          .maruku_toc
+            %ul
+              %li
+                %a{:href => "#section_Idea"} Idea
+              %li
+                %a{:href => "#section_Definitions"} Definitions
+              %li
+                %a{:href => "#section_Representing_of_equivalences"} Representing of equivalences
+              %li
+                %a{:href => "#section_Structured_interval"} Structured interval
+              %li
+                %a{:href => "#related_concepts"} Related concepts
+              %li
+                %a{:href => "#section_References"} References
+          %p
+          %h2#section_Idea Idea
+          %p
+            The
+            %em walking equivalence
+            (as in “
+            %a.existingWikiWord{:href => "/nlab/show/walking+structure"}> walking structure
+            ”) or
+            %em free-standing equivalence
+            is the
+            %a.existingWikiWord{:href => "/nlab/show/2-category"} 2-category
+            (in fact a
+            = succeed ")" do
+              %a.existingWikiWord{:href => "/nlab/show/%282%2C1%29-category"} (2,1)-category
+            %a.existingWikiWord{:href => "/nlab/show/equivalence"} equivalences
+            in a 2-category. It is a
+            %a.existingWikiWord{:href => "/nlab/show/categorification"} categorification
+            of the
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/free-standing+isomorphism"} free-standing isomorphism
+            %a.existingWikiWord{:href => "/nlab/show/walking+adjoint+equivalence"} walking adjoint equivalence
+            is another.
+          %p
+            Roughly speaking, it is the minimal 2-category which contains a 1-arrow
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi f
+                %annotation{:encoding => "application/x-tex"} f
+            with an inverse-up-to-isomorphism
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi g
+                  %annotation{:encoding => "application/x-tex"} g
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi g
+                %annotation{:encoding => "application/x-tex"} g
+            a
+            %a.existingWikiWord{:href => "/nlab/show/2-isomorphism"} 2-isomorphism
+            between
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi g
+                  %mi f
+                %annotation{:encoding => "application/x-tex"} g f
+            and the identity, and a 2-isomorphism between
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi f
+                  %mi g
+                %annotation{:encoding => "application/x-tex"} f g
+            and the identity.
+          %p
+            The
+            %em walking semi-strict equivalence
+            is the same except that either
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi f
+                  %mi g
+                %annotation{:encoding => "application/x-tex"} f g
+            or
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi g
+                  %mi f
+                %annotation{:encoding => "application/x-tex"} g f
+            is required to be equal on the nose to the identity.
+          %p
+          %h2#section_Definitions Definitions
+          %p
+          #DefinitionFreeStandingEquivalence.num_defn
+            %h6 Definition
+            %p
+              Let
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi F
+                      %mrow
+                        %mo ≤
+                        %mn 1
+                  %annotation{:encoding => "application/x-tex"} F_{\leq 1}
+              be the
+              %a.existingWikiWord{:href => "/nlab/show/free+category"} free category
+              on the
+              %a.existingWikiWord{:href => "/nlab/show/directed+graph"} directed graph
+              with exactly two objects
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mn 0
+                  %annotation{:encoding => "application/x-tex"} 0
+              and
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mn 1
+                    %annotation{:encoding => "application/x-tex"} 1
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi i
+                      %mo :
+                      %mn 0
+                      %mo →
+                      %mn 1
+                    %annotation{:encoding => "application/x-tex"} i: 0 \rightarrow 1
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msup
+                        %mi i
+                        %mrow
+                          %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                          %mn 1
+                      %mo :
+                      %mn 1
+                      %mo →
+                      %mn 0
+                    %annotation{:encoding => "application/x-tex"} i^{-1}: 1 \rightarrow 0
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi F
+                  %annotation{:encoding => "application/x-tex"} F
+              be the free strict 2-category on the 2-truncated
+              %a.existingWikiWord{:href => "/nlab/show/reflexive+globular+set"} reflexive globular set
+              whose 1-truncation is the underlying reflexive directed graph of
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msub
+                        %mi F
+                        %mrow
+                          %mo ≤
+                          %mn 1
+                    %annotation{:encoding => "application/x-tex"} F_{\leq 1}
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msub
+                        %mi ι
+                        %mn 0
+                      %mo :
+                      %msup
+                        %mi i
+                        %mrow
+                          %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                          %mn 1
+                      %mo ∘
+                      %mi i
+                      %mo →
+                      %mi id
+                      %mo{:stretchy => "false"} (
+                      %mn 0
+                      %mo{:stretchy => "false"} )
+                    %annotation{:encoding => "application/x-tex"} \iota_{0}: i^{-1} \circ i \rightarrow id(0)
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msubsup
+                        %mi ι
+                        %mn 0
+                        %mrow
+                          %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                          %mn 1
+                      %mo :
+                      %mi id
+                      %mo{:stretchy => "false"} (
+                      %mn 0
+                      %mo{:stretchy => "false"} )
+                      %mo →
+                      %msup
+                        %mi i
+                        %mrow
+                          %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                          %mn 1
+                      %mo ∘
+                      %mi i
+                    %annotation{:encoding => "application/x-tex"} \iota_{0}^{-1}: id(0) \rightarrow i^{-1} \circ i
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msub
+                        %mi ι
+                        %mn 1
+                      %mo :
+                      %mi i
+                      %mo ∘
+                      %msup
+                        %mi i
+                        %mrow
+                          %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                          %mn 1
+                      %mo →
+                      %mi id
+                      %mo{:stretchy => "false"} (
+                      %mn 1
+                      %mo{:stretchy => "false"} )
+                    %annotation{:encoding => "application/x-tex"} \iota_{1}: i \circ i^{-1} \rightarrow id(1)
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msubsup
+                        %mi ι
+                        %mn 1
+                        %mrow
+                          %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                          %mn 1
+                      %mo :
+                      %mi i
+                      %mo ∘
+                      %msup
+                        %mi i
+                        %mrow
+                          %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                          %mn 1
+                      %mo →
+                      %mi id
+                      %mo{:stretchy => "false"} (
+                      %mn 1
+                      %mo{:stretchy => "false"} )
+                    %annotation{:encoding => "application/x-tex"} \iota_{1}^{-1}: i \circ i^{-1} \rightarrow id(1)
+            %p
+              The
+              %em free-standing equivalence
+              is the quotient
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi ℰ
+                  %annotation{:encoding => "application/x-tex"} \mathcal{E}
+              of
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi F
+                  %annotation{:encoding => "application/x-tex"} F
+              by the relation on 2-arrows generated by forcing the equations
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msubsup
+                        %mi ι
+                        %mn 0
+                        %mrow
+                          %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                          %mn 1
+                      %mo ∘
+                      %msub
+                        %mi ι
+                        %mn 0
+                      %mo =
+                      %mi id
+                    %annotation{:encoding => "application/x-tex"} \iota_{0}^{-1} \circ \iota_{0} = id
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msub
+                        %mi ι
+                        %mn 0
+                      %mo ∘
+                      %msubsup
+                        %mi ι
+                        %mn 0
+                        %mrow
+                          %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                          %mn 1
+                      %mo =
+                      %mi id
+                    %annotation{:encoding => "application/x-tex"} \iota_{0} \circ \iota_{0}^{-1} = id
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msubsup
+                        %mi ι
+                        %mn 1
+                        %mrow
+                          %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                          %mn 1
+                      %mo ∘
+                      %msub
+                        %mi ι
+                        %mn 1
+                      %mo =
+                      %mi id
+                    %annotation{:encoding => "application/x-tex"} \iota_{1}^{-1} \circ \iota_{1} = id
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi ι
+                      %mn 1
+                    %mo ∘
+                    %msubsup
+                      %mi ι
+                      %mn 1
+                      %mrow
+                        %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                        %mn 1
+                    %mo =
+                    %mi id
+                  %annotation{:encoding => "application/x-tex"} \iota_{1} \circ \iota_{1}^{-1} = id
+              to hold.
+          %p
+          .num_remark
+            %h6 Remark
+            %p
+              The
+              %a.existingWikiWord{:href => "/nlab/show/1-morphism"} arrow
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi i
+                    %mo :
+                    %mn 0
+                    %mo →
+                    %mn 1
+                  %annotation{:encoding => "application/x-tex"} i: 0 \rightarrow 1
+              is an
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/equivalence"} equivalence
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msup
+                        %mi i
+                        %mrow
+                          %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                          %mn 1
+                      %mo :
+                      %mn 1
+                      %mo →
+                      %mn 0
+                    %annotation{:encoding => "application/x-tex"} i^{-1}:1 \rightarrow 0
+          %p
+          .num_remark
+            %h6 Remark
+            %p
+              The
+              %a.existingWikiWord{:href => "/nlab/show/2-morphism"} 2-arrows
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi ι
+                      %mn 0
+                  %annotation{:encoding => "application/x-tex"} \iota_{0}
+              and
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi ι
+                      %mn 1
+                  %annotation{:encoding => "application/x-tex"} \iota_{1}
+              are
+              = succeed "." do
+                %a.existingWikiWord{:href => "/nlab/show/2-isomorphism"} 2-isomorphisms
+          %p
+          .num_remark
+            %h6 Remark
+            %p
+              The free-standing equivalence is a
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/%282%2C1%29-category"} (2,1)-category
+          %p
+          .num_defn
+            %h6 Definition
+            %p
+              Let
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi F
+                      %mrow
+                        %mo ≤
+                        %mn 1
+                  %annotation{:encoding => "application/x-tex"} F_{\leq 1}
+              be as in Definition
+              = succeed "." do
+                %a.maruku-ref{:href => "#DefinitionFreeStandingEquivalence"}
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi F
+                  %annotation{:encoding => "application/x-tex"} F
+              be the free strict 2-category on the 2-truncated
+              %a.existingWikiWord{:href => "/nlab/show/reflexive+globular+set"} reflexive globular set
+              whose 1-truncation is the underlying reflexive directed graph of
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msub
+                        %mi F
+                        %mrow
+                          %mo ≤
+                          %mn 1
+                    %annotation{:encoding => "application/x-tex"} F_{\leq 1}
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msub
+                        %mi ι
+                        %mn 1
+                      %mo :
+                      %mi i
+                      %mo ∘
+                      %msup
+                        %mi i
+                        %mrow
+                          %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                          %mn 1
+                      %mo →
+                      %mi id
+                      %mo{:stretchy => "false"} (
+                      %mn 1
+                      %mo{:stretchy => "false"} )
+                    %annotation{:encoding => "application/x-tex"} \iota_{1}: i \circ i^{-1} \rightarrow id(1)
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msubsup
+                        %mi ι
+                        %mn 1
+                        %mrow
+                          %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                          %mn 1
+                      %mo :
+                      %mi i
+                      %mo ∘
+                      %msup
+                        %mi i
+                        %mrow
+                          %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                          %mn 1
+                      %mo →
+                      %mi id
+                      %mo{:stretchy => "false"} (
+                      %mn 1
+                      %mo{:stretchy => "false"} )
+                    %annotation{:encoding => "application/x-tex"} \iota_{1}^{-1}: i \circ i^{-1} \rightarrow id(1)
+            %p
+              The
+              %em free-standing semi-strict equivalence
+              is the quotient
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi ℰ
+                      %mi semi
+                  %annotation{:encoding => "application/x-tex"} \mathcal{E}_{semi}
+              of
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi F
+                  %annotation{:encoding => "application/x-tex"} F
+              by the relation on 1-arrows which forces that
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msup
+                        %mi i
+                        %mrow
+                          %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                          %mn 1
+                      %mo ∘
+                      %mi i
+                      %mo =
+                      %mi id
+                      %mo{:stretchy => "false"} (
+                      %mn 0
+                      %mo{:stretchy => "false"} )
+                    %annotation{:encoding => "application/x-tex"} i^{-1} \circ i = id(0)
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msubsup
+                        %mi ι
+                        %mn 1
+                        %mrow
+                          %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                          %mn 1
+                      %mo ∘
+                      %msub
+                        %mi ι
+                        %mn 1
+                      %mo =
+                      %mi id
+                    %annotation{:encoding => "application/x-tex"} \iota_{1}^{-1} \circ \iota_{1} = id
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msub
+                        %mi ι
+                        %mn 1
+                      %mo ∘
+                      %msubsup
+                        %mi ι
+                        %mn 1
+                        %mrow
+                          %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                          %mn 1
+                      %mo =
+                      %mi id
+                    %annotation{:encoding => "application/x-tex"} \iota_{1} \circ \iota_{1}^{-1} = id
+              %br/
+          %p
+          .num_remark
+            %h6 Remark
+            %p
+              The free-standing semi-strict equivalence is the quotient of the free-standing equivalence by the relation on 1-arrows which identifies
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msup
+                      %mi i
+                      %mrow
+                        %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                        %mn 1
+                    %mo ∘
+                    %mi i
+                  %annotation{:encoding => "application/x-tex"} i^{-1} \circ i
+              and
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi id
+                      %mo{:stretchy => "false"} (
+                      %mn 0
+                      %mo{:stretchy => "false"} )
+                    %annotation{:encoding => "application/x-tex"} id(0)
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi ι
+                      %mn 0
+                  %annotation{:encoding => "application/x-tex"} \iota_{0}
+              and
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msup
+                      %mi ι
+                      %mrow
+                        %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                        %mn 1
+                  %annotation{:encoding => "application/x-tex"} \iota^{-1}
+              with
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi id
+                      %mrow
+                        %mo (
+                        %mi id
+                        %mo{:stretchy => "false"} (
+                        %mn 0
+                        %mo{:stretchy => "false"} )
+                        %mo )
+                    %annotation{:encoding => "application/x-tex"} id\left(id(0)\right)
+          %p
+          %h2#section_Representing_of_equivalences Representing of equivalences
+          %p
+            The 2-category
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi ℰ
+                %annotation{:encoding => "application/x-tex"} \mathcal{E}
+            is the model for all equivalences in all 2-categories. In other words, any equivalence in a 2-category
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi 𝒜
+                %annotation{:encoding => "application/x-tex"} \mathcal{A}
+            is just a
+            %a.existingWikiWord{:href => "/nlab/show/2-functor"} 2-functor
+            from
+            = succeed ":" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi ℰ
+                  %annotation{:encoding => "application/x-tex"} \mathcal{E}
+          %p
+          .num_prop
+            %h6 Proposition
+            %p
+              Let
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi 𝒜
+                  %annotation{:encoding => "application/x-tex"} \mathcal{A}
+              be a 2-category (weak or strict). Let
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi ℰ
+                  %annotation{:encoding => "application/x-tex"} \mathcal{E}
+              denote the free-standing equivalence. Let
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi f
+                  %annotation{:encoding => "application/x-tex"} f
+              be a 1-arrow of
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi 𝒜
+                  %annotation{:encoding => "application/x-tex"} \mathcal{A}
+              which is an
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/equivalence"} equivalence
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msup
+                        %mi f
+                        %mrow
+                          %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                          %mn 1
+                    %annotation{:encoding => "application/x-tex"} f^{-1}
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msub
+                        %mi ϕ
+                        %mn 0
+                      %mo :
+                      %msup
+                        %mi f
+                        %mrow
+                          %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                          %mn 1
+                      %mo ∘
+                      %mi f
+                      %mo →
+                      %mi id
+                    %annotation{:encoding => "application/x-tex"} \phi_{0}: f^{-1} \circ f \rightarrow id
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msub
+                        %mi ϕ
+                        %mn 1
+                      %mo :
+                      %mi f
+                      %mo ∘
+                      %msup
+                        %mi f
+                        %mrow
+                          %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                          %mn 1
+                      %mo →
+                      %mi id
+                    %annotation{:encoding => "application/x-tex"} \phi_{1}: f \circ f^{-1} \rightarrow id
+              %a.existingWikiWord{:href => "/nlab/show/2-functor"} 2-functor
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi F
+                    %mo :
+                    %mi ℰ
+                    %mo →
+                    %mi 𝒜
+                  %annotation{:encoding => "application/x-tex"} F: \mathcal{E} \rightarrow \mathcal{A}
+              such that the arrow
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi i
+                    %mo :
+                    %mn 0
+                    %mo →
+                    %mn 1
+                  %annotation{:encoding => "application/x-tex"} i:0 \rightarrow 1
+              of
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi ℐ
+                  %annotation{:encoding => "application/x-tex"} \mathcal{I}
+              maps under
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi F
+                  %annotation{:encoding => "application/x-tex"} F
+              to
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi f
+                    %annotation{:encoding => "application/x-tex"} f
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msup
+                      %mi i
+                      %mrow
+                        %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                        %mn 1
+                    %mo :
+                    %mn 1
+                    %mo →
+                    %mn 0
+                  %annotation{:encoding => "application/x-tex"} i^{-1}: 1 \rightarrow 0
+              of
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi ℐ
+                  %annotation{:encoding => "application/x-tex"} \mathcal{I}
+              maps under
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi F
+                  %annotation{:encoding => "application/x-tex"} F
+              to
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msup
+                        %mi f
+                        %mrow
+                          %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                          %mn 1
+                    %annotation{:encoding => "application/x-tex"} f^{-1}
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi ι
+                      %mn 0
+                  %annotation{:encoding => "application/x-tex"} \iota_{0}
+              maps under
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi F
+                  %annotation{:encoding => "application/x-tex"} F
+              to
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msub
+                        %mi ϕ
+                        %mn 0
+                    %annotation{:encoding => "application/x-tex"} \phi_{0}
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi ι
+                      %mn 1
+                  %annotation{:encoding => "application/x-tex"} \iota_{1}
+              maps under
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi F
+                  %annotation{:encoding => "application/x-tex"} F
+              to
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msub
+                        %mi ϕ
+                        %mn 1
+                    %annotation{:encoding => "application/x-tex"} \phi_{1}
+          %p
+          .proof
+            %h6 Proof
+            %p Immediate from the definitions.
+          %p
+          .num_prop
+            %h6 Proposition
+            %p
+              Let
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi 𝒜
+                  %annotation{:encoding => "application/x-tex"} \mathcal{A}
+              be a 2-category (weak or strict). Let
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi ℰ
+                      %mi semi
+                  %annotation{:encoding => "application/x-tex"} \mathcal{E}_{semi}
+              denote the free-standing semi-strict equivalence. Let
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi f
+                  %annotation{:encoding => "application/x-tex"} f
+              be a 1-arrow of
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi 𝒜
+                  %annotation{:encoding => "application/x-tex"} \mathcal{A}
+              which is a
+              = succeed "," do
+                %span.newWikiWord
+                  semi-strict equivalence
+                  %a{:href => "/nlab/new/semi-strict+equivalence"} ?
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msup
+                      %mi f
+                      %mrow
+                        %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                        %mn 1
+                  %annotation{:encoding => "application/x-tex"} f^{-1}
+              and a 2-isomorphism
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msub
+                        %mi ϕ
+                        %mn 1
+                      %mo :
+                      %mi f
+                      %mo ∘
+                      %msup
+                        %mi f
+                        %mrow
+                          %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                          %mn 1
+                      %mo →
+                      %mi id
+                    %annotation{:encoding => "application/x-tex"} \phi_{1}: f \circ f^{-1} \rightarrow id
+              %a.existingWikiWord{:href => "/nlab/show/2-functor"} 2-functor
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi F
+                    %mo :
+                    %msub
+                      %mi ℰ
+                      %mi semi
+                    %mo →
+                    %mi 𝒜
+                  %annotation{:encoding => "application/x-tex"} F: \mathcal{E}_{semi} \rightarrow \mathcal{A}
+              such that the arrow
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi i
+                    %mo :
+                    %mn 0
+                    %mo →
+                    %mn 1
+                  %annotation{:encoding => "application/x-tex"} i:0 \rightarrow 1
+              of
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi ℐ
+                  %annotation{:encoding => "application/x-tex"} \mathcal{I}
+              maps under
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi F
+                  %annotation{:encoding => "application/x-tex"} F
+              to
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi f
+                    %annotation{:encoding => "application/x-tex"} f
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi ι
+                      %mn 1
+                  %annotation{:encoding => "application/x-tex"} \iota_{1}
+              maps under
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi F
+                  %annotation{:encoding => "application/x-tex"} F
+              to
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi ϕ
+                    %annotation{:encoding => "application/x-tex"} \phi
+          %p
+          .proof
+            %h6 Proof
+            %p Immediate from the definitions.
+          %p
+          %h2#section_Structured_interval Structured interval
+          %p
+            Let
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msub
+                    %mi ℰ
+                    %mi semi
+                %annotation{:encoding => "application/x-tex"} \mathcal{E}_{semi}
+            denote the free-standing semi-strict equivalence. We shall view it as an
+            %a.existingWikiWord{:href => "/nlab/show/interval+object"} interval object
+            equipped with all the structures required for Corollary XV.6 and Corollary XV.7 of
+            = succeed "." do
+              %a{:href => "#Williamson2011"} Williamson2011
+          %p
+            Throughout, we shall denote the category of strict 2-categories by
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/2Cat"} 2Cat
+            %a.existingWikiWord{:href => "/nlab/show/2Cat"} 2Cat
+            by
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mn 1
+                  %annotation{:encoding => "application/x-tex"} 1
+          %p
+          .num_defn
+            %h6 Notation
+            %p
+              We denote by
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi i
+                      %mn 0
+                  %annotation{:encoding => "application/x-tex"} i_{0}
+              (resp.
+              = succeed ")" do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msub
+                        %mi i
+                        %mn 1
+                    %annotation{:encoding => "application/x-tex"} i_{1}
+              %a.existingWikiWord{:href => "/nlab/show/2-functor"} functor
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mn 1
+                    %mo →
+                    %msub
+                      %mi ℰ
+                      %mi semi
+                  %annotation{:encoding => "application/x-tex"} 1 \rightarrow \mathcal{E}_{semi}
+              which picks out the object
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mn 0
+                  %annotation{:encoding => "application/x-tex"} 0
+              (resp.
+              = succeed ")" do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mn 1
+                    %annotation{:encoding => "application/x-tex"} 1
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msub
+                        %mi ℰ
+                        %mi semi
+                    %annotation{:encoding => "application/x-tex"} \mathcal{E}_{semi}
+          %p
+          #NotationContractionStructure.num_defn
+            %h6 Notation
+            %p
+              We denote by
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi p
+                  %annotation{:encoding => "application/x-tex"} p
+              the canonical functor
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msub
+                        %mi ℰ
+                        %mi semi
+                      %mo →
+                      %mn 1
+                    %annotation{:encoding => "application/x-tex"} \mathcal{E}_{semi} \rightarrow 1
+              %em contraction structure
+              on
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mrow
+                      %mo (
+                      %msub
+                        %mi ℰ
+                        %mi semi
+                      %mo ,
+                      %msub
+                        %mi i
+                        %mn 0
+                      %mo ,
+                      %msub
+                        %mi i
+                        %mn 1
+                      %mo )
+                  %annotation{:encoding => "application/x-tex"} \left(\mathcal{E}_{semi}, i_{0}, i_{1} \right)
+              in the sense of VI.6 of
+              = succeed "." do
+                %a{:href => "#Williamson2011"} Williamson2011
+          %p
+          .num_defn
+            %h6 Notation
+            %p
+              We denote by
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi v
+                  %annotation{:encoding => "application/x-tex"} v
+              the functor
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi ℰ
+                      %mi semi
+                    %mo →
+                    %msub
+                      %mi ℰ
+                      %mi semi
+                  %annotation{:encoding => "application/x-tex"} \mathcal{E}_{semi} \rightarrow \mathcal{E}_{semi}
+              determined by
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi i
+                      %mo ↦
+                      %msup
+                        %mi i
+                        %mrow
+                          %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                          %mn 1
+                    %annotation{:encoding => "application/x-tex"} i \mapsto i^{-1}
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msup
+                        %mi i
+                        %mrow
+                          %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                          %mn 1
+                      %mo ↦
+                      %mi i
+                    %annotation{:encoding => "application/x-tex"} i^{-1} \mapsto i
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msub
+                        %mi ι
+                        %mn 1
+                      %mo ,
+                      %msubsup
+                        %mi ι
+                        %mn 1
+                        %mrow
+                          %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                          %mn 1
+                      %mo ↦
+                      %mi id
+                      %mrow
+                        %mo (
+                        %mi id
+                        %mo{:stretchy => "false"} (
+                        %mn 0
+                        %mo{:stretchy => "false"} )
+                        %mo )
+                    %annotation{:encoding => "application/x-tex"} \iota_{1}, \iota_{1}^{-1} \mapsto id\left(id(0)\right)
+              %em involution structure
+              on
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mrow
+                      %mo (
+                      %msub
+                        %mi ℰ
+                        %mi semi
+                      %mo ,
+                      %msub
+                        %mi i
+                        %mn 0
+                      %mo ,
+                      %msub
+                        %mi i
+                        %mn 1
+                      %mo )
+                  %annotation{:encoding => "application/x-tex"} \left(\mathcal{E}_{semi}, i_{0}, i_{1} \right)
+              in the sense of VI.10 of
+              = succeed "." do
+                %a{:href => "#Williamson2011"} Williamson2011
+            %p
+              Since
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mn 1
+                  %annotation{:encoding => "application/x-tex"} 1
+              is a final object of
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/2Cat"} 2Cat
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi v
+                  %annotation{:encoding => "application/x-tex"} v
+              is compatible with the contraction structure
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi p
+                  %annotation{:encoding => "application/x-tex"} p
+              of Notation
+              %a.maruku-ref{:href => "#NotationContractionStructure"}
+              in the sense of VI.12 of
+              = succeed "." do
+                %a{:href => "Williamson2011"} Williamson2011
+          %p
+          .num_defn
+            %h6 Notation
+            %p Let
+            %svg{:height => "92.642", :viewbox => "0 0 144.49 92.642", :width => "144.49", :xmlns => "http://www.w3.org/2000/svg", "xmlns:xlink" => "http://www.w3.org/1999/xlink"}
+              %defs
+                %g
+                  %g{:id => "O6A-O43i_PgkhCiQ-hb-gv_BNsE=-glyph-0-0"}
+                  %g{:id => "O6A-O43i_PgkhCiQ-hb-gv_BNsE=-glyph-0-1"}
+                    %path{:d => "M 4.296875 -9.578125 C 4.296875 -9.921875 4.296875 -9.9375 4 -9.9375 C 3.640625 -9.53125 2.890625 -8.984375 1.359375 -8.984375 L 1.359375 -8.546875 C 1.703125 -8.546875 2.453125 -8.546875 3.265625 -8.9375 L 3.265625 -1.15625 C 3.265625 -0.609375 3.21875 -0.4375 1.90625 -0.4375 L 1.453125 -0.4375 L 1.453125 0 C 1.859375 -0.03125 3.296875 -0.03125 3.796875 -0.03125 C 4.28125 -0.03125 5.71875 -0.03125 6.125 0 L 6.125 -0.4375 L 5.65625 -0.4375 C 4.34375 -0.4375 4.296875 -0.609375 4.296875 -1.15625 Z M 4.296875 -9.578125 "}
+                  %g{:id => "O6A-O43i_PgkhCiQ-hb-gv_BNsE=-glyph-1-0"}
+                  %g{:id => "O6A-O43i_PgkhCiQ-hb-gv_BNsE=-glyph-1-1"}
+                    %path{:d => "M 3.5625 -5.421875 C 0.578125 -3.8125 0.421875 -1.875 0.421875 -1.53125 C 0.421875 -0.390625 1.53125 0.328125 2.9375 0.328125 C 5.4375 0.328125 7.4375 -2.03125 7.4375 -2.34375 C 7.4375 -2.4375 7.359375 -2.453125 7.296875 -2.453125 C 7.109375 -2.453125 6.546875 -2.25 6.203125 -1.796875 C 5.890625 -1.359375 5.265625 -0.5 3.921875 -0.5 C 2.875 -0.5 1.6875 -1.046875 1.6875 -2.171875 C 1.6875 -2.890625 2.53125 -5.109375 4.890625 -5.203125 C 5.59375 -5.234375 6.109375 -5.75 6.109375 -5.921875 C 6.109375 -6 6.03125 -6.015625 5.953125 -6.015625 C 3.859375 -6.109375 3.4375 -7.140625 3.4375 -7.734375 C 3.4375 -8.078125 3.65625 -9.703125 5.75 -9.703125 C 6.03125 -9.703125 7.171875 -9.671875 7.171875 -8.890625 C 7.171875 -8.65625 7.046875 -8.4375 6.984375 -8.34375 C 6.953125 -8.3125 6.921875 -8.234375 6.921875 -8.1875 C 6.921875 -8.078125 7.015625 -8.078125 7.0625 -8.078125 C 7.515625 -8.078125 8.4375 -8.65625 8.4375 -9.515625 C 8.4375 -10.390625 7.40625 -10.53125 6.734375 -10.53125 C 4.703125 -10.53125 2.171875 -8.921875 2.171875 -7.09375 C 2.171875 -6.21875 2.84375 -5.671875 3.5625 -5.421875 Z M 3.5625 -5.421875 "}
+                  %g{:id => "O6A-O43i_PgkhCiQ-hb-gv_BNsE=-glyph-2-0"}
+                  %g{:id => "O6A-O43i_PgkhCiQ-hb-gv_BNsE=-glyph-2-1"}
+                    %path{:d => "M 4.015625 -3.75 C 3.78125 -3.703125 3.578125 -3.53125 3.578125 -3.28125 C 3.578125 -3.09375 3.703125 -2.96875 3.921875 -2.96875 C 4.0625 -2.96875 4.375 -3.078125 4.375 -3.53125 C 4.375 -4.140625 3.734375 -4.390625 3.109375 -4.390625 C 1.78125 -4.390625 1.359375 -3.453125 1.359375 -2.9375 C 1.359375 -2.84375 1.359375 -2.484375 1.71875 -2.203125 C 1.953125 -2.03125 2.125 -2 2.640625 -1.890625 C 2.984375 -1.828125 3.5625 -1.71875 3.5625 -1.203125 C 3.5625 -0.953125 3.375 -0.625 3.09375 -0.421875 C 2.71875 -0.1875 2.234375 -0.171875 2.078125 -0.171875 C 1.828125 -0.171875 1.15625 -0.21875 0.90625 -0.625 C 1.421875 -0.640625 1.484375 -1.046875 1.484375 -1.171875 C 1.484375 -1.46875 1.21875 -1.53125 1.09375 -1.53125 C 0.9375 -1.53125 0.53125 -1.421875 0.53125 -0.875 C 0.53125 -0.28125 1.140625 0.09375 2.078125 0.09375 C 3.8125 0.09375 4.171875 -1.125 4.171875 -1.546875 C 4.171875 -2.4375 3.203125 -2.625 2.828125 -2.703125 C 2.359375 -2.796875 1.96875 -2.859375 1.96875 -3.28125 C 1.96875 -3.453125 2.140625 -4.109375 3.09375 -4.109375 C 3.484375 -4.109375 3.875 -4 4.015625 -3.75 Z M 4.015625 -3.75 "}
+                  %g{:id => "O6A-O43i_PgkhCiQ-hb-gv_BNsE=-glyph-2-2"}
+                    %path{:d => "M 2 -2.265625 C 2.21875 -2.265625 2.96875 -2.28125 3.5 -2.46875 C 4.359375 -2.765625 4.390625 -3.375 4.390625 -3.515625 C 4.390625 -4.078125 3.875 -4.390625 3.21875 -4.390625 C 2.09375 -4.390625 0.484375 -3.515625 0.484375 -1.75 C 0.484375 -0.734375 1.109375 0.09375 2.203125 0.09375 C 3.765625 0.09375 4.59375 -0.890625 4.59375 -1.03125 C 4.59375 -1.125 4.5 -1.203125 4.4375 -1.203125 C 4.375 -1.203125 4.34375 -1.171875 4.296875 -1.109375 C 3.515625 -0.171875 2.390625 -0.171875 2.21875 -0.171875 C 1.5 -0.171875 1.28125 -0.796875 1.28125 -1.359375 C 1.28125 -1.65625 1.359375 -2.109375 1.40625 -2.265625 Z M 1.484375 -2.546875 C 1.796875 -3.765625 2.71875 -4.109375 3.21875 -4.109375 C 3.625 -4.109375 4 -3.921875 4 -3.515625 C 4 -2.546875 2.359375 -2.546875 1.9375 -2.546875 Z M 1.484375 -2.546875 "}
+                  %g{:id => "O6A-O43i_PgkhCiQ-hb-gv_BNsE=-glyph-2-3"}
+                    %path{:d => "M 2 -1.640625 C 2.03125 -1.78125 2.125 -2.15625 2.15625 -2.3125 C 2.1875 -2.40625 2.25 -2.65625 2.265625 -2.75 C 2.28125 -2.796875 2.609375 -3.453125 3.046875 -3.78125 C 3.390625 -4.03125 3.71875 -4.109375 4 -4.109375 C 4.359375 -4.109375 4.5625 -3.890625 4.5625 -3.4375 C 4.5625 -3.203125 4.5 -2.96875 4.390625 -2.515625 C 4.328125 -2.265625 4.15625 -1.59375 4.09375 -1.328125 L 3.953125 -0.734375 C 3.890625 -0.5625 3.828125 -0.265625 3.828125 -0.203125 C 3.828125 0.015625 4.015625 0.09375 4.140625 0.09375 C 4.328125 0.09375 4.46875 -0.015625 4.546875 -0.140625 C 4.578125 -0.203125 4.65625 -0.53125 4.703125 -0.75 L 4.9375 -1.640625 C 4.96875 -1.78125 5.0625 -2.15625 5.09375 -2.3125 C 5.234375 -2.84375 5.234375 -2.859375 5.46875 -3.1875 C 5.796875 -3.671875 6.265625 -4.109375 6.921875 -4.109375 C 7.28125 -4.109375 7.5 -3.90625 7.5 -3.4375 C 7.5 -2.890625 7.078125 -1.75 6.890625 -1.265625 C 6.78125 -1 6.765625 -0.9375 6.765625 -0.75 C 6.765625 -0.171875 7.234375 0.09375 7.65625 0.09375 C 8.640625 0.09375 9.046875 -1.296875 9.046875 -1.421875 C 9.046875 -1.53125 8.96875 -1.5625 8.890625 -1.5625 C 8.765625 -1.5625 8.75 -1.484375 8.71875 -1.390625 C 8.484375 -0.5625 8.0625 -0.171875 7.6875 -0.171875 C 7.53125 -0.171875 7.453125 -0.28125 7.453125 -0.515625 C 7.453125 -0.734375 7.53125 -0.953125 7.625 -1.203125 C 7.78125 -1.578125 8.21875 -2.734375 8.21875 -3.296875 C 8.21875 -4.03125 7.703125 -4.390625 6.984375 -4.390625 C 6.296875 -4.390625 5.71875 -4.03125 5.28125 -3.421875 C 5.1875 -4.21875 4.5625 -4.390625 4.03125 -4.390625 C 3.578125 -4.390625 2.96875 -4.234375 2.421875 -3.515625 C 2.359375 -4.109375 1.875 -4.390625 1.40625 -4.390625 C 1.0625 -4.390625 0.8125 -4.1875 0.640625 -3.84375 C 0.40625 -3.375 0.296875 -2.890625 0.296875 -2.875 C 0.296875 -2.78125 0.375 -2.734375 0.453125 -2.734375 C 0.578125 -2.734375 0.59375 -2.78125 0.65625 -3.046875 C 0.78125 -3.53125 0.953125 -4.109375 1.375 -4.109375 C 1.640625 -4.109375 1.6875 -3.875 1.6875 -3.65625 C 1.6875 -3.46875 1.640625 -3.28125 1.5625 -2.953125 C 1.546875 -2.875 1.390625 -2.28125 1.359375 -2.140625 L 0.984375 -0.640625 C 0.953125 -0.5 0.890625 -0.25 0.890625 -0.203125 C 0.890625 0.015625 1.078125 0.09375 1.203125 0.09375 C 1.390625 0.09375 1.53125 -0.015625 1.609375 -0.140625 C 1.640625 -0.203125 1.71875 -0.53125 1.765625 -0.75 Z M 2 -1.640625 "}
+                  %g{:id => "O6A-O43i_PgkhCiQ-hb-gv_BNsE=-glyph-2-4"}
+                    %path{:d => "M 2.96875 -6.21875 C 2.96875 -6.4375 2.8125 -6.59375 2.578125 -6.59375 C 2.328125 -6.59375 2.03125 -6.359375 2.03125 -6.0625 C 2.03125 -5.84375 2.1875 -5.6875 2.421875 -5.6875 C 2.6875 -5.6875 2.96875 -5.921875 2.96875 -6.21875 Z M 1.515625 -2.5625 L 0.984375 -1.1875 C 0.921875 -1.03125 0.875 -0.921875 0.875 -0.75 C 0.875 -0.265625 1.25 0.09375 1.78125 0.09375 C 2.75 0.09375 3.15625 -1.296875 3.15625 -1.421875 C 3.15625 -1.53125 3.078125 -1.5625 3.015625 -1.5625 C 2.890625 -1.5625 2.875 -1.484375 2.84375 -1.390625 C 2.609375 -0.59375 2.203125 -0.171875 1.796875 -0.171875 C 1.6875 -0.171875 1.5625 -0.234375 1.5625 -0.5 C 1.5625 -0.734375 1.640625 -0.921875 1.765625 -1.21875 C 1.859375 -1.5 1.96875 -1.765625 2.078125 -2.03125 L 2.375 -2.84375 C 2.46875 -3.078125 2.59375 -3.375 2.59375 -3.546875 C 2.59375 -4.046875 2.1875 -4.390625 1.6875 -4.390625 C 0.71875 -4.390625 0.296875 -3 0.296875 -2.875 C 0.296875 -2.78125 0.375 -2.734375 0.453125 -2.734375 C 0.578125 -2.734375 0.59375 -2.796875 0.625 -2.90625 C 0.890625 -3.84375 1.359375 -4.109375 1.65625 -4.109375 C 1.796875 -4.109375 1.890625 -4.0625 1.890625 -3.78125 C 1.890625 -3.6875 1.890625 -3.546875 1.78125 -3.25 Z M 1.515625 -2.5625 "}
+                  %g{:id => "O6A-O43i_PgkhCiQ-hb-gv_BNsE=-glyph-2-5"}
+                    %path{:d => "M 1.921875 -1.375 C 2.03125 -1.796875 2.140625 -2.234375 2.25 -2.671875 C 2.25 -2.6875 2.328125 -2.984375 2.328125 -3.03125 C 2.359375 -3.125 2.609375 -3.53125 2.875 -3.78125 C 3.1875 -4.0625 3.53125 -4.109375 3.703125 -4.109375 C 3.8125 -4.109375 4 -4.109375 4.140625 -3.984375 C 3.703125 -3.890625 3.65625 -3.53125 3.65625 -3.4375 C 3.65625 -3.21875 3.8125 -3.078125 4.03125 -3.078125 C 4.3125 -3.078125 4.609375 -3.296875 4.609375 -3.6875 C 4.609375 -4.046875 4.296875 -4.390625 3.734375 -4.390625 C 3.046875 -4.390625 2.59375 -3.953125 2.375 -3.671875 C 2.1875 -4.390625 1.5 -4.390625 1.40625 -4.390625 C 1.046875 -4.390625 0.796875 -4.171875 0.640625 -3.859375 C 0.40625 -3.40625 0.296875 -2.90625 0.296875 -2.875 C 0.296875 -2.78125 0.375 -2.734375 0.453125 -2.734375 C 0.578125 -2.734375 0.59375 -2.78125 0.65625 -3.046875 C 0.78125 -3.53125 0.953125 -4.109375 1.375 -4.109375 C 1.640625 -4.109375 1.6875 -3.875 1.6875 -3.65625 C 1.6875 -3.46875 1.640625 -3.28125 1.5625 -2.953125 C 1.546875 -2.875 1.390625 -2.28125 1.359375 -2.140625 L 0.984375 -0.640625 C 0.953125 -0.5 0.890625 -0.25 0.890625 -0.203125 C 0.890625 0.015625 1.078125 0.09375 1.203125 0.09375 C 1.5625 0.09375 1.625 -0.171875 1.703125 -0.515625 Z M 1.921875 -1.375 "}
+                  %g{:id => "O6A-O43i_PgkhCiQ-hb-gv_BNsE=-glyph-3-0"}
+                  %g{:id => "O6A-O43i_PgkhCiQ-hb-gv_BNsE=-glyph-3-1"}
+                    %path{:d => "M 9.484375 -10.375 C 9.484375 -10.515625 9.375 -10.515625 9.34375 -10.515625 C 9.296875 -10.515625 9.28125 -10.5 9.09375 -10.28125 C 9 -10.171875 8.390625 -9.390625 8.375 -9.375 C 7.890625 -10.359375 6.90625 -10.515625 6.28125 -10.515625 C 4.375 -10.515625 2.65625 -8.78125 2.65625 -7.09375 C 2.65625 -5.96875 3.328125 -5.3125 4.0625 -5.0625 C 4.234375 -5 5.109375 -4.765625 5.5625 -4.65625 C 6.3125 -4.453125 6.515625 -4.390625 6.828125 -4.0625 C 6.890625 -3.984375 7.1875 -3.640625 7.1875 -2.9375 C 7.1875 -1.546875 5.90625 -0.125 4.40625 -0.125 C 3.1875 -0.125 1.828125 -0.640625 1.828125 -2.3125 C 1.828125 -2.59375 1.875 -2.953125 1.921875 -3.109375 C 1.921875 -3.15625 1.9375 -3.21875 1.9375 -3.25 C 1.9375 -3.3125 1.90625 -3.390625 1.796875 -3.390625 C 1.65625 -3.390625 1.640625 -3.359375 1.578125 -3.109375 L 0.828125 -0.046875 C 0.828125 -0.03125 0.765625 0.171875 0.765625 0.171875 C 0.765625 0.3125 0.875 0.3125 0.90625 0.3125 C 0.96875 0.3125 0.984375 0.296875 1.171875 0.078125 L 1.859375 -0.828125 C 2.203125 -0.28125 2.984375 0.3125 4.375 0.3125 C 6.296875 0.3125 8.0625 -1.546875 8.0625 -3.421875 C 8.0625 -4.046875 7.921875 -4.59375 7.34375 -5.15625 C 7.03125 -5.46875 6.765625 -5.546875 5.390625 -5.90625 C 4.390625 -6.171875 4.25 -6.21875 3.984375 -6.453125 C 3.734375 -6.703125 3.546875 -7.0625 3.546875 -7.578125 C 3.546875 -8.828125 4.8125 -10.109375 6.234375 -10.109375 C 7.6875 -10.109375 8.375 -9.21875 8.375 -7.796875 C 8.375 -7.40625 8.3125 -7 8.3125 -6.953125 C 8.3125 -6.8125 8.421875 -6.8125 8.46875 -6.8125 C 8.609375 -6.8125 8.625 -6.859375 8.671875 -7.09375 Z M 9.484375 -10.375 "}
+                  %g{:id => "O6A-O43i_PgkhCiQ-hb-gv_BNsE=-glyph-4-0"}
+                  %g{:id => "O6A-O43i_PgkhCiQ-hb-gv_BNsE=-glyph-4-1"}
+                    %path{:d => "M 4.109375 -2.375 C 4.109375 -2.921875 4.109375 -4.96875 2.28125 -4.96875 C 0.453125 -4.96875 0.453125 -2.921875 0.453125 -2.375 C 0.453125 -1.84375 0.453125 0.15625 2.28125 0.15625 C 4.109375 0.15625 4.109375 -1.84375 4.109375 -2.375 Z M 2.28125 -0.078125 C 1.96875 -0.078125 1.453125 -0.234375 1.28125 -0.84375 C 1.15625 -1.28125 1.15625 -2.015625 1.15625 -2.484375 C 1.15625 -2.984375 1.15625 -3.5625 1.265625 -3.953125 C 1.453125 -4.625 2.015625 -4.734375 2.28125 -4.734375 C 2.625 -4.734375 3.109375 -4.5625 3.28125 -4 C 3.390625 -3.59375 3.390625 -3.0625 3.390625 -2.484375 C 3.390625 -2 3.390625 -1.25 3.265625 -0.828125 C 3.0625 -0.171875 2.53125 -0.078125 2.28125 -0.078125 Z M 2.28125 -0.078125 "}
+                  %g{:id => "O6A-O43i_PgkhCiQ-hb-gv_BNsE=-glyph-4-2"}
+                    %path{:d => "M 2.6875 -4.75 C 2.6875 -4.96875 2.65625 -4.96875 2.421875 -4.96875 C 1.9375 -4.484375 1.171875 -4.484375 0.90625 -4.484375 L 0.90625 -4.203125 C 1.09375 -4.203125 1.59375 -4.203125 2.03125 -4.40625 L 2.03125 -0.640625 C 2.03125 -0.390625 2.03125 -0.296875 1.265625 -0.296875 L 0.953125 -0.296875 L 0.953125 0 C 1.359375 -0.03125 1.9375 -0.03125 2.359375 -0.03125 C 2.78125 -0.03125 3.359375 -0.03125 3.765625 0 L 3.765625 -0.296875 L 3.453125 -0.296875 C 2.6875 -0.296875 2.6875 -0.390625 2.6875 -0.640625 Z M 2.6875 -4.75 "}
+              %g{:fill => "rgb(0%, 0%, 0%)", "fill-opacity" => "1"}
+                %use{:x => "18.417", "xlink:href" => "#O6A-O43i_PgkhCiQ-hb-gv_BNsE=-glyph-0-1", :y => "18.439"}
+              %g{:fill => "rgb(0%, 0%, 0%)", "fill-opacity" => "1"}
+                %use{:x => "106.774", "xlink:href" => "#O6A-O43i_PgkhCiQ-hb-gv_BNsE=-glyph-1-1", :y => "18.439"}
+              %g{:fill => "rgb(0%, 0%, 0%)", "fill-opacity" => "1"}
+                %use{:x => "114.66025", "xlink:href" => "#O6A-O43i_PgkhCiQ-hb-gv_BNsE=-glyph-2-1", :y => "20.68025"}
+                %use{:x => "119.554888", "xlink:href" => "#O6A-O43i_PgkhCiQ-hb-gv_BNsE=-glyph-2-2", :y => "20.68025"}
+                %use{:x => "124.465466", "xlink:href" => "#O6A-O43i_PgkhCiQ-hb-gv_BNsE=-glyph-2-3", :y => "20.68025"}
+                %use{:x => "133.82834", "xlink:href" => "#O6A-O43i_PgkhCiQ-hb-gv_BNsE=-glyph-2-4", :y => "20.68025"}
+              %g{:fill => "rgb(0%, 0%, 0%)", "fill-opacity" => "1"}
+                %use{:x => "6.434", "xlink:href" => "#O6A-O43i_PgkhCiQ-hb-gv_BNsE=-glyph-1-1", :y => "83.972"}
+              %g{:fill => "rgb(0%, 0%, 0%)", "fill-opacity" => "1"}
+                %use{:x => "14.3215", "xlink:href" => "#O6A-O43i_PgkhCiQ-hb-gv_BNsE=-glyph-2-1", :y => "86.21325"}
+                %use{:x => "19.216138", "xlink:href" => "#O6A-O43i_PgkhCiQ-hb-gv_BNsE=-glyph-2-2", :y => "86.21325"}
+                %use{:x => "24.126716", "xlink:href" => "#O6A-O43i_PgkhCiQ-hb-gv_BNsE=-glyph-2-3", :y => "86.21325"}
+                %use{:x => "33.489591", "xlink:href" => "#O6A-O43i_PgkhCiQ-hb-gv_BNsE=-glyph-2-4", :y => "86.21325"}
+              %g{:fill => "rgb(0%, 0%, 0%)", "fill-opacity" => "1"}
+                %use{:x => "117.48", "xlink:href" => "#O6A-O43i_PgkhCiQ-hb-gv_BNsE=-glyph-3-1", :y => "83.972"}
+              %path{:d => "M -39.827031 32.516875 L 27.368281 32.516875 ", :fill => "none", :stroke => "rgb(0%, 0%, 0%)", "stroke-linecap" => "butt", "stroke-linejoin" => "miter", "stroke-miterlimit" => "10", "stroke-opacity" => "1", "stroke-width" => "0.47818", :transform => "matrix(1, 0, 0, -1, 72.245, 47.22)"}
+              %path{:d => "M -2.488269 2.870099 C -2.031238 1.147442 -1.019519 0.334942 0.0000125 -0.000995 C -1.019519 -0.333026 -2.031238 -1.149433 -2.488269 -2.868183 ", :fill => "none", :stroke => "rgb(0%, 0%, 0%)", "stroke-linecap" => "round", "stroke-linejoin" => "round", "stroke-miterlimit" => "10", "stroke-opacity" => "1", "stroke-width" => "0.47818", :transform => "matrix(1, 0, 0, -1, 99.85155, 14.70213)"}
+              %g{:fill => "rgb(0%, 0%, 0%)", "fill-opacity" => "1"}
+                %use{:x => "61.857", "xlink:href" => "#O6A-O43i_PgkhCiQ-hb-gv_BNsE=-glyph-2-4", :y => "9.803"}
+              %g{:fill => "rgb(0%, 0%, 0%)", "fill-opacity" => "1"}
+                %use{:x => "65.46075", "xlink:href" => "#O6A-O43i_PgkhCiQ-hb-gv_BNsE=-glyph-4-1", :y => "11.18675"}
+              %path{:d => "M -50.170781 23.06375 L -50.170781 -20.3425 ", :fill => "none", :stroke => "rgb(0%, 0%, 0%)", "stroke-linecap" => "butt", "stroke-linejoin" => "miter", "stroke-miterlimit" => "10", "stroke-opacity" => "1", "stroke-width" => "0.47818", :transform => "matrix(1, 0, 0, -1, 72.245, 47.22)"}
+              %path{:d => "M -2.486506 2.87022 C -2.033406 1.14752 -1.021684 0.334983 0.00176752 -0.000981305 C -1.021697 -0.332999 -2.033452 -1.149401 -2.486621 -2.868176 ", :fill => "none", :stroke => "rgb(0%, 0%, 0%)", "stroke-linecap" => "round", "stroke-linejoin" => "round", "stroke-miterlimit" => "10", "stroke-opacity" => "1", "stroke-width" => "0.47818", :transform => "matrix(0.00002, 0.99998, 0.99998, -0.00002, 22.0752, 67.80292)"}
+              %g{:fill => "rgb(0%, 0%, 0%)", "fill-opacity" => "1"}
+                %use{:x => "9.767", "xlink:href" => "#O6A-O43i_PgkhCiQ-hb-gv_BNsE=-glyph-2-4", :y => "48.701"}
+              %g{:fill => "rgb(0%, 0%, 0%)", "fill-opacity" => "1"}
+                %use{:x => "13.37075", "xlink:href" => "#O6A-O43i_PgkhCiQ-hb-gv_BNsE=-glyph-4-2", :y => "50.08475"}
+              %path{:d => "M 50.172969 20.821562 L 50.169062 -20.3425 ", :fill => "none", :stroke => "rgb(0%, 0%, 0%)", "stroke-linecap" => "butt", "stroke-linejoin" => "miter", "stroke-miterlimit" => "10", "stroke-opacity" => "1", "stroke-width" => "0.47818", :transform => "matrix(1, 0, 0, -1, 72.245, 47.22)"}
+              %path{:d => "M -2.486621 2.869664 C -2.033452 1.146982 -1.021697 0.334486 0.00176756 -0.00143749 C -1.021684 -0.333496 -2.033406 -1.146032 -2.486506 -2.868732 ", :fill => "none", :stroke => "rgb(0%, 0%, 0%)", "stroke-linecap" => "round", "stroke-linejoin" => "round", "stroke-miterlimit" => "10", "stroke-opacity" => "1", "stroke-width" => "0.47818", :transform => "matrix(-0.00002, 0.99998, 0.99998, 0.00002, 122.4155, 67.80292)"}
+              %g{:fill => "rgb(0%, 0%, 0%)", "fill-opacity" => "1"}
+                %use{:x => "125.931", "xlink:href" => "#O6A-O43i_PgkhCiQ-hb-gv_BNsE=-glyph-2-5", :y => "48.673"}
+              %g{:fill => "rgb(0%, 0%, 0%)", "fill-opacity" => "1"}
+                %use{:x => "130.70725", "xlink:href" => "#O6A-O43i_PgkhCiQ-hb-gv_BNsE=-glyph-4-1", :y => "50.05675"}
+              %path{:d => "M -27.846563 -33.014375 L 38.075312 -33.014375 ", :fill => "none", :stroke => "rgb(0%, 0%, 0%)", "stroke-linecap" => "butt", "stroke-linejoin" => "miter", "stroke-miterlimit" => "10", "stroke-opacity" => "1", "stroke-width" => "0.47818", :transform => "matrix(1, 0, 0, -1, 72.245, 47.22)"}
+              %path{:d => "M -2.487938 2.868812 C -2.030906 1.146156 -1.019188 0.333656 0.00034375 0.001625 C -1.019188 -0.334313 -2.030906 -1.146813 -2.487938 -2.869469 ", :fill => "none", :stroke => "rgb(0%, 0%, 0%)", "stroke-linecap" => "round", "stroke-linejoin" => "round", "stroke-miterlimit" => "10", "stroke-opacity" => "1", "stroke-width" => "0.47818", :transform => "matrix(1, 0, 0, -1, 110.55825, 80.236)"}
+              %g{:fill => "rgb(0%, 0%, 0%)", "fill-opacity" => "1"}
+                %use{:x => "72.616", "xlink:href" => "#O6A-O43i_PgkhCiQ-hb-gv_BNsE=-glyph-2-5", :y => "88.041"}
+              %g{:fill => "rgb(0%, 0%, 0%)", "fill-opacity" => "1"}
+                %use{:x => "77.39225", "xlink:href" => "#O6A-O43i_PgkhCiQ-hb-gv_BNsE=-glyph-4-2", :y => "89.42475"}
+            %p
+              be a
+              %a.existingWikiWord{:href => "/nlab/show/pushout"} co-cartesian square
+              in
+              = succeed "." do
+                %a.existingWikiWord{:href => "/nlab/show/2Cat"} 2Cat
+            %p
+              Explicitly, let
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi F
+                      %mrow
+                        %mo ≤
+                        %mn 1
+                  %annotation{:encoding => "application/x-tex"} F_{\leq 1}
+              be the
+              %a.existingWikiWord{:href => "/nlab/show/free+category"} free category
+              on the
+              %a.existingWikiWord{:href => "/nlab/show/directed+graph"} directed graph
+              with exactly three objects
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mn 0
+                    %annotation{:encoding => "application/x-tex"} 0
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mn 1
+                    %annotation{:encoding => "application/x-tex"} 1
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mn 2
+                    %annotation{:encoding => "application/x-tex"} 2
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msub
+                        %mi r
+                        %mn 1
+                      %mo :
+                      %mn 0
+                      %mo →
+                      %mn 1
+                    %annotation{:encoding => "application/x-tex"} r_1: 0 \rightarrow 1
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msub
+                        %mi r
+                        %mn 0
+                      %mo :
+                      %mn 1
+                      %mo →
+                      %mn 2
+                    %annotation{:encoding => "application/x-tex"} r_0: 1 \rightarrow 2
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msubsup
+                        %mi r
+                        %mn 1
+                        %mrow
+                          %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                          %mn 1
+                      %mo :
+                      %mn 1
+                      %mo →
+                      %mn 0
+                    %annotation{:encoding => "application/x-tex"} r_1^{-1}: 1 \rightarrow 0
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msubsup
+                        %mi r
+                        %mn 0
+                        %mrow
+                          %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                          %mn 1
+                      %mo :
+                      %mn 2
+                      %mo →
+                      %mn 1
+                    %annotation{:encoding => "application/x-tex"} r_0^{-1}: 2 \rightarrow 1
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi F
+                  %annotation{:encoding => "application/x-tex"} F
+              be the free strict 2-category on the 2-truncated
+              %a.existingWikiWord{:href => "/nlab/show/reflexive+globular+set"} reflexive globular set
+              whose 1-truncation is the underlying reflexive directed graph of
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msub
+                        %mi F
+                        %mrow
+                          %mo ≤
+                          %mn 1
+                    %annotation{:encoding => "application/x-tex"} F_{\leq 1}
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi ι
+                      %mn 1
+                    %mo ,
+                    %msubsup
+                      %mi ι
+                      %mn 1
+                      %mrow
+                        %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                        %mn 1
+                    %mo :
+                    %msub
+                      %mi r
+                      %mn 1
+                    %mo ∘
+                    %msubsup
+                      %mi r
+                      %mn 1
+                      %mrow
+                        %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                        %mn 1
+                    %mo →
+                    %mi id
+                    %mo{:stretchy => "false"} (
+                    %mn 1
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} \iota_{1}, \iota_{1}^{-1}: r_1 \circ r_1^{-1} \rightarrow id(1)
+              and
+              = succeed ".Then" do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msub
+                        %mi κ
+                        %mn 2
+                      %mo ,
+                      %msubsup
+                        %mi κ
+                        %mn 2
+                        %mrow
+                          %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                          %mn 1
+                      %mo :
+                      %msub
+                        %mi r
+                        %mn 0
+                      %mo ∘
+                      %msubsup
+                        %mi r
+                        %mn 0
+                        %mrow
+                          %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                          %mn 1
+                      %mo →
+                      %mi id
+                      %mo{:stretchy => "false"} (
+                      %mn 2
+                      %mo{:stretchy => "false"} )
+                    %annotation{:encoding => "application/x-tex"} \kappa_{2}, \kappa_{2}^{-1}: r_0 \circ r_0^{-1} \rightarrow id(2)
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi S
+                  %annotation{:encoding => "application/x-tex"} S
+              can be taken to be the quotient of
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi F
+                  %annotation{:encoding => "application/x-tex"} F
+              by the relation on 2-arrows which forces
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi ι
+                      %mn 0
+                  %annotation{:encoding => "application/x-tex"} \iota_{0}
+              to be a
+              %a.existingWikiWord{:href => "/nlab/show/2-isomorphism"} 2-isomorphism
+              with inverse
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msubsup
+                        %mi ι
+                        %mn 0
+                        %mrow
+                          %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                          %mn 1
+                    %annotation{:encoding => "application/x-tex"} \iota_{0}^{-1}
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msub
+                        %mi κ
+                        %mn 2
+                    %annotation{:encoding => "application/x-tex"} \kappa_{2}
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi r
+                      %mn 0
+                  %annotation{:encoding => "application/x-tex"} r_0
+              and
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi r
+                      %mn 1
+                  %annotation{:encoding => "application/x-tex"} r_1
+              can be taken to be functors picking out the equivalences in
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi S
+                  %annotation{:encoding => "application/x-tex"} S
+              of the same name.
+            %p
+              There is a functor
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi s
+                    %mo :
+                    %msub
+                      %mi ℰ
+                      %mi semi
+                    %mo →
+                    %mi S
+                  %annotation{:encoding => "application/x-tex"} s: \mathcal{E}_{semi} \rightarrow S
+              which picks out the semi-strict equivalence in
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi S
+                  %annotation{:encoding => "application/x-tex"} S
+              given by
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msub
+                        %mi r
+                        %mn 0
+                      %mo ∘
+                      %msub
+                        %mi r
+                        %mn 1
+                    %annotation{:encoding => "application/x-tex"} r_{0} \circ r_{1}
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mrow
+                      %mo (
+                      %mi S
+                      %mo ,
+                      %msub
+                        %mi r
+                        %mn 0
+                      %mo ,
+                      %msub
+                        %mi r
+                        %mn 1
+                      %mo ,
+                      %mi s
+                      %mo )
+                  %annotation{:encoding => "application/x-tex"} \left( S, r_0, r_1, s \right)
+              defines a
+              %em subdivision structure
+              with respect to
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mrow
+                      %mo (
+                      %msub
+                        %mi ℰ
+                        %mi semi
+                      %mo ,
+                      %msub
+                        %mi i
+                        %mn 0
+                      %mo ,
+                      %msub
+                        %mi i
+                        %mn 1
+                      %mo )
+                  %annotation{:encoding => "application/x-tex"} \left( \mathcal{E}_{semi}, i_0, i_1 \right)
+              in the sense of VI.14 of
+              = succeed "." do
+                %a{:href => "Williamson2011"} Williamson2011
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mn 1
+                  %annotation{:encoding => "application/x-tex"} 1
+              is a final object, it is immediate that this subdivision structure is compatible with the contraction structure of Notation
+              %a.maruku-ref{:href => "#NotationContractionStructure"}
+              in the sense of VI.18 of
+              = succeed "." do
+                %a{:href => "Williamson2011"} Williamson2011
+            %p
+              The functor
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi q
+                      %mi l
+                  %annotation{:encoding => "application/x-tex"} q_{l}
+              of VI.34 in
+              %a{:href => "Williamson2011"} Williamson2011
+              is in this case the functor
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi S
+                    %mo →
+                    %msub
+                      %mi ℰ
+                      %mi semi
+                  %annotation{:encoding => "application/x-tex"} S \rightarrow \mathcal{E}_{semi}
+              which is determined by
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msub
+                        %mi r
+                        %mn 0
+                      %mo ↦
+                      %mi i
+                    %annotation{:encoding => "application/x-tex"} r_{0} \mapsto i
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msubsup
+                        %mi r
+                        %mn 0
+                        %mrow
+                          %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                          %mn 1
+                      %mo ↦
+                      %msup
+                        %mi i
+                        %mrow
+                          %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                          %mn 1
+                    %annotation{:encoding => "application/x-tex"} r_0^{-1} \mapsto i^{-1}
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msub
+                        %mi r
+                        %mn 1
+                      %mo ↦
+                      %mi id
+                      %mo{:stretchy => "false"} (
+                      %mn 0
+                      %mo{:stretchy => "false"} )
+                    %annotation{:encoding => "application/x-tex"} r_1 \mapsto id(0)
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msup
+                        %mi r
+                        %mrow
+                          %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                          %mn 1
+                      %mo ↦
+                      %mi id
+                      %mo{:stretchy => "false"} (
+                      %mn 0
+                      %mo{:stretchy => "false"} )
+                    %annotation{:encoding => "application/x-tex"} r^{-1} \mapsto id(0)
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msub
+                        %mi ι
+                        %mn 1
+                      %mo ↦
+                      %mi id
+                    %annotation{:encoding => "application/x-tex"} \iota_1 \mapsto id
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msub
+                        %mi κ
+                        %mn 2
+                      %mo ↦
+                      %msub
+                        %mi ι
+                        %mn 1
+                    %annotation{:encoding => "application/x-tex"} \kappa_2 \mapsto \iota_1
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mrow
+                      %mo (
+                      %msub
+                        %mi ℰ
+                        %mi semi
+                      %mo ,
+                      %msub
+                        %mi i
+                        %mn 0
+                      %mo ,
+                      %msub
+                        %mi i
+                        %mn 1
+                      %mo ,
+                      %mi p
+                      %mo ,
+                      %mi S
+                      %mo ,
+                      %msub
+                        %mi r
+                        %mn 0
+                      %mo ,
+                      %msub
+                        %mi r
+                        %mn 1
+                      %mo ,
+                      %mi s
+                      %mo )
+                  %annotation{:encoding => "application/x-tex"} \left( \mathcal{E}_{semi}, i_0, i_1, p, S, r_0, r_1, s \right)
+              has strictness of left identities in the sense of VI.34 of
+              = succeed "." do
+                %a{:href => "Williamson2011"} Williamson2011
+            %p
+              It is similarly the case that
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mrow
+                      %mo (
+                      %msub
+                        %mi ℰ
+                        %mi semi
+                      %mo ,
+                      %msub
+                        %mi i
+                        %mn 0
+                      %mo ,
+                      %msub
+                        %mi i
+                        %mn 1
+                      %mo ,
+                      %mi p
+                      %mo ,
+                      %mi S
+                      %mo ,
+                      %msub
+                        %mi r
+                        %mn 0
+                      %mo ,
+                      %msub
+                        %mi r
+                        %mn 1
+                      %mo ,
+                      %mi s
+                      %mo )
+                  %annotation{:encoding => "application/x-tex"} \left( \mathcal{E}_{semi}, i_0, i_1, p, S, r_0, r_1, s \right)
+              has strictness of right identities in the sense of VI.34 of
+              = succeed "." do
+                %a{:href => "Williamson2011"} Williamson2011
+            %p
+          %p
+          .num_remark
+            %h6 Remark
+            %p
+              Explicitly,
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi ℰ
+                      %mi semi
+                    %mo ×
+                    %msub
+                      %mi ℰ
+                      %mi semi
+                  %annotation{:encoding => "application/x-tex"} \mathcal{E}_{semi} \times \mathcal{E}_{semi}
+              can be described as follows. Let
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi F
+                      %mrow
+                        %mo ≤
+                        %mn 1
+                  %annotation{:encoding => "application/x-tex"} F_{\leq 1}
+              be the
+              %a.existingWikiWord{:href => "/nlab/show/free+category"} free category
+              on the
+              %a.existingWikiWord{:href => "/nlab/show/directed+graph"} directed graph
+              with objects
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mo{:stretchy => "false"} (
+                      %mn 0
+                      %mo ,
+                      %mn 0
+                      %mo{:stretchy => "false"} )
+                    %annotation{:encoding => "application/x-tex"} (0,0)
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mo{:stretchy => "false"} (
+                      %mn 0
+                      %mo ,
+                      %mn 1
+                      %mo{:stretchy => "false"} )
+                    %annotation{:encoding => "application/x-tex"} (0,1)
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mo{:stretchy => "false"} (
+                      %mn 1
+                      %mo ,
+                      %mn 0
+                      %mo{:stretchy => "false"} )
+                    %annotation{:encoding => "application/x-tex"} (1,0)
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mo{:stretchy => "false"} (
+                      %mn 1
+                      %mo ,
+                      %mn 1
+                      %mo{:stretchy => "false"} )
+                    %annotation{:encoding => "application/x-tex"} (1,1)
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mo{:stretchy => "false"} (
+                      %mn 0
+                      %mo ,
+                      %mi i
+                      %mo{:stretchy => "false"} )
+                    %annotation{:encoding => "application/x-tex"} (0, i)
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mo{:stretchy => "false"} (
+                      %mn 0
+                      %mo ,
+                      %msup
+                        %mi i
+                        %mrow
+                          %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                          %mn 1
+                      %mo{:stretchy => "false"} )
+                    %annotation{:encoding => "application/x-tex"} (0, i^{-1})
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mo{:stretchy => "false"} (
+                      %mi i
+                      %mo ,
+                      %mn 0
+                      %mo{:stretchy => "false"} )
+                    %annotation{:encoding => "application/x-tex"} (i, 0)
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mo{:stretchy => "false"} (
+                      %msup
+                        %mi i
+                        %mrow
+                          %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                          %mn 1
+                      %mo ,
+                      %mn 0
+                      %mo{:stretchy => "false"} )
+                    %annotation{:encoding => "application/x-tex"} (i^{-1}, 0)
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mo{:stretchy => "false"} (
+                      %mn 1
+                      %mo ,
+                      %mi i
+                      %mo{:stretchy => "false"} )
+                    %annotation{:encoding => "application/x-tex"} (1, i)
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mo{:stretchy => "false"} (
+                      %mn 1
+                      %mo ,
+                      %msup
+                        %mi i
+                        %mrow
+                          %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                          %mn 1
+                      %mo{:stretchy => "false"} )
+                    %annotation{:encoding => "application/x-tex"} (1, i^{-1})
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mo{:stretchy => "false"} (
+                      %mi i
+                      %mo ,
+                      %mn 1
+                      %mo{:stretchy => "false"} )
+                    %annotation{:encoding => "application/x-tex"} (i, 1)
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mo{:stretchy => "false"} (
+                      %msup
+                        %mi i
+                        %mrow
+                          %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                          %mn 1
+                      %mo ,
+                      %mn 1
+                      %mo{:stretchy => "false"} )
+                    %annotation{:encoding => "application/x-tex"} (i^{-1}, 1)
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi F
+                  %annotation{:encoding => "application/x-tex"} F
+              be the free strict 2-category on the 2-truncated
+              %a.existingWikiWord{:href => "/nlab/show/reflexive+globular+set"} reflexive globular set
+              whose 1-truncation is the underlying reflexive directed graph of
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msub
+                        %mi F
+                        %mrow
+                          %mo ≤
+                          %mn 1
+                    %annotation{:encoding => "application/x-tex"} F_{\leq 1}
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mo{:stretchy => "false"} (
+                      %mn 0
+                      %mo ,
+                      %msub
+                        %mi ι
+                        %mn 1
+                      %mo{:stretchy => "false"} )
+                      %mo :
+                      %mo{:stretchy => "false"} (
+                      %mn 0
+                      %mo ,
+                      %mi i
+                      %mo ∘
+                      %msup
+                        %mi i
+                        %mrow
+                          %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                          %mn 1
+                      %mo{:stretchy => "false"} )
+                      %mo →
+                      %mi id
+                      %mo{:stretchy => "false"} (
+                      %mn 0
+                      %mo ,
+                      %mn 1
+                      %mo{:stretchy => "false"} )
+                    %annotation{:encoding => "application/x-tex"} (0, \iota_{1}): (0, i \circ i^{-1}) \rightarrow id(0, 1)
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mo{:stretchy => "false"} (
+                      %mn 1
+                      %mo ,
+                      %msub
+                        %mi ι
+                        %mn 1
+                      %mo{:stretchy => "false"} )
+                      %mo :
+                      %mo{:stretchy => "false"} (
+                      %mn 1
+                      %mo ,
+                      %mi i
+                      %mo ∘
+                      %msup
+                        %mi i
+                        %mrow
+                          %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                          %mn 1
+                      %mo{:stretchy => "false"} )
+                      %mo →
+                      %mi id
+                      %mo{:stretchy => "false"} (
+                      %mn 1
+                      %mo ,
+                      %mn 1
+                      %mo{:stretchy => "false"} )
+                    %annotation{:encoding => "application/x-tex"} (1, \iota_{1}): (1, i \circ i^{-1}) \rightarrow id(1, 1)
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mo{:stretchy => "false"} (
+                      %msub
+                        %mi ι
+                        %mn 1
+                      %mo ,
+                      %mn 0
+                      %mo{:stretchy => "false"} )
+                      %mo :
+                      %mo{:stretchy => "false"} (
+                      %mi i
+                      %mo ∘
+                      %msup
+                        %mi i
+                        %mrow
+                          %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                          %mn 1
+                      %mo ,
+                      %mn 0
+                      %mo{:stretchy => "false"} )
+                      %mo →
+                      %mi id
+                      %mo{:stretchy => "false"} (
+                      %mn 1
+                      %mo ,
+                      %mn 0
+                      %mo{:stretchy => "false"} )
+                    %annotation{:encoding => "application/x-tex"} (\iota_{1}, 0): (i \circ i^{-1}, 0) \rightarrow id(1, 0)
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mo{:stretchy => "false"} (
+                      %msub
+                        %mi ι
+                        %mn 1
+                      %mo ,
+                      %mn 1
+                      %mo{:stretchy => "false"} )
+                      %mo :
+                      %mo{:stretchy => "false"} (
+                      %mi i
+                      %mo ∘
+                      %msup
+                        %mi i
+                        %mrow
+                          %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                          %mn 1
+                      %mo ,
+                      %mn 1
+                      %mo{:stretchy => "false"} )
+                      %mo →
+                      %mi id
+                      %mo{:stretchy => "false"} (
+                      %mn 1
+                      %mo ,
+                      %mn 1
+                      %mo{:stretchy => "false"} )
+                    %annotation{:encoding => "application/x-tex"} (\iota_{1}, 1): (i \circ i^{-1}, 1) \rightarrow id(1, 1)
+            %p
+              Then
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi ℰ
+                      %mi semi
+                    %mo ×
+                    %msub
+                      %mi ℰ
+                      %mi semi
+                  %annotation{:encoding => "application/x-tex"} \mathcal{E}_{semi} \times \mathcal{E}_{semi}
+              is the quotient of
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi F
+                  %annotation{:encoding => "application/x-tex"} F
+              by the relation on 1-arrows which forces
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo{:stretchy => "false"} (
+                    %mn 0
+                    %mo ,
+                    %msup
+                      %mi i
+                      %mrow
+                        %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                        %mn 1
+                    %mo ∘
+                    %mi i
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} (0, i^{-1} \circ i)
+              to be equal to
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mo{:stretchy => "false"} (
+                      %mn 0
+                      %mo ,
+                      %mn 0
+                      %mo{:stretchy => "false"} )
+                    %annotation{:encoding => "application/x-tex"} (0,0)
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mo{:stretchy => "false"} (
+                      %msup
+                        %mi i
+                        %mrow
+                          %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                          %mn 1
+                      %mo ∘
+                      %mi i
+                      %mo ,
+                      %mn 0
+                      %mo{:stretchy => "false"} )
+                    %annotation{:encoding => "application/x-tex"} (i^{-1} \circ i, 0)
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mo{:stretchy => "false"} (
+                      %mn 1
+                      %mo ,
+                      %msup
+                        %mi i
+                        %mrow
+                          %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                          %mn 1
+                      %mo ∘
+                      %mi i
+                      %mo{:stretchy => "false"} )
+                    %annotation{:encoding => "application/x-tex"} (1, i^{-1} \circ i)
+              = succeed ";" do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mo{:stretchy => "false"} (
+                      %msup
+                        %mi i
+                        %mrow
+                          %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                          %mn 1
+                      %mo ∘
+                      %mi i
+                      %mo ,
+                      %mn 1
+                      %mo{:stretchy => "false"} )
+                    %annotation{:encoding => "application/x-tex"} (i^{-1} \circ i, 1)
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mo{:stretchy => "false"} (
+                      %mn 0
+                      %mo ,
+                      %msub
+                        %mi ι
+                        %mn 1
+                      %mo{:stretchy => "false"} )
+                    %annotation{:encoding => "application/x-tex"} (0, \iota_{1})
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mo{:stretchy => "false"} (
+                      %msub
+                        %mi ι
+                        %mn 1
+                      %mo ,
+                      %mn 0
+                      %mo{:stretchy => "false"} )
+                    %annotation{:encoding => "application/x-tex"} (\iota_{1}, 0)
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo{:stretchy => "false"} (
+                    %mn 1
+                    %mo ,
+                    %msub
+                      %mi ι
+                      %mn 1
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} (1, \iota_1)
+              and
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo{:stretchy => "false"} (
+                    %msub
+                      %mi ι
+                      %mn 1
+                    %mo ,
+                    %mn 1
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} (\iota_1, 1)
+              to be 2-isomorphisms.
+          %p
+          .num_defn
+            %h6 Notation
+            %p
+              Let
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi Γ
+                      %mi ul
+                  %annotation{:encoding => "application/x-tex"} \Gamma_{ul}
+              be the functor
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi ℰ
+                      %mi semi
+                    %mo ×
+                    %msub
+                      %mi ℰ
+                      %mi semi
+                    %mo →
+                    %msub
+                      %mi ℰ
+                      %mi semi
+                  %annotation{:encoding => "application/x-tex"} \mathcal{E}_{semi} \times \mathcal{E}_{semi} \rightarrow \mathcal{E}_{semi}
+              determined by
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mrow
+                      %mtable{:columnalign => "right left right left right left right left right left", :columnspacing => "0em", :displaystyle => "true"}
+                        %mtr
+                          %mtd
+                            %mo{:stretchy => "false"} (
+                            %mn 0
+                            %mo ,
+                            %mi i
+                            %mo{:stretchy => "false"} )
+                            %mo ,
+                            %mo{:stretchy => "false"} (
+                            %mi i
+                            %mo ,
+                            %mn 0
+                            %mo{:stretchy => "false"} )
+                          %mtd
+                            %mo ↦
+                            %mi i
+                            %mo ,
+                        %mtr
+                          %mtd
+                            %mo{:stretchy => "false"} (
+                            %mn 0
+                            %mo ,
+                            %msup
+                              %mi i
+                              %mrow
+                                %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                                %mn 1
+                            %mo{:stretchy => "false"} )
+                            %mo ,
+                            %mo{:stretchy => "false"} (
+                            %msup
+                              %mi i
+                              %mrow
+                                %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                                %mn 1
+                            %mo ,
+                            %mn 0
+                            %mo{:stretchy => "false"} )
+                          %mtd
+                            %mo ↦
+                            %msup
+                              %mi i
+                              %mrow
+                                %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                                %mn 1
+                            %mo ,
+                        %mtr
+                          %mtd
+                            %mo{:stretchy => "false"} (
+                            %mn 1
+                            %mo ,
+                            %mi i
+                            %mo{:stretchy => "false"} )
+                            %mo ,
+                            %mo{:stretchy => "false"} (
+                            %mn 1
+                            %mo ,
+                            %msup
+                              %mi i
+                              %mrow
+                                %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                                %mn 1
+                            %mo{:stretchy => "false"} )
+                            %mo ,
+                            %mo{:stretchy => "false"} (
+                            %mi i
+                            %mo ,
+                            %mn 1
+                            %mo{:stretchy => "false"} )
+                            %mo ,
+                            %mo{:stretchy => "false"} (
+                            %msup
+                              %mi i
+                              %mrow
+                                %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                                %mn 1
+                            %mo ,
+                            %mn 1
+                            %mo{:stretchy => "false"} )
+                          %mtd
+                            %mo ↦
+                            %mi id
+                            %mo{:stretchy => "false"} (
+                            %mn 1
+                            %mo{:stretchy => "false"} )
+                            %mo ,
+                        %mtr
+                          %mtd
+                            %mo{:stretchy => "false"} (
+                            %mn 0
+                            %mo ,
+                            %msub
+                              %mi ι
+                              %mn 1
+                            %mo{:stretchy => "false"} )
+                            %mo ,
+                            %mo{:stretchy => "false"} (
+                            %msub
+                              %mi ι
+                              %mn 1
+                            %mo ,
+                            %mn 0
+                            %mo{:stretchy => "false"} )
+                          %mtd
+                            %mo ↦
+                            %msub
+                              %mi ι
+                              %mn 1
+                            %mo ,
+                        %mtr
+                          %mtd
+                            %mo{:stretchy => "false"} (
+                            %mn 1
+                            %mo ,
+                            %msub
+                              %mi ι
+                              %mn 1
+                            %mo{:stretchy => "false"} )
+                            %mo ,
+                            %mo{:stretchy => "false"} (
+                            %msub
+                              %mi ι
+                              %mn 1
+                            %mo ,
+                            %mn 1
+                            %mo{:stretchy => "false"} )
+                          %mtd
+                            %mo ↦
+                            %mi id
+                            %mrow
+                              %mo (
+                              %mi id
+                              %mo{:stretchy => "false"} (
+                              %mn 1
+                              %mo{:stretchy => "false"} )
+                              %mo )
+                            %mo .
+                  %annotation{:encoding => "application/x-tex"}
+                    \\begin{aligned}
+                    (0, i), (i,0) &amp;\mapsto i, \\
+                    (0, i^{-1}), (i^{-1}, 0) &amp;\mapsto i^{-1}, \\
+                    (1, i), (1, i^{-1}), (i, 1), (i^{-1}, 1) &amp;\mapsto id(1), \\
+                    (0, \iota_{1}), (\iota_{1}, 0) &amp;\mapsto \iota_{1}, \\
+                    (1, \iota_{1}), (\iota_{1}, 1) &amp;\mapsto id\left(id(1)\right).
+                    \\end{aligned}
+            %p
+              Then
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi Γ
+                      %mi ul
+                  %annotation{:encoding => "application/x-tex"} \Gamma_{ul}
+              defines an
+              %em upper left connection structure
+              with respect to
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mrow
+                      %mo (
+                      %msub
+                        %mi ℰ
+                        %mi semi
+                      %mo ,
+                      %msub
+                        %mi i
+                        %mn 0
+                      %mo ,
+                      %msub
+                        %mi i
+                        %mn 1
+                      %mo ,
+                      %mi p
+                      %mo )
+                  %annotation{:encoding => "application/x-tex"} \left( \mathcal{E}_{semi}, i_0, i_1, p \right)
+              in the sense of VI.22 of
+              = succeed "." do
+                %a{:href => "Williamson2011"} Williamson2011
+          %p
+          .num_defn
+            %h6 Notation
+            %p
+              Let
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi Γ
+                      %mi lr
+                  %annotation{:encoding => "application/x-tex"} \Gamma_{lr}
+              be the functor
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi ℰ
+                      %mi semi
+                    %mo ×
+                    %msub
+                      %mi ℰ
+                      %mi semi
+                    %mo →
+                    %msub
+                      %mi ℰ
+                      %mi semi
+                  %annotation{:encoding => "application/x-tex"} \mathcal{E}_{semi} \times \mathcal{E}_{semi} \rightarrow \mathcal{E}_{semi}
+              determined by
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mrow
+                      %mtable{:columnalign => "right left right left right left right left right left", :columnspacing => "0em", :displaystyle => "true"}
+                        %mtr
+                          %mtd
+                            %mo{:stretchy => "false"} (
+                            %mn 0
+                            %mo ,
+                            %mi i
+                            %mo{:stretchy => "false"} )
+                            %mo ,
+                            %mo{:stretchy => "false"} (
+                            %mi i
+                            %mo ,
+                            %mn 0
+                            %mo{:stretchy => "false"} )
+                            %mo ,
+                            %mo{:stretchy => "false"} (
+                            %mn 0
+                            %mo ,
+                            %msup
+                              %mi i
+                              %mrow
+                                %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                                %mn 1
+                            %mo{:stretchy => "false"} )
+                            %mo ,
+                            %mo{:stretchy => "false"} (
+                            %msup
+                              %mi i
+                              %mrow
+                                %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                                %mn 1
+                            %mo ,
+                            %mn 0
+                            %mo{:stretchy => "false"} )
+                          %mtd
+                            %mo ↦
+                            %mi id
+                            %mo{:stretchy => "false"} (
+                            %mn 0
+                            %mo{:stretchy => "false"} )
+                            %mo ,
+                        %mtr
+                          %mtd
+                            %mo{:stretchy => "false"} (
+                            %mn 1
+                            %mo ,
+                            %mi i
+                            %mo{:stretchy => "false"} )
+                            %mo ,
+                            %mo{:stretchy => "false"} (
+                            %mi i
+                            %mo ,
+                            %mn 1
+                            %mo{:stretchy => "false"} )
+                          %mtd
+                            %mo ↦
+                            %mi i
+                            %mo ,
+                        %mtr
+                          %mtd
+                            %mo{:stretchy => "false"} (
+                            %mn 1
+                            %mo ,
+                            %msup
+                              %mi i
+                              %mrow
+                                %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                                %mn 1
+                            %mo{:stretchy => "false"} )
+                            %mo ,
+                            %mo{:stretchy => "false"} (
+                            %msup
+                              %mi i
+                              %mrow
+                                %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                                %mn 1
+                            %mo ,
+                            %mn 1
+                            %mo{:stretchy => "false"} )
+                          %mtd
+                            %mo ↦
+                            %msup
+                              %mi i
+                              %mrow
+                                %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                                %mn 1
+                            %mo ,
+                        %mtr
+                          %mtd
+                            %mo{:stretchy => "false"} (
+                            %mn 0
+                            %mo ,
+                            %msub
+                              %mi ι
+                              %mn 1
+                            %mo{:stretchy => "false"} )
+                            %mo ,
+                            %mo{:stretchy => "false"} (
+                            %msub
+                              %mi ι
+                              %mn 1
+                            %mo ,
+                            %mn 0
+                            %mo{:stretchy => "false"} )
+                          %mtd
+                            %mo ↦
+                            %mi id
+                            %mrow
+                              %mo (
+                              %mi id
+                              %mo{:stretchy => "false"} (
+                              %mn 0
+                              %mo{:stretchy => "false"} )
+                              %mo )
+                            %mo ,
+                        %mtr
+                          %mtd
+                            %mo{:stretchy => "false"} (
+                            %mn 1
+                            %mo ,
+                            %msub
+                              %mi ι
+                              %mn 1
+                            %mo{:stretchy => "false"} )
+                            %mo ,
+                            %mo{:stretchy => "false"} (
+                            %msub
+                              %mi ι
+                              %mn 1
+                            %mo ,
+                            %mn 1
+                            %mo{:stretchy => "false"} )
+                          %mtd
+                            %mo ↦
+                            %msub
+                              %mi ι
+                              %mn 1
+                            %mo .
+                  %annotation{:encoding => "application/x-tex"}
+                    \\begin{aligned}
+                    (0, i), (i,0), (0, i^{-1}), (i^{-1}, 0) &amp;\mapsto id(0), \\
+                    (1, i), (i, 1) &amp;\mapsto i, \\
+                    (1, i^{-1}), (i^{-1}, 1) &amp;\mapsto i^{-1}, \\
+                    (0, \iota_{1}), (\iota_{1}, 0) &amp;\mapsto id\left(id(0)\right), \\
+                    (1, \iota_{1}), (\iota_{1}, 1) &amp;\mapsto \iota_{1}.
+                    \\end{aligned}
+            %p
+              Then
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi Γ
+                      %mi lr
+                  %annotation{:encoding => "application/x-tex"} \Gamma_{lr}
+              defines an
+              %em lower right connection structure
+              with respect to
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mrow
+                      %mo (
+                      %msub
+                        %mi ℰ
+                        %mi semi
+                      %mo ,
+                      %msub
+                        %mi i
+                        %mn 0
+                      %mo ,
+                      %msub
+                        %mi i
+                        %mn 1
+                      %mo ,
+                      %mi p
+                      %mo )
+                  %annotation{:encoding => "application/x-tex"} \left( \mathcal{E}_{semi}, i_0, i_1, p \right)
+              in the sense of VI.24 of
+              = succeed "." do
+                %a{:href => "Williamson2011"} Williamson2011
+            %p
+              Since
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mn 1
+                  %annotation{:encoding => "application/x-tex"} 1
+              is a final object of
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/2Cat"} 2Cat
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi Γ
+                      %mi lr
+                  %annotation{:encoding => "application/x-tex"} \Gamma_{lr}
+              is compatible with
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi p
+                  %annotation{:encoding => "application/x-tex"} p
+              in the sense of VI.26 of
+              = succeed "." do
+                %a{:href => "Williamson2011"} Williamson2011
+            %p
+          %p
+          .num_defn
+            %h6 Notation
+            %p
+              Let
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi Γ
+                      %mi ur
+                  %annotation{:encoding => "application/x-tex"} \Gamma_{ur}
+              be the functor
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi ℰ
+                      %mi semi
+                    %mo ×
+                    %msub
+                      %mi ℰ
+                      %mi semi
+                    %mo →
+                    %msub
+                      %mi ℰ
+                      %mi semi
+                  %annotation{:encoding => "application/x-tex"} \mathcal{E}_{semi} \times \mathcal{E}_{semi} \rightarrow \mathcal{E}_{semi}
+              determined by
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mrow
+                      %mtable{:columnalign => "right left right left right left right left right left", :columnspacing => "0em", :displaystyle => "true"}
+                        %mtr
+                          %mtd
+                            %mo{:stretchy => "false"} (
+                            %mi i
+                            %mo ,
+                            %mn 0
+                            %mo{:stretchy => "false"} )
+                          %mtd
+                            %mo ↦
+                            %mi i
+                            %mo ,
+                        %mtr
+                          %mtd
+                            %mo{:stretchy => "false"} (
+                            %msup
+                              %mi i
+                              %mrow
+                                %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                                %mn 1
+                            %mo ,
+                            %mn 0
+                            %mo{:stretchy => "false"} )
+                          %mtd
+                            %mo ↦
+                            %msup
+                              %mi i
+                              %mrow
+                                %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                                %mn 1
+                            %mo ,
+                        %mtr
+                          %mtd
+                            %mo{:stretchy => "false"} (
+                            %mn 0
+                            %mo ,
+                            %mi i
+                            %mo{:stretchy => "false"} )
+                            %mo ,
+                            %mo{:stretchy => "false"} (
+                            %mn 0
+                            %mo ,
+                            %msup
+                              %mi i
+                              %mrow
+                                %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                                %mn 1
+                            %mo{:stretchy => "false"} )
+                          %mtd
+                            %mo ↦
+                            %mi id
+                            %mo{:stretchy => "false"} (
+                            %mn 0
+                            %mo{:stretchy => "false"} )
+                            %mo ,
+                        %mtr
+                          %mtd
+                            %mo{:stretchy => "false"} (
+                            %mn 1
+                            %mo ,
+                            %mi i
+                            %mo{:stretchy => "false"} )
+                          %mtd
+                            %mo ↦
+                            %msup
+                              %mi i
+                              %mrow
+                                %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                                %mn 1
+                            %mo ,
+                        %mtr
+                          %mtd
+                            %mo{:stretchy => "false"} (
+                            %mn 1
+                            %mo ,
+                            %msup
+                              %mi i
+                              %mrow
+                                %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                                %mn 1
+                            %mo{:stretchy => "false"} )
+                          %mtd
+                            %mo ↦
+                            %mi i
+                            %mo ,
+                        %mtr
+                          %mtd
+                            %mo{:stretchy => "false"} (
+                            %mi i
+                            %mo ,
+                            %mn 1
+                            %mo{:stretchy => "false"} )
+                            %mo ,
+                            %mo{:stretchy => "false"} (
+                            %msup
+                              %mi i
+                              %mrow
+                                %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                                %mn 1
+                            %mo ,
+                            %mn 1
+                            %mo{:stretchy => "false"} )
+                          %mtd
+                            %mo ↦
+                            %mi id
+                            %mo{:stretchy => "false"} (
+                            %mn 0
+                            %mo{:stretchy => "false"} )
+                            %mo ,
+                        %mtr
+                          %mtd
+                            %mo{:stretchy => "false"} (
+                            %msub
+                              %mi ι
+                              %mn 1
+                            %mo ,
+                            %mn 0
+                            %mo{:stretchy => "false"} )
+                          %mtd
+                            %mo ↦
+                            %msub
+                              %mi ι
+                              %mn 1
+                            %mo ,
+                        %mtr
+                          %mtd
+                            %mo{:stretchy => "false"} (
+                            %mn 0
+                            %mo ,
+                            %msub
+                              %mi ι
+                              %mn 1
+                            %mo{:stretchy => "false"} )
+                          %mtd
+                            %mo ↦
+                            %mi id
+                            %mrow
+                              %mo (
+                              %mi id
+                              %mo{:stretchy => "false"} (
+                              %mn 0
+                              %mo{:stretchy => "false"} )
+                              %mo )
+                            %mo ,
+                        %mtr
+                          %mtd
+                            %mo{:stretchy => "false"} (
+                            %mn 1
+                            %mo ,
+                            %msub
+                              %mi ι
+                              %mn 1
+                            %mo{:stretchy => "false"} )
+                          %mtd
+                            %mo ↦
+                            %mi id
+                            %mrow
+                              %mo (
+                              %mi id
+                              %mo{:stretchy => "false"} (
+                              %mn 0
+                              %mo{:stretchy => "false"} )
+                              %mo )
+                            %mo ,
+                        %mtr
+                          %mtd
+                            %mo{:stretchy => "false"} (
+                            %mi ι
+                            %mo ,
+                            %mn 1
+                            %mo{:stretchy => "false"} )
+                          %mtd
+                            %mo ↦
+                            %mi id
+                            %mrow
+                              %mo (
+                              %mi id
+                              %mo{:stretchy => "false"} (
+                              %mn 0
+                              %mo{:stretchy => "false"} )
+                              %mo )
+                            %mo .
+                  %annotation{:encoding => "application/x-tex"}
+                    \\begin{aligned}
+                    (i,0) &amp;\mapsto i, \\
+                    (i^{-1}, 0) &amp;\mapsto i^{-1}, \\
+                    (0, i), (0, i^{-1}) &amp;\mapsto id(0), \\
+                    (1, i) &amp;\mapsto i^{-1}, \\
+                    (1, i^{-1}) &amp;\mapsto i, \\
+                    (i, 1), (i^{-1}, 1) &amp;\mapsto id(0), \\
+                    (\iota_{1}, 0) &amp;\mapsto \iota_{1}, \\
+                    (0, \iota_{1}) &amp;\mapsto id\left(id(0)\right), \\
+                    (1, \iota_{1}) &amp;\mapsto id\left(id(0)\right), \\
+                    (\iota, 1) &amp;\mapsto id\left(id(0)\right).
+                    \\end{aligned}
+            %p
+              Then
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi Γ
+                      %mi ur
+                  %annotation{:encoding => "application/x-tex"} \Gamma_{ur}
+              defines an
+              %em upper right connection structure
+              with respect to
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mrow
+                      %mo (
+                      %msub
+                        %mi ℰ
+                        %mi semi
+                      %mo ,
+                      %msub
+                        %mi i
+                        %mn 0
+                      %mo ,
+                      %msub
+                        %mi i
+                        %mn 1
+                      %mo ,
+                      %mi p
+                      %mo ,
+                      %mi v
+                      %mo )
+                  %annotation{:encoding => "application/x-tex"} \left( \mathcal{E}_{semi}, i_0, i_1, p, v \right)
+              in the sense of VI.29 of
+              = succeed "." do
+                %a{:href => "Williamson2011"} Williamson2011
+            %p
+              The functor
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi x
+                    %mo ∘
+                    %mrow
+                      %mo (
+                      %msub
+                        %mi ℰ
+                        %mi semi
+                      %mo ×
+                      %mi s
+                      %mo )
+                    %mo :
+                    %msub
+                      %mi ℰ
+                      %mi semi
+                    %mo ×
+                    %msub
+                      %mi ℰ
+                      %mi semi
+                    %mo →
+                    %msub
+                      %mi ℰ
+                      %mi semi
+                  %annotation{:encoding => "application/x-tex"} x \circ \left( \mathcal{E}_{semi} \times s \right) : \mathcal{E}_{semi} \times \mathcal{E}_{semi} \rightarrow \mathcal{E}_{semi}
+              of VI.32 in
+              %a{:href => "Williamson2011"} Williamson2011
+              is determined by
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mrow
+                      %mtable{:columnalign => "right left right left right left right left right left", :columnspacing => "0em", :displaystyle => "true"}
+                        %mtr
+                          %mtd
+                            %mo{:stretchy => "false"} (
+                            %mi i
+                            %mo ,
+                            %mn 0
+                            %mo{:stretchy => "false"} )
+                            %mo ,
+                            %mo{:stretchy => "false"} (
+                            %mi i
+                            %mo ,
+                            %mn 1
+                            %mo{:stretchy => "false"} )
+                          %mtd
+                            %mo ↦
+                            %mi i
+                            %mo ,
+                        %mtr
+                          %mtd
+                            %msup
+                              %mi i
+                              %mrow
+                                %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                                %mn 1
+                            %mo ,
+                            %mn 0
+                            %mo{:stretchy => "false"} )
+                            %mo ,
+                            %mo{:stretchy => "false"} (
+                            %msup
+                              %mi i
+                              %mrow
+                                %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                                %mn 1
+                            %mo ,
+                            %mn 1
+                            %mo{:stretchy => "false"} )
+                          %mtd
+                            %mo ↦
+                            %msup
+                              %mi i
+                              %mrow
+                                %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                                %mn 1
+                            %mo ,
+                        %mtr
+                          %mtd
+                            %mo{:stretchy => "false"} (
+                            %msub
+                              %mi ι
+                              %mn 1
+                            %mo ,
+                            %mn 0
+                            %mo{:stretchy => "false"} )
+                          %mtd
+                            %mo ↦
+                            %msub
+                              %mi ι
+                              %mn 1
+                            %mo ,
+                        %mtr
+                          %mtd
+                            %mo{:stretchy => "false"} (
+                            %msub
+                              %mi ι
+                              %mn 1
+                            %mo ,
+                            %mn 1
+                            %mo{:stretchy => "false"} )
+                          %mtd
+                            %mo ↦
+                            %msub
+                              %mi ι
+                              %mn 1
+                            %mo ,
+                        %mtr
+                          %mtd
+                            %mo{:stretchy => "false"} (
+                            %mn 0
+                            %mo ,
+                            %mi i
+                            %mo{:stretchy => "false"} )
+                            %mo ,
+                            %mo{:stretchy => "false"} (
+                            %mn 0
+                            %mo ,
+                            %msup
+                              %mi i
+                              %mrow
+                                %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                                %mn 1
+                            %mo{:stretchy => "false"} )
+                          %mtd
+                            %mo ↦
+                            %mi id
+                            %mo{:stretchy => "false"} (
+                            %mn 0
+                            %mo{:stretchy => "false"} )
+                            %mo ,
+                        %mtr
+                          %mtd
+                            %mo{:stretchy => "false"} (
+                            %mn 1
+                            %mo ,
+                            %mi i
+                            %mo{:stretchy => "false"} )
+                            %mo ,
+                            %mo{:stretchy => "false"} (
+                            %mn 1
+                            %mo ,
+                            %msup
+                              %mi i
+                              %mrow
+                                %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                                %mn 1
+                            %mo{:stretchy => "false"} )
+                          %mtd
+                            %mo ↦
+                            %mi id
+                            %mo{:stretchy => "false"} (
+                            %mn 1
+                            %mo{:stretchy => "false"} )
+                            %mo ,
+                        %mtr
+                          %mtd
+                            %mo{:stretchy => "false"} (
+                            %mn 0
+                            %mo ,
+                            %msub
+                              %mi ι
+                              %mn 1
+                            %mo{:stretchy => "false"} )
+                          %mtd
+                            %mo ↦
+                            %mi id
+                            %mrow
+                              %mo (
+                              %mi id
+                              %mo{:stretchy => "false"} (
+                              %mn 0
+                              %mo{:stretchy => "false"} )
+                              %mo )
+                            %mo ,
+                        %mtr
+                          %mtd
+                            %mo{:stretchy => "false"} (
+                            %mn 1
+                            %mo ,
+                            %msub
+                              %mi ι
+                              %mn 1
+                            %mo{:stretchy => "false"} )
+                          %mtd
+                            %mo ↦
+                            %mi id
+                            %mrow
+                              %mo (
+                              %mi id
+                              %mo{:stretchy => "false"} (
+                              %mn 1
+                              %mo{:stretchy => "false"} )
+                              %mo )
+                            %mo .
+                  %annotation{:encoding => "application/x-tex"}
+                    \\begin{aligned}
+                    (i, 0), (i,1) &amp;\mapsto i, \\
+                    i^{-1}, 0), (i^{-1}, 1) &amp;\mapsto i^{-1}, \\
+                    (\iota_{1}, 0) &amp;\mapsto \iota_{1}, \\
+                    (\iota_{1}, 1) &amp;\mapsto \iota_{1}, \\
+                    (0, i), (0,i^{-1}) &amp;\mapsto id(0), \\
+                    (1, i), (1, i^{-1}) &amp;\mapsto id(1), \\
+                    (0, \iota_{1}) &amp;\mapsto id\left(id(0)\right), \\
+                    (1, \iota_{1}) &amp;\mapsto id\left(id(1)\right).
+                    \\end{aligned}
+            %p
+              The key observation here is that
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mo{:stretchy => "false"} (
+                      %mn 1
+                      %mo ,
+                      %mi i
+                      %mo{:stretchy => "false"} )
+                      %mo ,
+                      %mo{:stretchy => "false"} (
+                      %mn 1
+                      %mo ,
+                      %msup
+                        %mi i
+                        %mrow
+                          %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                          %mn 1
+                      %mo{:stretchy => "false"} )
+                      %mo ↦
+                      %mi id
+                      %mo{:stretchy => "false"} (
+                      %mn 1
+                      %mo{:stretchy => "false"} )
+                    %annotation{:encoding => "application/x-tex"} (1, i), (1, i^{-1}) \mapsto id(1)
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msup
+                      %mi i
+                      %mrow
+                        %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                        %mn 1
+                    %mo ∘
+                    %mi i
+                    %mo =
+                    %mi id
+                    %mo{:stretchy => "false"} (
+                    %mn 0
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} i^{-1} \circ i = id(0)
+              in
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msub
+                        %mi ℰ
+                        %mi semi
+                    %annotation{:encoding => "application/x-tex"} \mathcal{E}_{semi}
+            %p
+              We deduce that
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi x
+                      %mo ∘
+                      %mrow
+                        %mo (
+                        %msub
+                          %mi ℰ
+                          %mi semi
+                        %mo ×
+                        %mi s
+                        %mo )
+                      %mo =
+                      %msub
+                        %mi ℰ
+                        %mi semi
+                      %mo ×
+                      %mi p
+                    %annotation{:encoding => "application/x-tex"} x \circ \left( \mathcal{E}_{semi} \times s \right) = \mathcal{E}_{semi} \times p
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi Γ
+                      %mi lr
+                  %annotation{:encoding => "application/x-tex"} \Gamma_{lr}
+              and
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi Γ
+                      %mi ur
+                  %annotation{:encoding => "application/x-tex"} \Gamma_{ur}
+              are compatible with
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mrow
+                      %mo (
+                      %mi S
+                      %mo ,
+                      %msub
+                        %mi r
+                        %mn 0
+                      %mo ,
+                      %msub
+                        %mi r
+                        %mn 1
+                      %mo ,
+                      %mi s
+                      %mo )
+                  %annotation{:encoding => "application/x-tex"} \left(S, r_0, r_1, s \right)
+              in the sense of VI.32 of
+              = succeed "." do
+                %a{:href => "Williamson2011"} Williamson2011
+          %p
+          .num_remark
+            %h6 Remark
+            %p
+              It follows from the above, Corollary XV.6, and Corollary XV.7 of
+              %a{:href => "Williamson2011"} Williamson2011
+              that there is a model structure on
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/2Cat"} 2Cat
+              %a.existingWikiWord{:href => "/nlab/show/interval+object"} interval object
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mrow
+                        %mo (
+                        %msub
+                          %mi ℰ
+                          %mi semi
+                        %mo ,
+                        %msub
+                          %mi i
+                          %mn 0
+                        %mo ,
+                        %msub
+                          %mi i
+                          %mn 1
+                        %mo )
+                    %annotation{:encoding => "application/x-tex"} \left( \mathcal{E}_{semi}, i_0, i_1 \right)
+              %a.existingWikiWord{:href => "/nlab/show/canonical+model+structure+on+2-categories"} canonical model structure on 2-categories
+              for more.
+          %p
+          .num_remark
+            %h6 Remark
+            %p
+              All of the structures in this section have an analogue for
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi ℰ
+                    %annotation{:encoding => "application/x-tex"} \mathcal{E}
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi Γ
+                      %mi lr
+                  %annotation{:encoding => "application/x-tex"} \Gamma_{lr}
+              and
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi Γ
+                      %mi ur
+                  %annotation{:encoding => "application/x-tex"} \Gamma_{ur}
+              are not compatible with
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mrow
+                        %mo (
+                        %mi S
+                        %mo ,
+                        %msub
+                          %mi r
+                          %mn 0
+                        %mo ,
+                        %msub
+                          %mi r
+                          %mn 1
+                        %mo ,
+                        %mi s
+                        %mo )
+                    %annotation{:encoding => "application/x-tex"} \left(S, r_0, r_1, s \right)
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi ℰ
+                      %mi semi
+                  %annotation{:encoding => "application/x-tex"} \mathcal{E}_{semi}
+              is needed.
+          %h2#related_concepts Related concepts
+          %div
+            %ul
+              %li
+                %p
+                  %a.existingWikiWord{:href => "/nlab/show/walking+structure"} walking structure
+                %ul
+                  %li
+                    %p
+                      the
+                      %a.existingWikiWord{:href => "/nlab/show/boolean+domain"} boolean domain
+                      = succeed ";" do
+                        %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                          %semantics
+                            %mrow
+                              %mn 2
+                              %mo ≔
+                              %mo ∂
+                              %msup
+                                %mi Δ
+                                %mn 1
+                            %annotation{:encoding => "application/x-tex"} 2 \coloneqq \partial \Delta^1
+                      %a.existingWikiWord{:href => "/nlab/show/pair"} pair
+                      of
+                      %a.existingWikiWord{:href => "/nlab/show/objects"} objects
+                  %li
+                    %p
+                      the
+                      %a.existingWikiWord{:href => "/nlab/show/directed+interval+category"} directed interval category
+                      = succeed ";" do
+                        %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                          %semantics
+                            %mrow
+                              %mi I
+                              %mo ≔
+                              %msup
+                                %mi Δ
+                                %mn 1
+                            %annotation{:encoding => "application/x-tex"} I \coloneqq \Delta^1
+                      %a.existingWikiWord{:href => "/nlab/show/morphism"} morphism
+                  %li
+                    %p
+                      the
+                      %a.existingWikiWord{:href => "/nlab/show/%282%2C0%29-horn+category"} (2,0)-horn category
+                      = succeed ";" do
+                        %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                          %semantics
+                            %mrow
+                              %msubsup
+                                %mi Λ
+                                %mn 0
+                                %mn 2
+                            %annotation{:encoding => "application/x-tex"} \Lambda_0^2
+                      %a.existingWikiWord{:href => "/nlab/show/cospan"} cospan
+                  %li
+                    %p
+                      the
+                      %a.existingWikiWord{:href => "/nlab/show/%282%2C1%29-horn+category"} (2,1)-horn category
+                      = succeed ";" do
+                        %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                          %semantics
+                            %mrow
+                              %msubsup
+                                %mi Λ
+                                %mn 1
+                                %mn 2
+                            %annotation{:encoding => "application/x-tex"} \Lambda_1^2
+                      %a.existingWikiWord{:href => "/nlab/show/composable+pair"} composable pair
+                  %li
+                    %p
+                      the
+                      %a.existingWikiWord{:href => "/nlab/show/%282%2C2%29-horn+category"} (2,2)-horn category
+                      = succeed ";" do
+                        %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                          %semantics
+                            %mrow
+                              %msubsup
+                                %mi Λ
+                                %mn 2
+                                %mn 2
+                            %annotation{:encoding => "application/x-tex"} \Lambda_2^2
+                      %a.existingWikiWord{:href => "/nlab/show/span"} span
+                  %li
+                    %p
+                      the
+                      %a.existingWikiWord{:href => "/nlab/show/2-simplex+category"} 2-simplex category
+                      = succeed ";" do
+                        %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                          %semantics
+                            %mrow
+                              %msup
+                                %mi Δ
+                                %mn 2
+                            %annotation{:encoding => "application/x-tex"} \Delta^2
+                      %a.existingWikiWord{:href => "/nlab/show/commutative+triangle"} commutative triangle
+                  %li
+                    %p
+                      the
+                      %a.existingWikiWord{:href => "/nlab/show/walking+parallel+pair"} walking parallel pair
+                  %li
+                    %p
+                      the
+                      %a.existingWikiWord{:href => "/nlab/show/walking+isomorphism"} walking isomorphism
+                  %li
+                    %p
+                      %a.existingWikiWord{:href => "/nlab/show/Adj"}> Adj
+                      ; i.e. the walking
+                      %a.existingWikiWord{:href => "/nlab/show/adjunction"} adjunction
+                  %li
+                    %p
+                      the
+                      %a.existingWikiWord{:href => "/nlab/show/walking+equivalence"} walking equivalence
+                  %li
+                    %p
+                      the
+                      %a.existingWikiWord{:href => "/nlab/show/walking+adjoint+equivalence"} walking adjoint equivalence
+                  %li
+                    %p
+                      the
+                      %a.existingWikiWord{:href => "/nlab/show/walking+2-isomorphism+with+trivial+boundary"} walking 2-isomorphism with trivial boundary
+                  %li
+                    %p
+                      the
+                      %a.existingWikiWord{:href => "/nlab/show/syntactic+category"} syntactic category
+                      of a
+                      %a.existingWikiWord{:href => "/nlab/show/theory"} theory
+                      = succeed ";" do
+                        %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                          %semantics
+                            %mrow
+                              %mi T
+                            %annotation{:encoding => "application/x-tex"} T
+                      = succeed "-" do
+                        %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                          %semantics
+                            %mrow
+                              %mi T
+                            %annotation{:encoding => "application/x-tex"} T
+                      %a.existingWikiWord{:href => "/nlab/show/model"} model
+          %p
+          %h2#section_References References
+          %ul
+            %li#Williamson2011
+              %a.existingWikiWord{:href => "/nlab/show/Richard+Williamson"}> Richard Williamson
+              ,
+              = succeed "," do
+                %em Cylindrical model structures
+              %a{:href => "http://rwilliamson-mathematics.info/cylindrical_model_structures/cylindrical_model_structures.html"} author’s webpage
+              %a{:href => "https://arxiv.org/abs/1304.0867"} arXiv:1304.0867
+          %p The phrase “walking equivalence” appears in:
+          %ul
+            %li#HLOR24
+              %a.existingWikiWord{:href => "/nlab/show/Amar+Hadzihasanovic"}> Amar Hadzihasanovic
+              ,
+              = succeed "," do
+                %span.newWikiWord
+                  Félix Loubaton
+                  %a{:href => "/nlab/new/F%C3%A9lix+Loubaton"} ?
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/Viktoriya+Ozornova"} Viktoriya Ozornova
+              %a.existingWikiWord{:href => "/nlab/show/Martina+Rovelli"} Martina Rovelli
+              %em
+                A model for the coherent walking
+                = succeed "-equivalence" do
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi ω
+                      %annotation{:encoding => "application/x-tex"} \omega
+              (
+              %a{:href => "https://arxiv.org/abs/2404.14509"}> arXiv:2404.14509
+              )
+        .revisedby
+          %p
+            Last revised on June  1, 2025 at 03:28:49.
+            See the
+            %a{:href => "/nlab/history/walking+equivalence", :style => "color: #005c19"} history
+            of this page for a list of all contributions to it.
+        .navigation.navfoot
+          %a#edit.navlink{:accesskey => "E", :href => "/nlab/edit/walking+equivalence", :rel => "nofollow"} Edit
+          %a{:href => "https://nforum.ncatlab.org/discussion/11496/#Item_18"} Discuss
+          %span.backintime
+            %a#to_previous_revision.navlinkbackintime{:accesskey => "B", :href => "/nlab/revision/walking+equivalence/11", :rel => "nofollow"} Previous revision
+          %a#see_changes.navlink{:accesskey => "C", :href => "/nlab/show/diff/walking+equivalence", :rel => "nofollow"} Changes from previous revision
+          %a#history.navlink{:accesskey => "S", :href => "/nlab/history/walking+equivalence", :rel => "nofollow"} History (11 revisions)
+          %a{:href => "/nlab/show/walking+equivalence/cite", :style => "color: black"} Cite
+          %a#view_print{:accesskey => "p", :href => "/nlab/print/walking+equivalence", :rel => "nofollow"} Print
+          %a#view_source{:href => "/nlab/source/walking+equivalence", :rel => "nofollow"} Source
+      / Content
+    / Container

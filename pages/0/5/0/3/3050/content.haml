@@ -1,0 +1,4007 @@
+!!! XML
+!!! 1.1
+%html{:xmlns => "http://www.w3.org/1999/xhtml"}
+  %head
+    %title
+      monadic descent in nLab
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:content => "index,follow", :name => "robots"}/
+    %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/
+    %link{:href => "/stylesheets/instiki.css?1676280126", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/stylesheets/mathematics.css?1660229990", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/stylesheets/syntax.css?1660229990", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/stylesheets/nlab.css?1676280126", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css", :rel => "stylesheet", :type => "text/css"}/
+    :css
+      h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+        color: #226622;
+      }
+      a:visited.existingWikiWord {
+        color: #164416;
+      }
+    :css
+      <!--/*--><![CDATA[/*><!--*/
+          .toc ul {margin: 0; padding: 0;}
+      .toc ul ul {margin: 0; padding: 0 0 0 10px;}
+      .toc li > p {margin: 0}
+      .toc ul li {list-style-type: none; position: relative;}
+      .toc div {border-top:1px dotted #ccc;}
+      .rightHandSide h2 {font-size: 1.5em;color:#008B26}
+      table.plaintable {
+          border-collapse:collapse;
+          margin-left:30px;
+          border:0;
+      }
+      .plaintable td {border:1px solid #000; padding: 3px;}
+      .plaintable th {padding: 3px;}
+      .plaintable caption {
+          font-weight: bold;
+          font-size:1.1em;
+          text-align:center;
+          margin-left:30px;
+      }
+          
+         
+      /* Query boxes for questioning and answering mechanism */
+      div.query{
+      background: #f6fff3;
+      border: solid #ce9;
+      border-width: 2px 1px;
+      padding: 0 1em;
+      margin: 0 1em;
+      max-height: 20em;
+      overflow: auto;
+      }
+      
+      /* Standout boxes for putting important text */
+      div.standout{
+      background: #fff1f1;
+      border: solid black;
+      border-width: 2px 1px;
+      padding: 0 1em;
+      margin: 0 1em;
+      overflow: auto;
+      }
+      
+      /* Icon for links to n-category arXiv documents 
+       (commented out for now i.e. disabled)
+      a[href*="http://arxiv.org/"] {
+        background-image: url(../files/arXiv_icon.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 22px;
+        } */
+          
+      /* Icon for links to n-category cafe posts (disabled) 
+      a[href*="http://golem.ph.utexas.edu/category"] {
+        background-image: url(../files/n-cafe_5.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 25px;
+        } */
+      
+      /* Icon for links to pdf files (disabled)
+      a[href$=".pdf"] {
+        background-image: url(../files/pdficon_small.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 25px;
+        } */
+      
+      /* Icon for links to pages, etc. -inside- pdf files (disabled)
+      a[href*=".pdf#"] {
+        background-image: url(../files/pdf_entry.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 25px;
+        } */
+      
+      a.existingWikiWord {
+      color: #226622;
+      }
+      
+      a.existingWikiWord:visited {
+      color: #226622;
+      }
+      
+      
+      a.existingWikiWord[title] {
+      border: 0px;
+      color: #aa0505;
+      text-decoration: none;
+      }
+          
+      a.existingWikiWord[title]:visited {
+      border: 0px;
+      color: #551111;
+      text-decoration: none;
+      }
+      
+      a[href^="http://"] {
+      border: 0px;
+      color: #003399;
+      }
+      
+      a[href^="http://"]:visited {
+      border: 0px;
+      color: #330066;
+      }
+      
+      a[href^="https://"] {
+      border: 0px;
+      color: #003399;
+      }
+      
+      a[href^="https://"]:visited {
+      border: 0px;
+      color: #330066;
+      }
+      
+      div.dropDown .hide {
+      display: none;
+      }
+      
+      div.dropDown:hover .hide {
+      display:block;
+      }
+      
+      div.clickDown .hide {
+      display: none;
+      }
+      
+      div.clickDown:focus {
+      outline:none;
+      }
+      
+      div.clickDown:focus .hide, div.clickDown:hover .hide {
+      display: block;
+      }
+      
+      div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+      display:block;
+      }
+      
+      div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+      display:none;
+      }
+      
+      div.clickDown .clickToReveal:after {
+      content: "A(Hover to reveal, click to "hold")";
+      font-size: 60%;
+      }
+      
+      div.clickDown .clickToHide:after {
+      content: "A(Click to hide)";
+      font-size: 60%;
+      }
+      div.clickDown .clickToHide, div.clickDown .clickToReveal {
+      white-space: pre-wrap;
+      }
+      
+      .un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+      margin-left: 1em;
+      }
+      
+      span.theorem_label {
+      margin-left: -1em;
+      }
+      .proof span.theorem_label {
+      margin-left: 0em;
+      }
+      :target {
+          background-color: #BBBBBB;
+          border-radius: 5pt;
+      }
+      
+        /*]]>*/-->
+    %script{:src => "/javascripts/prototype.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/effects.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/dragdrop.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/controls.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/application.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/page_helper.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/thm_numbering.js?1660229990", :type => "text/javascript"}
+    %script{:type => "text/x-mathjax-config"}
+      :cdata
+        <!--//--><![CDATA[//><!--
+        MathJax.Ajax.config.path["Contrib"] = "/MathJax";
+        MathJax.Hub.Config({
+        MathML: { useMathMLspacing: true },
+        "HTML-CSS": { scale: 90,
+        extensions: ["handle-floats.js"]
+        }
+        });
+        MathJax.Hub.Queue( function () {
+        var fos = document.getElementsByTagName('foreignObject');
+        for (var i = 0; i < fos.length; i++) {
+        MathJax.Hub.Typeset(fos[i]);
+        }
+        });
+        \//--><!]]>
+    :javascript
+      <!--//--><![CDATA[//><!--
+      window.addEventListener("DOMContentLoaded", function () {
+        var div = document.createElement('div');
+        var math = document.createElementNS('http://www.w3.org/1998/Math/MathML', 'math');
+        document.body.appendChild(div);
+        div.appendChild(math);
+      // Test for MathML support comparable to WebKit version https://trac.webkit.org/changeset/203640 or higher.
+        div.setAttribute('style', 'font-style: italic');
+        var mathml_unsupported = !(window.getComputedStyle(div.firstChild).getPropertyValue('font-style') === 'normal');
+        div.parentNode.removeChild(div);
+        if (mathml_unsupported) {
+          // MathML does not seem to be supported...
+          var s = document.createElement('script');
+          s.src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=MML_HTMLorMML-full";
+          document.querySelector('head').appendChild(s);
+        } else {
+          document.head.insertAdjacentHTML("beforeend", '<style>svg[viewBox] {max-width: 100%}</style>');
+        }
+      });
+      //--><!]]>
+    %link{:href => "https://ncatlab.org/nlab/atom_with_headlines", :rel => "alternate", :title => "Atom with headlines", :type => "application/atom+xml"}/
+    %link{:href => "https://ncatlab.org/nlab/atom_with_content", :rel => "alternate", :title => "Atom with full content", :type => "application/atom+xml"}/
+    :javascript
+      document.observe("dom:loaded", function() {
+        generateThmNumbers();
+      });
+  %body
+    #Container
+      #Content
+        %h1#pageName
+          %span{:style => "float: left; margin: 0.5em 0.25em -0.25em 0"}
+            %svg{:height => "1.8em", :viewbox => "0 0 190 181", :width => "1.872em", :xmlns => "http://www.w3.org/2000/svg"}
+              %path{:d => "M72.8 145c-1.6 17.3-15.7 10-23.6 20.2-5.6 7.3 4.8 15 11.4 15 11.5-.2 19-13.4 26.4-20.3 3.3-3 8.2-4 11.2-7.2a14 14 0 0 0 2.9-11.1c-1.4-9.6-12.4-18.6-16.9-27.2-5-9.6-10.7-27.4-24.1-27.7-17.4-.3-.4 26 4.7 30.7 2.4 2.3 5.4 4.1 7.3 6.9 1.6 2.3 2.1 5.8-1 7.2-5.9 2.6-12.4-6.3-15.5-10-8.8-10.6-15.5-23-26.2-31.8-5.2-4.3-11.8-8-18-3.7-7.3 4.9-4.2 12.9.2 18.5a81 81 0 0 0 30.7 23c3.3 1.5 12.8 5.6 10 10.7-2.5 5.2-11.7 3-15.6 1.1-8.4-3.8-24.3-21.3-34.4-13.7-3.5 2.6-2.3 7.6-1.2 11.1 2.8 9 12.2 17.2 20.9 20.5 17.3 6.7 34.3-8 50.8-12.1z", :fill => "#226622"}
+              %path{:d => "M145.9 121.3c-.2-7.5 0-19.6-4.5-26-5.4-7.5-12.9-1-14.1 5.8-1.4 7.8 2.7 14.1 4.8 21.3 3.4 12 5.8 29-.8 40.1-3.6-6.7-5.2-13-7-20.4-2.1-8.2-12.8-13.2-15.1-1.9-2 9.7 9 21.2 12 30.1 1.2 4 2 8.8 6.4 10.3 6.9 2.3 13.3-4.7 17.7-8.8 12.2-11.5 36.6-20.7 43.4-36.4 6.7-15.7-13.7-14-21.3-7.2-9.1 8-11.9 20.5-23.6 25.1 7.5-23.7 31.8-37.6 38.4-61.4 2-7.3-.8-29.6-13-19.8-14.5 11.6-6.6 37.6-23.3 49.2z", :fill => "#a41e32"}
+              %path{:d => "M86.3 47.5c0-13-10.2-27.6-5.8-40.4 2.8-8.4 14.1-10.1 17-1 3.8 11.6-.3 26.3-1.8 38 11.7-.7 10.5-16 14.8-24.3 2.1-4.2 5.7-9.1 11-6.7 6 2.7 7.4 9.2 6.6 15.1-2.2 14-12.2 18.8-22.4 27-3.4 2.7-8 6.6-5.9 11.6 2 4.4 7 4.5 10.7 2.8 7.4-3.3 13.4-16.5 21.7-16 14.6.7 12 21.9.9 26.2-5 1.9-10.2 2.3-15.2 3.9-5.8 1.8-9.4 8.7-15.7 8.9-6.1.1-9-6.9-14.3-9-14.4-6-33.3-2-44.7-14.7-3.7-4.2-9.6-12-4.9-17.4 9.3-10.7 28 7.2 35.7 12 2 1.1 11 6.9 11.4 1.1.4-5.2-10-8.2-13.5-10-11.1-5.2-30-15.3-35-27.3-2.5-6 2.8-13.8 9.4-13.6 6.9.2 13.4 7 17.5 12C70.9 34 75 43.8 86.3 47.4z", :fill => "#193c78"}
+          %span.webName nLab
+          monadic descent
+        .navigation
+          %span.skipNav
+            %a{:href => "#navEnd"} Skip the Navigation Links
+            |
+          %span{:style => "display:inline-block; width: 0.3em;"}
+          %a{:accesskey => "H", :href => "/nlab/show/HomePage", :title => "Home page"} Home Page
+          |
+          %a{:accesskey => "A", :href => "/nlab/all_pages", :title => "List of all pages"} All Pages
+          |
+          %a{:accesskey => "U", :href => "/nlab/latest_revisions", :title => "Latest edits and page creations"} Latest Revisions
+          |
+          %a{:href => "https://nforum.ncatlab.org/discussion/537/#Item_16", :style => "color: black", :title => "Discuss this page in its dedicated thread on the nForum"} Discuss this page
+          |
+          %form#navigationSearchForm{"accept-charset" => "utf-8", :action => "/nlab/search", :method => "get"}
+            %fieldset.search
+              %input#searchField{:name => "query", :onblur => "this.value == '' ? this.value = 'Search' : true", :onfocus => "this.value == 'Search' ? this.value = '' : true", :style => "display:inline-block; float: left;", :type => "text", :value => "Search"}/
+          %span#navEnd
+        #revision
+          %meta{:content => "application/xhtml+xml;charset=utf-8", "http-equiv" => "Content-type"}/
+          %title Contents
+          .rightHandSide
+            .toc.clickDown{:tabindex => "0"}
+              %h3#context Context
+              %h4#locality_and_descent Locality and descent
+              .hide
+                %div
+                  %p
+                    %strong
+                      %a.existingWikiWord{:href => "/nlab/show/localization"} localization
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/local+object"}> local object
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/local+morphism"} local morphism
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/reflective+localization"} reflective localization
+                      %ul
+                        %li
+                          %a.existingWikiWord{:href => "/nlab/show/category+of+sheaves"}> category of sheaves
+                          ,
+                          %a.existingWikiWord{:href => "/nlab/show/%28%E2%88%9E%2C1%29-category+of+%28%E2%88%9E%2C1%29-sheaves"} (∞,1)-category of (∞,1)-sheaves
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Bousfield+localization+of+model+categories"}> Bousfield localization
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/simplicial+localization"} simplicial localization
+                  %p
+                    %strong
+                      %a.existingWikiWord{:href => "/nlab/show/descent"} descent
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/cover"} cover
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/descent+object"}> descent object
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/descent+morphism"} descent morphism
+                      %ul
+                        %li
+                          %a.existingWikiWord{:href => "/nlab/show/matching+family"} matching family
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/sheaf"}> sheaf
+                        ,
+                        = succeed "/" do
+                          %a.existingWikiWord{:href => "/nlab/show/%282%2C1%29-sheaf"} (2,1)-sheaf
+                        = succeed "," do
+                          %a.existingWikiWord{:href => "/nlab/show/stack"} stack
+                        = succeed "," do
+                          %a.existingWikiWord{:href => "/nlab/show/2-sheaf"} 2-sheaf
+                        = succeed "/" do
+                          %a.existingWikiWord{:href => "/nlab/show/%28%E2%88%9E%2C1%29-sheaf"} (∞,1)-sheaf
+                        %a.existingWikiWord{:href => "/nlab/show/%E2%88%9E-stack"} ∞-stack
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/cohomological+descent"} cohomological descent
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/monadic+descent"}> monadic descent
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/higher+monadic+descent"} higher monadic descent
+                      %ul
+                        %li
+                          %a.existingWikiWord{:href => "/nlab/show/Sweedler+coring"}> Sweedler coring
+                          ,
+                          %a.existingWikiWord{:href => "/nlab/show/descent+in+noncommutative+algebraic+geometry"} descent in noncommutative algebraic geometry
+                  %div
+                    %p
+                      %a{:href => "/nlab/edit/descent+and+locality+-+contents"} Edit this sidebar
+              %h4#cohomology Cohomology
+              .hide
+                %div
+                  %p
+                    %strong
+                      %a.existingWikiWord{:href => "/nlab/show/cohomology"} cohomology
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/cocycle"}> cocycle
+                        ,
+                        = succeed "," do
+                          %a.existingWikiWord{:href => "/nlab/show/coboundary"} coboundary
+                        %a.existingWikiWord{:href => "/nlab/show/coefficient"} coefficient
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/homology"} homology
+                      %ul
+                        %li
+                          %a.existingWikiWord{:href => "/nlab/show/chain"}> chain
+                          ,
+                          = succeed "," do
+                            %a.existingWikiWord{:href => "/nlab/show/cycle"} cycle
+                          %a.existingWikiWord{:href => "/nlab/show/boundary"} boundary
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/characteristic+class"} characteristic class
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/universal+characteristic+class"} universal characteristic class
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/secondary+characteristic+class"} secondary characteristic class
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/differential+characteristic+class"} differential characteristic class
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/fiber+sequence"}> fiber sequence
+                        \/
+                        %a.existingWikiWord{:href => "/nlab/show/long+exact+sequence+in+cohomology"} long exact sequence in cohomology
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/fiber+%E2%88%9E-bundle"}> fiber ∞-bundle
+                        ,
+                        = succeed "," do
+                          %a.existingWikiWord{:href => "/nlab/show/principal+%E2%88%9E-bundle"} principal ∞-bundle
+                        = succeed "," do
+                          %a.existingWikiWord{:href => "/nlab/show/associated+%E2%88%9E-bundle"} associated ∞-bundle
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/twisted+%E2%88%9E-bundle"} twisted ∞-bundle
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/%E2%88%9E-group+extension"} ∞-group extension
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/obstruction"} obstruction
+                  %h3#special_and_general_types Special and general types
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/cochain+cohomology"} cochain cohomology
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/ordinary+cohomology"}> ordinary cohomology
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/singular+cohomology"} singular cohomology
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/group+cohomology"}> group cohomology
+                        ,
+                        = succeed "," do
+                          %a.existingWikiWord{:href => "/nlab/show/nonabelian+group+cohomology"} nonabelian group cohomology
+                        %a.existingWikiWord{:href => "/nlab/show/Lie+group+cohomology"} Lie group cohomology
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Galois+cohomology"} Galois cohomology
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/groupoid+cohomology"}> groupoid cohomology
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/nonabelian+groupoid+cohomology"} nonabelian groupoid cohomology
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/generalized+%28Eilenberg-Steenrod%29+cohomology"} generalized (Eilenberg-Steenrod) cohomology
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/cobordism+cohomology+theory"} cobordism cohomology theory
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/integral+cohomology"} integral cohomology
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/K-theory"} K-theory
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/elliptic+cohomology"}> elliptic cohomology
+                            ,
+                            %a.existingWikiWord{:href => "/nlab/show/tmf"} tmf
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/taf"} taf
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/abelian+sheaf+cohomology"} abelian sheaf cohomology
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/Deligne+cohomology"} Deligne cohomology
+                          %ul
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/de+Rham+cohomology"} de Rham cohomology
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/Dolbeault+cohomology"} Dolbeault cohomology
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/etale+cohomology"} etale cohomology
+                          %ul
+                            %li
+                              %a.existingWikiWord{:href => "/nlab/show/group+of+units"}> group of units
+                              ,
+                              = succeed "," do
+                                %a.existingWikiWord{:href => "/nlab/show/Picard+group"} Picard group
+                              %a.existingWikiWord{:href => "/nlab/show/Brauer+group"} Brauer group
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/crystalline+cohomology"} crystalline cohomology
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/syntomic+cohomology"} syntomic cohomology
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/motivic+cohomology"} motivic cohomology
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/cohomology+of+operads"} cohomology of operads
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Hochschild+cohomology"}> Hochschild cohomology
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/cyclic+cohomology"} cyclic cohomology
+                      %ul
+                        %li
+                          %a.existingWikiWord{:href => "/nlab/show/string+topology"} string topology
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/nonabelian+cohomology"} nonabelian cohomology
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/principal+%E2%88%9E-bundle"} principal ∞-bundle
+                          %ul
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/universal+principal+%E2%88%9E-bundle"}> universal principal ∞-bundle
+                                ,
+                                %a.existingWikiWord{:href => "/nlab/show/groupal+model+for+universal+principal+%E2%88%9E-bundles"} groupal model for universal principal ∞-bundles
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/principal+bundle"}> principal bundle
+                                ,
+                                %a.existingWikiWord{:href => "/nlab/show/Atiyah+Lie+groupoid"} Atiyah Lie groupoid
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/principal+2-bundle"}> principal 2-bundle
+                                \/
+                                %a.existingWikiWord{:href => "/nlab/show/gerbe"} gerbe
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/locally+constant+%E2%88%9E-stack"}> covering ∞-bundle
+                            \/
+                            %a.existingWikiWord{:href => "/nlab/show/local+system"} local system
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/%28%E2%88%9E%2C1%29-vector+bundle"} (∞,1)-vector bundle
+                            \/
+                            %a.existingWikiWord{:href => "/nlab/show/%28%E2%88%9E%2Cn%29-vector+bundle"} (∞,n)-vector bundle
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/quantum+anomaly"} quantum anomaly
+                          %ul
+                            %li
+                              %a.existingWikiWord{:href => "/nlab/show/orientation"}> orientation
+                              ,
+                              = succeed "," do
+                                %a.existingWikiWord{:href => "/nlab/show/Spin+structure"} Spin structure
+                              = succeed "," do
+                                %a.existingWikiWord{:href => "/nlab/show/Spin%5Ec+structure"} Spin^c structure
+                              = succeed "," do
+                                %a.existingWikiWord{:href => "/nlab/show/String+structure"} String structure
+                              %a.existingWikiWord{:href => "/nlab/show/Fivebrane+structure"} Fivebrane structure
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/cohomology+with+constant+coefficients"} cohomology with constant coefficients
+                        \/
+                        %a.existingWikiWord{:href => "/nlab/show/cohomology+with+a+local+system+of+coefficients"} with a local system of coefficients
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/%E2%88%9E-Lie+algebra+cohomology"} ∞-Lie algebra cohomology
+                      %ul
+                        %li
+                          %a.existingWikiWord{:href => "/nlab/show/Lie+algebra+cohomology"}> Lie algebra cohomology
+                          ,
+                          = succeed "," do
+                            %a.existingWikiWord{:href => "/nlab/show/nonabelian+Lie+algebra+cohomology"} nonabelian Lie algebra cohomology
+                          = succeed "," do
+                            %a.existingWikiWord{:href => "/nlab/show/Lie+algebra+extensions"} Lie algebra extensions
+                          = succeed "," do
+                            %a.existingWikiWord{:href => "/nlab/show/Gelfand-Fuks+cohomology"} Gelfand-Fuks cohomology
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Gerstenhaber-Schack+cohomology"} bialgebra cohomology
+                  %h3#special_notions Special notions
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/%C4%8Cech+cohomology"} Čech cohomology
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/hypercohomology"} hypercohomology
+                  %h3#variants Variants
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/equivariant+cohomology"} equivariant cohomology
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/equivariant+homotopy+theory"} equivariant homotopy theory
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/Bredon+cohomology"} Bredon cohomology
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/twisted+cohomology"} twisted cohomology
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/twisted+bundle"} twisted bundle
+                          %ul
+                            %li
+                              %a.existingWikiWord{:href => "/nlab/show/twisted+K-theory"}> twisted K-theory
+                              ,
+                              = succeed "," do
+                                %a.existingWikiWord{:href => "/nlab/show/twisted+spin+structure"} twisted spin structure
+                              %a.existingWikiWord{:href => "/nlab/show/twisted+spin%5Ec+structure"} twisted spin^c structure
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/twisted+differential+c-structures"} twisted differential c-structures
+                          %ul
+                            %li
+                              %a.existingWikiWord{:href => "/nlab/show/twisted+differential+string+structure"}> twisted differential string structure
+                              ,
+                              %a.existingWikiWord{:href => "/nlab/show/twisted+differential+fivebrane+structure"} twisted differential fivebrane structure
+                    %li
+                      %p differential cohomology
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/differential+cohomology"} differential generalized (Eilenberg-Steenrod) cohomology
+                          %ul
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/differential+cobordism+cohomology"} differential cobordism cohomology
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/Deligne+cohomology"} Deligne cohomology
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/differential+K-theory"} differential K-theory
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/differential+elliptic+cohomology"} differential elliptic cohomology
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/schreiber/show/differential+cohomology+in+a+cohesive+topos"} differential cohomology in a cohesive topos
+                          %ul
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/Chern-Weil+theory"} Chern-Weil theory
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/%E2%88%9E-Chern-Weil+theory"} ∞-Chern-Weil theory
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/relative+cohomology"} relative cohomology
+                  %h3#extra_structure Extra structure
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Hodge+structure"} Hodge structure
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/orientation"}> orientation
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/orientation+in+generalized+cohomology"} in generalized cohomology
+                  %h3#operations Operations
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/cohomology+operations"} cohomology operations
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/cup+product"} cup product
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/connecting+homomorphism"}> connecting homomorphism
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/Bockstein+homomorphism"} Bockstein homomorphism
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/fiber+integration"}> fiber integration
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/transgression"} transgression
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/cohomology+localization"} cohomology localization
+                  %h3#theorems Theorems
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/universal+coefficient+theorem"} universal coefficient theorem
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/K%C3%BCnneth+theorem"} Künneth theorem
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/de+Rham+theorem"}> de Rham theorem
+                        ,
+                        = succeed "," do
+                          %a.existingWikiWord{:href => "/nlab/show/Poincare+lemma"} Poincare lemma
+                        %a.existingWikiWord{:href => "/nlab/show/Stokes+theorem"} Stokes theorem
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Hodge+theory"}> Hodge theory
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/Hodge+theorem"} Hodge theorem
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/nonabelian+Hodge+theory"}> nonabelian Hodge theory
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/noncommutative+Hodge+theory"} noncommutative Hodge theory
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Brown+representability+theorem"} Brown representability theorem
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/abelian+sheaf+cohomology"} hypercovering theorem
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Eckmann-Hilton+duality"} Eckmann-Hilton-Fuks duality
+                  %div
+                    %p
+                      %a{:href => "/nlab/edit/cohomology+-+contents"} Edit this sidebar
+          %h1#contents Contents
+          .maruku_toc
+            %ul
+              %li
+                %a{:href => "#idea"} Idea
+              %li
+                %a{:href => "#Definition"} Definition
+              %li
+                %a{:href => "#properties"} Properties
+              %li
+                %a{:href => "#examples"} Examples
+              %ul
+                %li
+                  %a{:href => "#DescentForTheCodomainFibration"} Descent for the codomain fibration
+                %li
+                  %a{:href => "#ForCodomainFibs"} Monadic descent of bundles
+                %ul
+                  %li
+                    %a{:href => "#motivation_failure_of_pushforward_for_principal_bundles"} Motivation: failure of push-forward for principal bundles
+                  %li
+                    %a{:href => "#the_monad"} The monad
+                  %li
+                    %a{:href => "#the_algebras_over_the_monad_geometric_descent_data"} The algebras over the monad: geometric descent data
+                %li
+                  %a{:href => "#AlongPrincipalBundle"}
+                    Monadic descent
+                    %em along
+                    principal bundles
+                %ul
+                  %li
+                    %a{:href => "#idea_2"} Idea
+                  %li
+                    %a{:href => "#setup"} Setup
+                  %li
+                    %a{:href => "#the_two_different_monads"} The two different monads
+                %li
+                  %a{:href => "#monadic_descent_of_modules"} Monadic descent of modules
+                %li
+                  %a{:href => "#gluing_categories_from_localizations"} Gluing categories from localizations
+              %li
+                %a{:href => "#higher_category_theoretical_version"} Higher category theoretical version
+              %li
+                %a{:href => "#related_concepts"} Related concepts
+              %li
+                %a{:href => "#references"} References
+          %h2#idea Idea
+          %p
+            %em Monadic descent
+            is a way to encode
+            %a.existingWikiWord{:href => "/nlab/show/descent"} descent
+            of
+            %a.existingWikiWord{:href => "/nlab/show/fibered+category"} fibered categories
+            (equivalently, via the
+            = succeed ":" do
+              %a.existingWikiWord{:href => "/nlab/show/Grothendieck+construction"} Grothendieck construction
+            = succeed ")" do
+              %a.existingWikiWord{:href => "/nlab/show/pseudofunctors"} pseudofunctors
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/bifibration"} bifibrations
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/categorical+algebra"} categorical algebraic tools
+            %a.existingWikiWord{:href => "/nlab/show/monad"} monads
+            and related structures from
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/universal+algebra"} universal algebra
+          %p
+            A
+            %a.existingWikiWord{:href => "/nlab/show/bifibration"} bifibration
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi E
+                  %mo →
+                  %mi B
+                %annotation{:encoding => "application/x-tex"} E \to B
+            comes naturally equipped not only with a notion of pullback, but also of pushforward. Combined these provide pull-push-
+            %a.existingWikiWord{:href => "/nlab/show/monad"} monads
+            that may be used to encode the
+            %a.existingWikiWord{:href => "/nlab/show/descent"} descent
+            property of the fibration.
+          %p
+            A morphism
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi f
+                  %mo :
+                  %msub
+                    %mi b
+                    %mn 1
+                  %mo →
+                  %msub
+                    %mi b
+                    %mn 2
+                %annotation{:encoding => "application/x-tex"} f : b_1 \to b_2
+            in the base
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi B
+                %annotation{:encoding => "application/x-tex"} B
+            induces an
+            %a.existingWikiWord{:href => "/nlab/show/adjunction"} adjunction
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi F
+                  %mo ⊣
+                  %mi U
+                %annotation{:encoding => "application/x-tex"} F\dashv U
+            where
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi F
+                  %mspace{:width => "thickmathspace"}
+                  %mo{:lspace => "verythinmathspace"} :
+                  %mspace{:width => "thickmathspace"}
+                  %msub
+                    %mi E
+                    %mrow
+                      %msub
+                        %mi b
+                        %mn 1
+                  %mo{:lspace => "mediummathspace", :rspace => "mediummathspace"} ≕
+                  %mi A
+                  %mo ↔
+                  %mi B
+                  %mo ≔
+                  %msub
+                    %mi E
+                    %mrow
+                      %msub
+                        %mi b
+                        %mn 2
+                  %mspace{:width => "thickmathspace"}
+                  %mo{:lspace => "verythinmathspace"} :
+                  %mspace{:width => "thickmathspace"}
+                  %mi U
+                  %mpadded{:width => "0"}
+                    %mrow
+                      %mspace{:width => "thinmathspace"}
+                      %mo ,
+                %annotation{:encoding => "application/x-tex"}
+                  F
+                  \\;\colon\;
+                  E_{b_1}
+                  \\eqqcolon
+                  A
+                  \\leftrightarrow
+                  B
+                  \\coloneqq
+                  E_{b_2}
+                  \\;\colon\;
+                  U
+                  \\mathrlap{\,,}
+          %p
+            and we ask whether
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi U
+                %annotation{:encoding => "application/x-tex"} U
+            is a
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/monadic+functor"} monadic functor
+          %p
+            This is the original description of
+            %a.existingWikiWord{:href => "/nlab/show/descent"} descent
+            of
+            %a.existingWikiWord{:href => "/nlab/show/presheaves"} presheaves
+            with values in
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/1-categories"} 1-categories
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/Alexander+Grothendieck"} Alexander Grothendieck
+          %p
+            The archetypical and motivating example is that of the bifibration
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi Mod
+                  %mo →
+                  %mi Ring
+                %annotation{:encoding => "application/x-tex"} Mod \to Ring
+            of
+            %a.existingWikiWord{:href => "/nlab/show/modules"} modules
+            over
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/Rings"} Rings
+          %h2#Definition Definition
+          %p
+            Let
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi 𝒞
+                %annotation{:encoding => "application/x-tex"} \mathcal{C}
+            be a
+            %a.existingWikiWord{:href => "/nlab/show/category"} category
+            and
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msub
+                    %mi 𝒞
+                    %mrow
+                      %mo{:stretchy => "false"} (
+                      %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                      %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} \mathcal{C}_{(-)}
+            a
+            %a.existingWikiWord{:href => "/nlab/show/bifibration"} bifibration
+            over it. For
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi f
+                  %mo{:lspace => "verythinmathspace"} :
+                  %mi X
+                  %mo ⟶
+                  %mi Y
+                %annotation{:encoding => "application/x-tex"} f \colon X \longrightarrow Y
+            a
+            %a.existingWikiWord{:href => "/nlab/show/morphism"} morphism
+            in
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi 𝒞
+                %annotation{:encoding => "application/x-tex"} \mathcal{C}
+            write
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mo{:stretchy => "false"} (
+                  %msub
+                    %mi f
+                    %mo !
+                  %mo ⊣
+                  %msup
+                    %mi f
+                    %mo *
+                  %mo ⊣
+                  %msub
+                    %mi f
+                    %mo *
+                  %mo{:stretchy => "false"} )
+                  %mo{:lspace => "verythinmathspace"} :
+                  %msub
+                    %mi 𝒞
+                    %mi X
+                  %mover
+                    %mover
+                      %munder
+                        %mo ⟶
+                        %mrow
+                          %msub
+                            %mi f
+                            %mo *
+                      %mover
+                        %mo ⟵
+                        %mrow
+                          %msup
+                            %mi f
+                            %mo *
+                    %mover
+                      %mo ⟶
+                      %mrow
+                        %msub
+                          %mi f
+                          %mo !
+                  %msub
+                    %mi 𝒞
+                    %mi Y
+                %annotation{:encoding => "application/x-tex"}
+                  (f_! \dashv f^\ast \dashv f_\ast)
+                  \\colon
+                  \\mathcal{C}_X
+                  \\stackrel{\overset{f_!}{\longrightarrow}}{\stackrel{\overset{f^\ast}{\longleftarrow}}{\underset{f_\ast}{\longrightarrow}}}
+                  \\mathcal{C}_Y
+          %p
+            for the corresponding
+            %a.existingWikiWord{:href => "/nlab/show/base+change"} base change
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/adjoint+triple"} adjoint triple
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mo{:stretchy => "false"} (
+                  %msub
+                    %mi T
+                    %mi f
+                  %mo ⊣
+                  %msub
+                    %mi J
+                    %mi f
+                  %mo{:stretchy => "false"} )
+                  %mo ≔
+                  %mo{:stretchy => "false"} (
+                  %msup
+                    %mi f
+                    %mo *
+                  %msub
+                    %mi f
+                    %mo !
+                  %mo ⊣
+                  %msup
+                    %mi f
+                    %mo *
+                  %msub
+                    %mi f
+                    %mo *
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"}
+                  (T_f \dashv J_f) \coloneqq (f^\ast f_! \dashv f^\ast f_\ast)
+          %p
+            for the induced
+            %a.existingWikiWord{:href => "/nlab/show/adjoint+pair"} adjoint pair
+            of a
+            %a.existingWikiWord{:href => "/nlab/show/monad"} monad
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi T
+                %annotation{:encoding => "application/x-tex"} T
+            and a
+            %a.existingWikiWord{:href => "/nlab/show/comonad"} comonad
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi J
+                  %annotation{:encoding => "application/x-tex"} J
+          %p
+            There is a standard definition of a
+            %a.existingWikiWord{:href => "/nlab/show/category"} category
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msub
+                    %mi Desc
+                    %mi 𝒞
+                  %mo{:stretchy => "false"} (
+                  %mi f
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} Desc_{\mathcal{C}}(f)
+            of
+            %a.existingWikiWord{:href => "/nlab/show/descent+data"} descent data
+            for
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msub
+                    %mi 𝒞
+                    %mrow
+                      %mo{:stretchy => "false"} (
+                      %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                      %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} \mathcal{C}_{(-)}
+            along
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi f
+                  %annotation{:encoding => "application/x-tex"} f
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msub
+                    %mi 𝒞
+                    %mi Y
+                  %mo ⟶
+                  %msub
+                    %mi Desc
+                    %mi 𝒞
+                  %mo{:stretchy => "false"} (
+                  %mi f
+                  %mo{:stretchy => "false"} )
+                  %mspace{:width => "thinmathspace"}
+                  %mo .
+                %annotation{:encoding => "application/x-tex"}
+                  \\mathcal{C}_{Y} \longrightarrow Desc_{\mathcal{C}}(f)
+                  \\,.
+          %p
+            The morphism
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi f
+                %annotation{:encoding => "application/x-tex"} f
+            is called (with respect to the given bifibration
+            = succeed ")" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi 𝒞
+                      %mrow
+                        %mo{:stretchy => "false"} (
+                        %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                        %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} \mathcal{C}_{(-)}
+          %ul
+            %li
+              %p
+                a
+                %em descent morphism
+                if this comparison map is a
+                = succeed ";" do
+                  %a.existingWikiWord{:href => "/nlab/show/full+and+faithful+functor"} full and faithful functor
+            %li
+              %p
+                an
+                %em effective descent morphism
+                if the comparison map is an
+                = succeed "." do
+                  %a.existingWikiWord{:href => "/nlab/show/equivalence+of+categories"} equivalence of categories
+          %p
+            Now the
+            %a.existingWikiWord{:href => "/nlab/show/B%C3%A9nabou%E2%80%93Roubaud+theorem"} Bénabou–Roubaud theorem
+            states that if
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msub
+                    %mi 𝒞
+                    %mrow
+                      %mo{:stretchy => "false"} (
+                      %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                      %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} \mathcal{C}_{(-)}
+            satisfies the
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/Beck%E2%80%93Chevalley+condition"} Beck–Chevalley condition
+            %a.existingWikiWord{:href => "/nlab/show/algebra+over+a+monad"} algebra over a monad
+            for
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msub
+                    %mi T
+                    %mi f
+                %annotation{:encoding => "application/x-tex"} T_f
+            (equivalently a coalgebra for
+            = succeed ")," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi J
+                      %mi f
+                  %annotation{:encoding => "application/x-tex"} J_f
+            %a.existingWikiWord{:href => "/nlab/show/Eilenberg%E2%80%93Moore+category"} Eilenberg–Moore category
+            for these (co-)monads
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msub
+                    %mi Desc
+                    %mi 𝒞
+                  %mo{:stretchy => "false"} (
+                  %mi f
+                  %mo{:stretchy => "false"} )
+                  %mo ≃
+                  %mi EM
+                  %mo{:stretchy => "false"} (
+                  %msub
+                    %mi T
+                    %mi f
+                  %mo{:stretchy => "false"} )
+                  %mspace{:width => "thinmathspace"}
+                  %mo .
+                %annotation{:encoding => "application/x-tex"}
+                  Desc_{\mathcal{C}}(f)
+                  \\simeq
+                  EM(T_f)
+                  \\,.
+          %p
+            Therefore when
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msub
+                    %mi 𝒞
+                    %mrow
+                      %mo{:stretchy => "false"} (
+                      %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                      %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} \mathcal{C}_{(-)}
+            satisfies the BC condition, then a morphism
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi f
+                %annotation{:encoding => "application/x-tex"} f
+            %em is effective descent
+            precisely if
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msup
+                    %mi f
+                    %mo *
+                  %mo{:lspace => "verythinmathspace"} :
+                  %msub
+                    %mi 𝒞
+                    %mi Y
+                  %mo →
+                  %msub
+                    %mi 𝒞
+                    %mi X
+                %annotation{:encoding => "application/x-tex"} f^\ast \colon \mathcal{C}_{Y} \to \mathcal{C}_{X}
+            is
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/monadic"} monadic
+            %em is descent
+            precisely if
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msup
+                    %mi f
+                    %mo *
+                %annotation{:encoding => "application/x-tex"} f^\ast
+            is of
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/descent+type"} descent type
+          %p This is the monadic formulation of descent theory, “monadic descent”.
+          %p
+            (e.g.
+            = succeed ")." do
+              %a{:href => "#JanelidzeTholen94"} Janelidze–Tholen 94, pp. 247-248 (3-4 of 37)
+          %h2#properties Properties
+          %p
+            The main theorem is Beck’s
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/monadicity+theorem"} monadicity theorem
+          %p
+            Given a Grothendieck
+            %a.existingWikiWord{:href => "/nlab/show/bifibration"} bifibration
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi p
+                  %mo :
+                  %mi E
+                  %mo →
+                  %mi B
+                %annotation{:encoding => "application/x-tex"} p:E\to B
+            and a morphism
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi f
+                  %mo :
+                  %mi b
+                  %mo →
+                  %mi b
+                  %mo ′
+                %annotation{:encoding => "application/x-tex"} f:b\to b'
+            in the base category
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi B
+                  %annotation{:encoding => "application/x-tex"} B
+            %a.existingWikiWord{:href => "/nlab/show/direct+image"} direct image
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msub
+                    %mi f
+                    %mo !
+                  %mo :
+                  %msub
+                    %mi E
+                    %mi b
+                  %mo →
+                  %msub
+                    %mi E
+                    %mrow
+                      %mi b
+                      %mo ′
+                %annotation{:encoding => "application/x-tex"} f_!:E_b\to E_{b'}
+            and an
+            %a.existingWikiWord{:href => "/nlab/show/inverse+image"} inverse image
+            functor
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msup
+                      %mi f
+                      %mo *
+                    %mo :
+                    %msub
+                      %mi E
+                      %mrow
+                        %mi b
+                        %mo ′
+                    %mo →
+                    %msub
+                      %mi E
+                      %mi b
+                  %annotation{:encoding => "application/x-tex"} f^*:E_{b'}\to E_b
+            %a.existingWikiWord{:href => "/nlab/show/adjunction"} adjunction
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi f
+                      %mo !
+                    %mo ⊣
+                    %msup
+                      %mi f
+                      %mo *
+                  %annotation{:encoding => "application/x-tex"} f_!\dashv f^*
+            = succeed ")," do
+              %a.existingWikiWord{:href => "/nlab/show/B%C3%A9nabou%E2%80%93Roubaud+theorem"} Bénabou–Roubaud theorem
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi f
+                %annotation{:encoding => "application/x-tex"} f
+            is an
+            %a.existingWikiWord{:href => "/nlab/show/effective+descent+morphism"} effective descent morphism
+            (with respect to
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi p
+                %annotation{:encoding => "application/x-tex"} p
+            as a
+            = succeed ")" do
+              %a.existingWikiWord{:href => "/nlab/show/fibered+category"} fibered category
+            %a.existingWikiWord{:href => "/nlab/show/monad"} monad
+            induced by the adjunction
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msub
+                    %mi f
+                    %mo !
+                  %mo ⊣
+                  %msup
+                    %mi f
+                    %mo *
+                %annotation{:encoding => "application/x-tex"} f_!\dashv f^*
+            is monadic.
+          %p
+            We should now see that some instances of categories of
+            %a.existingWikiWord{:href => "/nlab/show/descent"} descent
+            data are canonically equivalent to and can be reexpressed via
+            %a.existingWikiWord{:href => "/nlab/show/Eilenberg%E2%80%93Moore+category"} Eilenberg–Moore categories
+            of monads, or dually comonads.
+          %h2#examples Examples
+          %h3#DescentForTheCodomainFibration Descent for the codomain fibration
+          %p
+            Let
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi 𝒞
+                %annotation{:encoding => "application/x-tex"} \mathcal{C}
+            be a
+            %a.existingWikiWord{:href => "/nlab/show/locally+Cartesian+closed+category"} locally Cartesian closed category
+            with
+            %a.existingWikiWord{:href => "/nlab/show/coequalizers"} coequalizers
+            (e.g. a
+            = succeed ")." do
+              %a.existingWikiWord{:href => "/nlab/show/topos"} topos
+            %a.existingWikiWord{:href => "/nlab/show/codomain+fibration"} codomain fibration
+            are precisely the
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/regular+epimorphisms"} regular epimorphisms
+            = succeed ")." do
+              %a{:href => "#JanelidzeTholen94"} Janelidze–Tholen 94, 2.4
+          %p
+            Hence for
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi f
+                  %mo{:lspace => "verythinmathspace"} :
+                  %mi X
+                  %mo ⟶
+                  %mi Y
+                %annotation{:encoding => "application/x-tex"} f \colon X \longrightarrow Y
+            any morphism in
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi 𝒞
+                %annotation{:encoding => "application/x-tex"} \mathcal{C}
+            and
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mo{:stretchy => "false"} (
+                  %msub
+                    %mi f
+                    %mo !
+                  %mo ⊣
+                  %msup
+                    %mi f
+                    %mo *
+                  %mo ⊣
+                  %msub
+                    %mi f
+                    %mo *
+                  %mo{:stretchy => "false"} )
+                  %mo{:lspace => "verythinmathspace"} :
+                  %msub
+                    %mi 𝒞
+                    %mrow
+                      %mo{:stretchy => "false"} /
+                      %mi X
+                  %mo ⟶
+                  %msub
+                    %mi 𝒞
+                    %mrow
+                      %mo{:stretchy => "false"} /
+                      %mi Y
+                %annotation{:encoding => "application/x-tex"}
+                  (f_! \dashv f^\ast \dashv f_\ast) \colon \mathcal{C}_{/X} \longrightarrow \mathcal{C}_{/Y}
+          %p
+            the induced
+            %a.existingWikiWord{:href => "/nlab/show/base+change"} base change
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/adjoint+triple"} adjoint triple
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msub
+                    %mi 𝒞
+                    %mrow
+                      %mo{:stretchy => "false"} /
+                      %mi Y
+                %annotation{:encoding => "application/x-tex"} \mathcal{C}_{/Y}
+            is equivalent to the
+            %a.existingWikiWord{:href => "/nlab/show/Eilenberg%E2%80%93Moore+category"} Eilenberg–Moore category
+            of algebras over
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msup
+                    %mi f
+                    %mo *
+                  %msub
+                    %mi f
+                    %mo !
+                %annotation{:encoding => "application/x-tex"} f^\ast f_!
+            (equivalently: of coalgebras of
+            = succeed ")" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msup
+                      %mi f
+                      %mo *
+                    %msub
+                      %mi f
+                      %mo *
+                  %annotation{:encoding => "application/x-tex"} f^\ast f_\ast
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi f
+                %annotation{:encoding => "application/x-tex"} f
+            is an
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/effective+epimorphism"} effective epimorphism
+          %p
+            (Use
+            %a{:href => "conservative+functor#PullbackAlongEpimorphisms"} conservative pullback along epimorphisms
+            in the
+            = succeed ".)" do
+              %a.existingWikiWord{:href => "/nlab/show/monadicity+theorem"} monadicity theorem
+          %h3#ForCodomainFibs Monadic descent of bundles
+          %p
+            One of the most basic examples of
+            = succeed "s" do
+              %a.existingWikiWord{:href => "/nlab/show/bifibration"} bifibration
+            = succeed "s" do
+              %a.existingWikiWord{:href => "/nlab/show/codomain+fibration"} codomain fibration
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi cod
+                    %mo :
+                    %mo{:stretchy => "false"} [
+                    %mi I
+                    %mo ,
+                    %mi C
+                    %mo{:stretchy => "false"} ]
+                    %mo →
+                    %mi C
+                  %annotation{:encoding => "application/x-tex"} cod : [I,C] \to C
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mo{:stretchy => "false"} [
+                  %mi I
+                  %mo ,
+                  %mi C
+                  %mo{:stretchy => "false"} ]
+                %annotation{:encoding => "application/x-tex"} [I,C]
+            is the
+            %a.existingWikiWord{:href => "/nlab/show/arrow+category"} arrow category
+            of
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi C
+                %annotation{:encoding => "application/x-tex"} C
+            and
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi cod
+                %annotation{:encoding => "application/x-tex"} cod
+            sends any arrow in
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi C
+                %annotation{:encoding => "application/x-tex"} C
+            to its
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/codomain"} codomain
+          %p
+            An object in a
+            %a.existingWikiWord{:href => "/nlab/show/codomain+fibration"} codomain fibration
+            over
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi Y
+                  %mo ∈
+                  %mi C
+                %annotation{:encoding => "application/x-tex"} Y \in C
+            is a morphism
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi P
+                    %mo →
+                    %mi Y
+                  %annotation{:encoding => "application/x-tex"} P \to Y
+            %a.existingWikiWord{:href => "/nlab/show/bundle"} bundle
+            in
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi C
+                  %annotation{:encoding => "application/x-tex"} C
+            %a.existingWikiWord{:href => "/nlab/show/descent"} descent
+            of bundles.
+          %p
+            Other examples of monadic descent often find a useful interpretation when relating them back to monadic descent for codomain fibrations. For instance (co)monadic descent for
+            = succeed "s," do
+              %a.existingWikiWord{:href => "/nlab/show/Sweedler+coring"} Sweedler coring
+          %p
+            We show in the following that for
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi cod
+                  %mo :
+                  %mo{:stretchy => "false"} [
+                  %mi I
+                  %mo ,
+                  %mi C
+                  %mo{:stretchy => "false"} ]
+                  %mo →
+                  %mi C
+                %annotation{:encoding => "application/x-tex"} cod : [I,C] \to C
+            a
+            %a.existingWikiWord{:href => "/nlab/show/codomain+fibration"} codomain fibration
+            and for
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi π
+                  %mo :
+                  %mi Y
+                  %mo →
+                  %mi X
+                %annotation{:encoding => "application/x-tex"} \pi : Y\to X
+            a morphism in
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi C
+                  %annotation{:encoding => "application/x-tex"} C
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mo{:stretchy => "false"} [
+                  %mi I
+                  %mo ,
+                  %mi C
+                  %msub
+                    %mo{:stretchy => "false"} ]
+                    %mi Y
+                %annotation{:encoding => "application/x-tex"} [I,C]_Y
+            over the
+            %a.existingWikiWord{:href => "/nlab/show/monad"} monad
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msup
+                    %mi f
+                    %mo *
+                  %msub
+                    %mi f
+                    %mo *
+                %annotation{:encoding => "application/x-tex"} f^* f_*
+            encodes and is encoded by a “geometric”
+            %a.existingWikiWord{:href => "/nlab/show/descent"} descent
+            datum: that it is
+          %ul
+            %li
+              %p
+                a morphism
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi P
+                      %mo →
+                      %mi Y
+                    %annotation{:encoding => "application/x-tex"} P \to Y
+            %li
+              %p
+                equipped with a transition function between its two pullbacks to double
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi Y
+                      %msub
+                        %mo ×
+                        %mi X
+                      %mi Y
+                    %annotation{:encoding => "application/x-tex"} Y \times_X Y
+            %li
+              %p
+                which satisfies on
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi Y
+                      %msub
+                        %mo ×
+                        %mi X
+                      %mi Y
+                      %msub
+                        %mo ×
+                        %mi X
+                      %mi Y
+                    %annotation{:encoding => "application/x-tex"} Y \times_X Y \times_X Y
+                the usual cocycle condition.
+          %h4#motivation_failure_of_pushforward_for_principal_bundles Motivation: failure of push-forward for principal bundles
+          %p
+            Monadic methods can be applied to the study of descent of structures that cannot only be pulled back, such as
+            = succeed "s," do
+              %a.existingWikiWord{:href => "/nlab/show/principal+bundle"} principal bundle
+            = succeed "s" do
+              %a.existingWikiWord{:href => "/nlab/show/vector+bundle"} vector bundle
+            = succeed "s" do
+              %a.existingWikiWord{:href => "/nlab/show/module"} module
+            = succeed ")." do
+              %a.existingWikiWord{:href => "/nlab/show/Sweedler+coring"} Sweedler coring
+          %p
+            Given a
+            %a.existingWikiWord{:href => "/nlab/show/principal+bundle"} principal bundle
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi P
+                  %mo →
+                  %mi X
+                %annotation{:encoding => "application/x-tex"} P \to X
+            (a topological one, say, i.e. a morphism in
+            = succeed ")" do
+              %a.existingWikiWord{:href => "/nlab/show/Top"} Top
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi f
+                    %mo :
+                    %mi X
+                    %mo →
+                    %mi Z
+                  %annotation{:encoding => "application/x-tex"} f : X \to Z
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi P
+                %annotation{:encoding => "application/x-tex"} P
+            along
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi f
+                %annotation{:encoding => "application/x-tex"} f
+            is simply the composite map
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi P
+                    %mo →
+                    %mi X
+                    %mo →
+                    %mi Z
+                  %annotation{:encoding => "application/x-tex"} P \to X \to Z
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi P
+                  %mo →
+                  %mi Z
+                %annotation{:encoding => "application/x-tex"} P \to Z
+            living over
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi Z
+                  %annotation{:encoding => "application/x-tex"} Z
+          %p
+            While that always exists as such, it will in general not be a principal bundle anymore: the
+            = succeed "s" do
+              %a.existingWikiWord{:href => "/nlab/show/fiber"} fiber
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi P
+                  %mo →
+                  %mi Z
+                %annotation{:encoding => "application/x-tex"} P \to Z
+            over points
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi z
+                  %mo ∈
+                  %mi Z
+                %annotation{:encoding => "application/x-tex"} z \in Z
+            consist of many copies of the fibers of
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi P
+                  %mo →
+                  %mi X
+                %annotation{:encoding => "application/x-tex"} P \to X
+            over points in
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi X
+                  %annotation{:encoding => "application/x-tex"} X
+          %p
+            So principal bundles do have a canonical notion of push-forward, but it leads outside the category of principal bundles and lands generally in some
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/overcategory"} overcategory
+          %p
+            On the other hand, as we will see in detail below, if we take a principal bundle
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi P
+                  %mo →
+                  %mi X
+                %annotation{:encoding => "application/x-tex"} P \to X
+            and
+          %ul
+            %li
+              %p
+                first push it forward in this generalized sense to an object
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi P
+                      %mo →
+                      %mi Z
+                    %annotation{:encoding => "application/x-tex"} P \to Z
+                in the
+                %a.existingWikiWord{:href => "/nlab/show/overcategory"} overcategory
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi Top
+                      %mo{:stretchy => "false"} /
+                      %mi Z
+                    %annotation{:encoding => "application/x-tex"} Top/Z
+            %li
+              %p
+                and
+                %strong then
+                pull back the result of that again along
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi X
+                      %mo →
+                      %mi Z
+                    %annotation{:encoding => "application/x-tex"} X \to Z
+                the result, while still not a principal bundle, is the total space
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi P
+                    %annotation{:encoding => "application/x-tex"} P
+                of the bundle pulled back to the first term in the
+                %a.existingWikiWord{:href => "/nlab/show/%C4%8Cech+nerve"} Čech nerve
+                of
+                = succeed "." do
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi f
+                        %mo :
+                        %mi X
+                        %mo →
+                        %mi Z
+                      %annotation{:encoding => "application/x-tex"} f : X \to Z
+                %a.existingWikiWord{:href => "/nlab/show/descent"} descent
+                property of the bundle.
+          %p But the composite operation of pushforward of overcategories
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi push
+                  %mo{:stretchy => "false"} (
+                  %mi f
+                  %mo{:stretchy => "false"} )
+                  %mo :
+                  %mi Top
+                  %mo{:stretchy => "false"} /
+                  %mi X
+                  %mo →
+                  %mi Top
+                  %mo{:stretchy => "false"} /
+                  %mi Z
+                %annotation{:encoding => "application/x-tex"}
+                  push(f) : Top/X \to Top/Z
+          %p followed by pullback
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi pull
+                  %mo{:stretchy => "false"} (
+                  %mi f
+                  %mo{:stretchy => "false"} )
+                  %mo :
+                  %mi Top
+                  %mo{:stretchy => "false"} /
+                  %mi Z
+                  %mo →
+                  %mi Top
+                  %mo{:stretchy => "false"} /
+                  %mi X
+                %annotation{:encoding => "application/x-tex"}
+                  pull(f) : Top/Z \to Top/X
+          %p
+            is nothing but the
+            %a.existingWikiWord{:href => "/nlab/show/monad"} monad
+            associated to
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi f
+                  %mo :
+                  %mi X
+                  %mo →
+                  %mi Z
+                %annotation{:encoding => "application/x-tex"} f : X \to Z
+            with respect to the
+            %a.existingWikiWord{:href => "/nlab/show/codomain+fibration"} codomain bifibration
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi cod
+                    %mo :
+                    %mo{:stretchy => "false"} [
+                    %mi I
+                    %mo ,
+                    %mi Top
+                    %mo{:stretchy => "false"} ]
+                    %mo →
+                    %mi Top
+                  %annotation{:encoding => "application/x-tex"} cod : [I,Top] \to Top
+          %p
+            So by regarding principal bundles
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi P
+                  %mo →
+                  %mi X
+                %annotation{:encoding => "application/x-tex"} P \to X
+            more generally as just objects in the
+            %a.existingWikiWord{:href => "/nlab/show/overcategory"} overcategory
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi Top
+                  %mo{:stretchy => "false"} /
+                  %mi X
+                %annotation{:encoding => "application/x-tex"} Top/X
+            we make the tools of monadic descent applicable to them.
+          %h4#the_monad The monad
+          %p
+            Let
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi C
+                %annotation{:encoding => "application/x-tex"} C
+            be a
+            %a.existingWikiWord{:href => "/nlab/show/category"} category
+            with
+            = succeed "s." do
+              %a.existingWikiWord{:href => "/nlab/show/pullback"} pullback
+            %a.existingWikiWord{:href => "/nlab/show/codomain+fibration"} codomain fibration
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi cod
+                  %mo :
+                  %mo{:stretchy => "false"} [
+                  %mi I
+                  %mo ,
+                  %mi C
+                  %mo{:stretchy => "false"} ]
+                  %mo →
+                  %mi C
+                %annotation{:encoding => "application/x-tex"}
+                  cod : [I,C] \to C
+          %p
+            is a
+            %a.existingWikiWord{:href => "/nlab/show/bifibration"} bifibration
+            (as described there, in detail). Its
+            %a.existingWikiWord{:href => "/nlab/show/fiber"} fiber
+            over an object
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi X
+                  %mo ∈
+                  %mi C
+                %annotation{:encoding => "application/x-tex"} X \in C
+            is the
+            %a.existingWikiWord{:href => "/nlab/show/overcategory"} overcategory
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi C
+                    %mo{:stretchy => "false"} /
+                    %mi X
+                  %annotation{:encoding => "application/x-tex"} C/X
+          %p
+            The direct image operation
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi push
+                  %mo{:stretchy => "false"} (
+                  %mi f
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} push(f)
+            associated to a morphism
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi π
+                  %mo :
+                  %mi Y
+                  %mo →
+                  %mi X
+                %annotation{:encoding => "application/x-tex"} \pi : Y \to X
+            in
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi C
+                %annotation{:encoding => "application/x-tex"} C
+            is the functor
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi push
+                  %mo{:stretchy => "false"} (
+                  %mi π
+                  %mo{:stretchy => "false"} )
+                  %mo :
+                  %mi C
+                  %mo{:stretchy => "false"} /
+                  %mi Y
+                  %mo →
+                  %mi C
+                  %mo{:stretchy => "false"} /
+                  %mi X
+                %annotation{:encoding => "application/x-tex"}
+                  push(\pi) : C/Y \to  C/X
+          %p
+            obtained by postcomposition with
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi f
+                  %annotation{:encoding => "application/x-tex"} f
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mo{:stretchy => "false"} (
+                  %mi P
+                  %mo →
+                  %mi Y
+                  %mo{:stretchy => "false"} )
+                  %mo ∈
+                  %mi C
+                  %mo{:stretchy => "false"} /
+                  %mi Y
+                %annotation{:encoding => "application/x-tex"} (P \to Y) \in C/Y
+            to the composite
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi P
+                  %mo →
+                  %mi Y
+                  %mover
+                    %mo →
+                    %mi π
+                  %mi X
+                %annotation{:encoding => "application/x-tex"} P \to Y \stackrel{\pi}{\to} X
+            in
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi C
+                  %annotation{:encoding => "application/x-tex"} C
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi C
+                    %mo{:stretchy => "false"} /
+                    %mi X
+                  %annotation{:encoding => "application/x-tex"} C/X
+          %p
+            The inverse image operation
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi pull
+                  %mo{:stretchy => "false"} (
+                  %mi f
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} pull(f)
+            associated to
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi f
+                %annotation{:encoding => "application/x-tex"} f
+            is the functor
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi C
+                  %mo{:stretchy => "false"} /
+                  %mi Y
+                  %mo ←
+                  %mi C
+                  %mo{:stretchy => "false"} /
+                  %mi X
+                  %mo :
+                  %mi pull
+                  %mo{:stretchy => "false"} (
+                  %mi π
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"}
+                  C/Y \leftarrow C/X : pull(\pi)
+          %p
+            obtained by
+            %a.existingWikiWord{:href => "/nlab/show/pullback"} pullback
+            in
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi C
+                %annotation{:encoding => "application/x-tex"} C
+            along
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi π
+                  %annotation{:encoding => "application/x-tex"} \pi
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mo{:stretchy => "false"} (
+                  %mi Q
+                  %mo →
+                  %mi X
+                  %mo{:stretchy => "false"} )
+                  %mo ∈
+                  %mi C
+                  %mo{:stretchy => "false"} /
+                  %mi X
+                %annotation{:encoding => "application/x-tex"} (Q \to X) \in C/X
+            the
+            %a.existingWikiWord{:href => "/nlab/show/pullback"} pullback
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi Q
+                    %msub
+                      %mo ×
+                      %mi X
+                    %mi Y
+                  %annotation{:encoding => "application/x-tex"} Q \times_X Y
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi C
+                  %mo{:stretchy => "false"} /
+                  %mi Y
+                %annotation{:encoding => "application/x-tex"} C/Y
+            in terms of the canonical projection morphism
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi Q
+                  %msub
+                    %mo ×
+                    %mi X
+                  %mi Y
+                  %mo →
+                  %mi Y
+                %annotation{:encoding => "application/x-tex"} Q \times_X Y\to Y
+            out of the pullback.
+          %p Write
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msub
+                    %mi T
+                    %mi π
+                  %mo =
+                  %mi pull
+                  %mo{:stretchy => "false"} (
+                  %mi π
+                  %mo{:stretchy => "false"} )
+                  %mo ∘
+                  %mi push
+                  %mo{:stretchy => "false"} (
+                  %mi π
+                  %mo{:stretchy => "false"} )
+                  %mo :
+                  %mi C
+                  %mo{:stretchy => "false"} /
+                  %mi Y
+                  %mo →
+                  %mi C
+                  %mo{:stretchy => "false"} /
+                  %mi Y
+                %annotation{:encoding => "application/x-tex"}
+                  T_\pi = pull(\pi) \circ push(\pi) : C/Y \to C/Y
+          %p
+            for the
+            %a.existingWikiWord{:href => "/nlab/show/monad"} monad
+            built from these two
+            = succeed "s." do
+              %a.existingWikiWord{:href => "/nlab/show/adjoint+functor"} adjoint functor
+          %h4#the_algebras_over_the_monad_geometric_descent_data The algebras over the monad: geometric descent data
+          %p
+            We spell out in detail the data of an algebra over the above monad, and show that this encodes precisely the familiar geometric
+            %a.existingWikiWord{:href => "/nlab/show/descent"} descent
+            datum for a
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/bundle"} bundle
+          %p
+            To that end, let
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mo{:stretchy => "false"} (
+                  %mi P
+                  %mo ,
+                  %mi ρ
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} (P, \rho)
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi P
+                  %mo :
+                  %mo *
+                  %mo →
+                  %mi C
+                  %mo{:stretchy => "false"} /
+                  %mi Y
+                  %mspace{:width => "thickmathspace"}
+                  %mspace{:width => "thickmathspace"}
+                  %mspace{:width => "thickmathspace"}
+                  %mspace{:width => "thickmathspace"}
+                  %mspace{:width => "thickmathspace"}
+                  %mspace{:width => "thickmathspace"}
+                  %mspace{:width => "thickmathspace"}
+                  %mspace{:width => "thickmathspace"}
+                  %mspace{:width => "thickmathspace"}
+                  %mspace{:width => "thickmathspace"}
+                  %mspace{:width => "thickmathspace"}
+                  %mspace{:width => "thickmathspace"}
+                  %mspace{:width => "thickmathspace"}
+                  %mspace{:width => "thickmathspace"}
+                  %mspace{:width => "thickmathspace"}
+                  %mspace{:width => "thickmathspace"}
+                  %mspace{:width => "thickmathspace"}
+                  %mspace{:width => "thickmathspace"}
+                  %mrow
+                    %mtable
+                      %mtr
+                        %mtd
+                        %mtd
+                        %mtd
+                          %mi C
+                          %mo{:stretchy => "false"} /
+                          %mi Y
+                      %mtr
+                        %mtd
+                        %mtd
+                          %msup
+                            %mrow
+                            %mpadded{:lspace => "-100%width", :width => "0"}
+                              %mi P
+                          %mo ↗
+                        %mtd
+                          %msup
+                            %mo ⇓
+                            %mi ρ
+                        %mtd
+                          %msup
+                            %mo ↘
+                            %mpadded{:width => "0"}
+                              %mi T
+                      %mtr
+                        %mtd
+                          %mo *
+                        %mtd
+                        %mtd
+                          %mover
+                            %mo →
+                            %mi P
+                        %mtd
+                        %mtd
+                          %mi C
+                          %mo{:stretchy => "false"} /
+                          %mi Y
+                %annotation{:encoding => "application/x-tex"}
+                  P : {*} \to C/Y
+                  \\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;
+                  \\array{
+                  \&amp;&amp; C/Y
+                  \\\
+                  \&amp; {}^{\mathllap{P}}
+                  \\nearrow  &amp;\Downarrow^{\rho}&amp; \searrow^{\mathrlap{T}}
+                  \\\
+                  {*} &amp;&amp;\stackrel{P}{\to}&amp;&amp; C/Y
+                  }
+          %p
+            be an
+            %a.existingWikiWord{:href => "/nlab/show/monad"} algebra over
+            our monad. In components this is an object
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi P
+                %annotation{:encoding => "application/x-tex"} P
+            equipped with a morphism
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi ρ
+                      %mi P
+                    %mo :
+                    %mi T
+                    %mi P
+                    %mo →
+                    %mi P
+                  %annotation{:encoding => "application/x-tex"} \rho_P : T P \to P
+          %p
+            The object
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi T
+                  %mi P
+                  %mo ∈
+                  %mo{:stretchy => "false"} [
+                  %mi I
+                  %mo ,
+                  %mi C
+                  %msub
+                    %mo{:stretchy => "false"} ]
+                    %mi Y
+                %annotation{:encoding => "application/x-tex"} T P \in [I,C]_Y
+            is given by
+          %ul
+            %li
+              %p
+                first pushing
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi P
+                      %mo →
+                      %mi Y
+                    %annotation{:encoding => "application/x-tex"} P \to Y
+                forward along
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi π
+                      %mo :
+                      %mi Y
+                      %mo →
+                      %mi X
+                    %annotation{:encoding => "application/x-tex"} \pi : Y \to X
+                to the object
+                = succeed "." do
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi P
+                        %mo →
+                        %mi Y
+                        %mo →
+                        %mi X
+                      %annotation{:encoding => "application/x-tex"} P \to Y \to X
+            %li
+              %p
+                then pulling this back along
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi π
+                    %annotation{:encoding => "application/x-tex"} \pi
+                to yield the left vertical morphism in
+              .maruku-equation
+                %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mrow
+                        %mtable
+                          %mtr
+                            %mtd
+                              %mi Y
+                              %msub
+                                %mo ×
+                                %mi X
+                              %mi P
+                            %mtd
+                              %mo →
+                            %mtd
+                              %mi P
+                          %mtr
+                            %mtd
+                              %mo{:stretchy => "false"} ↓
+                            %mtd
+                            %mtd
+                              %mo{:stretchy => "false"} ↓
+                          %mtr
+                            %mtd
+                            %mtd
+                            %mtd
+                              %mi Y
+                          %mtr
+                            %mtd
+                              %mo{:stretchy => "false"} ↓
+                            %mtd
+                            %mtd
+                              %msup
+                                %mo{:stretchy => "false"} ↓
+                                %mpadded{:width => "0"}
+                                  %mi π
+                          %mtr
+                            %mtd
+                              %mi Y
+                            %mtd
+                              %mover
+                                %mo →
+                                %mi π
+                            %mtd
+                              %mi X
+                      %mspace{:width => "thinmathspace"}
+                      %mo .
+                    %annotation{:encoding => "application/x-tex"}
+                      \\array{
+                      Y \times_X P &amp;\to&amp; P
+                      \\\
+                      \\downarrow &amp;&amp; \downarrow
+                      \\\
+                      \&amp;&amp; Y
+                      \\\
+                      \\downarrow &amp;&amp; \downarrow^{\mathrlap{\pi}}
+                      \\\
+                      Y &amp;\stackrel{\pi}{\to}&amp; X
+                      }
+                      \\,.
+              %p
+                This
+                %a.existingWikiWord{:href => "/nlab/show/pullback"} pullback
+                along a composite of morphisms may be computed as two consecutive pullbacks. The first one is
+              .maruku-equation
+                %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mrow
+                        %mtable
+                          %mtr
+                            %mtd
+                              %mi Y
+                              %msub
+                                %mo ×
+                                %mi X
+                              %mi Y
+                            %mtd
+                              %mo →
+                            %mtd
+                              %mi Y
+                          %mtr
+                            %mtd
+                              %mo{:stretchy => "false"} ↓
+                            %mtd
+                            %mtd
+                              %msup
+                                %mo{:stretchy => "false"} ↓
+                                %mpadded{:width => "0"}
+                                  %mi π
+                          %mtr
+                            %mtd
+                              %mi Y
+                            %mtd
+                              %mover
+                                %mo →
+                                %mi π
+                            %mtd
+                              %mi X
+                    %annotation{:encoding => "application/x-tex"}
+                      \\array{
+                      Y \times_X Y &amp;\to&amp; Y
+                      \\\
+                      \\downarrow &amp;&amp; \downarrow^{\mathrlap{\pi}}
+                      \\\
+                      Y &amp;\stackrel{\pi}{\to}&amp; X
+                      }
+              %p
+                which is the first term in the
+                %a.existingWikiWord{:href => "/nlab/show/%C4%8Cech+nerve"} Čech nerve
+                of
+                = succeed "." do
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi π
+                      %annotation{:encoding => "application/x-tex"} \pi
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi P
+                    %annotation{:encoding => "application/x-tex"} P
+                to
+                = succeed ":" do
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi Y
+                        %msub
+                          %mo ×
+                          %mi X
+                        %mi Y
+                      %annotation{:encoding => "application/x-tex"} Y\times_X Y
+              .maruku-equation
+                %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mrow
+                        %mtable
+                          %mtr
+                            %mtd
+                              %mo{:stretchy => "false"} (
+                              %mi Y
+                              %msub
+                                %mo ×
+                                %mi X
+                              %mi Y
+                              %mo{:stretchy => "false"} )
+                              %msub
+                                %mo ×
+                                %mi Y
+                              %mi P
+                            %mtd
+                              %mo →
+                            %mtd
+                              %mi P
+                          %mtr
+                            %mtd
+                              %mo{:stretchy => "false"} ↓
+                            %mtd
+                            %mtd
+                              %mo{:stretchy => "false"} ↓
+                          %mtr
+                            %mtd
+                              %mi Y
+                              %msub
+                                %mo ×
+                                %mi X
+                              %mi Y
+                            %mtd
+                              %mo →
+                            %mtd
+                              %mi Y
+                          %mtr
+                            %mtd
+                              %mo{:stretchy => "false"} ↓
+                            %mtd
+                            %mtd
+                              %msup
+                                %mo{:stretchy => "false"} ↓
+                                %mpadded{:width => "0"}
+                                  %mi π
+                          %mtr
+                            %mtd
+                              %mi Y
+                            %mtd
+                              %mover
+                                %mo →
+                                %mi π
+                            %mtd
+                              %mi X
+                      %mspace{:width => "thinmathspace"}
+                      %mo .
+                    %annotation{:encoding => "application/x-tex"}
+                      \\array{
+                      (Y \times_X Y) \times_Y P &amp;\to&amp; P
+                      \\\
+                      \\downarrow &amp;&amp; \downarrow
+                      \\\
+                      Y \times_X Y &amp;\to&amp; Y
+                      \\\
+                      \\downarrow &amp;&amp; \downarrow^{\mathrlap{\pi}}
+                      \\\
+                      Y &amp;\stackrel{\pi}{\to}&amp; X
+                      }
+                      \\,.
+          %p
+            Therefore the action
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msub
+                    %mi ρ
+                    %mi T
+                  %mo :
+                  %mi T
+                  %mi P
+                  %mo →
+                  %mi P
+                %annotation{:encoding => "application/x-tex"} \rho_T : T P \to P
+            of our
+            %a.existingWikiWord{:href => "/nlab/show/monad"} monad
+            on
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi P
+                %annotation{:encoding => "application/x-tex"} P
+            is given in
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi C
+                %annotation{:encoding => "application/x-tex"} C
+            by a morphism
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mrow
+                    %mtable
+                      %mtr
+                        %mtd
+                          %mo{:stretchy => "false"} (
+                          %mi Y
+                          %msub
+                            %mo ×
+                            %mi X
+                          %mi Y
+                          %mo{:stretchy => "false"} )
+                          %msub
+                            %mo ×
+                            %mi Y
+                          %mi P
+                        %mtd
+                        %mtd
+                          %mover
+                            %mo →
+                            %mi ρ
+                        %mtd
+                        %mtd
+                          %mi P
+                      %mtr
+                        %mtd
+                        %mtd
+                          %mo ↘
+                        %mtd
+                        %mtd
+                          %mo ↙
+                      %mtr
+                        %mtd
+                        %mtd
+                        %mtd
+                          %mi Y
+                  %mspace{:width => "thinmathspace"}
+                  %mo .
+                %annotation{:encoding => "application/x-tex"}
+                  \\array{
+                  (Y \times_X Y) \times_Y P &amp;&amp;\stackrel{\rho}{\to}&amp;&amp;
+                  P
+                  \\\
+                  \&amp; \searrow &amp;&amp; \swarrow
+                  \\\
+                  \&amp;&amp; Y
+                  }
+                  \\,.
+          %p
+            As an example, think of this in the context
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi C
+                  %mo =
+                  %mi Top
+                %annotation{:encoding => "application/x-tex"} C = Top
+            with
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi π
+                  %mo{:lspace => "verythinmathspace"} :
+                  %mi Y
+                  %mo →
+                  %mi X
+                %annotation{:encoding => "application/x-tex"} \pi  \colon Y \to X
+            coming from an open
+            %a.existingWikiWord{:href => "/nlab/show/cover"} cover
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mo{:stretchy => "false"} {
+                  %msub
+                    %mi U
+                    %mi i
+                  %mo →
+                  %mi X
+                  %mo{:stretchy => "false"} }
+                %annotation{:encoding => "application/x-tex"} \{U_i \to X\}
+            of
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi X
+                %annotation{:encoding => "application/x-tex"} X
+            with
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi Y
+                    %mo =
+                    %msub
+                      %mo{:lspace => "thinmathspace", :rspace => "thinmathspace"} ∐
+                      %mi i
+                    %msub
+                      %mi U
+                      %mi i
+                  %annotation{:encoding => "application/x-tex"} Y = \coprod_i U_i
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi P
+                  %mo =
+                  %mi Y
+                  %mo ×
+                  %mi G
+                %annotation{:encoding => "application/x-tex"} P = Y \times G
+            a trivial
+            = succeed "-" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi G
+                  %annotation{:encoding => "application/x-tex"} G
+            %a.existingWikiWord{:href => "/nlab/show/principal+bundle"} principal bundle
+            for some
+            %a.existingWikiWord{:href => "/nlab/show/group"} group
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi G
+                  %annotation{:encoding => "application/x-tex"} G
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi Y
+                  %msub
+                    %mo ×
+                    %mi X
+                  %mi Y
+                  %mo =
+                  %msub
+                    %mo{:lspace => "thinmathspace", :rspace => "thinmathspace"} ∐
+                    %mrow
+                      %mi i
+                      %mi j
+                  %msub
+                    %mi U
+                    %mi i
+                  %mo ∩
+                  %msub
+                    %mi U
+                    %mi j
+                %annotation{:encoding => "application/x-tex"} Y \times_X Y = \coprod_{i j} U_i \cap U_j
+            is the union of double intersection of covering patches, and
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mo{:stretchy => "false"} (
+                  %mi Y
+                  %msub
+                    %mo ×
+                    %mi X
+                  %mi Y
+                  %mo{:stretchy => "false"} )
+                  %msub
+                    %mo ×
+                    %mi Y
+                  %mi P
+                  %mo =
+                  %mo{:stretchy => "false"} (
+                  %msub
+                    %mo{:lspace => "thinmathspace", :rspace => "thinmathspace"} ∐
+                    %mrow
+                      %mi i
+                      %mi j
+                  %msub
+                    %mi U
+                    %mi i
+                  %mo ∩
+                  %msub
+                    %mi U
+                    %mi j
+                  %mo ×
+                  %mi G
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} (Y \times_X Y) \times_Y P = (\coprod_{i j} U_i \cap U_j \times G)
+            is to be thought of as the trivial
+            = succeed "-principal" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi G
+                  %annotation{:encoding => "application/x-tex"} G
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi U
+                      %mi j
+                  %annotation{:encoding => "application/x-tex"} U_j
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi ρ
+                %annotation{:encoding => "application/x-tex"} \rho
+            acts as
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi ρ
+                  %mo :
+                  %munder
+                    %mo{:lspace => "thinmathspace", :rspace => "thinmathspace"} ∐
+                    %mrow
+                      %mi i
+                      %mi j
+                  %mo :
+                  %mo{:stretchy => "false"} (
+                  %msub
+                    %mi U
+                    %mi i
+                  %mo ∩
+                  %msub
+                    %mi U
+                    %mi j
+                  %mo ×
+                  %mi G
+                  %mo{:stretchy => "false"} )
+                  %mo →
+                  %munder
+                    %mo{:lspace => "thinmathspace", :rspace => "thinmathspace"} ∐
+                    %mi i
+                  %msub
+                    %mi U
+                    %mi i
+                  %mo ×
+                  %mi G
+                %annotation{:encoding => "application/x-tex"}
+                  \\rho : \coprod_{i j} : (U_i \cap U_j \times G) \to \coprod_i U_i \times G
+          %p
+            and thus maps the trivial
+            = succeed "-bundle" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi G
+                  %annotation{:encoding => "application/x-tex"} G
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msub
+                    %mi U
+                    %mi j
+                %annotation{:encoding => "application/x-tex"} U_j
+            on the intersection with the trivial
+            = succeed "-bundle" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi G
+                  %annotation{:encoding => "application/x-tex"} G
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi U
+                      %mi i
+                  %annotation{:encoding => "application/x-tex"} U_i
+            = succeed "." do
+              %em transition function
+            = succeed "-equivariant," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi G
+                  %annotation{:encoding => "application/x-tex"} G
+            %a.existingWikiWord{:href => "/nlab/show/descent"} descent
+            datum for the
+            = succeed "-" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi G
+                  %annotation{:encoding => "application/x-tex"} G
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/principal+bundle"} principal bundle
+          %h3#AlongPrincipalBundle
+            Monadic descent
+            %em along
+            principal bundles
+          %h4#idea_2 Idea
+          %p
+            In the
+            %a{:href => "#ForCodomainFibs"} above section
+            we considered monadic descent
+            %em of
+            = succeed "s" do
+              %a.existingWikiWord{:href => "/nlab/show/bundle"} bundle
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi P
+                  %mo →
+                  %mi Y
+                %annotation{:encoding => "application/x-tex"} P \to Y
+            %em along
+            morphisms
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi f
+                    %mo :
+                    %mi Y
+                    %mo →
+                    %mi X
+                  %annotation{:encoding => "application/x-tex"} f : Y \to X
+          %p
+            Now we consider monadic descent
+            %em along
+            morphisms
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi f
+                  %mo :
+                  %mi P
+                  %mo →
+                  %mi X
+                %annotation{:encoding => "application/x-tex"} f : P \to X
+            that happen to be
+            = succeed "-" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi G
+                  %annotation{:encoding => "application/x-tex"} G
+            = succeed "s," do
+              %a.existingWikiWord{:href => "/nlab/show/principal+bundle"} principal bundle
+            %a.existingWikiWord{:href => "/nlab/show/group+object"} group object
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi G
+                  %annotation{:encoding => "application/x-tex"} G
+            %a.existingWikiWord{:href => "/nlab/show/codomain+fibration"} codomain fibration
+            this describes the situation where we ask for a bundle
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi L
+                  %mo →
+                  %mi P
+                %annotation{:encoding => "application/x-tex"} L \to P
+            that sits over the total space of another (principal) bundle to descend down along that bundle map to
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi X
+                  %annotation{:encoding => "application/x-tex"} X
+          %h4#setup Setup
+          %p
+            Let
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi C
+                %annotation{:encoding => "application/x-tex"} C
+            be a
+            %a.existingWikiWord{:href => "/nlab/show/category"} category
+            with
+            = succeed "s" do
+              %a.existingWikiWord{:href => "/nlab/show/pullback"} pullback
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi G
+                %annotation{:encoding => "application/x-tex"} G
+            be an internal group in
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi C
+                  %annotation{:encoding => "application/x-tex"} C
+          %p
+            Let
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi ν
+                  %mo :
+                  %mi P
+                  %mo ×
+                  %mi G
+                  %mo →
+                  %mi P
+                %annotation{:encoding => "application/x-tex"} \nu: P\times G\to P
+            be a right principal
+            %a.existingWikiWord{:href => "/nlab/show/action"} action
+            and
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi p
+                  %mo :
+                  %mi P
+                  %mo ×
+                  %mi G
+                  %mo →
+                  %mi P
+                %annotation{:encoding => "application/x-tex"} p:P\times G\to P
+            the projection. Let
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi π
+                  %mo :
+                  %mi P
+                  %mo →
+                  %mi X
+                %annotation{:encoding => "application/x-tex"} \pi:P\to X
+            be the
+            %a.existingWikiWord{:href => "/nlab/show/coequalizer"} coequalizer
+            of
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi ν
+                %annotation{:encoding => "application/x-tex"} \nu
+            and
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi p
+                  %annotation{:encoding => "application/x-tex"} p
+            %a.existingWikiWord{:href => "/nlab/show/principal+bundle"} principality condition
+            says that
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi P
+                  %mo ×
+                  %mi G
+                  %mo →
+                  %mi P
+                  %msub
+                    %mo ×
+                    %mi X
+                  %mi P
+                %annotation{:encoding => "application/x-tex"} P\times G \to P\times_X P
+            given by
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mo{:stretchy => "false"} (
+                  %mi p
+                  %mo ,
+                  %mi g
+                  %mo{:stretchy => "false"} )
+                  %mo ↦
+                  %mo{:stretchy => "false"} (
+                  %mi p
+                  %mo ,
+                  %mi pg
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} (p,g)\mapsto (p,pg)
+            is an
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/isomorphism"} isomorphism
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi P
+                  %mo ×
+                  %mi G
+                  %mover
+                    %munder
+                      %mo ⇉
+                      %mi p
+                    %mi ν
+                  %mi P
+                  %mover
+                    %mo →
+                    %mi π
+                  %mi X
+                %annotation{:encoding => "application/x-tex"}
+                  P\times G \overset{\nu}\underset{p}\rightrightarrows P \overset{\pi}\to X
+          %p
+            We do not assume
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi P
+                %annotation{:encoding => "application/x-tex"} P
+            to be trivial. We have also the two projections
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi P
+                  %msub
+                    %mo ×
+                    %mi X
+                  %mi P
+                  %mover
+                    %munder
+                      %mo ⇉
+                      %mrow
+                        %msub
+                          %mi p
+                          %mn 2
+                    %mrow
+                      %msub
+                        %mi p
+                        %mn 1
+                  %mi P
+                  %mover
+                    %mo →
+                    %mi π
+                  %mi X
+                %annotation{:encoding => "application/x-tex"}
+                  P\times_X P \overset{p_1}\underset{p_2}\rightrightarrows P \overset{\pi}\to X
+          %p
+            out of the
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/pullback"} pullback
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msub
+                    %mi p
+                    %mn 1
+                  %mo ,
+                  %msub
+                    %mi p
+                    %mn 2
+                %annotation{:encoding => "application/x-tex"} p_1,p_2
+            make a
+            %a.existingWikiWord{:href => "/nlab/show/kernel+pair"} kernel pair
+            of
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi π
+                  %annotation{:encoding => "application/x-tex"} \pi
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi ν
+                  %mo ,
+                  %mi p
+                %annotation{:encoding => "application/x-tex"} \nu,p
+            make also a
+            %a.existingWikiWord{:href => "/nlab/show/kernel+pair"} kernel pair
+            of its own
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/coequalizer"} coequalizer
+            = succeed "s" do
+              %a.existingWikiWord{:href => "/nlab/show/simplicial+object"} simplicial object
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi C
+                  %annotation{:encoding => "application/x-tex"} C
+            = succeed "s." do
+              %a.existingWikiWord{:href => "/nlab/show/monad"} monad
+          %h4#the_two_different_monads The two different monads
+          %p
+            We now describe the monadic descent along the morphism
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi π
+                  %mo :
+                  %mi P
+                  %mo →
+                  %mi X
+                %annotation{:encoding => "application/x-tex"} \pi : P \to X
+            from above for the
+            %a.existingWikiWord{:href => "/nlab/show/codomain+fibration"} codomain fibration
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi cod
+                    %mo :
+                    %mo{:stretchy => "false"} [
+                    %mi I
+                    %mo ,
+                    %mi C
+                    %mo{:stretchy => "false"} ]
+                    %mo →
+                    %mi C
+                  %annotation{:encoding => "application/x-tex"} cod : [I,C] \to C
+          %p
+            There are two monads acting on the
+            %a.existingWikiWord{:href => "/nlab/show/overcategory"} overcategory
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi C
+                  %mo{:stretchy => "false"} /
+                  %mi P
+                %annotation{:encoding => "application/x-tex"} C/P
+            whose underlying functors are
+          %ol
+            %li
+              %p
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}>
+                  %semantics
+                    %mrow
+                      %mi T
+                      %mo :
+                      %mo =
+                      %msup
+                        %mi π
+                        %mo *
+                      %msub
+                        %mi π
+                        %mo !
+                    %annotation{:encoding => "application/x-tex"} T := \pi^* \pi_!
+                \.
+            %li
+              %p
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mover
+                        %mi T
+                        %mo{:stretchy => "false"} ˜
+                      %mo :
+                      %mo =
+                      %msub
+                        %mi p
+                        %mo !
+                      %msup
+                        %mi ν
+                        %mo *
+                    %annotation{:encoding => "application/x-tex"} \tilde T := p_! \nu^*
+          %p
+            The first monad,
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi T
+                %annotation{:encoding => "application/x-tex"} T
+            is the usual one for monadic descent along
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi π
+                %annotation{:encoding => "application/x-tex"} \pi
+            induced from a pair of
+            = succeed "s." do
+              %a.existingWikiWord{:href => "/nlab/show/adjoint+functor"} adjoint functor
+          %p
+            The second one,
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mover
+                      %mi T
+                      %mo{:stretchy => "false"} ˜
+                  %annotation{:encoding => "application/x-tex"} \tilde T
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi P
+                  %mo →
+                  %mi X
+                %annotation{:encoding => "application/x-tex"} P \to X
+            and is defined as follows:
+          %p
+            to construct the component
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msub
+                    %mi μ
+                    %mi h
+                %annotation{:encoding => "application/x-tex"} \mu_h
+            of the transformation
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi μ
+                  %mo :
+                  %msub
+                    %mi p
+                    %mo !
+                  %msup
+                    %mi ν
+                    %mo *
+                  %msub
+                    %mi p
+                    %mo !
+                  %msup
+                    %mi ν
+                    %mo *
+                  %mo →
+                  %msub
+                    %mi p
+                    %mo !
+                  %msup
+                    %mi ν
+                    %mo *
+                %annotation{:encoding => "application/x-tex"} \mu: p_! \nu^* p_!\nu^*\to p_!\nu^*
+            where
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi h
+                    %mo :
+                    %mi L
+                    %mo →
+                    %mi P
+                  %annotation{:encoding => "application/x-tex"} h: L\to P
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msup
+                    %mi ν
+                    %mo *
+                  %msub
+                    %mi p
+                    %mo !
+                  %msup
+                    %mi ν
+                    %mo *
+                  %mi h
+                %annotation{:encoding => "application/x-tex"} \nu^* p_! \nu^* h
+            to
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msub
+                    %mi p
+                    %mo !
+                  %msup
+                    %mi ν
+                    %mo *
+                  %mi h
+                %annotation{:encoding => "application/x-tex"} p_! \nu^* h
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mrow
+                    %mtable
+                      %mtr
+                        %mtd
+                          %msup
+                            %mi ν
+                            %mo *
+                          %msub
+                            %mi p
+                            %mo !
+                          %msup
+                            %mi ν
+                            %mo *
+                          %mi L
+                      %mtr
+                        %mtd
+                        %mtd
+                          %msup
+                            %mo ↘
+                            %mpadded{:width => "0"}
+                              %mrow
+                                %msub
+                                  %mi μ
+                                  %mi h
+                      %mtr
+                        %mtd
+                        %mtd
+                        %mtd
+                          %msup
+                            %mi ν
+                            %mo *
+                          %mi L
+                        %mtd
+                          %mo →
+                        %mtd
+                          %mi L
+                      %mtr
+                        %mtd
+                        %mtd
+                        %mtd
+                          %mo{:stretchy => "false"} ↓
+                        %mtd
+                        %mtd
+                          %mo{:stretchy => "false"} ↓
+                      %mtr
+                        %mtd
+                        %mtd
+                        %mtd
+                          %mi P
+                        %mtd
+                          %mover
+                            %munder
+                              %mi ν
+                              %mo →
+                            %mover
+                              %mo →
+                              %mi p
+                        %mtd
+                          %mi X
+                  %mspace{:width => "thinmathspace"}
+                  %mo ,
+                %annotation{:encoding => "application/x-tex"}
+                  \\array{
+                  \\nu^* p_! \nu^* L
+                  \\\
+                  \&amp; \searrow^{\mathrlap{\mu_h}}
+                  \\\
+                  \&amp;&amp;\nu^* L &amp;\to&amp; L
+                  \\\
+                  \&amp;&amp;
+                  \\downarrow &amp;&amp; \downarrow
+                  \\\
+                  \&amp;&amp;
+                  P &amp;\stackrel{\stackrel{p}{\to}}{\underset{\to}{\nu}}&amp;
+                  X
+                  }
+                  \\,,
+          %p
+            which can be interpreted as a map
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msub
+                    %mi p
+                    %mo !
+                  %msup
+                    %mi ν
+                    %mo *
+                  %msub
+                    %mi p
+                    %mo !
+                  %msup
+                    %mi ν
+                    %mo *
+                  %mi h
+                  %mo →
+                  %msub
+                    %mi p
+                    %mo *
+                  %msup
+                    %mi ν
+                    %mo *
+                  %mi h
+                %annotation{:encoding => "application/x-tex"} p_!\nu^* p_! \nu^* h\to p_* \nu^* h
+            because the domains of the maps
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msub
+                    %mi p
+                    %mo !
+                  %msup
+                    %mi ν
+                    %mo *
+                  %msub
+                    %mi p
+                    %mo !
+                  %msup
+                    %mi ν
+                    %mo *
+                  %mi h
+                %annotation{:encoding => "application/x-tex"} p_!\nu^* p_! \nu^* h
+            and
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msup
+                    %mi ν
+                    %mo *
+                  %msub
+                    %mi p
+                    %mo !
+                  %msup
+                    %mi ν
+                    %mo *
+                  %mi h
+                %annotation{:encoding => "application/x-tex"} \nu^* p_! \nu^* h
+            are the same by the definition and the commuting triangles can be checked easily.
+          %p
+            The
+            %a.existingWikiWord{:href => "/nlab/show/principal+bundle"} principality
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi P
+                  %mo ×
+                  %mi G
+                  %mo ≅
+                  %mi P
+                  %msub
+                    %mo ×
+                    %mi X
+                  %mi P
+                %annotation{:encoding => "application/x-tex"} P\times G \cong P\times_X P
+            now induces the
+            %a.existingWikiWord{:href => "/nlab/show/isomorphism"} isomorphism
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msub
+                    %mi p
+                    %mo !
+                  %msup
+                    %mi ν
+                    %mo *
+                  %mi h
+                  %mo ≅
+                  %msup
+                    %mi π
+                    %mo *
+                  %msub
+                    %mi π
+                    %mo !
+                  %mi h
+                %annotation{:encoding => "application/x-tex"} p_! \nu^* h \cong \pi^* \pi_! h
+          %p
+            %a.existingWikiWord{:href => "/nlab/show/natural+isomorphism"} natural
+            in
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi h
+                    %mo :
+                    %mi L
+                    %mo →
+                    %mi P
+                  %annotation{:encoding => "application/x-tex"} h:L\to P
+            %a.existingWikiWord{:href => "/nlab/show/pullback"} pullback
+            diagram
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mrow
+                    %mtable
+                      %mtr
+                        %mtd
+                          %msub
+                            %mi p
+                            %mo !
+                          %msup
+                            %mi ν
+                            %mo *
+                          %mi L
+                        %mtd
+                          %mover
+                            %mo →
+                            %mo ≃
+                        %mtd
+                          %msup
+                            %mi π
+                            %mo *
+                          %msub
+                            %mi π
+                            %mo !
+                          %mi L
+                        %mtd
+                          %mo →
+                        %mtd
+                          %mi L
+                      %mtr
+                        %mtd
+                          %mo{:stretchy => "false"} ↓
+                        %mtd
+                        %mtd
+                          %mo{:stretchy => "false"} ↓
+                        %mtd
+                        %mtd
+                          %msup
+                            %mo{:stretchy => "false"} ↓
+                            %mpadded{:width => "0"}
+                              %mi h
+                      %mtr
+                        %mtd
+                          %mi P
+                          %mo ×
+                          %mi G
+                        %mtd
+                          %mover
+                            %mo →
+                            %mo ≃
+                        %mtd
+                          %mi P
+                          %msub
+                            %mo ×
+                            %mi X
+                          %mi P
+                        %mtd
+                          %mo →
+                        %mtd
+                          %mi P
+                      %mtr
+                        %mtd
+                        %mtd
+                        %mtd
+                          %mo{:stretchy => "false"} ↓
+                        %mtd
+                        %mtd
+                          %msup
+                            %mo{:stretchy => "false"} ↓
+                            %mpadded{:width => "0"}
+                              %mi π
+                      %mtr
+                        %mtd
+                        %mtd
+                        %mtd
+                          %mi P
+                        %mtd
+                          %mo →
+                        %mtd
+                          %mi X
+                  %mspace{:width => "thinmathspace"}
+                  %mo .
+                %annotation{:encoding => "application/x-tex"}
+                  \\array{
+                  p_! \nu^* L &amp;\stackrel{\simeq}{\to}&amp; \pi^* \pi_! L &amp;\to&amp; L
+                  \\\
+                  \\downarrow &amp;&amp; \downarrow &amp;&amp; \downarrow^{\mathrlap{h}}
+                  \\\
+                  P \times G &amp;\stackrel{\simeq}{\to}&amp; P \times_X P &amp;\to&amp; P
+                  \\\
+                  \&amp;&amp; \downarrow &amp;&amp; \downarrow^{\mathrlap{\pi}}
+                  \\\
+                  \&amp;&amp; P &amp;\to&amp; X
+                  }
+                  \\,.
+          %p This rule extends to an isomorphism of monads
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi T
+                  %mo ≃
+                  %mover
+                    %mi T
+                    %mo{:stretchy => "false"} ˜
+                  %mspace{:width => "thinmathspace"}
+                  %mo .
+                %annotation{:encoding => "application/x-tex"}
+                  T \simeq \tilde T
+                  \\,.
+          %p
+            As a corollary, the
+            %a.existingWikiWord{:href => "/nlab/show/Eilenberg%E2%80%93Moore+category"} Eilenberg–Moore categories
+            of the two monads are
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/equivalence+of+categories"} equivalent
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msub
+                    %mi p
+                    %mo !
+                  %msup
+                    %mi ν
+                    %mo *
+                %annotation{:encoding => "application/x-tex"} p_! \nu^*
+            are certain maps
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi p
+                      %mo !
+                    %msup
+                      %mi ν
+                      %mo *
+                    %mi h
+                    %mo →
+                    %mi h
+                  %annotation{:encoding => "application/x-tex"} p_!\nu^*h\to h
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msup
+                    %mi ν
+                    %mo *
+                  %mi h
+                  %mo →
+                  %msup
+                    %mi p
+                    %mo *
+                  %mi h
+                %annotation{:encoding => "application/x-tex"} \nu^* h\to p^* h
+            by adjointness. This matches one of the definitions for an
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/equivariant+sheaf"} equivariant sheaf
+          %p
+            The map
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi π
+                  %mo :
+                  %mi P
+                  %mo →
+                  %mi X
+                %annotation{:encoding => "application/x-tex"} \pi : P\to X
+            of the principal bundle is an
+            %strong
+              %a.existingWikiWord{:href => "/nlab/show/effective+descent+morphism"} effective descent morphism
+            with respect to the
+            %a.existingWikiWord{:href => "/nlab/show/codomain+fibration"} codomain fibration
+            if the comparison functor for any of the two above isomorphic monads above is an equivalence of categories.
+          %h3#monadic_descent_of_modules Monadic descent of modules
+          %p
+            There is a
+            %a.existingWikiWord{:href => "/nlab/show/bifibration"} bifibration
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi Mod
+                  %mo →
+                  %mi Rings
+                %annotation{:encoding => "application/x-tex"} Mod \to Rings
+            from the category of modules over any ring, mapping each module to the ring that it is a module over. This models, dually, an algebraic version of
+            = succeed "s" do
+              %a.existingWikiWord{:href => "/nlab/show/vector+bundle"} vector bundle
+            = succeed "s." do
+              %a.existingWikiWord{:href => "/nlab/show/affine+scheme"} affine scheme
+          %p
+            Comonadic descent for this bifibration (equivalently monadic descent for its formal dual,
+            = succeed ")" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msup
+                      %mi Mod
+                      %mi op
+                    %mo →
+                    %msup
+                      %mi Rings
+                      %mi op
+                  %annotation{:encoding => "application/x-tex"} Mod^{op} \to Rings^{op}
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/Sweedler+coring"} Sweedler coring
+          %h3#gluing_categories_from_localizations Gluing categories from localizations
+          %p
+            Another example is in
+            = succeed "." do
+              %a.existingWikiWord{:href => "/zoranskoda/show/gluing+categories+from+localizations"} gluing categories from localizations
+          %h2#higher_category_theoretical_version Higher category theoretical version
+          %p
+            All the ingredients of monadic descent generalize from
+            %a.existingWikiWord{:href => "/nlab/show/category+theory"} category theory
+            to
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/higher+category+theory"} higher category theory
+            %a.existingWikiWord{:href => "/nlab/show/higher+monadic+descent"} higher monadic descent
+            that relates to
+            = succeed "s" do
+              %a.existingWikiWord{:href => "/nlab/show/%E2%88%9E-stack"} ∞-stack
+            = succeed "s." do
+              %a.existingWikiWord{:href => "/nlab/show/stack"} stack
+          %ul
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/higher+monadic+descent"}> higher monadic descent
+              \.
+          %h2#related_concepts Related concepts
+          %ul
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/surjective+geometric+morphism"} surjective geometric morphism
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/descent"} descent
+              %ul
+                %li
+                  %p
+                    %a.existingWikiWord{:href => "/nlab/show/cover"} cover
+                %li
+                  %p
+                    %a.existingWikiWord{:href => "/nlab/show/cohomological+descent"} cohomological descent
+                %li
+                  %p
+                    %a.existingWikiWord{:href => "/nlab/show/descent+morphism"} descent morphism
+                %li
+                  %p
+                    %strong monadic descent
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Beck-Chevalley+condition"} Beck-Chevalley condition
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/monadicity+theorem"} monadicity theorem
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Sweedler+coring"} Sweedler coring
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/higher+monadic+descent"} higher monadic descent
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/descent+in+noncommutative+algebraic+geometry"} descent in noncommutative algebraic geometry
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/sheaf"}> sheaf
+                ,
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/%282%2C1%29-sheaf"} (2,1)-sheaf
+                %a.existingWikiWord{:href => "/nlab/show/2-sheaf"} 2-sheaf
+                %a.existingWikiWord{:href => "/nlab/show/%28%E2%88%9E%2C1%29-sheaf"} (∞,1)-sheaf
+          %h2#references References
+          %p
+            The
+            %a.existingWikiWord{:href => "/nlab/show/B%C3%A9nabou%E2%80%93Roubaud+theorem"} Bénabou–Roubaud theorem
+            on monadic descent is due to:
+          %ul
+            %li#BenabouRoubaud70
+              %a.existingWikiWord{:href => "/nlab/show/Jean+B%C3%A9nabou"}> Jean Bénabou
+              ,
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/Jacques+Roubaud"} Jacques Roubaud
+              = succeed "," do
+                %em Monades et descente
+              %strong 270
+              (1970) 96-98 &amp;lbrack;
+              %a{:href => "http://gallica.bnf.fr/ark:/12148/bpt6k480298g/f100"}> gallica:12148/bpt6k480298g/f100
+              ,
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/files/BenabouRoubaud-MonadesEtDescente.pdf", :title => "pdf"} pdf
+              = succeed "):" do
+                %a.existingWikiWord{:href => "/nlab/show/Peter+Heinig"} Peter Heinig
+              = succeed "&rbrack;" do
+                %a{:href => "https://mathoverflow.net/q/279152"} MO:q/279152
+          %p Review and further developments:
+          %ul
+            %li#JanelidzeTholen94
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/George+Janelidze"}> George Janelidze
+                ,
+                = succeed ":" do
+                  %a.existingWikiWord{:href => "/nlab/show/Walter+Tholen"} Walter Tholen
+                = succeed "," do
+                  %em Facets of descent I
+                %strong 2
+                3 (1994) 245-281 &amp;lbrack;
+                %a{:href => "https://doi.org/10.1007/BF00878100"}> doi:10.1007/BF00878100
+                \&amp;rbrack;
+            %li#JanelidzeTholen97
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/George+Janelidze"}> George Janelidze
+                ,
+                = succeed ":" do
+                  %a.existingWikiWord{:href => "/nlab/show/Walter+Tholen"} Walter Tholen
+                = succeed "," do
+                  %em Facets of descent II
+                %strong 5
+                3 (1997) 229-248 &amp;lbrack;
+                %a{:href => "https://doi.org/10.1023/A:1008697013769"}> doi:10.1023/A:1008697013769
+                \&amp;rbrack;
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/George+Janelidze"}> George Janelidze
+                , Manuela Sobral,
+                = succeed ":" do
+                  %a.existingWikiWord{:href => "/nlab/show/Walter+Tholen"} Walter Tholen
+                = succeed "," do
+                  %em Beyond Barr exactness: effective descent morphisms
+                %a.existingWikiWord{:href => "/nlab/show/Walter+Tholen"} Walter Tholen
+                (ed.)
+                %em Categ. Foundations
+                Enc. Math. Appl. (2003)
+            %li
+              %p
+                Bachuki Mesablishvili,
+                = succeed "," do
+                  %em Monads of effective descent type and comonadicity
+                = succeed ":1" do
+                  %strong 16
+                = succeed ";" do
+                  %a{:href => "http://tac.mta.ca/tac/volumes/16/1/16-01abs.html"} link
+            %li
+              %ul
+                %li
+                  Bachuki Mesablishvili:
+                  = succeed "," do
+                    %em Pure morphisms of commutative rings are effective descent morphisms for modules—a new proof
+                  %strong 7
+                  3 (2000) 38–42
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Francis+Borceux"}> Francis Borceux
+                , Stefan Caenepeel,
+                = succeed ":" do
+                  %a.existingWikiWord{:href => "/nlab/show/George+Janelidze"} George Janelidze
+                %em Monadic approach to Galois descent and cohomology
+                \&amp;lbrack
+                %a{:href => "http://arxiv.org/abs/0812.1674"}> arXiv:0812.1674
+                \&amp;rbrack;
+            %li
+              %p
+                S. Caenepeel:
+                %em Galois corings from the descent theory point of view,
+                in: Fields Inst. Commun.
+                %strong 43
+                (2004) 163–186
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Tomasz+Brzezi%C5%84ski"}> Tomasz Brzeziński
+                , Adrian Vazquez Marquez, Joost Vercruysse,
+                = succeed "," do
+                  %em The Eilenberg–Moore category and a Beck-type theorem for a Morita context
+                %strong 19
+                (2011) 821 &amp;lbrack;
+                %a{:href => "https://doi.org/10.1007/s10485-009-9217-0"}> doi:10.1007/s10485-009-9217-0
+                \&amp;rbrack;
+          %p An expository overview:
+          %ul
+            %li
+              Rui Prezado,chapter 2 of:
+              %em Some aspects of descent theory and applications
+              \&amp;lbrack;
+              %a{:href => "https://arxiv.org/abs/2502.09337"}> arXiv:2502.09337
+              \&amp;rbrack;
+          %p
+            For
+            = succeed ":" do
+              %a.existingWikiWord{:href => "/nlab/show/triangulated+categories"} triangulated categories
+          %ul
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/Paul+Balmer"}> Paul Balmer
+              \:
+              = succeed "," do
+                %em Descent in triangulated categories
+              %strong 353
+              1 (2012) 109–125
+          %p
+            Discussion in
+            %a.existingWikiWord{:href => "/nlab/show/homotopy+theory"} homotopy theory
+            for
+            = succeed ":" do
+              %a.existingWikiWord{:href => "/nlab/show/%28infinity%2C1%29-monads"} (infinity,1)-monads
+          %ul
+            %li#Hess10
+              %a.existingWikiWord{:href => "/nlab/show/Kathryn+Hess"}> Kathryn Hess
+              , section 2 of:
+              %em A general framework for homotopic descent and codescent
+              \&amp;lbrack;
+              %a{:href => "http://arxiv.org/abs/1001.1556"}> arXiv:1001.1556
+              \&amp;rbrack;
+        .revisedby
+          %p
+            Last revised on February 14, 2025 at 07:43:01.
+            See the
+            %a{:href => "/nlab/history/monadic+descent", :style => "color: #005c19"} history
+            of this page for a list of all contributions to it.
+        .navigation.navfoot
+          %a#edit.navlink{:accesskey => "E", :href => "/nlab/edit/monadic+descent", :rel => "nofollow"} Edit
+          %a{:href => "https://nforum.ncatlab.org/discussion/537/#Item_16"} Discuss
+          %span.backintime
+            %a#to_previous_revision.navlinkbackintime{:accesskey => "B", :href => "/nlab/revision/monadic+descent/45", :rel => "nofollow"} Previous revision
+          %a#see_changes.navlink{:accesskey => "C", :href => "/nlab/show/diff/monadic+descent", :rel => "nofollow"} Changes from previous revision
+          %a#history.navlink{:accesskey => "S", :href => "/nlab/history/monadic+descent", :rel => "nofollow"} History (45 revisions)
+          %a{:href => "/nlab/show/monadic+descent/cite", :style => "color: black"} Cite
+          %a#view_print{:accesskey => "p", :href => "/nlab/print/monadic+descent", :rel => "nofollow"} Print
+          %a#view_source{:href => "/nlab/source/monadic+descent", :rel => "nofollow"} Source
+      / Content
+    / Container

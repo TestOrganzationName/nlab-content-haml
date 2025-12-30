@@ -1,0 +1,2535 @@
+!!! XML
+!!! 1.1
+%html{:xmlns => "http://www.w3.org/1999/xhtml"}
+  %head
+    %title
+      Landau-Ginzburg model in nLab
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:content => "index,follow", :name => "robots"}/
+    %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/
+    %link{:href => "/stylesheets/instiki.css?1676280126", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/stylesheets/mathematics.css?1660229990", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/stylesheets/syntax.css?1660229990", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/stylesheets/nlab.css?1676280126", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css", :rel => "stylesheet", :type => "text/css"}/
+    :css
+      h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+        color: #226622;
+      }
+      a:visited.existingWikiWord {
+        color: #164416;
+      }
+    :css
+      <!--/*--><![CDATA[/*><!--*/
+          .toc ul {margin: 0; padding: 0;}
+      .toc ul ul {margin: 0; padding: 0 0 0 10px;}
+      .toc li > p {margin: 0}
+      .toc ul li {list-style-type: none; position: relative;}
+      .toc div {border-top:1px dotted #ccc;}
+      .rightHandSide h2 {font-size: 1.5em;color:#008B26}
+      table.plaintable {
+          border-collapse:collapse;
+          margin-left:30px;
+          border:0;
+      }
+      .plaintable td {border:1px solid #000; padding: 3px;}
+      .plaintable th {padding: 3px;}
+      .plaintable caption {
+          font-weight: bold;
+          font-size:1.1em;
+          text-align:center;
+          margin-left:30px;
+      }
+          
+         
+      /* Query boxes for questioning and answering mechanism */
+      div.query{
+      background: #f6fff3;
+      border: solid #ce9;
+      border-width: 2px 1px;
+      padding: 0 1em;
+      margin: 0 1em;
+      max-height: 20em;
+      overflow: auto;
+      }
+      
+      /* Standout boxes for putting important text */
+      div.standout{
+      background: #fff1f1;
+      border: solid black;
+      border-width: 2px 1px;
+      padding: 0 1em;
+      margin: 0 1em;
+      overflow: auto;
+      }
+      
+      /* Icon for links to n-category arXiv documents 
+       (commented out for now i.e. disabled)
+      a[href*="http://arxiv.org/"] {
+        background-image: url(../files/arXiv_icon.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 22px;
+        } */
+          
+      /* Icon for links to n-category cafe posts (disabled) 
+      a[href*="http://golem.ph.utexas.edu/category"] {
+        background-image: url(../files/n-cafe_5.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 25px;
+        } */
+      
+      /* Icon for links to pdf files (disabled)
+      a[href$=".pdf"] {
+        background-image: url(../files/pdficon_small.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 25px;
+        } */
+      
+      /* Icon for links to pages, etc. -inside- pdf files (disabled)
+      a[href*=".pdf#"] {
+        background-image: url(../files/pdf_entry.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 25px;
+        } */
+      
+      a.existingWikiWord {
+      color: #226622;
+      }
+      
+      a.existingWikiWord:visited {
+      color: #226622;
+      }
+      
+      
+      a.existingWikiWord[title] {
+      border: 0px;
+      color: #aa0505;
+      text-decoration: none;
+      }
+          
+      a.existingWikiWord[title]:visited {
+      border: 0px;
+      color: #551111;
+      text-decoration: none;
+      }
+      
+      a[href^="http://"] {
+      border: 0px;
+      color: #003399;
+      }
+      
+      a[href^="http://"]:visited {
+      border: 0px;
+      color: #330066;
+      }
+      
+      a[href^="https://"] {
+      border: 0px;
+      color: #003399;
+      }
+      
+      a[href^="https://"]:visited {
+      border: 0px;
+      color: #330066;
+      }
+      
+      div.dropDown .hide {
+      display: none;
+      }
+      
+      div.dropDown:hover .hide {
+      display:block;
+      }
+      
+      div.clickDown .hide {
+      display: none;
+      }
+      
+      div.clickDown:focus {
+      outline:none;
+      }
+      
+      div.clickDown:focus .hide, div.clickDown:hover .hide {
+      display: block;
+      }
+      
+      div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+      display:block;
+      }
+      
+      div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+      display:none;
+      }
+      
+      div.clickDown .clickToReveal:after {
+      content: "A(Hover to reveal, click to "hold")";
+      font-size: 60%;
+      }
+      
+      div.clickDown .clickToHide:after {
+      content: "A(Click to hide)";
+      font-size: 60%;
+      }
+      div.clickDown .clickToHide, div.clickDown .clickToReveal {
+      white-space: pre-wrap;
+      }
+      
+      .un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+      margin-left: 1em;
+      }
+      
+      span.theorem_label {
+      margin-left: -1em;
+      }
+      .proof span.theorem_label {
+      margin-left: 0em;
+      }
+      :target {
+          background-color: #BBBBBB;
+          border-radius: 5pt;
+      }
+      
+        /*]]>*/-->
+    %script{:src => "/javascripts/prototype.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/effects.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/dragdrop.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/controls.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/application.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/page_helper.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/thm_numbering.js?1660229990", :type => "text/javascript"}
+    %script{:type => "text/x-mathjax-config"}
+      :cdata
+        <!--//--><![CDATA[//><!--
+        MathJax.Ajax.config.path["Contrib"] = "/MathJax";
+        MathJax.Hub.Config({
+        MathML: { useMathMLspacing: true },
+        "HTML-CSS": { scale: 90,
+        extensions: ["handle-floats.js"]
+        }
+        });
+        MathJax.Hub.Queue( function () {
+        var fos = document.getElementsByTagName('foreignObject');
+        for (var i = 0; i < fos.length; i++) {
+        MathJax.Hub.Typeset(fos[i]);
+        }
+        });
+        \//--><!]]>
+    :javascript
+      <!--//--><![CDATA[//><!--
+      window.addEventListener("DOMContentLoaded", function () {
+        var div = document.createElement('div');
+        var math = document.createElementNS('http://www.w3.org/1998/Math/MathML', 'math');
+        document.body.appendChild(div);
+        div.appendChild(math);
+      // Test for MathML support comparable to WebKit version https://trac.webkit.org/changeset/203640 or higher.
+        div.setAttribute('style', 'font-style: italic');
+        var mathml_unsupported = !(window.getComputedStyle(div.firstChild).getPropertyValue('font-style') === 'normal');
+        div.parentNode.removeChild(div);
+        if (mathml_unsupported) {
+          // MathML does not seem to be supported...
+          var s = document.createElement('script');
+          s.src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=MML_HTMLorMML-full";
+          document.querySelector('head').appendChild(s);
+        } else {
+          document.head.insertAdjacentHTML("beforeend", '<style>svg[viewBox] {max-width: 100%}</style>');
+        }
+      });
+      //--><!]]>
+    %link{:href => "https://ncatlab.org/nlab/atom_with_headlines", :rel => "alternate", :title => "Atom with headlines", :type => "application/atom+xml"}/
+    %link{:href => "https://ncatlab.org/nlab/atom_with_content", :rel => "alternate", :title => "Atom with full content", :type => "application/atom+xml"}/
+    :javascript
+      document.observe("dom:loaded", function() {
+        generateThmNumbers();
+      });
+  %body
+    #Container
+      #Content
+        %h1#pageName
+          %span{:style => "float: left; margin: 0.5em 0.25em -0.25em 0"}
+            %svg{:height => "1.8em", :viewbox => "0 0 190 181", :width => "1.872em", :xmlns => "http://www.w3.org/2000/svg"}
+              %path{:d => "M72.8 145c-1.6 17.3-15.7 10-23.6 20.2-5.6 7.3 4.8 15 11.4 15 11.5-.2 19-13.4 26.4-20.3 3.3-3 8.2-4 11.2-7.2a14 14 0 0 0 2.9-11.1c-1.4-9.6-12.4-18.6-16.9-27.2-5-9.6-10.7-27.4-24.1-27.7-17.4-.3-.4 26 4.7 30.7 2.4 2.3 5.4 4.1 7.3 6.9 1.6 2.3 2.1 5.8-1 7.2-5.9 2.6-12.4-6.3-15.5-10-8.8-10.6-15.5-23-26.2-31.8-5.2-4.3-11.8-8-18-3.7-7.3 4.9-4.2 12.9.2 18.5a81 81 0 0 0 30.7 23c3.3 1.5 12.8 5.6 10 10.7-2.5 5.2-11.7 3-15.6 1.1-8.4-3.8-24.3-21.3-34.4-13.7-3.5 2.6-2.3 7.6-1.2 11.1 2.8 9 12.2 17.2 20.9 20.5 17.3 6.7 34.3-8 50.8-12.1z", :fill => "#226622"}
+              %path{:d => "M145.9 121.3c-.2-7.5 0-19.6-4.5-26-5.4-7.5-12.9-1-14.1 5.8-1.4 7.8 2.7 14.1 4.8 21.3 3.4 12 5.8 29-.8 40.1-3.6-6.7-5.2-13-7-20.4-2.1-8.2-12.8-13.2-15.1-1.9-2 9.7 9 21.2 12 30.1 1.2 4 2 8.8 6.4 10.3 6.9 2.3 13.3-4.7 17.7-8.8 12.2-11.5 36.6-20.7 43.4-36.4 6.7-15.7-13.7-14-21.3-7.2-9.1 8-11.9 20.5-23.6 25.1 7.5-23.7 31.8-37.6 38.4-61.4 2-7.3-.8-29.6-13-19.8-14.5 11.6-6.6 37.6-23.3 49.2z", :fill => "#a41e32"}
+              %path{:d => "M86.3 47.5c0-13-10.2-27.6-5.8-40.4 2.8-8.4 14.1-10.1 17-1 3.8 11.6-.3 26.3-1.8 38 11.7-.7 10.5-16 14.8-24.3 2.1-4.2 5.7-9.1 11-6.7 6 2.7 7.4 9.2 6.6 15.1-2.2 14-12.2 18.8-22.4 27-3.4 2.7-8 6.6-5.9 11.6 2 4.4 7 4.5 10.7 2.8 7.4-3.3 13.4-16.5 21.7-16 14.6.7 12 21.9.9 26.2-5 1.9-10.2 2.3-15.2 3.9-5.8 1.8-9.4 8.7-15.7 8.9-6.1.1-9-6.9-14.3-9-14.4-6-33.3-2-44.7-14.7-3.7-4.2-9.6-12-4.9-17.4 9.3-10.7 28 7.2 35.7 12 2 1.1 11 6.9 11.4 1.1.4-5.2-10-8.2-13.5-10-11.1-5.2-30-15.3-35-27.3-2.5-6 2.8-13.8 9.4-13.6 6.9.2 13.4 7 17.5 12C70.9 34 75 43.8 86.3 47.4z", :fill => "#193c78"}
+          %span.webName nLab
+          Landau-Ginzburg model
+        .navigation
+          %span.skipNav
+            %a{:href => "#navEnd"} Skip the Navigation Links
+            |
+          %span{:style => "display:inline-block; width: 0.3em;"}
+          %a{:accesskey => "H", :href => "/nlab/show/HomePage", :title => "Home page"} Home Page
+          |
+          %a{:accesskey => "A", :href => "/nlab/all_pages", :title => "List of all pages"} All Pages
+          |
+          %a{:accesskey => "U", :href => "/nlab/latest_revisions", :title => "Latest edits and page creations"} Latest Revisions
+          |
+          %a{:href => "https://nforum.ncatlab.org/discussion/5063/#Item_11", :style => "color: black", :title => "Discuss this page in its dedicated thread on the nForum"} Discuss this page
+          |
+          %form#navigationSearchForm{"accept-charset" => "utf-8", :action => "/nlab/search", :method => "get"}
+            %fieldset.search
+              %input#searchField{:name => "query", :onblur => "this.value == '' ? this.value = 'Search' : true", :onfocus => "this.value == 'Search' ? this.value = '' : true", :style => "display:inline-block; float: left;", :type => "text", :value => "Search"}/
+          %span#navEnd
+        #revision
+          %meta{:content => "application/xhtml+xml;charset=utf-8", "http-equiv" => "Content-type"}/
+          %title Contents
+          .rightHandSide
+            .toc.clickDown{:tabindex => "0"}
+              %h3#context Context
+              %h4#quantum_field_theory Quantum field theory
+              .hide
+                %div
+                  %p
+                    %strong
+                      %a.existingWikiWord{:href => "/nlab/show/FQFT"} functorial quantum field theory
+                  %h2#contents Contents
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/cobordism+category"} cobordism category
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/cobordism"} cobordism
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/extended+cobordism"} extended cobordism
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/%28%E2%88%9E%2Cn%29-category+of+cobordisms"} (∞,n)-category of cobordisms
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/bordism+categories+following+Stolz-Teichner"} Riemannian bordism category
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/cobordism+hypothesis"} cobordism hypothesis
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/generalized+tangle+hypothesis"} generalized tangle hypothesis
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/On+the+Classification+of+Topological+Field+Theories"} classification of TQFTs
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/functorial+field+theory"} functorial field theory
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/unitary+functorial+field+theory"} unitary functorial field theory
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/extended+functorial+field+theory"} extended functorial field theory
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/conformal+field+theory"} CFT
+                          %ul
+                            %li
+                              %a.existingWikiWord{:href => "/nlab/show/vertex+operator+algebra"} vertex operator algebra
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/TQFT"} TQFT
+                          %ul
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/Reshetikhin-Turaev+model"} Reshetikhin-Turaev model
+                                \/
+                                %a.existingWikiWord{:href => "/nlab/show/Chern-Simons+theory"} Chern-Simons theory
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/HQFT"} HQFT
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/TCFT"} TCFT
+                              %ul
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/A-model"}> A-model
+                                    ,
+                                    = succeed "," do
+                                      %a.existingWikiWord{:href => "/nlab/show/B-model"} B-model
+                                    %a.existingWikiWord{:href => "/nlab/show/Gromov-Witten+theory"} Gromov-Witten theory
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/homological+mirror+symmetry"} homological mirror symmetry
+                    %li
+                      %p
+                        FQFT and
+                        %a.existingWikiWord{:href => "/nlab/show/cohomology"} cohomology
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/%281%2C1%29-dimensional+Euclidean+field+theories+and+K-theory"} (1,1)-dimensional Euclidean field theories and K-theory
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/%282%2C1%29-dimensional+Euclidean+field+theory"} (2,1)-dimensional Euclidean field theory
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/geometric+models+for+tmf"} geometric models for tmf
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/holographic+principle+of+higher+category+theory"} holographic principle of higher category theory
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/holographic+principle"} holographic principle
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/AdS%2FCFT+correspondence"} AdS/CFT correspondence
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/quantization+via+the+A-model"} quantization via the A-model
+              %h4#physics Physics
+              .hide
+                %div
+                  %p
+                    %strong>
+                      %a.existingWikiWord{:href => "/nlab/show/physics"} physics
+                    ,
+                    = succeed "," do
+                      %a.existingWikiWord{:href => "/nlab/show/mathematical+physics"} mathematical physics
+                    %a.existingWikiWord{:href => "/nlab/show/philosophy+of+physics"} philosophy of physics
+                  %h2#surveys_textbooks_and_lecture_notes Surveys, textbooks and lecture notes
+                  %ul
+                    %li
+                      %p
+                        %em
+                          %a.existingWikiWord{:href => "/nlab/show/higher+category+theory+and+physics"} (higher) category theory and physics
+                    %li
+                      %p
+                        %em
+                          %a.existingWikiWord{:href => "/nlab/show/geometry+of+physics"} geometry of physics
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/books+and+reviews+in+mathematical+physics"}> books and reviews
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/physics+resources"} physics resources
+                  %hr/
+                  %p
+                    %a.existingWikiWord{:href => "/nlab/show/theory+%28physics%29"}> theory (physics)
+                    ,
+                    %a.existingWikiWord{:href => "/nlab/show/model+%28physics%29"} model (physics)
+                  %p
+                    %a.existingWikiWord{:href => "/nlab/show/experiment"}> experiment
+                    ,
+                    = succeed "," do
+                      %a.existingWikiWord{:href => "/nlab/show/measurement"} measurement
+                    %a.existingWikiWord{:href => "/nlab/show/computable+physics"} computable physics
+                  %ul
+                    %li
+                      %p
+                        %strong
+                          %a.existingWikiWord{:href => "/nlab/show/mechanics"} mechanics
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/mass"}> mass
+                            ,
+                            = succeed "," do
+                              %a.existingWikiWord{:href => "/nlab/show/charge"} charge
+                            = succeed "," do
+                              %a.existingWikiWord{:href => "/nlab/show/momentum"} momentum
+                            = succeed "," do
+                              %a.existingWikiWord{:href => "/nlab/show/angular+momentum"} angular momentum
+                            %a.existingWikiWord{:href => "/nlab/show/moment+of+inertia"} moment of inertia
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/dynamics+on+Lie+groups"} dynamics on Lie groups
+                          %ul
+                            %li
+                              %a.existingWikiWord{:href => "/nlab/show/rigid+body+dynamics"} rigid body dynamics
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/field+%28physics%29"} field (physics)
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/Lagrangian+mechanics"} Lagrangian mechanics
+                          %ul
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/configuration+space"}> configuration space
+                                ,
+                                %a.existingWikiWord{:href => "/nlab/show/state"} state
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/action+functional"}> action functional
+                                ,
+                                %a.existingWikiWord{:href => "/nlab/show/Lagrangian"} Lagrangian
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/covariant+phase+space"}> covariant phase space
+                                ,
+                                %a.existingWikiWord{:href => "/nlab/show/Euler-Lagrange+equations"} Euler-Lagrange equations
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/Hamiltonian+mechanics"} Hamiltonian mechanics
+                          %ul
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/phase+space"} phase space
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/symplectic+geometry"} symplectic geometry
+                              %ul
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/Poisson+manifold"} Poisson manifold
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/symplectic+manifold"} symplectic manifold
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/symplectic+groupoid"} symplectic groupoid
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/multisymplectic+geometry"} multisymplectic geometry
+                              %ul
+                                %li
+                                  %a.existingWikiWord{:href => "/nlab/show/n-symplectic+manifold"} n-symplectic manifold
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/spacetime"} spacetime
+                          %ul
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/smooth+Lorentzian+manifold"} smooth Lorentzian manifold
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/special+relativity"} special relativity
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/general+relativity"} general relativity
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/gravity"} gravity
+                              %ul
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/supergravity"}> supergravity
+                                    ,
+                                    %a.existingWikiWord{:href => "/nlab/show/dilaton+gravity"} dilaton gravity
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/black+hole"} black hole
+                    %li
+                      %p
+                        %strong
+                          %a.existingWikiWord{:href => "/nlab/show/classical+field+theory"} Classical field theory
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/classical+physics"} classical physics
+                          %ul
+                            %li
+                              %a.existingWikiWord{:href => "/nlab/show/classical+mechanics"} classical mechanics
+                            %li
+                              %a.existingWikiWord{:href => "/nlab/show/waves"} waves
+                              and
+                              %a.existingWikiWord{:href => "/nlab/show/optics"} optics
+                            %li
+                              %a.existingWikiWord{:href => "/nlab/show/thermodynamics"} thermodynamics
+                    %li
+                      %p
+                        %strong
+                          %a.existingWikiWord{:href => "/nlab/show/quantum+mechanics"} Quantum Mechanics
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/quantum+mechanics+in+terms+of+dagger-compact+categories"} in terms of ∞-compact categories
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/quantum+information"} quantum information
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/Hamiltonian+operator"} Hamiltonian operator
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/density+matrix"} density matrix
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/Kochen-Specker+theorem"} Kochen-Specker theorem
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/Bell%27s+theorem"} Bell's theorem
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/Gleason%27s+theorem"} Gleason's theorem
+                    %li
+                      %p
+                        %strong
+                          %a.existingWikiWord{:href => "/nlab/show/quantization"} Quantization
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/geometric+quantization"} geometric quantization
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/deformation+quantization"} deformation quantization
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/path+integral"} path integral quantization
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/semiclassical+approximation"} semiclassical approximation
+                    %li
+                      %p
+                        %strong
+                          %a.existingWikiWord{:href => "/nlab/show/quantum+field+theory"} Quantum Field Theory
+                      %ul
+                        %li
+                          %p Axiomatizations
+                          %ul
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/AQFT"} algebraic QFT
+                              %ul
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/Wightman+axioms"} Wightman axioms
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/Haag-Kastler+axioms"} Haag-Kastler axioms
+                                  %ul
+                                    %li
+                                      %p
+                                        %a.existingWikiWord{:href => "/nlab/show/operator+algebra"} operator algebra
+                                    %li
+                                      %p
+                                        %a.existingWikiWord{:href => "/nlab/show/local+net"} local net
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/conformal+net"} conformal net
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/Reeh-Schlieder+theorem"} Reeh-Schlieder theorem
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/Osterwalder-Schrader+theorem"} Osterwalder-Schrader theorem
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/PCT+theorem"} PCT theorem
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/Bisognano-Wichmann+theorem"} Bisognano-Wichmann theorem
+                                  %ul
+                                    %li
+                                      %a.existingWikiWord{:href => "/nlab/show/modular+theory"} modular theory
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/spin-statistics+theorem"} spin-statistics theorem
+                                  %ul
+                                    %li
+                                      %a.existingWikiWord{:href => "/nlab/show/boson"}> boson
+                                      ,
+                                      %a.existingWikiWord{:href => "/nlab/show/fermion"} fermion
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/FQFT"} functorial QFT
+                              %ul
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/cobordism"} cobordism
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/%28%E2%88%9E%2Cn%29-category+of+cobordisms"} (∞,n)-category of cobordisms
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/cobordism+hypothesis"}> cobordism hypothesis
+                                    \-theorem
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/extended+topological+quantum+field+theory"} extended topological quantum field theory
+                        %li
+                          %p Tools
+                          %ul
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/perturbative+quantum+field+theory"}> perturbative quantum field theory
+                                ,
+                                %a.existingWikiWord{:href => "/nlab/show/vacuum"} vacuum
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/effective+quantum+field+theory"} effective quantum field theory
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/renormalization"} renormalization
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/BV-BRST+formalism"} BV-BRST formalism
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/geometric+%E2%88%9E-function+theory"} geometric ∞-function theory
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/particle+physics"} particle physics
+                          %ul
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/phenomenology"} phenomenology
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/model+%28in+particle+phyiscs%29"} models
+                              %ul
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/standard+model+of+particle+physics"} standard model of particle physics
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/fields+and+quanta+-+table"} fields and quanta
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/GUT"}> Grand Unified Theories
+                                    ,
+                                    %a.existingWikiWord{:href => "/nlab/show/MSSM"} MSSM
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/scattering+amplitude"} scattering amplitude
+                              %ul
+                                %li
+                                  %a.existingWikiWord{:href => "/nlab/show/on-shell+recursion"}> on-shell recursion
+                                  ,
+                                  %a.existingWikiWord{:href => "/nlab/show/KLT+relations"} KLT relations
+                        %li
+                          %p Structural phenomena
+                          %ul
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/universality+class"} universality class
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/quantum+anomaly"} quantum anomaly
+                              %ul
+                                %li
+                                  %a.existingWikiWord{:href => "/nlab/show/Green-Schwarz+mechanism"} Green-Schwarz mechanism
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/instanton"} instanton
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/spontaneously+broken+symmetry"} spontaneously broken symmetry
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/Kaluza-Klein+mechanism"} Kaluza-Klein mechanism
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/integrable+systems"} integrable systems
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/holonomic+quantum+fields"} holonomic quantum fields
+                        %li
+                          %p Types of quantum field thories
+                          %ul
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/TQFT"} TQFT
+                              %ul
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/2d+TQFT"} 2d TQFT
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/Dijkgraaf-Witten+theory"} Dijkgraaf-Witten theory
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/Chern-Simons+theory"} Chern-Simons theory
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/TCFT"} TCFT
+                              %ul
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/A-model"}> A-model
+                                    ,
+                                    %a.existingWikiWord{:href => "/nlab/show/B-model"} B-model
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/homological+mirror+symmetry"} homological mirror symmetry
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/QFT+with+defects"} QFT with defects
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/conformal+field+theory"} conformal field theory
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/%281%2C1%29-dimensional+Euclidean+field+theories+and+K-theory"} (1,1)-dimensional Euclidean field theories and K-theory
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/%282%2C1%29-dimensional+Euclidean+field+theory"} (2,1)-dimensional Euclidean field theory and elliptic cohomology
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/CFT"} CFT
+                              %ul
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/WZW+model"} WZW model
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/6d+%282%2C0%29-supersymmetric+QFT"} 6d (2,0)-supersymmetric QFT
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/gauge+theory"} gauge theory
+                              %ul
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/field+strength"} field strength
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/gauge+group"}> gauge group
+                                    ,
+                                    = succeed "," do
+                                      %a.existingWikiWord{:href => "/nlab/show/gauge+transformation"} gauge transformation
+                                    %a.existingWikiWord{:href => "/nlab/show/gauge+fixing"} gauge fixing
+                                %li
+                                  %p examples
+                                  %ul
+                                    %li
+                                      %a.existingWikiWord{:href => "/nlab/show/electromagnetic+field"}> electromagnetic field
+                                      ,
+                                      %a.existingWikiWord{:href => "/nlab/show/QED"} QED
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/electric+charge"} electric charge
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/magnetic+charge"} magnetic charge
+                                  %ul
+                                    %li
+                                      %a.existingWikiWord{:href => "/nlab/show/Yang-Mills+field"}> Yang-Mills field
+                                      ,
+                                      %a.existingWikiWord{:href => "/nlab/show/QCD"} QCD
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/Yang-Mills+theory"} Yang-Mills theory
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/spinors+in+Yang-Mills+theory"} spinors in Yang-Mills theory
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/topological+Yang-Mills+theory"} topological Yang-Mills theory
+                                  %ul
+                                    %li
+                                      %a.existingWikiWord{:href => "/nlab/show/Kalb-Ramond+field"} Kalb-Ramond field
+                                    %li
+                                      %a.existingWikiWord{:href => "/nlab/show/supergravity+C-field"} supergravity C-field
+                                    %li
+                                      %a.existingWikiWord{:href => "/nlab/show/RR+field"} RR field
+                                    %li
+                                      %a.existingWikiWord{:href => "/nlab/show/first-order+formulation+of+gravity"} first-order formulation of gravity
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/general+covariance"} general covariance
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/supergravity"} supergravity
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/D%27Auria-Fre+formulation+of+supergravity"} D'Auria-Fre formulation of supergravity
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/gravity+as+a+BF-theory"} gravity as a BF-theory
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/sigma-model"} sigma-model
+                              %ul
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/particle"}> particle
+                                    ,
+                                    = succeed "," do
+                                      %a.existingWikiWord{:href => "/nlab/show/relativistic+particle"} relativistic particle
+                                    = succeed "," do
+                                      %a.existingWikiWord{:href => "/nlab/show/fundamental+particle"} fundamental particle
+                                    = succeed "," do
+                                      %a.existingWikiWord{:href => "/nlab/show/spinning+particle"} spinning particle
+                                    %a.existingWikiWord{:href => "/nlab/show/superparticle"} superparticle
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/string"}> string
+                                    ,
+                                    = succeed "," do
+                                      %a.existingWikiWord{:href => "/nlab/show/spinning+string"} spinning string
+                                    %a.existingWikiWord{:href => "/nlab/show/superstring"} superstring
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/membrane"} membrane
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/AKSZ+theory"} AKSZ theory
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/string+theory"} String Theory
+                      %ul
+                        %li
+                          %a.existingWikiWord{:href => "/nlab/show/string+theory+results+applied+elsewhere"} string theory results applied elsewhere
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/number+theory+and+physics"} number theory and physics
+                      %ul
+                        %li
+                          %a.existingWikiWord{:href => "/nlab/show/Riemann+hypothesis+and+physics"} Riemann hypothesis and physics
+                  %div
+                    %p
+                      %a{:href => "/nlab/edit/physicscontents"} Edit this sidebar
+          %h1#contents Contents
+          .maruku_toc
+            %ul
+              %li
+                %a{:href => "#idea"} Idea
+              %li
+                %a{:href => "#properties"} Properties
+              %ul
+                %li
+                  %a{:href => "#the_categories_of_branes"}
+                    The
+                    = succeed "-categories" do
+                      %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                        %semantics
+                          %mrow
+                            %mn ∞
+                          %annotation{:encoding => "application/x-tex"} \infty
+              %li
+                %a{:href => "#related_concepts"} Related concepts
+              %li
+                %a{:href => "#references"} References
+              %ul
+                %li
+                  %a{:href => "#in_superconductivity"} In superconductivity
+                %li
+                  %a{:href => "#in_string_theory"} In string theory
+                %ul
+                  %li
+                    %a{:href => "#branes"} Branes
+                  %li
+                    %a{:href => "#defects"} Defects
+                  %li
+                    %a{:href => "#tcft_formulation"} TCFT formulation
+                %li
+                  %a{:href => "#EllipticGeneraAsBranePartitionFunctionsReferences"}
+                    Elliptic genera as super
+                    = succeed "-brane" do
+                      %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                        %semantics
+                          %mrow
+                            %mi p
+                          %annotation{:encoding => "application/x-tex"} p
+                %ul
+                  %li
+                    %a{:href => "#formulations"} Formulations
+                  %ul
+                    %li
+                      %a{:href => "#via_super_vertex_operator_algebra"} Via super vertex operator algebra
+                    %li
+                      %a{:href => "#via_diracramond_operators_on_free_loop_space"} Via Dirac-Ramond operators on free loop space
+                    %li
+                      %a{:href => "#via_conformal_nets"} Via conformal nets
+                  %li
+                    %a{:href => "#InterpretationInTMFCohomology"} Conjectural interpretation in tmf-cohomology
+                  %li
+                    %a{:href => "#occurrences_in_string_theory"} Occurrences in string theory
+                  %ul
+                    %li
+                      %a{:href => "#ReferencesEllipticGeneraAsPartitionFunctionsOfHStrings"} H-string elliptic genus
+                    %li
+                      %a{:href => "#ReferencesEllipticGeneraAsPartitionFunctionsOfM5Branes"} M5-brane elliptic genus
+                    %li
+                      %a{:href => "#ReferencesEllipticGeneraAsPartitionFunctionsOfMStrings"} M-string elliptic genus
+                    %li
+                      %a{:href => "#ReferencesEllipticGeneraAsPartitionFunctionsOfEStrings"} E-string elliptic genus
+          %h2#idea Idea
+          %p
+            Originally, the
+            %em Ginzburg–Landau model
+            is a mesoscopic
+            %a.existingWikiWord{:href => "/nlab/show/model+%28physics%29"} model
+            in
+            %a.existingWikiWord{:href => "/nlab/show/solid+state+physics"} solid state physics
+            for
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/superconductivity"} superconductivity
+          %p
+            Roughly this type of model has then been used as models for 2d
+            %a.existingWikiWord{:href => "/nlab/show/quantum+field+theory"} quantum field theory
+            in
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/string+theory"} string theory
+            %em Landau–Ginzburg model
+            (LG-model) is a 2-
+            %a.existingWikiWord{:href => "/nlab/show/dimension"} dimensional
+            %a.existingWikiWord{:href => "/nlab/show/supersymmetry"} supersymmetric
+            %a.existingWikiWord{:href => "/nlab/show/sigma+model"} sigma model
+            %a.existingWikiWord{:href => "/nlab/show/QFT"} QFT
+            characterized by the fact that its
+            %a.existingWikiWord{:href => "/nlab/show/Lagrangian"} Lagrangian
+            contains a
+            %a.existingWikiWord{:href => "/nlab/show/potential"} potential
+            term: given a
+            %a.existingWikiWord{:href => "/nlab/show/complex+manifold"} complex
+            %a.existingWikiWord{:href => "/nlab/show/Riemannian+manifold"} Riemannian
+            %a.existingWikiWord{:href => "/nlab/show/target+space"} target space
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo{:stretchy => "false"} (
+                    %mi X
+                    %mo ,
+                    %mi g
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} (X,g)
+            %a.existingWikiWord{:href => "/nlab/show/action+functional"} action functional
+            of the LG-model is schematically of the form
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msub
+                    %mi S
+                    %mi LB
+                  %mo :
+                  %mo{:stretchy => "false"} (
+                  %mi ϕ
+                  %mo :
+                  %mi Σ
+                  %mo →
+                  %mi X
+                  %mo{:stretchy => "false"} )
+                  %mo ↦
+                  %msub
+                    %mo ∫
+                    %mi Σ
+                  %mrow
+                    %mo (
+                    %mo{:stretchy => "false"} |
+                    %mo ∇
+                    %mi Φ
+                    %msup
+                      %mo{:stretchy => "false"} |
+                      %mn 2
+                    %mo +
+                    %mo{:stretchy => "false"} |
+                    %mo{:stretchy => "false"} (
+                    %mo ∇
+                    %mi W
+                    %mo{:stretchy => "false"} )
+                    %mo{:stretchy => "false"} (
+                    %mi ϕ
+                    %mo{:stretchy => "false"} )
+                    %msup
+                      %mo{:stretchy => "false"} |
+                      %mn 2
+                    %mo +
+                    %mi fermionic
+                    %mspace{:width => "thickmathspace"}
+                    %mi terms
+                    %mo )
+                  %mi d
+                  %mi μ
+                  %mspace{:width => "thinmathspace"}
+                  %mo ,
+                %annotation{:encoding => "application/x-tex"}
+                  S_{LB} : (\phi : \Sigma \to X) \mapsto
+                  \\int_\Sigma \left( \vert \nabla \Phi \vert^2 + \vert (\nabla W)(\phi) \vert^2
+                  + fermionic\;terms \right) d \mu
+                  \\,,
+          %p
+            where
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi Σ
+                %annotation{:encoding => "application/x-tex"} \Sigma
+            is the 2-
+            %a.existingWikiWord{:href => "/nlab/show/dimension"}> dimension
+            al
+            %a.existingWikiWord{:href => "/nlab/show/worldsheet"} worldsheet
+            and
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi W
+                  %mo :
+                  %mi X
+                  %mo →
+                  %mi ℂ
+                %annotation{:encoding => "application/x-tex"} W : X \to \mathbb{C}
+            – called the model’s
+            %em superpotential
+            – is a
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/holomorphic+function"} holomorphic function
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi X
+                %annotation{:encoding => "application/x-tex"} X
+            is actually taken to be a
+            %a.existingWikiWord{:href => "/nlab/show/Cartesian+space"} Cartesian space
+            and all the nontrivial structure is in
+            = succeed ".)" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi W
+                  %annotation{:encoding => "application/x-tex"} W
+          %p
+            Landau–Ginzburg models have gained importance as constituting one type of QFTs that are related under
+            = succeed ":" do
+              %a.existingWikiWord{:href => "/nlab/show/homological+mirror+symmetry"} homological mirror symmetry
+          %p
+            If the
+            %a.existingWikiWord{:href => "/nlab/show/target+space"} target space
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi X
+                %annotation{:encoding => "application/x-tex"} X
+            is a
+            = succeed "," do
+              %span.newWikiWord
+                Fano variety
+                %a{:href => "/nlab/new/Fano+variety"} ?
+            %a.existingWikiWord{:href => "/nlab/show/B-model"} B-model
+            does not quite exist on it, since the corresponding supersymmetric
+            %a.existingWikiWord{:href => "/nlab/show/string"} string
+            %a.existingWikiWord{:href => "/nlab/show/sigma+model"} sigma model
+            is not conformally invariant as a quantum theory, and the axial
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi U
+                  %mo{:stretchy => "false"} (
+                  %mn 1
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} U(1)
+            %span.newWikiWord
+              R-current
+              %a{:href => "/nlab/new/R-current"} ?
+            used to define the B-twist is
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/quantum+anomaly"} anomalous
+            %a.existingWikiWord{:href => "/nlab/show/derived+category"} derived category
+            of B-branes. A Landau–Ginzburg model is something that provides the dual A-branes to this under
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/homological+mirror+symmetry"} homological mirror symmetry
+            %a.existingWikiWord{:href => "/nlab/show/A-model"} A-model
+            on a Fano variety. (…)
+          %p
+            A mathematical definition of the category of B-branes in the LG model is given by
+            %a.existingWikiWord{:href => "/nlab/show/Maxim+Kontsevich"} Maxim Kontsevich
+            (elaborated in
+            = succeed ")," do
+              %a{:href => "#KapustinLi"} Kapustin-Li, section 7
+            %a.existingWikiWord{:href => "/nlab/show/chain+complexes"} chain complexes
+            of
+            %a.existingWikiWord{:href => "/nlab/show/coherent+sheaves"} coherent sheaves
+            as in the
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/B-model"} B-model
+            %em
+              %a.existingWikiWord{:href => "/nlab/show/twisted+complexes"} twisted complexes
+            \: for these the square of the
+            %a.existingWikiWord{:href => "/nlab/show/differential"} differential
+            is in general non-vanishing but rather a multiplication by
+            %em superpotential
+            of the LG-model, which therefore supplies a way to twist the (derived) category of coherent sheaves. The
+            = succeed "-grading" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mstyle{:mathvariant => "bold"}
+                      %mi Z
+                  %annotation{:encoding => "application/x-tex"} \mathbf{Z}
+            = succeed "-grading." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mstyle{:mathvariant => "bold"}
+                        %mi Z
+                      %mn 2
+                  %annotation{:encoding => "application/x-tex"} \mathbf{Z}_2
+            %a.existingWikiWord{:href => "/nlab/show/derived+categories+of+singularities"} derived categories of singularities
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msub
+                    %mo{:lspace => "thinmathspace", :rspace => "thinmathspace"} ∏
+                    %mi λ
+                  %msubsup
+                    %mi D
+                    %mi sg
+                    %mi b
+                  %mo{:stretchy => "false"} (
+                  %msub
+                    %mi X
+                    %mi λ
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} \prod_\lambda D^b_{sg}(X_\lambda)
+            (which is a finite product) where
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msub
+                    %mi X
+                    %mi λ
+                %annotation{:encoding => "application/x-tex"} X_\lambda
+            is a fiber over
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi λ
+                %annotation{:encoding => "application/x-tex"} \lambda
+            in
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mstyle{:mathvariant => "bold"}
+                      %mi C
+                  %annotation{:encoding => "application/x-tex"} \mathbf{C}
+          %h2#properties Properties
+          %h3#the_categories_of_branes
+            The
+            = succeed "-categories" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mn ∞
+                  %annotation{:encoding => "application/x-tex"} \infty
+          %p
+            A
+            %a.existingWikiWord{:href => "/nlab/show/brane"} brane
+            for a LG model is given by a
+            %a.existingWikiWord{:href => "/nlab/show/matrix+factorization"} matrix factorization
+            of its superpotential.
+          %p
+            (…)
+            %a.existingWikiWord{:href => "/nlab/show/curved+dg-algebra"} curved dg-algebra
+          %p
+            (…)
+            %a{:href => "#CaldararuTu"} CaldararuTu
+          %h2#related_concepts Related concepts
+          %ul
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/2d+TQFT"}> 2d TQFT
+                ,
+                %a.existingWikiWord{:href => "/nlab/show/TCFT"} TCFT
+            %li
+              %p
+                %span.newWikiWord
+                  holographic superconductor
+                  %a{:href => "/nlab/new/holographic+superconductor"} ?
+          %h2#references References
+          %h3#in_superconductivity In superconductivity
+          %p
+            Discussion as a model for
+            = succeed ":" do
+              %a.existingWikiWord{:href => "/nlab/show/superconductors"} superconductors
+          %p The original article:
+          %ul
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/%D0%92.+%D0%9B.+%D0%93%D0%B8%D0%BD%D0%B7%D0%B1%D1%83%D1%80%D0%B3"}> В. Л. Гинзбург
+              ,
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/%D0%9B.+%D0%94.+%D0%9B%D0%B0%D0%BD%D0%B4%D0%B0%D1%83"} Л. Д. Ландау
+              = succeed "," do
+                %em К теории сверхпроводимости
+          %p English translation:
+          %ul
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/Vitaly+Ginzburg"}> Vitaly Ginzburg
+              ,
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/Lev+Landau"} Lev Landau
+              = succeed "," do
+                %em On the Theory of Superconductivity
+              %em On Superconductivity and Superfluidity
+              Springer (2009) (
+              %a{:href => "https://doi.org/10.1007/978-3-540-68008-6_4"}> doi:1007/978-3-540-68008-6_4
+              )
+          %p Review:
+          %ul
+            %li#Chapman00
+              %p
+                S. J. Chapman, Section 2 of:
+                = succeed "," do
+                  %em A Hierarchy of Models for Type-II Superconductors
+                = succeed ")" do
+                  %a{:href => "https://www.jstor.org/stable/2653134"} jstor:2653134
+            %li#Timm20
+              %p
+                Carsten Timm, Section 6 of:
+                = succeed "," do
+                  %em Theory of Superconductivity
+                = succeed ")" do
+                  %a{:href => "https://tu-dresden.de/mn/physik/itp/cmt/ressourcen/dateien/skripte/Skript_Supra.pdf?lang=en"} pdf
+          %h3#in_string_theory In string theory
+          %p
+            Discussion as a
+            %a.existingWikiWord{:href => "/nlab/show/supersymmetry"} supersymmetric
+            %a.existingWikiWord{:href => "/nlab/show/sigma+model"} sigma model
+            in
+            %a.existingWikiWord{:href => "/nlab/show/string+theory"} string theory
+            %a.existingWikiWord{:href => "/nlab/show/KK-compactification"} on
+            = succeed ":" do
+              %a.existingWikiWord{:href => "/nlab/show/Calabi-Yau+manifolds"} Calabi-Yau manifolds
+          %ul
+            %li#VafaWarner89
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Cumrun+Vafa"}> Cumrun Vafa
+                ,
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/Nicholas+Warner"} Nicholas Warner
+                = succeed "," do
+                  %em Catastrophes and the Classification of Conformal Theories
+                = succeed ")" do
+                  %a{:href => "https://doi.org/10.1016/0370-2693%2889%2990473-5"} doi:10.1016/0370-2693(89)90473-5
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Brian+Greene"}> Brian Greene
+                ,
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/Cumrun+Vafa"} Cumrun Vafa
+                = succeed "," do
+                  %em Calabi–Yau Manifolds and Renormalization Group Flows
+                = succeed ")" do
+                  %a{:href => "https://doi.org/10.1016/0550-3213(89)90471-9"} doi:10.1016/0550-3213(89)90471-9
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Paul+Howe"}> Paul Howe
+                ,
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/Peter+West"} Peter West
+                = succeed "," do
+                  %em Landau-Ginzburg Hamiltonians, string theory and critical phenomena
+                = succeed "," do
+                  %em Proceedings of 25th International Conference on High Energy Physics
+                = succeed "," do
+                  %a{:href => "https://inspirehep.net/literature/301119"} inspire:301119
+                = succeed "&rbrack;" do
+                  %a{:href => "https://inspirehep.net/files/f9b5ac3ccd39ef8c30ca5c7b69b92fc8"} pdf
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Edward+Witten"}> Edward Witten
+                ,
+                = succeed "," do
+                  %em
+                    Phases of
+                    %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                      %semantics
+                        %mrow
+                          %mi N
+                          %mo =
+                          %mn 2
+                        %annotation{:encoding => "application/x-tex"} N=2
+                    Theories In Two Dimensions
+                = succeed ")" do
+                  %a{:href => "https://arxiv.org/abs/hep-th/9301042"} arXiv:hep-th/9301042
+          %p Lecture notes:
+          %ul
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/Edward+Witten"}> Edward Witten
+              ,
+              = succeed "," do
+                %em Dynamical aspects of QFT
+              = succeed "," do
+                %em
+                  The Landau–Ginzburg description of
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi N
+                        %mo =
+                        %mn 2
+                      %annotation{:encoding => "application/x-tex"} N=2
+                  minimal models; Quantum cohomology and Kähler manifolds
+              = succeed "." do
+                %em
+                  %a.existingWikiWord{:href => "/nlab/show/Quantum+Fields+and+Strings"} Quantum Fields and Strings
+          %p
+            In terms of
+            = succeed ":" do
+              %a.existingWikiWord{:href => "/nlab/show/derived+geometry"} derived geometry
+          %ul
+            %li
+              Yalong Cao, Yukinobu Toda, Gufang Zhao:
+              %em
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}>
+                  %semantics
+                    %mrow
+                      %mi K
+                    %annotation{:encoding => "application/x-tex"} K
+                \-theoretic pullbacks for Lagrangians on derived critical loci
+              \&amp;lbrack;
+              %a{:href => "https://arxiv.org/abs/2503.06025"}> arXiv:2503.06025
+              \&amp;rbrack;
+          %h4#branes Branes
+          %p
+            The
+            %a.existingWikiWord{:href => "/nlab/show/branes"} branes
+            of the LG-model are discussed for instance in
+          %ul
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/Anton+Kapustin"}> Anton Kapustin
+              , Yi Li,
+              = succeed "," do
+                %em D-Branes in Landau–Ginzburg models and algebraic geometry
+              %a#KapustinLi{:href => "http://arxiv.org/abs/hep-th/0210296"} arXiv:hep-th/0210296
+          %p
+            The
+            %a.existingWikiWord{:href => "/nlab/show/derived+category"} derived category
+            of
+            = succeed "s" do
+              %a.existingWikiWord{:href => "/nlab/show/D-brane"} D-brane
+          %ul#CaldararuTu
+            %li#Orlov
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Dmitri+Orlov"}> Dmitri Orlov
+                ,
+                = succeed "," do
+                  %em Triangulated categories of singularities and D-branes in Landau–Ginzburg models
+                = succeed ")" do
+                  %a{:href => "https://arxiv.org/abs/math/0302304"} arXiv:math/0302304
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Dmitri+Orlov"}> Dmitri Orlov
+                ,
+                = succeed "," do
+                  %em Derived categories of coherent sheaves and triangulated categories of singularities
+                %strong 270,
+                Birkhäuser Boston 2009 (
+                %a{:href => "https://arxiv.org/abs/math/0503632"}> arXiv:math.ag/0503632
+                )
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Dmitri+Orlov"}> Dmitri O. Orlov
+                ,
+                = succeed "," do
+                  %em Triangulated categories of singularities and equivalences between Landau-Ginzburg models
+                = succeed ":12" do
+                  %strong 197
+                %a{:href => "https://doi.org/10.1070/SM2006v197n12ABEH003824"} doi
+            %li
+              %p
+                Andrei Caldararu, Junwu Tu,
+                %em
+                  Curved
+                  = succeed "-algebras" do
+                    %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                      %semantics
+                        %mrow
+                          %msub
+                            %mi A
+                            %mn ∞
+                        %annotation{:encoding => "application/x-tex"} A_\infty
+                (
+                %a{:href => "http://www.math.wisc.edu/~andreic/publications/AinfinityLG.pdf"}> pdf
+                )
+          %h4#defects Defects
+          %p General defects of B-twisted affine LG models were first discussed in
+          %ul
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/Ilka+Brunner"}> Ilka Brunner
+              ,
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/Daniel+Roggenkamp"} Daniel Roggenkamp
+              = succeed "," do
+                %em B-type defects in Landau–Ginzburg models
+              = succeed ")" do
+                %a{:href => "http://arxiv.org/abs/0707.0922"} arXiv:0707.0922
+          %p The graded pivotal bicategory of B-twisted affine LG models is studied in detail in
+          %ul
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/Nils+Carqueville"}> Nils Carqueville
+              ,
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/Daniel+Murfet"} Daniel Murfet
+              = succeed "," do
+                %em Adjunctions and defects in Landau-Ginzburg models
+              %strong 289
+              (2016) 480-566 &amp;lbrack;
+              %a{:href => "https://doi.org/10.1016/j.aim.2015.03.033"}> doi:10.1016/j.aim.2015.03.033
+              ,
+              = succeed "&rbrack;" do
+                %a{:href => "https://arxiv.org/abs/1208.1481"} arXiv:1208.1481
+          %p
+            and described in terms of
+            %a.existingWikiWord{:href => "/nlab/show/linear+logic"} linear logic
+            and the
+            = succeed ":" do
+              %a.existingWikiWord{:href => "/nlab/show/geometry+of+interactions"} geometry of interactions
+          %ul
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/Daniel+Murfet"}> Daniel Murfet
+              ,
+              = succeed "," do
+                %em The cut operation on matrix factorisations
+              %p
+                %strong 222
+                7 (2018) 1911-1955 &amp;lbrack;
+                %a{:href => "https://arxiv.org/abs/1402.4541"}> arXiv:1402.4541
+                ,
+                = succeed "&rbrack;" do
+                  %a{:href => "https://doi.org/10.1016/j.jpaa.2017.08.014"} doi:10.1016/j.jpaa.2017.08.014
+          %p A proposed Landau-Ginzburg model for strict 2-groups:
+          %ul
+            %li
+              Ruizhi Liu, Ran Luo, Yi-Nan Wang.
+              %em Higher-Matter and Landau-Ginzburg Theory of Higher-Group Symmetries
+              (2024). (
+              %a{:href => "https://arxiv.org/abs/2406.03974"}> arXiv:2406.03974
+              ).
+          %p Orbifolds of defects are studied in
+          %ul
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Ilka+Brunner"}> Ilka Brunner
+                ,
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/Daniel+Roggenkamp"} Daniel Roggenkamp
+                = succeed "," do
+                  %em Defects and Bulk Perturbations of Boundary Landau–Ginzburg Orbifolds
+                = succeed ")" do
+                  %a{:href => "http://arxiv.org/abs/0712.0188"} arXiv:0712.0188
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Nils+Carqueville"}> Nils Carqueville
+                , Ingo Runkel,
+                = succeed "," do
+                  %em Orbifold completion of defect bicategories
+                = succeed ")" do
+                  %a{:href => "https://arxiv.org/abs/1210.6363"} arXiv:1210.6363
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Ilka+Brunner"}> Ilka Brunner
+                ,
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/Nils+Carqueville"} Nils Carqueville
+                = succeed "," do
+                  %em Orbifolds and topological defects
+                = succeed ")" do
+                  %a{:href => "https://arxiv.org/abs/1307.3141"} arXiv:1307.3141
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Ilka+Brunner"}> Ilka Brunner
+                ,
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/Nils+Carqueville"} Nils Carqueville
+                = succeed "," do
+                  %em Discrete torsion defects
+                = succeed ")" do
+                  %a{:href => "https://arxiv.org/abs/1404.7497"} arXiv:1404.7497
+          %p
+            A relation to
+            %a.existingWikiWord{:href => "/nlab/show/linear+logic"} linear logic
+            and the
+            %a.existingWikiWord{:href => "/nlab/show/geometry+of+interaction"} geometry of interaction
+            is in
+          %ul
+            %li#Murfet14
+              %a.existingWikiWord{:href => "/nlab/show/Daniel+Murfet"}> Daniel Murfet
+              ,
+              %em Computing with cut systems
+              (
+              %a{:href => "https://arxiv.org/abs/1402.4541"}> arXiv:1402.4541
+              )
+          %h4#tcft_formulation TCFT formulation
+          %p
+            Discussions of topological Landau–Ginzburg
+            %a.existingWikiWord{:href => "/nlab/show/B-models"} B-models
+            explicitly as open
+            = succeed "s" do
+              %a.existingWikiWord{:href => "/nlab/show/TCFT"} TCFT
+          %ul
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Nils+Carqueville"}> Nils Carqueville
+                ,
+                = succeed "," do
+                  %em Matrix factorisations and open topological string theory
+                = succeed ")" do
+                  %a{:href => "http://arxiv.org/abs/0904.0862"} arXiv:0904.0862
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Ed+Segal"}> Ed Segal
+                ,
+                %em The closed state space of affine Landau–Ginzburg B-models
+                (
+                %a{:href => "http://arxiv.org/abs/0904.1339"}> arXiv:0904.1339
+                )
+            %li
+              %p
+                Nils Carqueville, Michael Kay,
+                = succeed "," do
+                  %em Bulk deformations of open topological string theory
+                = succeed ")" do
+                  %a{:href => "https://arxiv.org/abs/1104.5438"} arXiv:1104.5438
+          %div
+            %h3#EllipticGeneraAsBranePartitionFunctionsReferences
+              Elliptic genera as super
+              = succeed "-brane" do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi p
+                    %annotation{:encoding => "application/x-tex"} p
+            %p
+              The interpretation of
+              %a.existingWikiWord{:href => "/nlab/show/elliptic+genera"} elliptic genera
+              (especially the
+              = succeed ")" do
+                %a.existingWikiWord{:href => "/nlab/show/Witten+genus"} Witten genus
+              %a.existingWikiWord{:href => "/nlab/show/partition+function"} partition function
+              of a
+              %a.existingWikiWord{:href => "/nlab/show/2d+superconformal+field+theory"} 2d superconformal field theory
+              (or
+              = succeed ")" do
+                %a.existingWikiWord{:href => "/nlab/show/Landau-Ginzburg+model"} Landau-Ginzburg model
+              %a.existingWikiWord{:href => "/nlab/show/heterotic+string"} heterotic string
+              (“H-string”) or
+              %a.existingWikiWord{:href => "/nlab/show/type+II+superstring"} type II superstring
+              %a.existingWikiWord{:href => "/nlab/show/worldsheet"} worldsheet
+              theory has precursors in
+            %ul
+              %li
+                %p
+                  %a.existingWikiWord{:href => "/nlab/show/A.+N.+Schellekens"}> A. N. Schellekens
+                  ,
+                  = succeed "," do
+                    %a.existingWikiWord{:href => "/nlab/show/Nicholas+P.+Warner"} Nicholas P. Warner
+                  = succeed "," do
+                    %em Anomalies and modular invariance in string theory
+                  = succeed ")" do
+                    %a{:href => "https://doi.org/10.1016/0370-2693(86)90760-4"} doi:10.1016/0370-2693(86)90760-4
+              %li
+                %p
+                  %a.existingWikiWord{:href => "/nlab/show/A.+N.+Schellekens"}> A. N. Schellekens
+                  ,
+                  = succeed "," do
+                    %a.existingWikiWord{:href => "/nlab/show/Nicholas+P.+Warner"} Nicholas P. Warner
+                  = succeed "," do
+                    %em Anomalies, characters and strings
+                  = succeed ")" do
+                    %a{:href => "https://doi.org/10.1016/0550-3213(87)90108-8"} doi:10.1016/0550-3213(87)90108-8
+              %li
+                %p
+                  %a.existingWikiWord{:href => "/nlab/show/Wolfgang+Lerche"}> Wolfgang Lerche
+                  ,
+                  = succeed "," do
+                    %a.existingWikiWord{:href => "/nlab/show/Bengt+Nilsson"} Bengt Nilsson
+                  = succeed "," do
+                    %a.existingWikiWord{:href => "/nlab/show/A.+N.+Schellekens"} A. N. Schellekens
+                  = succeed "," do
+                    %a.existingWikiWord{:href => "/nlab/show/Nicholas+P.+Warner"} Nicholas P. Warner
+                  = succeed "," do
+                    %em Anomaly cancelling terms from the elliptic genus
+                  = succeed ")" do
+                    %a{:href => "https://doi.org/10.1016/0550-3213(88)90468-3"} doi:10.1016/0550-3213(88)90468-3
+            %p and then strictly originates with:
+            %ul
+              %li#Witten87
+                %p
+                  %a.existingWikiWord{:href => "/nlab/show/Edward+Witten"}> Edward Witten
+                  ,
+                  = succeed "," do
+                    %em Elliptic genera and quantum field theory
+                  = succeed ")" do
+                    %a{:href => "http://projecteuclid.org/euclid.cmp/1104117076"} euclid:cmp/1104117076
+              %li
+                %p
+                  %a.existingWikiWord{:href => "/nlab/show/Edward+Witten"}> Edward Witten
+                  ,
+                  = succeed "," do
+                    %em
+                      On the Landau-Ginzburg Description of
+                      %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                        %semantics
+                          %mrow
+                            %mi N
+                            %mo =
+                            %mn 2
+                          %annotation{:encoding => "application/x-tex"} N=2
+                      Minimal Models
+                  = succeed ")" do
+                    %a{:href => "http://arxiv.org/abs/hep-th/9304026"} arXiv:hep-th/9304026
+              %li
+                %p
+                  %a.existingWikiWord{:href => "/nlab/show/Toshiya+Kawai"}> Toshiya Kawai
+                  ,
+                  = succeed "," do
+                    %a.existingWikiWord{:href => "/nlab/show/Yasuhiko+Yamada"} Yasuhiko Yamada
+                  = succeed "," do
+                    %em
+                      Elliptic Genera and
+                      %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                        %semantics
+                          %mrow
+                            %mi N
+                            %mo =
+                            %mn 2
+                          %annotation{:encoding => "application/x-tex"} N=2
+                      Superconformal Field Theory
+                  = succeed "," do
+                    %a{:href => "http://arxiv.org/abs/hep-th/9306096"} arXiv:hep-th/9306096
+                  = succeed ")" do
+                    %a{:href => "https://doi.org/10.1016/0550-3213(94)90428-6"} doi:10.1016/0550-3213(94)90428-6
+              %li
+                %p
+                  Sujay K. Ashok, Jan Troost,
+                  = succeed "," do
+                    %em A Twisted Non-compact Elliptic Genus
+                  = succeed ")" do
+                    %a{:href => "http://arxiv.org/abs/1101.1059"} arXiv:1101.1059
+              %li
+                %p
+                  %a.existingWikiWord{:href => "/nlab/show/Matthew+Ando"}> Matthew Ando
+                  ,
+                  = succeed "," do
+                    %a.existingWikiWord{:href => "/nlab/show/Eric+Sharpe"} Eric Sharpe
+                  = succeed "," do
+                    %em Elliptic genera of Landau-Ginzburg models over nontrivial spaces
+                  = succeed ")" do
+                    %a{:href => "https://arxiv.org/abs/0905.1285"} arXiv:0905.1285
+            %p Review in:
+            %ul
+              %li#Cheng13
+                %p
+                  %a.existingWikiWord{:href => "/nlab/show/Miranda+Cheng"}> Miranda Cheng
+                  ,
+                  = succeed "," do
+                    %em (Mock) Modular Forms in String Theory and Moonshine
+                  = succeed ")" do
+                    %a.existingWikiWord{:href => "/nlab/files/ChengModularForms16.pdf", :title => "pdf"} pdf
+              %li
+                %p
+                  %a.existingWikiWord{:href => "/nlab/show/Katrin+Wendland"}> Katrin Wendland
+                  , Section 2.4 in:
+                  = succeed "," do
+                    %em Snapshots of Conformal Field Theory
+                  %em Mathematical Aspects of Quantum Field Theories
+                  Mathematical Physics Studies. Springer 2015 (
+                  %a{:href => "http://de.arxiv.org/abs/1404.3108"}> arXiv:1404.3108
+                  ,
+                  = succeed ")" do
+                    %a{:href => "https://doi.org/10.1007/978-3-319-09949-1_4"} doi:10.1007/978-3-319-09949-1_4
+            %p
+              With emphasis on
+              %a.existingWikiWord{:href => "/nlab/show/orbifold"} orbifold
+              CFTs:
+            %ul
+              %li
+                Sujay K. Ashok,
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/Jan+Troost"} Jan Troost
+                %em Orbifolded Elliptic Genera of Non-Compact Models
+                [
+                %a{:href => "https://arxiv.org/abs/2405.08370"}> arXiv:2405.08370
+                ]
+            %h4#formulations Formulations
+            %h5#via_super_vertex_operator_algebra Via super vertex operator algebra
+            %p
+              Formulation via
+              = succeed ":" do
+                %a.existingWikiWord{:href => "/nlab/show/super+vertex+operator+algebras"} super vertex operator algebras
+            %ul
+              %li
+                %p
+                  Hirotaka Tamanoi,
+                  = succeed "," do
+                    %em Elliptic Genera and Vertex Operator Super-Algebras
+                  = succeed ")" do
+                    %a{:href => "https://link.springer.com/book/10.1007/BFb0092541"} doi:10.1007/BFb0092541
+              %li#DLM02
+                %p
+                  Chongying Dong,
+                  = succeed "," do
+                    %a.existingWikiWord{:href => "/nlab/show/Kefeng+Liu"} Kefeng Liu
+                  = succeed "," do
+                    %em Elliptic genus and vertex operator algebras
+                  = succeed "," do
+                    %a{:href => "http://arxiv.org/abs/math/0201135"} arXiv:math/0201135
+                  = succeed ")" do
+                    %a{:href => "http://dx.doi.org/10.2140/agt.2001.1.743"} doi:10.2140/agt.2001.1.743
+            %p
+              and for the
+              %a.existingWikiWord{:href => "/nlab/show/topological+twist"} topologically twisted
+              %a.existingWikiWord{:href => "/nlab/show/2d+%282%2C0%29-superconformal+QFT"} 2d (2,0)-superconformal QFT
+              (the
+              %a.existingWikiWord{:href => "/nlab/show/heterotic+string"} heterotic string
+              with enhanced supersymmetry) via
+              %a.existingWikiWord{:href => "/nlab/show/sheaves+of+vertex+operator+algebras"} sheaves of vertex operator algebras
+              in
+            %ul
+              %li#Cheung10
+                %a.existingWikiWord{:href => "/nlab/show/Pokman+Cheung"}> Pokman Cheung
+                ,
+                %em The Witten genus and vertex algebras
+                (
+                %a{:href => "http://arxiv.org/abs/0811.1418"}> arXiv:0811.1418
+                )
+            %p
+              based on
+              = succeed ":" do
+                %a.existingWikiWord{:href => "/nlab/show/chiral+differential+operators"} chiral differential operators
+            %ul
+              %li
+                %a.existingWikiWord{:href => "/nlab/show/Vassily+Gorbounov"}> Vassily Gorbounov
+                ,
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/Fyodor+Malikov"} Fyodor Malikov
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/Vadim+Schechtman"} Vadim Schechtman
+                = succeed "," do
+                  %em Gerbes of chiral differential operators
+                = succeed "," do
+                  %a{:href => "http://arxiv.org/abs/math/9906117"} arXiv:math/9906117
+                = succeed "," do
+                  %a{:href => "http://arxiv.org/abs/math/0003170"} arXiv:math/0003170
+                = succeed ")" do
+                  %a{:href => "http://arxiv.org/abs/math/0005201"} arXiv:math/0005201
+            %p In relation to error-correcting codes:
+            %ul
+              %li
+                Kohki Kawabata, Shinichiro Yahagi,
+                %em Elliptic genera from classical error-correcting codes
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mo{:stretchy => "false"} [
+                    %annotation{:encoding => "application/x-tex"} [
+                %a{:href => "https://arxiv.org/abs/2308.12592"} arXiv:2308.12592
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mo{:stretchy => "false"} ]
+                    %annotation{:encoding => "application/x-tex"} ]
+            %h5#via_diracramond_operators_on_free_loop_space Via Dirac-Ramond operators on free loop space
+            %p
+              Tentative interpretation as
+              %a.existingWikiWord{:href => "/nlab/show/indices"} indices
+              of
+              %a.existingWikiWord{:href => "/nlab/show/Dirac-Ramond+operators"} Dirac-Ramond operators
+              as would-be
+              = succeed ":" do
+                %a.existingWikiWord{:href => "/nlab/show/Dirac+operators+on+smooth+loop+space"} Dirac operators on smooth loop space
+            %ul
+              %li#Witten87b
+                %p
+                  %a.existingWikiWord{:href => "/nlab/show/Edward+Witten"}> Edward Witten
+                  ,
+                  = succeed "," do
+                    %em The Index Of The Dirac Operator In Loop Space
+                  = succeed "," do
+                    %em Elliptic Curves and Modular Forms in Algebraic Topology
+                  = succeed "," do
+                    %strong 1326
+                  = succeed "," do
+                    %a{:href => "https://doi.org/10.1007/BFb0078045"} doi:10.1007/BFb0078045
+                  = succeed "&rbrack;" do
+                    %a{:href => "http://inspirehep.net/record/245523"} spire
+                %p originating from:
+                %p
+                  %a.existingWikiWord{:href => "/nlab/show/Edward+Witten"}> Edward Witten
+                  , p. 92-94 in:
+                  = succeed "," do
+                    %em Global anomalies in string theory
+                  = succeed "," do
+                    %em
+                      %a{:href => "https://inspirehep.net/conferences/965785?ui-citation-summary=true"} Symposium on Anomalies, Geometry, Topology
+                  = succeed "," do
+                    %a.existingWikiWord{:href => "/nlab/files/WittenGlobalAnomaliesInStringTheory.pdf", :title => "pdf"} pdf
+                  = succeed "&rbrack;" do
+                    %a{:href => "https://inspirehep.net/literature/214913"} spire:214913
+              %li#AlvarezKillingbackManganoWindey87
+                %p
+                  %a.existingWikiWord{:href => "/nlab/show/Orlando+Alvarez"}> Orlando Alvarez
+                  , T. P. Killingback, Michelangelo Mangano,
+                  = succeed "," do
+                    %a.existingWikiWord{:href => "/nlab/show/Paul+Windey"} Paul Windey
+                  = succeed "," do
+                    %em The Dirac-Ramond operator in string theory and loop space index theorems
+                  = succeed "," do
+                    %em Nonperturbative methods in field theory
+                  = succeed ")" do
+                    %a{:href => "https://doi.org/10.1016/0920-5632(87)90110-1"} doi"10.1016/0920-5632(87)90110-1
+              %li
+                %p
+                  %a.existingWikiWord{:href => "/nlab/show/Orlando+Alvarez"}> Orlando Alvarez
+                  , T. P. Killingback, Michelangelo Mangano,
+                  = succeed "," do
+                    %a.existingWikiWord{:href => "/nlab/show/Paul+Windey"} Paul Windey
+                  = succeed "," do
+                    %em String theory and loop space index theorems
+                  = succeed ")" do
+                    %a{:href => "https://projecteuclid.org/euclid.cmp/1104159462"} euclid:cmp/1104159462
+              %li#Landweber99
+                %p
+                  %a.existingWikiWord{:href => "/nlab/show/Gregory+Landweber"}> Gregory Landweber
+                  ,
+                  = succeed "," do
+                    %em Dirac operators on loop space
+                  = succeed ")" do
+                    %a{:href => "http://math.bard.edu/greg/LoopDirac.pdf"} pdf
+              %li
+                %p
+                  %a.existingWikiWord{:href => "/nlab/show/Orlando+Alvarez"}> Orlando Alvarez
+                  ,
+                  = succeed "," do
+                    %a.existingWikiWord{:href => "/nlab/show/Paul+Windey"} Paul Windey
+                  = succeed "," do
+                    %em Analytic index for a family of Dirac-Ramond operators
+                  = succeed ")" do
+                    %a{:href => "https://arxiv.org/abs/0904.4748"} arXiv:0904.4748
+            %h5#via_conformal_nets Via conformal nets
+            %p
+              Tentative formulation via
+              = succeed ":" do
+                %a.existingWikiWord{:href => "/nlab/show/conformal+nets"} conformal nets
+            %ul
+              %li
+                %a.existingWikiWord{:href => "/nlab/show/Chris+Douglas"}> Chris Douglas
+                ,
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/Andr%C3%A9+Henriques"} André Henriques
+                = succeed "," do
+                  %em Topological modular forms and conformal nets
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/Hisham+Sati"} Hisham Sati
+                %a.existingWikiWord{:href => "/nlab/show/Urs+Schreiber"} Urs Schreiber
+                (eds.),
+                = succeed "," do
+                  %em
+                    %a.existingWikiWord{:href => "/schreiber/show/Mathematical+Foundations+of+Quantum+Field+and+Perturbative+String+Theory"} Mathematical Foundations of Quantum Field and Perturbative String Theory
+                = succeed "," do
+                  %a{:href => "https://arxiv.org/abs/1103.4187"} arXiv:1103.4187
+                = succeed ")" do
+                  %a{:href => "https://doi.org/10.1090/pspum/083"} doi:10.1090/pspum/083
+            %h4#InterpretationInTMFCohomology Conjectural interpretation in tmf-cohomology
+            %p
+              The resulting suggestion that, roughly, deformation-classes (
+              %a.existingWikiWord{:href => "/nlab/show/concordance"} concordance
+              classes) of
+              %a.existingWikiWord{:href => "/nlab/show/2d+SCFTs"} 2d SCFTs
+              with
+              %a.existingWikiWord{:href => "/nlab/show/target+space"} target space
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi X
+                  %annotation{:encoding => "application/x-tex"} X
+              are the
+              %a.existingWikiWord{:href => "/nlab/show/Whitehead-generalized+cohomology"} generalized cohomology
+              of
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi X
+                  %annotation{:encoding => "application/x-tex"} X
+              with
+              %a.existingWikiWord{:href => "/nlab/show/coefficients"} coefficients
+              in the
+              %a.existingWikiWord{:href => "/nlab/show/spectrum"} spectrum
+              of
+              %a.existingWikiWord{:href => "/nlab/show/topological+modular+forms"} topological modular forms
+              (
+              %a.existingWikiWord{:href => "/nlab/show/tmf"}> tmf
+              ):
+            %ul
+              %li#StolzTeichner11
+                %a.existingWikiWord{:href => "/nlab/show/Stephan+Stolz"}> Stephan Stolz
+                ,
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/Peter+Teichner"} Peter Teichner
+                = succeed "," do
+                  %em Supersymmetric field theories and generalized cohomology
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/Hisham+Sati"} Hisham Sati
+                %a.existingWikiWord{:href => "/nlab/show/Urs+Schreiber"} Urs Schreiber
+                (eds.),
+                = succeed "," do
+                  %em
+                    %a{:href => "http://ncatlab.org/schreiber/show/Mathematical+Foundations+of+Quantum+Field+and+Perturbative+String+Theory#ContributionStolzTeichner"} Mathematical foundations of Quantum field theory and String theory
+                = succeed ")" do
+                  %a{:href => "https://arxiv.org/abs/1108.0189"} arXiv:1108.0189
+            %p
+              and the more explicit suggestion that, under this identification, the
+              %a.existingWikiWord{:href => "/nlab/show/Chern-Dold+character"} Chern-Dold character
+              from
+              %a.existingWikiWord{:href => "/nlab/show/tmf"} tmf
+              to
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/modular+forms"} modular forms
+              %a.existingWikiWord{:href => "/nlab/show/2d+SCFT"} 2d SCFT
+              to its
+              = succeed "/" do
+                %a.existingWikiWord{:href => "/nlab/show/partition+function"} partition function
+              = succeed "/supersymmetric" do
+                %a.existingWikiWord{:href => "/nlab/show/elliptic+genus"} elliptic genus
+            %ul
+              %li
+                %a.existingWikiWord{:href => "/nlab/show/Davide+Gaiotto"}> Davide Gaiotto
+                ,
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/Theo+Johnson-Freyd"} Theo Johnson-Freyd
+                = succeed "," do
+                  %em Holomorphic SCFTs with small index
+                = succeed "," do
+                  %a{:href => "https://arxiv.org/abs/1811.00589"} arXiv:1811.00589
+                = succeed ")" do
+                  %a{:href => "https://doi.org/10.4153/S0008414X2100002X"} doi:10.4153/S0008414X2100002X
+            %p
+              This perspective is also picked up in
+              = succeed "." do
+                %a{:href => "#GukovPeiPutrovVafa18"} Gukov, Pei, Putrov &amp; Vafa 18
+            %p
+              Discussion of the
+              %a.existingWikiWord{:href => "/nlab/show/2d+SCFTs"} 2d SCFTs
+              (namely
+              %a.existingWikiWord{:href => "/nlab/show/supersymmetry"} supersymmetric
+              = succeed "-" do
+                %a.existingWikiWord{:href => "/nlab/show/SU%282%29"} SU(2)
+              = succeed ")" do
+                %a.existingWikiWord{:href => "/nlab/show/WZW-models"} WZW-models
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi ℤ
+                    %mo{:stretchy => "false"} /
+                    %mn 24
+                  %annotation{:encoding => "application/x-tex"} \mathbb{Z}/24
+              %a{:href => "tmf#BoardmanHomomorphismInTmfIs6Connected"}
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mo ≃
+                    %annotation{:encoding => "application/x-tex"} \simeq
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msup
+                      %mi tmf
+                      %mrow
+                        %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                        %mn 3
+                    %mo{:stretchy => "false"} (
+                    %mo *
+                    %mo{:stretchy => "false"} )
+                    %mo =
+                    %msub
+                      %mi π
+                      %mn 3
+                    %mo{:stretchy => "false"} (
+                    %mi tmf
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"}
+                    tmf^{-3}(\ast)
+                    \=
+                    \\pi_3(tmf)
+              %a{:href => "tmf#BoardmanHomomorphismInTmfIs6Connected"}
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mo ≃
+                    %annotation{:encoding => "application/x-tex"} \simeq
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi π
+                      %mn 3
+                    %mo{:stretchy => "false"} (
+                    %mi 𝕊
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} \pi_3(\mathbb{S})
+              (the
+              = succeed "):" do
+                %a.existingWikiWord{:href => "/nlab/show/third+stable+homotopy+group+of+spheres"} third stable homotopy group of spheres
+            %ul
+              %li#GaiottoJohnsonFreydWitten19
+                %p
+                  %a.existingWikiWord{:href => "/nlab/show/Davide+Gaiotto"}> Davide Gaiotto
+                  ,
+                  = succeed "," do
+                    %a.existingWikiWord{:href => "/nlab/show/Theo+Johnson-Freyd"} Theo Johnson-Freyd
+                  = succeed "," do
+                    %a.existingWikiWord{:href => "/nlab/show/Edward+Witten"} Edward Witten
+                  = succeed "," do
+                    %em A Note On Some Minimally Supersymmetric Models In Two Dimensions
+                  = succeed ")" do
+                    %a{:href => "https://arxiv.org/abs/1902.10249"} arXiv:1902.10249
+                  = succeed "," do
+                    %em Integrability, Quantization, and Geometry: II. Quantum Theories and Algebraic Geometry
+                  = succeed ")" do
+                    %a{:href => "https://bookstore.ams.org/pspum-103-2"} ISBN: 978-1-4704-5592-7
+              %li
+                %p
+                  %a.existingWikiWord{:href => "/nlab/show/Davide+Gaiotto"}> Davide Gaiotto
+                  ,
+                  = succeed "," do
+                    %a.existingWikiWord{:href => "/nlab/show/Theo+Johnson-Freyd"} Theo Johnson-Freyd
+                  %em Mock modularity and a secondary elliptic genus
+                  (
+                  %a{:href => "https://arxiv.org/abs/1904.05788"}> arXiv:1904.05788
+                  )
+              %li
+                %p
+                  %a.existingWikiWord{:href => "/nlab/show/Theo+Johnson-Freyd"}> Theo Johnson-Freyd
+                  ,
+                  %em Topological Mathieu Moonshine
+                  (
+                  %a{:href => "https://arxiv.org/abs/2006.02922"}> arXiv:2006.02922
+                  )
+            %p
+              Discussion properly via
+              = succeed ":" do
+                %a.existingWikiWord{:href => "/nlab/show/%282%2C1%29-dimensional+Euclidean+field+theory"} (2,1)-dimensional Euclidean field theory
+            %ul
+              %li
+                %p
+                  %a.existingWikiWord{:href => "/nlab/show/Daniel+Berwick-Evans"}> Daniel Berwick-Evans
+                  ,
+                  %em How do field theories detect the torsion in topological modular forms?
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mo{:stretchy => "false"} [
+                      %annotation{:encoding => "application/x-tex"} [
+                  %a{:href => "https://arxiv.org/abs/2303.09138"} arXiv:2303.09138
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mo{:stretchy => "false"} ]
+                      %annotation{:encoding => "application/x-tex"} ]
+              %li
+                %p
+                  %a.existingWikiWord{:href => "/nlab/show/Daniel+Berwick-Evans"}> Daniel Berwick-Evans
+                  ,
+                  = succeed "," do
+                    %em How do field theories detect the torsion in topological modular forms?
+                  = succeed "," do
+                    %em
+                      %a{:href => "https://nyuad.nyu.edu/en/events/2023/march/quantum-field-theories-and-cobordisms.html"} QFT and Cobordism
+                  %a.existingWikiWord{:href => "/nlab/show/CQTS"} CQTS
+                  (Mar 2023)
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mo{:stretchy => "false"} [
+                      %annotation{:encoding => "application/x-tex"} [
+                  = succeed "," do
+                    %a{:href => "Center+for+Quantum+and+Topological+Systems#BerwickEvansMar23"} web
+                  %a{:href => "https://www.youtube.com/watch?v=fw7yxFsDmjs"} YT
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mo{:stretchy => "false"} ]
+                      %annotation{:encoding => "application/x-tex"} ]
+            %p See also:
+            %ul
+              %li
+                %p
+                  %a.existingWikiWord{:href => "/nlab/show/Ying-Hsuan+Lin"}> Ying-Hsuan Lin
+                  ,
+                  = succeed "," do
+                    %a.existingWikiWord{:href => "/nlab/show/Du+Pei"} Du Pei
+                  = succeed "," do
+                    %em Holomorphic CFTs and topological modular forms
+                  %strong 401
+                  (2023) 325–332 [
+                  %a{:href => "https://arxiv.org/abs/2112.10724"}> arXiv:2112.10724
+                  ,
+                  = succeed "]" do
+                    %a{:href => "https://doi.org/10.1007/s00220-023-04639-3"} doi:10.1007/s00220-023-04639-3
+              %li
+                %p
+                  Jan Albert,
+                  = succeed "," do
+                    %a.existingWikiWord{:href => "/nlab/show/Justin+Kaidi"} Justin Kaidi
+                  = succeed "," do
+                    %a.existingWikiWord{:href => "/nlab/show/Ying-Hsuan+Lin"} Ying-Hsuan Lin
+                  = succeed "," do
+                    %em Topological modularity of Supermoonshine
+                  %strong 2023
+                  3 (2023) 033B06 [
+                  %a{:href => "https://arxiv.org/abs/2210.14923"}> arXiv:2210.14923
+                  ,
+                  = succeed "]" do
+                    %a{:href => "https://doi.org/10.1093/ptep/ptad034"} doi:10.1093/ptep/ptad034
+              %li
+                %p
+                  %a.existingWikiWord{:href => "/nlab/show/Yuji+Tachikawa"}> Yuji Tachikawa
+                  ,
+                  = succeed "," do
+                    %a.existingWikiWord{:href => "/nlab/show/Mayuko+Yamashita"} Mayuko Yamashita
+                  = succeed "," do
+                    %a.existingWikiWord{:href => "/nlab/show/Kazuya+Yonekura"} Kazuya Yonekura
+                  %em Remarks on mod-2 elliptic genus
+                  [
+                  %a{:href => "https://arxiv.org/abs/2302.07548"}> arXiv:2302.07548
+                  ]
+              %li
+                %p
+                  %a.existingWikiWord{:href => "/nlab/show/Yuji+Tachikawa"}> Yuji Tachikawa
+                  , Hao Y. Zhang,
+                  %em
+                    On a
+                    = succeed "-valued" do
+                      %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                        %semantics
+                          %mrow
+                            %msub
+                              %mi ℤ
+                              %mn 3
+                          %annotation{:encoding => "application/x-tex"} \mathbb{Z}_3
+                  [
+                  %a{:href => "https://arxiv.org/abs/2403.08861"}> arXiv:2403.08861
+                  ]
+              %li
+                %p
+                  %a.existingWikiWord{:href => "/nlab/show/Theo+Johnson-Freyd"}> Theo Johnson-Freyd
+                  ,
+                  = succeed "," do
+                    %a.existingWikiWord{:href => "/nlab/show/Mayuko+Yamashita"} Mayuko Yamashita
+                  %em On the 576-fold periodicity of the spectrum SQFT: The proof of the lower bound via the Anderson duality pairing
+                  [
+                  %a{:href => "https://arxiv.org/abs/2404.06333"}> arXiv:2404.06333
+                  ]
+              %li
+                %p
+                  Vivek Saxena,
+                  %em A T-Duality of Non-Supersymmetric Heterotic Strings and an implication for Topological Modular Forms
+                  [
+                  %a{:href => "https://arxiv.org/abs/2405.19409"}> arXiv:2405.19409
+                  ]
+            %h4#occurrences_in_string_theory Occurrences in string theory
+            %h5#ReferencesEllipticGeneraAsPartitionFunctionsOfHStrings H-string elliptic genus
+            %p
+              Further on the elliptic genus of the
+              %a.existingWikiWord{:href => "/nlab/show/heterotic+string"} heterotic string
+              being the
+              = succeed ":" do
+                %a.existingWikiWord{:href => "/nlab/show/Witten+genus"} Witten genus
+            %p
+              The interpretation of
+              %a.existingWikiWord{:href => "/nlab/show/equivariant+elliptic+genera"} equivariant elliptic genera
+              as
+              %a.existingWikiWord{:href => "/nlab/show/partition+functions"} partition functions
+              of
+              %a.existingWikiWord{:href => "/nlab/show/parametrized+WZW+models"} parametrized WZW models
+              in
+              = succeed ":" do
+                %a.existingWikiWord{:href => "/nlab/show/heterotic+string+theory"} heterotic string theory
+            %ul
+              %li#DistlerSharpe07
+                %p
+                  %a.existingWikiWord{:href => "/nlab/show/Jacques+Distler"}> Jacques Distler
+                  ,
+                  = succeed "," do
+                    %a.existingWikiWord{:href => "/nlab/show/Eric+Sharpe"} Eric Sharpe
+                  = succeed "," do
+                    %em Heterotic compactifications with principal bundles for general groups and general levels
+                  = succeed ")" do
+                    %a{:href => "http://arxiv.org/abs/hep-th/0701244"} arXiv:hep-th/0701244
+              %li#Ando07
+                %p
+                  %a.existingWikiWord{:href => "/nlab/show/Matthew+Ando"}> Matthew Ando
+                  ,
+                  = succeed "," do
+                    %em Equivariant elliptic cohomology and the Fibered WZW models of Distler and Sharpe
+                  %a{:href => "http://www.math.ucsb.edu/~drm/GTPseminar/2007-fall.php"} talk 2007
+                  (
+                  %a{:href => "http://www.math.ucsb.edu/~drm/GTPseminar/notes/20071026-ando/20071026-malmendier.pdf"}> lecture notes pdf
+                  )
+            %p
+              Proposals on physics aspects of lifting the
+              %a.existingWikiWord{:href => "/nlab/show/Witten+genus"} Witten genus
+              to
+              = succeed ":" do
+                %a.existingWikiWord{:href => "/nlab/show/topological+modular+forms"} topological modular forms
+            %ul
+              %li
+                %p
+                  %a.existingWikiWord{:href => "/nlab/show/Yuji+Tachikawa"}> Yuji Tachikawa
+                  ,
+                  = succeed "," do
+                    %em Topological modular forms and the absence of a heterotic global anomaly
+                  %strong 2022
+                  4 (2022) 04A107 [
+                  %a{:href => "https://doi.org/10.1093/ptep/ptab060"}> doi:10.1093/ptep/ptab060
+                  ,
+                  = succeed "]" do
+                    %a{:href => "https://arxiv.org/abs/2103.12211"} arXiv:2103.12211
+              %li
+                %p
+                  %a.existingWikiWord{:href => "/nlab/show/Yuji+Tachikawa"}> Yuji Tachikawa
+                  ,
+                  = succeed "," do
+                    %a.existingWikiWord{:href => "/nlab/show/Mayuko+Yamashita"} Mayuko Yamashita
+                  = succeed "," do
+                    %em Topological modular forms and the absence of all heterotic global anomalies
+                  %strong 402
+                  (2023) 1585-1620 [
+                  %a{:href => "https://doi.org/10.1007/s00220-023-04761-2"}> doi:10.1007/s00220-023-04761-2
+                  ,
+                  = succeed "]" do
+                    %a{:href => "https://arxiv.org/abs/2108.13542"} arXiv:2108.13542
+              %li
+                %p
+                  %a.existingWikiWord{:href => "/nlab/show/Yuji+Tachikawa"}> Yuji Tachikawa
+                  ,
+                  = succeed "," do
+                    %a.existingWikiWord{:href => "/nlab/show/Mayuko+Yamashita"} Mayuko Yamashita
+                  %em Anderson self-duality of topological modular forms, its differential-geometric manifestations, and vertex operator algebras
+                  [
+                  %a{:href => "https://arxiv.org/abs/2305.06196"}> arXiv:2305.06196
+                  ]
+            %h5#ReferencesEllipticGeneraAsPartitionFunctionsOfM5Branes M5-brane elliptic genus
+            %p
+              On the
+              = succeed ":" do
+                %a.existingWikiWord{:href => "/nlab/show/M5-brane+elliptic+genus"} M5-brane elliptic genus
+            %p
+              A
+              %a.existingWikiWord{:href => "/nlab/show/2d+SCFT"} 2d SCFT
+              argued to describe the
+              %a.existingWikiWord{:href => "/nlab/show/KK-compactification"} KK-compactification
+              of the
+              %a.existingWikiWord{:href => "/nlab/show/M5-brane"} M5-brane
+              on a
+              %a.existingWikiWord{:href => "/nlab/show/4-manifold"} 4-manifold
+              (specifically: a
+              = succeed ")" do
+                %a.existingWikiWord{:href => "/nlab/show/complex+surface"} complex surface
+            %ul
+              %li
+                %a.existingWikiWord{:href => "/nlab/show/Juan+Maldacena"}> Juan Maldacena
+                ,
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/Andrew+Strominger"} Andrew Strominger
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/Edward+Witten"} Edward Witten
+                = succeed "," do
+                  %em Black Hole Entropy in M-Theory
+                = succeed ")" do
+                  %a{:href => "https://arxiv.org/abs/hep-th/9711053"} arXiv:hep-th/9711053
+            %p
+              Discussion of the resulting
+              %a.existingWikiWord{:href => "/nlab/show/elliptic+genus"} elliptic genus
+              (
+              %a.existingWikiWord{:href => "/nlab/show/2d+SCFT"} 2d SCFT
+              = succeed ")" do
+                %a.existingWikiWord{:href => "/nlab/show/partition+function"} partition function
+            %ul
+              %li
+                %p
+                  %a.existingWikiWord{:href => "/nlab/show/Davide+Gaiotto"}> Davide Gaiotto
+                  ,
+                  = succeed "," do
+                    %a.existingWikiWord{:href => "/nlab/show/Andrew+Strominger"} Andrew Strominger
+                  = succeed "," do
+                    %a.existingWikiWord{:href => "/nlab/show/Xi+Yin"} Xi Yin
+                  = succeed "," do
+                    %em The M5-Brane Elliptic Genus: Modularity and BPS States
+                  = succeed ")" do
+                    %a{:href => "https://arxiv.org/abs/hep-th/0607010"} hep-th/0607010
+              %li
+                %p
+                  %a.existingWikiWord{:href => "/nlab/show/Davide+Gaiotto"}> Davide Gaiotto
+                  ,
+                  = succeed "," do
+                    %a.existingWikiWord{:href => "/nlab/show/Xi+Yin"} Xi Yin
+                  = succeed "," do
+                    %em Examples of M5-Brane Elliptic Genera
+                  = succeed ")" do
+                    %a{:href => "https://arxiv.org/abs/hep-th/0702012"} arXiv:hep-th/0702012
+            %p Further discussion in:
+            %ul
+              %li
+                %p
+                  Murad Alim,
+                  = succeed "," do
+                    %a.existingWikiWord{:href => "/nlab/show/Babak+Haghighat"} Babak Haghighat
+                  = succeed "," do
+                    %a.existingWikiWord{:href => "/nlab/show/Albrecht+Klemm"} Albrecht Klemm
+                  = succeed "," do
+                    %em Wall-crossing holomorphic anomaly and mock modularity of multiple M5-branes
+                  %strong 339
+                  (2015) 773–814
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mo{:stretchy => "false"} [
+                      %annotation{:encoding => "application/x-tex"} [
+                  = succeed "," do
+                    %a{:href => "https://arxiv.org/abs/1012.1608"} arXiv:1012.1608
+                  %a{:href => "https://doi.org/10.1007/s00220-015-2436-3"} doi:10.1007/s00220-015-2436-3
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mo{:stretchy => "false"} ]
+                      %annotation{:encoding => "application/x-tex"} ]
+              %li#GukovPeiPutrovVafa18
+                %p
+                  %a.existingWikiWord{:href => "/nlab/show/Sergei+Gukov"}> Sergei Gukov
+                  ,
+                  = succeed "," do
+                    %a.existingWikiWord{:href => "/nlab/show/Du+Pei"} Du Pei
+                  = succeed "," do
+                    %a.existingWikiWord{:href => "/nlab/show/Pavel+Putrov"} Pavel Putrov
+                  = succeed "," do
+                    %a.existingWikiWord{:href => "/nlab/show/Cumrun+Vafa"} Cumrun Vafa
+                  = succeed "," do
+                    %em 4-manifolds and topological modular forms
+                  %strong 2021
+                  84 (2021)
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mo{:stretchy => "false"} [
+                      %annotation{:encoding => "application/x-tex"} [
+                  = succeed "," do
+                    %a{:href => "https://arxiv.org/abs/1811.07884"} arXiv:1811.07884
+                  = succeed "," do
+                    %a{:href => "https://doi.org/10.1007/JHEP05(2021)084"} doi:10.1007/JHEP05(2021)084
+                  %a{:href => "https://inspirehep.net/literature/1704312"} spire:1704312
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mo{:stretchy => "false"} ]
+                      %annotation{:encoding => "application/x-tex"} ]
+            %h5#ReferencesEllipticGeneraAsPartitionFunctionsOfMStrings M-string elliptic genus
+            %p
+              On the
+              %a.existingWikiWord{:href => "/nlab/show/elliptic+genus"} elliptic genus
+              of
+              %a.existingWikiWord{:href => "/nlab/show/M-strings"} M-strings
+              inside
+              = succeed ":" do
+                %a.existingWikiWord{:href => "/nlab/show/M5-branes"} M5-branes
+            %ul
+              %li
+                %p
+                  %a.existingWikiWord{:href => "/nlab/show/Stefan+Hohenegger"}> Stefan Hohenegger
+                  ,
+                  = succeed "," do
+                    %a.existingWikiWord{:href => "/nlab/show/Amer+Iqbal"} Amer Iqbal
+                  = succeed "," do
+                    %em
+                      M-strings, Elliptic Genera and
+                      %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                        %semantics
+                          %mrow
+                            %mi 𝒩
+                            %mo =
+                            %mn 4
+                          %annotation{:encoding => "application/x-tex"} \mathcal{N}=4
+                      String Amplitudes
+                  = succeed ")" do
+                    %a{:href => "http://arxiv.org/abs/1310.1325"} arXiv:1310.1325
+              %li
+                %p
+                  %a.existingWikiWord{:href => "/nlab/show/Stefan+Hohenegger"}> Stefan Hohenegger
+                  ,
+                  = succeed "," do
+                    %a.existingWikiWord{:href => "/nlab/show/Amer+Iqbal"} Amer Iqbal
+                  = succeed "," do
+                    %em M String, Monopole String and Modular Forms
+                  = succeed ")" do
+                    %a{:href => "https://arxiv.org/abs/1503.06983"} arXiv:1503.06983
+              %li
+                %p
+                  M. Nouman Muteeb,
+                  %em Domain walls and M2-branes partition functions: M-theory and ABJM Theory
+                  (
+                  %a{:href => "https://arxiv.org/abs/2010.04233"}> arXiv:2010.04233
+                  )
+              %li
+                %p
+                  Kimyeong Lee, Kaiwen Sun, Xin Wang,
+                  %em Twisted Elliptic Genera
+                  \&amp;lbrack;
+                  %a{:href => "https://arxiv.org/abs/2212.07341"}> arXiv:2212.07341
+                  \&amp;rbrack;
+            %h5#ReferencesEllipticGeneraAsPartitionFunctionsOfEStrings E-string elliptic genus
+            %p
+              On the
+              %a.existingWikiWord{:href => "/nlab/show/elliptic+genus"} elliptic genus
+              of
+              %a.existingWikiWord{:href => "/nlab/show/E-strings"} E-strings
+              as
+              %a.existingWikiWord{:href => "/nlab/show/wrapped+brane"} wrapped
+              = succeed ":" do
+                %a.existingWikiWord{:href => "/nlab/show/M5-branes"} M5-branes
+            %ul
+              %li
+                %p
+                  J. A. Minahan, D. Nemeschansky,
+                  = succeed "," do
+                    %a.existingWikiWord{:href => "/nlab/show/Cumrun+Vafa"} Cumrun Vafa
+                  = succeed "," do
+                    %em
+                      E-Strings and
+                      %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                        %semantics
+                          %mrow
+                            %mi N
+                            %mo =
+                            %mn 4
+                          %annotation{:encoding => "application/x-tex"} N=4
+                      Topological Yang-Mills Theories
+                  = succeed ")" do
+                    %a{:href => "https://arxiv.org/abs/hep-th/9802168"} arXiv:hep-th/9802168
+              %li
+                %p
+                  Wenhe Cai, Min-xin Huang, Kaiwen Sun,
+                  = succeed "," do
+                    %em On the Elliptic Genus of Three E-strings and Heterotic Strings
+                  = succeed "," do
+                    %a{:href => "https://arxiv.org/abs/1411.2801"} arXiv:1411.2801
+                  = succeed ")" do
+                    %a{:href => "https://doi.org/10.1007/JHEP01(2015)079"} doi:10.1007/JHEP01(2015)079
+            %p
+              On the
+              %a.existingWikiWord{:href => "/nlab/show/elliptic+genus"} elliptic genus
+              of
+              %a.existingWikiWord{:href => "/nlab/show/E-strings"} E-strings
+              as
+              %a.existingWikiWord{:href => "/nlab/show/M2-branes"} M2-branes
+              %a.existingWikiWord{:href => "/nlab/show/brane+intersection"} ending on
+              = succeed ":" do
+                %a.existingWikiWord{:href => "/nlab/show/M5-branes"} M5-branes
+            %ul
+              %li#KKLPV14
+                Joonho Kim, Seok Kim, Kimyeong Lee,
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/Jaemo+Park"} Jaemo Park
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/Cumrun+Vafa"} Cumrun Vafa
+                = succeed "," do
+                  %em Elliptic Genus of E-strings
+                = succeed ")" do
+                  %a{:href => "https://arxiv.org/abs/1411.2324"} arXiv:1411.2324
+        .revisedby
+          %p
+            Last revised on March 11, 2025 at 07:42:40.
+            See the
+            %a{:href => "/nlab/history/Landau-Ginzburg+model", :style => "color: #005c19"} history
+            of this page for a list of all contributions to it.
+        .navigation.navfoot
+          %a#edit.navlink{:accesskey => "E", :href => "/nlab/edit/Landau-Ginzburg+model", :rel => "nofollow"} Edit
+          %a{:href => "https://nforum.ncatlab.org/discussion/5063/#Item_11"} Discuss
+          %span.backintime
+            %a#to_previous_revision.navlinkbackintime{:accesskey => "B", :href => "/nlab/revision/Landau-Ginzburg+model/29", :rel => "nofollow"} Previous revision
+          %a#see_changes.navlink{:accesskey => "C", :href => "/nlab/show/diff/Landau-Ginzburg+model", :rel => "nofollow"} Changes from previous revision
+          %a#history.navlink{:accesskey => "S", :href => "/nlab/history/Landau-Ginzburg+model", :rel => "nofollow"} History (29 revisions)
+          %a{:href => "/nlab/show/Landau-Ginzburg+model/cite", :style => "color: black"} Cite
+          %a#view_print{:accesskey => "p", :href => "/nlab/print/Landau-Ginzburg+model", :rel => "nofollow"} Print
+          %a#view_source{:href => "/nlab/source/Landau-Ginzburg+model", :rel => "nofollow"} Source
+      / Content
+    / Container

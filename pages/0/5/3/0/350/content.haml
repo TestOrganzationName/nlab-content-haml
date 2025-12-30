@@ -1,0 +1,3765 @@
+!!! XML
+!!! 1.1
+%html{:xmlns => "http://www.w3.org/1999/xhtml"}
+  %head
+    %title
+      Lawvere-Tierney topology in nLab
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:content => "index,follow", :name => "robots"}/
+    %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/
+    %link{:href => "/stylesheets/instiki.css?1676280126", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/stylesheets/mathematics.css?1660229990", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/stylesheets/syntax.css?1660229990", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/stylesheets/nlab.css?1676280126", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css", :rel => "stylesheet", :type => "text/css"}/
+    :css
+      h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+        color: #226622;
+      }
+      a:visited.existingWikiWord {
+        color: #164416;
+      }
+    :css
+      <!--/*--><![CDATA[/*><!--*/
+          .toc ul {margin: 0; padding: 0;}
+      .toc ul ul {margin: 0; padding: 0 0 0 10px;}
+      .toc li > p {margin: 0}
+      .toc ul li {list-style-type: none; position: relative;}
+      .toc div {border-top:1px dotted #ccc;}
+      .rightHandSide h2 {font-size: 1.5em;color:#008B26}
+      table.plaintable {
+          border-collapse:collapse;
+          margin-left:30px;
+          border:0;
+      }
+      .plaintable td {border:1px solid #000; padding: 3px;}
+      .plaintable th {padding: 3px;}
+      .plaintable caption {
+          font-weight: bold;
+          font-size:1.1em;
+          text-align:center;
+          margin-left:30px;
+      }
+          
+         
+      /* Query boxes for questioning and answering mechanism */
+      div.query{
+      background: #f6fff3;
+      border: solid #ce9;
+      border-width: 2px 1px;
+      padding: 0 1em;
+      margin: 0 1em;
+      max-height: 20em;
+      overflow: auto;
+      }
+      
+      /* Standout boxes for putting important text */
+      div.standout{
+      background: #fff1f1;
+      border: solid black;
+      border-width: 2px 1px;
+      padding: 0 1em;
+      margin: 0 1em;
+      overflow: auto;
+      }
+      
+      /* Icon for links to n-category arXiv documents 
+       (commented out for now i.e. disabled)
+      a[href*="http://arxiv.org/"] {
+        background-image: url(../files/arXiv_icon.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 22px;
+        } */
+          
+      /* Icon for links to n-category cafe posts (disabled) 
+      a[href*="http://golem.ph.utexas.edu/category"] {
+        background-image: url(../files/n-cafe_5.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 25px;
+        } */
+      
+      /* Icon for links to pdf files (disabled)
+      a[href$=".pdf"] {
+        background-image: url(../files/pdficon_small.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 25px;
+        } */
+      
+      /* Icon for links to pages, etc. -inside- pdf files (disabled)
+      a[href*=".pdf#"] {
+        background-image: url(../files/pdf_entry.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 25px;
+        } */
+      
+      a.existingWikiWord {
+      color: #226622;
+      }
+      
+      a.existingWikiWord:visited {
+      color: #226622;
+      }
+      
+      
+      a.existingWikiWord[title] {
+      border: 0px;
+      color: #aa0505;
+      text-decoration: none;
+      }
+          
+      a.existingWikiWord[title]:visited {
+      border: 0px;
+      color: #551111;
+      text-decoration: none;
+      }
+      
+      a[href^="http://"] {
+      border: 0px;
+      color: #003399;
+      }
+      
+      a[href^="http://"]:visited {
+      border: 0px;
+      color: #330066;
+      }
+      
+      a[href^="https://"] {
+      border: 0px;
+      color: #003399;
+      }
+      
+      a[href^="https://"]:visited {
+      border: 0px;
+      color: #330066;
+      }
+      
+      div.dropDown .hide {
+      display: none;
+      }
+      
+      div.dropDown:hover .hide {
+      display:block;
+      }
+      
+      div.clickDown .hide {
+      display: none;
+      }
+      
+      div.clickDown:focus {
+      outline:none;
+      }
+      
+      div.clickDown:focus .hide, div.clickDown:hover .hide {
+      display: block;
+      }
+      
+      div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+      display:block;
+      }
+      
+      div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+      display:none;
+      }
+      
+      div.clickDown .clickToReveal:after {
+      content: "A(Hover to reveal, click to "hold")";
+      font-size: 60%;
+      }
+      
+      div.clickDown .clickToHide:after {
+      content: "A(Click to hide)";
+      font-size: 60%;
+      }
+      div.clickDown .clickToHide, div.clickDown .clickToReveal {
+      white-space: pre-wrap;
+      }
+      
+      .un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+      margin-left: 1em;
+      }
+      
+      span.theorem_label {
+      margin-left: -1em;
+      }
+      .proof span.theorem_label {
+      margin-left: 0em;
+      }
+      :target {
+          background-color: #BBBBBB;
+          border-radius: 5pt;
+      }
+      
+        /*]]>*/-->
+    %script{:src => "/javascripts/prototype.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/effects.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/dragdrop.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/controls.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/application.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/page_helper.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/thm_numbering.js?1660229990", :type => "text/javascript"}
+    %script{:type => "text/x-mathjax-config"}
+      :cdata
+        <!--//--><![CDATA[//><!--
+        MathJax.Ajax.config.path["Contrib"] = "/MathJax";
+        MathJax.Hub.Config({
+        MathML: { useMathMLspacing: true },
+        "HTML-CSS": { scale: 90,
+        extensions: ["handle-floats.js"]
+        }
+        });
+        MathJax.Hub.Queue( function () {
+        var fos = document.getElementsByTagName('foreignObject');
+        for (var i = 0; i < fos.length; i++) {
+        MathJax.Hub.Typeset(fos[i]);
+        }
+        });
+        \//--><!]]>
+    :javascript
+      <!--//--><![CDATA[//><!--
+      window.addEventListener("DOMContentLoaded", function () {
+        var div = document.createElement('div');
+        var math = document.createElementNS('http://www.w3.org/1998/Math/MathML', 'math');
+        document.body.appendChild(div);
+        div.appendChild(math);
+      // Test for MathML support comparable to WebKit version https://trac.webkit.org/changeset/203640 or higher.
+        div.setAttribute('style', 'font-style: italic');
+        var mathml_unsupported = !(window.getComputedStyle(div.firstChild).getPropertyValue('font-style') === 'normal');
+        div.parentNode.removeChild(div);
+        if (mathml_unsupported) {
+          // MathML does not seem to be supported...
+          var s = document.createElement('script');
+          s.src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=MML_HTMLorMML-full";
+          document.querySelector('head').appendChild(s);
+        } else {
+          document.head.insertAdjacentHTML("beforeend", '<style>svg[viewBox] {max-width: 100%}</style>');
+        }
+      });
+      //--><!]]>
+    %link{:href => "https://ncatlab.org/nlab/atom_with_headlines", :rel => "alternate", :title => "Atom with headlines", :type => "application/atom+xml"}/
+    %link{:href => "https://ncatlab.org/nlab/atom_with_content", :rel => "alternate", :title => "Atom with full content", :type => "application/atom+xml"}/
+    :javascript
+      document.observe("dom:loaded", function() {
+        generateThmNumbers();
+      });
+  %body
+    #Container
+      #Content
+        %h1#pageName
+          %span{:style => "float: left; margin: 0.5em 0.25em -0.25em 0"}
+            %svg{:height => "1.8em", :viewbox => "0 0 190 181", :width => "1.872em", :xmlns => "http://www.w3.org/2000/svg"}
+              %path{:d => "M72.8 145c-1.6 17.3-15.7 10-23.6 20.2-5.6 7.3 4.8 15 11.4 15 11.5-.2 19-13.4 26.4-20.3 3.3-3 8.2-4 11.2-7.2a14 14 0 0 0 2.9-11.1c-1.4-9.6-12.4-18.6-16.9-27.2-5-9.6-10.7-27.4-24.1-27.7-17.4-.3-.4 26 4.7 30.7 2.4 2.3 5.4 4.1 7.3 6.9 1.6 2.3 2.1 5.8-1 7.2-5.9 2.6-12.4-6.3-15.5-10-8.8-10.6-15.5-23-26.2-31.8-5.2-4.3-11.8-8-18-3.7-7.3 4.9-4.2 12.9.2 18.5a81 81 0 0 0 30.7 23c3.3 1.5 12.8 5.6 10 10.7-2.5 5.2-11.7 3-15.6 1.1-8.4-3.8-24.3-21.3-34.4-13.7-3.5 2.6-2.3 7.6-1.2 11.1 2.8 9 12.2 17.2 20.9 20.5 17.3 6.7 34.3-8 50.8-12.1z", :fill => "#226622"}
+              %path{:d => "M145.9 121.3c-.2-7.5 0-19.6-4.5-26-5.4-7.5-12.9-1-14.1 5.8-1.4 7.8 2.7 14.1 4.8 21.3 3.4 12 5.8 29-.8 40.1-3.6-6.7-5.2-13-7-20.4-2.1-8.2-12.8-13.2-15.1-1.9-2 9.7 9 21.2 12 30.1 1.2 4 2 8.8 6.4 10.3 6.9 2.3 13.3-4.7 17.7-8.8 12.2-11.5 36.6-20.7 43.4-36.4 6.7-15.7-13.7-14-21.3-7.2-9.1 8-11.9 20.5-23.6 25.1 7.5-23.7 31.8-37.6 38.4-61.4 2-7.3-.8-29.6-13-19.8-14.5 11.6-6.6 37.6-23.3 49.2z", :fill => "#a41e32"}
+              %path{:d => "M86.3 47.5c0-13-10.2-27.6-5.8-40.4 2.8-8.4 14.1-10.1 17-1 3.8 11.6-.3 26.3-1.8 38 11.7-.7 10.5-16 14.8-24.3 2.1-4.2 5.7-9.1 11-6.7 6 2.7 7.4 9.2 6.6 15.1-2.2 14-12.2 18.8-22.4 27-3.4 2.7-8 6.6-5.9 11.6 2 4.4 7 4.5 10.7 2.8 7.4-3.3 13.4-16.5 21.7-16 14.6.7 12 21.9.9 26.2-5 1.9-10.2 2.3-15.2 3.9-5.8 1.8-9.4 8.7-15.7 8.9-6.1.1-9-6.9-14.3-9-14.4-6-33.3-2-44.7-14.7-3.7-4.2-9.6-12-4.9-17.4 9.3-10.7 28 7.2 35.7 12 2 1.1 11 6.9 11.4 1.1.4-5.2-10-8.2-13.5-10-11.1-5.2-30-15.3-35-27.3-2.5-6 2.8-13.8 9.4-13.6 6.9.2 13.4 7 17.5 12C70.9 34 75 43.8 86.3 47.4z", :fill => "#193c78"}
+          %span.webName nLab
+          Lawvere-Tierney topology
+        .navigation
+          %span.skipNav
+            %a{:href => "#navEnd"} Skip the Navigation Links
+            |
+          %span{:style => "display:inline-block; width: 0.3em;"}
+          %a{:accesskey => "H", :href => "/nlab/show/HomePage", :title => "Home page"} Home Page
+          |
+          %a{:accesskey => "A", :href => "/nlab/all_pages", :title => "List of all pages"} All Pages
+          |
+          %a{:accesskey => "U", :href => "/nlab/latest_revisions", :title => "Latest edits and page creations"} Latest Revisions
+          |
+          %a{:href => "https://nforum.ncatlab.org/discussion/2740/#Item_18", :style => "color: black", :title => "Discuss this page in its dedicated thread on the nForum"} Discuss this page
+          |
+          %form#navigationSearchForm{"accept-charset" => "utf-8", :action => "/nlab/search", :method => "get"}
+            %fieldset.search
+              %input#searchField{:name => "query", :onblur => "this.value == '' ? this.value = 'Search' : true", :onfocus => "this.value == 'Search' ? this.value = '' : true", :style => "display:inline-block; float: left;", :type => "text", :value => "Search"}/
+          %span#navEnd
+        #revision
+          %meta{:content => "application/xhtml+xml;charset=utf-8", "http-equiv" => "Content-type"}/
+          %title LawvereTierney topologies
+          .rightHandSide
+            .toc.clickDown{:tabindex => "0"}
+              %h3#context Context
+              %h4#topos_theory Topos Theory
+              .hide
+                %div
+                  %p
+                    %strong
+                      %a.existingWikiWord{:href => "/nlab/show/topos+theory"} topos theory
+                  %ul
+                    %li
+                      %a.existingWikiWord{:href => "/nlab/show/Toposes"} Toposes
+                  %h2#background Background
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/category+theory"} category theory
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/category"} category
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/functor"} functor
+                  %h2#toposes Toposes
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/%280%2C1%29-topos"}> (0,1)-topos
+                        ,
+                        = succeed "," do
+                          %a.existingWikiWord{:href => "/nlab/show/Heyting+algebra"} Heyting algebra
+                        %a.existingWikiWord{:href => "/nlab/show/locale"} locale
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/pretopos"} pretopos
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/topos"} topos
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/Grothendieck+topos"} Grothendieck topos
+                          %ul
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/category+of+presheaves"} category of presheaves
+                              %ul
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/presheaf"} presheaf
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/representable+functor"} representable presheaf
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/category+of+sheaves"} category of sheaves
+                              %ul
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/site"} site
+                                  %ul
+                                    %li
+                                      %p
+                                        %a.existingWikiWord{:href => "/nlab/show/sieve"} sieve
+                                    %li
+                                      %p
+                                        %a.existingWikiWord{:href => "/nlab/show/coverage"}> coverage
+                                        ,
+                                        = succeed "," do
+                                          %a.existingWikiWord{:href => "/nlab/show/Grothendieck+pretopology"} pretopology
+                                        %a.existingWikiWord{:href => "/nlab/show/Grothendieck+topology"} topology
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/sheaf"} sheaf
+                                %li
+                                  %p
+                                    %a.existingWikiWord{:href => "/nlab/show/sheafification"} sheafification
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/quasitopos"} quasitopos
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/base+topos"}> base topos
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/indexed+topos"} indexed topos
+                  %h2#internal_logic Internal Logic
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/categorical+semantics"} categorical semantics
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/internal+logic"} internal logic
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/subobject+classifier"} subobject classifier
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/natural+numbers+object"} natural numbers object
+                  %h2#topos_morphisms Topos morphisms
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/logical+morphism"} logical morphism
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/geometric+morphism"} geometric morphism
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/direct+image"}> direct image
+                            \/
+                            %a.existingWikiWord{:href => "/nlab/show/inverse+image"} inverse image
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/global+section"} global sections
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/geometric+embedding"} geometric embedding
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/surjective+geometric+morphism"} surjective geometric morphism
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/essential+geometric+morphism"} essential geometric morphism
+                          %ul
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/locally+connected+geometric+morphism"} locally connected geometric morphism
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/connected+geometric+morphism"} connected geometric morphism
+                            %li
+                              %p
+                                %a.existingWikiWord{:href => "/nlab/show/totally+connected+geometric+morphism"} totally connected geometric morphism
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/%C3%A9tale+geometric+morphism"} étale geometric morphism
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/open+geometric+morphism"} open geometric morphism
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/proper+geometric+morphism"}> proper geometric morphism
+                            ,
+                            %a.existingWikiWord{:href => "/nlab/show/compact+topos"} compact topos
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/separated+geometric+morphism"}> separated geometric morphism
+                            ,
+                            %a.existingWikiWord{:href => "/nlab/show/Hausdorff+topos"} Hausdorff topos
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/local+geometric+morphism"} local geometric morphism
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/bounded+geometric+morphism"} bounded geometric morphism
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/base+change"} base change
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/localic+geometric+morphism"} localic geometric morphism
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/hyperconnected+geometric+morphism"} hyperconnected geometric morphism
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/atomic+geometric+morphism"} atomic geometric morphism
+                  %h2#extra_stuff_structure_properties Extra stuff, structure, properties
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/topological+locale"} topological locale
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/localic+topos"} localic topos
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/petit+topos"} petit topos/gros topos
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/locally+connected+topos"}> locally connected topos
+                        ,
+                        = succeed "," do
+                          %a.existingWikiWord{:href => "/nlab/show/connected+topos"} connected topos
+                        = succeed "," do
+                          %a.existingWikiWord{:href => "/nlab/show/totally+connected+topos"} totally connected topos
+                        %a.existingWikiWord{:href => "/nlab/show/strongly+connected+topos"} strongly connected topos
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/local+topos"} local topos
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/cohesive+topos"} cohesive topos
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/classifying+topos"} classifying topos
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/smooth+topos"} smooth topos
+                  %h2#cohomology_and_homotopy Cohomology and homotopy
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/cohomology"} cohomology
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/homotopy+groups+in+an+%28infinity%2C1%29-topos"} homotopy
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/abelian+sheaf+cohomology"} abelian sheaf cohomology
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/model+structure+on+simplicial+presheaves"} model structure on simplicial presheaves
+                  %h2#in_higher_category_theory In higher category theory
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/higher+topos+theory"} higher topos theory
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/%280%2C1%29-topos"} (0,1)-topos
+                      %ul
+                        %li
+                          %a.existingWikiWord{:href => "/nlab/show/%280%2C1%29-site"} (0,1)-site
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/2-topos"} 2-topos
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/2-site"} 2-site
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/2-sheaf"}> 2-sheaf
+                            ,
+                            %a.existingWikiWord{:href => "/nlab/show/stack"} stack
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/%28%E2%88%9E%2C1%29-topos"} (∞,1)-topos
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/%28%E2%88%9E%2C1%29-site"} (∞,1)-site
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/%28%E2%88%9E%2C1%29-sheaf"}> (∞,1)-sheaf
+                            ,
+                            = succeed "," do
+                              %a.existingWikiWord{:href => "/nlab/show/%E2%88%9E-stack"} ∞-stack
+                            %a.existingWikiWord{:href => "/nlab/show/derived+stack"} derived stack
+                  %h2#theorems Theorems
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Diaconescu%27s+theorem"} Diaconescu's theorem
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Barr%27s+theorem"} Barr's theorem
+                  %div
+                    %p
+                      %a{:href => "/nlab/edit/topos+theory+-+contents"} Edit this sidebar
+              %h4#modalities_closure_and_reflection Modalities, Closure and Reflection
+              .hide
+                %div
+                  %p
+                    %strong>
+                      %a.existingWikiWord{:href => "/nlab/show/modal+type+theory"} modal type theory
+                    ,
+                    %a.existingWikiWord{:href => "/nlab/show/modal+logic"} modal logic
+                  %p
+                    %strong>
+                      %a.existingWikiWord{:href => "/nlab/show/closure+operator"} closure operator
+                    ,
+                    %a.existingWikiWord{:href => "/nlab/show/universal+closure+operator"} universal closure operator
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/idempotent+monad"}> idempotent monad
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/comonad"} comonad
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/modal+type"}> modal type
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/local+object"} local object
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/reflective+subcategory"}> reflective subcategory
+                        ,
+                        %a.existingWikiWord{:href => "/nlab/show/coreflective+subcategory"} coreflective subcategory
+                  %p
+                    %strong Examples
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/Moore+closure"} Moore closure
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/geometric+modality"}> geometric modality
+                        \/
+                        %a.existingWikiWord{:href => "/nlab/show/Lawvere-Tierney+topology"} Lawvere-Tierney topology
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/S4+modal+logic"} S4 modal logic
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/n-truncated+object+in+an+%28infinity%2C1%29-category"} n-truncation
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/shape+modality"} shape modality
+                        %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                          %semantics
+                            %mrow
+                              %mo ⊣
+                            %annotation{:encoding => "application/x-tex"} \dashv
+                        %a.existingWikiWord{:href => "/nlab/show/flat+modality"} flat modality
+                        %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                          %semantics
+                            %mrow
+                              %mo ⊣
+                            %annotation{:encoding => "application/x-tex"} \dashv
+                        %a.existingWikiWord{:href => "/nlab/show/sharp+modality"} sharp modality
+          %h1#lawveretierney_topologies Lawvere–Tierney topologies
+          .maruku_toc
+            %ul
+              %li
+                %a{:href => "#idea"} Idea
+              %li
+                %a{:href => "#definition"} Definition
+              %ul
+                %li
+                  %a{:href => "#the_closure_operator"} The closure operator
+                %li
+                  %a{:href => "#sheaves"} Sheaves
+              %li
+                %a{:href => "#properties"} Properties
+              %ul
+                %li
+                  %a{:href => "#SheafSubtoposes"}
+                    %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}>
+                      %semantics
+                        %mrow
+                          %mi j
+                        %annotation{:encoding => "application/x-tex"} j
+                    \-Sheaf subtoposes
+                %li
+                  %a{:href => "#RelationToGrothendieckTopology"} Equivalence with Grothendieck topologies
+                %ul
+                  %li
+                    %a{:href => "#observation"} Observation
+                %li
+                  %a{:href => "#ClosureOperation"} Relation to lex reflectors
+              %li
+                %a{:href => "#enriched_generalization"} Enriched generalization
+              %li
+                %a{:href => "#related_concepts"} Related concepts
+              %li
+                %a{:href => "#references"} References
+          %h2#idea Idea
+          %p
+            A
+            %em Lawvere–Tierney topology
+            (or
+            = succeed "," do
+              %em (local) operator
+            = succeed "," do
+              %em
+                %a.existingWikiWord{:href => "/nlab/show/modal+logic"} modality
+            = succeed ")" do
+              %em
+                %a{:href => "modal+type+theory#GeometricModality"} geometric modality
+            %a.existingWikiWord{:href => "/nlab/show/topos"} topos
+            is a way of saying that something is ‘locally’
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/true"} true
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/Grothendieck+topology"} Grothendieck topology
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/logic"} logic
+            = succeed "." do
+              %em
+                %a.existingWikiWord{:href => "/nlab/show/geometric+logic"} geometric logic
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi C
+                %annotation{:encoding => "application/x-tex"} C
+            is a
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/small+category"} small category
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi C
+                %annotation{:encoding => "application/x-tex"} C
+            is equivalent to choosing a Lawvere–Tierney topology in the
+            %a.existingWikiWord{:href => "/nlab/show/presheaf+topos"} presheaf topos
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msup
+                    %mo{:lspace => "0em", :rspace => "thinmathspace"} Set
+                    %mrow
+                      %msup
+                        %mi C
+                        %mo{:lspace => "0em", :rspace => "thinmathspace"} op
+                %annotation{:encoding => "application/x-tex"} \Set^{C^\op}
+            on
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi C
+                  %annotation{:encoding => "application/x-tex"} C
+          %p
+            The use of “topology” for this and the related Grothendieck concept is regarded by some people as unfortunate; see the
+            %a{:href => "https://ncatlab.org/nlab/show/Grothendieck+topology#historical_note_on_terminology"} historical note
+            at
+            %a.existingWikiWord{:href => "/nlab/show/Grothendieck+topology"} Grothendieck topology
+            for some reasons why. A proposed replacement for “Grothendieck topology” is
+            = succeed ";" do
+              %a.existingWikiWord{:href => "/nlab/show/coverage"} (Grothendieck) coverage
+          %h2#definition Definition
+          %p
+            Let
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi E
+                %annotation{:encoding => "application/x-tex"} E
+            be a
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/topos"} topos
+            %a.existingWikiWord{:href => "/nlab/show/subobject+classifier"} subobject classifier
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi Ω
+                  %annotation{:encoding => "application/x-tex"} \Omega
+          %h3#the_closure_operator The closure operator
+          #LTTopologyDef.num_defn
+            %h6#definition_2 Definition
+            %p
+              A
+              %strong Lawvere–Tierney topology
+              in
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi E
+                  %annotation{:encoding => "application/x-tex"} E
+              is (
+              %a.existingWikiWord{:href => "/nlab/show/internalization"}> internally
+              ) a
+              %a.existingWikiWord{:href => "/nlab/show/closure+operator"} closure operator
+              given by a
+              %a.existingWikiWord{:href => "/nlab/show/exact+functor"} left exact
+              %a.existingWikiWord{:href => "/nlab/show/idempotent+monad"} idempotent monad
+              on the internal meet-
+              %a.existingWikiWord{:href => "/nlab/show/semilattice"} semilattice
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi Ω
+                    %annotation{:encoding => "application/x-tex"} \Omega
+            %p
+              This means that: a Lawvere–Tierney topology in
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi E
+                  %annotation{:encoding => "application/x-tex"} E
+              is a
+              %a.existingWikiWord{:href => "/nlab/show/morphism"} morphism
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi j
+                    %mo :
+                    %mi Ω
+                    %mo →
+                    %mi Ω
+                  %annotation{:encoding => "application/x-tex"}
+                    j: \Omega \to \Omega
+            %p such that
+            %ol
+              %li
+                %p
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}>
+                    %semantics
+                      %mrow
+                        %mi j
+                        %mi true
+                        %mo =
+                        %mi true
+                      %annotation{:encoding => "application/x-tex"} j true = true
+                  , equivalently
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %msub
+                          %mo{:lspace => "0em", :rspace => "thinmathspace"} id
+                          %mi Ω
+                        %mo ≤
+                        %mi j
+                        %mo :
+                        %mi Ω
+                        %mo →
+                        %mi Ω
+                      %annotation{:encoding => "application/x-tex"} \id_\Omega \leq j: \Omega \to \Omega
+                  (‘if
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi p
+                      %annotation{:encoding => "application/x-tex"} p
+                  is true, then
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi p
+                      %annotation{:encoding => "application/x-tex"} p
+                  is locally true’)
+                .maruku-equation
+                  %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mrow
+                          %mtable
+                            %mtr
+                              %mtd
+                                %mo *
+                              %mtd
+                                %mover
+                                  %mo →
+                                  %mi true
+                              %mtd
+                                %mi Ω
+                            %mtr
+                              %mtd
+                              %mtd
+                                %msub
+                                  %mrow
+                                  %mpadded{:lspace => "-100%width", :width => "0"}
+                                    %mi true
+                                %mo ↘
+                              %mtd
+                                %msup
+                                  %mo{:stretchy => "false"} ↓
+                                  %mpadded{:width => "0"}
+                                    %mi j
+                            %mtr
+                              %mtd
+                              %mtd
+                              %mtd
+                                %mi Ω
+                      %annotation{:encoding => "application/x-tex"}
+                        \\array{
+                        * &amp;\stackrel{true}{\to}&amp; \Omega
+                        \\\
+                        \&amp; {}_{\mathllap{true}}\searrow &amp; \downarrow^{\mathrlap{j}}
+                        \\\
+                        \&amp;&amp; \Omega
+                        }
+              %li
+                %p
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi j
+                        %mi j
+                        %mo =
+                        %mi j
+                      %annotation{:encoding => "application/x-tex"} j j = j
+                  (’
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi p
+                      %annotation{:encoding => "application/x-tex"} p
+                  is locally locally true iff
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi p
+                      %annotation{:encoding => "application/x-tex"} p
+                  is locally true’);
+                .maruku-equation
+                  %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mrow
+                          %mtable
+                            %mtr
+                              %mtd
+                                %mi Ω
+                              %mtd
+                                %mover
+                                  %mo →
+                                  %mi j
+                              %mtd
+                                %mi Ω
+                            %mtr
+                              %mtd
+                              %mtd
+                                %msub
+                                  %mrow
+                                  %mpadded{:lspace => "-100%width", :width => "0"}
+                                    %mi j
+                                %mo ↘
+                              %mtd
+                                %msup
+                                  %mo{:stretchy => "false"} ↓
+                                  %mpadded{:width => "0"}
+                                    %mi j
+                            %mtr
+                              %mtd
+                              %mtd
+                              %mtd
+                                %mi Ω
+                      %annotation{:encoding => "application/x-tex"}
+                        \\array{
+                        \\Omega &amp;\stackrel{j}{\to}&amp; \Omega
+                        \\\
+                        \&amp; {}_{\mathllap{j}}\searrow &amp; \downarrow^{\mathrlap{j}}
+                        \\\
+                        \&amp;&amp; \Omega
+                        }
+              %li
+                %p
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi j
+                        %mo ∘
+                        %mo ∧
+                        %mo =
+                        %mo ∧
+                        %mo ∘
+                        %mo{:stretchy => "false"} (
+                        %mi j
+                        %mo ×
+                        %mi j
+                        %mo{:stretchy => "false"} )
+                      %annotation{:encoding => "application/x-tex"} j \circ \wedge = \wedge \circ (j \times j)
+                  (’
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi p
+                        %mo ∧
+                        %mi q
+                      %annotation{:encoding => "application/x-tex"} p \wedge q
+                  is locally true iff
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi p
+                      %annotation{:encoding => "application/x-tex"} p
+                  and
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi q
+                      %annotation{:encoding => "application/x-tex"} q
+                  are each locally true’)
+                .maruku-equation
+                  %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mrow
+                          %mtable
+                            %mtr
+                              %mtd
+                                %mi Ω
+                                %mo ×
+                                %mi Ω
+                              %mtd
+                                %mover
+                                  %mo →
+                                  %mo ∧
+                              %mtd
+                                %mi Ω
+                            %mtr
+                              %mtd
+                                %msup
+                                  %mrow
+                                  %mpadded{:lspace => "-100%width", :width => "0"}
+                                    %mrow
+                                      %mi j
+                                      %mo ×
+                                      %mi j
+                                %mo{:stretchy => "false"} ↓
+                              %mtd
+                              %mtd
+                                %msup
+                                  %mo{:stretchy => "false"} ↓
+                                  %mpadded{:width => "0"}
+                                    %mi j
+                            %mtr
+                              %mtd
+                                %mi Ω
+                                %mo ×
+                                %mi Ω
+                              %mtd
+                                %munder
+                                  %mo →
+                                  %mo ∧
+                              %mtd
+                                %mi Ω
+                        %mspace{:width => "thinmathspace"}
+                        %mo .
+                      %annotation{:encoding => "application/x-tex"}
+                        \\array{
+                        \\Omega \times \Omega &amp;\stackrel{\wedge}{\to}&amp; \Omega
+                        \\\
+                        {}^{\mathllap{j \times j}}\downarrow &amp;&amp; \downarrow^{\mathrlap{j}}
+                        \\\
+                        \\Omega \times \Omega &amp;\underset{\wedge}{\to}&amp; \Omega
+                        }
+                        \\,.
+          %p
+            Here
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mo ≤
+                %annotation{:encoding => "application/x-tex"} \leq
+            is the internal
+            %a.existingWikiWord{:href => "/nlab/show/partial+order"} partial order
+            on
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi Ω
+                  %annotation{:encoding => "application/x-tex"} \Omega
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mo ∧
+                  %mo :
+                  %mi Ω
+                  %mo ×
+                  %mi Ω
+                  %mo →
+                  %mi Ω
+                %annotation{:encoding => "application/x-tex"} \wedge: \Omega \times \Omega \to \Omega
+            is the internal
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/meet"} meet
+          %p
+            This appears for instance as (
+            %a{:href => "#MacLaneMoerdijk"}> MacLaneMoerdijk, V 1.
+            ).
+          #LTTopologyAsSubobject.num_remark
+            %h6#remark Remark
+            %p
+              By the definition of
+              %a.existingWikiWord{:href => "/nlab/show/subobject+classifier"} subobject classifier
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi j
+                  %annotation{:encoding => "application/x-tex"} j
+              is equivalently a
+              %a.existingWikiWord{:href => "/nlab/show/subobject"} subobject
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi J
+                    %mo ↪
+                    %mi Ω
+                  %annotation{:encoding => "application/x-tex"}
+                    J \hookrightarrow \Omega
+            %p
+              satisfying three conditions. This perspective gives the direct relation to
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/Grothendieck+topologies"} Grothendieck topologies
+              = succeed "." do
+                %a{:href => "#RelationToGrothendieckTopology"} below
+          .num_remark
+            %h6#remark_2 Remark
+            %p
+              Equivalently, the third axiom in def.
+              %a.maruku-ref{:href => "#LTTopologyDef"}
+              can be replaced with the (internal) statement that
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi j
+                  %annotation{:encoding => "application/x-tex"} j
+              is order-preserving.
+            %p
+              The equivalence amounts to the fact that, within the
+              %a.existingWikiWord{:href => "/nlab/show/internal+logic"} internal logic
+              of
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/topoi"} topoi
+              %a.existingWikiWord{:href => "/nlab/show/monad"} monad
+              on the
+              %a.existingWikiWord{:href => "/nlab/show/preorder"} preorder
+              of
+              %a.existingWikiWord{:href => "/nlab/show/truth+values"} truth values
+              is in fact
+              %a.existingWikiWord{:href => "/nlab/show/strong+monad"} strong
+              (a special case of the fact that, for an
+              %a.existingWikiWord{:href => "/nlab/show/endofunctor"} endofunctor
+              on some
+              %a.existingWikiWord{:href => "/nlab/show/closed+monoidal+category"} monoidal closed
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi V
+                    %annotation{:encoding => "application/x-tex"} V
+              %a.existingWikiWord{:href => "/nlab/show/tensorial+strength"} tensorial strengths
+              are the same as
+              = succeed "-" do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi V
+                    %annotation{:encoding => "application/x-tex"} V
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/enriched+category"} enrichments
+              %em automatically
+              preserves finite meets.
+            %p
+              Thus, a Lawvere-Tierney topology is the same thing as an internal
+              %a.existingWikiWord{:href => "/nlab/show/closure+operator"} closure operator
+              on the preorder
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi Ω
+                  %annotation{:encoding => "application/x-tex"} \Omega
+              (aka, a
+              %a.existingWikiWord{:href => "/nlab/show/Moore+closure"} Moore closure
+              on the one-element set), which amounts to the same thing as a natural closure operator on subobjects.
+            %p
+              Specifically, given any
+              %a.existingWikiWord{:href => "/nlab/show/subobject"} subobject
+              inclusion
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi X
+                    %mo ↪
+                    %mi Y
+                  %annotation{:encoding => "application/x-tex"} X \hookrightarrow Y
+              in
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi E
+                    %annotation{:encoding => "application/x-tex"} E
+              %a.existingWikiWord{:href => "/nlab/show/characteristic+morphism"} characteristic morphism
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msub
+                        %mi χ
+                        %mi X
+                      %mo :
+                      %mi Y
+                      %mo →
+                      %mi Ω
+                    %annotation{:encoding => "application/x-tex"} \chi_X: Y \to \Omega
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi j
+                    %mo ∘
+                    %msub
+                      %mi χ
+                      %mi X
+                  %annotation{:encoding => "application/x-tex"} j \circ \chi_X
+              is another morphism
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi Y
+                      %mo →
+                      %mi Ω
+                    %annotation{:encoding => "application/x-tex"} Y \to \Omega
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi j
+                      %mo *
+                    %mo{:stretchy => "false"} (
+                    %mi X
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} j_*(X)
+              of
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi Y
+                    %annotation{:encoding => "application/x-tex"} Y
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi j
+                      %mo *
+                    %mo{:stretchy => "false"} (
+                    %mi X
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} j_*(X)
+              are those elements of
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi Y
+                  %annotation{:encoding => "application/x-tex"} Y
+              that are ‘locally’ in
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi X
+                    %annotation{:encoding => "application/x-tex"} X
+          #TheClosureOperator.num_defn
+            %h6#definition_3 Definition
+            %p
+              The
+              %strong
+                %a.existingWikiWord{:href => "/nlab/show/closure+operator"} closure operator
+              induced by
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi j
+                  %annotation{:encoding => "application/x-tex"} j
+              is the
+              %a.existingWikiWord{:href => "/nlab/show/natural+transformation"} transformation
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mover
+                        %mrow
+                          %mo{:stretchy => "false"} (
+                          %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                          %mo{:stretchy => "false"} )
+                        %mo ¯
+                      %mi X
+                    %mo :
+                    %mi Sub
+                    %mo{:stretchy => "false"} (
+                    %mi X
+                    %mo{:stretchy => "false"} )
+                    %mo →
+                    %mi Sub
+                    %mo{:stretchy => "false"} (
+                    %mi X
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"}
+                    \\overline{(-)}_X : Sub(X) \to Sub(X)
+            %p
+              on the
+              %a.existingWikiWord{:href => "/nlab/show/subobject"} subobject
+              lattice of
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi X
+                      %mo ∈
+                      %mi E
+                    %annotation{:encoding => "application/x-tex"} X \in E
+              %a.existingWikiWord{:href => "/nlab/show/natural+transformation"} natural
+              in
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi X
+                    %annotation{:encoding => "application/x-tex"} X
+              %a.existingWikiWord{:href => "/nlab/show/commuting+diagram"} commuting diagram
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mrow
+                      %mtable
+                        %mtr
+                          %mtd
+                            %mi Hom
+                            %mo{:stretchy => "false"} (
+                            %mi X
+                            %mo ,
+                            %mi Ω
+                            %mo{:stretchy => "false"} )
+                          %mtd
+                            %mover
+                              %mo →
+                              %mo ≃
+                          %mtd
+                            %mi Sub
+                            %mo{:stretchy => "false"} (
+                            %mi X
+                            %mo{:stretchy => "false"} )
+                        %mtr
+                          %mtd
+                            %msup
+                              %mrow
+                              %mpadded{:lspace => "-100%width", :width => "0"}
+                                %mrow
+                                  %mi Hom
+                                  %mo{:stretchy => "false"} (
+                                  %mn 1
+                                  %mo ,
+                                  %mi j
+                                  %mo{:stretchy => "false"} )
+                            %mo{:stretchy => "false"} ↓
+                          %mtd
+                          %mtd
+                            %msup
+                              %mo{:stretchy => "false"} ↓
+                              %mpadded{:width => "0"}
+                                %mover
+                                  %mrow
+                                    %mo{:stretchy => "false"} (
+                                    %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                                    %mo{:stretchy => "false"} )
+                                  %mo ¯
+                        %mtr
+                          %mtd
+                            %mi Hom
+                            %mo{:stretchy => "false"} (
+                            %mi X
+                            %mo ,
+                            %mi Ω
+                            %mo{:stretchy => "false"} )
+                          %mtd
+                            %mover
+                              %mo →
+                              %mo ≃
+                          %mtd
+                            %mi Sub
+                            %mo{:stretchy => "false"} (
+                            %mi X
+                            %mo{:stretchy => "false"} )
+                    %mspace{:width => "thinmathspace"}
+                    %mo .
+                  %annotation{:encoding => "application/x-tex"}
+                    \\array{
+                    Hom(X, \Omega) &amp;\stackrel{\simeq}{\to}&amp; Sub(X)
+                    \\\
+                    {}^{\mathllap{Hom(1,j)}}\downarrow &amp;&amp; \downarrow^{\mathrlap{\overline{(-)}}}
+                    \\\
+                    Hom(X,\Omega) &amp;\stackrel{\simeq}{\to}&amp; Sub(X)
+                    }
+                    \\,.
+          .num_remark
+            %h6#remark_3 Remark
+            %p
+              This means that for
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi U
+                    %mo ↪
+                    %mi X
+                  %annotation{:encoding => "application/x-tex"} U \hookrightarrow X
+              a
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/subobject"} subobject
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi char
+                      %mi U
+                      %mo :
+                      %mi X
+                      %mo →
+                      %mi Ω
+                    %annotation{:encoding => "application/x-tex"} char U : X \to \Omega
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi char
+                    %mover
+                      %mi U
+                      %mo ¯
+                    %mo :
+                    %mi X
+                    %mover
+                      %mo →
+                      %mrow
+                        %mi char
+                        %mi U
+                    %mi Ω
+                    %mover
+                      %mo →
+                      %mi j
+                    %mi Ω
+                    %mspace{:width => "thinmathspace"}
+                    %mo .
+                  %annotation{:encoding => "application/x-tex"}
+                    char \overline{U} : X \stackrel{char U}{\to} \Omega \stackrel{j}{\to} \Omega
+                    \\,.
+          %p
+            This appears for instance as (
+            %a{:href => "\nMacLaneMoerdijk"}> MacLaneMoerdijk, p. 220
+            ).
+          .num_prop
+            %h6#proposition Proposition
+            %p
+              A morphism
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi j
+                    %mo :
+                    %mi Ω
+                    %mo →
+                    %mi Ω
+                  %annotation{:encoding => "application/x-tex"} j : \Omega \to \Omega
+              is a Lawvere-Tierney topology, def.
+              %a.maruku-ref{:href => "#LTTopologyDef"}
+              precisely if the corresponding closure operator, def.
+              %a.maruku-ref{:href => "#TheClosureOperator"}
+              satisfies for all
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi X
+                    %mo ,
+                    %mi Y
+                    %mo ∈
+                    %mi E
+                  %annotation{:encoding => "application/x-tex"} X, Y \in E
+            %ol
+              %li
+                %p
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}>
+                    %semantics
+                      %mrow
+                        %mi A
+                        %mo ⊂
+                        %mover
+                          %mi A
+                          %mo ¯
+                      %annotation{:encoding => "application/x-tex"} A \subset \overline{A}
+                  ;
+              %li
+                %p
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}>
+                    %semantics
+                      %mrow
+                        %mover
+                          %mover
+                            %mi A
+                            %mo ¯
+                          %mo ¯
+                        %mo =
+                        %mover
+                          %mi A
+                          %mo ¯
+                      %annotation{:encoding => "application/x-tex"} \overline{\overline{A}} = \overline{A}
+                  ;
+              %li
+                %p
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}>
+                    %semantics
+                      %mrow
+                        %mover
+                          %mrow
+                            %mi A
+                            %mo ∩
+                            %mi B
+                          %mo ¯
+                        %mo =
+                        %mover
+                          %mi A
+                          %mo ¯
+                        %mo ∩
+                        %mover
+                          %mi B
+                          %mo ¯
+                      %annotation{:encoding => "application/x-tex"} \overline{A \cap B} = \overline{A} \cap \overline{B}
+                  \.
+          %p
+            This appears as (
+            %a{:href => "#MacLaneMoerdijk"}> MacLaneMoerdijk, V 1., prop 1
+            ).
+          %h3#sheaves Sheaves
+          %p
+            Using Lawvere–Tierney topologies, the notion of
+            %a.existingWikiWord{:href => "/nlab/show/sheaf"} sheaf
+            and
+            %a.existingWikiWord{:href => "/nlab/show/sheafification"} sheafification
+            generalizes from
+            %a.existingWikiWord{:href => "/nlab/show/Grothendieck+topos"} Grothendieck topoi
+            to arbitrary topoi.
+          %p
+            Let
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi E
+                %annotation{:encoding => "application/x-tex"} E
+            be a
+            %a.existingWikiWord{:href => "/nlab/show/topos"} topos
+            with Lawvere-Tierney topology
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi j
+                  %annotation{:encoding => "application/x-tex"} j
+            %a.maruku-ref{:href => "#LTTopologyDef"}
+            and associated closure operator
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mover
+                      %mrow
+                        %mo{:stretchy => "false"} (
+                        %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                        %mo{:stretchy => "false"} )
+                      %mo ¯
+                    %mo :
+                    %mi Sub
+                    %mo{:stretchy => "false"} (
+                    %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                    %mo{:stretchy => "false"} )
+                    %mo →
+                    %mi Sub
+                    %mo{:stretchy => "false"} (
+                    %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} \overline{(-)} : Sub(-) \to Sub(-)
+            = succeed "." do
+              %a.maruku-ref{:href => "#TheClosureOperator"}
+          #DenseMonos.num_defn
+            %h6#definition_4 Definition
+            %p
+              A subobject
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi U
+                    %mo ∈
+                    %mi Sub
+                    %mo{:stretchy => "false"} (
+                    %mi X
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} U \in Sub(X)
+              is called
+              %strong dense
+              if
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mover
+                        %mi U
+                        %mo ¯
+                      %mo =
+                      %mi X
+                    %annotation{:encoding => "application/x-tex"} \overline{U} = X
+            %p
+              The corresponding
+              %a.existingWikiWord{:href => "/nlab/show/monomorphism"} monomorphism
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi U
+                    %mo ↪
+                    %mi X
+                  %annotation{:encoding => "application/x-tex"} U \hookrightarrow X
+              is called a
+              = succeed "." do
+                %strong
+                  %a.existingWikiWord{:href => "/nlab/show/dense+monomorphism"} dense monomorphism
+          #JSheaf.num_defn
+            %h6#definition_5 Definition
+            %p
+              An object
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi F
+                    %mo ∈
+                    %mi E
+                  %annotation{:encoding => "application/x-tex"} F \in E
+              is called a
+              %strong
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}>
+                  %semantics
+                    %mrow
+                      %mi j
+                    %annotation{:encoding => "application/x-tex"} j
+                \-
+                %a.existingWikiWord{:href => "/nlab/show/sheaf"} sheaf
+              if it is a
+              %a.existingWikiWord{:href => "/nlab/show/local+object"} local object
+              with respect to the dense monomorphisms.
+            %p
+              This means that
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi F
+                  %annotation{:encoding => "application/x-tex"} F
+              is a
+              = succeed "-sheaf" do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi j
+                    %annotation{:encoding => "application/x-tex"} j
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi U
+                    %mo ↪
+                    %mi X
+                  %annotation{:encoding => "application/x-tex"} U \hookrightarrow X
+              the induced morphism
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi Hom
+                    %mo{:stretchy => "false"} (
+                    %mi X
+                    %mo ,
+                    %mi F
+                    %mo{:stretchy => "false"} )
+                    %mo →
+                    %mi Hom
+                    %mo{:stretchy => "false"} (
+                    %mi U
+                    %mo ,
+                    %mi F
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"}
+                    Hom(X,F) \to Hom(U,F)
+            %p
+              is an
+              = succeed "." do
+                %a.existingWikiWord{:href => "/nlab/show/isomorphism"} isomorphism
+            %p
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi F
+                  %annotation{:encoding => "application/x-tex"} F
+              is a
+              %strong
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}>
+                  %semantics
+                    %mrow
+                      %mi j
+                    %annotation{:encoding => "application/x-tex"} j
+                \-
+                %a.existingWikiWord{:href => "/nlab/show/separated+presheaf"} separated presheaf
+              if this morphism is itself a
+              = succeed "." do
+                %a.existingWikiWord{:href => "/nlab/show/monomorphism"} monomorphism
+          %p
+            This is for instance in (
+            %a{:href => "#MacLaneMoerdijk"}> MacLaneMoerdijk, p. 223
+            ).
+          %h2#properties Properties
+          %h3#SheafSubtoposes
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}>
+              %semantics
+                %mrow
+                  %mi j
+                %annotation{:encoding => "application/x-tex"} j
+            \-Sheaf subtoposes
+          #RelationToCoveringSieves.num_prop
+            %h6#proposition_2 Proposition
+            %p
+              For
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi E
+                  %annotation{:encoding => "application/x-tex"} E
+              a
+              %a.existingWikiWord{:href => "/nlab/show/topos"} topos
+              and
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi j
+                  %annotation{:encoding => "application/x-tex"} j
+              a Lawvere-Tierney topology on
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi E
+                    %annotation{:encoding => "application/x-tex"} E
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi Sh
+                      %mi j
+                    %mo{:stretchy => "false"} (
+                    %mi E
+                    %mo{:stretchy => "false"} )
+                    %mo ↪
+                    %mi E
+                  %annotation{:encoding => "application/x-tex"}
+                    Sh_j(E) \hookrightarrow E
+            %p
+              of
+              %a{:href => "#JSheaf"} j-sheaves
+              is a
+              = succeed "." do
+                %a.existingWikiWord{:href => "/nlab/show/geometric+embedding"} geometric embedding
+            %p
+              So in particular
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi Sh
+                      %mi j
+                    %mo{:stretchy => "false"} (
+                    %mi E
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} Sh_j(E)
+              is itself a
+              %a.existingWikiWord{:href => "/nlab/show/topos"} topos
+              and the embedding is a
+              %a.existingWikiWord{:href => "/nlab/show/full+and+faithful+functor"} full and faithful functor
+              which has a
+              %a.existingWikiWord{:href => "/nlab/show/exact+functor"} left exact
+              %a.existingWikiWord{:href => "/nlab/show/left+adjoint"} left adjoint
+              functor
+              = succeed ":" do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi E
+                      %mo →
+                      %msub
+                        %mi Sh
+                        %mi j
+                      %mo{:stretchy => "false"} (
+                      %mi E
+                      %mo{:stretchy => "false"} )
+                    %annotation{:encoding => "application/x-tex"} E \to Sh_j(E)
+              %strong
+                %a.existingWikiWord{:href => "/nlab/show/sheafification"} sheafification
+              functor.
+          %p
+            This appears for instance as (
+            %a{:href => "#MacLaneMoerdijk"}> MacLaneMoerdijk V 3., theorem 1
+            ).
+          %h3#RelationToGrothendieckTopology Equivalence with Grothendieck topologies
+          #RelationToCoveringSieves.num_prop
+            %h6#proposition_3 Proposition
+            %p
+              For
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi C
+                  %annotation{:encoding => "application/x-tex"} C
+              a
+              %a.existingWikiWord{:href => "/nlab/show/small+category"} small category
+              and
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi E
+                    %mo :
+                    %mo =
+                    %mo{:stretchy => "false"} [
+                    %msup
+                      %mi C
+                      %mi op
+                    %mo ,
+                    %mi Set
+                    %mo{:stretchy => "false"} ]
+                  %annotation{:encoding => "application/x-tex"} E := [C^{op}, Set]
+              its
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/presheaf+topos"} presheaf topos
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi E
+                  %annotation{:encoding => "application/x-tex"} E
+              are equivalent to
+              %a.existingWikiWord{:href => "/nlab/show/Grothendieck+topology"} Grothendieck topologies
+              on
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi C
+                    %annotation{:encoding => "application/x-tex"} C
+          .proof
+            %h6#proof Proof
+            %p
+              The
+              %a.existingWikiWord{:href => "/nlab/show/subobject+classifier"} subobject classifier
+              in a
+              %a.existingWikiWord{:href => "/nlab/show/presheaf+topos"} presheaf topos
+              is the presheaf that assigns to
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi U
+                    %mo ∈
+                    %mi C
+                  %annotation{:encoding => "application/x-tex"} U \in C
+              the set of all
+              = succeed "s" do
+                %a.existingWikiWord{:href => "/nlab/show/sieve"} sieve
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi C
+                  %annotation{:encoding => "application/x-tex"} C
+              on
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi U
+                  %annotation{:encoding => "application/x-tex"} U
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi Ω
+                    %mo :
+                    %mi U
+                    %mo ↦
+                    %msub
+                      %mi Sieves
+                      %mi C
+                    %mo{:stretchy => "false"} (
+                    %mi U
+                    %mo{:stretchy => "false"} )
+                    %mspace{:width => "thinmathspace"}
+                    %mo .
+                  %annotation{:encoding => "application/x-tex"}
+                    \\Omega : U \mapsto Sieves_C(U)
+                    \\,.
+            %p since we have
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi Sieves
+                      %mi C
+                    %mo{:stretchy => "false"} (
+                    %mi U
+                    %mo{:stretchy => "false"} )
+                    %mo =
+                    %msub
+                      %mi Sub
+                      %mi E
+                    %mo{:stretchy => "false"} (
+                    %mi y
+                    %mo{:stretchy => "false"} (
+                    %mi U
+                    %mo{:stretchy => "false"} )
+                    %mo{:stretchy => "false"} )
+                    %mo =
+                    %mi hom
+                    %mo{:stretchy => "false"} (
+                    %mi y
+                    %mo{:stretchy => "false"} (
+                    %mi U
+                    %mo{:stretchy => "false"} )
+                    %mo ,
+                    %mi Ω
+                    %mo{:stretchy => "false"} )
+                    %mo =
+                    %mi Ω
+                    %mo{:stretchy => "false"} (
+                    %mi U
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} Sieves_C (U)=Sub_E(y(U))=hom(y(U),\Omega)=\Omega(U)
+            %p
+              A
+              %a.existingWikiWord{:href => "/nlab/show/subobject"} subobject
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi J
+                    %mo ↪
+                    %mi Ω
+                  %annotation{:encoding => "application/x-tex"} J \hookrightarrow \Omega
+              is therefore precisely a choice of a collection of sieves on each object, which is closed under pullback. The proof therefore amounts to checking that the condition that such a collection of sieves is a
+              %a.existingWikiWord{:href => "/nlab/show/Grothendieck+topology"} Grothendieck topology
+              on
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi C
+                  %annotation{:encoding => "application/x-tex"} C
+              is equivalent to the statement that the characteristic map
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi j
+                    %mo :
+                    %mi Ω
+                    %mo →
+                    %mi Ω
+                  %annotation{:encoding => "application/x-tex"} j : \Omega \to \Omega
+              of
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi J
+                    %mo ↪
+                    %mi Ω
+                  %annotation{:encoding => "application/x-tex"} J \hookrightarrow \Omega
+              (see remark
+              = succeed ")" do
+                %a.maruku-ref{:href => "#LTTopologyAsSubobject"}
+          %p Here is more discussion of this point:
+          %p
+            Suppose that
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi C
+                %annotation{:encoding => "application/x-tex"} C
+            is a small site. Then given a
+            %a.existingWikiWord{:href => "/nlab/show/subpresheaf"} subpresheaf
+            inclusion
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi F
+                  %mo ↪
+                  %mi G
+                %annotation{:encoding => "application/x-tex"} F \hookrightarrow G
+            in
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msup
+                      %mo{:lspace => "0em", :rspace => "thinmathspace"} Set
+                      %mrow
+                        %msup
+                          %mi C
+                          %mo{:lspace => "0em", :rspace => "thinmathspace"} op
+                  %annotation{:encoding => "application/x-tex"} \Set^{C^\op}
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi X
+                %annotation{:encoding => "application/x-tex"} X
+            of
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi C
+                  %annotation{:encoding => "application/x-tex"} C
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi f
+                %annotation{:encoding => "application/x-tex"} f
+            of
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi G
+                    %mo{:stretchy => "false"} (
+                    %mi X
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} G(X)
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi f
+                %annotation{:encoding => "application/x-tex"} f
+            is locally in
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi F
+                %annotation{:encoding => "application/x-tex"} F
+            (that is,
+            = succeed ")" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi f
+                    %mo ∈
+                    %msub
+                      %mi j
+                      %mo *
+                    %mo{:stretchy => "false"} (
+                    %mi F
+                    %mo{:stretchy => "false"} )
+                    %mo{:stretchy => "false"} (
+                    %mi X
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} f \in j_*(F)(X)
+            %a.existingWikiWord{:href => "/nlab/show/cover"} covering family
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi c
+                  %mo =
+                  %mo{:stretchy => "false"} (
+                  %msub
+                    %mi c
+                    %mi i
+                  %mo :
+                  %msub
+                    %mi U
+                    %mi i
+                  %mo →
+                  %mi X
+                  %msub
+                    %mo{:stretchy => "false"} )
+                    %mi i
+                %annotation{:encoding => "application/x-tex"} c = (c_i: U_i \to X)_i
+            on
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi X
+                  %annotation{:encoding => "application/x-tex"} X
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msup
+                    %mi c
+                    %mo *
+                  %mo{:stretchy => "false"} (
+                  %mi f
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} c^*(f)
+            of
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi f
+                %annotation{:encoding => "application/x-tex"} f
+            to
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi c
+                %annotation{:encoding => "application/x-tex"} c
+            is in
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi F
+                %annotation{:encoding => "application/x-tex"} F
+            (that is, each
+            = succeed ")." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msubsup
+                      %mi c
+                      %mi i
+                      %mo *
+                    %mo{:stretchy => "false"} (
+                    %mi f
+                    %mo{:stretchy => "false"} )
+                    %mo ∈
+                    %mi F
+                    %mo{:stretchy => "false"} (
+                    %msub
+                      %mi U
+                      %mi i
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} c_i^*(f) \in F(U_i)
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi C
+                  %annotation{:encoding => "application/x-tex"} C
+          %p
+            As a specific example, take the usual Grothendieck topology on
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/Top"} Top
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi G
+                  %mo :
+                  %mi X
+                  %mo ↦
+                  %mo{:stretchy => "false"} [
+                  %mi X
+                  %mo ,
+                  %mi R
+                  %mo{:stretchy => "false"} ]
+                %annotation{:encoding => "application/x-tex"} G: X \mapsto [X,R]
+            on
+            = succeed ";" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo{:lspace => "0em", :rspace => "thinmathspace"} Top
+                  %annotation{:encoding => "application/x-tex"} \Top
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi F
+                %annotation{:encoding => "application/x-tex"} F
+            of
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi G
+                  %annotation{:encoding => "application/x-tex"} G
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi f
+                  %mo :
+                  %mi X
+                  %mo →
+                  %mi R
+                %annotation{:encoding => "application/x-tex"} f: X \to R
+            belongs to
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msub
+                    %mi j
+                    %mo *
+                  %mo{:stretchy => "false"} (
+                  %mi F
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} j_*(F)
+            iff it is
+            %em locally
+            constant; that is, for some open cover
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mo{:stretchy => "false"} (
+                  %msub
+                    %mi U
+                    %mi i
+                  %msub
+                    %mo{:stretchy => "false"} )
+                    %mi i
+                %annotation{:encoding => "application/x-tex"} (U_i)_i
+            of the domain
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi X
+                  %annotation{:encoding => "application/x-tex"} X
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi f
+                  %mo{:stretchy => "false"} |
+                  %msub
+                    %mi U
+                    %mi i
+                %annotation{:encoding => "application/x-tex"} f|U_i
+            is constant.
+          %p
+            To make this precise in terms of the above definition, we need to understand the subobject classifier in
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi E
+                    %mo =
+                    %msup
+                      %mi Set
+                      %mrow
+                        %msup
+                          %mi C
+                          %mi op
+                  %annotation{:encoding => "application/x-tex"} E = Set^{C^{op}}
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi Ω
+                %annotation{:encoding => "application/x-tex"} \Omega
+            is simply the representing object for the functor
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi Sub
+                  %mo :
+                  %msup
+                    %mi E
+                    %mi op
+                  %mo →
+                  %mi Set
+                %annotation{:encoding => "application/x-tex"} Sub: E^{op} \to Set
+          %p
+            which takes an object
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi F
+                %annotation{:encoding => "application/x-tex"} F
+            of
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi E
+                %annotation{:encoding => "application/x-tex"} E
+            to the collection of subobjects of
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi F
+                  %annotation{:encoding => "application/x-tex"} F
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi Sub
+                    %mo{:stretchy => "false"} (
+                    %mi F
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} Sub(F)
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi Sub
+                    %mo{:stretchy => "false"} (
+                    %mi F
+                    %mo{:stretchy => "false"} )
+                    %mo ≅
+                    %msub
+                      %mi hom
+                      %mi E
+                    %mo{:stretchy => "false"} (
+                    %mi F
+                    %mo ,
+                    %mi Ω
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} Sub(F) \cong \hom_E(F, \Omega)
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi F
+                    %mo =
+                    %msub
+                      %mi hom
+                      %mi C
+                    %mo{:stretchy => "false"} (
+                    %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                    %mo ,
+                    %mi c
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} F = \hom_C(-, c)
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi Sub
+                  %mo{:stretchy => "false"} (
+                  %msub
+                    %mi hom
+                    %mi C
+                  %mo{:stretchy => "false"} (
+                  %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                  %mo ,
+                  %mi c
+                  %mo{:stretchy => "false"} )
+                  %mo{:stretchy => "false"} )
+                  %mo ≅
+                  %msub
+                    %mi hom
+                    %mrow
+                      %msup
+                        %mi Set
+                        %mrow
+                          %msup
+                            %mi C
+                            %mi op
+                  %mo{:stretchy => "false"} (
+                  %msub
+                    %mi hom
+                    %mi C
+                  %mo{:stretchy => "false"} (
+                  %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                  %mo ,
+                  %mi c
+                  %mo{:stretchy => "false"} )
+                  %mo ,
+                  %mi Ω
+                  %mo{:stretchy => "false"} )
+                  %mover
+                    %mo ≅
+                    %mi Yoneda
+                  %mi Ω
+                  %mo{:stretchy => "false"} (
+                  %mi c
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} Sub(\hom_C(-, c)) \cong \hom_{Set^{C^{op}}}(\hom_C(-, c), \Omega) \stackrel{Yoneda}{\cong} \Omega(c)
+          %p
+            In other words, we find that the functor
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi Ω
+                  %mo :
+                  %msup
+                    %mi C
+                    %mi op
+                  %mo →
+                  %mi Set
+                %annotation{:encoding => "application/x-tex"} \Omega: C^{op} \to Set
+            is defined by
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi Ω
+                  %mo{:stretchy => "false"} (
+                  %mi c
+                  %mo{:stretchy => "false"} )
+                  %mo =
+                  %mo{:stretchy => "false"} {
+                  %mi sieves
+                  %mspace{:width => "thinmathspace"}
+                  %mi on
+                  %mspace{:width => "thinmathspace"}
+                  %mi c
+                  %mo{:stretchy => "false"} }
+                %annotation{:encoding => "application/x-tex"} \Omega(c) = \{sieves \, on \, c\}
+          %p
+            Next, if
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi J
+                %annotation{:encoding => "application/x-tex"} J
+            is a Grothendieck topology on
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi C
+                  %annotation{:encoding => "application/x-tex"} C
+            = succeed "-covering" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi J
+                  %annotation{:encoding => "application/x-tex"} J
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi c
+                %annotation{:encoding => "application/x-tex"} c
+            (which we denote by
+            = succeed "(" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi J
+                    %mo{:stretchy => "false"} (
+                    %mi c
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} J(c)
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi c
+                  %annotation{:encoding => "application/x-tex"} c
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi J
+                  %mo{:stretchy => "false"} (
+                  %mi c
+                  %mo{:stretchy => "false"} )
+                  %mo ↪
+                  %mi Ω
+                  %mo{:stretchy => "false"} (
+                  %mi c
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} J(c) \hookrightarrow \Omega(c)
+          %p
+            and this inclusion is natural in
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi c
+                  %annotation{:encoding => "application/x-tex"} c
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi J
+                  %mo ↪
+                  %mi Ω
+                %annotation{:encoding => "application/x-tex"} J \hookrightarrow \Omega
+          %p and again, by definition of subobject classifier, this subobject corresponds to a uniquely determined element
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi j
+                  %mo ∈
+                  %msub
+                    %mi hom
+                    %mi E
+                  %mo{:stretchy => "false"} (
+                  %mi Ω
+                  %mo ,
+                  %mi Ω
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} j \in \hom_E(\Omega, \Omega)
+          %p
+            which is just the Lawvere–Tierney operator
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi j
+                    %mo :
+                    %mi Ω
+                    %mo →
+                    %mi Ω
+                  %annotation{:encoding => "application/x-tex"} j: \Omega \to \Omega
+          %p
+            Conversely, any morphism
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi j
+                  %mo :
+                  %mi Ω
+                  %mo →
+                  %mi Ω
+                %annotation{:encoding => "application/x-tex"} j:\Omega\to\Omega
+            determines a subobject
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi J
+                %annotation{:encoding => "application/x-tex"} J
+            of
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi Ω
+                  %annotation{:encoding => "application/x-tex"} \Omega
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi c
+                %annotation{:encoding => "application/x-tex"} c
+            a set of sieves on
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi c
+                  %annotation{:encoding => "application/x-tex"} c
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi j
+                  %annotation{:encoding => "application/x-tex"} j
+          .num_prop
+            %h6#observation Observation
+            %p
+              For
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi C
+                  %annotation{:encoding => "application/x-tex"} C
+              a
+              %a.existingWikiWord{:href => "/nlab/show/small+site"} small site
+              and
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi j
+                  %annotation{:encoding => "application/x-tex"} j
+              the Lawvere-Tierney topology on the
+              %a.existingWikiWord{:href => "/nlab/show/presheaf+topos"} presheaf topos
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi E
+                    %mo =
+                    %mo{:stretchy => "false"} [
+                    %msup
+                      %mi C
+                      %mi op
+                    %mo ,
+                    %mi Set
+                    %mo{:stretchy => "false"} ]
+                  %annotation{:encoding => "application/x-tex"} E = [C^{op}, Set]
+              given by prop.
+              %a.maruku-ref{:href => "#RelationToCoveringSieves"}
+              the
+              %a{:href => "#SheafSubtoposes"} j-sheaves
+              are precisely the
+              %a.existingWikiWord{:href => "/nlab/show/sheaves"} sheaves
+              in the ordinary sense of Grothendieck topologies.
+          %h3#ClosureOperation Relation to lex reflectors
+          %p
+            As discussed there,
+            %a.existingWikiWord{:href => "/nlab/show/categories+of+sheaves"} categories of sheaves
+            are also characterized as being
+            %a.existingWikiWord{:href => "/nlab/show/reflective+subcategories"} reflective subcategories
+            of the given ambient topos
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msub
+                    %mi Sh
+                    %mi j
+                  %mo{:stretchy => "false"} (
+                  %mi ℰ
+                  %mo{:stretchy => "false"} )
+                  %mover
+                    %munder
+                      %mo ↪
+                      %mrow
+                    %mover
+                      %mo ←
+                      %mi L
+                  %mi ℰ
+                  %mspace{:width => "thinmathspace"}
+                  %mo .
+                %annotation{:encoding => "application/x-tex"}
+                  Sh_j(\mathcal{E})
+                  \\stackrel{\overset{L}{\leftarrow}}{\underset{}{\hookrightarrow}}
+                  \\mathcal{E}
+                  \\,.
+          %p
+            Here we discuss explicit translations between the structure given by the
+            %a.existingWikiWord{:href => "/nlab/show/localization"} reflector
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi L
+                %annotation{:encoding => "application/x-tex"} L
+            and the corresponding Lawvere-Tierney topology
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi j
+                  %mo :
+                  %mi Ω
+                  %mo →
+                  %mi Ω
+                %annotation{:encoding => "application/x-tex"} j : \Omega \to \Omega
+            in a way that makes the relation to
+            %a.existingWikiWord{:href => "/nlab/show/modal+type+theory"} modal type theory
+            and
+            %a.existingWikiWord{:href => "/nlab/show/monads+%28in+computer+science%29"} monads (in computer science)
+            most manifest.
+          #ClosureOperatorOfReflection.num_defn
+            %h6#definition_6 Definition
+            %p
+              Given a reflector
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mo ♯
+                      %mo :
+                      %mi ℰ
+                      %mover
+                        %mo →
+                        %mi L
+                      %msub
+                        %mi Sh
+                        %mi j
+                      %mo{:stretchy => "false"} (
+                      %mi ℰ
+                      %mo{:stretchy => "false"} )
+                      %mo ↪
+                      %mi ℰ
+                    %annotation{:encoding => "application/x-tex"} \sharp : \mathcal{E} \stackrel{L}{\to} Sh_j(\mathcal{E}) \hookrightarrow \mathcal{E}
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi X
+                    %mo ∈
+                    %mi ℰ
+                  %annotation{:encoding => "application/x-tex"} X \in \mathcal{E}
+              a
+              = succeed "," do
+                %strong closure operator
+              %a.existingWikiWord{:href => "/nlab/show/functor"} functor
+              on the
+              %a.existingWikiWord{:href => "/nlab/show/poset+of+subobjects"} poset of subobjects
+              of
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi X
+                  %annotation{:encoding => "application/x-tex"} X
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi c
+                      %mi L
+                    %mo :
+                    %mi Sub
+                    %mo{:stretchy => "false"} (
+                    %mi X
+                    %mo{:stretchy => "false"} )
+                    %mo →
+                    %mi Sub
+                    %mo{:stretchy => "false"} (
+                    %mi X
+                    %mo{:stretchy => "false"} )
+                    %mspace{:width => "thinmathspace"}
+                    %mo ,
+                  %annotation{:encoding => "application/x-tex"}
+                    c_L : Sub(X) \to Sub(X)
+                    \\,,
+            %p
+              by sending any
+              %a.existingWikiWord{:href => "/nlab/show/monomorphism"} monomorphism
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi A
+                    %mo ↪
+                    %mi X
+                  %annotation{:encoding => "application/x-tex"} A \hookrightarrow X
+              classified by a
+              %a.existingWikiWord{:href => "/nlab/show/characteristic+function"} characteristic function
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi χ
+                      %mi A
+                    %mo :
+                    %mi X
+                    %mo →
+                    %mi Ω
+                  %annotation{:encoding => "application/x-tex"} \chi_A : X \to \Omega
+              to the
+              %a.existingWikiWord{:href => "/nlab/show/pullback"} pullback
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi c
+                      %mi L
+                    %mo{:stretchy => "false"} (
+                    %mi A
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} c_L(A)
+              in
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mrow
+                      %mtable
+                        %mtr
+                          %mtd
+                            %msub
+                              %mi c
+                              %mi L
+                            %mo{:stretchy => "false"} (
+                            %mi A
+                            %mo{:stretchy => "false"} )
+                          %mtd
+                            %mo →
+                          %mtd
+                            %mo ♯
+                            %mi A
+                        %mtr
+                          %mtd
+                            %mo{:stretchy => "false"} ↓
+                          %mtd
+                          %mtd
+                            %mo{:stretchy => "false"} ↓
+                        %mtr
+                          %mtd
+                            %mi X
+                          %mtd
+                            %mo →
+                          %mtd
+                            %mo ♯
+                            %mi X
+                    %mspace{:width => "thinmathspace"}
+                    %mo ,
+                  %annotation{:encoding => "application/x-tex"}
+                    \\array{
+                    c_L(A) &amp;\to&amp; \sharp A
+                    \\\
+                    \\downarrow &amp;&amp; \downarrow
+                    \\\
+                    X &amp;\to&amp; \sharp X
+                    }
+                    \\,,
+            %p
+              where
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi X
+                    %mo →
+                    %mo ♯
+                    %mi X
+                  %annotation{:encoding => "application/x-tex"} X \to \sharp X
+              is the
+              = succeed "." do
+                %a.existingWikiWord{:href => "/nlab/show/unit+of+an+adjunction"} adjunction unit
+          .num_prop
+            %h6#proposition_4 Proposition
+            %p
+              This is well defined. Moreover,
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi c
+                      %mi L
+                  %annotation{:encoding => "application/x-tex"} c_L
+              commutes with
+              %a.existingWikiWord{:href => "/nlab/show/pullback"} pullback
+              (
+              %a.existingWikiWord{:href => "/nlab/show/change+of+base"}> change of base
+              ).
+          %p
+            This appears as (
+            %a{:href => "#Johnstone"}> Johnstone, lemma A4.3.2
+            ).
+          .num_defn
+            %h6#definition_7 Definition
+            %p
+              A family of functors
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi Sub
+                    %mo{:stretchy => "false"} (
+                    %mi X
+                    %mo{:stretchy => "false"} )
+                    %mo →
+                    %mi Sub
+                    %mo{:stretchy => "false"} (
+                    %mi X
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} Sub(X) \to Sub(X)
+              for all objects
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi X
+                  %annotation{:encoding => "application/x-tex"} X
+              that commutes with
+              %a.existingWikiWord{:href => "/nlab/show/change+of+base"} change of base
+              is called a
+              = succeed "." do
+                %strong
+                  %a.existingWikiWord{:href => "/nlab/show/universal+closure+operation"} universal closure operation
+          .num_prop
+            %h6#proposition_5 Proposition
+            %p
+              Given a
+              %a.existingWikiWord{:href => "/nlab/show/left+exact+functor"} left exact
+              reflector
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo ♯
+                  %annotation{:encoding => "application/x-tex"} \sharp
+              as above with induced closure operation
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msub
+                        %mi c
+                        %mi L
+                    %annotation{:encoding => "application/x-tex"} c_L
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi j
+                    %mo :
+                    %mi Ω
+                    %mo →
+                    %mi Ω
+                  %annotation{:encoding => "application/x-tex"} j : \Omega \to \Omega
+              is given as the composite
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi j
+                    %mo :
+                    %mi Ω
+                    %mo →
+                    %mo ♯
+                    %mi Ω
+                    %mover
+                      %mo →
+                      %mrow
+                        %msub
+                          %mi χ
+                          %mrow
+                            %mo ♯
+                            %mi true
+                    %mi Ω
+                    %mspace{:width => "thinmathspace"}
+                    %mo ,
+                  %annotation{:encoding => "application/x-tex"}
+                    j : \Omega \to \sharp \Omega \stackrel{\chi_{\sharp true}}{\to} \Omega
+                    \\,,
+            %p where
+            %ul
+              %li
+                %p
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi Ω
+                        %mo →
+                        %mo ♯
+                        %mi Ω
+                      %annotation{:encoding => "application/x-tex"} \Omega \to \sharp \Omega
+                  is the
+                  = succeed ";" do
+                    %a.existingWikiWord{:href => "/nlab/show/unit+of+an+adjunction"} adjunction unit
+              %li
+                %p
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %msub
+                          %mi χ
+                          %mrow
+                            %mo ♯
+                            %mi true
+                        %mo :
+                        %mo ♯
+                        %mi Ω
+                        %mo →
+                        %mi Ω
+                      %annotation{:encoding => "application/x-tex"} \chi_{\sharp true} : \sharp \Omega \to \Omega
+                  is the
+                  %a.existingWikiWord{:href => "/nlab/show/characteristic+function"} characteristic function
+                  of the result of applying
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mo ♯
+                      %annotation{:encoding => "application/x-tex"} \sharp
+                  to the
+                  %a.existingWikiWord{:href => "/nlab/show/subobject+classifier"} universal subobject
+                .maruku-equation
+                  %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mo{:stretchy => "false"} (
+                        %mo *
+                        %mover
+                          %mo ↪
+                          %mrow
+                            %mo ♯
+                            %mi true
+                        %mo ♯
+                        %mi Ω
+                        %mo{:stretchy => "false"} )
+                        %mo :
+                        %mo =
+                        %mo ♯
+                        %mo{:stretchy => "false"} (
+                        %mo *
+                        %mover
+                          %mo ↪
+                          %mi true
+                        %mi Ω
+                        %mo{:stretchy => "false"} )
+                      %annotation{:encoding => "application/x-tex"}
+                        (* \stackrel{\sharp true}{\hookrightarrow} \sharp \Omega)
+                        \:=
+                        \\sharp (* \stackrel{true}{\hookrightarrow} \Omega)
+                %p
+                  (which is again a
+                  %a.existingWikiWord{:href => "/nlab/show/monomorphism"} monomorphism
+                  since
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mo ♯
+                      %annotation{:encoding => "application/x-tex"} \sharp
+                  preserves
+                  = succeed ")." do
+                    %a.existingWikiWord{:href => "/nlab/show/pullbacks"} pullbacks
+          .proof
+            %h6#proof_2 Proof
+            %p
+              For
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi A
+                    %mo ↪
+                    %mi X
+                  %annotation{:encoding => "application/x-tex"} A \hookrightarrow X
+              any
+              %a.existingWikiWord{:href => "/nlab/show/subobject"} subobject
+              with
+              %a.existingWikiWord{:href => "/nlab/show/characteristic+function"} characteristic function
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %msub
+                        %mi χ
+                        %mi A
+                      %mo :
+                      %mi X
+                      %mo →
+                      %mi Ω
+                    %annotation{:encoding => "application/x-tex"} \chi_A : X \to \Omega
+              %a.existingWikiWord{:href => "/nlab/show/pullback"} pullback
+              %a.existingWikiWord{:href => "/nlab/show/diagram"} diagram
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mrow
+                      %mtable
+                        %mtr
+                          %mtd
+                            %msub
+                              %mi c
+                              %mi L
+                            %mo{:stretchy => "false"} (
+                            %mi A
+                            %mo{:stretchy => "false"} )
+                          %mtd
+                            %mo →
+                          %mtd
+                          %mtd
+                            %mo →
+                          %mtd
+                          %mtd
+                            %mo →
+                          %mtd
+                            %mo *
+                        %mtr
+                          %mtd
+                            %mo{:stretchy => "false"} ↓
+                          %mtd
+                          %mtd
+                          %mtd
+                          %mtd
+                          %mtd
+                          %mtd
+                            %mo{:stretchy => "false"} ↓
+                        %mtr
+                          %mtd
+                            %mi X
+                          %mtd
+                            %mover
+                              %mo →
+                              %mrow
+                                %msub
+                                  %mi χ
+                                  %mi A
+                          %mtd
+                            %mi Ω
+                          %mtd
+                            %mover
+                              %mo →
+                              %mrow
+                          %mtd
+                            %mo ♯
+                            %mi Ω
+                          %mtd
+                            %mover
+                              %mo →
+                              %mrow
+                          %mtd
+                            %mi Ω
+                    %mspace{:width => "thinmathspace"}
+                    %mo .
+                  %annotation{:encoding => "application/x-tex"}
+                    \\array{
+                    c_L(A) &amp;\to&amp; &amp;\to&amp; &amp;\to&amp; *
+                    \\\
+                    \\downarrow &amp;&amp; &amp;&amp; &amp;&amp; \downarrow
+                    \\\
+                    X &amp;\stackrel{\chi_A}{\to}&amp; \Omega
+                    \&amp;\stackrel{}{\to}&amp;
+                    \\sharp \Omega
+                    \&amp;\stackrel{}{\to}&amp;
+                    \\Omega
+                    }
+                    \\,.
+            %p
+              The pullback along the rightmost morphism is by definition
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo ♯
+                    %mo *
+                    %mo →
+                    %mo ♯
+                    %mi Ω
+                  %annotation{:encoding => "application/x-tex"} \sharp * \to \sharp \Omega
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mrow
+                      %mtable
+                        %mtr
+                          %mtd
+                            %msub
+                              %mi c
+                              %mi L
+                            %mo{:stretchy => "false"} (
+                            %mi A
+                            %mo{:stretchy => "false"} )
+                          %mtd
+                            %mo →
+                          %mtd
+                          %mtd
+                            %mo →
+                          %mtd
+                            %mo ♯
+                            %mo *
+                            %mo =
+                            %mo *
+                          %mtd
+                            %mo →
+                          %mtd
+                            %mo *
+                        %mtr
+                          %mtd
+                            %mo{:stretchy => "false"} ↓
+                          %mtd
+                          %mtd
+                          %mtd
+                          %mtd
+                            %mo{:stretchy => "false"} ↓
+                          %mtd
+                          %mtd
+                            %mo{:stretchy => "false"} ↓
+                        %mtr
+                          %mtd
+                            %mi X
+                          %mtd
+                            %mover
+                              %mo →
+                              %mrow
+                                %msub
+                                  %mi χ
+                                  %mi A
+                          %mtd
+                            %mi Ω
+                          %mtd
+                            %mover
+                              %mo →
+                              %mrow
+                          %mtd
+                            %mo ♯
+                            %mi Ω
+                          %mtd
+                            %mover
+                              %mo →
+                              %mrow
+                          %mtd
+                            %mi Ω
+                    %mspace{:width => "thinmathspace"}
+                    %mo .
+                  %annotation{:encoding => "application/x-tex"}
+                    \\array{
+                    c_L(A) &amp;\to&amp; &amp;\to&amp; \sharp * = * &amp;\to&amp; *
+                    \\\
+                    \\downarrow &amp;&amp; &amp;&amp; \downarrow &amp;&amp; \downarrow
+                    \\\
+                    X &amp;\stackrel{\chi_A}{\to}&amp; \Omega
+                    \&amp;\stackrel{}{\to}&amp;
+                    \\sharp \Omega
+                    \&amp;\stackrel{}{\to}&amp;
+                    \\Omega
+                    }
+                    \\,.
+            %p
+              Moreover, by the
+              %a.existingWikiWord{:href => "/nlab/show/natural+transformation"} naturality
+              of the
+              %a.existingWikiWord{:href => "/nlab/show/unit+of+an+adjunction"} adjunction unit
+              we have a
+              %a.existingWikiWord{:href => "/nlab/show/commuting+diagram"} commuting diagram
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mrow
+                      %mtable
+                        %mtr
+                          %mtd
+                            %mi X
+                          %mtd
+                            %mo →
+                          %mtd
+                            %mo ♯
+                            %mi X
+                        %mtr
+                          %mtd
+                            %msup
+                              %mrow
+                              %mpadded{:lspace => "-100%width", :width => "0"}
+                                %mrow
+                                  %msub
+                                    %mi χ
+                                    %mi A
+                            %mo{:stretchy => "false"} ↓
+                          %mtd
+                          %mtd
+                            %msup
+                              %mo{:stretchy => "false"} ↓
+                              %mpadded{:width => "0"}
+                                %mrow
+                                  %mo ♯
+                                  %msub
+                                    %mi χ
+                                    %mi A
+                        %mtr
+                          %mtd
+                            %mi Ω
+                          %mtd
+                            %mo →
+                          %mtd
+                            %mo ♯
+                            %mi Ω
+                    %mspace{:width => "thinmathspace"}
+                    %mo .
+                  %annotation{:encoding => "application/x-tex"}
+                    \\array{
+                    X &amp;\to&amp; \sharp X
+                    \\\
+                    {}^{\mathllap{\chi_A}}\downarrow &amp;&amp; \downarrow^{\mathrlap{\sharp \chi_A}}
+                    \\\
+                    \\Omega &amp;\to&amp; \sharp \Omega
+                    }
+                    \\,.
+            %p Using this in the remaining bottom morphism of our would-be pullback square we find that equivalently
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mrow
+                      %mtable
+                        %mtr
+                          %mtd
+                            %msub
+                              %mi c
+                              %mi L
+                            %mo{:stretchy => "false"} (
+                            %mi A
+                            %mo{:stretchy => "false"} )
+                          %mtd
+                            %mo →
+                          %mtd
+                          %mtd
+                            %mo →
+                          %mtd
+                            %mo ♯
+                            %mo *
+                            %mo =
+                            %mo *
+                          %mtd
+                            %mo →
+                          %mtd
+                            %mo *
+                        %mtr
+                          %mtd
+                            %mo{:stretchy => "false"} ↓
+                          %mtd
+                          %mtd
+                          %mtd
+                          %mtd
+                            %mo{:stretchy => "false"} ↓
+                          %mtd
+                          %mtd
+                            %mo{:stretchy => "false"} ↓
+                        %mtr
+                          %mtd
+                            %mi X
+                          %mtd
+                            %mover
+                              %mo →
+                              %mrow
+                          %mtd
+                            %mo ♯
+                            %mi X
+                          %mtd
+                            %mover
+                              %mo →
+                              %mrow
+                                %mo ♯
+                                %msub
+                                  %mi χ
+                                  %mi A
+                          %mtd
+                            %mo ♯
+                            %mi Ω
+                          %mtd
+                            %mover
+                              %mo →
+                              %mrow
+                          %mtd
+                            %mi Ω
+                  %annotation{:encoding => "application/x-tex"}
+                    \\array{
+                    c_L(A) &amp;\to&amp; &amp;\to&amp; \sharp * = * &amp;\to&amp; *
+                    \\\
+                    \\downarrow &amp;&amp; &amp;&amp; \downarrow &amp;&amp; \downarrow
+                    \\\
+                    X &amp;\stackrel{}{\to}&amp; \sharp X
+                    \&amp;\stackrel{\sharp \chi_A}{\to}&amp;
+                    \\sharp \Omega
+                    \&amp;\stackrel{}{\to}&amp;
+                    \\Omega
+                    }
+            %p
+              needs to be a pullback diagram. Since
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo ♯
+                  %annotation{:encoding => "application/x-tex"} \sharp
+              preserves pullbacks we have that also the middle square in
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mrow
+                      %mtable
+                        %mtr
+                          %mtd
+                            %msub
+                              %mi c
+                              %mi L
+                            %mo{:stretchy => "false"} (
+                            %mi A
+                            %mo{:stretchy => "false"} )
+                          %mtd
+                            %mo →
+                          %mtd
+                            %mo ♯
+                            %mi A
+                          %mtd
+                            %mo →
+                          %mtd
+                            %mo ♯
+                            %mo *
+                            %mo =
+                            %mo *
+                          %mtd
+                            %mo →
+                          %mtd
+                            %mo *
+                        %mtr
+                          %mtd
+                            %mo{:stretchy => "false"} ↓
+                          %mtd
+                          %mtd
+                            %mo{:stretchy => "false"} ↓
+                          %mtd
+                          %mtd
+                            %mo{:stretchy => "false"} ↓
+                          %mtd
+                          %mtd
+                            %mo{:stretchy => "false"} ↓
+                        %mtr
+                          %mtd
+                            %mi X
+                          %mtd
+                            %mover
+                              %mo →
+                              %mrow
+                          %mtd
+                            %mo ♯
+                            %mi X
+                          %mtd
+                            %mover
+                              %mo →
+                              %mrow
+                                %mo ♯
+                                %msub
+                                  %mi χ
+                                  %mi A
+                          %mtd
+                            %mo ♯
+                            %mi Ω
+                          %mtd
+                            %mover
+                              %mo →
+                              %mrow
+                          %mtd
+                            %mi Ω
+                  %annotation{:encoding => "application/x-tex"}
+                    \\array{
+                    c_L(A) &amp;\to&amp; \sharp A &amp;\to&amp; \sharp * = * &amp;\to&amp; *
+                    \\\
+                    \\downarrow &amp;&amp; \downarrow &amp;&amp; \downarrow &amp;&amp; \downarrow
+                    \\\
+                    X &amp;\stackrel{}{\to}&amp; \sharp X
+                    \&amp;\stackrel{\sharp \chi_A}{\to}&amp;
+                    \\sharp \Omega
+                    \&amp;\stackrel{}{\to}&amp;
+                    \\Omega
+                    }
+            %p
+              is a pullback. But then also the left square is a pullback, by def.
+              = succeed "." do
+                %a.maruku-ref{:href => "#ClosureOperatorOfReflection"}
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/pasting+law"} pasting law
+          .num_remark
+            %h6#remark_4 Remark
+            %p
+              Equivalently, by the
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/pasting+law"} pasting law
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi j
+                    %mo :
+                    %mi Ω
+                    %mo →
+                    %mi Ω
+                  %annotation{:encoding => "application/x-tex"} j : \Omega \to \Omega
+              is the
+              %a.existingWikiWord{:href => "/nlab/show/characteristic+function"} characteristic function
+              of the
+              = succeed "-closure," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi L
+                    %annotation{:encoding => "application/x-tex"} L
+              = succeed "," do
+                %a.maruku-ref{:href => "#ClosureOperatorOfReflection"}
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mo *
+                      %mo →
+                      %mi Ω
+                    %annotation{:encoding => "application/x-tex"} * \to \Omega
+              %a.existingWikiWord{:href => "/nlab/show/pasting+diagram"} pasting diagram
+              of
+              %a.existingWikiWord{:href => "/nlab/show/pullback"} pullback
+              squares
+            .maruku-equation
+              %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mrow
+                      %mtable
+                        %mtr
+                          %mtd
+                            %msub
+                              %mi c
+                              %mi L
+                            %mo{:stretchy => "false"} (
+                            %mo *
+                            %mo{:stretchy => "false"} )
+                          %mtd
+                            %mo →
+                          %mtd
+                            %mo ♯
+                            %mo *
+                            %mo =
+                            %mo *
+                          %mtd
+                            %mo →
+                          %mtd
+                            %mo *
+                        %mtr
+                          %mtd
+                            %mo{:stretchy => "false"} ↓
+                          %mtd
+                          %mtd
+                            %mo{:stretchy => "false"} ↓
+                          %mtd
+                          %mtd
+                            %mo{:stretchy => "false"} ↓
+                        %mtr
+                          %mtd
+                            %mi Ω
+                          %mtd
+                            %mo →
+                          %mtd
+                            %mo ♯
+                            %mi Ω
+                          %mtd
+                            %mover
+                              %mo →
+                              %mrow
+                                %msub
+                                  %mi χ
+                                  %mrow
+                                    %mo ♯
+                                    %mi true
+                          %mtd
+                            %mi Ω
+                    %mspace{:width => "thinmathspace"}
+                    %mo .
+                  %annotation{:encoding => "application/x-tex"}
+                    \\array{
+                    c_L(*) &amp;\to&amp; \sharp * = * &amp;\to &amp; *
+                    \\\
+                    \\downarrow &amp;&amp; \downarrow &amp;&amp; \downarrow
+                    \\\
+                    \\Omega &amp;\to&amp; \sharp \Omega &amp;\stackrel{\chi_{\sharp true}}{\to} &amp; \Omega
+                    }
+                    \\,.
+            %p
+              In this form the statement appears in the proof of (
+              %a{:href => "#Johnstone"}> Johnstone, Theorem A4.3.9
+              ).
+          %h2#enriched_generalization Enriched generalization
+          %ul
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Francis+Borceux"}> Francis Borceux
+                ,
+                = succeed "," do
+                  %em Algebraic localizations and elementary toposes
+                %strong 21
+                (1980), no. 4, 393–401. (
+                %a{:href => "http://www.ams.org/mathscinet-getitem?mr=606384"}> MR82g:18002
+                ,
+                = succeed ")" do
+                  %a{:href => "http://archive.numdam.org/article/CTGDC_1980__21_4_393_0.pdf"} pdf
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Francis+Borceux"}> Francis Borceux
+                ,
+                = succeed "," do
+                  %em Sheaves of algebras for a commutative theory
+                %strong 95
+                (1981), no. 1, 3–19. (
+                %a{:href => "http://www.ams.org/mathscinet-getitem?mr=628032"}> MR83c:18006
+                )
+          %p
+            Let
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi 𝒞
+                %annotation{:encoding => "application/x-tex"} \mathcal{C}
+            be a small category enriched over
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msup
+                    %mi Set
+                    %mstyle{:mathvariant => "bold"}
+                      %mi T
+                %annotation{:encoding => "application/x-tex"} Set^{\mathbf{T}}
+            where
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mstyle{:mathvariant => "bold"}
+                    %mi T
+                %annotation{:encoding => "application/x-tex"} \mathbf{T}
+            is a
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/commutative+algebraic+theory"} commutative algebraic theory
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo{:stretchy => "false"} [
+                    %msup
+                      %mi 𝒞
+                      %mi op
+                    %mo ,
+                    %msup
+                      %mtext Set
+                      %mstyle{:mathvariant => "bold"}
+                        %mi T
+                    %mo{:stretchy => "false"} ]
+                  %annotation{:encoding => "application/x-tex"} [\mathcal{C}^{op},\text{Set}^{\mathbf{T}}]
+            = succeed "-sieve" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mstyle{:mathvariant => "bold"}
+                      %mi T
+                  %annotation{:encoding => "application/x-tex"} \mathbf{T}
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi 𝒞
+                    %mo{:stretchy => "false"} (
+                    %mo{:lspace => "verythinmathspace", :rspace => "0em"} −
+                    %mo ,
+                    %mi x
+                    %mo{:stretchy => "false"} )
+                    %mo{:lspace => "verythinmathspace"} :
+                    %msup
+                      %mi 𝒞
+                      %mi op
+                    %mo →
+                    %msup
+                      %mtext Set
+                      %mstyle{:mathvariant => "bold"}
+                        %mi T
+                  %annotation{:encoding => "application/x-tex"} \mathcal{C}(-,x)\colon\mathcal{C}^{op}\rightarrow\text{Set}^{\mathbf{T}}
+            = succeed "-topology" do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mstyle{:mathvariant => "bold"}
+                      %mi T
+                  %annotation{:encoding => "application/x-tex"} \mathbf{T}
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi J
+                  %mo{:stretchy => "false"} (
+                  %mi x
+                  %mo{:stretchy => "false"} )
+                %annotation{:encoding => "application/x-tex"} J(x)
+            of emptypage
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}>
+              %semantics
+                %mrow
+                  %mstyle{:mathvariant => "bold"}
+                    %mi T
+                %annotation{:encoding => "application/x-tex"} \mathbf{T}
+            \-sieves for every
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi x
+                  %annotation{:encoding => "application/x-tex"} x
+          %p
+            He proves that there is an object
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %msub
+                    %mi Ω
+                    %mstyle{:mathvariant => "bold"}
+                      %mi T
+                %annotation{:encoding => "application/x-tex"} \Omega_{\mathbf{T}}
+            in
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mo{:stretchy => "false"} [
+                  %msup
+                    %mi 𝒞
+                    %mi op
+                  %mo ,
+                  %mtext Set
+                  %mo{:stretchy => "false"} ]
+                %annotation{:encoding => "application/x-tex"} [\mathcal{C}^{op},\text{Set}]
+            which classifies subobjects in
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo{:stretchy => "false"} [
+                    %msup
+                      %mi 𝒞
+                      %mi op
+                    %mo ,
+                    %msup
+                      %mtext Set
+                      %mstyle{:mathvariant => "bold"}
+                        %mi T
+                    %mo{:stretchy => "false"} ]
+                  %annotation{:encoding => "application/x-tex"} [\mathcal{C}^{op},\text{Set}^{\mathbf{T}}]
+          %ol
+            %li
+              %p
+                localizations of
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mo{:stretchy => "false"} [
+                      %msup
+                        %mi 𝒞
+                        %mtext op
+                      %mo ,
+                      %msup
+                        %mtext Set
+                        %mstyle{:mathvariant => "bold"}
+                          %mi T
+                      %mo{:stretchy => "false"} ]
+                    %annotation{:encoding => "application/x-tex"} [\mathcal{C}^{\text{op}},\text{Set}^{\mathbf{T}}]
+            %li
+              %p
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}>
+                  %semantics
+                    %mrow
+                      %mstyle{:mathvariant => "bold"}
+                        %mi T
+                    %annotation{:encoding => "application/x-tex"} \mathbf{T}
+                \-topologies on
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi 𝒞
+                    %annotation{:encoding => "application/x-tex"} \mathcal{C}
+            %li
+              %p
+                morphisms
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi j
+                      %mo{:lspace => "verythinmathspace"} :
+                      %msub
+                        %mi Ω
+                        %mstyle{:mathvariant => "bold"}
+                          %mi T
+                      %mo →
+                      %msub
+                        %mi Ω
+                        %mstyle{:mathvariant => "bold"}
+                          %mi T
+                    %annotation{:encoding => "application/x-tex"} j\colon\Omega_{\mathbf{T}}\rightarrow\Omega_{\mathbf{T}}
+                satisfying the Lawvere-Tierney axioms for a topology
+          %h2#related_concepts Related concepts
+          %ul
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/modality"} modality
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/modal+type+theory"} modal type theory
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/monad+%28in+programming+theory%29"} monad (in programming theory)
+          %h2#references References
+          %p
+            The notion is introduced as a
+            %a.existingWikiWord{:href => "/nlab/show/geometric+modality"} geometric modality
+            on p. 3 of
+          %ul
+            %li#Lawvere
+              %a.existingWikiWord{:href => "/nlab/show/William+Lawvere"}> William Lawvere
+              ,
+              = succeed "," do
+                %em Quantifiers and sheaves
+              = succeed ")" do
+                %a{:href => "http://www.mathunion.org/ICM/ICM1970.1/Main/icm1970.1.0329.0334.ocr.pdf"} pdf
+          %p
+            Detailed discussion of Lawvere-Tierney operators as
+            %a.existingWikiWord{:href => "/nlab/show/geometric+modalities"} geometric modalities
+            is in
+          %ul
+            %li#Goldblatt
+              %a.existingWikiWord{:href => "/nlab/show/Robert+Goldblatt"}> Robert Goldblatt
+              ,
+              = succeed "," do
+                %em Grothendieck topology as geometric modality
+          %p Textbook accounts include section V.1 of
+          %ul
+            %li#MacLaneMoerdijk
+              %a.existingWikiWord{:href => "/nlab/show/Saunders+MacLane"}> Saunders MacLane
+              ,
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/Ieke+Moerdijk"} Ieke Moerdijk
+              = succeed "," do
+                %em
+                  %a.existingWikiWord{:href => "/nlab/show/Sheaves+in+Geometry+and+Logic"} Sheaves in Geometry and Logic
+          %p (the notion of sheaves in section V.3, the sheafification functor in section V.3 and the relation to Grothendieck topologies in section V.4);
+          %p and section A4.4 of
+          %ul
+            %li#Johnstone
+              %a.existingWikiWord{:href => "/nlab/show/Peter+Johnstone"}> Peter Johnstone
+              ,
+              %em
+                %a.existingWikiWord{:href => "/nlab/show/Sketches+of+an+Elephant"} Sketches of an Elephant
+          %p
+            Discussion in
+            %a.existingWikiWord{:href => "/nlab/show/homotopy+type+theory"} homotopy type theory
+            is in
+          %ul
+            %li#QuirinTabareau16
+              Kevin Quirin, Nicolas Tabareau,
+              = succeed "," do
+                %em Lawvere-Tierney sheafification in Homotopy Type Theory
+              = succeed ")" do
+                %a{:href => "https://jfr.unibo.it/article/view/6232"} web
+          %p
+            The additive version of Lawvere-Tierney modular closure operators on categories of modules (as an additive version of a presheaf topos) – equivalent to
+            %a.existingWikiWord{:href => "/nlab/show/Gabriel+topology"} Gabriel topology
+            (=
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}>
+              %semantics
+                %mrow
+                  %mi Ab
+                %annotation{:encoding => "application/x-tex"} Ab
+            \-enriched Grothendieck topology) has been studied (and the equivalence proven) several years before Lawvere and Tierney in
+          %ul
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/Kim+Lin+Chew"}> Kim Lin Chew
+              ,
+              = succeed "," do
+                %em Closure operations in the study of rings of quotients
+        .revisedby
+          %p
+            Last revised on August 31, 2024 at 00:13:13.
+            See the
+            %a{:href => "/nlab/history/Lawvere-Tierney+topology", :style => "color: #005c19"} history
+            of this page for a list of all contributions to it.
+        .navigation.navfoot
+          %a#edit.navlink{:accesskey => "E", :href => "/nlab/edit/Lawvere-Tierney+topology", :rel => "nofollow"} Edit
+          %a{:href => "https://nforum.ncatlab.org/discussion/2740/#Item_18"} Discuss
+          %span.backintime
+            %a#to_previous_revision.navlinkbackintime{:accesskey => "B", :href => "/nlab/revision/Lawvere-Tierney+topology/49", :rel => "nofollow"} Previous revision
+          %a#see_changes.navlink{:accesskey => "C", :href => "/nlab/show/diff/Lawvere-Tierney+topology", :rel => "nofollow"} Changes from previous revision
+          %a#history.navlink{:accesskey => "S", :href => "/nlab/history/Lawvere-Tierney+topology", :rel => "nofollow"} History (49 revisions)
+          %a{:href => "/nlab/show/Lawvere-Tierney+topology/cite", :style => "color: black"} Cite
+          %a#view_print{:accesskey => "p", :href => "/nlab/print/Lawvere-Tierney+topology", :rel => "nofollow"} Print
+          %a#view_source{:href => "/nlab/source/Lawvere-Tierney+topology", :rel => "nofollow"} Source
+      / Content
+    / Container

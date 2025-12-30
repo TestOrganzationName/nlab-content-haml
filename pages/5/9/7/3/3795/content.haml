@@ -1,0 +1,711 @@
+!!! XML
+!!! 1.1
+%html{:xmlns => "http://www.w3.org/1999/xhtml"}
+  %head
+    %title
+      Donaldson-Thomas invariant in nLab
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:content => "index,follow", :name => "robots"}/
+    %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/
+    %link{:href => "/stylesheets/instiki.css?1676280126", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/stylesheets/mathematics.css?1660229990", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/stylesheets/syntax.css?1660229990", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/stylesheets/nlab.css?1676280126", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css", :rel => "stylesheet", :type => "text/css"}/
+    :css
+      h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+        color: #226622;
+      }
+      a:visited.existingWikiWord {
+        color: #164416;
+      }
+    :css
+      <!--/*--><![CDATA[/*><!--*/
+          .toc ul {margin: 0; padding: 0;}
+      .toc ul ul {margin: 0; padding: 0 0 0 10px;}
+      .toc li > p {margin: 0}
+      .toc ul li {list-style-type: none; position: relative;}
+      .toc div {border-top:1px dotted #ccc;}
+      .rightHandSide h2 {font-size: 1.5em;color:#008B26}
+      table.plaintable {
+          border-collapse:collapse;
+          margin-left:30px;
+          border:0;
+      }
+      .plaintable td {border:1px solid #000; padding: 3px;}
+      .plaintable th {padding: 3px;}
+      .plaintable caption {
+          font-weight: bold;
+          font-size:1.1em;
+          text-align:center;
+          margin-left:30px;
+      }
+          
+         
+      /* Query boxes for questioning and answering mechanism */
+      div.query{
+      background: #f6fff3;
+      border: solid #ce9;
+      border-width: 2px 1px;
+      padding: 0 1em;
+      margin: 0 1em;
+      max-height: 20em;
+      overflow: auto;
+      }
+      
+      /* Standout boxes for putting important text */
+      div.standout{
+      background: #fff1f1;
+      border: solid black;
+      border-width: 2px 1px;
+      padding: 0 1em;
+      margin: 0 1em;
+      overflow: auto;
+      }
+      
+      /* Icon for links to n-category arXiv documents 
+       (commented out for now i.e. disabled)
+      a[href*="http://arxiv.org/"] {
+        background-image: url(../files/arXiv_icon.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 22px;
+        } */
+          
+      /* Icon for links to n-category cafe posts (disabled) 
+      a[href*="http://golem.ph.utexas.edu/category"] {
+        background-image: url(../files/n-cafe_5.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 25px;
+        } */
+      
+      /* Icon for links to pdf files (disabled)
+      a[href$=".pdf"] {
+        background-image: url(../files/pdficon_small.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 25px;
+        } */
+      
+      /* Icon for links to pages, etc. -inside- pdf files (disabled)
+      a[href*=".pdf#"] {
+        background-image: url(../files/pdf_entry.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 25px;
+        } */
+      
+      a.existingWikiWord {
+      color: #226622;
+      }
+      
+      a.existingWikiWord:visited {
+      color: #226622;
+      }
+      
+      
+      a.existingWikiWord[title] {
+      border: 0px;
+      color: #aa0505;
+      text-decoration: none;
+      }
+          
+      a.existingWikiWord[title]:visited {
+      border: 0px;
+      color: #551111;
+      text-decoration: none;
+      }
+      
+      a[href^="http://"] {
+      border: 0px;
+      color: #003399;
+      }
+      
+      a[href^="http://"]:visited {
+      border: 0px;
+      color: #330066;
+      }
+      
+      a[href^="https://"] {
+      border: 0px;
+      color: #003399;
+      }
+      
+      a[href^="https://"]:visited {
+      border: 0px;
+      color: #330066;
+      }
+      
+      div.dropDown .hide {
+      display: none;
+      }
+      
+      div.dropDown:hover .hide {
+      display:block;
+      }
+      
+      div.clickDown .hide {
+      display: none;
+      }
+      
+      div.clickDown:focus {
+      outline:none;
+      }
+      
+      div.clickDown:focus .hide, div.clickDown:hover .hide {
+      display: block;
+      }
+      
+      div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+      display:block;
+      }
+      
+      div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+      display:none;
+      }
+      
+      div.clickDown .clickToReveal:after {
+      content: "A(Hover to reveal, click to "hold")";
+      font-size: 60%;
+      }
+      
+      div.clickDown .clickToHide:after {
+      content: "A(Click to hide)";
+      font-size: 60%;
+      }
+      div.clickDown .clickToHide, div.clickDown .clickToReveal {
+      white-space: pre-wrap;
+      }
+      
+      .un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+      margin-left: 1em;
+      }
+      
+      span.theorem_label {
+      margin-left: -1em;
+      }
+      .proof span.theorem_label {
+      margin-left: 0em;
+      }
+      :target {
+          background-color: #BBBBBB;
+          border-radius: 5pt;
+      }
+      
+        /*]]>*/-->
+    %script{:src => "/javascripts/prototype.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/effects.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/dragdrop.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/controls.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/application.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/page_helper.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/thm_numbering.js?1660229990", :type => "text/javascript"}
+    %script{:type => "text/x-mathjax-config"}
+      :cdata
+        <!--//--><![CDATA[//><!--
+        MathJax.Ajax.config.path["Contrib"] = "/MathJax";
+        MathJax.Hub.Config({
+        MathML: { useMathMLspacing: true },
+        "HTML-CSS": { scale: 90,
+        extensions: ["handle-floats.js"]
+        }
+        });
+        MathJax.Hub.Queue( function () {
+        var fos = document.getElementsByTagName('foreignObject');
+        for (var i = 0; i < fos.length; i++) {
+        MathJax.Hub.Typeset(fos[i]);
+        }
+        });
+        \//--><!]]>
+    :javascript
+      <!--//--><![CDATA[//><!--
+      window.addEventListener("DOMContentLoaded", function () {
+        var div = document.createElement('div');
+        var math = document.createElementNS('http://www.w3.org/1998/Math/MathML', 'math');
+        document.body.appendChild(div);
+        div.appendChild(math);
+      // Test for MathML support comparable to WebKit version https://trac.webkit.org/changeset/203640 or higher.
+        div.setAttribute('style', 'font-style: italic');
+        var mathml_unsupported = !(window.getComputedStyle(div.firstChild).getPropertyValue('font-style') === 'normal');
+        div.parentNode.removeChild(div);
+        if (mathml_unsupported) {
+          // MathML does not seem to be supported...
+          var s = document.createElement('script');
+          s.src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=MML_HTMLorMML-full";
+          document.querySelector('head').appendChild(s);
+        } else {
+          document.head.insertAdjacentHTML("beforeend", '<style>svg[viewBox] {max-width: 100%}</style>');
+        }
+      });
+      //--><!]]>
+    %link{:href => "https://ncatlab.org/nlab/atom_with_headlines", :rel => "alternate", :title => "Atom with headlines", :type => "application/atom+xml"}/
+    %link{:href => "https://ncatlab.org/nlab/atom_with_content", :rel => "alternate", :title => "Atom with full content", :type => "application/atom+xml"}/
+    :javascript
+      document.observe("dom:loaded", function() {
+        generateThmNumbers();
+      });
+  %body
+    #Container
+      #Content
+        %h1#pageName
+          %span{:style => "float: left; margin: 0.5em 0.25em -0.25em 0"}
+            %svg{:height => "1.8em", :viewbox => "0 0 190 181", :width => "1.872em", :xmlns => "http://www.w3.org/2000/svg"}
+              %path{:d => "M72.8 145c-1.6 17.3-15.7 10-23.6 20.2-5.6 7.3 4.8 15 11.4 15 11.5-.2 19-13.4 26.4-20.3 3.3-3 8.2-4 11.2-7.2a14 14 0 0 0 2.9-11.1c-1.4-9.6-12.4-18.6-16.9-27.2-5-9.6-10.7-27.4-24.1-27.7-17.4-.3-.4 26 4.7 30.7 2.4 2.3 5.4 4.1 7.3 6.9 1.6 2.3 2.1 5.8-1 7.2-5.9 2.6-12.4-6.3-15.5-10-8.8-10.6-15.5-23-26.2-31.8-5.2-4.3-11.8-8-18-3.7-7.3 4.9-4.2 12.9.2 18.5a81 81 0 0 0 30.7 23c3.3 1.5 12.8 5.6 10 10.7-2.5 5.2-11.7 3-15.6 1.1-8.4-3.8-24.3-21.3-34.4-13.7-3.5 2.6-2.3 7.6-1.2 11.1 2.8 9 12.2 17.2 20.9 20.5 17.3 6.7 34.3-8 50.8-12.1z", :fill => "#226622"}
+              %path{:d => "M145.9 121.3c-.2-7.5 0-19.6-4.5-26-5.4-7.5-12.9-1-14.1 5.8-1.4 7.8 2.7 14.1 4.8 21.3 3.4 12 5.8 29-.8 40.1-3.6-6.7-5.2-13-7-20.4-2.1-8.2-12.8-13.2-15.1-1.9-2 9.7 9 21.2 12 30.1 1.2 4 2 8.8 6.4 10.3 6.9 2.3 13.3-4.7 17.7-8.8 12.2-11.5 36.6-20.7 43.4-36.4 6.7-15.7-13.7-14-21.3-7.2-9.1 8-11.9 20.5-23.6 25.1 7.5-23.7 31.8-37.6 38.4-61.4 2-7.3-.8-29.6-13-19.8-14.5 11.6-6.6 37.6-23.3 49.2z", :fill => "#a41e32"}
+              %path{:d => "M86.3 47.5c0-13-10.2-27.6-5.8-40.4 2.8-8.4 14.1-10.1 17-1 3.8 11.6-.3 26.3-1.8 38 11.7-.7 10.5-16 14.8-24.3 2.1-4.2 5.7-9.1 11-6.7 6 2.7 7.4 9.2 6.6 15.1-2.2 14-12.2 18.8-22.4 27-3.4 2.7-8 6.6-5.9 11.6 2 4.4 7 4.5 10.7 2.8 7.4-3.3 13.4-16.5 21.7-16 14.6.7 12 21.9.9 26.2-5 1.9-10.2 2.3-15.2 3.9-5.8 1.8-9.4 8.7-15.7 8.9-6.1.1-9-6.9-14.3-9-14.4-6-33.3-2-44.7-14.7-3.7-4.2-9.6-12-4.9-17.4 9.3-10.7 28 7.2 35.7 12 2 1.1 11 6.9 11.4 1.1.4-5.2-10-8.2-13.5-10-11.1-5.2-30-15.3-35-27.3-2.5-6 2.8-13.8 9.4-13.6 6.9.2 13.4 7 17.5 12C70.9 34 75 43.8 86.3 47.4z", :fill => "#193c78"}
+          %span.webName nLab
+          Donaldson-Thomas invariant
+        .navigation
+          %span.skipNav
+            %a{:href => "#navEnd"} Skip the Navigation Links
+            |
+          %span{:style => "display:inline-block; width: 0.3em;"}
+          %a{:accesskey => "H", :href => "/nlab/show/HomePage", :title => "Home page"} Home Page
+          |
+          %a{:accesskey => "A", :href => "/nlab/all_pages", :title => "List of all pages"} All Pages
+          |
+          %a{:accesskey => "U", :href => "/nlab/latest_revisions", :title => "Latest edits and page creations"} Latest Revisions
+          |
+          %a{:href => "https://nforum.ncatlab.org/discussion/1043/#Item_3", :style => "color: black", :title => "Discuss this page in its dedicated thread on the nForum"} Discuss this page
+          |
+          %form#navigationSearchForm{"accept-charset" => "utf-8", :action => "/nlab/search", :method => "get"}
+            %fieldset.search
+              %input#searchField{:name => "query", :onblur => "this.value == '' ? this.value = 'Search' : true", :onfocus => "this.value == 'Search' ? this.value = '' : true", :style => "display:inline-block; float: left;", :type => "text", :value => "Search"}/
+          %span#navEnd
+        #revision
+          %meta{:content => "application/xhtml+xml;charset=utf-8", "http-equiv" => "Content-type"}/
+          %title Contents
+          .rightHandSide
+            .toc.clickDown{:tabindex => "0"}
+              %h3#context Context
+              %h4#motivic_cohomology Motivic cohomology
+              .hide
+                %div
+                  %p
+                    %strong>
+                      %a.existingWikiWord{:href => "/nlab/show/motive"} motive
+                    ,
+                    %strong
+                      %a.existingWikiWord{:href => "/nlab/show/motivic+cohomology"} motivic cohomology
+                  %h2#ingredients Ingredients
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/cohomology"} cohomology
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/stable+homotopy+theory"} stable homotopy theory
+                  %h2#definitions Definitions
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/pure+motive"} pure motive
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/Chow+motive"} Chow motive
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/numerical+motive"} numerical motive
+                          %ul
+                            %li
+                              %a.existingWikiWord{:href => "/nlab/show/periods"}> periods
+                              ,
+                              = succeed "," do
+                                %a.existingWikiWord{:href => "/nlab/show/motivic+Galois+group"} motivic Galois group
+                              %a.existingWikiWord{:href => "/nlab/show/cosmic+Galois+group"} cosmic Galois group
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/mixed+motive"} mixed motive
+                      %ul
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/Nori+motive"} Nori motive
+                        %li
+                          %p
+                            %a.existingWikiWord{:href => "/nlab/show/Voevodsky+motive"} Voevodsky motive
+                          %ul
+                            %li
+                              %a.existingWikiWord{:href => "/nlab/show/A1-homotopy+theory"} A1-homotopy theory
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/noncommutative+motive"} noncommutative motive
+                      %ul
+                        %li
+                          %a.existingWikiWord{:href => "/nlab/show/bivariant+algebraic+K-theory"}> bivariant algebraic K-theory
+                          ,
+                          %a.existingWikiWord{:href => "/nlab/show/KK-theory"} KK-theory
+                  %h2#related Related
+                  %ul
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/motivic+function"} motivic function
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/motivic+integration"} motivic integration
+                    %li
+                      %p
+                        %a.existingWikiWord{:href => "/nlab/show/motivic+Donaldson-Thomas+invariant"} motivic Donaldson-Thomas invariant
+                  %div
+                    %p
+                      %a{:href => "/nlab/edit/motivic+cohomology+-+contents"} Edit this sidebar
+          %h1#contents Contents
+          .maruku_toc
+            %ul
+              %li
+                %a{:href => "#idea"} Idea
+              %ul
+                %li
+                  %a{:href => "#in_mathematics"} In mathematics
+                %li
+                  %a{:href => "#in_string_theory"} In string theory
+                %li
+                  %a{:href => "#Motivic"} Motivic DT invariants
+              %li
+                %a{:href => "#related_concepts"} Related concepts
+              %li
+                %a{:href => "#references"} References
+              %ul
+                %li
+                  %a{:href => "#general"} General
+                %li
+                  %a{:href => "#motivic_donaldsonthomas_invariants"} Motivic Donaldson-Thomas invariants
+                %li
+                  %a{:href => "#relation_to_wall_crossing"} Relation to wall crossing
+                %li
+                  %a{:href => "#RelationToStringTheory"} Relation to string theory
+          %h2#idea Idea
+          %h3#in_mathematics In mathematics
+          %p
+            Consider a complex projective
+            %a.existingWikiWord{:href => "/nlab/show/Calabi-Yau+manifold"} Calabi-Yau 3-manifold
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi X
+                %annotation{:encoding => "application/x-tex"} X
+            with volume form
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi vol
+                      %mi X
+                  %annotation{:encoding => "application/x-tex"} vol_X
+            %a.existingWikiWord{:href => "/nlab/show/Casson+invariant"} Casson invariant
+            which may be defined using the holomorphic
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/Chern-Simons+theory"} Chern-Simons functional
+          %p
+            For a holomorphic connection
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi A
+                    %mo =
+                    %msub
+                      %mi A
+                      %mn 0
+                    %mo +
+                    %mi α
+                  %annotation{:encoding => "application/x-tex"} A = A_0 +\alpha
+          .maruku-equation
+            %math.maruku-mathml{:display => "block", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+              %semantics
+                %mrow
+                  %mi CS
+                  %mo{:stretchy => "false"} (
+                  %mi A
+                  %mo{:stretchy => "false"} )
+                  %mo =
+                  %msub
+                    %mo ∫
+                    %mi X
+                  %mi Tr
+                  %mo{:stretchy => "false"} (
+                  %msub
+                    %mover
+                      %mo ∇
+                      %mo{:stretchy => "false"} ¯
+                    %mrow
+                      %msub
+                        %mi A
+                        %mn 0
+                  %mi α
+                  %mo ∧
+                  %mi α
+                  %mo +
+                  %mfrac
+                    %mn 1
+                    %mn 2
+                  %mi α
+                  %mo ∧
+                  %mi α
+                  %mo ∧
+                  %mi α
+                  %mo{:stretchy => "false"} )
+                  %msub
+                    %mi vol
+                    %mi X
+                %annotation{:encoding => "application/x-tex"} CS(A) = \int_X Tr(\bar\nabla_{A_0} \alpha\wedge\alpha +\frac{1}{2}\alpha\wedge\alpha\wedge\alpha) vol_X
+          %p
+            Its critical points are holomorphically flat connections:
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msubsup
+                      %mi F
+                      %mi A
+                      %mrow
+                        %mn 0
+                        %mo ,
+                        %mn 2
+                    %mo =
+                    %mn 0
+                  %annotation{:encoding => "application/x-tex"} F^{0,2}_A = 0
+            = succeed "s" do
+              %a.existingWikiWord{:href => "/nlab/show/BPS+state"} BPS state
+            = succeed ";" do
+              %a.existingWikiWord{:href => "/nlab/show/K%C3%A4hler+manifold"} Kähler form
+            = succeed "." do
+              %a.existingWikiWord{:href => "/nlab/show/wall+crossing"} wall crossing
+          %p
+            Under the
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/mirror+symmetry"} mirror symmetry
+            = succeed "s" do
+              %a.existingWikiWord{:href => "/nlab/show/Lagrangian+submanifold"} Lagrangian submanifold
+            = succeed "s" do
+              %a.existingWikiWord{:href => "/nlab/show/special+Lagrangian+submanifold"} special Lagrangian submanifold
+          %h3#in_string_theory In string theory
+          %p
+            … in
+            = succeed ":" do
+              %a.existingWikiWord{:href => "/nlab/show/heterotic+string+theory"} heterotic string theory
+            = succeed "\u2026" do
+              %a{:href => "#HeLee12"} He-Lee 12
+          %h3#Motivic Motivic DT invariants
+          %p
+            A more general setup of
+            %a.existingWikiWord{:href => "/nlab/show/motive"} motivic
+            Donaldson-Thomas invariants is given by
+            %a.existingWikiWord{:href => "/nlab/show/Dominic+Joyce"} Dominic Joyce
+            and by
+            %a.existingWikiWord{:href => "/nlab/show/Maxim+Kontsevich"} Maxim Kontsevich
+            and
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/Yan+Soibelman"} Yan Soibelman
+          %h2#related_concepts Related concepts
+          %ul
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/Gromov-Witten%2FDonaldson-Thomas+correspondence"} Gromov-Witten/Donaldson-Thomas correspondence
+          %h2#references References
+          %h3#general General
+          %ul
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Simon+Donaldson"}> Simon Donaldson
+                , …
+            %li
+              %p
+                Young-Hoon Kiem, Jun Li,
+                = succeed "," do
+                  %em Categorification of Donaldson-Thomas invariants via Perverse Sheaves
+                %a{:href => "http://arxiv.org/abs/1212.6444"} arxiv/1212.6444
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Stavros+Garoufalidis"}> Stavros Garoufalidis
+                ,
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/Peter+Scholze"} Peter Scholze
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/Campbell+Wheeler"} Campbell Wheeler
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/Don+Zagier"} Don Zagier
+                %em The Habiro ring of a number field
+                (
+                %a{:href => "https://arxiv.org/abs/2412.04241"}> arXiv:2412.04241
+                )
+          %h3#motivic_donaldsonthomas_invariants Motivic Donaldson-Thomas invariants
+          %p The original articles are
+          %ul
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Dominic+Joyce"}> Dominic Joyce
+                , Yinan Song,
+                %em A theory of generalized Donaldson-Thomas invariants
+                (
+                %a{:href => "http://arxiv.org/abs/0810.5645"}> arxiv/0810.5645
+                )
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Maxim+Kontsevich"}> Maxim Kontsevich
+                ,
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/Yan+Soibelman"} Yan Soibelman
+                = succeed "," do
+                  %em Stability structures, motivic Donaldson-Thomas invariants and cluster transformations
+                = succeed ");" do
+                  %a{:href => "http://arxiv.org/abs/0811.2435"} arXiv:0811.2435
+          %p summarized in
+          %ul
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/Maxim+Kontsevich"}> Maxim Kontsevich
+              ,
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/Yan+Soibelman"} Yan Soibelman
+              = succeed "," do
+                %em Motivic Donaldson-Thomas invariants: summary of results
+              = succeed ");" do
+                %a{:href => "http://arxiv.org/abs/0910.4315"} 0910.4315
+          %p and with lecture notes in
+          %ul
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/Yan+Soibelman"}> Yan Soibelman
+              ,
+              = succeed "," do
+                %em Motivic Donaldson-Thomas invariants and wall-crossing formulas
+              %a{:href => "http://math.berkeley.edu/~reshetik/CSR-Lectures.html"} Chern-Simons Research Lectures
+              2010 (
+              %a{:href => "http://math.berkeley.edu/~reshetik/CSRL/Yan-Berkeley-2010-2.pdf"}> pdf
+              )
+          %p See also
+          %ul
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/Maxim+Kontsevich"}> Maxim Kontsevich
+              ,
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/Yan+Soibelman"} Yan Soibelman
+              %em
+                Cohomological
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/Hall+algebra"} Hall algebra
+              (
+              %a{:href => "http://arxiv.org/abs/1006.2706"}> arxiv/1006.2706
+              )
+            %li
+              D.-E. Diaconescu, Z. Hua, Y. Soibelman,
+              = succeed "," do
+                %em HOMFLY polynomials, stable pairs and motivic Donaldson-Thomas invariants
+              %a{:href => "http://arxiv.org/abs/1202.4651"} arxiv/1202.4651
+            %li
+              Tudor Dimofte, Sergei Gukov,
+              = succeed "," do
+                %em Refined, Motivic, and Quantum
+              %a{:href => "http://arxiv.org/abs/0904.1420"} arxiv/0904.1420
+            %li
+              Vittoria Bussi, Shoji Yokura,
+              = succeed "," do
+                %em Naive motivic Donaldson-Thomas type Hirzebruch classes and some problems
+              %a{:href => "http://arxiv.org/abs/1306.4725"} arxiv/1306.4725
+            %li
+              Andrew Morrison, Sergey Mozgovoy, Kentaro Nagao, Balazs Szendroi,
+              = succeed "," do
+                %em Motivic Donaldson-Thomas invariants of the conifold and the refined topological vertex
+              %a{:href => "http://arxiv.org/abs/1107.5017"} arxiv/1107.5017
+            %li
+              Markus Reineke,
+              = succeed "," do
+                %em Degenerate Cohomological Hall algebra and quantized Donaldson-Thomas invariants for m-loop quivers
+              %a{:href => "http://arxiv.org/abs/1102.3978"} arxiv/1102.3978
+          %h3#relation_to_wall_crossing Relation to wall crossing
+          %ul
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Maxim+Kontsevich"}> Maxim Kontsevich
+                ,
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/Yan+Soibelman"} Yan Soibelman
+                = succeed "," do
+                  %em Wall-crossing structures in Donaldson-Thomas invariants, integrable systems and Mirror Symmetry
+                = succeed ")" do
+                  %a{:href => "http://arxiv.org/abs/1303.3253"} arxiv/1303.3253
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Sergio+Cecotti"}> Sergio Cecotti
+                ,
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/Cumrun+Vafa"} Cumrun Vafa
+                %em BPS wall crossing and topological strings
+                \&amp;lbrack;
+                %a{:href => "http://arxiv.org/abs/0910.2615"}> arXiv/0910.2615
+                \&amp;rbrack;
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Davide+Gaiotto"}> Davide Gaiotto
+                ,
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/Greg+Moore"} Gregory W. Moore
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/Andrew+Neitzke"} Andrew Neitzke
+                %em
+                  %a.existingWikiWord{:href => "/nlab/show/wall+crossing"}> Wall-crossing
+                  ,
+                  = succeed "s," do
+                    %a.existingWikiWord{:href => "/nlab/show/Hitchin+system"} Hitchin system
+                  = succeed "," do
+                    %a.existingWikiWord{:href => "/nlab/show/WKB+approximation"} WKB approximation
+                  %a{:href => "http://arxiv.org/abs/0907.3987"} arxiv/0907.3987
+            %li
+              %p
+                sbseminar blog:
+                %a{:href => "http://sbseminar.wordpress.com/2009/03/25/hall-algebras-and-donaldson-thomas-invariants-i"} Hall algebras and Donaldson-Thomas invariants-i
+          %h3#RelationToStringTheory Relation to string theory
+          %p
+            In
+            = succeed ":" do
+              %a.existingWikiWord{:href => "/nlab/show/heterotic+string+theory"} heterotic string theory
+          %ul
+            %li#HeLee12
+              %a.existingWikiWord{:href => "/nlab/show/Yang-Hui+He"}> Yang-Hui He
+              , Seung-Joo Lee,
+              = succeed "," do
+                %em Quiver Structure of Heterotic Moduli
+              = succeed ")" do
+                %a{:href => "https://arxiv.org/abs/1208.3004"} arXiv:1208.3004
+          %p
+            Relation to
+            = succeed ":" do
+              %a.existingWikiWord{:href => "/nlab/show/Hilbert+schemes"} Hilbert schemes
+          %ul
+            %li
+              %p
+                Michele Cirafici, Annamaria Sinkovics,
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/Richard+Szabo"} Richard Szabo
+                = succeed "," do
+                  %em Cohomological gauge theory, quiver matrix models and Donaldson-Thomas theory
+                = succeed ")" do
+                  %a{:href => "https://arxiv.org/abs/0803.4188"} arXiv:0803.4188
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Artan+Sheshmani"}> Artan Sheshmani
+                ,
+                = succeed "," do
+                  %em Hilbert Schemes, Donaldson-Thomas theory, Vafa-Witten and Seiberg-Witten theories
+                = succeed "," do
+                  %a{:href => "http://j.mp/2U7qd01"} j.mp:2U7qd01
+                = succeed ")" do
+                  %a{:href => "https://scholar.harvard.edu/files/artan/files/iccm_07_02_a03.pdf"} pdf
+        .revisedby
+          %p
+            Last revised on April  8, 2025 at 00:44:53.
+            See the
+            %a{:href => "/nlab/history/Donaldson-Thomas+invariant", :style => "color: #005c19"} history
+            of this page for a list of all contributions to it.
+        .navigation.navfoot
+          %a#edit.navlink{:accesskey => "E", :href => "/nlab/edit/Donaldson-Thomas+invariant", :rel => "nofollow"} Edit
+          %a{:href => "https://nforum.ncatlab.org/discussion/1043/#Item_3"} Discuss
+          %span.backintime
+            %a#to_previous_revision.navlinkbackintime{:accesskey => "B", :href => "/nlab/revision/Donaldson-Thomas+invariant/18", :rel => "nofollow"} Previous revision
+          %a#see_changes.navlink{:accesskey => "C", :href => "/nlab/show/diff/Donaldson-Thomas+invariant", :rel => "nofollow"} Changes from previous revision
+          %a#history.navlink{:accesskey => "S", :href => "/nlab/history/Donaldson-Thomas+invariant", :rel => "nofollow"} History (18 revisions)
+          %a{:href => "/nlab/show/Donaldson-Thomas+invariant/cite", :style => "color: black"} Cite
+          %a#view_print{:accesskey => "p", :href => "/nlab/print/Donaldson-Thomas+invariant", :rel => "nofollow"} Print
+          %a#view_source{:href => "/nlab/source/Donaldson-Thomas+invariant", :rel => "nofollow"} Source
+      / Content
+    / Container

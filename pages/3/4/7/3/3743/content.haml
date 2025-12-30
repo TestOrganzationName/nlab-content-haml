@@ -1,0 +1,810 @@
+!!! XML
+!!! 1.1
+%html{:xmlns => "http://www.w3.org/1999/xhtml"}
+  %head
+    %title
+      rewriting in nLab
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:content => "index,follow", :name => "robots"}/
+    %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/
+    %link{:href => "/stylesheets/instiki.css?1676280126", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/stylesheets/mathematics.css?1660229990", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/stylesheets/syntax.css?1660229990", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/stylesheets/nlab.css?1676280126", :media => "all", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css", :rel => "stylesheet", :type => "text/css"}/
+    :css
+      h1#pageName, div.info, .newWikiWord a, a.existingWikiWord, .newWikiWord a:hover, [actiontype="toggle"]:hover, #TextileHelp h3 {
+        color: #226622;
+      }
+      a:visited.existingWikiWord {
+        color: #164416;
+      }
+    :css
+      <!--/*--><![CDATA[/*><!--*/
+          .toc ul {margin: 0; padding: 0;}
+      .toc ul ul {margin: 0; padding: 0 0 0 10px;}
+      .toc li > p {margin: 0}
+      .toc ul li {list-style-type: none; position: relative;}
+      .toc div {border-top:1px dotted #ccc;}
+      .rightHandSide h2 {font-size: 1.5em;color:#008B26}
+      table.plaintable {
+          border-collapse:collapse;
+          margin-left:30px;
+          border:0;
+      }
+      .plaintable td {border:1px solid #000; padding: 3px;}
+      .plaintable th {padding: 3px;}
+      .plaintable caption {
+          font-weight: bold;
+          font-size:1.1em;
+          text-align:center;
+          margin-left:30px;
+      }
+          
+         
+      /* Query boxes for questioning and answering mechanism */
+      div.query{
+      background: #f6fff3;
+      border: solid #ce9;
+      border-width: 2px 1px;
+      padding: 0 1em;
+      margin: 0 1em;
+      max-height: 20em;
+      overflow: auto;
+      }
+      
+      /* Standout boxes for putting important text */
+      div.standout{
+      background: #fff1f1;
+      border: solid black;
+      border-width: 2px 1px;
+      padding: 0 1em;
+      margin: 0 1em;
+      overflow: auto;
+      }
+      
+      /* Icon for links to n-category arXiv documents 
+       (commented out for now i.e. disabled)
+      a[href*="http://arxiv.org/"] {
+        background-image: url(../files/arXiv_icon.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 22px;
+        } */
+          
+      /* Icon for links to n-category cafe posts (disabled) 
+      a[href*="http://golem.ph.utexas.edu/category"] {
+        background-image: url(../files/n-cafe_5.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 25px;
+        } */
+      
+      /* Icon for links to pdf files (disabled)
+      a[href$=".pdf"] {
+        background-image: url(../files/pdficon_small.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 25px;
+        } */
+      
+      /* Icon for links to pages, etc. -inside- pdf files (disabled)
+      a[href*=".pdf#"] {
+        background-image: url(../files/pdf_entry.gif);
+        background-repeat: no-repeat;
+        background-position: right bottom;
+           padding-right: 25px;
+        } */
+      
+      a.existingWikiWord {
+      color: #226622;
+      }
+      
+      a.existingWikiWord:visited {
+      color: #226622;
+      }
+      
+      
+      a.existingWikiWord[title] {
+      border: 0px;
+      color: #aa0505;
+      text-decoration: none;
+      }
+          
+      a.existingWikiWord[title]:visited {
+      border: 0px;
+      color: #551111;
+      text-decoration: none;
+      }
+      
+      a[href^="http://"] {
+      border: 0px;
+      color: #003399;
+      }
+      
+      a[href^="http://"]:visited {
+      border: 0px;
+      color: #330066;
+      }
+      
+      a[href^="https://"] {
+      border: 0px;
+      color: #003399;
+      }
+      
+      a[href^="https://"]:visited {
+      border: 0px;
+      color: #330066;
+      }
+      
+      div.dropDown .hide {
+      display: none;
+      }
+      
+      div.dropDown:hover .hide {
+      display:block;
+      }
+      
+      div.clickDown .hide {
+      display: none;
+      }
+      
+      div.clickDown:focus {
+      outline:none;
+      }
+      
+      div.clickDown:focus .hide, div.clickDown:hover .hide {
+      display: block;
+      }
+      
+      div.clickDown .clickToReveal, div.clickDown:focus .clickToHide {
+      display:block;
+      }
+      
+      div.clickDown:focus .clickToReveal, div.clickDown .clickToHide {
+      display:none;
+      }
+      
+      div.clickDown .clickToReveal:after {
+      content: "A(Hover to reveal, click to "hold")";
+      font-size: 60%;
+      }
+      
+      div.clickDown .clickToHide:after {
+      content: "A(Click to hide)";
+      font-size: 60%;
+      }
+      div.clickDown .clickToHide, div.clickDown .clickToReveal {
+      white-space: pre-wrap;
+      }
+      
+      .un_theorem, .num_theorem, .un_lemma, .num_lemma, .un_prop, .num_prop, .un_cor, .num_cor, .un_defn, .num_defn, .un_example, .num_example, .un_note, .num_note, .un_remark, .num_remark {
+      margin-left: 1em;
+      }
+      
+      span.theorem_label {
+      margin-left: -1em;
+      }
+      .proof span.theorem_label {
+      margin-left: 0em;
+      }
+      :target {
+          background-color: #BBBBBB;
+          border-radius: 5pt;
+      }
+      
+        /*]]>*/-->
+    %script{:src => "/javascripts/prototype.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/effects.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/dragdrop.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/controls.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/application.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/page_helper.js?1660229990", :type => "text/javascript"}
+    %script{:src => "/javascripts/thm_numbering.js?1660229990", :type => "text/javascript"}
+    %script{:type => "text/x-mathjax-config"}
+      :cdata
+        <!--//--><![CDATA[//><!--
+        MathJax.Ajax.config.path["Contrib"] = "/MathJax";
+        MathJax.Hub.Config({
+        MathML: { useMathMLspacing: true },
+        "HTML-CSS": { scale: 90,
+        extensions: ["handle-floats.js"]
+        }
+        });
+        MathJax.Hub.Queue( function () {
+        var fos = document.getElementsByTagName('foreignObject');
+        for (var i = 0; i < fos.length; i++) {
+        MathJax.Hub.Typeset(fos[i]);
+        }
+        });
+        \//--><!]]>
+    :javascript
+      <!--//--><![CDATA[//><!--
+      window.addEventListener("DOMContentLoaded", function () {
+        var div = document.createElement('div');
+        var math = document.createElementNS('http://www.w3.org/1998/Math/MathML', 'math');
+        document.body.appendChild(div);
+        div.appendChild(math);
+      // Test for MathML support comparable to WebKit version https://trac.webkit.org/changeset/203640 or higher.
+        div.setAttribute('style', 'font-style: italic');
+        var mathml_unsupported = !(window.getComputedStyle(div.firstChild).getPropertyValue('font-style') === 'normal');
+        div.parentNode.removeChild(div);
+        if (mathml_unsupported) {
+          // MathML does not seem to be supported...
+          var s = document.createElement('script');
+          s.src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=MML_HTMLorMML-full";
+          document.querySelector('head').appendChild(s);
+        } else {
+          document.head.insertAdjacentHTML("beforeend", '<style>svg[viewBox] {max-width: 100%}</style>');
+        }
+      });
+      //--><!]]>
+    %link{:href => "https://ncatlab.org/nlab/atom_with_headlines", :rel => "alternate", :title => "Atom with headlines", :type => "application/atom+xml"}/
+    %link{:href => "https://ncatlab.org/nlab/atom_with_content", :rel => "alternate", :title => "Atom with full content", :type => "application/atom+xml"}/
+    :javascript
+      document.observe("dom:loaded", function() {
+        generateThmNumbers();
+      });
+  %body
+    #Container
+      #Content
+        %h1#pageName
+          %span{:style => "float: left; margin: 0.5em 0.25em -0.25em 0"}
+            %svg{:height => "1.8em", :viewbox => "0 0 190 181", :width => "1.872em", :xmlns => "http://www.w3.org/2000/svg"}
+              %path{:d => "M72.8 145c-1.6 17.3-15.7 10-23.6 20.2-5.6 7.3 4.8 15 11.4 15 11.5-.2 19-13.4 26.4-20.3 3.3-3 8.2-4 11.2-7.2a14 14 0 0 0 2.9-11.1c-1.4-9.6-12.4-18.6-16.9-27.2-5-9.6-10.7-27.4-24.1-27.7-17.4-.3-.4 26 4.7 30.7 2.4 2.3 5.4 4.1 7.3 6.9 1.6 2.3 2.1 5.8-1 7.2-5.9 2.6-12.4-6.3-15.5-10-8.8-10.6-15.5-23-26.2-31.8-5.2-4.3-11.8-8-18-3.7-7.3 4.9-4.2 12.9.2 18.5a81 81 0 0 0 30.7 23c3.3 1.5 12.8 5.6 10 10.7-2.5 5.2-11.7 3-15.6 1.1-8.4-3.8-24.3-21.3-34.4-13.7-3.5 2.6-2.3 7.6-1.2 11.1 2.8 9 12.2 17.2 20.9 20.5 17.3 6.7 34.3-8 50.8-12.1z", :fill => "#226622"}
+              %path{:d => "M145.9 121.3c-.2-7.5 0-19.6-4.5-26-5.4-7.5-12.9-1-14.1 5.8-1.4 7.8 2.7 14.1 4.8 21.3 3.4 12 5.8 29-.8 40.1-3.6-6.7-5.2-13-7-20.4-2.1-8.2-12.8-13.2-15.1-1.9-2 9.7 9 21.2 12 30.1 1.2 4 2 8.8 6.4 10.3 6.9 2.3 13.3-4.7 17.7-8.8 12.2-11.5 36.6-20.7 43.4-36.4 6.7-15.7-13.7-14-21.3-7.2-9.1 8-11.9 20.5-23.6 25.1 7.5-23.7 31.8-37.6 38.4-61.4 2-7.3-.8-29.6-13-19.8-14.5 11.6-6.6 37.6-23.3 49.2z", :fill => "#a41e32"}
+              %path{:d => "M86.3 47.5c0-13-10.2-27.6-5.8-40.4 2.8-8.4 14.1-10.1 17-1 3.8 11.6-.3 26.3-1.8 38 11.7-.7 10.5-16 14.8-24.3 2.1-4.2 5.7-9.1 11-6.7 6 2.7 7.4 9.2 6.6 15.1-2.2 14-12.2 18.8-22.4 27-3.4 2.7-8 6.6-5.9 11.6 2 4.4 7 4.5 10.7 2.8 7.4-3.3 13.4-16.5 21.7-16 14.6.7 12 21.9.9 26.2-5 1.9-10.2 2.3-15.2 3.9-5.8 1.8-9.4 8.7-15.7 8.9-6.1.1-9-6.9-14.3-9-14.4-6-33.3-2-44.7-14.7-3.7-4.2-9.6-12-4.9-17.4 9.3-10.7 28 7.2 35.7 12 2 1.1 11 6.9 11.4 1.1.4-5.2-10-8.2-13.5-10-11.1-5.2-30-15.3-35-27.3-2.5-6 2.8-13.8 9.4-13.6 6.9.2 13.4 7 17.5 12C70.9 34 75 43.8 86.3 47.4z", :fill => "#193c78"}
+          %span.webName nLab
+          rewriting
+        .navigation
+          %span.skipNav
+            %a{:href => "#navEnd"} Skip the Navigation Links
+            |
+          %span{:style => "display:inline-block; width: 0.3em;"}
+          %a{:accesskey => "H", :href => "/nlab/show/HomePage", :title => "Home page"} Home Page
+          |
+          %a{:accesskey => "A", :href => "/nlab/all_pages", :title => "List of all pages"} All Pages
+          |
+          %a{:accesskey => "U", :href => "/nlab/latest_revisions", :title => "Latest edits and page creations"} Latest Revisions
+          |
+          %a{:href => "https://nforum.ncatlab.org/discussion/11578/#Item_10", :style => "color: black", :title => "Discuss this page in its dedicated thread on the nForum"} Discuss this page
+          |
+          %form#navigationSearchForm{"accept-charset" => "utf-8", :action => "/nlab/search", :method => "get"}
+            %fieldset.search
+              %input#searchField{:name => "query", :onblur => "this.value == '' ? this.value = 'Search' : true", :onfocus => "this.value == 'Search' ? this.value = '' : true", :style => "display:inline-block; float: left;", :type => "text", :value => "Search"}/
+          %span#navEnd
+        #revision
+          %meta{:content => "application/xhtml+xml;charset=utf-8", "http-equiv" => "Content-type"}/
+          %title Rewriting
+          %h1#rewriting Rewriting
+          .maruku_toc
+            %ul
+              %li
+                %a{:href => "#idea"} Idea
+              %li
+                %a{:href => "#related_entries"} Related entries
+              %li
+                %a{:href => "#references"} References
+              %ul
+                %li
+                  %a{:href => "#general"} General
+                %li
+                  %a{:href => "#higher_dimensional_rewriting"} Higher dimensional rewriting
+          %h2#idea Idea
+          %p
+            Given an alphabet of letters and symbols (perhaps ‘
+            %a.existingWikiWord{:href => "/nlab/show/type"}> type
+            d’, so that certain symbols are declared to be ‘symbols for functions’, etc., e.g. ‘
+            %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}>
+              %semantics
+                %mrow
+                  %mo{:lspace => "verythinmathspace", :rspace => "0em"} +
+                %annotation{:encoding => "application/x-tex"} +
+            ’ is a symbol for a binary operation), then one can form
+            %a.existingWikiWord{:href => "/nlab/show/list"} strings
+            of letters to give words or more generally (well formed) formulae involving symbols of all types.
+          %p
+            In a
+            = succeed "," do
+              %em rewriting system
+          .un_example
+            %h6#example_type Example type
+            %p
+              One type of example of a rewriting system is given by a
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/group+presentation"} group presentation
+              = succeed "," do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mo{:stretchy => "false"} (
+                      %mi X
+                      %mo ,
+                      %mi R
+                      %mo{:stretchy => "false"} )
+                    %annotation{:encoding => "application/x-tex"} (X,R)
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi X
+                  %annotation{:encoding => "application/x-tex"} X
+              is a set of generators for a group
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi G
+                  %annotation{:encoding => "application/x-tex"} G
+              and
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi R
+                  %annotation{:encoding => "application/x-tex"} R
+              is a subset of pairs of elements in the free group on
+              = succeed "." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi X
+                    %annotation{:encoding => "application/x-tex"} X
+            %ul
+              %li
+                %p
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi X
+                        %mo =
+                        %mo{:stretchy => "false"} {
+                        %mi a
+                        %mo ,
+                        %mi b
+                        %mo{:stretchy => "false"} }
+                      %annotation{:encoding => "application/x-tex"} X = \{a,b\}
+              %li
+                %p
+                  %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                    %semantics
+                      %mrow
+                        %mi R
+                        %mo =
+                        %mo{:stretchy => "false"} {
+                        %mo{:stretchy => "false"} (
+                        %mi a
+                        %mi a
+                        %mi a
+                        %mo ,
+                        %mn 1
+                        %mo{:stretchy => "false"} )
+                        %mo ,
+                        %mo{:stretchy => "false"} (
+                        %mi b
+                        %mi b
+                        %mo ,
+                        %mn 1
+                        %mo{:stretchy => "false"} )
+                        %mo ,
+                        %mo{:stretchy => "false"} (
+                        %mi a
+                        %mi b
+                        %mi a
+                        %mi b
+                        %mo ,
+                        %mn 1
+                        %mo{:stretchy => "false"} )
+                        %mo{:stretchy => "false"} }
+                      %annotation{:encoding => "application/x-tex"} R = \{(a a a,1),(b b,1),(a b a b,1)\}
+            %p
+              (and the group being presented is the symmetric group,
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msub
+                      %mi S
+                      %mn 3
+                  %annotation{:encoding => "application/x-tex"} S_3
+              on three symbols). We think of
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mo{:stretchy => "false"} (
+                    %mi a
+                    %mi a
+                    %mi a
+                    %mo ,
+                    %mn 1
+                    %mo{:stretchy => "false"} )
+                  %annotation{:encoding => "application/x-tex"} (a a a,1)
+              as a ‘rewrite rule’: ‘’replace
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi a
+                    %mi a
+                    %mi a
+                  %annotation{:encoding => "application/x-tex"} a a a
+              by 1’’, often written
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi a
+                    %mi a
+                    %mi a
+                    %mo ⇝
+                    %mn 1
+                  %annotation{:encoding => "application/x-tex"} a a a \rightsquigarrow 1
+              (or just
+              = succeed ")." do
+                %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                  %semantics
+                    %mrow
+                      %mi a
+                      %mi a
+                      %mi a
+                      %mo →
+                      %mn 1
+                    %annotation{:encoding => "application/x-tex"} a a a \to 1
+            %p
+              Working with the presentation, we can then start generating words in the generators, for instance
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi a
+                    %mi a
+                    %mi a
+                    %mi b
+                    %mi a
+                    %mi b
+                  %annotation{:encoding => "application/x-tex"} a a a b a b
+              and then see how that word can be ‘rewritten’ using the rewrite rules to
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi b
+                    %mi a
+                    %mi b
+                  %annotation{:encoding => "application/x-tex"} b a b
+              using the first rule and to
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi a
+                    %mi a
+                  %annotation{:encoding => "application/x-tex"} a a
+              using the last. There is thus a potential conflict between these rewritten forms of the word.
+          %p
+            It is usual to choose a ‘
+            %a.existingWikiWord{:href => "/nlab/show/normal+form"}> normal form
+            ’ for each word. In the example, in the symmetric group and the above presentation the elements of the group are often listed as
+            = succeed "." do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mn 1
+                    %mo ,
+                    %mi a
+                    %mo ,
+                    %msup
+                      %mi a
+                      %mn 2
+                    %mo ,
+                    %mi b
+                    %mo ,
+                    %mi a
+                    %mi b
+                    %mo ,
+                    %msup
+                      %mi a
+                      %mn 2
+                    %mi b
+                  %annotation{:encoding => "application/x-tex"} 1, a, a^2, b, a b, a^2 b
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %msup
+                      %mi a
+                      %mi i
+                    %msup
+                      %mi b
+                      %mi j
+                  %annotation{:encoding => "application/x-tex"} a^i b^j
+            %em choose
+            to label them that way. With the two uses of the rules applied to
+            = succeed "," do
+              %math.maruku-mathml{:display => "inline", :xmlns => "http://www.w3.org/1998/Math/MathML"}
+                %semantics
+                  %mrow
+                    %mi a
+                    %mi a
+                    %mi a
+                    %mi b
+                    %mi a
+                    %mi b
+                  %annotation{:encoding => "application/x-tex"} a a a b a b
+          %p
+            In order to transform a rewriting system into a computation
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/algorithm"} algorithm
+            = succeed "," do
+              %em terminate
+            %em is
+            an algorithm!.
+          %p
+            We therefore will need to discuss
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/confluence"} confluence
+            = succeed "," do
+              %a.existingWikiWord{:href => "/nlab/show/normal+form"} normal form
+            %a.existingWikiWord{:href => "/nlab/show/termination"} termination
+            and
+            = succeed "." do
+              %span.newWikiWord
+                reduction strategies
+                %a{:href => "/nlab/new/reduction+strategy"} ?
+          %h2#related_entries Related entries
+          %ul
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Globular"} Globular
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/abstract+rewriting+system"} abstract rewriting system
+          %h2#references References
+          %h3#general General
+          %ul
+            %li
+              %p Axel Thue, Probleme über Veränderungen von Zeichenreihen nach gegebenen Regeln., Kristiania Vidensk. Selsk, Skr. (1914), no. 10, 493–524.
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Max+H.+A.+Newman"}> Max H. A. Newman
+                ,
+                = succeed "," do
+                  %em On theories with a combinatorial definition of “equivalence”
+                %strong 43
+                2 (1942) 223-243 &amp;lbrack;
+                %a{:href => "https://doi.org/10.2307/1968867"}> doi:10.2307/1968867
+                \&amp;rbrack;
+              %blockquote
+                %p
+                  (proves
+                  = succeed ")" do
+                    %a.existingWikiWord{:href => "/nlab/show/Newman%27s+lemma"} Newman's lemma
+            %li
+              %p
+                Ronald V. Book, Friedrich Otto,
+                = succeed "," do
+                  %em String-rewriting systems
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Fabio+Gadducci"}> Fabio Gadducci
+                ,
+                = succeed "," do
+                  %em On the algebraic approach to concurrent term rewriting
+                = succeed "," do
+                  %a{:href => "https://citeseerx.ist.psu.edu/document?repid=rep1&type=pdf&doi=1277313dd2c4fce640780b7472221156579e392f"} pdf
+                = succeed "&rbrack;" do
+                  %a.existingWikiWord{:href => "/nlab/files/Gadducci-AlgebraicRewriting.pdf", :title => "pdf"} pdf
+            %li
+              %p
+                Franz Baader, Tobias Nipkow,
+                = succeed "," do
+                  %em Term rewriting and all that
+                = succeed "&rbrack;" do
+                  %a{:href => "https://www21.in.tum.de/~nipkow/TRaAT/"} webpage
+            %li
+              %p
+                %a.existingWikiWord{:href => "/nlab/show/Andrea+Corradini"}> Andrea Corradini
+                ,
+                = succeed "," do
+                  %a.existingWikiWord{:href => "/nlab/show/Fabio+Gadducci"} Fabio Gadducci
+                = succeed "," do
+                  %em An algebraic presentation of term graphs, via gs-monoidal categories
+                %strong 7
+                (1999) 299-331 &amp;lbrack;
+                %a{:href => "https://doi.org/10.1023/A:1008647417502"}> doi:10.1023/A:1008647417502
+                \&amp;rbrack;
+              %blockquote
+                %p
+                  (introducing
+                  %a.existingWikiWord{:href => "/nlab/show/gs-monoidal+categories"} gs-monoidal categories
+                  for term rewriting)
+            %li
+              %p
+                %em> Terese
+                , Term rewriting systems, Cambridge Tracts in Theoretical Computer Science, vol. 55, Cambridge University Press, 2003.
+          %p See also:
+          %ul
+            %li
+              Wikipedia,
+              %em
+                %a{:href => "http://en.wikipedia.org/wiki/Rewriting"} Rewriting
+          %p
+            On
+            %a.existingWikiWord{:href => "/nlab/show/rewriting"} rewriting
+            in
+            = succeed ":" do
+              %a.existingWikiWord{:href => "/nlab/show/group+presentations"} group presentations
+          %ul
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/Nick+Gilbert"}> Nick Gilbert
+              , Emma Antonia Mcdougall,
+              = succeed "," do
+                %em Groupoids and the algebra of rewriting in group presentations
+              %strong 62
+              3 (2021) 1-17 &amp;lbrack;
+              %a{:href => "https://doi.org/10.1007/s13366-020-00531-6"}> doi:10.1007/s13366-020-00531-6
+              ,
+              = succeed "&rbrack;" do
+                %a{:href => "https://arxiv.org/abs/1901.04348"} arXiv:1901.04348
+          %h3#higher_dimensional_rewriting Higher dimensional rewriting
+          %p For the higher dimensional forms of rewriting, one source is in the work of Guiraud and Malbos:
+          %ul
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/Yves+Guiraud"}> Yves Guiraud
+              ,
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/Philippe+Malbos"} Philippe Malbos
+              = succeed "," do
+                %em Identities among relations for higher-dimensional rewriting systems
+              = succeed ";" do
+                %a{:href => "http://arxiv.org/PS_cache/arxiv/pdf/0910/0910.4538v2.pdf"} arXiv:0910.4538
+              = succeed "," do
+                %em Higher-dimensional categories with finite derivation type
+              %strong 22
+              %p
+                (2009), No. 18, 420–478,
+                = succeed ";" do
+                  %a{:href => "http://www.tac.mta.ca/tac/volumes/22/18/22-18abs.html"} tac
+                = succeed "," do
+                  %a{:href => "http://ljk.imag.fr/membres/Dominique.Duval/CCS09/CCS09-Malbos.pdf"} Homotopical methods in polygraphic rewriting
+                = succeed "." do
+                  %a{:href => "http://www.loria.fr/~guiraudy/exposes/ntdf-luminy.pdf"} n-Catégories de type de dérivation fini
+          %p
+            This also includes emerging
+            %em homotopical theory of computation
+            based on
+            = succeed "s" do
+              %a.existingWikiWord{:href => "/nlab/show/polygraph"} polygraph
+            = succeed ")" do
+              %a.existingWikiWord{:href => "/nlab/show/Albert+Burroni"} Albert Burroni
+            = succeed "):" do
+              %a.existingWikiWord{:href => "/nlab/show/Fran%C3%A7ois+M%C3%A9tayer"} François Métayer
+          %ul
+            %li
+              Yves Lafont,
+              = succeed "," do
+                %em Algebra and geometry of rewriting
+              = succeed ":4" do
+                %strong 15
+              %a{:href => "https://doi.org/10.1007/s10485-007-9083-6"} doi
+          %p
+            Again within the context of higher dimensional forms of rewriting,
+            %a.existingWikiWord{:href => "/nlab/show/Tibor+Beke"} Tibor Beke
+            has given a
+            %a.existingWikiWord{:href => "/nlab/show/categorification"} categorification
+            of certain rewriting procedures of Knuth. This is of relevance here as it contains a strong result on coherence theory:
+          %ul
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/Tibor+Beke"}> Tibor Beke
+              ,
+              = succeed "," do
+                %em Categorification, term rewriting and the Knuth-Bendix procedure
+              %a{:href => "http://faculty.uml.edu/tbeke/knuth.pdf"} pdf
+              at author’s page)
+              %a{:href => "https://doi.org/10.1016/j.jpaa.2010.06.019"} doi:10.1016/j.jpaa.2010.06.019
+          %p An approach via diagrammatic sets is in
+          %ul
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/Amar+Hadzihasanovic"}> Amar Hadzihasanovic
+              ,
+              = succeed "," do
+                %em Diagrammatic sets and rewriting in weak higher categories
+              = succeed ")" do
+                %a{:href => "https://arxiv.org/abs/2007.14505"} arXiv:2007.14505
+          %p
+            with slides (for GeoCat 2020),
+            = succeed "." do
+              %a{:href => "https://www.irif.fr/~ahadziha/files/talk-geocat-rewriting.pdf"} here
+          %ul
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/Samuel+Mimram"}> Samuel Mimram
+              ,
+              = succeed "," do
+                %em Towards 3-dimensional rewriting theory
+              = succeed ":2," do
+                %strong 10
+              %a{:href => "https://arxiv.org/abs/1403.4094"} arXiv:1403.4094
+              = succeed ")" do
+                %a{:href => "https://doi.org/10.2168/LMCS-10(2:1)2014"} doi
+          %p See also:
+          %ul
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/Neil+Ghani"}> Neil Ghani
+              , C. Lüth,
+              = succeed "," do
+                %em Rewriting via coinserters
+              %a{:href => "http://www.informatik.uni-bremen.de/~clueth/awe/papers/njc04b.pdf"} pdf
+          %p
+            On the online proof assistant
+            %em
+              %a.existingWikiWord{:href => "/nlab/show/Globular"} Globular
+            for higher dimensional
+            %a.existingWikiWord{:href => "/nlab/show/rewriting"} rewriting
+            via
+            %a.existingWikiWord{:href => "/nlab/show/semistrict"} semistrict
+            %a.existingWikiWord{:href => "/nlab/show/globular+set"} globular
+            = succeed ":" do
+              %a.existingWikiWord{:href => "/nlab/show/higher+categories"} higher categories
+          %ul
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/Krzysztof+Bar"}> Krzysztof Bar
+              ,
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/Aleks+Kissinger"} Aleks Kissinger
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/Jamie+Vicary"} Jamie Vicary
+              = succeed "," do
+                %em Globular: an online proof assistant for higher-dimensional rewriting
+              %strong 14
+              1 (2018) &amp;lbrack;
+              %a{:href => "https://doi.org/10.23638/LMCS-14(1:8"}> doi:10.23638/LMCS-14(1:8)2018
+              2018),
+              = succeed "&rbrack;" do
+                %a{:href => "https://arxiv.org/abs/1612.01093"} arXiv:1612.01093
+          %p See also:
+          %ul
+            %li
+              Nicolas Behr,
+              = succeed "," do
+                %a.existingWikiWord{:href => "/nlab/show/Joachim+Kock"} Joachim Kock
+              = succeed "," do
+                %em
+                  Tracelet Hopf algebras and
+                  %a.existingWikiWord{:href => "/nlab/show/decomposition+spaces"} decomposition spaces
+              %a{:href => "https://arxiv.org/abs/2105.06186"} arXiv:2105.06186
+          %blockquote
+            %p Tracelets are the intrinsic carriers of causal information in categorical rewriting systems. In this work, we assemble tracelets into a symmetric monoidal decomposition space, inducing a cocommutative Hopf algebra of tracelets. This Hopf algebra captures important combinatorial and algebraic aspects of rewriting theory, and is motivated by applications of its representation theory to stochastic rewriting systems such as chemical reaction networks.
+          %p
+            The following
+            = succeed "-inspired" do
+              %a.existingWikiWord{:href => "/nlab/show/machine+learning"} machine learning
+            %a.existingWikiWord{:href => "/nlab/show/homotopy+type+theory"} homotopy type theory
+          %ul
+            %li
+              %a.existingWikiWord{:href => "/nlab/show/Ben+Goertzel"}> Ben Goertzel
+              ,
+              = succeed "," do
+                %em Reflective metagraph rewriting as a foundation for an AGI “Language of Thought”
+              %a{:href => "https://arxiv.org/abs/2112.08272"} arXiv:2112.08272
+            %li
+              Xerxes D Arsiwalla, Jonathan Gorard,
+              %em Pregeometric spaces from Wolfram model rewriting systems as homotopy types
+              %a{:href => "https://arxiv.org/abs/2111.03460"} arXiv:2111.03460
+          .property
+            category:
+            = succeed "," do
+              %a.category_link{:href => "/nlab/all_pages/combinatorics"} combinatorics
+            = succeed "," do
+              %a.category_link{:href => "/nlab/all_pages/algebra"} algebra
+            = succeed "," do
+              %a.category_link{:href => "/nlab/all_pages/computer+science"} computer science
+            %a.category_link{:href => "/nlab/all_pages/logic"} logic
+        .revisedby
+          %p
+            Last revised on July 12, 2024 at 14:39:52.
+            See the
+            %a{:href => "/nlab/history/rewriting", :style => "color: #005c19"} history
+            of this page for a list of all contributions to it.
+        .navigation.navfoot
+          %a#edit.navlink{:accesskey => "E", :href => "/nlab/edit/rewriting", :rel => "nofollow"} Edit
+          %a{:href => "https://nforum.ncatlab.org/discussion/11578/#Item_10"} Discuss
+          %span.backintime
+            %a#to_previous_revision.navlinkbackintime{:accesskey => "B", :href => "/nlab/revision/rewriting/34", :rel => "nofollow"} Previous revision
+          %a#see_changes.navlink{:accesskey => "C", :href => "/nlab/show/diff/rewriting", :rel => "nofollow"} Changes from previous revision
+          %a#history.navlink{:accesskey => "S", :href => "/nlab/history/rewriting", :rel => "nofollow"} History (34 revisions)
+          %a{:href => "/nlab/show/rewriting/cite", :style => "color: black"} Cite
+          %a#view_print{:accesskey => "p", :href => "/nlab/print/rewriting", :rel => "nofollow"} Print
+          %a#view_source{:href => "/nlab/source/rewriting", :rel => "nofollow"} Source
+      / Content
+    / Container
